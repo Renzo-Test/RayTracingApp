@@ -25,5 +25,15 @@ namespace Test.Model
             };
             Assert.AreEqual("Gomez", _client.Username);
         }
+
+        [TestMethod]
+        public void setPassword_GomezSecret_OkTest()
+        {
+            _client = new Client()
+            {
+                Password = "GomezSecret",
+            };
+            Assert.AreEqual("GomezSecret", _client.Password);
+        }
     }
 }
