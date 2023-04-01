@@ -7,10 +7,12 @@ namespace Test.MemoryRepository
     [TestClass]
     public class ClientRepositoryTest
     {
+        private ClientRepository _clientRepository;
+
         [TestMethod]
-        public void createClientList_OkTest()
+        public void createClientRepository_OkTest()
         {
-            ClientRepository clientRepository = new ClientRepository();
+            _clientRepository = new ClientRepository();
         }
     }
 }
