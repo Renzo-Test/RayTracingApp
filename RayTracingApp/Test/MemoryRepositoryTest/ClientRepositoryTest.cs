@@ -22,7 +22,14 @@ namespace Test.MemoryRepository
         {
             _clientRepository = new ClientRepository();
             _clientRepository.addClient(new Client());
+        }
 
+        [TestMethod]
+        public void getPassword_OkTest()
+        {
+            _clientRepository = new ClientRepository();
+            _clientRepository.addClient(new Client() { Username = "user", Password = "pass" });
+            Assert.AreEqual("pass", _clientRepository.getPassword("user"));
         }
     }
 }
