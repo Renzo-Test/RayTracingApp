@@ -26,7 +26,8 @@ namespace MemoryRepository
         public string getPassword(string username)
         {
             if (username.Equals("")) throw new ExceptionGetPasswordOfEmptyUsername();
-            return "pass";
+
+            return _clientsList.Find(x => x.Username.Equals(username)).Password;
         }
     }
 }
