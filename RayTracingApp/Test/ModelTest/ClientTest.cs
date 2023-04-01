@@ -35,5 +35,13 @@ namespace Test.Model
             };
             Assert.AreEqual("GomezSecret", _client.Password);
         }
+
+        [TestMethod]
+        public void canGetRegisterDate_OkTest()
+        {
+            _client = new Client();
+            String today = DateTime.Today.ToString("dd/MM/yyyy");
+            Assert.AreEqual(today, _client.RegisterDate);
+        }
     }
 }
