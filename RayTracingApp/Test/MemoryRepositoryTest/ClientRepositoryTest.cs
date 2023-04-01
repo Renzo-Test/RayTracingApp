@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MemoryRepository;
+using MemoryRepository.Exceptions;
 using Model;
 using System.Collections.Generic;
 
@@ -33,7 +34,7 @@ namespace Test.MemoryRepository
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ClientRepositoryExcepcion))]
+        [ExpectedException(typeof(GetPasswordEmptyUsername))]
         public void getPasswordOfEmptyUsername_OkTest()
         {
             _clientRepository = new ClientRepository();

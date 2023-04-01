@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using IRepository;
+using MemoryRepository.Exceptions;
 
 namespace MemoryRepository
 {
@@ -24,6 +25,7 @@ namespace MemoryRepository
 
         public string getPassword(string username)
         {
+            if (username.Equals("")) throw new GetPasswordEmptyUsername();
             return "pass";
         }
     }
