@@ -8,10 +8,12 @@ namespace Test.Model
     [TestClass]
     public class ClientTest
     {
+        private Client _client;
+
         [TestMethod]
         public void canCreateClient_OkTest()
         {
-            Client _client = new Client();
+           _client = new Client();
         }
     }
 }
