@@ -40,5 +40,13 @@ namespace Test.MemoryRepository
             _clientRepository = new ClientRepository();
             _clientRepository.getPassword("");
         }
+
+        [TestMethod]
+        public void getPassword_RandomPass_OkTest()
+        {
+            _clientRepository = new ClientRepository();
+            _clientRepository.addClient(new Client() { Username = "user", Password = "RandomPass" });
+            Assert.AreEqual("RandomPass", _clientRepository.getPassword("user"));
+        }
     }
 }
