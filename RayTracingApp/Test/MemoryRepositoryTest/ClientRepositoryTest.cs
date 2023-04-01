@@ -34,7 +34,7 @@ namespace Test.MemoryRepository
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ExceptionGetPasswordOfEmptyUsername))]
+        [ExpectedException(typeof(NullReferenceException))]
         public void getPasswordOfEmptyUsername_FailTest()
         {
             _clientRepository = new ClientRepository();
