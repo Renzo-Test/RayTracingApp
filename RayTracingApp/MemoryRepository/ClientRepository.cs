@@ -21,5 +21,10 @@ namespace MemoryRepository
         {
             _clientsList.Add(newClient);
         }
+
+        public string getPassword(string username)
+        {
+            return "pass";
+        }
     }
 }
