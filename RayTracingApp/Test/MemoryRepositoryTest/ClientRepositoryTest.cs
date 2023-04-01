@@ -22,6 +22,7 @@ namespace Test.MemoryRepository
         {
             _clientRepository = new ClientRepository();
             _clientRepository.addClient(new Client());
+
         }
     }
 }
