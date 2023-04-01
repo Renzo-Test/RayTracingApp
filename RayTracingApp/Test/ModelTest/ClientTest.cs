@@ -15,5 +15,13 @@ namespace Test.Model
         {
            _client = new Client();
         }
+
+        [TestMethod]
+        public void setUsername_Gomez_OkTest()
+        {
+            _client = new Client();
+            _client.Username = "Gomez";
+            Assert.AreEqual("Gomez", _client.Username);
+        }
     }
 }
