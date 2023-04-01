@@ -27,7 +27,9 @@ namespace MemoryRepository
         {
             if (username.Equals("")) throw new ExceptionGetPasswordOfEmptyUsername();
 
-            return _clientsList.Find(x => x.Username.Equals(username)).Password;
+            Client foundClient = _clientsList.Find(client => client.Username.Equals(username));
+
+            return foundClient.Password;
         }
     }
 }
