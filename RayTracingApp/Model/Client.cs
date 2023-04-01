@@ -8,5 +8,6 @@ namespace Model
 {
     public class Client
     {
+        public String Username { get; set; }
     }
 }
