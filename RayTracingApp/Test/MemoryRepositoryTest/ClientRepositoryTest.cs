@@ -31,5 +31,13 @@ namespace Test.MemoryRepository
             _clientRepository.addClient(new Client() { Username = "user", Password = "pass" });
             Assert.AreEqual("pass", _clientRepository.getPassword("user"));
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ClientRepositoryExcepcion))]
+        public void getPasswordOfEmptyUsername_OkTest()
+        {
+            _clientRepository = new ClientRepository();
+            _clientRepository.getPassword("");
+        }
     }
 }
