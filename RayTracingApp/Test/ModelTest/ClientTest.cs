@@ -1,14 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Test
+
+namespace Test.Model
 {
     [TestClass]
-    public class UnitTest1
+    public class ClientTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void canCreateClient_OkTest()
         {
+            Client() _client = new Client();
         }
     }
 }
