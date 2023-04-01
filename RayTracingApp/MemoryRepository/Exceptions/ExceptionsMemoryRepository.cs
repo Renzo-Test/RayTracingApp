@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MemoryRepository.Exceptions
 {
-    public class GetPasswordEmptyUsername : Exception
+    public class ExceptionGetPasswordOfEmptyUsername : Exception
     {
-        public GetPasswordEmptyUsername()
-        {
-        }
     }
 }
