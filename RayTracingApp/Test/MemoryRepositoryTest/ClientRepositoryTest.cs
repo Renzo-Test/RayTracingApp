@@ -35,7 +35,7 @@ namespace Test.MemoryRepository
 
         [TestMethod]
         [ExpectedException(typeof(ExceptionGetPasswordOfEmptyUsername))]
-        public void getPasswordOfEmptyUsername_OkTest()
+        public void getPasswordOfEmptyUsername_FailTest()
         {
             _clientRepository = new ClientRepository();
             _clientRepository.getPassword("");
@@ -47,6 +47,13 @@ namespace Test.MemoryRepository
             _clientRepository = new ClientRepository();
             _clientRepository.addClient(new Client() { Username = "user", Password = "RandomPass" });
             Assert.AreEqual("RandomPass", _clientRepository.getPassword("user"));
+        }
+
+        [TestMethod]
+        public void getPasswordOfNotCreatedUsername_FailTest()
+        {
+            _clientRepository = new ClientRepository();
+            Assert.AreEqual("pass", _clientRepository.getPassword("notCreatedUsername"));
         }
     }
 }
