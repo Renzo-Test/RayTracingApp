@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model;
 
 namespace IRepository
 {
-    internal class Class1
+    public interface IRepositoryClient
     {
+        void addClient(Client newClient);
+
+        string getPassword(string username);
     }
 }
