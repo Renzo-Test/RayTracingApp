@@ -9,7 +9,7 @@ using MemoryRepository.Exceptions;
 
 namespace MemoryRepository
 {
-    public class ClientRepository
+    public class ClientRepository : IRepositoryClient
     {
         private List<Client> _clientsList;
 
