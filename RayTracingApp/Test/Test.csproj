@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ClientUsernameControllerTest.cs" />
     <Compile Include="Controller\ClientPasswordControllerTest.cs" />
     <Compile Include="ModelTest\ClientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

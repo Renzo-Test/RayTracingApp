@@ -22,15 +22,15 @@ namespace Test.MemoryRepository
         public void AddClientToClientRepository_OkTest()
         {
             _clientRepository = new ClientRepository();
-            _clientRepository.addClient(new Client());
+            _clientRepository.AddClient(new Client());
         }
 
         [TestMethod]
         public void GetPassword_OkTest()
         {
             _clientRepository = new ClientRepository();
-            _clientRepository.addClient(new Client() { Username = "user", Password = "pass" });
-            Assert.AreEqual("pass", _clientRepository.getPassword("user"));
+            _clientRepository.AddClient(new Client() { Username = "user", Password = "pass" });
+            Assert.AreEqual("pass", _clientRepository.GetPassword("user"));
         }
 
         [TestMethod]
@@ -38,15 +38,15 @@ namespace Test.MemoryRepository
         public void GetPasswordOfEmptyUsername_FailTest()
         {
             _clientRepository = new ClientRepository();
-            _clientRepository.getPassword("");
+            _clientRepository.GetPassword("");
         }
 
         [TestMethod]
         public void GetPassword_RandomPass_OkTest()
         {
             _clientRepository = new ClientRepository();
-            _clientRepository.addClient(new Client() { Username = "user", Password = "RandomPass" });
-            Assert.AreEqual("RandomPass", _clientRepository.getPassword("user"));
+            _clientRepository.AddClient(new Client() { Username = "user", Password = "RandomPass" });
+            Assert.AreEqual("RandomPass", _clientRepository.GetPassword("user"));
         }
 
         [TestMethod]
@@ -54,7 +54,7 @@ namespace Test.MemoryRepository
         public void GetPasswordOfNotCreatedUsername_FailTest()
         {
             _clientRepository = new ClientRepository();
-            Assert.AreEqual("pass", _clientRepository.getPassword("notCreatedUsername"));
+            Assert.AreEqual("pass", _clientRepository.GetPassword("notCreatedUsername"));
         }
     }
 }
