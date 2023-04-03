@@ -11,18 +11,16 @@ namespace Controller
     {
         private IRepositoryClient _repo;
         private ClientUsernameController _userController;
-        private ClientPasswordController _passwordController;
 
         public ClientSignController()
         {
             _repo = base.Repository;
             _userController = new ClientUsernameController();
-            _passwordController = new ClientPasswordController();
         }
 
         public bool SignUp(String username, String password)
         {
-            if (!_userController.isValid(username) || !_passwordController.isValid(password))
+            if (!_userController.isValid(username) || !ClientPasswordController.isValid(password))
                 return false;
             return true;
         }

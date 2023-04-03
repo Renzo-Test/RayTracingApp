@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-    public class ClientPasswordController : ClientController
+    public static class ClientPasswordController
     {
-        public bool CheckIfContainsNumber(String password)
+        public static bool CheckIfContainsNumber(String password)
         {
             return password.Any(char.IsDigit);  
         }
 
-        public bool CheckIfContainsCapital(String password)
+        public static bool CheckIfContainsCapital(String password)
         {
             return password.Any(char.IsUpper);
         }
 
-        public bool CheckIfLengthInRange(string password)
+        public static bool CheckIfLengthInRange(string password)
         {
             return password.Length >= 5 && password.Length <= 25;
         }
 
-        public bool isValid(String password)
+        public static bool isValid(String password)
         {
-            return this.CheckIfLengthInRange(password) && this.CheckIfContainsCapital(password)
-                && this.CheckIfContainsNumber(password);
+            return CheckIfLengthInRange(password) && CheckIfContainsCapital(password)
+                && CheckIfContainsNumber(password);
         }
     }
 }

@@ -7,83 +7,67 @@ namespace Test.Controller
     [TestClass]
     public class ClientPasswordControllerTest
     {
-        private ClientPasswordController _controller;
-
-        [TestMethod]
-        public void CanCreateClientPasswordController_OkTest()
-        {
-            _controller = new ClientPasswordController();
-        }
 
         [TestMethod]
         public void CheckIfContainsNumber_EmptyString_OkTest()
         {
-            _controller = new ClientPasswordController();
-            bool result = _controller.CheckIfContainsNumber("");
+            bool result = ClientPasswordController.CheckIfContainsNumber("");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void CheckIfContainsNumber_1_OkTest()
         {
-            _controller = new ClientPasswordController();
-            bool result = _controller.CheckIfContainsNumber("1");
+            bool result = ClientPasswordController.CheckIfContainsNumber("1");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void CheckIfContainsNumber_a1_OkTest()
         {
-            _controller = new ClientPasswordController();
-            bool result = _controller.CheckIfContainsNumber("a1");
+            bool result = ClientPasswordController.CheckIfContainsNumber("a1");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void CheckIfContainsCapital_EmptyString_OkTest()
         {
-            _controller = new ClientPasswordController();
-            bool result = _controller.CheckIfContainsCapital("");
+            bool result = ClientPasswordController.CheckIfContainsCapital("");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void CheckIfContainsCapital_A_OkTest()
         {
-            _controller = new ClientPasswordController();
-            bool result = _controller.CheckIfContainsCapital("A");
+            bool result = ClientPasswordController.CheckIfContainsCapital("A");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void CheckIfContainsCapital_aA_OkTest()
         {
-            _controller = new ClientPasswordController();
-            bool result = _controller.CheckIfContainsCapital("aA");
+            bool result = ClientPasswordController.CheckIfContainsCapital("aA");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void CheckIfLengthInRange_EmptyString_OkTest()
         {
-            _controller = new ClientPasswordController();
-            bool result = _controller.CheckIfLengthInRange("");
+            bool result = ClientPasswordController.CheckIfLengthInRange("");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void CheckIfLengthInRange_ABCDE_OkTest()
         {
-            _controller = new ClientPasswordController();
-            bool result = _controller.CheckIfLengthInRange("ABCDE");
+            bool result = ClientPasswordController.CheckIfLengthInRange("ABCDE");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void CheckIfLengthInRange_ABCDEFGHIJKLMNOPQRSTUVWXYZ_OkTest()
         {
-            _controller = new ClientPasswordController();
-            bool result = _controller.CheckIfLengthInRange("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+            bool result = ClientPasswordController.CheckIfLengthInRange("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
             Assert.IsFalse(result);
         }
 
