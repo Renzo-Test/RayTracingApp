@@ -31,7 +31,7 @@ namespace Controller
 
         public bool CheckIfLengthInRange(string username)
         {
-            return false;
+            return username.Length >= 3 && username.Length <= 20;
         }
     }
 }
