@@ -68,7 +68,9 @@ namespace Test.Controller
         {
             _controller = new ClientPasswordController();
             bool result = _controller.CheckIfLengthInRange("");
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
+
+
     }
 }
