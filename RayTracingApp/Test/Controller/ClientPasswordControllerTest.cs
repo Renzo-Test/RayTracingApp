@@ -30,5 +30,13 @@ namespace Test.Controller
             bool result = _controller.CheckIfContainsNumber("1");
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void CheckIfContainsNumber_ab_OkTest()
+        {
+            _controller = new ClientPasswordController();
+            bool result = _controller.CheckIfContainsNumber("a1");
+            Assert.IsTrue(result);
+        }
     }
 }
