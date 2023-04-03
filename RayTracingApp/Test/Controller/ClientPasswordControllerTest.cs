@@ -10,9 +10,10 @@ namespace Test.Controller
         private ClientPasswordController _controller;
 
         [TestMethod]
-        public void canCreateClientPasswordController_OkTest()
+        public void CanCreateClientPasswordController_OkTest()
         {
             _controller = new ClientPasswordController();
         }
+
     }
 }
