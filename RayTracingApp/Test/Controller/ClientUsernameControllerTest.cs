@@ -100,5 +100,29 @@ namespace Test.Controller
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void CheckIfAlphanumeric_SpaceAB_OkTest()
+        {
+            _controller = new ClientUsernameController();
+            bool result = _controller.CheckIfAlphanumeric(" AB");
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void CheckIfAlphanumeric_ASpaceB_OkTest()
+        {
+            _controller = new ClientUsernameController();
+            bool result = _controller.CheckIfAlphanumeric("A B");
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void CheckIfAlphanumeric_ABSpace_OkTest()
+        {
+            _controller = new ClientUsernameController();
+            bool result = _controller.CheckIfAlphanumeric("AB ");
+            Assert.IsFalse(result);
+        }
+
     }
 }
