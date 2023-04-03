@@ -31,5 +31,10 @@ namespace Controller
 
             return result;
         }
+
+        public bool CheckIfLengthInRange(string password)
+        {
+            return true;
+        }
     }
 }
