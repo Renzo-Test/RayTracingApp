@@ -50,5 +50,10 @@ namespace Controller
         }
 
         public void SignOut() { }
+
+        public bool SignIn(string username, string password)
+        {
+            return false;
+        }
     }
 }
