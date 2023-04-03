@@ -8,5 +8,9 @@ namespace Controller
 {
     public class ClientPasswordController : ClientController
     {
+        public bool CheckIfContainsNumber(String password)
+        {
+            return false;
+        }
     }
 }
