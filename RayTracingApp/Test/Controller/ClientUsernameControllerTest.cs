@@ -1,9 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Controller;
-using IRepository;
-using MemoryRepository;
-using Model;
+
 
 namespace Test.Controller
 {

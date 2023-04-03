@@ -6,7 +6,7 @@ namespace MemoryRepository
 {
     public class ClientRepository : IRepositoryClient
     {
-        private List<Client> _clientsList;
+        private readonly List<Client> _clientsList;
 
         public ClientRepository()
         {

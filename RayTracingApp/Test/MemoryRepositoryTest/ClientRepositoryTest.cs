@@ -1,9 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MemoryRepository;
-using MemoryRepository.Exceptions;
-using Model;
-using System.Collections.Generic;
+
 
 namespace Test.MemoryRepository
 {
