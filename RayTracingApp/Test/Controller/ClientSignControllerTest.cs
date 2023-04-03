@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Controller;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test.Controller
