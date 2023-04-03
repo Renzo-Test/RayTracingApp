@@ -10,11 +10,16 @@ namespace Controller
     {
         public bool CheckIfContainsNumber(String password)
         {
-            if (password.Length == 0)
-                return false;
-            if (password.Length == 1)
-                return int.TryParse(password, out _);
-            return int.TryParse(password[0].ToString(), out _) || int.TryParse(password[1].ToString(), out _);
+            bool result = false;
+
+            foreach (char c in password)
+            {
+                result = result || int.TryParse(c.ToString(), out _);
+            }
+
+            return result;
         }
+
+
     }
 }

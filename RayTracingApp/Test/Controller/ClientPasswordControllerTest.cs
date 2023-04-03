@@ -32,7 +32,7 @@ namespace Test.Controller
         }
 
         [TestMethod]
-        public void CheckIfContainsNumber_ab_OkTest()
+        public void CheckIfContainsNumber_a1_OkTest()
         {
             _controller = new ClientPasswordController();
             bool result = _controller.CheckIfContainsNumber("a1");
