@@ -23,5 +23,12 @@ namespace Test.Controller
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void CheckIfContainsNumber_1_OkTest()
+        {
+            _controller = new ClientPasswordController();
+            bool result = _controller.CheckIfContainsNumber("");
+            Assert.IsTrue(result);
+        }
     }
 }
