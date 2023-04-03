@@ -22,9 +22,14 @@ namespace Controller
 
         public bool CheckIfContainsCapital(String password)
         {
-            if(password.Length == 0)
-                return false;
-            return Char.IsUpper(password[0]);
+            bool result = false;
+
+            foreach (char c in password) 
+            {
+                result = result || Char.IsUpper(c);
+            }
+
+            return result;
         }
     }
 }
