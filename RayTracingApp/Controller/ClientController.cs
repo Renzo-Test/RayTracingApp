@@ -25,7 +25,7 @@ namespace Controller
 
         public bool SignUp(string username, string password)
         {
-            if (IsInputOk(username, password))
+            if (!IsInputOk(username, password))
                 return false;
 
             Repository.AddClient(username, password);
@@ -34,9 +34,9 @@ namespace Controller
 
         private bool IsInputOk(string username, string password)
         {
-            return CheckIfClientExists(username)
-                   || !ClientPasswordController.IsValid(password)
-                   || !ClientUsernameController.IsValid(username);
+            return !CheckIfClientExists(username)
+                   && ClientPasswordController.IsValid(password)
+                   && ClientUsernameController.IsValid(username);
         }
 
         public void SignOut() { }
