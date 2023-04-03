@@ -31,6 +31,14 @@ namespace Test.Controller
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void CheckSignUp_Go_GomezSecret_OkTest()
+        {
+            _controller = new ClientSignController();
+            bool result = _controller.SignUp("Go", "GomezSecret");
+            Assert.IsFalse(result);
+        }
+
 
 
     }
