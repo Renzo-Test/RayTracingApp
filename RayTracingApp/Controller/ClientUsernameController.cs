@@ -16,7 +16,7 @@ namespace Controller
             _repo = base.Repository;
         }
 
-        public bool CheckIfClientExists(string username)
+        public bool CheckIfClientExists(String username)
         {
             try
             {
@@ -30,22 +30,15 @@ namespace Controller
 
         }
 
-        public bool CheckIfLengthInRange(string username)
+        public bool CheckIfLengthInRange(String username)
         {
             return username.Length >= 3 && username.Length <= 20;
         }
 
         //alphanumeric includes non special characters and no spaces 
-        public bool CheckIfAlphanumeric(string username)
+        public bool CheckIfAlphanumeric(String username)
         {
-            bool result = true;
-
-            foreach (char c in username)
-            {
-                result = result && char.IsLetterOrDigit(c);
-            }
-
-            return result;
+            return username.All(char.IsLetterOrDigit);
         }
     }
 }
