@@ -22,5 +22,11 @@ namespace Controller
         {
             return password.Length >= 5 && password.Length <= 25;
         }
+
+        public bool isValid(String password)
+        {
+            return this.CheckIfLengthInRange(password) && this.CheckIfContainsCapital(password)
+                && this.CheckIfContainsNumber(password);
+        }
     }
 }

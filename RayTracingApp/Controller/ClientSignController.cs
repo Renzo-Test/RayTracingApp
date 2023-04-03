@@ -22,8 +22,7 @@ namespace Controller
 
         public bool SignUp(String username, String password)
         {
-            return _userController.isValid(username) && _passwordController.CheckIfContainsCapital(password)
-                && _passwordController.CheckIfContainsNumber(password) && _passwordController.CheckIfLengthInRange(password);
+            return _userController.isValid(username) && _passwordController.isValid(password);
         }
     }
 }
