@@ -9,8 +9,8 @@ namespace IRepository
 {
     public interface IRepositoryClient
     {
-        void addClient(Client newClient);
+        void AddClient(Client newClient);
 
-        string getPassword(string username);
+        string GetPassword(string username);
     }
 }

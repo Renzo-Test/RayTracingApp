@@ -18,12 +18,12 @@ namespace MemoryRepository
             _clientsList = new List<Client>();
         }
 
-        public void addClient(Client newClient)
+        public void AddClient(Client newClient)
         {
             _clientsList.Add(newClient);
         }
 
-        public string getPassword(string username)
+        public string GetPassword(string username)
         {
             Client foundClient = _clientsList.Find(client => client.Username.Equals(username));
 
