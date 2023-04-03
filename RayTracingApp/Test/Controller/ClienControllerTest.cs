@@ -114,5 +114,14 @@ namespace Test.Controller
             bool result = _controller.SignIn("Gomez", "GomezSecret1");
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void CheckSignIn_Registered_Gomez_GomezSecret1_OkTest()
+        {
+            _controller = new ClientController();
+            _controller.SignUp("Gomez", "GomezSecret1");
+            bool result = _controller.SignIn("Gomez", "GomezSecret1");
+            Assert.IsTrue(result);
+        }
     }
 }
