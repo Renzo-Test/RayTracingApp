@@ -83,6 +83,14 @@ namespace Test.Controller
             bool result = _controller.CheckIfAlphanumeric("");
             Assert.IsTrue(result);
         }
-       
+
+        [TestMethod]
+        public void CheckIfAlphanumeric_QuestionMark_OkTest()
+        {
+            _controller = new ClientUsernameController();
+            bool result = _controller.CheckIfAlphanumeric("?");
+            Assert.IsFalse(result);
+        }
+
     }
 }
