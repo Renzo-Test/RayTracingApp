@@ -38,9 +38,14 @@ namespace Controller
         //alphanumeric includes non special characters and no spaces 
         public bool CheckIfAlphanumeric(string username)
         {
-            if (username.Length == 0)
-                return true;
-            return char.IsLetterOrDigit(username[0]);
+            bool result = true;
+
+            foreach (char c in username)
+            {
+                result = result && char.IsLetterOrDigit(c);
+            }
+
+            return result;
         }
     }
 }
