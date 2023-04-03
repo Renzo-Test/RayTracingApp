@@ -52,9 +52,16 @@ namespace Test.Controller
         public void CheckSignUp_Gomez_GomezSecret_OkTest()
         {
             _controller = new ClientSignController();
-            bool result = _controller.SignUp("Gomez", "gomezsecret");
+            bool result = _controller.SignUp("Gomez", "GomezSecret");
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void CheckSignUp_Gomez_Gom1_OkTest()
+        {
+            _controller = new ClientSignController();
+            bool result = _controller.SignUp("Gomez", "Gom1");
+            Assert.IsFalse(result);
+        }
     }
 }
