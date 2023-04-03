@@ -43,7 +43,14 @@ namespace Test.Controller
             Assert.IsTrue(result);
         }
 
+        [TestMethod]
+        public void CheckIfClientExists_NotFoundUser_OkTest()
+        {
+            _controller = new ClientUsernameController();
 
+            bool result = _controller.CheckIfClientExists("NotFoundUser");
+            Assert.IsFalse(result);
+        }
 
     }
 }
