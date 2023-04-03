@@ -62,5 +62,13 @@ namespace Test.Controller
             bool result = _controller.CheckIfContainsCapital("aA");
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void CheckIfLengthInRange_EmptyString_OkTest()
+        {
+            _controller = new ClientPasswordController();
+            bool result = _controller.CheckIfLengthInRange("");
+            Assert.IsTrue(result);
+        }
     }
 }
