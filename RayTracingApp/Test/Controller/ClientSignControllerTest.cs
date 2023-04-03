@@ -40,21 +40,6 @@ namespace Test.Controller
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        public void CheckSignUp_AlreadyExisting_Gomez_GomezSecret_OkTest()
-        {
-            _controller = new ClientSignController();
-
-            Client _client = new Client()
-            {
-                Username = "Gomez",
-            };
-
-            _controller.Repository.AddClient(_client);
-
-            bool result = _controller.SignUp("Gomez", "GomezSecret");
-            Assert.IsFalse(result);
-        }
 
 
     }

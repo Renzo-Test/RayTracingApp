@@ -40,5 +40,11 @@ namespace Controller
         {
             return username.All(char.IsLetterOrDigit);
         }
+
+        public bool isValid(String username)
+        {
+            return this.CheckIfAlphanumeric(username) && this.CheckIfLengthInRange(username) &&
+                !this.CheckIfClientExists(username);
+        }
     }
 }
