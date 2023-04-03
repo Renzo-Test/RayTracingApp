@@ -8,7 +8,7 @@ namespace Controller
 {
     public class ClientSignController : ClientController
     {
-        public bool SignUp(string v1, string v2)
+        public bool SignUp(String username, String password)
         {
             return true;
         }

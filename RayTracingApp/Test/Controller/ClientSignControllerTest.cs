@@ -23,6 +23,15 @@ namespace Test.Controller
             Assert.IsTrue(result);
         }
 
+        [TestMethod]
+        public void CheckSignUp_Gomez_EmptyString_OkTest()
+        {
+            _controller = new ClientSignController();
+            bool result = _controller.SignUp("Gomez?", "GomezSecret");
+            Assert.IsFalse(result);
+        }
+
+
 
     }
 }
