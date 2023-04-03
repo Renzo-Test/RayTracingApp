@@ -34,7 +34,7 @@ namespace Controller
 
         public bool CheckIfLengthInRange(string password)
         {
-            return password.Length >= 5;
+            return password.Length >= 5 && password.Length <= 25;
         }
     }
 }
