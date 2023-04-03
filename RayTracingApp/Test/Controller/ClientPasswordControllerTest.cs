@@ -15,5 +15,13 @@ namespace Test.Controller
             _controller = new ClientPasswordController();
         }
 
+        [TestMethod]
+        public void CheckIfContainsNumber_EmptyString_OkTest()
+        {
+            _controller = new ClientPasswordController();
+            bool result = _controller.CheckIfContainsNumber("");
+            Assert.IsFalse(result);
+        }
+
     }
 }
