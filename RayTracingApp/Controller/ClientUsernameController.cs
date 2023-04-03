@@ -34,5 +34,11 @@ namespace Controller
         {
             return username.Length >= 3 && username.Length <= 20;
         }
+
+        //alphanumeric includes non special characters and no spaces 
+        public bool CheckIfAlphanumeric(string username)
+        {
+            return true;
+        }
     }
 }
