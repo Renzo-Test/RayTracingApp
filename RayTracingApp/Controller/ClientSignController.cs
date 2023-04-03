@@ -11,16 +11,18 @@ namespace Controller
     {
         private IRepositoryClient _repo;
         private ClientUsernameController _userController;
+        private ClientPasswordController _passwordController;
 
         public ClientSignController()
         {
             _repo = base.Repository;
             _userController = new ClientUsernameController();
+            _passwordController = new ClientPasswordController();
         }
 
         public bool SignUp(String username, String password)
         {
-            return _userController.isValid(username);
+            return _userController.isValid(username) && _passwordController.CheckIfContainsCapital(password);
         }
     }
 }
