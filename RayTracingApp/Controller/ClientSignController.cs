@@ -8,9 +8,16 @@ namespace Controller
 {
     public class ClientSignController : ClientController
     {
+        private ClientUsernameController _userController;
+
+        public ClientSignController()
+        {
+            _userController = new ClientUsernameController();
+        }
+
         public bool SignUp(String username, String password)
         {
-            return true;
+            return _userController.CheckIfAlphanumeric(username);
         }
     }
 }
