@@ -16,5 +16,13 @@ namespace Test.Controller
             _controller = new ClientUsernameController();
         }
 
+        [TestMethod]
+        public void CheckIfClientExists_EmptyString_OkTest()
+        {
+            _controller = new ClientUsernameController();
+            bool result = _controller.CheckIfClientExists("");
+            Assert.IsFalse(result);
+        }
+
     }
 }
