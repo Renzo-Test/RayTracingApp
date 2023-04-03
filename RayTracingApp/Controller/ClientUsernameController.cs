@@ -28,5 +28,10 @@ namespace Controller
             }
 
         }
+
+        public bool CheckIfLengthInRange(string username)
+        {
+            return false;
+        }
     }
 }
