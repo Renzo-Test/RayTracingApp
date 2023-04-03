@@ -9,10 +9,24 @@ namespace Controller
 {
     public class ClientUsernameController : ClientController
     {
-        
+        private IRepositoryClient _repo;
+
+        public ClientUsernameController()
+        {
+            _repo = base.Repository;
+        }
         public bool CheckIfClientExists(string username)
         {
-            return false;
+            try
+            {
+                _repo.GetPassword(username);
+                return true;
+            }
+            catch (NullReferenceException)
+            {
+                return false;
+            }
+
         }
     }
 }
