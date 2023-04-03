@@ -54,5 +54,13 @@ namespace Test.Controller
             bool result = _controller.CheckIfContainsCapital("A");
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void CheckIfContainsCapital_aA_OkTest()
+        {
+            _controller = new ClientPasswordController();
+            bool result = _controller.CheckIfContainsCapital("aA");
+            Assert.IsTrue(result);
+        }
     }
 }
