@@ -29,10 +29,9 @@ namespace Controller
 
         public bool SignUp(String username, String password)
         {
-            if (!ClientUsernameController.isValid(username) || !ClientPasswordController.isValid(password)
-                || CheckIfClientExists(username))
+            if (IsInputOk(username, password))
                 return false;
-            
+
             Client newClient = new Client()
             {
                 Username = username,
@@ -43,6 +42,12 @@ namespace Controller
             return true;
         }
 
+        private bool IsInputOk(string username, string password)
+        {
+            return CheckIfClientExists(username)
+                   || !ClientPasswordController.isValid(password)
+                   || !ClientUsernameController.isValid(username);
+        }
 
         public void SignOut() { }
     }
