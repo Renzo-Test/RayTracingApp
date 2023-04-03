@@ -10,14 +10,7 @@ namespace Controller
     {
         public bool CheckIfContainsNumber(String password)
         {
-            bool result = false;
-
-            foreach (char c in password)
-            {
-                result = result || int.TryParse(c.ToString(), out _);
-            }
-
-            return result;
+            return password.Any(char.IsDigit);  
         }
 
         public bool CheckIfContainsCapital(String password)
