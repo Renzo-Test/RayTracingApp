@@ -13,20 +13,20 @@ namespace Test.MemoryRepository
         private ClientRepository _clientRepository;
 
         [TestMethod]
-        public void createClientRepository_OkTest()
+        public void CreateClientRepository_OkTest()
         {
             _clientRepository = new ClientRepository();
         }
 
         [TestMethod]
-        public void addClientToClientRepository_OkTest()
+        public void AddClientToClientRepository_OkTest()
         {
             _clientRepository = new ClientRepository();
             _clientRepository.addClient(new Client());
         }
 
         [TestMethod]
-        public void getPassword_OkTest()
+        public void GetPassword_OkTest()
         {
             _clientRepository = new ClientRepository();
             _clientRepository.addClient(new Client() { Username = "user", Password = "pass" });
@@ -35,14 +35,14 @@ namespace Test.MemoryRepository
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void getPasswordOfEmptyUsername_FailTest()
+        public void GetPasswordOfEmptyUsername_FailTest()
         {
             _clientRepository = new ClientRepository();
             _clientRepository.getPassword("");
         }
 
         [TestMethod]
-        public void getPassword_RandomPass_OkTest()
+        public void GetPassword_RandomPass_OkTest()
         {
             _clientRepository = new ClientRepository();
             _clientRepository.addClient(new Client() { Username = "user", Password = "RandomPass" });
@@ -51,7 +51,7 @@ namespace Test.MemoryRepository
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void getPasswordOfNotCreatedUsername_FailTest()
+        public void GetPasswordOfNotCreatedUsername_FailTest()
         {
             _clientRepository = new ClientRepository();
             Assert.AreEqual("pass", _clientRepository.getPassword("notCreatedUsername"));
