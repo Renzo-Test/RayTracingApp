@@ -9,7 +9,7 @@ namespace Controller
     {
         public IRepositoryClient Repository = new ClientRepository();
         
-        public bool CheckIfClientExists(String username)
+        public bool CheckIfClientExists(string username)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace Controller
 
         }
 
-        public bool SignUp(String username, String password)
+        public bool SignUp(string username, string password)
         {
             if (IsInputOk(username, password))
                 return false;

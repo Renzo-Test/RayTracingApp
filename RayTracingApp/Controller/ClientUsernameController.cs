@@ -1,27 +1,23 @@
-﻿using IRepository;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Controller
 {
     public static class ClientUsernameController 
     {
 
-        public static bool CheckIfLengthInRange(String username)
+        public static bool CheckIfLengthInRange(string username)
         {
             return username.Length >= 3 && username.Length <= 20;
         }
 
         //alphanumeric includes non special characters and no spaces 
-        public static bool CheckIfAlphanumeric(String username)
+        public static bool CheckIfAlphanumeric(string username)
         {
             return username.All(char.IsLetterOrDigit);
         }
 
-        public static bool IsValid(String username)
+        public static bool IsValid(string username)
         {
             return CheckIfAlphanumeric(username) && CheckIfLengthInRange(username);
         }
