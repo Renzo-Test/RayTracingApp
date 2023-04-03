@@ -11,40 +11,6 @@ namespace Test.Controller
 
     public class ClientUsernameControllerTest
     {
-        /*
-        [TestMethod]
-        public void CheckIfClientExists_EmptyString_OkTest()
-        {
-            _controller = new ClientUsernameController();
-            bool result = _controller.CheckIfClientExists("");
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod]
-        public void CheckIfClientExists_Gomez_OkTest()
-        {
-            _controller = new ClientUsernameController();
-
-            Client _client = new Client()
-            {
-                Username = "Gomez",
-            };
-
-            _controller.Repository.AddClient(_client);
-            
-            bool result = _controller.CheckIfClientExists("Gomez");
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void CheckIfClientExists_NotFoundUser_OkTest()
-        {
-            _controller = new ClientUsernameController();
-
-            bool result = _controller.CheckIfClientExists("NotFoundUser");
-            Assert.IsFalse(result);
-        }
-        */
 
         [TestMethod]
         public void CheckIfLengthInRange_EmptyString_OkTest()

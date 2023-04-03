@@ -1,5 +1,6 @@
 ﻿using IRepository;
 using MemoryRepository;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,12 @@ namespace Controller
     public class ClientController
     {
         public IRepositoryClient Repository = new ClientRepository();
-
-        /*
+        
         public bool CheckIfClientExists(String username)
         {
             try
             {
-                _repo.GetPassword(username);
+                Repository.GetPassword(username);
                 return true;
             }
             catch (NullReferenceException)
@@ -26,12 +26,20 @@ namespace Controller
             }
 
         }
-         */
 
         public bool SignUp(String username, String password)
         {
-            if (!ClientUsernameController.isValid(username) || !ClientPasswordController.isValid(password))
+            if (!ClientUsernameController.isValid(username) || !ClientPasswordController.isValid(password)
+                || CheckIfClientExists(username))
                 return false;
+            
+            Client newClient = new Client()
+            {
+                Username = username,
+                Password = password,
+            };
+
+            Repository.AddClient(newClient);
             return true;
         }
 

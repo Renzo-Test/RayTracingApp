@@ -55,6 +55,10 @@
       <Project>{5E7FE5D8-E9A5-4B2C-AA81-E63CC8E6669F}</Project>
       <Name>MemoryRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
