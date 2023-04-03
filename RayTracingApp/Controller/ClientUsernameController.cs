@@ -7,44 +7,23 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-    public class ClientUsernameController : ClientController
+    public static class ClientUsernameController 
     {
-        private IRepositoryClient _repo;
 
-        public ClientUsernameController()
-        {
-            _repo = base.Repository;
-        }
-
-        public bool CheckIfClientExists(String username)
-        {
-            try
-            {
-                _repo.GetPassword(username);
-                return true;
-            }
-            catch (NullReferenceException)
-            {
-                return false;
-            }
-
-        }
-
-        public bool CheckIfLengthInRange(String username)
+        public static bool CheckIfLengthInRange(String username)
         {
             return username.Length >= 3 && username.Length <= 20;
         }
 
         //alphanumeric includes non special characters and no spaces 
-        public bool CheckIfAlphanumeric(String username)
+        public static bool CheckIfAlphanumeric(String username)
         {
             return username.All(char.IsLetterOrDigit);
         }
 
-        public bool isValid(String username)
+        public static bool isValid(String username)
         {
-            return this.CheckIfAlphanumeric(username) && this.CheckIfLengthInRange(username) &&
-                !this.CheckIfClientExists(username);
+            return CheckIfAlphanumeric(username) && CheckIfLengthInRange(username);
         }
     }
 }

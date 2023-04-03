@@ -11,14 +11,7 @@ namespace Test.Controller
 
     public class ClientUsernameControllerTest
     {
-        private ClientUsernameController _controller;
-
-        [TestMethod]
-        public void CanCreateClientUsernameController_OkTest()
-        {
-            _controller = new ClientUsernameController();
-        }
-
+        /*
         [TestMethod]
         public void CheckIfClientExists_EmptyString_OkTest()
         {
@@ -51,76 +44,68 @@ namespace Test.Controller
             bool result = _controller.CheckIfClientExists("NotFoundUser");
             Assert.IsFalse(result);
         }
+        */
 
         [TestMethod]
         public void CheckIfLengthInRange_EmptyString_OkTest()
         {
-            _controller = new ClientUsernameController();
-            bool result = _controller.CheckIfLengthInRange("");
+            bool result = ClientUsernameController.CheckIfLengthInRange("");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void CheckIfLengthInRange_ABC_OkTest()
         {
-            _controller = new ClientUsernameController();
-            bool result = _controller.CheckIfLengthInRange("ABC");
+            bool result = ClientUsernameController.CheckIfLengthInRange("ABC");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void CheckIfLengthInRange_ABCDEFGHIJKLMNOPQRSTU_OkTest()
         {
-            _controller = new ClientUsernameController();
-            bool result = _controller.CheckIfLengthInRange("ABCDEFGHIJKLMNOPQRSTU");
+            bool result = ClientUsernameController.CheckIfLengthInRange("ABCDEFGHIJKLMNOPQRSTU");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void CheckIfAlphanumeric_EmptyString_OkTest()
         {
-            _controller = new ClientUsernameController();
-            bool result = _controller.CheckIfAlphanumeric("");
+            bool result = ClientUsernameController.CheckIfAlphanumeric("");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void CheckIfAlphanumeric_QuestionMark_OkTest()
         {
-            _controller = new ClientUsernameController();
-            bool result = _controller.CheckIfAlphanumeric("?");
+            bool result = ClientUsernameController.CheckIfAlphanumeric("?");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void CheckIfAlphanumeric_AQuestionMarkB_OkTest()
         {
-            _controller = new ClientUsernameController();
-            bool result = _controller.CheckIfAlphanumeric("A?B");
+            bool result = ClientUsernameController.CheckIfAlphanumeric("A?B");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void CheckIfAlphanumeric_SpaceAB_OkTest()
         {
-            _controller = new ClientUsernameController();
-            bool result = _controller.CheckIfAlphanumeric(" AB");
+            bool result = ClientUsernameController.CheckIfAlphanumeric(" AB");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void CheckIfAlphanumeric_ASpaceB_OkTest()
         {
-            _controller = new ClientUsernameController();
-            bool result = _controller.CheckIfAlphanumeric("A B");
+            bool result = ClientUsernameController.CheckIfAlphanumeric("A B");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void CheckIfAlphanumeric_ABSpace_OkTest()
         {
-            _controller = new ClientUsernameController();
-            bool result = _controller.CheckIfAlphanumeric("AB ");
+            bool result = ClientUsernameController.CheckIfAlphanumeric("AB ");
             Assert.IsFalse(result);
         }
 
