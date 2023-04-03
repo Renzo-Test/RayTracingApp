@@ -20,6 +20,9 @@ namespace Controller
             return result;
         }
 
-
+        public bool CheckIfContainsCapital(String password)
+        {
+            return false;
+        }
     }
 }
