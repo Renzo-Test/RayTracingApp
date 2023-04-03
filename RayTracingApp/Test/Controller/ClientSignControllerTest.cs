@@ -14,5 +14,15 @@ namespace Test.Controller
         {
             _controller = new ClientSignController();
         }
+
+        [TestMethod]
+        public void CheckSignUp_Gomez_GomezSecret_OkTest()
+        {
+            _controller = new ClientSignController();
+            bool result = _controller.SignUp("Gomez", "GomezSecret");
+            Assert.IsTrue(result);
+        }
+
+
     }
 }
