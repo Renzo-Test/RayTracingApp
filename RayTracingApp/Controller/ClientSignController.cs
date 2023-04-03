@@ -22,7 +22,12 @@ namespace Controller
 
         public bool SignUp(String username, String password)
         {
-            return _userController.isValid(username) && _passwordController.isValid(password);
+            if (!_userController.isValid(username) || !_passwordController.isValid(password))
+                return false;
+            return true;
         }
+
+
+        public void SignOut() { }
     }
 }
