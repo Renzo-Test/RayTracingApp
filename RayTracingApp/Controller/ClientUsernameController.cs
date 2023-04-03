@@ -15,6 +15,7 @@ namespace Controller
         {
             _repo = base.Repository;
         }
+
         public bool CheckIfClientExists(string username)
         {
             try

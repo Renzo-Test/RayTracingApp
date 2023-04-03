@@ -76,5 +76,13 @@ namespace Test.Controller
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void CheckIfAlphanumeric_EmptyString_OkTest()
+        {
+            _controller = new ClientUsernameController();
+            bool result = _controller.CheckIfAlphanumeric("");
+            Assert.IsTrue(result);
+        }
+       
     }
 }
