@@ -22,14 +22,14 @@ namespace Test.MemoryRepository
         public void AddClientToClientRepository_OkTest()
         {
             _clientRepository = new ClientRepository();
-            _clientRepository.AddClient(new Client());
+            _clientRepository.AddClient("Gomez", "GomezSecret");
         }
 
         [TestMethod]
         public void GetPassword_OkTest()
         {
             _clientRepository = new ClientRepository();
-            _clientRepository.AddClient(new Client() { Username = "user", Password = "pass" });
+            _clientRepository.AddClient("user", "pass");
             Assert.AreEqual("pass", _clientRepository.GetPassword("user"));
         }
 
@@ -45,7 +45,7 @@ namespace Test.MemoryRepository
         public void GetPassword_RandomPass_OkTest()
         {
             _clientRepository = new ClientRepository();
-            _clientRepository.AddClient(new Client() { Username = "user", Password = "RandomPass" });
+            _clientRepository.AddClient("user", "RandomPass");
             Assert.AreEqual("RandomPass", _clientRepository.GetPassword("user"));
         }
 

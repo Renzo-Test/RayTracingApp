@@ -1,11 +1,7 @@
 ﻿using IRepository;
 using MemoryRepository;
-using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Controller
 {
@@ -32,13 +28,7 @@ namespace Controller
             if (IsInputOk(username, password))
                 return false;
 
-            Client newClient = new Client()
-            {
-                Username = username,
-                Password = password,
-            };
-
-            Repository.AddClient(newClient);
+            Repository.AddClient(username, password);
             return true;
         }
 
@@ -53,7 +43,9 @@ namespace Controller
 
         public bool SignIn(string username, string password)
         {
-            return false;
+            if (!CheckIfClientExists(username))
+                return false;
+            return Repository.GetPassword(username).Equals(password);
         }
     }
 }

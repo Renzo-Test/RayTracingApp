@@ -18,8 +18,14 @@ namespace MemoryRepository
             _clientsList = new List<Client>();
         }
 
-        public void AddClient(Client newClient)
+        public void AddClient(string username, string password)
         {
+            Client newClient = new Client()
+            {
+                Username = username,
+                Password = password,
+            };
+
             _clientsList.Add(newClient);
         }
 

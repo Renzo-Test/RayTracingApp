@@ -77,13 +77,7 @@ namespace Test.Controller
         public void CheckIfClientExists_Gomez_OkTest()
         {
             _controller = new ClientController();
-
-            Client _client = new Client()
-            {
-                Username = "Gomez",
-            };
-
-            _controller.Repository.AddClient(_client);
+            _controller.Repository.AddClient("Gomez", "GomezSecret");
             
             bool result = _controller.CheckIfClientExists("Gomez");
             Assert.IsTrue(result);
