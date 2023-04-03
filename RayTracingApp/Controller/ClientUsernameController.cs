@@ -8,5 +8,9 @@ namespace Controller
 {
     public class ClientUsernameController : ClientController
     {
+        public bool CheckIfClientExists(string username)
+        {
+            return false;
+        }
     }
 }
