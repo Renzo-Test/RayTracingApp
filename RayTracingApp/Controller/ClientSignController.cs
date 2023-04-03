@@ -17,7 +17,7 @@ namespace Controller
 
         public bool SignUp(String username, String password)
         {
-            return _userController.CheckIfAlphanumeric(username);
+            return _userController.CheckIfAlphanumeric(username) && _userController.CheckIfLengthInRange(username);
         }
     }
 }
