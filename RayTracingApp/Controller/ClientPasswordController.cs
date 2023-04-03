@@ -10,7 +10,7 @@ namespace Controller
     {
         public bool CheckIfContainsNumber(String password)
         {
-            return false;
+            return int.TryParse(password, out _);
         }
     }
 }

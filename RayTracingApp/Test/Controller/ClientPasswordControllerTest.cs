@@ -27,7 +27,7 @@ namespace Test.Controller
         public void CheckIfContainsNumber_1_OkTest()
         {
             _controller = new ClientPasswordController();
-            bool result = _controller.CheckIfContainsNumber("");
+            bool result = _controller.CheckIfContainsNumber("1");
             Assert.IsTrue(result);
         }
     }
