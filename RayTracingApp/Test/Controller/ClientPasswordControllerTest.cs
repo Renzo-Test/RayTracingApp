@@ -71,6 +71,12 @@ namespace Test.Controller
             Assert.IsFalse(result);
         }
 
-
+        [TestMethod]
+        public void CheckIfLengthInRange_ABCDE_OkTest()
+        {
+            _controller = new ClientPasswordController();
+            bool result = _controller.CheckIfLengthInRange("ABCDE");
+            Assert.IsTrue(result);
+        }
     }
 }
