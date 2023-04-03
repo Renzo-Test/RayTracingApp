@@ -23,7 +23,7 @@ namespace Controller
             return password.Length >= 5 && password.Length <= 25;
         }
 
-        public static bool isValid(String password)
+        public static bool IsValid(String password)
         {
             return CheckIfLengthInRange(password) && CheckIfContainsCapital(password)
                 && CheckIfContainsNumber(password);

@@ -21,7 +21,7 @@ namespace Controller
             return username.All(char.IsLetterOrDigit);
         }
 
-        public static bool isValid(String username)
+        public static bool IsValid(String username)
         {
             return CheckIfAlphanumeric(username) && CheckIfLengthInRange(username);
         }
