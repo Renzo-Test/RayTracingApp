@@ -60,6 +60,14 @@ namespace Test.Controller
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void CheckIfLengthInRange_ABCDE_OkTest()
+        {
+            _controller = new ClientUsernameController();
+            bool result = _controller.CheckIfLengthInRange("ABC");
+            Assert.IsTrue(result);
+        }
+
 
     }
 }
