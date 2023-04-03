@@ -10,6 +10,6 @@ namespace Controller
 {
     public abstract class ClientController
     {
-        protected IRepositoryClient _repository = new ClientRepository();
+        public IRepositoryClient Repository = new ClientRepository();
     }
 }
