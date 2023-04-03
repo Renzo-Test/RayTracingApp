@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientSignController.cs" />
     <Compile Include="ClientUsernameController.cs" />
     <Compile Include="ClientPasswordController.cs" />
     <Compile Include="ClientController.cs" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-    public abstract class ClientController
+    public class ClientController
     {
         public IRepositoryClient Repository = new ClientRepository();
 
@@ -27,5 +27,15 @@ namespace Controller
 
         }
          */
+
+        public bool SignUp(String username, String password)
+        {
+            if (!ClientUsernameController.isValid(username) || !ClientPasswordController.isValid(password))
+                return false;
+            return true;
+        }
+
+
+        public void SignOut() { }
     }
 }

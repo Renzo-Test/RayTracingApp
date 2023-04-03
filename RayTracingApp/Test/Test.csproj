@@ -49,7 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\ClientSignControllerTest.cs" />
+    <Compile Include="Controller\ClienControllerTest.cs" />
     <Compile Include="Controller\ClientUsernameControllerTest.cs" />
     <Compile Include="Controller\ClientPasswordControllerTest.cs" />
     <Compile Include="ModelTest\ClientTest.cs" />
