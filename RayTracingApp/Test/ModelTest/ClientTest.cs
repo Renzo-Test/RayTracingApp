@@ -11,13 +11,13 @@ namespace Test.Model
         private Client _client;
 
         [TestMethod]
-        public void canCreateClient_OkTest()
+        public void CanCreateClient_OkTest()
         {
             _client = new Client();
         }
 
         [TestMethod]
-        public void setUsername_Gomez_OkTest()
+        public void SetUsername_Gomez_OkTest()
         {
             _client = new Client()
             {
@@ -27,7 +27,7 @@ namespace Test.Model
         }
 
         [TestMethod]
-        public void setPassword_GomezSecret_OkTest()
+        public void SetPassword_GomezSecret_OkTest()
         {
             _client = new Client()
             {
@@ -37,7 +37,7 @@ namespace Test.Model
         }
 
         [TestMethod]
-        public void canGetRegisterDate_OkTest()
+        public void CanGetRegisterDate_OkTest()
         {
             _client = new Client();
             String today = DateTime.Today.ToString("dd/MM/yyyy");
@@ -45,7 +45,7 @@ namespace Test.Model
         }
 
         [TestMethod]
-        public void canRegisterClient_Rodriguez_RodriguezSecret_OkTest()
+        public void CanRegisterClient_Rodriguez_RodriguezSecret_OkTest()
         {
             _client = new Client()
             {

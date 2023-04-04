@@ -1,9 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MemoryRepository;
-using MemoryRepository.Exceptions;
-using Model;
-using System.Collections.Generic;
+
 
 namespace Test.MemoryRepository
 {
@@ -12,49 +10,50 @@ namespace Test.MemoryRepository
     {
         private ClientRepository _clientRepository;
 
-        [TestMethod]
-        public void createClientRepository_OkTest()
+        [TestInitialize]
+        public void TestInitialize()
         {
             _clientRepository = new ClientRepository();
         }
 
         [TestMethod]
-        public void addClientToClientRepository_OkTest()
+        public void CreateClientRepository_OkTest()
         {
             _clientRepository = new ClientRepository();
-            _clientRepository.addClient(new Client());
         }
 
         [TestMethod]
-        public void getPassword_OkTest()
+        public void AddClientToClientRepository_OkTest()
         {
-            _clientRepository = new ClientRepository();
-            _clientRepository.addClient(new Client() { Username = "user", Password = "pass" });
-            Assert.AreEqual("pass", _clientRepository.getPassword("user"));
+            _clientRepository.AddClient("Gomez", "GomezSecret");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void getPasswordOfEmptyUsername_FailTest()
+        public void GetPassword_OkTest()
         {
-            _clientRepository = new ClientRepository();
-            _clientRepository.getPassword("");
-        }
-
-        [TestMethod]
-        public void getPassword_RandomPass_OkTest()
-        {
-            _clientRepository = new ClientRepository();
-            _clientRepository.addClient(new Client() { Username = "user", Password = "RandomPass" });
-            Assert.AreEqual("RandomPass", _clientRepository.getPassword("user"));
+            _clientRepository.AddClient("user", "pass");
+            Assert.AreEqual("pass", _clientRepository.GetPassword("user"));
         }
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void getPasswordOfNotCreatedUsername_FailTest()
+        public void GetPasswordOfEmptyUsername_FailTest()
         {
-            _clientRepository = new ClientRepository();
-            Assert.AreEqual("pass", _clientRepository.getPassword("notCreatedUsername"));
+            _clientRepository.GetPassword("");
+        }
+
+        [TestMethod]
+        public void GetPassword_RandomPass_OkTest()
+        {
+            _clientRepository.AddClient("user", "RandomPass");
+            Assert.AreEqual("RandomPass", _clientRepository.GetPassword("user"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void GetPasswordOfNotCreatedUsername_FailTest()
+        {
+            Assert.AreEqual("pass", _clientRepository.GetPassword("notCreatedUsername"));
         }
     }
 }
