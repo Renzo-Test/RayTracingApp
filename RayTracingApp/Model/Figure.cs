@@ -8,5 +8,7 @@ namespace Model
 {
     public class Figure
     {
+        public Client Owner = new Client();
+        public String Name;
     }
 }
