@@ -8,5 +8,6 @@ namespace Model
 {
     public class Sphere : Figure
     {
+        public float Radius { get; set; }
     }
 }

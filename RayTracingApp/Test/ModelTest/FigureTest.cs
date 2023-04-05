@@ -8,6 +8,7 @@ namespace Test.Model
     public class FigureTest
     {
         private Figure _figure;
+        private Sphere _sphere;
         [TestMethod]
         public void CanCreateFigure_OkTest()
         {
@@ -25,7 +26,7 @@ namespace Test.Model
         [TestMethod]
         public void CanCreateSphere_OkTest()
         {
-            Sphere sphere = new Sphere();
+            _sphere = new Sphere();
         }
     }
 }
