@@ -28,5 +28,12 @@ namespace Test.Model
         {
             _sphere = new Sphere();
         }
+        [TestMethod]
+        public void SetRadius_351_OkTest()
+        {
+            _sphere = new Sphere();
+            _sphere.Radius = 3.51;
+            Assert.AreEqual(3.51, _sphere.Radius);
+        }
     }
 }
