@@ -16,8 +16,10 @@ namespace Test.Model
         [TestMethod]
         public void SetName_Dragon_Balloon_OkTest()
         {
-            _figure = new Figure();
-            _figure.Name = "Dragon Balloon";
+            _figure = new Figure()
+            {
+                Name = "Dragon Balloon"
+            };
             Assert.AreEqual("Dragon Balloon", _figure.Name);
         }
     }
