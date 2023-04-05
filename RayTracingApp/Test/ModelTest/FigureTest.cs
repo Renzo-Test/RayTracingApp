@@ -22,5 +22,10 @@ namespace Test.Model
             };
             Assert.AreEqual("Dragon Balloon", _figure.Name);
         }
+        [TestMethod]
+        public void CanCreateSphere_OkTest()
+        {
+            Sphere sphere = new Sphere();
+        }
     }
 }
