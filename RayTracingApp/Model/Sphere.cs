@@ -8,5 +8,6 @@ namespace Model
 {
     public class Sphere : Figure
     {
+        public Double Radius { get; set; }
     }
 }
