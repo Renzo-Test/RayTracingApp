@@ -37,5 +37,16 @@ namespace Test.Model
             };
             Assert.AreEqual(3.51, _sphere.Radius);
         }
+        [TestMethod]
+        public void CanCreateSphere_Balloon_351_OkTest()
+        {
+            _sphere = new Sphere()
+            {
+                Name = "Balloon",
+                Radius = 3.51
+            };
+            Assert.AreEqual(3.51, _sphere.Radius);
+            Assert.AreEqual("Balloon",_sphere.Name);
+        }
     }
 }
