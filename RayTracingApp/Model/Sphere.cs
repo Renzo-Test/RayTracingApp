@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Figure
+    public class Sphere : Figure
     {
-        public Client Owner { get; } = new Client();
-        public String Name { get; set; }
     }
 }
