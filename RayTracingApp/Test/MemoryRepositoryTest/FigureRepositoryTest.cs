@@ -14,5 +14,12 @@ namespace Test.MemoryRepositoryTest
         {
             _figureRepository = new FigureRepository();
         }
+
+        [TestMethod]
+        public void GetFigures_OkTest() 
+        {
+            _figureRepository = new FigureRepository();
+            Assert.IsNotNull(_figureRepository.GetFigures());
+        }
     }
 }
