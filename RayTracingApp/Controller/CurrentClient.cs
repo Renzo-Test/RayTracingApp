@@ -8,6 +8,6 @@ namespace Controller
 {
     public class CurrentClient
     {
-        public string Username { get; set; }
+        public string Username { get; set; } = "";
     }
 }
