@@ -7,7 +7,13 @@ namespace Controller
 {
     public class ClientController
     {
-        public IRepositoryClient Repository = new ClientRepository();
+        public IRepositoryClient Repository;
+        public CurrentClient CurrentClient;
+        public ClientController(CurrentClient currentClient)
+        {
+            CurrentClient = currentClient;
+            Repository = new ClientRepository();
+        }
         
         public bool CheckIfClientExists(string username)
         {
@@ -39,13 +45,24 @@ namespace Controller
                    && ClientUsernameController.IsValid(username);
         }
 
-        public void SignOut() { }
+        public void SignOut() 
+        {
+            CurrentClient.Username = string.Empty;
+        }
 
         public bool SignIn(string username, string password)
         {
-            if (!CheckIfClientExists(username))
+            if (CredentialsAreInvalid(username, password))
                 return false;
-            return Repository.GetPassword(username).Equals(password);
+
+            CurrentClient.Username = username;
+            return true;
+
+        }
+
+        private bool CredentialsAreInvalid(string username, string password)
+        {
+            return !CheckIfClientExists(username) || !Repository.GetPassword(username).Equals(password);
         }
     }
 }

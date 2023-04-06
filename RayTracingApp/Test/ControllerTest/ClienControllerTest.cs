@@ -8,17 +8,19 @@ namespace Test.ControllerTest
     public class ClienControllerTest
     {
         private ClientController _controller;
+        public CurrentClient _currentClient;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _controller = new ClientController();
+            _currentClient = new CurrentClient();
+            _controller = new ClientController(_currentClient);
         }
 
         [TestMethod]
         public void CanCreateClientSignController_OkTest()
         {
-            _controller = new ClientController();
+            _controller = new ClientController(_currentClient);
         }
 
         [TestMethod]
@@ -109,5 +111,31 @@ namespace Test.ControllerTest
             bool result = _controller.SignIn("Gomez", "GomezSecret1");
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void GetCurrentClient_Signed_Gomez_GomezSecret1_OkTest()
+        {
+            _controller.SignUp("Gomez", "GomezSecret1");
+            _controller.SignIn("Gomez", "GomezSecret1");
+
+            Assert.AreEqual(_controller.CurrentClient.Username, "Gomez");
+        }
+
+        [TestMethod]
+        public void GetCurrentClient_UnsignedClient_EmptyString_OkTest()
+        {
+            Assert.AreEqual(_controller.CurrentClient.Username, "");
+        }
+
+        [TestMethod]
+        public void GetCurrentClient_SignedOut_EmptyString_OkTest()
+        {
+            _controller.SignUp("Gomez", "GomezSecret1");
+            _controller.SignIn("Gomez", "GomezSecret1");
+            _controller.SignOut();
+
+            Assert.AreEqual(_controller.CurrentClient.Username, "");
+        }
+
     }
 }
