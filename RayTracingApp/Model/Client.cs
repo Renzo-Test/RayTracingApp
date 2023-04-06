@@ -7,5 +7,6 @@ namespace Model
         public String Username { get; set; }
         public String Password { get; set; }
         public String RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
+
     }
 }
