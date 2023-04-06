@@ -16,5 +16,10 @@ namespace MemoryRepository
         {
             _figureList = new List<Figure>();
         }
+
+        public object GetFigures()
+        {
+            return _figureList;
+        }
     }
 }
