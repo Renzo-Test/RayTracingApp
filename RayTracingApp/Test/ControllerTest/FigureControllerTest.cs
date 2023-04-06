@@ -23,5 +23,13 @@ namespace Test.ControllerTest
             bool result = _figureController.CheckNameIsNotEmpty("");
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void CheckNameIsNotEmpty_FigureName_OkTest()
+        {
+            _figureController = new FigureController();
+            bool result = _figureController.CheckNameIsNotEmpty("FigureName");
+            Assert.IsTrue(result);
+        }
     }
 }
