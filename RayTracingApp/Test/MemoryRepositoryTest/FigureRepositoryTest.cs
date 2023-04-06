@@ -69,5 +69,30 @@ namespace Test.MemoryRepositoryTest
             CollectionAssert.DoesNotContain(iterable, newFigure);
 
         }
+
+        [TestMethod]
+        public void GetFigures_ExistingFigures_OkTest()
+        {
+            _figureRepository = new FigureRepository();
+            Figure newFigure = new Figure()
+            {
+                Name = "Test"
+            };
+            Figure secondNewFigure = new Figure()
+            {
+                Name = "SecondTest"
+            };
+            
+            _figureRepository.AddFigure(newFigure);
+            _figureRepository.AddFigure(secondNewFigure);
+           
+            ICollection iterable = (ICollection)_figureRepository.GetFigures();
+           
+            CollectionAssert.Contains(iterable, newFigure);
+            CollectionAssert.Contains(iterable, secondNewFigure);
+
+        }
+
+
     }
 }
