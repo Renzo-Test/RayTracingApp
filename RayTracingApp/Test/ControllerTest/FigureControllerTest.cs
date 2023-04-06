@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Model;
 
 namespace Test.ControllerTest
 {
@@ -13,6 +14,14 @@ namespace Test.ControllerTest
         public void CreateFigureController_OkTest()
         {
             _figureController = new FigureController();
+        }
+
+        [TestMethod]
+        public void CheckNameIsNotEmpty_EmptyString_OkTest()
+        {
+            _figureController = new FigureController();
+            bool result = _figureController.CheckNameIsNotEmpty("");
+            Assert.IsFalse(result);
         }
     }
 }
