@@ -34,6 +34,7 @@ namespace Test.MemoryRepositoryTest
             };
 
             _figureRepository.AddFigure(newFigure);
+
             ICollection iterable = (ICollection)_figureRepository.GetFigures();
             CollectionAssert.Contains(iterable, newFigure);
             
