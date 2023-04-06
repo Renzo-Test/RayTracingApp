@@ -136,5 +136,6 @@ namespace Test.ControllerTest
 
             Assert.AreEqual(_controller.CurrentClient.Username, "");
         }
+
     }
 }

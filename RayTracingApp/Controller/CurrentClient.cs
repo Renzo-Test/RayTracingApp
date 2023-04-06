@@ -9,5 +9,11 @@ namespace Controller
     public class CurrentClient
     {
         public string Username { get; set; } = string.Empty;
+
+        public bool IsLoggedIn()
+        {
+            return Username != string.Empty;
+        }
+
     }
 }
