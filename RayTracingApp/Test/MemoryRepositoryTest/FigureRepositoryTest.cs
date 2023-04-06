@@ -7,10 +7,12 @@ namespace Test.MemoryRepositoryTest
     [TestClass]
     public class FigureRepositoryTest
     {
+        FigureRepository _figureRepository;
+
         [TestMethod]
         public void CreateFigureRepository_OkTest()
         {
-            FigureRepository _figureRepository = new FigureRepository();
+            _figureRepository = new FigureRepository();
         }
     }
 }

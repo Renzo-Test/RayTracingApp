@@ -2,7 +2,7 @@
 using System;
 using Model;
 
-namespace Test.Model
+namespace Test.ModelTest
 {
     [TestClass]
     public class FigureTest

@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Controller;
 
-namespace Test.Controller
+namespace Test.ControllerTest
 {
     [TestClass]
     public class ClientPasswordControllerTest

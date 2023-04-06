@@ -3,7 +3,7 @@ using Model;
 using System;
 
 
-namespace Test.Model
+namespace Test.ModelTest
 {
     [TestClass]
     public class ClientTest

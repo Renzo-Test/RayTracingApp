@@ -49,9 +49,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\ClienControllerTest.cs" />
-    <Compile Include="Controller\ClientUsernameControllerTest.cs" />
-    <Compile Include="Controller\ClientPasswordControllerTest.cs" />
+    <Compile Include="ControllerTest\ClienControllerTest.cs" />
+    <Compile Include="ControllerTest\ClientUsernameControllerTest.cs" />
+    <Compile Include="ControllerTest\ClientPasswordControllerTest.cs" />
     <Compile Include="MemoryRepositoryTest\FigureRepositoryTest.cs" />
     <Compile Include="ModelTest\ClientTest.cs" />
     <Compile Include="ModelTest\FigureTest.cs" />
