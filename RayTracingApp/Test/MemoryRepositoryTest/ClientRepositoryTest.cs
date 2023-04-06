@@ -3,7 +3,7 @@ using System;
 using MemoryRepository;
 
 
-namespace Test.MemoryRepository
+namespace Test.MemoryRepositoryTest
 {
     [TestClass]
     public class ClientRepositoryTest

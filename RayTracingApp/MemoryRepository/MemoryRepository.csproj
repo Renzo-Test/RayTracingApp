@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FigureRepository.cs" />
     <Compile Include="ClientRepository.cs" />
     <Compile Include="Exceptions\ExceptionsMemoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,7 +8,7 @@ namespace IRepository
     {
         List<Figure> GetFigures();
         void AddFigure(Figure figure);
-        void RemoveFigure(string name, string ownerUsername);
+        void RemoveFigure(Figure figure);
 
     }
 }
