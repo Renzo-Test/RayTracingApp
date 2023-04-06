@@ -2,6 +2,7 @@
 using System;
 using MemoryRepository;
 using Model;
+using System.Collections;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -33,7 +34,8 @@ namespace Test.MemoryRepositoryTest
             };
 
             _figureRepository.AddFigure(newFigure);
-            CollectionAssert.Contains((System.Collections.ICollection)_figureRepository.GetFigures(), newFigure);
+            ICollection iterable = (ICollection)_figureRepository.GetFigures();
+            CollectionAssert.Contains(iterable, newFigure);
             
         }
     }
