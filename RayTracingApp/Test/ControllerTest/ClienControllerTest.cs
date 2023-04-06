@@ -120,5 +120,11 @@ namespace Test.ControllerTest
 
             Assert.AreEqual(_controller.CurrentClient.Username, "Gomez");
         }
+
+        [TestMethod]
+        public void GetCurrentClient_UnsignedClient_EmptyString_OkTest()
+        {
+            Assert.AreEqual(_controller.CurrentClient.Username, "");
+        }
     }
 }
