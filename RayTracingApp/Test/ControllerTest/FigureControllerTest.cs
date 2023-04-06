@@ -35,5 +35,13 @@ namespace Test.ControllerTest
             bool result = _figureController.CheckNameIsNotEmpty("FigureName");
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void CheckNameHasNoSpaces_EmptyString_OkTest()
+        {
+            bool result = _figureController.CheckNameHasNoSpaces("");
+            Assert.IsTrue(result);
+        }
+
     }
 }
