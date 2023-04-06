@@ -10,7 +10,7 @@ namespace Controller
     {
         public bool CheckNameIsNotEmpty(string figureName)
         {
-            return false;
+            return !string.IsNullOrEmpty(figureName);
         }
     }
 }
