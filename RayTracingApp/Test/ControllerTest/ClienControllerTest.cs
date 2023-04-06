@@ -126,5 +126,15 @@ namespace Test.ControllerTest
         {
             Assert.AreEqual(_controller.CurrentClient.Username, "");
         }
+
+        [TestMethod]
+        public void GetCurrentClient_SignedOut_EmptyString_OkTest()
+        {
+            _controller.SignUp("Gomez", "GomezSecret1");
+            _controller.SignIn("Gomez", "GomezSecret1");
+            _controller.SignOut();
+
+            Assert.AreEqual(_controller.CurrentClient.Username, "");
+        }
     }
 }
