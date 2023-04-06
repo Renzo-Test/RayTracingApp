@@ -109,5 +109,14 @@ namespace Test.ControllerTest
             bool result = _controller.SignIn("Gomez", "GomezSecret1");
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void GetCurrentClient_Signed_Gomez_GomezSecret1_OkTest()
+        {
+            _controller.SignUp("Gomez", "GomezSecret1");
+            _controller.SignIn("Gomez", "GomezSecret1");
+
+            Assert.AreEqual(_controller._currentClient.Username, "Gomez");
+        }
     }
 }
