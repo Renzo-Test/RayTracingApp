@@ -8,5 +8,9 @@ namespace Controller
 {
     public class FigureController
     {
+        public bool CheckNameIsNotEmpty(string figureName)
+        {
+            return false;
+        }
     }
 }
