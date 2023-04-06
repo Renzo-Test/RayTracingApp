@@ -10,6 +10,12 @@ namespace Test.ControllerTest
     {
         private FigureController _figureController;
 
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _figureController = new FigureController();
+        }
+
         [TestMethod]
         public void CreateFigureController_OkTest()
         {
@@ -19,7 +25,6 @@ namespace Test.ControllerTest
         [TestMethod]
         public void CheckNameIsNotEmpty_EmptyString_OkTest()
         {
-            _figureController = new FigureController();
             bool result = _figureController.CheckNameIsNotEmpty("");
             Assert.IsFalse(result);
         }
@@ -27,7 +32,6 @@ namespace Test.ControllerTest
         [TestMethod]
         public void CheckNameIsNotEmpty_FigureName_OkTest()
         {
-            _figureController = new FigureController();
             bool result = _figureController.CheckNameIsNotEmpty("FigureName");
             Assert.IsTrue(result);
         }
