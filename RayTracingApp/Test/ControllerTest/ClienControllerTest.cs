@@ -8,17 +8,19 @@ namespace Test.ControllerTest
     public class ClienControllerTest
     {
         private ClientController _controller;
+        public CurrentClient _currentClient;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _controller = new ClientController();
+            _currentClient = new CurrentClient();
+            _controller = new ClientController(_currentClient);
         }
 
         [TestMethod]
         public void CanCreateClientSignController_OkTest()
         {
-            _controller = new ClientController();
+            _controller = new ClientController(_currentClient);
         }
 
         [TestMethod]
@@ -116,7 +118,7 @@ namespace Test.ControllerTest
             _controller.SignUp("Gomez", "GomezSecret1");
             _controller.SignIn("Gomez", "GomezSecret1");
 
-            Assert.AreEqual(_controller._currentClient.Username, "Gomez");
+            Assert.AreEqual(_controller.CurrentClient.Username, "Gomez");
         }
     }
 }

@@ -7,7 +7,13 @@ namespace Controller
 {
     public class ClientController
     {
-        public IRepositoryClient Repository = new ClientRepository();
+        public IRepositoryClient Repository;
+        public CurrentClient CurrentClient;
+        public ClientController(CurrentClient currentClient)
+        {
+            CurrentClient = currentClient;
+            Repository = new ClientRepository();
+        }
         
         public bool CheckIfClientExists(string username)
         {
@@ -45,7 +51,14 @@ namespace Controller
         {
             if (!CheckIfClientExists(username))
                 return false;
-            return Repository.GetPassword(username).Equals(password);
+
+            if (Repository.GetPassword(username).Equals(password))
+            {
+                CurrentClient.Username = username;
+                return true;
+            }
+
+            return false;
         }
     }
 }
