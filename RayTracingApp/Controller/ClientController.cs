@@ -45,7 +45,10 @@ namespace Controller
                    && ClientUsernameController.IsValid(username);
         }
 
-        public void SignOut() { }
+        public void SignOut() 
+        {
+            CurrentClient.Username = string.Empty;
+        }
 
         public bool SignIn(string username, string password)
         {
