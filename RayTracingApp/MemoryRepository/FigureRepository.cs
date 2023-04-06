@@ -26,5 +26,10 @@ namespace MemoryRepository
         {
             _figureList.Add(newFigure);
         }
+
+        public void RemoveFigure(Figure figure)
+        {
+            _figureList.Remove(figure);
+        }
     }
 }

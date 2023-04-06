@@ -39,6 +39,7 @@ namespace Test.MemoryRepositoryTest
             
         }
 
+        [TestMethod]
         public void RemoveFigure_OkTest()
         {
             _figureRepository = new FigureRepository();
@@ -48,6 +49,21 @@ namespace Test.MemoryRepositoryTest
             };
 
             _figureRepository.AddFigure(newFigure);
+            _figureRepository.RemoveFigure(newFigure);
+            ICollection iterable = (ICollection)_figureRepository.GetFigures();
+            CollectionAssert.DoesNotContain(iterable, newFigure);
+
+        }
+
+        [TestMethod]
+        public void RemoveFigure_NotExistingFigure_OkTest()
+        {
+            _figureRepository = new FigureRepository();
+            Figure newFigure = new Figure()
+            {
+                Name = "Test"
+            };
+
             _figureRepository.RemoveFigure(newFigure);
             ICollection iterable = (ICollection)_figureRepository.GetFigures();
             CollectionAssert.DoesNotContain(iterable, newFigure);
