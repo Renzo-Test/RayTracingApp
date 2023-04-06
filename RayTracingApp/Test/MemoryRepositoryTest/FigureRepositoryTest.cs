@@ -33,7 +33,7 @@ namespace Test.MemoryRepositoryTest
             };
 
             _figureRepository.AddFigure(newFigure);
-            CollectionAssert.Contains((System.Collections.ICollection)_figureRepository, newFigure);
+            CollectionAssert.Contains((System.Collections.ICollection)_figureRepository.GetFigures(), newFigure);
             
         }
     }

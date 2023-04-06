@@ -21,5 +21,10 @@ namespace MemoryRepository
         {
             return _figureList;
         }
+
+        public void AddFigure(Figure newFigure)
+        {
+            _figureList.Add(newFigure);
+        }
     }
 }
