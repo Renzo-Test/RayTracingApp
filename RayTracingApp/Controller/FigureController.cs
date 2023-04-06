@@ -12,5 +12,10 @@ namespace Controller
         {
             return !string.IsNullOrEmpty(figureName);
         }
+
+        public bool CheckNameHasNoSpaces(string figureName)
+        {
+            return true;
+        }
     }
 }
