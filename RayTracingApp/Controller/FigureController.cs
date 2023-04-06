@@ -15,7 +15,7 @@ namespace Controller
 
         public bool CheckNameHasNoSpaces(string figureName)
         {
-            return true;
+            return !figureName.Contains(" ");
         }
     }
 }
