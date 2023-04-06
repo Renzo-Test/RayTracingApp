@@ -49,16 +49,17 @@ namespace Controller
 
         public bool SignIn(string username, string password)
         {
-            if (!CheckIfClientExists(username))
+            if (CredentialsAreInvalid(username, password))
                 return false;
 
-            if (Repository.GetPassword(username).Equals(password))
-            {
-                CurrentClient.Username = username;
-                return true;
-            }
+            CurrentClient.Username = username;
+            return true;
 
-            return false;
+        }
+
+        private bool CredentialsAreInvalid(string username, string password)
+        {
+            return !CheckIfClientExists(username) || !Repository.GetPassword(username).Equals(password);
         }
     }
 }
