@@ -43,11 +43,13 @@ namespace Test.ControllerTest
             Assert.IsTrue(result);
         }
 
+        [TestMethod]
         public void CheckNameHasNoSpaces_FigureName_OkTest()
         {
             bool result = _figureController.CheckNameHasNoSpaces("FigureName");
             Assert.IsTrue(result);
         }
 
+        
     }
 }
