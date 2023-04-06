@@ -10,7 +10,7 @@ namespace MemoryRepository
 {
     public class FigureRepository
     {
-        List<Figure> _figureList;
+        private List<Figure> _figureList;
 
         public FigureRepository()
         {
