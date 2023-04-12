@@ -55,5 +55,12 @@ namespace Test.MemoryRepositoryTest
         {
             Assert.AreEqual("pass", _clientRepository.GetPassword("notCreatedUsername"));
         }
+
+        [TestMethod]
+        public void GetClient_OkTest()
+        {
+            _clientRepository.AddClient("user", "pass");
+            Assert.AreEqual("user", _clientRepository.GetClient(""));
+        }
     }
 }
