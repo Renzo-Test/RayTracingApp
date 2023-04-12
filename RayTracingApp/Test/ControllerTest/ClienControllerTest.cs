@@ -8,19 +8,17 @@ namespace Test.ControllerTest
     public class ClienControllerTest
     {
         private ClientController _controller;
-        public CurrentClient _currentClient;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _currentClient = new CurrentClient();
-            _controller = new ClientController(_currentClient);
+            _controller = new ClientController();
         }
 
         [TestMethod]
         public void CanCreateClientSignController_OkTest()
         {
-            _controller = new ClientController(_currentClient);
+            _controller = new ClientController();
         }
 
         [TestMethod]
@@ -100,7 +98,7 @@ namespace Test.ControllerTest
         [TestMethod]
         public void CheckSignIn_NotRegistered_Gomez_GomezSecret1_OkTest()
         {
-            bool result = _controller.SignIn("Gomez", "GomezSecret1");
+            Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
             Assert.IsFalse(result);
         }
 
@@ -108,30 +106,15 @@ namespace Test.ControllerTest
         public void CheckSignIn_Registered_Gomez_GomezSecret1_OkTest()
         {
             _controller.SignUp("Gomez", "GomezSecret1");
-            bool result = _controller.SignIn("Gomez", "GomezSecret1");
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void GetCurrentClient_Signed_Gomez_GomezSecret1_OkTest()
-        {
-            _controller.SignUp("Gomez", "GomezSecret1");
-            _controller.SignIn("Gomez", "GomezSecret1");
-
-            Assert.AreEqual(_controller.CurrentClient.Username, "Gomez");
-        }
-
-        [TestMethod]
-        public void GetCurrentClient_UnsignedClient_EmptyString_OkTest()
-        {
-            Assert.AreEqual(_controller.CurrentClient.Username, "");
+            Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
+            Assert.AreEqual(_currentClient.Username, "Gomez");
         }
 
         [TestMethod]
         public void GetCurrentClient_SignedOut_EmptyString_OkTest()
         {
             _controller.SignUp("Gomez", "GomezSecret1");
-            _controller.SignIn("Gomez", "GomezSecret1");
+            Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
             _controller.SignOut();
 
             Assert.AreEqual(_controller.CurrentClient.Username, "");

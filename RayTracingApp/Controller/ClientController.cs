@@ -1,5 +1,6 @@
 ﻿using IRepository;
 using MemoryRepository;
+using Model;
 using System;
 
 
@@ -39,13 +40,12 @@ namespace Controller
             CurrentClient.Username = string.Empty;
         }
 
-        public bool SignIn(string username, string password)
+        public Client SignIn(string username, string password)
         {
             if (CredentialsAreInvalid(username, password))
-                return false;
+                return null;
 
-            CurrentClient.Username = username;
-            return true;
+            return Repository.GetClient(username);
 
         }
 
