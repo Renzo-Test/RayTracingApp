@@ -131,5 +131,16 @@ namespace Test.ControllerTest
             Assert.IsTrue(result);
         }
 
+        [TestMethod]
+        public void CheckIfClientIsLoggedIn_LoggedOutClient_OkTest()
+        {
+            _controller.SignUp("Gomez", "GomezSecret1");
+            Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
+            _controller.SignOut(ref _currentClient);
+
+            bool result = _controller.IsLoggedIn(_currentClient);
+            Assert.IsFalse(result);
+        }
+
     }
 }
