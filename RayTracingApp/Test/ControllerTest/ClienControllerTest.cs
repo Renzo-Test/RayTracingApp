@@ -121,5 +121,15 @@ namespace Test.ControllerTest
             Assert.AreEqual(_currentClient.Username, "NotSignedInClient");
         }
 
+        [TestMethod]
+        public void CheckIfClientIsLoggedIn_LoggedInClient_OkTest()
+        {
+            _controller.SignUp("Gomez", "GomezSecret1");
+            Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
+
+            bool result = _controller.IsLoggedIn(_currentClient);
+            Assert.IsTrue(result);
+        }
+
     }
 }
