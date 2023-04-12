@@ -8,10 +8,8 @@ namespace Controller
     public class ClientController
     {
         public IRepositoryClient Repository;
-        public CurrentClient CurrentClient;
-        public ClientController(CurrentClient currentClient)
+        public ClientController()
         {
-            CurrentClient = currentClient;
             Repository = new ClientRepository();
         }
         
