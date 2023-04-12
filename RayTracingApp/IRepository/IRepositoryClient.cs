@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 
 namespace IRepository
 {
@@ -6,6 +7,6 @@ namespace IRepository
     {
         void AddClient(string username, string password);
 
-        string GetPassword(string username);
+        Client GetClient(string username);
     }
 }
