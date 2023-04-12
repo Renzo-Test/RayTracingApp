@@ -58,5 +58,10 @@ namespace Controller
         {
             return !CheckIfClientExists(username) || !Repository.GetClient(username).Password.Equals(password);
         }
+
+        public bool IsLoggedIn(Client currentClient)
+        {
+            return true;
+        }
     }
 }
