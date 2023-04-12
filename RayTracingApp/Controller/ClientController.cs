@@ -9,9 +9,14 @@ namespace Controller
     public class ClientController
     {
         public IRepositoryClient Repository;
+        private Client _reservedClient;
         public ClientController()
         {
             Repository = new ClientRepository();
+            _reservedClient = new Client()
+            {
+                Username = "NotSignedInClient",
+            };
         }
         
         public bool CheckIfClientExists(string username)
@@ -35,9 +40,9 @@ namespace Controller
                    && ClientUsernameController.IsValid(username);
         }
 
-        public void SignOut() 
+        public void SignOut(ref Client currentClient) 
         {
-            CurrentClient.Username = string.Empty;
+            currentClient = _reservedClient;
         }
 
         public Client SignIn(string username, string password)

@@ -1,4 +1,5 @@
 ﻿using System;
+using Model;
 using Controller;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -99,7 +100,7 @@ namespace Test.ControllerTest
         public void CheckSignIn_NotRegistered_Gomez_GomezSecret1_OkTest()
         {
             Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
-            Assert.IsFalse(result);
+            Assert.IsNull(_currentClient);
         }
 
         [TestMethod]
@@ -115,9 +116,9 @@ namespace Test.ControllerTest
         {
             _controller.SignUp("Gomez", "GomezSecret1");
             Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
-            _controller.SignOut();
+            _controller.SignOut(ref _currentClient);
 
-            Assert.AreEqual(_controller.CurrentClient.Username, "");
+            Assert.AreEqual(_currentClient.Username, "NotSignedInClient");
         }
 
     }
