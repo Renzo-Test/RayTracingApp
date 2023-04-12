@@ -17,16 +17,7 @@ namespace Controller
         
         public bool CheckIfClientExists(string username)
         {
-            try
-            {
-                Repository.GetPassword(username);
-                return true;
-            }
-            catch (NullReferenceException)
-            {
-                return false;
-            }
-
+            return Repository.GetClient(username) is object;
         }
 
         public bool SignUp(string username, string password)
@@ -62,7 +53,7 @@ namespace Controller
 
         private bool CredentialsAreInvalid(string username, string password)
         {
-            return !CheckIfClientExists(username) || !Repository.GetPassword(username).Equals(password);
+            return !CheckIfClientExists(username) || !Repository.GetClient(username).Password.Equals(password);
         }
     }
 }

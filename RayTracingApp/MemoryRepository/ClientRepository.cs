@@ -31,12 +31,5 @@ namespace MemoryRepository
 
             return foundClient;
         }
-
-        public string GetPassword(string username)
-        {
-            Client foundClient = _clientsList.Find(client => client.Username.Equals(username));
-
-            return foundClient.Password;
-        }
     }
 }
