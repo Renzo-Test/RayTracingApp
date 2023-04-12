@@ -60,7 +60,7 @@ namespace Test.MemoryRepositoryTest
         public void GetClient_OkTest()
         {
             _clientRepository.AddClient("user", "pass");
-            Assert.AreEqual("user", _clientRepository.GetClient(""));
+            Assert.AreEqual("user", _clientRepository.GetClient("user").Username);
         }
     }
 }
