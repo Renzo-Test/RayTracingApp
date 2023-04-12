@@ -27,7 +27,9 @@ namespace MemoryRepository
 
         public Client GetClient(string username)
         {
-            return _clientsList.Find(client => client.Username.Equals(username));
+            Client foundClient = _clientsList.Find(client => client.Username.Equals(username));
+
+            return foundClient;
         }
 
         public string GetPassword(string username)
