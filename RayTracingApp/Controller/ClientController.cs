@@ -61,14 +61,7 @@ namespace Controller
 
         public bool IsLoggedIn(Client currentClient)
         {
-            if (currentClient.Equals(_reservedClient))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return !currentClient.Equals(_reservedClient);
         }
     }
 }
