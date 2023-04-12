@@ -63,5 +63,12 @@ namespace Test.MemoryRepositoryTest
             Assert.AreEqual("user", _clientRepository.GetClient("user").Username);
             Assert.AreEqual("pass", _clientRepository.GetClient("user").Password);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void GetClient_NotAddedClient_FailTest()
+        {
+            Assert.AreEqual("user", _clientRepository.GetClient("user").Username);
+        }
     }
 }
