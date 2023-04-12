@@ -48,5 +48,17 @@ namespace Test.Model
             Assert.AreEqual(3.51, _sphere.Radius);
             Assert.AreEqual("Balloon",_sphere.Name);
         }
+
+        [TestMethod]
+        public void SetNameAndOwner_OkTest()
+        {
+            _figure = new Figure()
+            {
+                Name = "Figure name",
+                Owner = "Owner name"
+            };
+            Assert.AreEqual(_figure.Name, "Figure name");
+            Assert.AreEqual(_figure.Owner, "Owner name");
+        }
     }
 }
