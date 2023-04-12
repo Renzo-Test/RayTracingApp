@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Model;
 using IRepository;
+using System;
 
 namespace MemoryRepository
 {
@@ -22,6 +23,11 @@ namespace MemoryRepository
             };
 
             _clientsList.Add(newClient);
+        }
+
+        public Client GetClient(string username)
+        {
+            return _clientsList.Find(client => client.Username.Equals(username));
         }
 
         public string GetPassword(string username)
