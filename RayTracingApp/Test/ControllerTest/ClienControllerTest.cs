@@ -1,4 +1,5 @@
 ﻿using System;
+using Model;
 using Controller;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -98,16 +99,48 @@ namespace Test.ControllerTest
         [TestMethod]
         public void CheckSignIn_NotRegistered_Gomez_GomezSecret1_OkTest()
         {
-            bool result = _controller.SignIn("Gomez", "GomezSecret1");
-            Assert.IsFalse(result);
+            Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
+            Assert.IsNull(_currentClient);
         }
 
         [TestMethod]
         public void CheckSignIn_Registered_Gomez_GomezSecret1_OkTest()
         {
             _controller.SignUp("Gomez", "GomezSecret1");
-            bool result = _controller.SignIn("Gomez", "GomezSecret1");
+            Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
+            Assert.AreEqual(_currentClient.Username, "Gomez");
+        }
+
+        [TestMethod]
+        public void GetCurrentClient_SignedOut_EmptyString_OkTest()
+        {
+            _controller.SignUp("Gomez", "GomezSecret1");
+            Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
+            _controller.SignOut(ref _currentClient);
+
+            Assert.AreEqual(_currentClient.Username, "NotSignedInClient");
+        }
+
+        [TestMethod]
+        public void CheckIfClientIsLoggedIn_LoggedInClient_OkTest()
+        {
+            _controller.SignUp("Gomez", "GomezSecret1");
+            Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
+
+            bool result = _controller.IsLoggedIn(_currentClient);
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void CheckIfClientIsLoggedIn_LoggedOutClient_OkTest()
+        {
+            _controller.SignUp("Gomez", "GomezSecret1");
+            Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
+            _controller.SignOut(ref _currentClient);
+
+            bool result = _controller.IsLoggedIn(_currentClient);
+            Assert.IsFalse(result);
+        }
+
     }
 }

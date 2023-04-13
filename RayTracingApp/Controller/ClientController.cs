@@ -1,5 +1,6 @@
 ﻿using IRepository;
 using MemoryRepository;
+using Model;
 using System;
 
 
@@ -7,20 +8,20 @@ namespace Controller
 {
     public class ClientController
     {
-        public IRepositoryClient Repository = new ClientRepository();
+        public IRepositoryClient Repository;
+        private Client _reservedClient;
+        public ClientController()
+        {
+            Repository = new ClientRepository();
+            _reservedClient = new Client()
+            {
+                Username = "NotSignedInClient",
+            };
+        }
         
         public bool CheckIfClientExists(string username)
         {
-            try
-            {
-                Repository.GetPassword(username);
-                return true;
-            }
-            catch (NullReferenceException)
-            {
-                return false;
-            }
-
+            return Repository.GetClient(username) is object;
         }
 
         public bool SignUp(string username, string password)
@@ -39,13 +40,28 @@ namespace Controller
                    && ClientUsernameController.IsValid(username);
         }
 
-        public void SignOut() { }
-
-        public bool SignIn(string username, string password)
+        public void SignOut(ref Client currentClient) 
         {
-            if (!CheckIfClientExists(username))
-                return false;
-            return Repository.GetPassword(username).Equals(password);
+            currentClient = _reservedClient;
+        }
+
+        public Client SignIn(string username, string password)
+        {
+            if (CredentialsAreInvalid(username, password))
+                return null;
+
+            return Repository.GetClient(username);
+
+        }
+
+        private bool CredentialsAreInvalid(string username, string password)
+        {
+            return !CheckIfClientExists(username) || !Repository.GetClient(username).Password.Equals(password);
+        }
+
+        public bool IsLoggedIn(Client currentClient)
+        {
+            return !currentClient.Equals(_reservedClient);
         }
     }
 }

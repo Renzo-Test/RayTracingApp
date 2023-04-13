@@ -8,7 +8,7 @@ namespace Model
 {
     public class Figure
     {
-        public Client Owner { get; } = new Client();
+        public String Owner { get; set; }
         public String Name { get; set; }
     }
 }
