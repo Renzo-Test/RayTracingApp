@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Model;
+using System.Collections.Generic;
 
 namespace Test.ControllerTest
 {
@@ -91,6 +92,27 @@ namespace Test.ControllerTest
 
             bool result = _figureController.FigureNameIsValid(newFigure.Name, newFigure.Owner);
             Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void AddFigure_ValidFigure_OkTest()
+        {
+
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            Figure newFigure = new Figure()
+            {
+                Name = "figure",
+            };
+
+            _figureController.AddFigure(newFigure, currentClient.Username);
+            List<Figure> iterable = _figureController.Repository.GetFiguresByClient(currentClient.Username);
+
+            CollectionAssert.Contains(iterable, newFigure);
         }
     }
 }
