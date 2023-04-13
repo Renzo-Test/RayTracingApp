@@ -1,5 +1,6 @@
 ﻿using IRepository;
 using MemoryRepository;
+using Model;
 using System;
 
 
@@ -8,11 +9,14 @@ namespace Controller
     public class ClientController
     {
         public IRepositoryClient Repository;
-        public CurrentClient CurrentClient;
-        public ClientController(CurrentClient currentClient)
+        private Client _reservedClient;
+        public ClientController()
         {
-            CurrentClient = currentClient;
             Repository = new ClientRepository();
+            _reservedClient = new Client()
+            {
+                Username = "NotSignedInClient",
+            };
         }
         
         public bool CheckIfClientExists(string username)
@@ -36,24 +40,28 @@ namespace Controller
                    && ClientUsernameController.IsValid(username);
         }
 
-        public void SignOut() 
+        public void SignOut(ref Client currentClient) 
         {
-            CurrentClient.Username = string.Empty;
+            currentClient = _reservedClient;
         }
 
-        public bool SignIn(string username, string password)
+        public Client SignIn(string username, string password)
         {
             if (CredentialsAreInvalid(username, password))
-                return false;
+                return null;
 
-            CurrentClient.Username = username;
-            return true;
+            return Repository.GetClient(username);
 
         }
 
         private bool CredentialsAreInvalid(string username, string password)
         {
             return !CheckIfClientExists(username) || !Repository.GetClient(username).Password.Equals(password);
+        }
+
+        public bool IsLoggedIn(Client currentClient)
+        {
+            return !currentClient.Equals(_reservedClient);
         }
     }
 }
