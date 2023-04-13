@@ -30,7 +30,7 @@ namespace Controller
 
         public bool FigureNameExist(string name, string ownerName)
         {
-            return true;
+            return Repository.GetFiguresByClient(ownerName).Find(figure => figure.Owner.Equals(ownerName)) is object;
         }
     }
 }
