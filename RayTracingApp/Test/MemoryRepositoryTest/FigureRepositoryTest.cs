@@ -4,6 +4,7 @@ using MemoryRepository;
 using Model;
 using System.Collections;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -64,19 +65,19 @@ namespace Test.MemoryRepositoryTest
             Assert.AreEqual(0, _figureRepository.GetFiguresByClient("NotExistingClient").Count());
         }
 
-
-        /*
         [TestMethod]
         public void AddFigure_OkTest()
         {
             Figure newFigure = new Figure()
             {
-                Name = "Test"
+                Name = "Test",
+                Owner = "OwnerName"
             };
 
             _figureRepository.AddFigure(newFigure);
 
-            ICollection iterable = (ICollection)_figureRepository.GetFigures();
+            List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
+
             CollectionAssert.Contains(iterable, newFigure);
             
         }
@@ -86,12 +87,14 @@ namespace Test.MemoryRepositoryTest
         {
             Figure newFigure = new Figure()
             {
-                Name = "Test"
+                Name = "Test",
+                Owner = "OwnerName"
             };
 
             _figureRepository.AddFigure(newFigure);
             _figureRepository.RemoveFigure(newFigure);
-            ICollection iterable = (ICollection)_figureRepository.GetFigures();
+            List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
+
             CollectionAssert.DoesNotContain(iterable, newFigure);
 
         }
@@ -101,38 +104,15 @@ namespace Test.MemoryRepositoryTest
         {
             Figure newFigure = new Figure()
             {
-                Name = "Test"
+                Name = "Test",
+                Owner = "OwnerName"
             };
 
             _figureRepository.RemoveFigure(newFigure);
-            ICollection iterable = (ICollection)_figureRepository.GetFigures();
+            List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
+
             CollectionAssert.DoesNotContain(iterable, newFigure);
 
         }
-
-        [TestMethod]
-        public void GetFigures_ExistingFigures_OkTest()
-        {
-            Figure newFigure = new Figure()
-            {
-                Name = "Test"
-            };
-            Figure secondNewFigure = new Figure()
-            {
-                Name = "SecondTest"
-            };
-            
-            _figureRepository.AddFigure(newFigure);
-            _figureRepository.AddFigure(secondNewFigure);
-           
-            ICollection iterable = (ICollection)_figureRepository.GetFigures();
-           
-            CollectionAssert.Contains(iterable, newFigure);
-            CollectionAssert.Contains(iterable, secondNewFigure);
-
-        }
-        */
-
-
     }
 }
