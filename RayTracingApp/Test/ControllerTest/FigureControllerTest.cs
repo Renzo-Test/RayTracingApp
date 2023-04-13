@@ -114,5 +114,26 @@ namespace Test.ControllerTest
 
             CollectionAssert.Contains(iterable, newFigure);
         }
+
+        [TestMethod]
+        public void AddFigure_InvalidFigure_OkTest()
+        {
+
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            Figure newFigure = new Figure()
+            {
+                Name = "invalid name",
+            };
+
+            _figureController.AddFigure(newFigure, currentClient.Username);
+            List<Figure> iterable = _figureController.Repository.GetFiguresByClient(currentClient.Username);
+
+            CollectionAssert.DoesNotContain(iterable, newFigure);
+        }
     }
 }
