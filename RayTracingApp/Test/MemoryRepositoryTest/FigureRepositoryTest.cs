@@ -3,6 +3,7 @@ using System;
 using MemoryRepository;
 using Model;
 using System.Collections;
+using System.Linq;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -55,6 +56,12 @@ namespace Test.MemoryRepositoryTest
 
             Assert.AreEqual("FigureOne", _figureRepository.GetFiguresByClient("OwnerOne")[0].Name);
             Assert.AreEqual("FigureTwo", _figureRepository.GetFiguresByClient("OwnerTwo")[0].Name);
+        }
+
+        [TestMethod]
+        public void GetFiguresByClient_NotExistingClient()
+        {
+            Assert.AreEqual(0, _figureRepository.GetFiguresByClient("NotExistingClient").Count());
         }
 
 
