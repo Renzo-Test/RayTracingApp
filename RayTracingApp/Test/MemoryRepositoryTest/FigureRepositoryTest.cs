@@ -28,7 +28,7 @@ namespace Test.MemoryRepositoryTest
             };
             _figureRepository.AddFigure(newFigure);
 
-            Assert.Equals(newFigure, _figureRepository.GetFigureByClient("OwnerName").Firts);
+            Assert.AreEqual(newFigure, _figureRepository.GetFiguresByClient("OwnerName")[0]);
         }
 
         /*

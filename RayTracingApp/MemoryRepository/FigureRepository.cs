@@ -31,5 +31,6 @@ namespace MemoryRepository
         {
             _figureList.Remove(figure);
         }
+
     }
 }
