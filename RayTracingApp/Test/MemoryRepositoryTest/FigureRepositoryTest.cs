@@ -37,7 +37,7 @@ namespace Test.MemoryRepositoryTest
         }
 
         [TestMethod]
-        public void getFiguresByClient_TwoClients_OkTest()
+        public void GetFiguresByClient_TwoClients_OkTest()
         {
             Figure firstFigure = new Figure()
             {
