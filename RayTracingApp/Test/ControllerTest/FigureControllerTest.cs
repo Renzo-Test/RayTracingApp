@@ -23,37 +23,37 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        public void CheckNameIsNotEmpty_EmptyString_OkTest()
+        public void NameIsNotEmpty_EmptyString_OkTest()
         {
-            bool result = _figureController.CheckNameIsNotEmpty("");
+            bool result = _figureController.NameIsNotEmpty("");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
-        public void CheckNameIsNotEmpty_FigureName_OkTest()
+        public void NameIsNotEmpty_FigureName_OkTest()
         {
-            bool result = _figureController.CheckNameIsNotEmpty("FigureName");
+            bool result = _figureController.NameIsNotEmpty("FigureName");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void CheckNameHasNoSpaces_EmptyString_OkTest()
+        public void NameHasNoSpaces_EmptyString_OkTest()
         {
-            bool result = _figureController.CheckNameHasNoSpaces("");
+            bool result = _figureController.NameHasNoSpaces("");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void CheckNameHasNoSpaces_FigureName_OkTest()
+        public void NameHasNoSpaces_FigureName_OkTest()
         {
-            bool result = _figureController.CheckNameHasNoSpaces("FigureName");
+            bool result = _figureController.NameHasNoSpaces("FigureName");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void CheckNameHasNoSpaces_Figure_Name_OkTest()
+        public void NameHasNoSpaces_Figure_Name_OkTest()
         {
-            bool result = _figureController.CheckNameHasNoSpaces("Figure Name");
+            bool result = _figureController.NameHasNoSpaces("Figure Name");
             Assert.IsFalse(result);
         }
     }

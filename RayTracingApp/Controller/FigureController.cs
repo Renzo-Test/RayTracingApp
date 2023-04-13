@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IRepository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,14 @@ namespace Controller
 {
     public class FigureController
     {
-        public bool CheckNameIsNotEmpty(string figureName)
+        public IRepositoryFigure Repository;
+
+        public bool NameIsNotEmpty(string figureName)
         {
             return !string.IsNullOrEmpty(figureName);
         }
 
-        public bool CheckNameHasNoSpaces(string figureName)
+        public bool NameHasNoSpaces(string figureName)
         {
             return !figureName.Contains(" ");
         }
