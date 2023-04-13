@@ -18,6 +18,12 @@ namespace Controller
             Repository = new FigureRepository();
         }
 
+        public void AddFigure(Figure newFigure, string username)
+        {
+            newFigure.Owner = username;
+            Repository.AddFigure(newFigure);
+        }
+
         public bool FigureNameIsValid(string name, string ownerName)
         {
             return NameIsNotEmpty(name) && NameHasNoSpaces(name) && !FigureNameExist(name, ownerName);
@@ -37,5 +43,7 @@ namespace Controller
         {
             return Repository.GetFiguresByClient(ownerName).Find(figure => figure.Owner.Equals(ownerName)) is object;
         }
+
+        
     }
 }
