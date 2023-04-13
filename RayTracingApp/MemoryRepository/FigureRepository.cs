@@ -8,7 +8,7 @@ using Model;
 
 namespace MemoryRepository
 {
-    public class FigureRepository
+    public class FigureRepository : IRepositoryFigure
     {
         private List<Figure> _figureList;
 
@@ -17,7 +17,7 @@ namespace MemoryRepository
             _figureList = new List<Figure>();
         }
 
-        public object GetFigures()
+        public List<Figure> GetFiguresByClient(string username)
         {
             return _figureList;
         }

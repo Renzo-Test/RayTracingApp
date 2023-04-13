@@ -6,7 +6,7 @@ namespace IRepository
 {
     public interface IRepositoryFigure
     {
-        List<Figure> GetFigures();
+        List<Figure> GetFiguresByClient(string username);
         void AddFigure(Figure figure);
         void RemoveFigure(Figure figure);
 

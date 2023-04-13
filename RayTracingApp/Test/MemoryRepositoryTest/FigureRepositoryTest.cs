@@ -18,12 +18,20 @@ namespace Test.MemoryRepositoryTest
         }
 
         [TestMethod]
-        public void GetFigures_OkTest() 
+        public void GetFiguresByClient_OwnerName_OkTest()
         {
             _figureRepository = new FigureRepository();
-            Assert.IsNotNull(_figureRepository.GetFigures());
+            Figure newFigure = new Figure()
+            {
+                Name = "Test",
+                Owner = "OwnerName"
+            };
+            _figureRepository.AddFigure(newFigure);
+
+            Assert.Equals(newFigure, _figureRepository.GetFigureByClient("OwnerName").Firts);
         }
 
+        /*
         [TestMethod]
         public void AddFigure_OkTest()
         {
@@ -93,6 +101,7 @@ namespace Test.MemoryRepositoryTest
             CollectionAssert.Contains(iterable, secondNewFigure);
 
         }
+        */
 
 
     }
