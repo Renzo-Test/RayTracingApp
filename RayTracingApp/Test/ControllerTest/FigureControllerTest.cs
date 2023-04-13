@@ -78,5 +78,19 @@ namespace Test.ControllerTest
             bool result = _figureController.FigureNameExist("figure", "owner");
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void FigureNameIsValid_ValidName_OkTest()
+        {
+            Figure newFigure = new Figure()
+            {
+                Name = "ValidName",
+                Owner = "OwnerName"
+            };
+            _figureController.Repository.AddFigure(newFigure);
+
+            bool result = _figureController.FigureNameIsValid(newFigure.Name, newFigure.Owner);
+            Assert.IsFalse(result);
+        }
     }
 }

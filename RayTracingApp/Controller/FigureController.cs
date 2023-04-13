@@ -18,6 +18,11 @@ namespace Controller
             Repository = new FigureRepository();
         }
 
+        public bool FigureNameIsValid(string name, string ownerName)
+        {
+            return NameIsNotEmpty(name) && NameHasNoSpaces(name) && !FigureNameExist(name, ownerName);
+        }
+
         public bool NameIsNotEmpty(string figureName)
         {
             return !string.IsNullOrEmpty(figureName);
