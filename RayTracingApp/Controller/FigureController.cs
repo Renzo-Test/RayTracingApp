@@ -1,4 +1,6 @@
 ﻿using IRepository;
+using MemoryRepository;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,11 @@ namespace Controller
     {
         public IRepositoryFigure Repository;
 
+        public FigureController()
+        {
+            Repository = new FigureRepository();
+        }
+
         public bool NameIsNotEmpty(string figureName)
         {
             return !string.IsNullOrEmpty(figureName);
@@ -19,6 +26,11 @@ namespace Controller
         public bool NameHasNoSpaces(string figureName)
         {
             return !figureName.Contains(" ");
+        }
+
+        public bool FigureNameExist(string name, string ownerName)
+        {
+            return true;
         }
     }
 }

@@ -60,6 +60,7 @@ namespace Test.ControllerTest
         [TestMethod]
         public void FigureNameExist_FigureName_OkTest()
         {
+            
             Figure newFigure = new Figure()
             {
                 Name = "figure",
