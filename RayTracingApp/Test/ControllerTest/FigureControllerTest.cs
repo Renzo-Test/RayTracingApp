@@ -56,5 +56,19 @@ namespace Test.ControllerTest
             bool result = _figureController.NameHasNoSpaces("Figure Name");
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void FigureNameExist_FigureName_OkTest()
+        {
+            Figure newFigure = new Figure()
+            {
+                Name = "figure",
+                Owner = "owner",
+            };
+            _figureController.Repository.AddFigure(newFigure);
+
+            bool result = _figureController.FigureNameExist("figure", "owner");
+            Assert.IsTrue(result);
+        }
     }
 }
