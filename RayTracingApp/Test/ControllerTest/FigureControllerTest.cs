@@ -71,5 +71,12 @@ namespace Test.ControllerTest
             bool result = _figureController.FigureNameExist("figure", "owner");
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void FigureNameExist_NotExistingFigure_OkTest()
+        {
+            bool result = _figureController.FigureNameExist("figure", "owner");
+            Assert.IsFalse(result);
+        }
     }
 }
