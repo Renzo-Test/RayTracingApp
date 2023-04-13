@@ -36,6 +36,27 @@ namespace Test.MemoryRepositoryTest
             Assert.AreEqual(newFigure, _figureRepository.GetFiguresByClient("OwnerName")[0]);
         }
 
+        [TestMethod]
+        public void getFiguresByClient_TwoClients_OkTest()
+        {
+            Figure firstFigure = new Figure()
+            {
+                Name = "FigureOne",
+                Owner = "OwnerOne"
+            };
+            _figureRepository.AddFigure(firstFigure);
+
+            Figure secondFigure = new Figure()
+            {
+                Name = "FigureTwo",
+                Owner = "OwnerTwo"
+            };
+            _figureRepository.AddFigure(secondFigure);
+
+            Assert.AreEqual("FigureOne", _figureRepository.GetFiguresByClient("OwnerOne")[0].Name);
+            Assert.AreEqual("FigureTwo", _figureRepository.GetFiguresByClient("OwnerTwo")[0].Name);
+        }
+
 
         /*
         [TestMethod]
