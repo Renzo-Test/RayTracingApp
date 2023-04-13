@@ -155,7 +155,7 @@ namespace Test.ControllerTest
             _figureController.AddFigure(firstFigure, currentClient.Username);
             List<Figure> clientFigures = _figureController.Repository.GetFiguresByClient(currentClient.Username);
 
-            Assert.Equals(1, clientFigures.Count);
+            Assert.AreEqual(1, clientFigures.Count);
         }
     }
 }

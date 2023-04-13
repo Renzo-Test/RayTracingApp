@@ -20,7 +20,7 @@ namespace Controller
 
         public void AddFigure(Figure newFigure, string username)
         {
-            if (NameHasNoSpaces(newFigure.Name))
+            if (NameHasNoSpaces(newFigure.Name) && !FigureNameExist(newFigure.Name, newFigure.Owner))
             {
                 newFigure.Owner = username;
                 Repository.AddFigure(newFigure);
