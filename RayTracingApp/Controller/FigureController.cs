@@ -18,12 +18,12 @@ namespace Controller
             Repository = new FigureRepository();
         }
 
-        public void AddFigure(Figure newFigure, string username)
+        public void AddFigure(Figure figure, string username)
         {
-            if (NameHasNoSpaces(newFigure.Name) && !FigureNameExist(newFigure.Name, newFigure.Owner))
+            if (FigureNameIsValid(figure.Name, figure.Owner))
             {
-                newFigure.Owner = username;
-                Repository.AddFigure(newFigure);
+                figure.Owner = username;
+                Repository.AddFigure(figure);
             }
         }
 
