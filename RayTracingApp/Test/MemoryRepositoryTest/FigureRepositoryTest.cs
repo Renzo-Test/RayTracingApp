@@ -11,6 +11,12 @@ namespace Test.MemoryRepositoryTest
     {
         private FigureRepository _figureRepository;
 
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _figureRepository = new FigureRepository();
+        }
+
         [TestMethod]
         public void CreateFigureRepository_OkTest()
         {
@@ -19,8 +25,7 @@ namespace Test.MemoryRepositoryTest
 
         [TestMethod]
         public void GetFiguresByClient_OwnerName_OkTest()
-        {
-            _figureRepository = new FigureRepository();
+        { 
             Figure newFigure = new Figure()
             {
                 Name = "Test",
@@ -31,11 +36,11 @@ namespace Test.MemoryRepositoryTest
             Assert.AreEqual(newFigure, _figureRepository.GetFiguresByClient("OwnerName")[0]);
         }
 
+
         /*
         [TestMethod]
         public void AddFigure_OkTest()
         {
-            _figureRepository = new FigureRepository();
             Figure newFigure = new Figure()
             {
                 Name = "Test"
@@ -51,7 +56,6 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void RemoveFigure_OkTest()
         {
-            _figureRepository = new FigureRepository();
             Figure newFigure = new Figure()
             {
                 Name = "Test"
@@ -67,7 +71,6 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void RemoveFigure_NotExistingFigure_OkTest()
         {
-            _figureRepository = new FigureRepository();
             Figure newFigure = new Figure()
             {
                 Name = "Test"
@@ -82,7 +85,6 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void GetFigures_ExistingFigures_OkTest()
         {
-            _figureRepository = new FigureRepository();
             Figure newFigure = new Figure()
             {
                 Name = "Test"
