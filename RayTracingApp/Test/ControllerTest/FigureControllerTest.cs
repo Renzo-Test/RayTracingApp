@@ -135,5 +135,27 @@ namespace Test.ControllerTest
 
             CollectionAssert.DoesNotContain(iterable, newFigure);
         }
+
+        [TestMethod]
+        public void AddFigure_DuplicatedFigureName_OkTest()
+        {
+
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            Figure firstFigure = new Figure()
+            {
+                Name = "figureOne",
+            };
+
+            _figureController.AddFigure(firstFigure, currentClient.Username);
+            _figureController.AddFigure(firstFigure, currentClient.Username);
+            List<Figure> clientFigures = _figureController.Repository.GetFiguresByClient(currentClient.Username);
+
+            Assert.Equals(1, clientFigures.Count);
+        }
     }
 }
