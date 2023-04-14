@@ -179,5 +179,25 @@ namespace Test.ControllerTest
         {
             Assert.AreEqual(0, _figureController.ListFigures("nonExistentUsername").Count);
         }
+
+        [TestMethod]
+        public void DeleteFigures_ValidFigure_OkTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            Figure newFigure = new Figure()
+            {
+                Name = "figure",
+            };
+
+            _figureController.AddFigure(newFigure, currentClient.Username);
+            _figureController.DeleteFigure(newFigure.Name, currentClient.Username);
+
+            CollectionAssert.DoesNotContain(_figureController.ListFigures(currentClient.Username), newFigure);
+        }
     }
 }
