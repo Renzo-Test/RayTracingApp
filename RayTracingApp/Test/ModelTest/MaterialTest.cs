@@ -25,5 +25,15 @@ namespace Test.ModelTest
             };
             Assert.AreEqual("Gomez", _material.Owner);
         }
+
+        [TestMethod]
+        public void SetName_Brick_OkTest()
+        {
+            _material = new Material()
+            {
+                Name = "Brick",
+            };
+            Assert.AreEqual("Brick", _material.Name);
+        }
     }
 }
