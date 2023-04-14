@@ -60,7 +60,7 @@ namespace Controller
             return Repository.GetFiguresByClient(ownerName).Find(figure => figure.Owner.Equals(ownerName)) is object;
         }
 
-        public void DeleteFigure(string figureName, string username)
+        public void RemoveFigure(string figureName, string username)
         {
             Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
             Repository.RemoveFigure(deleteFigure);
