@@ -86,5 +86,27 @@ namespace Test.ModelTest
 
             Assert.AreEqual(222, _newColor.Blue);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidColorNumberException))]
+        public void SetBlue_GreaterNumber_OkTest()
+        {
+            _newColor = new Color()
+            {
+                Green = 256,
+            };
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidColorNumberException))]
+        public void SetBlue_LowerNumber_OkTest()
+        {
+            _newColor = new Color()
+            {
+                Green = -1,
+            };
+
+        }
     }
 }
