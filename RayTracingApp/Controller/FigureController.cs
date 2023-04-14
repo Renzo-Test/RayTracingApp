@@ -35,10 +35,10 @@ namespace Controller
 
         private bool FigureIsValid(Figure figure)
         {
-            return FigureNameIsValid(figure.Name, figure.Owner) && FigurePropertiesIsValid(figure);
+            return FigureNameIsValid(figure.Name, figure.Owner) && FigurePropertiesAreValid(figure);
         }
 
-        public abstract bool FigurePropertiesIsValid(Figure figure);
+        public abstract bool FigurePropertiesAreValid(Figure figure);
 
         public bool FigureNameIsValid(string name, string ownerName)
         {

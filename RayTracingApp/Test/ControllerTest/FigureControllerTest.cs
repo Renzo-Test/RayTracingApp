@@ -214,7 +214,7 @@ namespace Test.ControllerTest
                 Radius = 10,
             };
 
-            Assert.IsTrue(_figureController.FigurePropertiesIsValid(newSphere));
+            Assert.IsTrue(_figureController.FigurePropertiesAreValid(newSphere));
         }
 
         [TestMethod]
@@ -226,7 +226,7 @@ namespace Test.ControllerTest
                 Radius = 0,
             };
 
-            Assert.IsFalse(_figureController.FigurePropertiesIsValid(newSphere));
+            Assert.IsFalse(_figureController.FigurePropertiesAreValid(newSphere));
         }
     }
 }
