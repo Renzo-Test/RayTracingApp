@@ -26,5 +26,10 @@ namespace MemoryRepository.MaterialRepository
             List<Material> foundMaterials = _materials.FindAll(material => material.Owner.Equals(username));
             return foundMaterials;
         }
+
+        public void RemoveMaterial(Material newMaterial)
+        {
+            _materials.Remove(newMaterial);
+        }
     }
 }
