@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Controller
 {
@@ -30,6 +31,11 @@ namespace Controller
                 figure.Owner = username;
                 Repository.AddFigure(figure);
             }
+        }
+        public void DeleteFigure(string figureName, string username)
+        {
+            Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
+            Repository.RemoveFigure(deleteFigure);
         }
 
         public bool FigureNameIsValid(string name, string ownerName)
