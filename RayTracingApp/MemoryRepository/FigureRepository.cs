@@ -10,28 +10,28 @@ namespace MemoryRepository
 {
     public class FigureRepository : IRepositoryFigure
     {
-        private List<Figure> _figureList;
+        private List<Figure> _figures;
 
         public FigureRepository()
         {
-            _figureList = new List<Figure>();
+            _figures = new List<Figure>();
         }
 
         public List<Figure> GetFiguresByClient(string username)
         {
-            List<Figure> foundFigure = _figureList.FindAll(figure => figure.Owner.Equals(username));
+            List<Figure> foundFigure = _figures.FindAll(figure => figure.Owner.Equals(username));
 
             return foundFigure;
         }
 
         public void AddFigure(Figure newFigure)
         {
-            _figureList.Add(newFigure);
+            _figures.Add(newFigure);
         }
 
         public void RemoveFigure(Figure figure)
         {
-            _figureList.Remove(figure);
+            _figures.Remove(figure);
         }
 
     }
