@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Material
+    public class Color
     {
-        public string Owner { get; set; }
-        public string Name { get; set; }
-        public Color Color { get; set; }
     }
 }

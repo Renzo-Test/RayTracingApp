@@ -39,7 +39,7 @@ namespace Test.ModelTest
         [TestMethod]
         public void SetColor_validColor_OkTest()
         {
-            _newColor = new Color();
+            Color _newColor = new Color();
             
             _material = new Material()
             {
