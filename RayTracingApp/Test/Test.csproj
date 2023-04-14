@@ -52,6 +52,7 @@
     <Compile Include="ControllerTest\ClienControllerTest.cs" />
     <Compile Include="ControllerTest\ClientUsernameControllerTest.cs" />
     <Compile Include="ControllerTest\ClientPasswordControllerTest.cs" />
+    <Compile Include="ControllerTest\FigureControllerTest.cs" />
     <Compile Include="MemoryRepositoryTest\FigureRepositoryTest.cs" />
     <Compile Include="ModelTest\ClientTest.cs" />
     <Compile Include="ModelTest\FigureTest.cs" />
