@@ -61,7 +61,6 @@ namespace Test.ControllerTest
         [TestMethod]
         public void FigureNameExist_FigureName_OkTest()
         {
-            
             Figure newFigure = new Figure()
             {
                 Name = "figure",
@@ -97,7 +96,6 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddFigure_ValidFigure_OkTest()
         {
-
             Client currentClient = new Client()
             {
                 Username = "user",
@@ -118,7 +116,6 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddFigure_InvalidFigure_OkTest()
         {
-
             Client currentClient = new Client()
             {
                 Username = "user",
@@ -139,7 +136,6 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddFigure_DuplicatedFigureName_OkTest()
         {
-
             Client currentClient = new Client()
             {
                 Username = "user",
@@ -156,6 +152,26 @@ namespace Test.ControllerTest
             List<Figure> clientFigures = _figureController.Repository.GetFiguresByClient(currentClient.Username);
 
             Assert.AreEqual(1, clientFigures.Count);
+        }
+
+        [TestMethod]
+        public void ListFigures_ValidClient_OkTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            Figure newFigure = new Figure()
+            {
+                Name = "figure",
+            };
+
+            _figureController.AddFigure(newFigure, currentClient.Username);
+            List<Figure> expected = _figureController.Repository.GetFiguresByClient(currentClient.Username);
+
+            Assert.AreEqual(expected, _figureController.ListFigures(currentClient.Username));
         }
     }
 }
