@@ -31,5 +31,16 @@ namespace Test.ModelTest
             };
 
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidColorNumberException))]
+        public void SetRed_LowerNumber_OkTest()
+        {
+            _newColor = new Color()
+            {
+                Red = -1,
+            };
+
+        }
     }
 }

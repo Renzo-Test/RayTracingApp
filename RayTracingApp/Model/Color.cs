@@ -13,7 +13,7 @@ namespace Model
 
         public int Red
         {
-            get { return _red; }
+            get => _red;
             set
             {
                 if (value > 255)
