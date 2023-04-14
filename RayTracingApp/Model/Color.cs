@@ -8,5 +8,6 @@ namespace Model
 {
     public class Color
     {
+        public int Red { get; set; }
     }
 }
