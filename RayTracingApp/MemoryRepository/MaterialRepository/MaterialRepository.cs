@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using IRepository;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MemoryRepository.MaterialRepository
 {
-    public class MaterialRepository
+    public class MaterialRepository : IRepositoryMaterial
     {
         private List<Material> _materials;
 
