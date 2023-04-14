@@ -19,9 +19,9 @@ namespace MemoryRepository
 
         public List<Figure> GetFiguresByClient(string username)
         {
-            List<Figure> foundFigure = _figures.FindAll(figure => figure.Owner.Equals(username));
+            List<Figure> foundFigures = _figures.FindAll(figure => figure.Owner.Equals(username));
 
-            return foundFigure;
+            return foundFigures;
         }
 
         public void AddFigure(Figure newFigure)

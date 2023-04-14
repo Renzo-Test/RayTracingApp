@@ -44,6 +44,7 @@
     <Compile Include="FigureRepository\FigureRepository.cs" />
     <Compile Include="ClientRepository\ClientRepository.cs" />
     <Compile Include="ClientRepository\Exceptions\ExceptionsMemoryRepository.cs" />
+    <Compile Include="MaterialRepository\MaterialRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,5 +57,6 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
