@@ -118,7 +118,7 @@ namespace Test.ControllerTest
             Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
             _controller.SignOut(ref _currentClient);
 
-            Assert.AreEqual(_currentClient.Username, "NotSignedInClient");
+            Assert.IsNull(_currentClient);
         }
 
         [TestMethod]
