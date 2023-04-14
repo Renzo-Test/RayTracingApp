@@ -27,9 +27,9 @@ namespace MemoryRepository.MaterialRepository
             return foundMaterials;
         }
 
-        public void RemoveMaterial(Material newMaterial)
+        public void RemoveMaterial(Material material)
         {
-            _materials.Remove(newMaterial);
+            _materials.Remove(material);
         }
     }
 }
