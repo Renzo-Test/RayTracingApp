@@ -7,15 +7,19 @@ namespace Test.ModelTest
     [TestClass]
     public class ColorTest
     {
+        private Color _newColor;
+
         [TestMethod]
         public void SetRed_ValidNumber_OkTest()
         {
-            Color NewColor = new Color()
+            _newColor = new Color()
             {
                 Red = 222,
             };
 
-            Assert.AreEqual(222, NewColor.Red);
+            Assert.AreEqual(222, _newColor.Red);
         }
+
+     
     }
 }
