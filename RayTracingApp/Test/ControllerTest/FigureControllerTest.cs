@@ -173,5 +173,11 @@ namespace Test.ControllerTest
 
             Assert.AreEqual(expected[0], _figureController.ListFigures(currentClient.Username)[0]);
         }
+
+        [TestMethod]
+        public void ListFigures_NonExistentClient_OkTest()
+        {
+            Assert.AreEqual(0, _figureController.ListFigures("nonExistentUsername").Count);
+        }
     }
 }
