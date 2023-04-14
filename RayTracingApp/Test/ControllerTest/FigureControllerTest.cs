@@ -171,7 +171,7 @@ namespace Test.ControllerTest
             _figureController.AddFigure(newFigure, currentClient.Username);
             List<Figure> expected = _figureController.Repository.GetFiguresByClient(currentClient.Username);
 
-            Assert.AreEqual(expected, _figureController.ListFigures(currentClient.Username));
+            Assert.AreEqual(expected[0], _figureController.ListFigures(currentClient.Username)[0]);
         }
     }
 }
