@@ -14,13 +14,13 @@ namespace Test.ControllerTest
         [TestInitialize]
         public void TestInitialize()
         {
-            _figureController = new FigureController();
+            _figureController = new SphereController();
         }
 
         [TestMethod]
         public void CreateFigureController_OkTest()
         {
-            _figureController = new FigureController();
+            _figureController = new SphereController();
         }
 
         [TestMethod]
@@ -198,6 +198,24 @@ namespace Test.ControllerTest
             _figureController.DeleteFigure(newFigure.Name, currentClient.Username);
 
             CollectionAssert.DoesNotContain(_figureController.ListFigures(currentClient.Username), newFigure);
+        }
+
+        [TestMethod]
+        public void FigureIsValid_ValidFigure_OkTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            Figure newSphere = new Sphere()
+            {
+                Name = "sphere",
+                Radius = 10,
+            };
+
+            Assert.IsTrue(_figureController.FigureIsValid(newSphere));
         }
     }
 }
