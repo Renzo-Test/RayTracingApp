@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using MemoryRepository;
+using MemoryRepository.MaterialRepository;
 
 namespace Test.MemoryRepositoryTest
 {
     [TestClass]
-    public class Class1
+    public class MaterialRepositoryTest
     {
         [TestMethod]
         public void CreateMaterialRepository_OkTest()
