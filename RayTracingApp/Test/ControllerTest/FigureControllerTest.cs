@@ -203,12 +203,6 @@ namespace Test.ControllerTest
         [TestMethod]
         public void FigureIsValid_ValidFigure_OkTest()
         {
-            Client currentClient = new Client()
-            {
-                Username = "user",
-                Password = "pass"
-            };
-
             Figure newSphere = new Sphere()
             {
                 Name = "sphere",
@@ -216,6 +210,18 @@ namespace Test.ControllerTest
             };
 
             Assert.IsTrue(_figureController.FigureIsValid(newSphere));
+        }
+
+        [TestMethod]
+        public void FigureIsValid_InvalidFigure_OkTest()
+        {
+            Figure newSphere = new Sphere()
+            {
+                Name = "sphere",
+                Radius = 0,
+            };
+
+            Assert.IsFalse(_figureController.FigureIsValid(newSphere));
         }
     }
 }
