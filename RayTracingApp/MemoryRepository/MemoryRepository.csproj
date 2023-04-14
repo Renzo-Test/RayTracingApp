@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FigureRepository.cs" />
-    <Compile Include="ClientRepository.cs" />
-    <Compile Include="Exceptions\ExceptionsMemoryRepository.cs" />
+    <Compile Include="FigureRepository\FigureRepository.cs" />
+    <Compile Include="ClientRepository\ClientRepository.cs" />
+    <Compile Include="ClientRepository\Exceptions\ExceptionsMemoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -41,13 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LambertianMaterial.cs" />
-    <Compile Include="Color.cs" />
-    <Compile Include="Exceptions\InvalidColorNumberException.cs" />
-    <Compile Include="Material.cs" />
-    <Compile Include="Sphere.cs" />
-    <Compile Include="Client.cs" />
-    <Compile Include="Figure.cs" />
+    <Compile Include="Material\LambertianMaterial.cs" />
+    <Compile Include="Material\Color.cs" />
+    <Compile Include="Material\Exceptions\InvalidColorNumberException.cs" />
+    <Compile Include="Material\Material.cs" />
+    <Compile Include="Figure\Sphere.cs" />
+    <Compile Include="Client\Client.cs" />
+    <Compile Include="Figure\Figure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

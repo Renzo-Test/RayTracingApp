@@ -54,10 +54,10 @@
     <Compile Include="ControllerTest\ClientPasswordControllerTest.cs" />
     <Compile Include="ControllerTest\FigureControllerTest.cs" />
     <Compile Include="MemoryRepositoryTest\FigureRepositoryTest.cs" />
-    <Compile Include="ModelTest\ColorTest.cs" />
-    <Compile Include="ModelTest\MaterialTest.cs" />
-    <Compile Include="ModelTest\ClientTest.cs" />
-    <Compile Include="ModelTest\FigureTest.cs" />
+    <Compile Include="ModelTest\MaterialTest\ColorTest.cs" />
+    <Compile Include="ModelTest\MaterialTest\MaterialTest.cs" />
+    <Compile Include="ModelTest\ClientTest\ClientTest.cs" />
+    <Compile Include="ModelTest\FigureTest\FigureTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MemoryRepositoryTest\ClientRepositoryTest.cs" />
   </ItemGroup>

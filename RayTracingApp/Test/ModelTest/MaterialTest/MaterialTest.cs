@@ -6,7 +6,7 @@ namespace Test.ModelTest
 {
     [TestClass]
 
-    public class Class1
+    public class MaterialTest
     {
         private Material _material;
 
