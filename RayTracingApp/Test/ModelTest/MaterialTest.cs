@@ -13,13 +13,13 @@ namespace Test.ModelTest
         [TestMethod]
         public void CanCreateMaterial_OkTest()
         {
-            _material = new Material();
+            _material = new LambertianMaterial();
         }
 
         [TestMethod]
         public void SetOwner_Gomez_OkTest()
         {
-            _material = new Material()
+            _material = new LambertianMaterial()
             {
                 Owner = "Gomez",
             };
@@ -29,7 +29,7 @@ namespace Test.ModelTest
         [TestMethod]
         public void SetName_Brick_OkTest()
         {
-            _material = new Material()
+            _material = new LambertianMaterial()
             {
                 Name = "Brick",
             };
@@ -41,7 +41,7 @@ namespace Test.ModelTest
         {
             Color _newColor = new Color();
             
-            _material = new Material()
+            _material = new LambertianMaterial()
             {
                 Color = _newColor,
             };
