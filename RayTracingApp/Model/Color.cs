@@ -16,9 +16,9 @@ namespace Model
             get => _red;
             set
             {
-                if (value > 255)
+                if (value < 0 || value > 255)
                 {
-                    throw new InvalidColorNumberException("Color's number must not be greater than 255");
+                    throw new InvalidColorNumberException("Color's number must not be smaller than 0 or greater than 255");
                 }
                 _red = value;
             }
