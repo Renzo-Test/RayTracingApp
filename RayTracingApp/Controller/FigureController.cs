@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace Controller
 {
-    public class FigureController
+    public abstract class FigureController
     {
         public IRepositoryFigure Repository;
 
@@ -57,5 +57,7 @@ namespace Controller
         {
             return Repository.GetFiguresByClient(ownerName).Find(figure => figure.Owner.Equals(ownerName)) is object;
         }
+
+        public abstract bool FigureIsValid(Figure figure);
     }
 }
