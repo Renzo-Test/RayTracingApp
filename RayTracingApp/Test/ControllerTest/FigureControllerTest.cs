@@ -200,7 +200,7 @@ namespace Test.ControllerTest
             };
 
             _figureController.AddFigure(newFigure, currentClient.Username);
-            _figureController.DeleteFigure(newFigure.Name, currentClient.Username);
+            _figureController.RemoveFigure(newFigure.Name, currentClient.Username);
 
             CollectionAssert.DoesNotContain(_figureController.ListFigures(currentClient.Username), newFigure);
         }
