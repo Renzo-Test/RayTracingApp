@@ -9,5 +9,6 @@ namespace Model
     public class Material
     {
         public string Owner { get; set; }
+        public string Name { get; set; }
     }
 }
