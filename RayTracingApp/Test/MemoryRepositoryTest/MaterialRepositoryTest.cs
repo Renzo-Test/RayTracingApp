@@ -14,7 +14,6 @@ namespace Test.MemoryRepositoryTest
             MaterialRepository _materialRepository = new MaterialRepository();
         }
 
-        /*
         [TestMethod]
         public void GetFiguresByClient_OwnerName_OkTest()
         {
@@ -38,8 +37,6 @@ namespace Test.MemoryRepositoryTest
 
             Assert.AreEqual(NewMaterial, _materialRepository.GetMaterialsByClient("OwnerName")[0]);
         }
-
-        */
 
         [TestMethod]
         public void AddMaterial_OkTest()

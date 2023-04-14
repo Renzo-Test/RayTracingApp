@@ -20,5 +20,10 @@ namespace MemoryRepository.MaterialRepository
         {
             _materials.Add(newMaterial);
         }
+
+        public List<Material> GetMaterialsByClient(string v)
+        {
+            return _materials.FindAll(material => material.Owner.Equals(v));
+        }
     }
 }
