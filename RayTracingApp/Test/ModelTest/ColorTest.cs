@@ -42,5 +42,16 @@ namespace Test.ModelTest
             };
 
         }
+
+        [TestMethod]
+        public void SetGreen_ValidNumber_OkTest()
+        {
+            _newColor = new Color()
+            {
+                Green = 222,
+            };
+
+            Assert.AreEqual(222, _newColor.Green);
+        }
     }
 }
