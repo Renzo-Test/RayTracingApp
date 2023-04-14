@@ -35,5 +35,19 @@ namespace Test.ModelTest
             };
             Assert.AreEqual("Brick", _material.Name);
         }
+
+        [TestMethod]
+        public void SetColor_validColor_OkTest()
+        {
+            _newColor = new Color();
+            
+            _material = new Material()
+            {
+                Color = _newColor,
+            };
+
+            Assert.AreEqual(_newColor, _material.Color);
+        }
+
     }
 }
