@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Model;
+using Model.Exceptions;
 
 namespace Test.ModelTest
 {
@@ -21,7 +22,7 @@ namespace Test.ModelTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidColorNumber))]
+        [ExpectedException(typeof(InvalidColorNumberException))]
         public void SetRed_GreaterNumber_OkTest()
         {
             _newColor = new Color()

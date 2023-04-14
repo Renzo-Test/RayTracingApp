@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,20 @@ namespace Model
 {
     public class Color
     {
-        public int Red { get; set; }
+        private int _red;
+
+        public int Red
+        {
+            get { return _red; }
+            set
+            {
+                if (value > 255)
+                {
+                    throw new InvalidColorNumberException("Color's number must not be greater than 255");
+                }
+                _red = value;
+            }
+        }
+
     }
 }
