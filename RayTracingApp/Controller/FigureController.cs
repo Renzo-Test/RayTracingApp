@@ -26,17 +26,19 @@ namespace Controller
 
         public void AddFigure(Figure figure, string username)
         {
-            if (FigureNameIsValid(figure.Name, figure.Owner))
+            if (FigureIsValid(figure))
             {
                 figure.Owner = username;
                 Repository.AddFigure(figure);
             }
         }
-        public void DeleteFigure(string figureName, string username)
+
+        private bool FigureIsValid(Figure figure)
         {
-            Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
-            Repository.RemoveFigure(deleteFigure);
+            return FigureNameIsValid(figure.Name, figure.Owner) && FigurePropertiesIsValid(figure);
         }
+
+        public abstract bool FigurePropertiesIsValid(Figure figure);
 
         public bool FigureNameIsValid(string name, string ownerName)
         {
@@ -58,6 +60,10 @@ namespace Controller
             return Repository.GetFiguresByClient(ownerName).Find(figure => figure.Owner.Equals(ownerName)) is object;
         }
 
-        public abstract bool FigureIsValid(Figure figure);
+        public void DeleteFigure(string figureName, string username)
+        {
+            Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
+            Repository.RemoveFigure(deleteFigure);
+        }
     }
 }

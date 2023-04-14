@@ -102,9 +102,10 @@ namespace Test.ControllerTest
                 Password = "pass"
             };
 
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
-                Name = "figure",
+                Name = "sphere",
+                Radius = 10,
             };
 
             _figureController.AddFigure(newFigure, currentClient.Username);
@@ -122,9 +123,10 @@ namespace Test.ControllerTest
                 Password = "pass"
             };
 
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
                 Name = "invalid name",
+                Radius = 10,
             };
 
             _figureController.AddFigure(newFigure, currentClient.Username);
@@ -142,13 +144,14 @@ namespace Test.ControllerTest
                 Password = "pass"
             };
 
-            Figure firstFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
-                Name = "figureOne",
+                Name = "sphere",
+                Radius = 10,
             };
 
-            _figureController.AddFigure(firstFigure, currentClient.Username);
-            _figureController.AddFigure(firstFigure, currentClient.Username);
+            _figureController.AddFigure(newFigure, currentClient.Username);
+            _figureController.AddFigure(newFigure, currentClient.Username);
             List<Figure> clientFigures = _figureController.Repository.GetFiguresByClient(currentClient.Username);
 
             Assert.AreEqual(1, clientFigures.Count);
@@ -163,9 +166,10 @@ namespace Test.ControllerTest
                 Password = "pass"
             };
 
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
-                Name = "figure",
+                Name = "sphere",
+                Radius = 10,
             };
 
             _figureController.AddFigure(newFigure, currentClient.Username);
@@ -189,9 +193,10 @@ namespace Test.ControllerTest
                 Password = "pass"
             };
 
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
-                Name = "figure",
+                Name = "sphere",
+                Radius = 10,
             };
 
             _figureController.AddFigure(newFigure, currentClient.Username);
@@ -209,7 +214,7 @@ namespace Test.ControllerTest
                 Radius = 10,
             };
 
-            Assert.IsTrue(_figureController.FigureIsValid(newSphere));
+            Assert.IsTrue(_figureController.FigurePropertiesIsValid(newSphere));
         }
 
         [TestMethod]
@@ -221,7 +226,7 @@ namespace Test.ControllerTest
                 Radius = 0,
             };
 
-            Assert.IsFalse(_figureController.FigureIsValid(newSphere));
+            Assert.IsFalse(_figureController.FigurePropertiesIsValid(newSphere));
         }
     }
 }

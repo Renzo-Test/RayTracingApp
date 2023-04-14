@@ -9,9 +9,15 @@ namespace Controller
 {
     public class SphereController : FigureController
     {
-        public override bool FigureIsValid(Figure figure)
+        public override bool FigurePropertiesIsValid(Figure figure)
         {
-            return true;
+            Sphere sphere = (Sphere)figure;
+            return RadiusGreaterThanZero(sphere);
+        }
+
+        private bool RadiusGreaterThanZero(Sphere sphere)
+        {
+            return sphere.Radius > 0;
         }
     }
 }
