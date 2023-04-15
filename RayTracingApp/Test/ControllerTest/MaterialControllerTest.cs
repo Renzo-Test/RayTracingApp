@@ -9,9 +9,6 @@ namespace Test.ControllerTest
     public class MaterialControllerTest
     {
         private MaterialController _materialController;
-        private Color _newColor;
-        private Material _newMaterial;
-        private Client _currentClient;
 
         [TestInitialize]
         public void TestInitialize()
@@ -84,8 +81,8 @@ namespace Test.ControllerTest
                 Password = "pass"
             };
 
-            _materialController.AddMaterial(_newMaterial, _currentClient.Username);
-            _materialController.AddMaterial(_newMaterial, _currentClient.Username);
+            _materialController.AddMaterial(_firstMaterial, _currentClient.Username);
+            _materialController.AddMaterial(_secondMaterial, _currentClient.Username);
 
             Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
         }
