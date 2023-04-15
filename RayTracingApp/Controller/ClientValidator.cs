@@ -16,7 +16,6 @@ namespace Controller
         {
             IsAphanumeric(username); 
             LengthInRangeUsername(username);
-
         }
 
         public static void RunPasswordConditions(string password)
@@ -24,7 +23,6 @@ namespace Controller
             ContainsNumber(password);
             ContainsCapital(password);
             LengthInRangePassword(password);
-
         }
 
         public static void LengthInRangeUsername(string username)

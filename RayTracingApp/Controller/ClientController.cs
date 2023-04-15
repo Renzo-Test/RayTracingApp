@@ -15,21 +15,12 @@ namespace Controller
         {
             Repository = new ClientRepository();
         }
-        
-        public void CheckIfClientExists(string username)
-        {
-            if (Repository.GetClient(username) is object)
-            {
-                string AlreadyExsitingClientMessage = $"Client with username {username} already exists";
-                throw new AlreadyExistingClientException(AlreadyExsitingClientMessage);
-            };
-        }
 
         public void SignUp(string username, string password)
         {
             try
             {
-                RunConditionsChecker(username, password);
+                RunSignUpChecker(username, password);
                 Repository.AddClient(username, password);
             }
             catch (InvalidCredentialsException ex)
@@ -38,16 +29,20 @@ namespace Controller
             }
         }
 
-        private void RunConditionsChecker(string username, string password)
+        private void RunSignUpChecker(string username, string password)
         {
            CheckIfClientExists(username);
            ClientValidator.RunPasswordConditions(password);
            ClientValidator.RunUsernameConditions(username);
         }
 
-        public void SignOut(ref Client currentClient) 
+        public void CheckIfClientExists(string username)
         {
-            currentClient = null;
+            if (Repository.GetClient(username) is object)
+            {
+                string AlreadyExsitingClientMessage = $"Client with username {username} already exists";
+                throw new AlreadyExistingClientException(AlreadyExsitingClientMessage);
+            };
         }
 
         public Client SignIn(string username, string password)
@@ -79,6 +74,10 @@ namespace Controller
             }
         }
 
+        public void SignOut(ref Client currentClient)
+        {
+            currentClient = null;
+        }
 
         public bool IsLoggedIn(Client currentClient)
         {
