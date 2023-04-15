@@ -91,7 +91,7 @@ namespace Test.ControllerTest
         {
             Material newMaterial = new LambertianMaterial()
             {
-                Name = "spaced name",
+                Name = " spacedName ",
             };
 
             Client _currentClient = new Client()

@@ -46,7 +46,7 @@ namespace Controller
 
         private static bool NameIsSpaced(Material material)
         {
-            return material.Name.Contains(" ");
+            return material.Name.StartsWith(" ") || material.Name.StartsWith(" ");
         }
     }
 }
