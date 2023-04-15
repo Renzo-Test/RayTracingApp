@@ -9,6 +9,7 @@ namespace Controller
 {
     public class ClientController
     {
+        private const string WrongPasswordMessage = "Wrong email or password";
         public IRepositoryClient Repository;
         public ClientController()
         {
@@ -51,18 +52,33 @@ namespace Controller
 
         public Client SignIn(string username, string password)
         {
-            if (CredentialsAreInvalid(username, password))
-                return null;
-
-            return Repository.GetClient(username);
+            try
+            {
+                RunSignInChekcer(username, password);
+                return Repository.GetClient(username);
+            }
+            catch (InvalidCredentialsException ex)
+            {
+                throw new InvalidCredentialsException(ex.Message);
+            }
 
         }
 
-        private bool CredentialsAreInvalid(string username, string password)
+        private void RunSignInChekcer(string username, string password)
         {
-            //return !CheckIfClientExists(username) || !Repository.GetClient(username).Password.Equals(password);
-            return false;
+            try
+            {
+                if (!Repository.GetClient(username).Password.Equals(password))
+                {
+                    throw new NotCorrectPasswordException(WrongPasswordMessage);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                throw new NotCorrectPasswordException(WrongPasswordMessage);
+            }
         }
+
 
         public bool IsLoggedIn(Client currentClient)
         {

@@ -93,11 +93,11 @@ namespace Test.ControllerTest
             _controller.SignUp("Gomez", "GomezSecret1");
         }
 
+        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
         public void CheckSignIn_NotRegistered_Gomez_GomezSecret1_OkTest()
         {
             Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
-            Assert.IsNull(_currentClient);
         }
 
         [TestMethod]

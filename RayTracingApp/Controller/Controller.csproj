@@ -44,6 +44,7 @@
     <Compile Include="ClientValidator.cs" />
     <Compile Include="ClientController.cs" />
     <Compile Include="Exceptions\AlreadyExistingClientException.cs" />
+    <Compile Include="Exceptions\NotCorrectPasswordException.cs" />
     <Compile Include="Exceptions\InvalidCredentialsException.cs" />
     <Compile Include="Exceptions\NotInExpectedRangeException.cs" />
     <Compile Include="Exceptions\NotContainsNumberException.cs" />
