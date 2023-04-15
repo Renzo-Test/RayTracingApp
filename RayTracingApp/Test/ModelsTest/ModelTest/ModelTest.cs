@@ -22,5 +22,15 @@ namespace Test.ModelsTest
             };
             Assert.AreEqual("ownerName", newModel.Owner);
         }
+
+        [TestMethod]
+        public void SetName_OkTest()
+        {
+            Model newModel = new Model()
+            {
+                Name = "modelName"
+            };
+            Assert.AreEqual("modelName", newModel.Name);
+        }
     }
 }
