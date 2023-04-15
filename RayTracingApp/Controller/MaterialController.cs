@@ -53,5 +53,11 @@ namespace Controller
         {
             return Repository.GetMaterialsByClient(username);
         }
+
+        public void RemoveMaterial(string name, string username)
+        {
+            Material deleteMaterial = Repository.GetMaterialsByClient(username).Find(mat => mat.Owner.Equals(username));
+            Repository.RemoveMaterial(deleteMaterial);
+        }
     }
 }

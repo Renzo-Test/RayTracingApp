@@ -148,7 +148,7 @@ namespace Test.ControllerTest
             };
             _materialController.AddMaterial(newMaterial, "username");
 
-            _materialController.DeleteMaterial(newMaterial, "username");
+            _materialController.RemoveMaterial(newMaterial.Name, "username");
 
             Assert.AreEqual(0, _materialController.ListMaterials("username").Count);
         }
