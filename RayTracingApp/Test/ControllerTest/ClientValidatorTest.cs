@@ -34,42 +34,42 @@ namespace Test.ControllerTest
         [TestMethod]
         public void Alphanumeric_EmptyString_OkTest()
         {
-            bool result = ClientValidator.Alphanumeric("");
+            bool result = ClientValidator.IsAphanumeric("");
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void Alphanumeric_QuestionMark_OkTest()
         {
-            bool result = ClientValidator.Alphanumeric("?");
+            bool result = ClientValidator.IsAphanumeric("?");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void Alphanumeric_AQuestionMarkB_OkTest()
         {
-            bool result = ClientValidator.Alphanumeric("A?B");
+            bool result = ClientValidator.IsAphanumeric("A?B");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void Alphanumeric_SpaceAB_OkTest()
         {
-            bool result = ClientValidator.Alphanumeric(" AB");
+            bool result = ClientValidator.IsAphanumeric(" AB");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void Alphanumeric_ASpaceB_OkTest()
         {
-            bool result = ClientValidator.Alphanumeric("A B");
+            bool result = ClientValidator.IsAphanumeric("A B");
             Assert.IsFalse(result);
         }
 
         [TestMethod]
         public void Alphanumeric_ABSpace_OkTest()
         {
-            bool result = ClientValidator.Alphanumeric("AB ");
+            bool result = ClientValidator.IsAphanumeric("AB ");
             Assert.IsFalse(result);
         }
 

@@ -8,7 +8,7 @@ namespace Controller
 
         public static bool IsValidUsername(string username)
         {
-            return Alphanumeric(username) && LengthInRangeUsername(username);
+            return IsAphanumeric(username) && LengthInRangeUsername(username);
         }
 
         public static bool IsValidPassword(string password)
@@ -23,7 +23,7 @@ namespace Controller
         }
 
         //alphanumeric includes non special characters and no spaces
-        public static bool Alphanumeric(string username)
+        public static bool IsAphanumeric(string username)
         {
             return username.All(char.IsLetterOrDigit);
         }
