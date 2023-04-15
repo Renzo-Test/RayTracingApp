@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MaterialController.cs" />
     <Compile Include="ClientValidator.cs" />
     <Compile Include="ClientController.cs" />
     <Compile Include="FigureController.cs" />
