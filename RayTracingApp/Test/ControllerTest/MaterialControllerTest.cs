@@ -120,5 +120,23 @@ namespace Test.ControllerTest
 
             _materialController.AddMaterial(newMaterial, _currentClient.Username);
         }
+
+        [TestMethod]
+        public void ListMaterials_OkTest()
+        {
+            Material firstMaterial = new LambertianMaterial()
+            {
+                Name = "materialName",
+            };
+            _materialController.AddMaterial(firstMaterial, "username");
+
+            Material secondMaterial = new LambertianMaterial()
+            {
+                Name = "materialName",
+            };
+            _materialController.AddMaterial(secondMaterial, "username");
+
+            Assert.AreEqual(2, _materialController.ListMaterials("username").Count);
+        }
     }
 }
