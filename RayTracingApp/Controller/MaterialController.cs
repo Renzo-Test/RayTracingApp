@@ -20,7 +20,7 @@ namespace Controller
 
         public void AddMaterial(Material material, string username)
         {
-            if (MaterialNameExist(material, username) || material.Name.Contains(" "))
+            if (MaterialNameExist(material, username) || NameIsSpaced(material))
             {
                 throw new NullReferenceException();
             }
@@ -28,10 +28,14 @@ namespace Controller
             material.Owner = username;
             Repository.AddMaterial(material);
         }
-
         private bool MaterialNameExist(Material material, string username)
         {
             return Repository.GetMaterialsByClient(username).Find(mat => mat.Owner.Equals(username) && mat.Name.Equals(material.Name)) is object;
+        }
+
+        private static bool NameIsSpaced(Material material)
+        {
+            return material.Name.Contains(" ");
         }
     }
 }
