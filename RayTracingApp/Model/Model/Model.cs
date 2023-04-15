@@ -8,5 +8,6 @@ namespace Models
 {
     public class Model
     {
+        public String Owner { get; set; }
     }
 }
