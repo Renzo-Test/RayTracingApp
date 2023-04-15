@@ -20,7 +20,7 @@ namespace Controller
 
         public void AddMaterial(Material material, string username)
         {
-            if (MaterialNameExist(material, username) || NameIsSpaced(material))
+            if (MaterialNameExist(material, username) || NameIsSpaced(material) || material.Name.Equals(""))
             {
                 throw new NullReferenceException();
             }

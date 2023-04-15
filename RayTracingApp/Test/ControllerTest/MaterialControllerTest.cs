@@ -87,7 +87,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void AddMaterial_SpacedMaterialName_OkTest()
+        public void AddMaterial_SpacedMaterialName_FailTest()
         {
             Material newMaterial = new LambertianMaterial()
             {
@@ -105,7 +105,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void AddMaterial_EmptyMaterialName_OkTest()
+        public void AddMaterial_EmptyMaterialName_FailTest()
         {
             Material newMaterial = new LambertianMaterial()
             {
