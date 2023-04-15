@@ -48,5 +48,15 @@ namespace Test.ModelsTest
             };
             Assert.AreEqual(newFigure, newModel.Figure);
         }
+
+        [TestMethod]
+        public void SetMaterial_OkTest()
+        {
+            Model newModel = new Model()
+            {
+                Material = "materialName"
+            };
+            Assert.AreEqual("materialName", newModel.Material);
+        }
     }
 }
