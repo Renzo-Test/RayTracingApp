@@ -20,7 +20,7 @@ namespace Controller
 
         public void AddMaterial(Material material, string username)
         {
-            if (MaterialNameExist(material, username))
+            if (MaterialNameExist(material, username) || material.Name.Contains(" "))
             {
                 throw new NullReferenceException();
             }
