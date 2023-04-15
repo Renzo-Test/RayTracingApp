@@ -20,13 +20,18 @@ namespace Controller
 
         public void AddMaterial(Material material, string username)
         {
-            if (Repository.GetMaterialsByClient(username).Find(mat => mat.Owner.Equals(username) && mat.Name.Equals(material.Name)) is object)
+            if (MaterialNameExist(material, username))
             {
                 throw new NullReferenceException();
             }
 
             material.Owner = username;
             Repository.AddMaterial(material);
+        }
+
+        private bool MaterialNameExist(Material material, string username)
+        {
+            return Repository.GetMaterialsByClient(username).Find(mat => mat.Owner.Equals(username) && mat.Name.Equals(material.Name)) is object;
         }
     }
 }
