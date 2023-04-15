@@ -1,7 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MemoryRepository;
-
+using MemoryRepository.Exceptions;
+using Controller.Exceptions;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -37,7 +38,7 @@ namespace Test.MemoryRepositoryTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(NotFoundClientException))]
         public void GetClient_NotAddedClient_FailTest()
         {
             Assert.AreEqual("user", _clientRepository.GetClient("user").Username);

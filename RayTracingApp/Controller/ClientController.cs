@@ -1,5 +1,7 @@
-﻿using IRepository;
+﻿using Controller.Exceptions;
+using IRepository;
 using MemoryRepository;
+using MemoryRepository.Exceptions;
 using Model;
 using System;
 
@@ -8,50 +10,85 @@ namespace Controller
 {
     public class ClientController
     {
+        private const string WrongPasswordMessage = "Wrong email or password";
         public IRepositoryClient Repository;
         public ClientController()
         {
             Repository = new ClientRepository();
         }
-        
-        public bool CheckIfClientExists(string username)
+
+        public void SignUp(string username, string password)
         {
-            return Repository.GetClient(username) is object;
+            try
+            {
+                RunSignUpChecker(username, password);
+                Repository.AddClient(username, password);
+            }
+            catch (InvalidCredentialsException ex)
+            {
+                throw new InvalidCredentialsException(ex.Message);
+            }
         }
 
-        public bool SignUp(string username, string password)
+        private void RunSignUpChecker(string username, string password)
         {
-            if (!IsInputOk(username, password))
+           if (ClientAlreadyExists(username))
+           {
+                string AlreadyExsitingClientMessage = $"Client with username {username} already exists";
+                throw new AlreadyExistingClientException(AlreadyExsitingClientMessage);
+           }
+
+           ClientValidator.RunPasswordConditions(password);
+           ClientValidator.RunUsernameConditions(username);
+        }
+
+        public bool ClientAlreadyExists(string username)
+        {
+            try
+            {
+                Repository.GetClient(username);
+                return true;
+            }
+            catch(NotFoundClientException)
+            {
                 return false;
-
-            Repository.AddClient(username, password);
-            return true;
-        }
-
-        private bool IsInputOk(string username, string password)
-        {
-            return !CheckIfClientExists(username)
-                   && ClientValidator.IsValidPassword(password)
-                   && ClientValidator.IsValidUsername(username);
-        }
-
-        public void SignOut(ref Client currentClient) 
-        {
-            currentClient = null;
+            };
         }
 
         public Client SignIn(string username, string password)
         {
-            if (CredentialsAreInvalid(username, password))
-                return null;
-
-            return Repository.GetClient(username);
+            try
+            {
+                RunSignInChekcer(username, password);
+                return Repository.GetClient(username);
+            }
+            catch (InvalidCredentialsException ex)
+            {
+                throw new InvalidCredentialsException(ex.Message);
+            }
 
         }
 
-        private bool CredentialsAreInvalid(string username, string password)
+        private void RunSignInChekcer(string username, string password)
         {
-            return !CheckIfClientExists(username) || !Repository.GetClient(username).Password.Equals(password);
+            try
+            {
+                string _clientPassword = Repository.GetClient(username).Password;
+
+                if (!_clientPassword.Equals(password))
+                {
+                    throw new NotCorrectPasswordException(WrongPasswordMessage);
+                }
+            }
+            catch (NotFoundClientException)
+            {
+                throw new NotCorrectPasswordException(WrongPasswordMessage);
+            }
+        }
+
+        public void SignOut(ref Client currentClient)
+        {
+            currentClient = null;
         }
 
         public bool IsLoggedIn(Client currentClient)
