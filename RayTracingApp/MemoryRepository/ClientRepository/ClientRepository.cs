@@ -2,6 +2,7 @@
 using Model;
 using IRepository;
 using System;
+using MemoryRepository.Exceptions;
 
 namespace MemoryRepository
 {
@@ -28,6 +29,12 @@ namespace MemoryRepository
         public Client GetClient(string username)
         {
             Client foundClient = _clients.Find(client => client.Username.Equals(username));
+
+            if(foundClient is null)
+            {
+                string NotFoundClientMessage = $"client with username {username} was not found";
+                throw new NotFoundClientException(NotFoundClientMessage);
+            }
 
             return foundClient;
         }

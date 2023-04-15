@@ -1,4 +1,5 @@
 ﻿using IRepository;
+using MemoryRepository.Exceptions;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,13 @@ namespace MemoryRepository.MaterialRepository
         public List<Material> GetMaterialsByClient(string username)
         {
             List<Material> foundMaterials = _materials.FindAll(material => material.Owner.Equals(username));
+
+            if(foundMaterials is null)
+            {
+                string NotFoundMaterialMessage = $"no material with owner: {username} was found";
+                throw new NotFoundMaterialException(NotFoundMaterialMessage);
+            }
+
             return foundMaterials;
         }
 

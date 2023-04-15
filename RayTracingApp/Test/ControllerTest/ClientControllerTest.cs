@@ -3,6 +3,7 @@ using Model;
 using Controller;
 using Controller.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MemoryRepository.Exceptions;
 
 namespace Test.ControllerTest
 {
@@ -67,22 +68,24 @@ namespace Test.ControllerTest
         [TestMethod]
         public void CheckIfClientExists_EmptyString_OkTest()
         {
-            _controller.CheckIfClientExists("");
+            bool result = _controller.ClientAlreadyExists("");
+            Assert.IsFalse(result);
         }
 
-        [ExpectedException(typeof(AlreadyExistingClientException))]
         [TestMethod]
         public void CheckIfClientExists_Gomez_OkTest()
         {
             _controller.Repository.AddClient("Gomez", "GomezSecret");
             
-            _controller.CheckIfClientExists("Gomez");
+            bool result = _controller.ClientAlreadyExists("Gomez");
+
+            Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void CheckIfClientExists_NotFoundUser_OkTest()
         {
-            _controller.CheckIfClientExists("NotFoundUser");
+            _controller.ClientAlreadyExists("NotFoundUser");
         }
 
         [ExpectedException(typeof(InvalidCredentialsException))]

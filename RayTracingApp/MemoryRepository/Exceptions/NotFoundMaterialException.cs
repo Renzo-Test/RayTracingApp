@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace MemoryRepository.Exceptions
 {
-    public class ExceptionGetPasswordOfEmptyUsername : Exception
+    public class NotFoundMaterialException : Exception
     {
+        public NotFoundMaterialException(string message) : base(message) { }
     }
 }

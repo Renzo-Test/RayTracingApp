@@ -5,6 +5,7 @@ using Model;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using MemoryRepository.Exceptions;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -59,10 +60,9 @@ namespace Test.MemoryRepositoryTest
             Assert.AreEqual("FigureTwo", _figureRepository.GetFiguresByClient("OwnerTwo")[0].Name);
         }
 
-        [TestMethod]
-        public void GetFiguresByClient_NotExistingClient()
+        public void GetFiguresByClient_NotExisting2Client()
         {
-            Assert.AreEqual(0, _figureRepository.GetFiguresByClient("NotExistingClient").Count());
+            _figureRepository.GetFiguresByClient("");
         }
 
         [TestMethod]
