@@ -6,6 +6,11 @@ namespace Controller
 {
     public static class ClientValidator
     {
+        private const string NotAlphanumericMessage = "Username must only include letters and numbers with no spaces";
+        private const string NotContainsNumberMessage = "Password must contain at least one number";
+        private const string NotContainsCapitalMessage = "Password must contain at least one capital letter";
+        private const string NotInExpectedRangeUsernameMessage = "Username's length must be greater than 2 and smaller than 21";
+        private const string NotInExpectedRangePasswordMessage = "Password's length must be greater than 4 and smaller than 26";
 
         public static void IsValidUsername(string username)
         {
@@ -26,7 +31,7 @@ namespace Controller
         {
             if(!(username.Length >= 3 && username.Length <= 20))
             {
-                throw new NotInExpectedRangeException("Username's length must be greater than 2 and smaller than 21");
+                throw new NotInExpectedRangeException(NotInExpectedRangeUsernameMessage);
             }
         }
 
@@ -35,7 +40,7 @@ namespace Controller
         {
             if (username.All(char.IsLetterOrDigit))
             {
-                throw new NotAlphanumericException("Username must only include letters and numbers with no spaces");
+                throw new NotAlphanumericException(NotAlphanumericMessage);
             }
         }
 
@@ -43,7 +48,7 @@ namespace Controller
         {
             if (!password.Any(char.IsDigit))
             {
-                throw new NotContainsNumberException("Password must contain at least one number");
+                throw new NotContainsNumberException(NotContainsNumberMessage);
             }
         }
 
@@ -51,7 +56,7 @@ namespace Controller
         {
             if (!password.Any(char.IsUpper))
             {
-                throw new NotContainsCapitalException("Password must contain at least one capital letter");
+                throw new NotContainsCapitalException(NotContainsCapitalMessage);
             }
         }
 
@@ -59,7 +64,7 @@ namespace Controller
         {
             if(!(password.Length >= 5 && password.Length <= 25))
             {
-                throw new NotInExpectedRangeException("Password's length must be greater than 4 and smaller than 26");
+                throw new NotInExpectedRangeException(NotInExpectedRangePasswordMessage);
             }
         }
 
