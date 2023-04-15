@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Model;
-using Model.Exceptions;
+using Models;
+using Models.Exceptions;
 
-namespace Test.ModelTest
+namespace Test.ModelsTest
 {
     [TestClass]
     public class ColorTest

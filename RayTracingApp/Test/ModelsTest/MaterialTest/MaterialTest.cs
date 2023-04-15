@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Model;
+using Models;
 
-namespace Test.ModelTest
+namespace Test.ModelsTest
 {
     [TestClass]
 

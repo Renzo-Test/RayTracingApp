@@ -48,6 +48,7 @@
     <Compile Include="Figure\Sphere.cs" />
     <Compile Include="Client\Client.cs" />
     <Compile Include="Figure\Figure.cs" />
+    <Compile Include="Model\Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

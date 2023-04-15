@@ -2,7 +2,7 @@
 using IRepository;
 using MemoryRepository;
 using MemoryRepository.Exceptions;
-using Model;
+using Models;
 using System;
 
 

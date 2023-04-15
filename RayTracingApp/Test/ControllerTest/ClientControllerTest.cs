@@ -1,5 +1,5 @@
 ﻿using System;
-using Model;
+using Models;
 using Controller;
 using Controller.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

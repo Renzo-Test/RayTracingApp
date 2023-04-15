@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MemoryRepository;
-using Model;
+using Models;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
