@@ -102,5 +102,23 @@ namespace Test.ControllerTest
 
             _materialController.AddMaterial(newMaterial, _currentClient.Username);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void AddMaterial_EmptyMaterialName_OkTest()
+        {
+            Material newMaterial = new LambertianMaterial()
+            {
+                Name = "",
+            };
+
+            Client _currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            _materialController.AddMaterial(newMaterial, _currentClient.Username);
+        }
     }
 }
