@@ -52,11 +52,16 @@ namespace Test.ModelsTest
         [TestMethod]
         public void SetMaterial_OkTest()
         {
+            Material newMaterial = new LambertianMaterial()
+            {
+                Name = "materialName"
+            };
+
             Model newModel = new Model()
             {
-                Material = "materialName"
+                Material = newMaterial
             };
-            Assert.AreEqual("materialName", newModel.Material);
+            Assert.AreEqual(newMaterial, newModel.Material);
         }
     }
 }
