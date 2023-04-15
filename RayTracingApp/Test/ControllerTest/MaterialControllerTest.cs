@@ -51,6 +51,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
         public void AddMaterial_DuplicatedMaterial_OkTest()
         {
             Color newColor = new Color()
