@@ -138,5 +138,19 @@ namespace Test.ControllerTest
 
             Assert.AreEqual(2, _materialController.ListMaterials("username").Count);
         }
+
+        [TestMethod]
+        public void RemoveMaterials_OkTest()
+        {
+            Material newMaterial = new LambertianMaterial()
+            {
+                Name = "materialName",
+            };
+            _materialController.AddMaterial(newMaterial, "username");
+
+            _materialController.DeleteMaterial(newMaterial, "username");
+
+            Assert.AreEqual(0, _materialController.ListMaterials("username").Count);
+        }
     }
 }
