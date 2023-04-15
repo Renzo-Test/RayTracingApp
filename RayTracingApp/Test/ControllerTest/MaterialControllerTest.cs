@@ -19,6 +19,8 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddMaterial_ValidMaterial_OkTest()
         {
+            _materialController = new MaterialController();
+
             Color newColor = new Color()
             {
                 Red = 0,
@@ -31,7 +33,11 @@ namespace Test.ControllerTest
                 Name = "materialName",
                 Owner = "ownerName",
                 Color = newColor
-            }
+            };
+
+            _materialController.AddMaterial(newMaterial);
+
+            CollectionAssert.Contains(_materialController.Repository.GetMaterialsByClient("ownerName"), newMaterial);
         }
     }
 }
