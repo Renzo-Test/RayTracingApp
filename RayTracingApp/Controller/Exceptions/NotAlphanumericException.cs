@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Controller.Exceptions
 {
-    public class NotAlphanumericException : Exception
+    public class NotAlphanumericException : InvalidCredentialsException
     {
         public NotAlphanumericException(string message) : base(message) { }
     }

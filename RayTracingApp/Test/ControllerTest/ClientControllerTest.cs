@@ -1,6 +1,7 @@
 ﻿using System;
 using Model;
 using Controller;
+using Controller.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test.ControllerTest
@@ -25,75 +26,71 @@ namespace Test.ControllerTest
         [TestMethod]
         public void CheckSignUp_Gomez_GomezSecret1_OkTest()
         {
-            bool result = _controller.SignUp("Gomez", "GomezSecret1");
-            Assert.IsTrue(result);
+            _controller.SignUp("Gomez", "GomezSecret1");
         }
 
+        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
         public void CheckSignUp_GomezQuestionMark_GomezSecret1_OkTest()
         {
-            bool result = _controller.SignUp("Gomez?", "GomezSecret1");
-            Assert.IsFalse(result);
+            _controller.SignUp("Gomez?", "GomezSecret1");
         }
 
+        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
         public void CheckSignUp_Go_GomezSecret1_OkTest()
         {
-            bool result = _controller.SignUp("Go", "GomezSecret1");
-            Assert.IsFalse(result);
+            _controller.SignUp("Go", "GomezSecret1");
         }
 
+        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
         public void CheckSignUp_Gomez_gomezsecret1_OkTest()
         {
-            bool result = _controller.SignUp("Gomez", "gomezsecret1");
-            Assert.IsFalse(result);
+            _controller.SignUp("Gomez", "gomezsecret1");
         }
 
+        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
         public void CheckSignUp_Gomez_GomezSecret_OkTest()
         {
-            bool result = _controller.SignUp("Gomez", "GomezSecret");
-            Assert.IsFalse(result);
+            _controller.SignUp("Gomez", "GomezSecret");
         }
 
+        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
         public void CheckSignUp_Gomez_Gom1_OkTest()
         {
-            bool result = _controller.SignUp("Gomez", "Gom1");
-            Assert.IsFalse(result);
+             _controller.SignUp("Gomez", "Gom1");
         }
 
-                
         [TestMethod]
         public void CheckIfClientExists_EmptyString_OkTest()
         {
-            bool result = _controller.CheckIfClientExists("");
-            Assert.IsFalse(result);
+            _controller.CheckIfClientExists("");
         }
 
+        [ExpectedException(typeof(AlreadyExistingClientException))]
         [TestMethod]
         public void CheckIfClientExists_Gomez_OkTest()
         {
             _controller.Repository.AddClient("Gomez", "GomezSecret");
             
-            bool result = _controller.CheckIfClientExists("Gomez");
-            Assert.IsTrue(result);
+            _controller.CheckIfClientExists("Gomez");
         }
 
         [TestMethod]
         public void CheckIfClientExists_NotFoundUser_OkTest()
         {
-            bool result = _controller.CheckIfClientExists("NotFoundUser");
-            Assert.IsFalse(result);
+            _controller.CheckIfClientExists("NotFoundUser");
         }
 
+        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
         public void CheckSignUp_AlreadyExisting_Gomez_GomezSecret1_OkTest()
         {
             _controller.SignUp("Gomez", "GomezSecret1");
-            bool result = _controller.SignUp("Gomez", "GomezSecret1");
-            Assert.IsFalse(result);
+            _controller.SignUp("Gomez", "GomezSecret1");
         }
 
         [TestMethod]

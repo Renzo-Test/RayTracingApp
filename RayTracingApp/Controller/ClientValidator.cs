@@ -12,14 +12,14 @@ namespace Controller
         private const string NotInExpectedRangeUsernameMessage = "Username's length must be greater than 2 and smaller than 21";
         private const string NotInExpectedRangePasswordMessage = "Password's length must be greater than 4 and smaller than 26";
 
-        public static void IsValidUsername(string username)
+        public static void RunUsernameConditions(string username)
         {
             IsAphanumeric(username); 
             LengthInRangeUsername(username);
 
         }
 
-        public static void IsValidPassword(string password)
+        public static void RunPasswordConditions(string password)
         {
             ContainsNumber(password);
             ContainsCapital(password);
@@ -38,7 +38,7 @@ namespace Controller
         //alphanumeric includes non special characters and no spaces
         public static void IsAphanumeric(string username)
         {
-            if (username.All(char.IsLetterOrDigit))
+            if (!username.All(char.IsLetterOrDigit))
             {
                 throw new NotAlphanumericException(NotAlphanumericMessage);
             }

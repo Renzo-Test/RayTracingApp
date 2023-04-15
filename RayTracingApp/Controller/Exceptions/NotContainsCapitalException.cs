@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Controller.Exceptions
 {
-    public class NotContainsCapitalException : Exception
+    public class NotContainsCapitalException : InvalidCredentialsException
     {
         public NotContainsCapitalException(string message) : base(message) { }
     }

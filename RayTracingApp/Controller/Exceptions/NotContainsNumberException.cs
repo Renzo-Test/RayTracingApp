@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Controller.Exceptions
 {
-    public class NotContainsNumberException : Exception
+    public class NotContainsNumberException : InvalidCredentialsException
     {
         public NotContainsNumberException(string message) : base(message) { }
     }

@@ -51,7 +51,9 @@
   <ItemGroup>
     <Compile Include="ControllerTest\ClientControllerTest.cs" />
     <Compile Include="ControllerTest\ClientValidatorTest.cs" />
+    <Compile Include="ControllerTest\FigureControllerTest.cs" />
     <Compile Include="MemoryRepositoryTest\FigureRepositoryTest.cs" />
+    <Compile Include="MemoryRepositoryTest\MaterialRepositoryTest.cs" />
     <Compile Include="ModelTest\MaterialTest\ColorTest.cs" />
     <Compile Include="ModelTest\MaterialTest\MaterialTest.cs" />
     <Compile Include="ModelTest\ClientTest\ClientTest.cs" />

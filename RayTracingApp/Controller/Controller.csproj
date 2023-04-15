@@ -43,6 +43,12 @@
   <ItemGroup>
     <Compile Include="ClientValidator.cs" />
     <Compile Include="ClientController.cs" />
+    <Compile Include="Exceptions\AlreadyExistingClientException.cs" />
+    <Compile Include="Exceptions\InvalidCredentialsException.cs" />
+    <Compile Include="Exceptions\NotInExpectedRangeException.cs" />
+    <Compile Include="Exceptions\NotContainsNumberException.cs" />
+    <Compile Include="Exceptions\NotAlphanumericException.cs" />
+    <Compile Include="Exceptions\NotContainsCapitalException.cs" />
     <Compile Include="FigureController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SphereController.cs" />

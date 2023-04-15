@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Controller.Exceptions
 {
-    public class NotInExpectedRangeException : InvalidCredentialsException
+    public class InvalidCredentialsException : Exception
     {
-        public NotInExpectedRangeException(string message) : base(message) { }
+        public InvalidCredentialsException(string message) : base(message) { }
     }
 }

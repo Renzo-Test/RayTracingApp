@@ -1,4 +1,5 @@
-﻿using IRepository;
+﻿using Controller.Exceptions;
+using IRepository;
 using MemoryRepository;
 using Model;
 using System;
@@ -14,25 +15,33 @@ namespace Controller
             Repository = new ClientRepository();
         }
         
-        public bool CheckIfClientExists(string username)
+        public void CheckIfClientExists(string username)
         {
-            return Repository.GetClient(username) is object;
+            if (Repository.GetClient(username) is object)
+            {
+                string AlreadyExsitingClientMessage = $"Client with username {username} already exists";
+                throw new AlreadyExistingClientException(AlreadyExsitingClientMessage);
+            };
         }
 
-        public bool SignUp(string username, string password)
+        public void SignUp(string username, string password)
         {
-            if (!IsInputOk(username, password))
-                return false;
-
-            Repository.AddClient(username, password);
-            return true;
+            try
+            {
+                RunConditionsChecker(username, password);
+                Repository.AddClient(username, password);
+            }
+            catch (InvalidCredentialsException ex)
+            {
+                throw new InvalidCredentialsException(ex.Message);
+            }
         }
 
-        private bool IsInputOk(string username, string password)
+        private void RunConditionsChecker(string username, string password)
         {
-            return !CheckIfClientExists(username)
-                   && ClientValidator.IsValidPassword(password)
-                   && ClientValidator.IsValidUsername(username);
+           CheckIfClientExists(username);
+           ClientValidator.RunPasswordConditions(password);
+           ClientValidator.RunUsernameConditions(username);
         }
 
         public void SignOut(ref Client currentClient) 
@@ -51,7 +60,8 @@ namespace Controller
 
         private bool CredentialsAreInvalid(string username, string password)
         {
-            return !CheckIfClientExists(username) || !Repository.GetClient(username).Password.Equals(password);
+            //return !CheckIfClientExists(username) || !Repository.GetClient(username).Password.Equals(password);
+            return false;
         }
 
         public bool IsLoggedIn(Client currentClient)
