@@ -32,5 +32,21 @@ namespace Test.ModelsTest
             };
             Assert.AreEqual("modelName", newModel.Name);
         }
+
+        [TestMethod]
+        public void SetFigure_OkTest()
+        {
+            Figure newFigure = new Figure()
+            {
+                Name = "figureName",
+                Owner = "ownerName"
+            };
+
+            Model newModel = new Model()
+            {
+                Figure = newFigure
+            };
+            Assert.AreEqual(newFigure, newModel.Figure);
+        }
     }
 }

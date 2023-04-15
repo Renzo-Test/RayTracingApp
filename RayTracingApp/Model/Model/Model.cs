@@ -9,5 +9,6 @@ namespace Models
     public class Model
     {
         public String Owner { get; set; }
+        public String Name { get; set; }
     }
 }
