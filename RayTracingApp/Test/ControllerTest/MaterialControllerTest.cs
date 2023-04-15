@@ -43,7 +43,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void AddMaterial_DuplicatedMaterial_OkTest()
+        public void AddMaterial_DuplicatedMaterial_FailTest()
         {
             Material _newMaterial = new LambertianMaterial()
             {
@@ -58,8 +58,6 @@ namespace Test.ControllerTest
 
             _materialController.AddMaterial(_newMaterial, _currentClient.Username);
             _materialController.AddMaterial(_newMaterial, _currentClient.Username);
-
-            Assert.AreEqual(1, _materialController.Repository.GetMaterialsByClient("user").Count);
         }
 
         [TestMethod]
@@ -85,6 +83,24 @@ namespace Test.ControllerTest
             _materialController.AddMaterial(_secondMaterial, _currentClient.Username);
 
             Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void AddMaterial_SpacedMaterialName_OkTest()
+        {
+            Material newMaterial = new LambertianMaterial()
+            {
+                Name = "spaced name",
+            };
+
+            Client _currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            _materialController.AddMaterial(newMaterial, _currentClient.Username);
         }
     }
 }
