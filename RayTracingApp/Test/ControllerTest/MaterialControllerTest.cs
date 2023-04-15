@@ -10,6 +10,13 @@ namespace Test.ControllerTest
     {
         private MaterialController _materialController;
 
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _materialController = new MaterialController();
+        }
+
         [TestMethod]
         public void CreateClientController_OkTest()
         {
@@ -19,8 +26,6 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddMaterial_ValidMaterial_OkTest()
         {
-            _materialController = new MaterialController();
-
             Color newColor = new Color()
             {
                 Red = 0,
