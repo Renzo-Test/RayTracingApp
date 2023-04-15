@@ -30,13 +30,7 @@ namespace Test.ControllerTest
                 Name = "materialName",
             };
 
-            Client _currentClient = new Client()
-            {
-                Username = "user",
-                Password = "pass"
-            };
-
-            _materialController.AddMaterial(_newMaterial, _currentClient.Username);
+            _materialController.AddMaterial(_newMaterial, "user");
 
             CollectionAssert.Contains(_materialController.Repository.GetMaterialsByClient("user"), _newMaterial);
         }
@@ -50,14 +44,8 @@ namespace Test.ControllerTest
                 Name = "materialName",
             };
 
-            Client _currentClient = new Client()
-            {
-                Username = "user",
-                Password = "pass"
-            };
-
-            _materialController.AddMaterial(_newMaterial, _currentClient.Username);
-            _materialController.AddMaterial(_newMaterial, _currentClient.Username);
+            _materialController.AddMaterial(_newMaterial, "user");
+            _materialController.AddMaterial(_newMaterial, "user");
         }
 
         [TestMethod]
@@ -73,14 +61,8 @@ namespace Test.ControllerTest
                 Name = "materialTwo",
             };
 
-            Client _currentClient = new Client()
-            {
-                Username = "user",
-                Password = "pass"
-            };
-
-            _materialController.AddMaterial(_firstMaterial, _currentClient.Username);
-            _materialController.AddMaterial(_secondMaterial, _currentClient.Username);
+            _materialController.AddMaterial(_firstMaterial, "user");
+            _materialController.AddMaterial(_secondMaterial, "user");
 
             Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
         }
@@ -94,13 +76,7 @@ namespace Test.ControllerTest
                 Name = " spacedName ",
             };
 
-            Client _currentClient = new Client()
-            {
-                Username = "user",
-                Password = "pass"
-            };
-
-            _materialController.AddMaterial(newMaterial, _currentClient.Username);
+            _materialController.AddMaterial(newMaterial, "user");
         }
 
         [TestMethod]
@@ -112,13 +88,7 @@ namespace Test.ControllerTest
                 Name = "",
             };
 
-            Client _currentClient = new Client()
-            {
-                Username = "user",
-                Password = "pass"
-            };
-
-            _materialController.AddMaterial(newMaterial, _currentClient.Username);
+            _materialController.AddMaterial(newMaterial, "user");
         }
 
         [TestMethod]
