@@ -54,9 +54,9 @@
       <Project>{d74d687a-51aa-4f86-9a2e-bdc3bf517078}</Project>
       <Name>IRepository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
+    <ProjectReference Include="..\Model\Models.csproj">
       <Project>{26fd191f-901d-4224-a0f4-c93819eda0de}</Project>
-      <Name>Model</Name>
+      <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MemoryRepository.MaterialRepository;
-using Model;
+using Models;
 using System.Collections.Generic;
 
 namespace Test.MemoryRepositoryTest

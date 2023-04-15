@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Model;
+using Models;
 using System;
 
 
-namespace Test.ModelTest
+namespace Test.ModelsTest
 {
     [TestClass]
     public class ClientTest

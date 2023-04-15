@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IRepository;
 using MemoryRepository.Exceptions;
-using Model;
+using Models;
 
 namespace MemoryRepository
 {

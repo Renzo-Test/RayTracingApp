@@ -1,7 +1,7 @@
 ﻿using Controller;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Model;
+using Models;
 using System.Collections.Generic;
 
 namespace Test.ControllerTest

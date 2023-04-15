@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Model;
+using Models;
 using IRepository;
 using System;
 using MemoryRepository.Exceptions;
