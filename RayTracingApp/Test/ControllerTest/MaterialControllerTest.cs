@@ -15,5 +15,23 @@ namespace Test.ControllerTest
         {
             _materialController = new MaterialController();
         }
+
+        [TestMethod]
+        public void AddMaterial_ValidMaterial_OkTest()
+        {
+            Color newColor = new Color()
+            {
+                Red = 0,
+                Green = 1,
+                Blue = 2,
+            };
+
+            Material newMaterial = new LambertianMaterial()
+            {
+                Name = "materialName",
+                Owner = "ownerName",
+                Color = newColor
+            }
+        }
     }
 }
