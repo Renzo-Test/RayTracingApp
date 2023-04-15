@@ -49,5 +49,33 @@ namespace Test.ControllerTest
 
             CollectionAssert.Contains(_materialController.Repository.GetMaterialsByClient("user"), newMaterial);
         }
+
+        [TestMethod]
+        public void AddMaterial_DuplicatedMaterial_OkTest()
+        {
+            Color newColor = new Color()
+            {
+                Red = 0,
+                Green = 1,
+                Blue = 2,
+            };
+
+            Material newMaterial = new LambertianMaterial()
+            {
+                Name = "materialName",
+                Color = newColor
+            };
+
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            _materialController.AddMaterial(newMaterial, currentClient.Username);
+            _materialController.AddMaterial(newMaterial, currentClient.Username);
+
+            Assert.AreEqual(1, _materialController.Repository.GetMaterialsByClient("user").Count);
+        }
     }
 }
