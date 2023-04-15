@@ -10,7 +10,17 @@ namespace Test.ModelsTest
         [TestMethod]
         public void CreateModels_OkTest()
         {
-            Model newModels= new Model();
+            Model newModel= new Model();
+        }
+
+        [TestMethod]
+        public void SetOwner_OkTest()
+        {
+            Model newModel = new Model()
+            {
+                Owner = "ownerName"
+            };
+            Assert.AreEqual("ownerName", newModel.Owner);
         }
     }
 }
