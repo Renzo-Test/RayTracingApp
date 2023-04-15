@@ -48,5 +48,10 @@ namespace Controller
         {
             return material.Name.StartsWith(" ") || material.Name.StartsWith(" ");
         }
+
+        public List<Material> ListMaterials(string username)
+        {
+            return Repository.GetMaterialsByClient(username);
+        }
     }
 }

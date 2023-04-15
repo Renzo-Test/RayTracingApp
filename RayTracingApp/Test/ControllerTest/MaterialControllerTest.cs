@@ -126,13 +126,13 @@ namespace Test.ControllerTest
         {
             Material firstMaterial = new LambertianMaterial()
             {
-                Name = "materialName",
+                Name = "materialOne",
             };
             _materialController.AddMaterial(firstMaterial, "username");
 
             Material secondMaterial = new LambertianMaterial()
             {
-                Name = "materialName",
+                Name = "materialTwo",
             };
             _materialController.AddMaterial(secondMaterial, "username");
 
