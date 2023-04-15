@@ -20,7 +20,7 @@ namespace Controller
 
         public void AddMaterial(Material material, string username)
         {
-            if (Repository.GetMaterialsByClient(username).Find(figure => figure.Owner.Equals(username)) is object)
+            if (Repository.GetMaterialsByClient(username).Find(mat => mat.Owner.Equals(username)) is object)
             {
                 throw new NullReferenceException();
             }

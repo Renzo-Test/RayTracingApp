@@ -9,7 +9,9 @@ namespace Test.ControllerTest
     public class MaterialControllerTest
     {
         private MaterialController _materialController;
-
+        private Color _newColor;
+        private Material _newMaterial;
+        private Client _currentClient;
 
         [TestInitialize]
         public void TestInitialize()
@@ -26,57 +28,66 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddMaterial_ValidMaterial_OkTest()
         {
-            Color newColor = new Color()
-            {
-                Red = 0,
-                Green = 1,
-                Blue = 2,
-            };
-
-            Material newMaterial = new LambertianMaterial()
+            Material _newMaterial = new LambertianMaterial()
             {
                 Name = "materialName",
-                Color = newColor
             };
 
-            Client currentClient = new Client()
+            Client _currentClient = new Client()
             {
                 Username = "user",
                 Password = "pass"
             };
 
-            _materialController.AddMaterial(newMaterial, currentClient.Username);
+            _materialController.AddMaterial(_newMaterial, _currentClient.Username);
 
-            CollectionAssert.Contains(_materialController.Repository.GetMaterialsByClient("user"), newMaterial);
+            CollectionAssert.Contains(_materialController.Repository.GetMaterialsByClient("user"), _newMaterial);
         }
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
         public void AddMaterial_DuplicatedMaterial_OkTest()
         {
-            Color newColor = new Color()
-            {
-                Red = 0,
-                Green = 1,
-                Blue = 2,
-            };
-
-            Material newMaterial = new LambertianMaterial()
+            Material _newMaterial = new LambertianMaterial()
             {
                 Name = "materialName",
-                Color = newColor
             };
 
-            Client currentClient = new Client()
+            Client _currentClient = new Client()
             {
                 Username = "user",
                 Password = "pass"
             };
 
-            _materialController.AddMaterial(newMaterial, currentClient.Username);
-            _materialController.AddMaterial(newMaterial, currentClient.Username);
+            _materialController.AddMaterial(_newMaterial, _currentClient.Username);
+            _materialController.AddMaterial(_newMaterial, _currentClient.Username);
 
             Assert.AreEqual(1, _materialController.Repository.GetMaterialsByClient("user").Count);
+        }
+
+        [TestMethod]
+        public void AddMaterial_TwoValidMaterials_OkTest()
+        {
+            Material _firstMaterial = new LambertianMaterial()
+            {
+                Name = "materialOne",
+            };
+
+            Material _secondMaterial = new LambertianMaterial()
+            {
+                Name = "materialTwo",
+            };
+
+            Client _currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            _materialController.AddMaterial(_newMaterial, _currentClient.Username);
+            _materialController.AddMaterial(_newMaterial, _currentClient.Username);
+
+            Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
         }
     }
 }
