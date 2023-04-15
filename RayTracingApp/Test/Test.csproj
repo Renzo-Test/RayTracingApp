@@ -49,11 +49,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControllerTest\ClienControllerTest.cs" />
-    <Compile Include="ControllerTest\ClientUsernameControllerTest.cs" />
-    <Compile Include="ControllerTest\ClientPasswordControllerTest.cs" />
-    <Compile Include="ControllerTest\FigureControllerTest.cs" />
-    <Compile Include="MemoryRepositoryTest\MaterialRepositoryTest.cs" />
+    <Compile Include="ControllerTest\ClientControllerTest.cs" />
+    <Compile Include="ControllerTest\ClientValidatorTest.cs" />
     <Compile Include="MemoryRepositoryTest\FigureRepositoryTest.cs" />
     <Compile Include="ModelTest\MaterialTest\ColorTest.cs" />
     <Compile Include="ModelTest\MaterialTest\MaterialTest.cs" />

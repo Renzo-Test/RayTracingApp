@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Test.ControllerTest
 {
     [TestClass]
-    public class ClienControllerTest
+    public class ClientControllerTest
     {
         private ClientController _controller;
 

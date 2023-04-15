@@ -31,8 +31,8 @@ namespace Controller
         private bool IsInputOk(string username, string password)
         {
             return !CheckIfClientExists(username)
-                   && ClientPasswordController.IsValid(password)
-                   && ClientUsernameController.IsValid(username);
+                   && ClientValidator.IsValidPassword(password)
+                   && ClientValidator.IsValidUsername(username);
         }
 
         public void SignOut(ref Client currentClient) 
