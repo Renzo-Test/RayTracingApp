@@ -36,13 +36,18 @@ namespace Test.ControllerTest
             Material newMaterial = new LambertianMaterial()
             {
                 Name = "materialName",
-                Owner = "ownerName",
                 Color = newColor
             };
 
-            _materialController.AddMaterial(newMaterial);
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
 
-            CollectionAssert.Contains(_materialController.Repository.GetMaterialsByClient("ownerName"), newMaterial);
+            _materialController.AddMaterial(newMaterial, currentClient.Username);
+
+            CollectionAssert.Contains(_materialController.Repository.GetMaterialsByClient("user"), newMaterial);
         }
     }
 }

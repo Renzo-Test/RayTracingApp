@@ -18,8 +18,9 @@ namespace Controller
             Repository = new MaterialRepository();
         }
 
-        public void AddMaterial(Material material)
+        public void AddMaterial(Material material, string username)
         {
+            material.Owner = username;
             Repository.AddMaterial(material);
         }
     }
