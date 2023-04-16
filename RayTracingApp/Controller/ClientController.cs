@@ -1,4 +1,4 @@
-﻿using Controller.Exceptions;
+﻿using Controller.ClientExceptions;
 using IRepository;
 using MemoryRepository;
 using MemoryRepository.Exceptions;

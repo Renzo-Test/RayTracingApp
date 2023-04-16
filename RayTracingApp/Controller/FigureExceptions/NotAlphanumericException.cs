@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controller.Exceptions
+namespace Controller.FigureExceptions
 {
-    public class NotAlphanumericException : InvalidCredentialsException
+    public class NotAlphanumericException : InvalidFigureInputException
     {
         public NotAlphanumericException(string message) : base(message) { }
     }

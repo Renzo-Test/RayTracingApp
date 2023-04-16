@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Models;
 using System.Collections.Generic;
+using MemoryRepository.Exceptions;
 
 namespace Test.ControllerTest
 {
@@ -114,6 +115,7 @@ namespace Test.ControllerTest
             CollectionAssert.Contains(iterable, newFigure);
         }
 
+        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
         public void AddFigure_InvalidFigure_OkTest()
         {
@@ -130,9 +132,7 @@ namespace Test.ControllerTest
             };
 
             _figureController.AddFigure(newFigure, currentClient.Username);
-            List<Figure> iterable = _figureController.Repository.GetFiguresByClient(currentClient.Username);
-
-            CollectionAssert.DoesNotContain(iterable, newFigure);
+            _figureController.Repository.GetFiguresByClient(currentClient.Username);
         }
 
         [TestMethod]
@@ -178,12 +178,14 @@ namespace Test.ControllerTest
             Assert.AreEqual(expected[0], _figureController.ListFigures(currentClient.Username)[0]);
         }
 
+        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
         public void ListFigures_NonExistentClient_OkTest()
         {
-            Assert.AreEqual(0, _figureController.ListFigures("nonExistentUsername").Count);
+            _figureController.ListFigures("nonExistentUsername");
         }
 
+        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
         public void DeleteFigures_ValidFigure_OkTest()
         {
@@ -202,7 +204,7 @@ namespace Test.ControllerTest
             _figureController.AddFigure(newFigure, currentClient.Username);
             _figureController.RemoveFigure(newFigure.Name, currentClient.Username);
 
-            CollectionAssert.DoesNotContain(_figureController.ListFigures(currentClient.Username), newFigure);
+            _figureController.ListFigures(currentClient.Username);
         }
 
         [TestMethod]

@@ -1,5 +1,6 @@
 ﻿using IRepository;
 using MemoryRepository;
+using MemoryRepository.Exceptions;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,11 @@ namespace Controller
 
         public bool FigureNameIsValid(string name, string ownerName)
         {
-            return NameIsNotEmpty(name) && NameHasNoSpaces(name) && !FigureNameExist(name, ownerName);
+            if(FigureNameExist(name, ownerName))
+            {
+                return false;
+            }
+            return NameIsNotEmpty(name) && NameHasNoSpaces(name);
         }
 
         public bool NameIsNotEmpty(string figureName)
@@ -57,7 +62,15 @@ namespace Controller
 
         public bool FigureNameExist(string name, string ownerName)
         {
-            return Repository.GetFiguresByClient(ownerName).Find(figure => figure.Owner.Equals(ownerName)) is object;
+            try
+            {
+                Repository.GetFiguresByClient(ownerName).Find(figure => figure.Owner.Equals(ownerName));
+                return true;
+            }
+            catch (NotFoundFigureException)
+            {
+                return false;
+            }
         }
 
         public void RemoveFigure(string figureName, string username)

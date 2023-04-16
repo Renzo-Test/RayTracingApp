@@ -1,7 +1,7 @@
 ﻿using System;
 using Models;
 using Controller;
-using Controller.Exceptions;
+using Controller.ClientExceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MemoryRepository.Exceptions;
 
