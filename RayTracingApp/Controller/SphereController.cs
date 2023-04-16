@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Controller.SphereExceptions;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,16 @@ namespace Controller
 {
     public class SphereController : FigureController
     {
-        public override bool FigurePropertiesAreValid(Figure figure)
+        private const string SmallerThanCeroRadiusMessage = "Sphere's radius must be greater than cero";
+
+        public override void RunFigurePropertiesChecker(Figure figure)
         {
             Sphere sphere = (Sphere)figure;
-            return RadiusGreaterThanZero(sphere);
+
+            if (!RadiusGreaterThanZero(sphere))
+            {
+                throw new SmallerThanCeroRadiusException(SmallerThanCeroRadiusMessage);
+            }
         }
 
         private bool RadiusGreaterThanZero(Sphere sphere)

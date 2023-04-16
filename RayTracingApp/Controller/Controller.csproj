@@ -58,6 +58,7 @@
     <Compile Include="FigureController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SphereController.cs" />
+    <Compile Include="SphereExceptions\SmallerThanCeroRadiusException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IRepository\IRepository.csproj">
