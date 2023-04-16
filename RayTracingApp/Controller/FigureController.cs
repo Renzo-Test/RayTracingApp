@@ -14,6 +14,8 @@ namespace Controller
 {
     public abstract class FigureController
     {
+        private const string NotAlphanumericExceptionMessage = "Figure's name must have no spaces";
+        private const string NotInExpectedRangeExceptionMessage = "Figure's name must not be empty";
         public IRepositoryFigure Repository;
 
         public FigureController()
@@ -60,7 +62,7 @@ namespace Controller
         {
             if (string.IsNullOrEmpty(figureName))
             {
-                throw new NotInExpectedRangeException("Figure's name must not be empty");
+                throw new NotInExpectedRangeException(NotInExpectedRangeExceptionMessage);
             }
         }
 
@@ -68,7 +70,7 @@ namespace Controller
         {
             if(figureName.Contains(" "))
             {
-                throw new NotAlphanumericException("Figure's name must have no spaces");
+                throw new NotAlphanumericException(NotAlphanumericExceptionMessage);
             }
         }
 
