@@ -88,6 +88,13 @@ namespace Controller
         public void RemoveFigure(string figureName, string username)
         {
             Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
+
+            if (deleteFigure is null)
+            {
+                string NotFoundFigureMessage = $"Figure with name {figureName} was not found";
+                throw new NotFoundFigureException(NotFoundFigureMessage);
+            }
+
             Repository.RemoveFigure(deleteFigure);
         }
     }
