@@ -78,8 +78,9 @@ namespace Controller
         {
             try
             {
-                Repository.GetFiguresByClient(ownerName).Find(figure => figure.Name.Equals(name));
-                return true;
+                List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
+
+                return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
             }
             catch (NotFoundFigureException)
             {

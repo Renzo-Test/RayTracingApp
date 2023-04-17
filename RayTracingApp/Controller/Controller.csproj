@@ -56,6 +56,10 @@
     <Compile Include="ClientExceptions\NotAlphanumericException.cs" />
     <Compile Include="ClientExceptions\NotContainsCapitalException.cs" />
     <Compile Include="FigureController.cs" />
+    <Compile Include="MaterialExceptions\AlreadyExsitingMaterialException.cs" />
+    <Compile Include="MaterialExceptions\EmptyNameException.cs" />
+    <Compile Include="MaterialExceptions\NotAlphanumericException.cs" />
+    <Compile Include="MaterialExceptions\InvalidMaterialInputException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SphereController.cs" />
     <Compile Include="SphereExceptions\SmallerThanCeroRadiusException.cs" />

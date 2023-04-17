@@ -2,6 +2,8 @@
 using System;
 using Models;
 using Controller;
+using MemoryRepository.Exceptions;
+using Controller.MaterialExceptions;
 
 namespace Test.ControllerTest
 {
@@ -36,7 +38,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(InvalidMaterialInputException))]
         public void AddMaterial_DuplicatedMaterial_FailTest()
         {
             Material _newMaterial = new LambertianMaterial()
@@ -68,7 +70,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(InvalidMaterialInputException))]
         public void AddMaterial_SpacedMaterialName_FailTest()
         {
             Material newMaterial = new LambertianMaterial()
@@ -80,7 +82,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(InvalidMaterialInputException))]
         public void AddMaterial_EmptyMaterialName_FailTest()
         {
             Material newMaterial = new LambertianMaterial()
@@ -109,6 +111,7 @@ namespace Test.ControllerTest
             Assert.AreEqual(2, _materialController.ListMaterials("username").Count);
         }
 
+        [ExpectedException(typeof(NotFoundMaterialException))]
         [TestMethod]
         public void RemoveMaterials_OkTest()
         {
@@ -120,7 +123,7 @@ namespace Test.ControllerTest
 
             _materialController.RemoveMaterial(newMaterial.Name, "username");
 
-            Assert.AreEqual(0, _materialController.ListMaterials("username").Count);
+            _materialController.ListMaterials("username");
         }
     }
 }
