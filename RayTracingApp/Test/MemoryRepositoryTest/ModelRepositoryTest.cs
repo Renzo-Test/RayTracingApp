@@ -12,10 +12,11 @@ namespace Test.MemoryRepositoryTest
     [TestClass]
     public class ModelRepositoryTest
     {
+        private ModelRepository _modelRepository;
         [TestMethod]
         public void CreateModelRepositoryOk_Test()
         {
-            ModelRepository modelRepository = new ModelRepository();
+            _modelRepository = new ModelRepository();
         }
     }
 }
