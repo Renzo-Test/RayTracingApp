@@ -11,7 +11,7 @@ namespace MemoryRepository
 {
     public class FigureRepository : IRepositoryFigure
     {
-        private List<Figure> _figures;
+        private readonly List<Figure> _figures;
 
         public FigureRepository()
         {
@@ -22,7 +22,7 @@ namespace MemoryRepository
         {
             List<Figure> foundFigures = _figures.FindAll(figure => figure.Owner.Equals(username));
 
-            if(foundFigures is null)
+            if(!foundFigures.Any())
             {
                 string NotFoundFigureMessage = $"no figures with owner: {username} was found";
                 throw new NotFoundFigureException(NotFoundFigureMessage);

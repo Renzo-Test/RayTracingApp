@@ -82,6 +82,7 @@ namespace Test.MemoryRepositoryTest
             
         }
 
+        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
         public void RemoveFigure_OkTest()
         {
@@ -94,11 +95,9 @@ namespace Test.MemoryRepositoryTest
             _figureRepository.AddFigure(newFigure);
             _figureRepository.RemoveFigure(newFigure);
             List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
-
-            CollectionAssert.DoesNotContain(iterable, newFigure);
-
         }
 
+        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
         public void RemoveFigure_NotExistingFigure_OkTest()
         {
@@ -110,9 +109,6 @@ namespace Test.MemoryRepositoryTest
 
             _figureRepository.RemoveFigure(newFigure);
             List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
-
-            CollectionAssert.DoesNotContain(iterable, newFigure);
-
         }
     }
 }

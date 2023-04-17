@@ -11,29 +11,28 @@ namespace MemoryRepository.MaterialRepository
 {
     public class MaterialRepository : IRepositoryMaterial
     {
-        private List<Material> _materials;
+        private readonly List<Material> _materials;
 
         public MaterialRepository()
         {
             _materials = new List<Material>();
         }
-
-        public void AddMaterial(Material newMaterial)
-        {
-            _materials.Add(newMaterial);
-        }
-
         public List<Material> GetMaterialsByClient(string username)
         {
             List<Material> foundMaterials = _materials.FindAll(material => material.Owner.Equals(username));
 
-            if(foundMaterials is null)
+            if (!foundMaterials.Any())
             {
                 string NotFoundMaterialMessage = $"no material with owner: {username} was found";
                 throw new NotFoundMaterialException(NotFoundMaterialMessage);
             }
 
             return foundMaterials;
+        }
+
+        public void AddMaterial(Material newMaterial)
+        {
+            _materials.Add(newMaterial);
         }
 
         public void RemoveMaterial(Material material)

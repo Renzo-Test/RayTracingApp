@@ -2,7 +2,7 @@
 using System;
 using MemoryRepository;
 using MemoryRepository.Exceptions;
-using Controller.Exceptions;
+using Controller.ClientExceptions;
 
 namespace Test.MemoryRepositoryTest
 {

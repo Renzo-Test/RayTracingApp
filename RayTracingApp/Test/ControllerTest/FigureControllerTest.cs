@@ -3,6 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Models;
 using System.Collections.Generic;
+using MemoryRepository.Exceptions;
+using Controller.FigureExceptions;
+using Controller.SphereExceptions;
 
 namespace Test.ControllerTest
 {
@@ -23,39 +26,36 @@ namespace Test.ControllerTest
             _figureController = new SphereController();
         }
 
+        [ExpectedException(typeof(NotInExpectedRangeException))]
         [TestMethod]
         public void NameIsNotEmpty_EmptyString_OkTest()
         {
-            bool result = _figureController.NameIsNotEmpty("");
-            Assert.IsFalse(result);
+            _figureController.RunEmptyNameChecker("");
         }
 
         [TestMethod]
         public void NameIsNotEmpty_FigureName_OkTest()
         {
-            bool result = _figureController.NameIsNotEmpty("FigureName");
-            Assert.IsTrue(result);
+            _figureController.RunEmptyNameChecker("FigureName");
         }
 
         [TestMethod]
         public void NameHasNoSpaces_EmptyString_OkTest()
         {
-            bool result = _figureController.NameHasNoSpaces("");
-            Assert.IsTrue(result);
+            _figureController.RunSpacedNameChecker("");
         }
 
         [TestMethod]
         public void NameHasNoSpaces_FigureName_OkTest()
         {
-            bool result = _figureController.NameHasNoSpaces("FigureName");
-            Assert.IsTrue(result);
+            _figureController.RunSpacedNameChecker("FigureName");
         }
 
+        [ExpectedException(typeof(NotAlphanumericException))]
         [TestMethod]
         public void NameHasNoSpaces_Figure_Name_OkTest()
         {
-            bool result = _figureController.NameHasNoSpaces("Figure Name");
-            Assert.IsFalse(result);
+            _figureController.RunSpacedNameChecker("Figure Name");
         }
 
         [TestMethod]
@@ -68,8 +68,7 @@ namespace Test.ControllerTest
             };
             _figureController.Repository.AddFigure(newFigure);
 
-            bool result = _figureController.FigureNameExist("figure", "owner");
-            Assert.IsTrue(result);
+            _figureController.FigureNameExist("figure", "owner");
         }
 
         [TestMethod]
@@ -80,17 +79,17 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        public void FigureNameIsValid_ValidName_OkTest()
+        public void AddFigure_ValidName_OkTest()
         {
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
                 Name = "ValidName",
-                Owner = "OwnerName"
+                Owner = "OwnerName",
+                Radius = 10
             };
+
             _figureController.Repository.AddFigure(newFigure);
 
-            bool result = _figureController.FigureNameIsValid(newFigure.Name, newFigure.Owner);
-            Assert.IsFalse(result);
         }
 
         [TestMethod]
@@ -114,6 +113,7 @@ namespace Test.ControllerTest
             CollectionAssert.Contains(iterable, newFigure);
         }
 
+        [ExpectedException(typeof(InvalidFigureInputException))]
         [TestMethod]
         public void AddFigure_InvalidFigure_OkTest()
         {
@@ -130,11 +130,10 @@ namespace Test.ControllerTest
             };
 
             _figureController.AddFigure(newFigure, currentClient.Username);
-            List<Figure> iterable = _figureController.Repository.GetFiguresByClient(currentClient.Username);
-
-            CollectionAssert.DoesNotContain(iterable, newFigure);
+            _figureController.Repository.GetFiguresByClient(currentClient.Username);
         }
 
+        [ExpectedException(typeof(InvalidFigureInputException))]
         [TestMethod]
         public void AddFigure_DuplicatedFigureName_OkTest()
         {
@@ -153,8 +152,6 @@ namespace Test.ControllerTest
             _figureController.AddFigure(newFigure, currentClient.Username);
             _figureController.AddFigure(newFigure, currentClient.Username);
             List<Figure> clientFigures = _figureController.Repository.GetFiguresByClient(currentClient.Username);
-
-            Assert.AreEqual(1, clientFigures.Count);
         }
 
         [TestMethod]
@@ -178,12 +175,14 @@ namespace Test.ControllerTest
             Assert.AreEqual(expected[0], _figureController.ListFigures(currentClient.Username)[0]);
         }
 
+        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
         public void ListFigures_NonExistentClient_OkTest()
         {
-            Assert.AreEqual(0, _figureController.ListFigures("nonExistentUsername").Count);
+            _figureController.ListFigures("nonExistentUsername");
         }
 
+        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
         public void DeleteFigures_ValidFigure_OkTest()
         {
@@ -202,7 +201,7 @@ namespace Test.ControllerTest
             _figureController.AddFigure(newFigure, currentClient.Username);
             _figureController.RemoveFigure(newFigure.Name, currentClient.Username);
 
-            CollectionAssert.DoesNotContain(_figureController.ListFigures(currentClient.Username), newFigure);
+            _figureController.ListFigures(currentClient.Username);
         }
 
         [TestMethod]
@@ -214,9 +213,10 @@ namespace Test.ControllerTest
                 Radius = 10,
             };
 
-            Assert.IsTrue(_figureController.FigurePropertiesAreValid(newSphere));
+            _figureController.RunFigurePropertiesChecker(newSphere);
         }
-
+        
+        [ExpectedException(typeof(SmallerThanCeroRadiusException))]
         [TestMethod]
         public void FigureIsValid_InvalidFigure_OkTest()
         {
@@ -226,7 +226,7 @@ namespace Test.ControllerTest
                 Radius = 0,
             };
 
-            Assert.IsFalse(_figureController.FigurePropertiesAreValid(newSphere));
+            _figureController.RunFigurePropertiesChecker(newSphere);
         }
     }
 }

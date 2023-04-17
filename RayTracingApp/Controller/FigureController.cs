@@ -1,5 +1,7 @@
-﻿using IRepository;
+﻿using Controller.FigureExceptions;
+using IRepository;
 using MemoryRepository;
+using MemoryRepository.Exceptions;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,9 @@ namespace Controller
 {
     public abstract class FigureController
     {
+        private const string NotAlphanumericExceptionMessage = "Figure's name must have no spaces";
+        private const string NotInExpectedRangeExceptionMessage = "Figure's name must not be empty";
+        private const string SpaceCharacterConstant = " ";
         public IRepositoryFigure Repository;
 
         public FigureController()
@@ -26,43 +31,74 @@ namespace Controller
 
         public void AddFigure(Figure figure, string username)
         {
-            if (FigureIsValid(figure))
+            try
             {
+                RunFigureChecker(figure, username);
+
                 figure.Owner = username;
                 Repository.AddFigure(figure);
             }
+            catch (InvalidFigureInputException ex)
+            {
+                throw new InvalidFigureInputException(ex.Message);
+            }
         }
 
-        private bool FigureIsValid(Figure figure)
+        public abstract void RunFigurePropertiesChecker(Figure figure);
+
+        public void RunFigureChecker(Figure figure, string ownerName)
         {
-            return FigureNameIsValid(figure.Name, figure.Owner) && FigurePropertiesAreValid(figure);
+            if (FigureNameExist(figure.Name, ownerName))
+            {
+                string AlreadyExsitingFigureMessage = $"Figure with name {figure.Name} already exists";
+                throw new AlreadyExistingFigureException(AlreadyExsitingFigureMessage);
+            }
+
+            RunEmptyNameChecker(figure.Name);
+            RunSpacedNameChecker(figure.Name);
+            RunFigurePropertiesChecker(figure);
         }
 
-        public abstract bool FigurePropertiesAreValid(Figure figure);
-
-        public bool FigureNameIsValid(string name, string ownerName)
+        public void RunEmptyNameChecker(string figureName)
         {
-            return NameIsNotEmpty(name) && NameHasNoSpaces(name) && !FigureNameExist(name, ownerName);
+            if (string.IsNullOrEmpty(figureName))
+            {
+                throw new NotInExpectedRangeException(NotInExpectedRangeExceptionMessage);
+            }
         }
 
-        public bool NameIsNotEmpty(string figureName)
+        public void RunSpacedNameChecker(string figureName)
         {
-            return !string.IsNullOrEmpty(figureName);
-        }
-
-        public bool NameHasNoSpaces(string figureName)
-        {
-            return !figureName.Contains(" ");
+            if(figureName.Contains(SpaceCharacterConstant))
+            {
+                throw new NotAlphanumericException(NotAlphanumericExceptionMessage);
+            }
         }
 
         public bool FigureNameExist(string name, string ownerName)
         {
-            return Repository.GetFiguresByClient(ownerName).Find(figure => figure.Owner.Equals(ownerName)) is object;
+            try
+            {
+                List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
+
+                return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
+            }
+            catch (NotFoundFigureException)
+            {
+                return false;
+            }
         }
 
         public void RemoveFigure(string figureName, string username)
         {
             Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
+
+            if (deleteFigure is null)
+            {
+                string NotFoundFigureMessage = $"Figure with name {figureName} was not found";
+                throw new NotFoundFigureException(NotFoundFigureMessage);
+            }
+
             Repository.RemoveFigure(deleteFigure);
         }
     }
