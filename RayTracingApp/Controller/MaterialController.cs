@@ -13,6 +13,9 @@ namespace Controller
 {
     public class MaterialController
     {
+        private const string EmptyNameMessage = "Material's name must not be empty";
+        private const string NotAlphanumericMessage = "Material's name must not start or end with blank space";
+        private const string SpaceCharacterConstant = " ";
         public IRepositoryMaterial Repository;
 
         public MaterialController()
@@ -55,17 +58,17 @@ namespace Controller
 
         private static void RunNameIsEmptyChecker(Material material)
         {
-            if(material.Name.Equals(""))
+            if(material.Name.Equals(string.Empty))
             {
-                throw new EmptyNameException("Material's name must not be empty");
+                throw new EmptyNameException(EmptyNameMessage);
             }
         }
 
         private static void RunNameIsSpacedChecker(Material material)
         {
-            if(material.Name.StartsWith(" ") || material.Name.EndsWith(" "))
+            if(material.Name.StartsWith(SpaceCharacterConstant) || material.Name.EndsWith(SpaceCharacterConstant))
             {
-                throw new NotAlphanumericException("Material's name must not start or end with blank space");
+                throw new NotAlphanumericException(NotAlphanumericMessage);
             }
         }
 

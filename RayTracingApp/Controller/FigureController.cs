@@ -16,6 +16,7 @@ namespace Controller
     {
         private const string NotAlphanumericExceptionMessage = "Figure's name must have no spaces";
         private const string NotInExpectedRangeExceptionMessage = "Figure's name must not be empty";
+        private const string SpaceCharacterConstant = " ";
         public IRepositoryFigure Repository;
 
         public FigureController()
@@ -68,7 +69,7 @@ namespace Controller
 
         public void RunSpacedNameChecker(string figureName)
         {
-            if(figureName.Contains(" "))
+            if(figureName.Contains(SpaceCharacterConstant))
             {
                 throw new NotAlphanumericException(NotAlphanumericExceptionMessage);
             }
