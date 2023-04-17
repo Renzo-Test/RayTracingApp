@@ -11,7 +11,7 @@ namespace MemoryRepository.MaterialRepository
 {
     public class MaterialRepository : IRepositoryMaterial
     {
-        private List<Material> _materials;
+        private readonly List<Material> _materials;
 
         public MaterialRepository()
         {

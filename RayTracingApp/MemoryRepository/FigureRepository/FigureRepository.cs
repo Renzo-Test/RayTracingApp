@@ -11,7 +11,7 @@ namespace MemoryRepository
 {
     public class FigureRepository : IRepositoryFigure
     {
-        private List<Figure> _figures;
+        private readonly List<Figure> _figures;
 
         public FigureRepository()
         {
