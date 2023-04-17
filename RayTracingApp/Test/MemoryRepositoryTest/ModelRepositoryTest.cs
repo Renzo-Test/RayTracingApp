@@ -18,5 +18,18 @@ namespace Test.MemoryRepositoryTest
         {
             _modelRepository = new ModelRepository();
         }
+
+        [TestMethod]
+        public void GetModelByClient_Username_OkTest() 
+        {
+            _modelRepository = new ModelRepository();
+            Model newModel = new Model() 
+            {
+                Owner = "Username"
+            };
+            _modelRepository.AddModel(newModel);
+            Assert.AreEqual(newModel, _modelRepository.GetModelByClient("OwnerName")[0]);
+        }
+
     }
 }
