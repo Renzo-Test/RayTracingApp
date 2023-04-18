@@ -133,7 +133,7 @@ namespace Test.ControllerTest
                 Name = "modelName",
             };
             _modelController.AddModel(newModel, "username");
-            _modelController.RemoveModel("modelName", "username");
+            _modelController.RemoveModel(newModel.Name, "username");
             _modelController.ListModels("username");
         }
     }

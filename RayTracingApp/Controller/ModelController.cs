@@ -45,6 +45,12 @@ namespace Controller
         public void RemoveModel(string name, string username)
         {
             Model deleteModel = Repository.GetModelsByClient(username).Find(mod => mod.Name.Equals(name));
+            if (deleteModel is null)
+            {
+                string NotFoundModelMessage = $"Model with name {name} was not found";
+                throw new NotFoundMaterialException(NotFoundModelMessage);
+            }
+
             Repository.RemoveModel(deleteModel);
         }
         private void RunModelChecker(Model model, string username)
