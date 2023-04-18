@@ -18,6 +18,7 @@ namespace MemoryRepository
         }
         public void AddModel(Model newModel)
         {
+            _models.Add(newModel);
         }
         public List<Model> GetModelsByClient(string username) 
         {
