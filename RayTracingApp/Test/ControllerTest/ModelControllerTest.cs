@@ -98,5 +98,15 @@ namespace Test.ControllerTest
             };
             _modelController.AddModel(_newModel, "user");
         }
+        [TestMethod]
+        [ExpectedException (typeof(InvalidModelInputException))]
+        public void AddModel_EmptyModelName_FailTest()
+        {
+            Model _newModel = new Model()
+            {
+                Name = "",
+            };
+            _modelController.AddModel(_newModel, "user");
+        }
     }
 }
