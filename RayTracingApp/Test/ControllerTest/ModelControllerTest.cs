@@ -30,8 +30,8 @@ namespace Test.ControllerTest
             };
             controller.Repository.AddModel(anotherModel);
 
-            CollectionAssert.Contains(controller.Repository.GetModelsByClient("ownerName"));
-            CollectionAssert.DoesNotContain(controller.Repository.GetModelsByClient("otherOwner"));
+            CollectionAssert.Contains(controller.Repository.GetModelsByClient("ownerName"), newModel);
+            CollectionAssert.DoesNotContain(controller.Repository.GetModelsByClient("ownerName"), anotherModel);
         }
     }
 }
