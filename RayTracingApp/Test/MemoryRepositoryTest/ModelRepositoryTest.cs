@@ -49,8 +49,7 @@ namespace Test.MemoryRepositoryTest
                 Figure = newFigure
             };
             _modelRepository.AddModel(NewModel);
-            Assert.AreEqual(NewModel, _modelRepository.GetModelsByClient("Username")[0]);
+            Assert.AreEqual(NewModel, _modelRepository.GetModelsByClient(NewModel.Owner)[0]);
         }
-
     }
 }

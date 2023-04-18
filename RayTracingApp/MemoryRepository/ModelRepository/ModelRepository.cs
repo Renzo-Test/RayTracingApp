@@ -24,7 +24,8 @@ namespace MemoryRepository
 
         public List<Model> GetModelsByClient(string username) 
         {
-            return _models.FindAll(model => model.Owner.Equals("Username"));
+            List<Model> foundModels = _models.FindAll(model => model.Owner.Equals(username));
+            return foundModels;
         }
 
         public void RemoveModel(Model model)
