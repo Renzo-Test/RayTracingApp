@@ -23,5 +23,9 @@ namespace Controller
         {
             return Repository.GetModelsByClient(username);
         }
+        public void AddModel(Model model, string username)
+        {
+            Repository.AddModel(model);
+        }
     }
 }

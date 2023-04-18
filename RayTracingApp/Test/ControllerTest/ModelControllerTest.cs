@@ -56,9 +56,10 @@ namespace Test.ControllerTest
         {
             Model _newModel = new Model()
             {
-                Owner = "OwnerName",
+                Name = "Test",
+                Owner = "OwnerName"
             };
-            _modelController.AddModel(_newModel);
+            _modelController.AddModel(_newModel, "OwnerName");
             CollectionAssert.Contains(_modelController.Repository.GetModelsByClient("OwnerName"), _newModel);
         }
     }
