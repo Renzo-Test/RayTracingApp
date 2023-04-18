@@ -13,13 +13,13 @@ namespace Test.ModelsTest
         [TestMethod]
         public void CanCreateFigure_OkTest()
         {
-            _figure = new Figure();
+            _figure = new Sphere();
         }
 
         [TestMethod]
         public void SetName_Dragon_Balloon_OkTest()
         {
-            _figure = new Figure()
+            _figure = new Sphere()
             {
                 Name = "Dragon Balloon",
             };
@@ -57,7 +57,7 @@ namespace Test.ModelsTest
         [TestMethod]
         public void SetNameAndOwner_OkTest()
         {
-            _figure = new Figure()
+            _figure = new Sphere()
             {
                 Name = "Figure name",
                 Owner = "Owner name"

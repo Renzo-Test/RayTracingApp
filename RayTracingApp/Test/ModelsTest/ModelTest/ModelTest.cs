@@ -36,7 +36,7 @@ namespace Test.ModelsTest
         [TestMethod]
         public void SetFigure_OkTest()
         {
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
                 Name = "figureName",
                 Owner = "ownerName"
