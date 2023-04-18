@@ -3,6 +3,7 @@ using System;
 using Controller;
 using Models;
 using MemoryRepository.Exceptions;
+using Controller.ModelExceptions;
 
 namespace Test.ControllerTest
 {
@@ -60,6 +61,17 @@ namespace Test.ControllerTest
             };
             _modelController.AddModel(_newModel, "OwnerName");
             CollectionAssert.Contains(_modelController.Repository.GetModelsByClient("OwnerName"), _newModel);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidModelInputException))]
+        public void AddModel_DuplicatedModel_OkTest()
+        {
+            Model _newModel = new Model()
+            {
+                Name = "Test",
+            };
+            _modelController.AddModel(_newModel, "user");
+            _modelController.AddModel(_newModel, "user");
         }
     }
 }
