@@ -2,6 +2,7 @@
 using System;
 using Controller;
 using Models;
+using MemoryRepository.Exceptions;
 
 namespace Test.ControllerTest
 {

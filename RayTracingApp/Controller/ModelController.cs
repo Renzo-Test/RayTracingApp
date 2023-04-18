@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IRepository;
 using MemoryRepository;
 using MemoryRepository.MaterialRepository;
+using Models;
 
 namespace Controller
 {
@@ -16,6 +17,11 @@ namespace Controller
         public ModelController()
         {
             Repository = new ModelRepository();
+        }
+
+        public List<Model> ListModels(string username)
+        {
+            return Repository.GetModelsByClient(username);
         }
     }
 }
