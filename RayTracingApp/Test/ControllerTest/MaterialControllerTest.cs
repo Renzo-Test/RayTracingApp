@@ -4,6 +4,8 @@ using Models;
 using Controller;
 using MemoryRepository.Exceptions;
 using Controller.MaterialExceptions;
+using Controller.FigureExceptions;
+using System.Collections.Generic;
 
 namespace Test.ControllerTest
 {
@@ -111,19 +113,43 @@ namespace Test.ControllerTest
             Assert.AreEqual(2, _materialController.ListMaterials("username").Count);
         }
 
-        [ExpectedException(typeof(NotFoundMaterialException))]
         [TestMethod]
+        [ExpectedException(typeof(NotFoundMaterialException))]
         public void RemoveMaterials_OkTest()
         {
             Material newMaterial = new LambertianMaterial()
             {
                 Name = "materialName",
             };
-            _materialController.AddMaterial(newMaterial, "username");
 
-            _materialController.RemoveMaterial(newMaterial.Name, "username");
+            List<Model> models = new List<Model>();
+
+            _materialController.AddMaterial(newMaterial, "username");
+            _materialController.RemoveMaterial(newMaterial.Name, "username", models);
 
             _materialController.ListMaterials("username");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MaterialUsedByModelException))]
+        public void RemoveMaterial_MaterialUsedByModel_OkTest()
+        {
+            Material material = new LambertianMaterial()
+            {
+                Owner = "ownerName",
+                Name = "materialName",
+            };
+
+            Model model = new Model()
+            {
+                Material = material,
+                Owner = "ownerName"
+            };
+            ModelController modelController = new ModelController();
+            modelController.Repository.AddModel(model);
+            _materialController.AddMaterial(material, material.Owner);
+
+            _materialController.RemoveMaterial("materialName", "ownerName", modelController.ListModels("ownerName"));
         }
     }
 }
