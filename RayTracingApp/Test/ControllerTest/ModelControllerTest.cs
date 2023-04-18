@@ -44,7 +44,6 @@ namespace Test.ControllerTest
             CollectionAssert.DoesNotContain(_modelController.ListModels("targetOwner"), anotherModel);
         }
 
-
         [TestMethod]
         [ExpectedException(typeof(NotFoundModelException))]
         public void ListModels_InvalidUsername_FailTest()
@@ -62,6 +61,7 @@ namespace Test.ControllerTest
             _modelController.AddModel(_newModel, "OwnerName");
             CollectionAssert.Contains(_modelController.Repository.GetModelsByClient("OwnerName"), _newModel);
         }
+
         [TestMethod]
         [ExpectedException(typeof(InvalidModelInputException))]
         public void AddModel_DuplicatedModel_OkTest()
@@ -73,6 +73,7 @@ namespace Test.ControllerTest
             _modelController.AddModel(_newModel, "user");
             _modelController.AddModel(_newModel, "user");
         }
+
         [TestMethod]
         public void AddModel_TwoValidModels_OkTest()
         {
@@ -88,6 +89,7 @@ namespace Test.ControllerTest
             _modelController.AddModel(_sndNewModel, "user");
             Assert.AreEqual(2, _modelController.Repository.GetModelsByClient("user").Count);
         }
+
         [TestMethod]
         [ExpectedException(typeof(InvalidModelInputException))]
         public void AddModel_SpacedModelName_FailTest()
@@ -98,6 +100,7 @@ namespace Test.ControllerTest
             };
             _modelController.AddModel(_newModel, "user");
         }
+
         [TestMethod]
         [ExpectedException (typeof(InvalidModelInputException))]
         public void AddModel_EmptyModelName_FailTest()
@@ -108,6 +111,7 @@ namespace Test.ControllerTest
             };
             _modelController.AddModel(_newModel, "user");
         }
+
         [TestMethod]
         public void ListModels_OkTest()
         {
@@ -124,8 +128,8 @@ namespace Test.ControllerTest
             _modelController.AddModel(secondModel, "username");
             Assert.AreEqual(2, _modelController.ListModels("username").Count);
         }
-        [ExpectedException(typeof(NotFoundModelException))]
         [TestMethod]
+        [ExpectedException(typeof(NotFoundModelException))]
         public void RemoveModels_OkTest()
         {
             Model newModel= new Model()

@@ -208,7 +208,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(FigureUsedByModelException))]
-        public void DeleteFigures_FigureUsedByModel_OkTest()
+        public void RemoveFigures_FigureUsedByModel_OkTest()
         {
             Figure figure = new Sphere()
             {

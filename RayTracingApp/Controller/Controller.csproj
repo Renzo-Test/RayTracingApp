@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FigureExceptions\FigureUsedByModelException.cs" />
-    <Compile Include="FigureExceptions\InvalidFigureInputException - Copia.cs" />
+    <Compile Include="FigureExceptions\InvalidFigureRemoveException.cs" />
+    <Compile Include="MaterialExceptions\MaterialUsedByModelException.cs" />
+    <Compile Include="MaterialExceptions\InvalidMaterialRemoveException.cs" />
     <Compile Include="ModelController.cs" />
     <Compile Include="FigureExceptions\AlreadyExistingFigureException.cs" />
     <Compile Include="FigureExceptions\InvalidFigureInputException.cs" />

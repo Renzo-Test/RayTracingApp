@@ -41,20 +41,6 @@ namespace Controller
                 throw new InvalidMaterialInputException(ex.Message);
 
             }
-            
-        }
-        public void RemoveMaterial(string name, string username)
-        {
-            Material deleteMaterial = Repository.GetMaterialsByClient(username).Find(mat => mat.Name.Equals(name));
-
-            if (deleteMaterial is null)
-            {
-                string NotFoundMaterialMessage = $"Material with name {name} was not found";
-                throw new NotFoundMaterialException(NotFoundMaterialMessage);
-
-            }
-
-            Repository.RemoveMaterial(deleteMaterial);
         }
 
         private void RunMaterialChecker(Material material, string username)
@@ -98,6 +84,26 @@ namespace Controller
                 return false;
             }
             
+        }
+
+        public void RemoveMaterial(string materialName, string username, List<Model> models)
+        {
+            Material deleteMaterial = Repository.GetMaterialsByClient(username).Find(mat => mat.Name.Equals(materialName));
+
+            if (deleteMaterial is null)
+            {
+                string NotFoundMaterialMessage = $"Material with name {materialName} was not found";
+                throw new NotFoundMaterialException(NotFoundMaterialMessage);
+            }
+
+            Model foundModel = models.Find(model => model.Material.Name.Equals(materialName));
+            if (foundModel is object)
+            {
+                string MaterialUsedByModelMessage = $"Material with name {materialName} is used by a model";
+                throw new MaterialUsedByModelException(MaterialUsedByModelMessage);
+            }
+
+            Repository.RemoveMaterial(deleteMaterial);
         }
     }
 }
