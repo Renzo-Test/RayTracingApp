@@ -29,7 +29,7 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddMaterial_ValidMaterial_OkTest()
         {
-            Material _newMaterial = new LambertianMaterial()
+            Material _newMaterial = new MaterialEnum()
             {
                 Name = "materialName",
             };
@@ -43,7 +43,7 @@ namespace Test.ControllerTest
         [ExpectedException(typeof(InvalidMaterialInputException))]
         public void AddMaterial_DuplicatedMaterial_FailTest()
         {
-            Material _newMaterial = new LambertianMaterial()
+            Material _newMaterial = new MaterialEnum()
             {
                 Name = "materialName",
             };
@@ -55,12 +55,12 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddMaterial_TwoValidMaterials_OkTest()
         {
-            Material _firstMaterial = new LambertianMaterial()
+            Material _firstMaterial = new MaterialEnum()
             {
                 Name = "materialOne",
             };
 
-            Material _secondMaterial = new LambertianMaterial()
+            Material _secondMaterial = new MaterialEnum()
             {
                 Name = "materialTwo",
             };
@@ -75,7 +75,7 @@ namespace Test.ControllerTest
         [ExpectedException(typeof(InvalidMaterialInputException))]
         public void AddMaterial_SpacedMaterialName_FailTest()
         {
-            Material newMaterial = new LambertianMaterial()
+            Material newMaterial = new MaterialEnum()
             {
                 Name = " spacedName ",
             };
@@ -87,7 +87,7 @@ namespace Test.ControllerTest
         [ExpectedException(typeof(InvalidMaterialInputException))]
         public void AddMaterial_EmptyMaterialName_FailTest()
         {
-            Material newMaterial = new LambertianMaterial()
+            Material newMaterial = new MaterialEnum()
             {
                 Name = "",
             };
@@ -98,13 +98,13 @@ namespace Test.ControllerTest
         [TestMethod]
         public void ListMaterials_OkTest()
         {
-            Material firstMaterial = new LambertianMaterial()
+            Material firstMaterial = new MaterialEnum()
             {
                 Name = "materialOne",
             };
             _materialController.AddMaterial(firstMaterial, "username");
 
-            Material secondMaterial = new LambertianMaterial()
+            Material secondMaterial = new MaterialEnum()
             {
                 Name = "materialTwo",
             };
@@ -117,7 +117,7 @@ namespace Test.ControllerTest
         [ExpectedException(typeof(NotFoundMaterialException))]
         public void RemoveMaterials_OkTest()
         {
-            Material newMaterial = new LambertianMaterial()
+            Material newMaterial = new MaterialEnum()
             {
                 Name = "materialName",
             };
@@ -134,7 +134,7 @@ namespace Test.ControllerTest
         [ExpectedException(typeof(MaterialUsedByModelException))]
         public void RemoveMaterial_MaterialUsedByModel_OkTest()
         {
-            Material material = new LambertianMaterial()
+            Material material = new MaterialEnum()
             {
                 Owner = "ownerName",
                 Name = "materialName",
