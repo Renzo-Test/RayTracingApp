@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using MemoryRepository.Exceptions;
 using MemoryRepository;
+using MemoryRepository.MaterialRepository;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -80,6 +81,41 @@ namespace Test.MemoryRepositoryTest
                 Figure = newFigure
             };
             _modelRepository.AddModel(NewModel);
+        }
+        [TestMethod]
+        public void RemoveModel_OkTest()
+        {
+            _modelRepository = new ModelRepository();
+            Figure newFigure = new Figure()
+            {
+                Owner = "OwnerName",
+                Name = "Name",
+            };
+            Color NewColor = new Color()
+            {
+                Red = 222,
+                Green = 222,
+                Blue = 222,
+            };
+
+            Material NewMaterial = new LambertianMaterial()
+            {
+                Name = "Test",
+                Owner = "OwnerName",
+                Color = NewColor,
+            };
+            Model NewModel = new Model()
+            {
+                Owner = "UwnerName",
+                Name = "Test",
+                Material = NewMaterial,
+                Figure = newFigure
+            };
+            _modelRepository.AddModel(NewModel);
+            _modelRepository.RemoveModel(NewMaterial);
+            List<Model> iterable = _modelRepository.GetModelsByClient("OwnerName");
+
+            CollectionAssert.DoesNotContain(iterable, NewMaterial);
         }
     }
 }
