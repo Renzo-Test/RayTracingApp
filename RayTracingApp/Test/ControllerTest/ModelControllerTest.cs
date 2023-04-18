@@ -50,5 +50,16 @@ namespace Test.ControllerTest
         {
             _modelController.ListModels("owner");
         }
+
+        [TestMethod]
+        public void AddModel_ValidModel_OkTest()
+        {
+            Model _newModel = new Model()
+            {
+                Owner = "OwnerName",
+            };
+            _modelController.AddModel(_newModel);
+            CollectionAssert.Contains(_modelController.Repository.GetModelsByClient("OwnerName"), _newModel);
+        }
     }
 }
