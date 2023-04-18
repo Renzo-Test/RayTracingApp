@@ -39,8 +39,15 @@ namespace Test.ControllerTest
             };
             _modelController.Repository.AddModel(anotherModel);
 
-            CollectionAssert.Contains(_modelController.Repository.GetModelsByClient("targetOwner"), targetModel);
-            CollectionAssert.DoesNotContain(_modelController.Repository.GetModelsByClient("targetOwner"), anotherModel);
+            CollectionAssert.Contains(_modelController.ListModels("targetOwner"), targetModel);
+            CollectionAssert.DoesNotContain(_modelController.ListModels("targetOwner"), anotherModel);
+        }
+
+
+        [TestMethod]
+        public void ListModels_InvalidUsername_FailTest()
+        {
+            _modelController.Repository.GetModelsByClient("owner");
         }
     }
 }
