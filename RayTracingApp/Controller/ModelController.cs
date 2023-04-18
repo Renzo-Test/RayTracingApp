@@ -15,6 +15,8 @@ namespace Controller
     public class ModelController
     {
         public IRepositoryModel Repository;
+        private const string SpaceCharacterConstant = " ";
+        private const string NotAlphanumericMessage = "Model's name must not start or end with blank space";
 
         public ModelController()
         {
@@ -45,6 +47,7 @@ namespace Controller
                 string AlreadyExistingModelName = $"Model with name {model.Name} already exist";
                 throw new AlreadyExistingModelException(AlreadyExistingModelName);
             }
+            RunNameIsSpacedChecker(model);
         }
 
         private bool ModelNameExist(Model model, string username) 
@@ -59,6 +62,12 @@ namespace Controller
                 return false;
             }
         }
-
+        private static void RunNameIsSpacedChecker(Model model)
+        {
+            if (model.Name.StartsWith(SpaceCharacterConstant) || model.Name.EndsWith(SpaceCharacterConstant))
+            {
+                throw new NotAlphanumericException(NotAlphanumericMessage);
+            }
+        }
     }
 }

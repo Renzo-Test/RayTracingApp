@@ -88,5 +88,15 @@ namespace Test.ControllerTest
             _modelController.AddModel(_sndNewModel, "user");
             Assert.AreEqual(2, _modelController.Repository.GetModelsByClient("user").Count);
         }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidModelInputException))]
+        public void AddModel_SpacedModelName_FailTest()
+        {
+            Model _newModel = new Model()
+            {
+                Name = "  spacedName"
+            };
+            _modelController.AddModel(_newModel, "user");
+        }
     }
 }
