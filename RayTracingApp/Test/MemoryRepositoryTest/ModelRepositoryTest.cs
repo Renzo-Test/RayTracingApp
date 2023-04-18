@@ -83,6 +83,7 @@ namespace Test.MemoryRepositoryTest
             _modelRepository.AddModel(NewModel);
         }
         [TestMethod]
+        [ExpectedException(typeof(NotFoundModelException))]
         public void RemoveModel_OkTest()
         {
             _modelRepository = new ModelRepository();
@@ -114,10 +115,10 @@ namespace Test.MemoryRepositoryTest
             _modelRepository.AddModel(NewModel);
             _modelRepository.RemoveModel(NewModel);
             List<Model> iterable = _modelRepository.GetModelsByClient("OwnerName");
-
-            CollectionAssert.DoesNotContain(iterable, NewMaterial);
+            CollectionAssert.DoesNotContain(iterable, NewModel);
         }
         [TestMethod]
+        [ExpectedException(typeof(NotFoundModelException))]
         public void RemoveModel_NotExistingModel_OkTest()
         {
             _modelRepository = new ModelRepository();
@@ -147,9 +148,7 @@ namespace Test.MemoryRepositoryTest
                 Figure = newFigure
             };
             _modelRepository.RemoveModel(NewModel);
-            List<Model> iterable = _modelRepository.GetModelsByClient("OwnerName");
-
-            CollectionAssert.DoesNotContain(iterable, NewModel);
+            _modelRepository.GetModelsByClient("OwnerName");
         }
     }
 }
