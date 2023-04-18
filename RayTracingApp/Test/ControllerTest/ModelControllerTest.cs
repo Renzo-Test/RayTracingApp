@@ -8,30 +8,38 @@ namespace Test.ControllerTest
     [TestClass]
     public class ModelControllerTest
     {
+        private ModelController _modelController;
+
+        [TestInitialize]
+        public void Testinitialize()
+        {
+            _modelController = new ModelController();
+        }
+
         [TestMethod]
         public void CreateModelController_OkTest()
         {
-            ModelController controller = new ModelController();
+            _modelController = new ModelController();
         }
 
         [TestMethod]
         public void ListModels_ValidUsername_OkTest() 
         {
-            ModelController controller = new ModelController();
-            Model newModel = new Model()
+            _modelController = new ModelController();
+            Model targetModel = new Model()
             {
-                Owner = "ownerName"
+                Owner = "targetOwner"
             };
-            controller.Repository.AddModel(newModel);
+            _modelController.Repository.AddModel(targetModel);
 
             Model anotherModel = new Model()
             {
                 Owner = "otherOwner"
             };
-            controller.Repository.AddModel(anotherModel);
+            _modelController.Repository.AddModel(anotherModel);
 
-            CollectionAssert.Contains(controller.Repository.GetModelsByClient("ownerName"), newModel);
-            CollectionAssert.DoesNotContain(controller.Repository.GetModelsByClient("ownerName"), anotherModel);
+            CollectionAssert.Contains(_modelController.Repository.GetModelsByClient("targetOwner"), targetModel);
+            CollectionAssert.DoesNotContain(_modelController.Repository.GetModelsByClient("targetOwner"), anotherModel);
         }
     }
 }
