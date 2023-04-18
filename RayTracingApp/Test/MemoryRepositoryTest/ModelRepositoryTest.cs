@@ -20,15 +20,36 @@ namespace Test.MemoryRepositoryTest
         }
 
         [TestMethod]
-        public void GetModelByClient_Username_OkTest() 
+        public void GetModelsByClient_Username_OkTest() 
         {
             _modelRepository = new ModelRepository();
-            Model newModel = new Model() 
+            Figure newFigure = new Figure() 
             {
-                Owner = "Username"
+                Owner = "OwnerName",
+                Name = "Name",
             };
-            _modelRepository.AddModel(newModel);
-            Assert.AreEqual(newModel, _modelRepository.GetModelByClient("OwnerName")[0]);
+            Color NewColor = new Color()
+            {
+                Red = 222,
+                Green = 222,
+                Blue = 222,
+            };
+
+            Material NewMaterial = new LambertianMaterial()
+            {
+                Name = "Test",
+                Owner = "OwnerName",
+                Color = NewColor,
+            };
+            Model NewModel = new Model()
+            {
+                Owner = "Username",
+                Name = "Test",
+                Material = NewMaterial,
+                Figure = newFigure
+            };
+            _modelRepository.AddModel(NewModel);
+            Assert.AreEqual(NewModel, _modelRepository.GetModelsByClient("Username")[0]);
         }
 
     }

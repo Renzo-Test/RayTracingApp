@@ -47,6 +47,7 @@
     <Compile Include="ClientRepository\ClientRepository.cs" />
     <Compile Include="Exceptions\NotFoundClientException.cs" />
     <Compile Include="MaterialRepository\MaterialRepository.cs" />
+    <Compile Include="ModelRepository\ModelRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
