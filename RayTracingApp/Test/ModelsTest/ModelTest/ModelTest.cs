@@ -52,7 +52,7 @@ namespace Test.ModelsTest
         [TestMethod]
         public void SetMaterial_OkTest()
         {
-            Material newMaterial = new MaterialEnum()
+            Material newMaterial = new Material()
             {
                 Name = "materialName"
             };

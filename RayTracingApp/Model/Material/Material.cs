@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public abstract class Material
+    public class Material
     {
         public string Owner { get; set; }
         public string Name { get; set; }

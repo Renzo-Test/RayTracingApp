@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Material\LambertianMaterial.cs" />
     <Compile Include="Material\Color.cs" />
     <Compile Include="Material\Exceptions\InvalidColorNumberException.cs" />
     <Compile Include="Material\Material.cs" />

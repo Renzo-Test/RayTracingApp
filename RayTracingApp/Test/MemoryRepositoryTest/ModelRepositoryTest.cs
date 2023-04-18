@@ -39,7 +39,7 @@ namespace Test.MemoryRepositoryTest
                 Blue = 222,
             };
 
-            Material NewMaterial = new MaterialEnum()
+            Material NewMaterial = new Material()
             {
                 Name = "Test",
                 Owner = "OwnerName",
@@ -70,7 +70,7 @@ namespace Test.MemoryRepositoryTest
                 Blue = 222,
             };
 
-            Material NewMaterial = new MaterialEnum()
+            Material NewMaterial = new Material()
             {
                 Name = "Test",
                 Owner = "OwnerName",
@@ -101,7 +101,7 @@ namespace Test.MemoryRepositoryTest
                 Blue = 222,
             };
 
-            Material NewMaterial = new MaterialEnum()
+            Material NewMaterial = new Material()
             {
                 Name = "Test",
                 Owner = "OwnerName",
@@ -135,7 +135,7 @@ namespace Test.MemoryRepositoryTest
                 Blue = 222,
             };
 
-            Material NewMaterial = new MaterialEnum()
+            Material NewMaterial = new Material()
             {
                 Name = "Test",
                 Owner = "OwnerName",
