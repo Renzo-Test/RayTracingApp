@@ -26,8 +26,8 @@ namespace Test.ControllerTest
             _figureController = new SphereController();
         }
 
-        [ExpectedException(typeof(NotInExpectedRangeException))]
         [TestMethod]
+        [ExpectedException(typeof(NotInExpectedRangeException))]
         public void NameIsNotEmpty_EmptyString_OkTest()
         {
             _figureController.RunEmptyNameChecker("");
@@ -113,8 +113,8 @@ namespace Test.ControllerTest
             CollectionAssert.Contains(iterable, newFigure);
         }
 
-        [ExpectedException(typeof(InvalidFigureInputException))]
         [TestMethod]
+        [ExpectedException(typeof(InvalidFigureInputException))]
         public void AddFigure_InvalidFigure_OkTest()
         {
             Client currentClient = new Client()
@@ -133,8 +133,8 @@ namespace Test.ControllerTest
             _figureController.Repository.GetFiguresByClient(currentClient.Username);
         }
 
-        [ExpectedException(typeof(InvalidFigureInputException))]
         [TestMethod]
+        [ExpectedException(typeof(InvalidFigureInputException))]
         public void AddFigure_DuplicatedFigureName_OkTest()
         {
             Client currentClient = new Client()
@@ -175,16 +175,16 @@ namespace Test.ControllerTest
             Assert.AreEqual(expected[0], _figureController.ListFigures(currentClient.Username)[0]);
         }
 
-        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
+        [ExpectedException(typeof(NotFoundFigureException))]
         public void ListFigures_NonExistentClient_OkTest()
         {
             _figureController.ListFigures("nonExistentUsername");
         }
 
-        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
-        public void DeleteFigures_ValidFigure_OkTest()
+        [ExpectedException(typeof(NotFoundFigureException))]
+        public void RemoveFigures_ValidFigure_OkTest()
         {
             Client currentClient = new Client()
             {
@@ -198,10 +198,35 @@ namespace Test.ControllerTest
                 Radius = 10,
             };
 
+            List<Model> models = new List<Model>();
+
             _figureController.AddFigure(newFigure, currentClient.Username);
-            _figureController.RemoveFigure(newFigure.Name, currentClient.Username);
+            _figureController.RemoveFigure(newFigure.Name, currentClient.Username, models);
 
             _figureController.ListFigures(currentClient.Username);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FigureUsedByModelException))]
+        public void DeleteFigures_FigureUsedByModel_OkTest()
+        {
+            Figure figure = new Sphere()
+            {
+                Owner = "ownerName",
+                Name = "figureName",
+                Radius = 10,
+            };
+
+            Model model = new Model()
+            {
+                Figure = figure,
+                Owner = "ownerName"
+            };
+            ModelController modelController = new ModelController();
+            modelController.Repository.AddModel(model);
+            _figureController.AddFigure(figure, figure.Owner);
+
+            _figureController.RemoveFigure("figureName", "ownerName", modelController.ListModels("ownerName"));
         }
 
         [TestMethod]
@@ -216,8 +241,8 @@ namespace Test.ControllerTest
             _figureController.RunFigurePropertiesChecker(newSphere);
         }
         
-        [ExpectedException(typeof(SmallerThanCeroRadiusException))]
         [TestMethod]
+        [ExpectedException(typeof(SmallerThanCeroRadiusException))]
         public void FigureIsValid_InvalidFigure_OkTest()
         {
             Figure newSphere = new Sphere()
