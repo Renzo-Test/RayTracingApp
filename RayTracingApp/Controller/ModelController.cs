@@ -7,6 +7,8 @@ using IRepository;
 using MemoryRepository;
 using MemoryRepository.MaterialRepository;
 using Models;
+using Controller.ModelExceptions;
+using MemoryRepository.Exceptions;
 
 namespace Controller
 {
@@ -25,7 +27,38 @@ namespace Controller
         }
         public void AddModel(Model model, string username)
         {
-            Repository.AddModel(model);
+            try
+            {
+                RunModelChecker(model, username);
+                model.Owner = username;
+                Repository.AddModel(model);
+            } 
+            catch (InvalidModelInputException ex) 
+            {
+                throw new InvalidModelInputException(ex.Message);
+            }
         }
+        private void RunModelChecker(Model model, string username)
+        {
+            if (ModelNameExist(model,username))
+            {
+                string AlreadyExistingModelName = $"Model with name {model.Name} already exist";
+                throw new AlreadyExistingModelException(AlreadyExistingModelName);
+            }
+        }
+
+        private bool ModelNameExist(Model model, string username) 
+        {
+            try
+            {
+                List<Model> clientModels = Repository.GetModelsByClient(username);
+                return clientModels.Find(mod => mod.Name.Equals(mod.Name)) is object;
+            } 
+            catch (NotFoundModelException)
+            {
+                return false;
+            }
+        }
+
     }
 }
