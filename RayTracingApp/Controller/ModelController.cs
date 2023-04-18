@@ -41,6 +41,12 @@ namespace Controller
                 throw new InvalidModelInputException(ex.Message);
             }
         }
+
+        public void RemoveModel(string name, string username)
+        {
+            Model deleteModel = Repository.GetModelsByClient(username).Find(mod => mod.Name.Equals(name));
+            Repository.RemoveModel(deleteModel);
+        }
         private void RunModelChecker(Model model, string username)
         {
             if (ModelNameExist(model,username))

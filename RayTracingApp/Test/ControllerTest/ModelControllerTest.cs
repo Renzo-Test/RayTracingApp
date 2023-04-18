@@ -124,7 +124,7 @@ namespace Test.ControllerTest
             _modelController.AddModel(secondModel, "username");
             Assert.AreEqual(2, _modelController.ListModels("username").Count);
         }
-        [ExpectedException(typeof(NotFoundMaterialException))]
+        [ExpectedException(typeof(NotFoundModelException))]
         [TestMethod]
         public void RemoveModels_OkTest()
         {
@@ -133,7 +133,7 @@ namespace Test.ControllerTest
                 Name = "modelName",
             };
             _modelController.AddModel(newModel, "username");
-            _modelController.RemoveModel(newModel.Name, "username");
+            _modelController.RemoveModel("modelName", "username");
             _modelController.ListModels("username");
         }
     }
