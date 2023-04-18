@@ -52,7 +52,7 @@ namespace Controller
             try
             {
                 List<Model> clientModels = Repository.GetModelsByClient(username);
-                return clientModels.Find(mod => mod.Name.Equals(mod.Name)) is object;
+                return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
             } 
             catch (NotFoundModelException)
             {

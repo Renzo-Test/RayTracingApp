@@ -73,5 +73,20 @@ namespace Test.ControllerTest
             _modelController.AddModel(_newModel, "user");
             _modelController.AddModel(_newModel, "user");
         }
+        [TestMethod]
+        public void AddModel_TwoValidModels_OkTest()
+        {
+            Model _fstNewModel = new Model()
+            {
+                Name = "Test one",
+            };
+            Model _sndNewModel = new Model()
+            {
+                Name = "Test two"
+            };
+            _modelController.AddModel(_fstNewModel, "user");
+            _modelController.AddModel(_sndNewModel, "user");
+            Assert.AreEqual(2, _modelController.Repository.GetModelsByClient("user").Count);
+        }
     }
 }
