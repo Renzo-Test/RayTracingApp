@@ -1,11 +1,11 @@
-﻿using Controller.FigureExceptions;
+﻿using Models.FigureExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controller.SphereExceptions
+namespace Models.SphereExceptions
 {
     public class SmallerThanCeroRadiusException : InvalidFigureInputException
     {
