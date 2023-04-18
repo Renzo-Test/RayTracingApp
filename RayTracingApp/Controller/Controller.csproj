@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FigureExceptions\FigureUsedByModelException.cs" />
+    <Compile Include="FigureExceptions\InvalidFigureInputException - Copia.cs" />
     <Compile Include="ModelController.cs" />
     <Compile Include="FigureExceptions\AlreadyExistingFigureException.cs" />
     <Compile Include="FigureExceptions\InvalidFigureInputException.cs" />

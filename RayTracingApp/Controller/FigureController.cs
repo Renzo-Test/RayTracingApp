@@ -89,7 +89,7 @@ namespace Controller
             }
         }
 
-        public void RemoveFigure(string figureName, string username)
+        public void RemoveFigure(string figureName, string username, List<Model> models)
         {
             Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
 
@@ -97,6 +97,13 @@ namespace Controller
             {
                 string NotFoundFigureMessage = $"Figure with name {figureName} was not found";
                 throw new NotFoundFigureException(NotFoundFigureMessage);
+            }
+
+            Model foundModel = models.Find(model => model.Figure.Name.Equals(figureName));
+            if (foundModel is object)
+            {
+                string FigureUsedByModelMessage = $"Figure with name {figureName} is used by a model";
+                throw new FigureUsedByModelException(FigureUsedByModelMessage);
             }
 
             Repository.RemoveFigure(deleteFigure);
