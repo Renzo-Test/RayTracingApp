@@ -27,7 +27,7 @@ namespace MemoryRepository
         }
         public void RemoveModel(Model model)
         {
-
+            _models.Remove(model);
         }
     }
 }
