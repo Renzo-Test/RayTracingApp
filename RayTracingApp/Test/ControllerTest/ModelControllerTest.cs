@@ -45,9 +45,10 @@ namespace Test.ControllerTest
 
 
         [TestMethod]
+        [ExpectedException(typeof(NotFoundModelException))]
         public void ListModels_InvalidUsername_FailTest()
         {
-            _modelController.Repository.GetModelsByClient("owner");
+            _modelController.ListModels("owner");
         }
     }
 }
