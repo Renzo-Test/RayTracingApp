@@ -112,7 +112,7 @@ namespace Test.MemoryRepositoryTest
                 Figure = newFigure
             };
             _modelRepository.AddModel(NewModel);
-            _modelRepository.RemoveModel(NewMaterial);
+            _modelRepository.RemoveModel(NewModel);
             List<Model> iterable = _modelRepository.GetModelsByClient("OwnerName");
 
             CollectionAssert.DoesNotContain(iterable, NewMaterial);
