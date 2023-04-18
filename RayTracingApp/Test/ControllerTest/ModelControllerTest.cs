@@ -108,5 +108,21 @@ namespace Test.ControllerTest
             };
             _modelController.AddModel(_newModel, "user");
         }
+        [TestMethod]
+        public void ListModels_OkTest()
+        {
+            Model firstModel = new Model()
+            {
+                Name = "modelOne",
+            };
+            _modelController.AddModel(firstModel, "username");
+
+            Model secondModel = new Model()
+            {
+                Name = "modelTwo",
+            };
+            _modelController.AddModel(secondModel, "username");
+            Assert.AreEqual(2, _modelController.ListModels("username").Count);
+        }
     }
 }
