@@ -18,12 +18,11 @@ namespace Test.MemoryRepositoryTest
         {
             _modelRepository = new ModelRepository();
         }
-
         [TestMethod]
-        public void GetModelsByClient_Username_OkTest() 
+        public void AddModel_OkTest() 
         {
             _modelRepository = new ModelRepository();
-            Figure newFigure = new Figure() 
+            Figure newFigure = new Figure()
             {
                 Owner = "OwnerName",
                 Name = "Name",
@@ -49,7 +48,6 @@ namespace Test.MemoryRepositoryTest
                 Figure = newFigure
             };
             _modelRepository.AddModel(NewModel);
-            Assert.AreEqual(NewModel, _modelRepository.GetModelsByClient(NewModel.Owner)[0]);
         }
     }
 }

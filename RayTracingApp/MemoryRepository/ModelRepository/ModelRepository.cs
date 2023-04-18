@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MemoryRepository
 {
-    public class ModelRepository : IRepositoryModel
+    public class ModelRepository
     {
         private readonly List<Model> _models;
 
@@ -16,21 +16,10 @@ namespace MemoryRepository
         {
             _models = new List<Model>();
         }
-
-        public void AddModel(Model newModel) 
-        {
-            _models.Add(newModel);
-        }
-
         public List<Model> GetModelsByClient(string username) 
         {
             List<Model> foundModels = _models.FindAll(model => model.Owner.Equals(username));
             return foundModels;
-        }
-
-        public void RemoveModel(Model model)
-        {
-            throw new NotImplementedException();
         }
     }
 }
