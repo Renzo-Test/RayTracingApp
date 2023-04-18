@@ -106,7 +106,7 @@ namespace Test.MemoryRepositoryTest
             };
             Model NewModel = new Model()
             {
-                Owner = "UwnerName",
+                Owner = "OwnerName",
                 Name = "Test",
                 Material = NewMaterial,
                 Figure = newFigure
@@ -116,6 +116,40 @@ namespace Test.MemoryRepositoryTest
             List<Model> iterable = _modelRepository.GetModelsByClient("OwnerName");
 
             CollectionAssert.DoesNotContain(iterable, NewMaterial);
+        }
+        [TestMethod]
+        public void RemoveModel_NotExistingModel_OkTest()
+        {
+            _modelRepository = new ModelRepository();
+            Figure newFigure = new Figure()
+            {
+                Owner = "OwnerName",
+                Name = "Name",
+            };
+            Color NewColor = new Color()
+            {
+                Red = 222,
+                Green = 222,
+                Blue = 222,
+            };
+
+            Material NewMaterial = new LambertianMaterial()
+            {
+                Name = "Test",
+                Owner = "OwnerName",
+                Color = NewColor,
+            };
+            Model NewModel = new Model()
+            {
+                Owner = "OwnerName",
+                Name = "Test",
+                Material = NewMaterial,
+                Figure = newFigure
+            };
+            _modelRepository.RemoveModel(NewModel);
+            List<Model> iterable = _modelRepository.GetModelsByClient("OwnerName");
+
+            CollectionAssert.DoesNotContain(iterable, NewModel);
         }
     }
 }
