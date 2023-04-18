@@ -5,7 +5,7 @@ using Models;
 using System.Collections.Generic;
 using MemoryRepository.Exceptions;
 using Controller.FigureExceptions;
-using Controller.SphereExceptions;
+using Models.SphereExceptions;
 
 namespace Test.ControllerTest
 {
@@ -17,13 +17,13 @@ namespace Test.ControllerTest
         [TestInitialize]
         public void TestInitialize()
         {
-            _figureController = new SphereController();
+            _figureController = new FigureController();
         }
 
         [TestMethod]
         public void CreateFigureController_OkTest()
         {
-            _figureController = new SphereController();
+            _figureController = new FigureController();
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace Test.ControllerTest
         [TestMethod]
         public void FigureNameExist_FigureName_OkTest()
         {
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
                 Name = "figure",
                 Owner = "owner",
@@ -238,7 +238,7 @@ namespace Test.ControllerTest
                 Radius = 10,
             };
 
-            _figureController.RunFigurePropertiesChecker(newSphere);
+            _figureController.FigurePropertiesAreValid(newSphere);
         }
         
         [TestMethod]
@@ -251,7 +251,7 @@ namespace Test.ControllerTest
                 Radius = 0,
             };
 
-            _figureController.RunFigurePropertiesChecker(newSphere);
+            _figureController.FigurePropertiesAreValid(newSphere);
         }
     }
 }

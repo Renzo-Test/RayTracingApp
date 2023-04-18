@@ -29,7 +29,7 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void GetFiguresByClient_OwnerName_OkTest()
         { 
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
                 Name = "Test",
                 Owner = "OwnerName"
@@ -42,14 +42,14 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void GetFiguresByClient_TwoClients_OkTest()
         {
-            Figure firstFigure = new Figure()
+            Figure firstFigure = new Sphere()
             {
                 Name = "FigureOne",
                 Owner = "OwnerOne"
             };
             _figureRepository.AddFigure(firstFigure);
 
-            Figure secondFigure = new Figure()
+            Figure secondFigure = new Sphere()
             {
                 Name = "FigureTwo",
                 Owner = "OwnerTwo"
@@ -68,7 +68,7 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void AddFigure_OkTest()
         {
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
                 Name = "Test",
                 Owner = "OwnerName"
@@ -86,7 +86,7 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void RemoveFigure_OkTest()
         {
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
                 Name = "Test",
                 Owner = "OwnerName"
@@ -101,7 +101,7 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void RemoveFigure_NotExistingFigure_OkTest()
         {
-            Figure newFigure = new Figure()
+            Figure newFigure = new Sphere()
             {
                 Name = "Test",
                 Owner = "OwnerName"

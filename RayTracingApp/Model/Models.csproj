@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Figure\Exceptions\InvalidFigureInputException.cs" />
+    <Compile Include="Figure\Exceptions\SphereExceptions\SmallerThanCeroRadiusException.cs" />
     <Compile Include="Material\LambertianMaterial.cs" />
     <Compile Include="Material\Color.cs" />
     <Compile Include="Material\Exceptions\InvalidColorNumberException.cs" />

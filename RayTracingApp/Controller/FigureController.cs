@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace Controller
 {
-    public abstract class FigureController
+    public class FigureController
     {
         private const string NotAlphanumericExceptionMessage = "Figure's name must have no spaces";
         private const string NotInExpectedRangeExceptionMessage = "Figure's name must not be empty";
@@ -44,8 +44,6 @@ namespace Controller
             }
         }
 
-        public abstract void RunFigurePropertiesChecker(Figure figure);
-
         public void RunFigureChecker(Figure figure, string ownerName)
         {
             if (FigureNameExist(figure.Name, ownerName))
@@ -54,9 +52,36 @@ namespace Controller
                 throw new AlreadyExistingFigureException(AlreadyExsitingFigureMessage);
             }
 
+            FigurePropertiesAreValid(figure);
             RunEmptyNameChecker(figure.Name);
             RunSpacedNameChecker(figure.Name);
-            RunFigurePropertiesChecker(figure);
+        }
+
+        public bool FigureNameExist(string name, string ownerName)
+        {
+            try
+            {
+                List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
+
+                return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
+            }
+            catch (NotFoundFigureException)
+            {
+                return false;
+            }
+        }
+
+        public void FigurePropertiesAreValid(Figure figure)
+        {
+            try
+            {
+                figure.FigurePropertiesAreValid();
+            }
+
+            catch (InvalidFigureInputException ex)
+            {
+                throw new InvalidFigureInputException(ex.Message);
+            }
         }
 
         public void RunEmptyNameChecker(string figureName)
@@ -72,20 +97,6 @@ namespace Controller
             if(figureName.Contains(SpaceCharacterConstant))
             {
                 throw new NotAlphanumericException(NotAlphanumericExceptionMessage);
-            }
-        }
-
-        public bool FigureNameExist(string name, string ownerName)
-        {
-            try
-            {
-                List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
-
-                return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
-            }
-            catch (NotFoundFigureException)
-            {
-                return false;
             }
         }
 
