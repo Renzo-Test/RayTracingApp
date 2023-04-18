@@ -14,6 +14,11 @@ namespace Test.MemoryRepositoryTest
     public class ModelRepositoryTest
     {
         private ModelRepository _modelRepository;
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _modelRepository = new ModelRepository();
+        }
         [TestMethod]
         public void CreateModelRepositoryOk_Test()
         {
@@ -22,7 +27,6 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void GetModelsByClient_Username_OkTest()
         {
-            _modelRepository = new ModelRepository();
             Figure newFigure = new Figure()
             {
                 Owner = "OwnerName",
@@ -54,7 +58,6 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void AddModel_OkTest() 
         {
-            _modelRepository = new ModelRepository();
             Figure newFigure = new Figure()
             {
                 Owner = "OwnerName",
@@ -86,7 +89,6 @@ namespace Test.MemoryRepositoryTest
         [ExpectedException(typeof(NotFoundModelException))]
         public void RemoveModel_OkTest()
         {
-            _modelRepository = new ModelRepository();
             Figure newFigure = new Figure()
             {
                 Owner = "OwnerName",
@@ -121,7 +123,6 @@ namespace Test.MemoryRepositoryTest
         [ExpectedException(typeof(NotFoundModelException))]
         public void RemoveModel_NotExistingModel_OkTest()
         {
-            _modelRepository = new ModelRepository();
             Figure newFigure = new Figure()
             {
                 Owner = "OwnerName",

@@ -107,7 +107,6 @@ namespace Test.MemoryRepositoryTest
 
             _materialRepository.RemoveMaterial(NewMaterial);
             _materialRepository.GetMaterialsByClient("OwnerName");
-
         }
 
     }
