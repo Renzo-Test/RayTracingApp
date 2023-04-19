@@ -20,6 +20,10 @@ namespace Controller
             {
                 throw new EmptyNameException("Scene's name must not be empty");
             }
+            if (newScene.Name.StartsWith(" "))
+            {
+                throw new InvalidSpacePosition("Scene's name must not start or end with blank space");
+            }
 
             newScene.Owner = username;
             Repository.AddScene(newScene);
