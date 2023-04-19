@@ -15,5 +15,6 @@ namespace Models
         public string LastRenderDate { get; set; } = "unrendered";
         public int Fov { get; set; }
         public Coordinate CameraPosition { get; set; } = new Coordinate() { X = 0, Y = 2, Z = 0 };
+        public Coordinate ObjectivePosition { get; set; }
     }
 }
