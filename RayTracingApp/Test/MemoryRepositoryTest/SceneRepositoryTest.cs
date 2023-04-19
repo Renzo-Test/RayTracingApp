@@ -117,5 +117,25 @@ namespace Test.MemoryRepositoryTest
             _sceneRepository.GetScenesByClient("OwnerName");
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(NotFoundSceneException))]
+        public void DeleteScene_ExistingScene_OkTest()
+        {
+            _sceneRepository = new SceneRepository();
+
+            Scene _scene = new Scene()
+            {
+                Name = "Test",
+                Owner = "OwnerName",
+            };
+
+            _sceneRepository.AddScene(_scene);
+
+            _sceneRepository.RemoveScene(_scene);
+
+            List<Scene> iterableOwner1 = _sceneRepository.GetScenesByClient("OwnerName");
+            CollectionAssert.DoesNotContain(iterableOwner1, _scene);
+        }
+
     }
 }
