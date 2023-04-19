@@ -1,4 +1,5 @@
-﻿using MemoryRepository.Exceptions;
+﻿using IRepository;
+using MemoryRepository.Exceptions;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MemoryRepository
 {
-    public class SceneRepository
+    public class SceneRepository : IRepositoryScene
     {
         private readonly List<Scene> _scenes;
 
