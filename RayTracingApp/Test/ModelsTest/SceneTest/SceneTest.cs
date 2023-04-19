@@ -2,6 +2,7 @@
 using System;
 using Models;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace Test.ModelsTest
 {
@@ -140,6 +141,69 @@ namespace Test.ModelsTest
                 Assert.AreEqual(property.GetValue(newCoordinate), property.GetValue(_scene.ObjectivePosition));
             }
         }
+
+        [TestMethod]
+        public void SetPosisionatedModels_OkTest()
+        {
+
+            Coordinate firstCoordinate = new Coordinate()
+            {
+                X = 0,
+                Y = 2,
+                Z = 5,
+            };
+
+            Coordinate secondCoordinate = new Coordinate()
+            {
+                X = 12,
+                Y = 0,
+                Z = 3,
+            };
+
+            Model firstModel = new Model()
+            {
+                Name = "firstModelName",
+                Owner = "firstOwnerName"
+            };
+
+            Model secondModel = new Model()
+            {
+                Name = "secondModelName",
+                Owner = "secondOwnerName"
+            };
+
+            List<PosisionatedModel> posisionatedModels = new List<PosisionatedModel>()
+            {
+                new PosisionatedModel()
+                {
+                    Position = firstCoordinate,
+                    Model = firstModel
+                },
+
+                new PosisionatedModel() {
+                    Position = secondCoordinate,
+                    Model = secondModel
+                }
+            };
+
+            _scene = new Scene()
+            {
+                PosisionatedModels = posisionatedModels,
+            };
+
+            foreach (PropertyInfo property in posisionatedModels[0].GetType().GetProperties())
+            {
+                Assert.AreEqual(property.GetValue(posisionatedModels[0]), property.GetValue(_scene.PosisionatedModels[0]));
+            }
+
+            foreach (PropertyInfo property in posisionatedModels[1].GetType().GetProperties())
+            {
+                Assert.AreEqual(property.GetValue(posisionatedModels[1]), property.GetValue(_scene.PosisionatedModels[1]));
+            }
+
+        }
+
+
 
 
 
