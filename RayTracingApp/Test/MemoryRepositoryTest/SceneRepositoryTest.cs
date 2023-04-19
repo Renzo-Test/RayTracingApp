@@ -3,6 +3,7 @@ using System;
 using Models;
 using MemoryRepository;
 using System.Collections.Generic;
+using MemoryRepository.Exceptions;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -110,8 +111,9 @@ namespace Test.MemoryRepositoryTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundSceneException))]
-        public void GetScenesByClient_NoClient_OkTes()
+        public void GetScenesByClient_NoClient_OkTest()
         {
+            _sceneRepository = new SceneRepository();
             _sceneRepository.GetScenesByClient("OwnerName");
         }
 
