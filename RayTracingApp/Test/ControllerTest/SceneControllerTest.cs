@@ -21,7 +21,7 @@ namespace Test.ControllerTest
 
             sceneController.AddScene(newScene, "ownerName");
 
-            CollectionAssert.Contains(sceneController.GetScenesByClient("ownerName"), newScene);
+            CollectionAssert.Contains(sceneController.Repository.GetScenesByClient("ownerName"), newScene);
         }
     }
 }
