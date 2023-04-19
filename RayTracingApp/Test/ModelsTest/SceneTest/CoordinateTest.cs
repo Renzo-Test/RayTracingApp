@@ -25,6 +25,16 @@ namespace Test.ModelsTest
             Assert.AreEqual(10, newCoordinate.X);
         }
 
+        [TestMethod]
+        public void SetY_OkTest()
+        {
+            Coordinate newCoordinate = new Coordinate()
+            {
+                Y = 10,
+            };
+
+            Assert.AreEqual(10, newCoordinate.Y);
+        }
 
     }
 }
