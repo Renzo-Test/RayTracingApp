@@ -15,5 +15,13 @@ namespace MemoryRepository
         {
             _scene = scene;
         }
+
+        public List<Scene> GetScenesByClient(string v)
+        {
+            return new List<Scene>()
+            {
+                _scene,
+            };
+        }
     }
 }

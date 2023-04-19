@@ -15,7 +15,7 @@ namespace Test.MemoryRepositoryTest
         {
             _sceneRepository = new SceneRepository();
         }
-        /*
+
         [TestMethod]
         public void GetScenesByClient_OwnerName_OkTest()
         {
@@ -29,9 +29,9 @@ namespace Test.MemoryRepositoryTest
 
             _sceneRepository.AddScene(_scene);
 
-            Assert.AreEqual(_scene, _sceneRepository.GetMaterialsByClient("OwnerName")[0]);
+            Assert.AreEqual(_scene, _sceneRepository.GetScenesByClient("OwnerName")[0]);
         }
-        */
+
         [TestMethod]
         public void AddScene_OkTest()
         {
