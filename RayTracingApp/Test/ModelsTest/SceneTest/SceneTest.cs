@@ -123,6 +123,24 @@ namespace Test.ModelsTest
             Assert.AreEqual(newCoordinate, _scene.ObjectivePosition);
         }
 
+        [TestMethod]
+        public void InitializeObjectivePosition_DefaultValue_OkTest()
+        {
+            Coordinate newCoordinate = new Coordinate()
+            {
+                X = 0,
+                Y = 2,
+                Z = 5,
+            };
+
+            _scene = new Scene();
+
+            foreach (PropertyInfo property in newCoordinate.GetType().GetProperties())
+            {
+                Assert.AreEqual(property.GetValue(newCoordinate), property.GetValue(_scene.ObjectivePosition));
+            }
+        }
+
 
 
 
