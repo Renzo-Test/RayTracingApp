@@ -49,5 +49,30 @@ namespace Test.MemoryRepositoryTest
 
         }
 
+        [TestMethod]
+        public void AddSTwoScenes_OkTest()
+        {
+            _sceneRepository = new SceneRepository();
+
+            Scene _scene = new Scene()
+            {
+                Name = "Test",
+                Owner = "OwnerName",
+            };
+
+            Scene _scene2 = new Scene()
+            {
+                Name = "Test2",
+                Owner = "OwnerName",
+            };
+
+            _sceneRepository.AddScene(_scene);
+            _sceneRepository.AddScene(_scene2);
+
+            List<Scene> iterable = _sceneRepository.GetScenesByClient("OwnerName");
+            CollectionAssert.Contains(iterable, _scene);
+            CollectionAssert.Contains(iterable, _scene2);
+        }
+
     }
 }
