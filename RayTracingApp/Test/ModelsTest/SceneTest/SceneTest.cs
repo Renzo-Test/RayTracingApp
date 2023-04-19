@@ -106,6 +106,23 @@ namespace Test.ModelsTest
             }
         }
 
+        [TestMethod]
+        public void SetObjectivePosition_OkTest()
+        {
+            Coordinate newCoordinate = new Coordinate()
+            {
+                X = 10,
+                Y = 20,
+                Z = 30,
+            };
+
+            _scene = new Scene()
+            {
+                ObjectivePosition = newCoordinate,
+            };
+            Assert.AreEqual(newCoordinate, _scene.ObjectivePosition);
+        }
+
 
 
 
