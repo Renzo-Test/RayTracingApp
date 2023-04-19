@@ -22,7 +22,7 @@ namespace Test.ModelsTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidColorNumberException))]
-        public void SetRed_GreaterNumber_OkTest()
+        public void SetRed_GreaterNumber_FailTest()
         {
             _newColor = new Color()
             {
@@ -33,7 +33,7 @@ namespace Test.ModelsTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidColorNumberException))]
-        public void SetRed_LowerNumber_OkTest()
+        public void SetRed_LowerNumber_FailTest()
         {
             _newColor = new Color()
             {
@@ -55,7 +55,7 @@ namespace Test.ModelsTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidColorNumberException))]
-        public void SetGreen_GreaterNumber_OkTest()
+        public void SetGreen_GreaterNumber_FailTest()
         {
             _newColor = new Color()
             {
@@ -66,7 +66,7 @@ namespace Test.ModelsTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidColorNumberException))]
-        public void SetGreen_LowerNumber_OkTest()
+        public void SetGreen_LowerNumber_FailTest()
         {
             _newColor = new Color()
             {
@@ -88,7 +88,7 @@ namespace Test.ModelsTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidColorNumberException))]
-        public void SetBlue_GreaterNumber_OkTest()
+        public void SetBlue_GreaterNumber_FailTest()
         {
             _newColor = new Color()
             {
@@ -99,7 +99,7 @@ namespace Test.ModelsTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidColorNumberException))]
-        public void SetBlue_LowerNumber_OkTest()
+        public void SetBlue_LowerNumber_FailTest()
         {
             _newColor = new Color()
             {

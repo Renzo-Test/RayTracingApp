@@ -10,9 +10,9 @@ namespace Test.ControllerTest
     public class ClientValidatorTest
     {
 
-        [ExpectedException(typeof(NotInExpectedRangeException))]
         [TestMethod]
-        public void LengthInRangeUsername_EmptyString_OkTest()
+        [ExpectedException(typeof(NotInExpectedRangeException))]
+        public void LengthInRangeUsername_EmptyString_FailTest()
         {
             ClientValidator.LengthInRangeUsername("");
         }
@@ -23,9 +23,9 @@ namespace Test.ControllerTest
             ClientValidator.LengthInRangeUsername("ABC");
         }
 
-        [ExpectedException(typeof(NotInExpectedRangeException))]
         [TestMethod]
-        public void LengthInRangeUsername_ABCDEFGHIJKLMNOPQRSTU_OkTest()
+        [ExpectedException(typeof(NotInExpectedRangeException))]
+        public void LengthInRangeUsername_ABCDEFGHIJKLMNOPQRSTU_FailTest()
         {
             ClientValidator.LengthInRangeUsername("ABCDEFGHIJKLMNOPQRSTU");
         }
@@ -36,44 +36,44 @@ namespace Test.ControllerTest
             ClientValidator.IsAphanumeric("");
         }
 
-        [ExpectedException(typeof(NotAlphanumericException))]
         [TestMethod]
-        public void Alphanumeric_QuestionMark_OkTest()
+        [ExpectedException(typeof(NotAlphanumericException))]
+        public void Alphanumeric_QuestionMark_FailTest()
         {
             ClientValidator.IsAphanumeric("?");
         }
 
-        [ExpectedException(typeof(NotAlphanumericException))]
         [TestMethod]
-        public void Alphanumeric_AQuestionMarkB_OkTest()
+        [ExpectedException(typeof(NotAlphanumericException))]
+        public void Alphanumeric_AQuestionMarkB_FailTest()
         {
             ClientValidator.IsAphanumeric("A?B");
         }
 
-        [ExpectedException(typeof(NotAlphanumericException))]
         [TestMethod]
-        public void Alphanumeric_SpaceAB_OkTest()
+        [ExpectedException(typeof(NotAlphanumericException))]
+        public void Alphanumeric_SpaceAB_FailTest()
         {
             ClientValidator.IsAphanumeric(" AB");
         }
 
-        [ExpectedException(typeof(NotAlphanumericException))]
         [TestMethod]
-        public void Alphanumeric_ASpaceB_OkTest()
+        [ExpectedException(typeof(NotAlphanumericException))]
+        public void Alphanumeric_ASpaceB_FailTest()
         {
             ClientValidator.IsAphanumeric("A B");
         }
 
-        [ExpectedException(typeof(NotAlphanumericException))]
         [TestMethod]
-        public void Alphanumeric_ABSpace_OkTest()
+        [ExpectedException(typeof(NotAlphanumericException))]
+        public void Alphanumeric_ABSpace_FailTest()
         {
             ClientValidator.IsAphanumeric("AB ");
         }
 
-        [ExpectedException(typeof(NotContainsNumberException))]
         [TestMethod]
-        public void ContainsNumber_EmptyString_OkTest()
+        [ExpectedException(typeof(NotContainsNumberException))]
+        public void ContainsNumber_EmptyString_FailTest()
         {
             ClientValidator.ContainsNumber("");
         }
@@ -90,9 +90,9 @@ namespace Test.ControllerTest
             ClientValidator.ContainsNumber("a1");
         }
 
-        [ExpectedException(typeof(NotContainsCapitalException))]
         [TestMethod]
-        public void ContainsCapital_EmptyString_OkTest()
+        [ExpectedException(typeof(NotContainsCapitalException))]
+        public void ContainsCapital_EmptyString_FailTest()
         {
             ClientValidator.ContainsCapital("");
         }
@@ -109,9 +109,9 @@ namespace Test.ControllerTest
             ClientValidator.ContainsCapital("aA");
         }
 
-        [ExpectedException(typeof(NotInExpectedRangeException))]
         [TestMethod]
-        public void LengthInRangePassword_EmptyString_OkTest()
+        [ExpectedException(typeof(NotInExpectedRangeException))]
+        public void LengthInRangePassword_EmptyString_FailTest()
         {
             ClientValidator.LengthInRangePassword("");
         }
@@ -122,9 +122,9 @@ namespace Test.ControllerTest
             ClientValidator.LengthInRangePassword("ABCDE");
         }
 
-        [ExpectedException(typeof(NotInExpectedRangeException))]
         [TestMethod]
-        public void LengthInRangePassword_ABCDEFGHIJKLMNOPQRSTUVWXYZ_OkTest()
+        [ExpectedException(typeof(NotInExpectedRangeException))]
+        public void LengthInRangePassword_ABCDEFGHIJKLMNOPQRSTUVWXYZ_FailTest()
         {
             ClientValidator.LengthInRangePassword("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         }

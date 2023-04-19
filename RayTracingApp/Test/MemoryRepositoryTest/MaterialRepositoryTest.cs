@@ -61,7 +61,7 @@ namespace Test.MemoryRepositoryTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundMaterialException))]
-        public void RemoveMaterial_OkTest()
+        public void RemoveMaterial_FailTest()
         {
 
             Color NewColor = new Color()
@@ -86,7 +86,7 @@ namespace Test.MemoryRepositoryTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundMaterialException))]
-        public void RemoveMaterial_NotExistingMaterial_OkTest()
+        public void RemoveMaterial_NotExistingMaterial_FailTest()
         {
             Color NewColor = new Color()
             {

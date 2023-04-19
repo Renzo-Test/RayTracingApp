@@ -79,9 +79,9 @@ namespace Test.MemoryRepositoryTest
 
         }
 
-        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
-        public void RemoveFigure_OkTest()
+        [ExpectedException(typeof(NotFoundFigureException))]
+        public void RemoveFigure_FailTest()
         {
             Figure newFigure = new Sphere()
             {
@@ -94,9 +94,9 @@ namespace Test.MemoryRepositoryTest
             List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
         }
 
-        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
-        public void RemoveFigure_NotExistingFigure_OkTest()
+        [ExpectedException(typeof(NotFoundFigureException))]
+        public void RemoveFigure_NotExistingFigure_FailTest()
         {
             Figure newFigure = new Sphere()
             {

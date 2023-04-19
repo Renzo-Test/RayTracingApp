@@ -28,37 +28,37 @@ namespace Test.ControllerTest
             _controller.SignUp("Gomez", "GomezSecret1");
         }
 
-        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
-        public void CheckSignUp_GomezQuestionMark_GomezSecret1_OkTest()
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void CheckSignUp_GomezQuestionMark_GomezSecret1_FailTest()
         {
             _controller.SignUp("Gomez?", "GomezSecret1");
         }
 
-        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
-        public void CheckSignUp_Go_GomezSecret1_OkTest()
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void CheckSignUp_Go_GomezSecret1_FailTest()
         {
             _controller.SignUp("Go", "GomezSecret1");
         }
 
-        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
-        public void CheckSignUp_Gomez_gomezsecret1_OkTest()
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void CheckSignUp_Gomez_gomezsecret1_FailTest()
         {
             _controller.SignUp("Gomez", "gomezsecret1");
         }
 
-        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
-        public void CheckSignUp_Gomez_GomezSecret_OkTest()
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void CheckSignUp_Gomez_GomezSecret_FailTest()
         {
             _controller.SignUp("Gomez", "GomezSecret");
         }
 
-        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
-        public void CheckSignUp_Gomez_Gom1_OkTest()
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void CheckSignUp_Gomez_Gom1_FailTest()
         {
             _controller.SignUp("Gomez", "Gom1");
         }
@@ -86,17 +86,17 @@ namespace Test.ControllerTest
             _controller.ClientAlreadyExists("NotFoundUser");
         }
 
-        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
-        public void CheckSignUp_AlreadyExisting_Gomez_GomezSecret1_OkTest()
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void CheckSignUp_AlreadyExisting_Gomez_GomezSecret1_FailTest()
         {
             _controller.SignUp("Gomez", "GomezSecret1");
             _controller.SignUp("Gomez", "GomezSecret1");
         }
 
-        [ExpectedException(typeof(InvalidCredentialsException))]
         [TestMethod]
-        public void CheckSignIn_NotRegistered_Gomez_GomezSecret1_OkTest()
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void CheckSignIn_NotRegistered_Gomez_GomezSecret1_FailTest()
         {
             Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
         }

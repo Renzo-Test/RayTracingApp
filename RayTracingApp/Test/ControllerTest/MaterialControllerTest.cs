@@ -113,7 +113,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundMaterialException))]
-        public void RemoveMaterials_OkTest()
+        public void RemoveMaterials_FailTest()
         {
             Material newMaterial = new Material()
             {
@@ -130,7 +130,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(MaterialUsedByModelException))]
-        public void RemoveMaterial_MaterialUsedByModel_OkTest()
+        public void RemoveMaterial_MaterialUsedByModel_FailTest()
         {
             Material material = new Material()
             {

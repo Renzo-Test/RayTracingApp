@@ -83,7 +83,7 @@ namespace Test.MemoryRepositoryTest
         }
         [TestMethod]
         [ExpectedException(typeof(NotFoundModelException))]
-        public void RemoveModel_OkTest()
+        public void RemoveModel_FailTest()
         {
             Figure newFigure = new Sphere()
             {
@@ -118,7 +118,7 @@ namespace Test.MemoryRepositoryTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundModelException))]
-        public void RemoveModel_NotExistingModel_OkTest()
+        public void RemoveModel_NotExistingModel_FailTest()
         {
             Figure newFigure = new Sphere()
             {

@@ -63,7 +63,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidModelInputException))]
-        public void AddModel_DuplicatedModel_OkTest()
+        public void AddModel_DuplicatedModel_FailTest()
         {
             Model _newModel = new Model()
             {
@@ -129,7 +129,7 @@ namespace Test.ControllerTest
         }
         [TestMethod]
         [ExpectedException(typeof(NotFoundModelException))]
-        public void RemoveModels_OkTest()
+        public void RemoveModels_FailTest()
         {
             Model newModel = new Model()
             {
