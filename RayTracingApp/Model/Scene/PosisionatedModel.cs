@@ -8,5 +8,6 @@ namespace Models
 {
     public class PosisionatedModel
     {
+        public Coordinate Position { get; set; }
     }
 }
