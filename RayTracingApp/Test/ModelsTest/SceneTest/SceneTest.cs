@@ -70,6 +70,22 @@ namespace Test.ModelsTest
             Assert.AreEqual(100, _scene.Fov);
         }
 
+        [TestMethod]
+        public void SetCameraPosition_OkTest()
+        {
+            Coordinate newCoordinate = new Coordinate()
+            {
+                X = 10,
+                Y = 20,
+                Z = 30,
+            };
+            
+            _scene = new Scene()
+            {
+                CameraPosition = newCoordinate,
+            };
+            Assert.AreEqual(newCoordinate, _scene.CameraPosition);
+        }
 
 
 
