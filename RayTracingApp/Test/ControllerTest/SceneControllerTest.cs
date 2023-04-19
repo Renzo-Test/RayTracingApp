@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Controller;
 using Models;
+using Controller.SceneExceptions;
 
 namespace Test.ControllerTest
 {
@@ -29,6 +30,18 @@ namespace Test.ControllerTest
             _sceneController.AddScene(newScene, "ownerName");
 
             CollectionAssert.Contains(_sceneController.Repository.GetScenesByClient("ownerName"), newScene);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(EmptyNameException))]
+        public void AddScene_EmptyName_OkTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = ""
+            };
+
+            _sceneController.AddScene(newScene, "owneraName");
         }
     }
 }
