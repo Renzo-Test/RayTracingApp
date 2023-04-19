@@ -50,6 +50,14 @@ namespace Test.ModelsTest
             Assert.AreEqual(expected, newScene.LastModificationDate);
         }
 
+        [TestMethod]
+        public void CanGetLastRenderDate_OkTest()
+        {
+            Scene newScene = new Scene();
+            String expected = "unrendered";
+            Assert.AreEqual(expected, newScene.LastRenderDate);
+        }
+
 
 
     }
