@@ -32,5 +32,20 @@ namespace Test.MemoryRepositoryTest
             Assert.AreEqual(_scene, _sceneRepository.GetMaterialsByClient("OwnerName")[0]);
         }
 
+        [TestMethod]
+        public void AddScene_OkTest()
+        {
+            _sceneRepository = new SceneRepository();
+
+            Scene _scene = new Scene()
+            {
+                Name = "Test",
+                Owner = "OwnerName",
+            };
+
+            _sceneRepository.AddScene(_scene);
+
+        }
+
     }
 }
