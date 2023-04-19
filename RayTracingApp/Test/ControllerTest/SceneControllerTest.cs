@@ -17,12 +17,9 @@ namespace Test.ControllerTest
         public void AddScene_OkTest()
         {
             SceneController sceneController = new SceneController();
-            Scene newScene = new Scene()
-            {
-                Owner = "ownerName"
-            };
+            Scene newScene = new Scene();
 
-            sceneController.AddScene(newScene);
+            sceneController.AddScene(newScene, "ownerName");
 
             CollectionAssert.Contains(sceneController.GetScenesByClient("ownerName"), newScene);
         }
