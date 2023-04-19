@@ -191,14 +191,13 @@ namespace Test.ModelsTest
                 PosisionatedModels = posisionatedModels,
             };
 
-            foreach (PropertyInfo property in posisionatedModels[0].GetType().GetProperties())
+            
+            for(int i = 0; i < posisionatedModels.Count; i++)
             {
-                Assert.AreEqual(property.GetValue(posisionatedModels[0]), property.GetValue(_scene.PosisionatedModels[0]));
-            }
-
-            foreach (PropertyInfo property in posisionatedModels[1].GetType().GetProperties())
-            {
-                Assert.AreEqual(property.GetValue(posisionatedModels[1]), property.GetValue(_scene.PosisionatedModels[1]));
+                foreach (PropertyInfo property in posisionatedModels[i].GetType().GetProperties())
+                {
+                    Assert.AreEqual(property.GetValue(posisionatedModels[i]), property.GetValue(_scene.PosisionatedModels[i]));
+                }
             }
 
         }
