@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracingApp", "RayTracingApp\RayTracingApp.csproj", "{DF2D8AC3-ACD5-4AD8-A67B-7C7E3ACC9F83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Model\Models.csproj", "{26FD191F-901D-4224-A0F4-C93819EDA0DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{26FD191F-901D-4224-A0F4-C93819EDA0DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{8AFD5675-EF7D-4C0C-9936-8EBF95410A98}"
 EndProject

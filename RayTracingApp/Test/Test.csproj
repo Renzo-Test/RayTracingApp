@@ -84,7 +84,7 @@
       <Project>{5e7fe5d8-e9a5-4b2c-aa81-e63cc8e6669f}</Project>
       <Name>MemoryRepository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Models.csproj">
+    <ProjectReference Include="..\Models\Models.csproj">
       <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>
       <Name>Models</Name>
     </ProjectReference>
