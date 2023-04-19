@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using Models;
 
 namespace Test.ModelsTest
@@ -10,7 +9,7 @@ namespace Test.ModelsTest
         [TestMethod]
         public void CreateModels_OkTest()
         {
-            Model newModel= new Model();
+            Model newModel = new Model();
         }
 
         [TestMethod]

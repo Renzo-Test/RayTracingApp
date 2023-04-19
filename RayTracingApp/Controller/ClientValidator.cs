@@ -1,5 +1,4 @@
 ﻿using Controller.ClientExceptions;
-using System;
 using System.Linq;
 
 namespace Controller
@@ -14,7 +13,7 @@ namespace Controller
 
         public static void RunUsernameConditions(string username)
         {
-            IsAphanumeric(username); 
+            IsAphanumeric(username);
             LengthInRangeUsername(username);
         }
 
@@ -27,7 +26,7 @@ namespace Controller
 
         public static void LengthInRangeUsername(string username)
         {
-            if(!(username.Length >= 3 && username.Length <= 20))
+            if (!(username.Length >= 3 && username.Length <= 20))
             {
                 throw new NotInExpectedRangeException(NotInExpectedRangeUsernameMessage);
             }
@@ -60,7 +59,7 @@ namespace Controller
 
         public static void LengthInRangePassword(string password)
         {
-            if(!(password.Length >= 5 && password.Length <= 25))
+            if (!(password.Length >= 5 && password.Length <= 25))
             {
                 throw new NotInExpectedRangeException(NotInExpectedRangePasswordMessage);
             }

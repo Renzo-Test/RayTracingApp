@@ -3,11 +3,7 @@ using IRepository;
 using MemoryRepository.Exceptions;
 using MemoryRepository.MaterialRepository;
 using Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Controller
 {
@@ -57,7 +53,7 @@ namespace Controller
 
         private static void RunNameIsEmptyChecker(Material material)
         {
-            if(material.Name.Equals(string.Empty))
+            if (material.Name.Equals(string.Empty))
             {
                 throw new EmptyNameException(EmptyNameMessage);
             }
@@ -65,7 +61,7 @@ namespace Controller
 
         private static void RunNameIsSpacedChecker(Material material)
         {
-            if(material.Name.StartsWith(SpaceCharacterConstant) || material.Name.EndsWith(SpaceCharacterConstant))
+            if (material.Name.StartsWith(SpaceCharacterConstant) || material.Name.EndsWith(SpaceCharacterConstant))
             {
                 throw new NotAlphanumericException(NotAlphanumericMessage);
             }
@@ -79,11 +75,11 @@ namespace Controller
 
                 return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
             }
-            catch(NotFoundMaterialException)
+            catch (NotFoundMaterialException)
             {
                 return false;
             }
-            
+
         }
 
         public void RemoveMaterial(string materialName, string username, List<Model> models)

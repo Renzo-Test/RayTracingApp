@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using Models;
 
 namespace Test.ModelsTest
@@ -40,7 +39,7 @@ namespace Test.ModelsTest
         public void SetColor_validColor_OkTest()
         {
             Color _newColor = new Color();
-            
+
             _material = new Material()
             {
                 Color = _newColor,

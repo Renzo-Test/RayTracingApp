@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class PosisionatedModel
+    internal class Class1
     {
-        public Coordinate Position { get; set; }
-        public Model Model { get; set; }
     }
 }

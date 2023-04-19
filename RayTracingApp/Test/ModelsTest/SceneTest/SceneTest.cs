@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using Models;
-using System.Reflection;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Test.ModelsTest
 {
@@ -67,7 +67,7 @@ namespace Test.ModelsTest
         {
             _scene = new Scene()
             {
-                Fov  = 100,
+                Fov = 100,
             };
             Assert.AreEqual(100, _scene.Fov);
         }
@@ -81,7 +81,7 @@ namespace Test.ModelsTest
                 Y = 20,
                 Z = 30,
             };
-            
+
             _scene = new Scene()
             {
                 CameraPosition = newCoordinate,
@@ -191,8 +191,8 @@ namespace Test.ModelsTest
                 PosisionatedModels = posisionatedModels,
             };
 
-            
-            for(int i = 0; i < posisionatedModels.Count; i++)
+
+            for (int i = 0; i < posisionatedModels.Count; i++)
             {
                 foreach (PropertyInfo property in posisionatedModels[i].GetType().GetProperties())
                 {

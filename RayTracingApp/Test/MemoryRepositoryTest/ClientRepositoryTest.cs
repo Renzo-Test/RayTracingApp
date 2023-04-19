@@ -1,8 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using MemoryRepository;
+﻿using MemoryRepository;
 using MemoryRepository.Exceptions;
-using Controller.ClientExceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test.MemoryRepositoryTest
 {
