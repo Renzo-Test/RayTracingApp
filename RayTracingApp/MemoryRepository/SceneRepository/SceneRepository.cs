@@ -22,7 +22,8 @@ namespace MemoryRepository
 
         public List<Scene> GetScenesByClient(string username)
         {
-            return _scenes.FindAll(scene => scene.Owner.Equals(username));
+            List<Scene> foundScenes = _scenes.FindAll(scene => scene.Owner.Equals(username));
+            return foundScenes;
         }
     }
 }
