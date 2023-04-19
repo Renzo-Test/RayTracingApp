@@ -24,5 +24,15 @@ namespace Test.ModelsTest
             Assert.AreEqual("ownerName", newScene.Owner);
         }
 
+        [TestMethod]
+        public void SetName_OkTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "modelName"
+            };
+            Assert.AreEqual("modelName", newScene.Name);
+        }
+
     }
 }
