@@ -70,9 +70,16 @@ namespace Test.MemoryRepositoryTest
             _sceneRepository.AddScene(_scene2);
 
             List<Scene> iterable = _sceneRepository.GetScenesByClient("OwnerName");
-            CollectionAssert.Contains(iterable, _scene);
-            CollectionAssert.Contains(iterable, _scene2);
+            List<Scene> subSet = new List<Scene>()
+            {
+                _scene,
+                _scene2
+            };
+
+            CollectionAssert.IsSubsetOf(subSet, iterable);
         }
+
+
 
     }
 }
