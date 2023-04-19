@@ -2,7 +2,6 @@
 using System;
 using Models;
 
-
 namespace Test.ModelsTest
 {
     [TestClass]
