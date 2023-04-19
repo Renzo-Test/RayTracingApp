@@ -7,6 +7,14 @@ namespace Test.ControllerTest
     [TestClass]
     public class SceneControllerTest
     {
+        private SceneController _sceneController;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _sceneController = new SceneController();
+        }
+
         [TestMethod]
         public void CreateSceneController_OkTest()
         {
@@ -16,12 +24,11 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddScene_OkTest()
         {
-            SceneController sceneController = new SceneController();
             Scene newScene = new Scene();
 
-            sceneController.AddScene(newScene, "ownerName");
+            _sceneController.AddScene(newScene, "ownerName");
 
-            CollectionAssert.Contains(sceneController.Repository.GetScenesByClient("ownerName"), newScene);
+            CollectionAssert.Contains(_sceneController.Repository.GetScenesByClient("ownerName"), newScene);
         }
     }
 }
