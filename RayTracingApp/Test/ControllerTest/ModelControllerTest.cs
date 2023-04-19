@@ -1,9 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Controller;
-using Models;
-using MemoryRepository.Exceptions;
+﻿using Controller;
 using Controller.ModelExceptions;
+using MemoryRepository.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 
 namespace Test.ControllerTest
 {
@@ -25,7 +24,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        public void ListModels_ValidUsername_OkTest() 
+        public void ListModels_ValidUsername_OkTest()
         {
             _modelController = new ModelController();
             Model targetModel = new Model()
@@ -64,7 +63,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidModelInputException))]
-        public void AddModel_DuplicatedModel_OkTest()
+        public void AddModel_DuplicatedModel_FailTest()
         {
             Model _newModel = new Model()
             {
@@ -102,7 +101,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException (typeof(InvalidModelInputException))]
+        [ExpectedException(typeof(InvalidModelInputException))]
         public void AddModel_EmptyModelName_FailTest()
         {
             Model _newModel = new Model()
@@ -130,9 +129,9 @@ namespace Test.ControllerTest
         }
         [TestMethod]
         [ExpectedException(typeof(NotFoundModelException))]
-        public void RemoveModels_OkTest()
+        public void RemoveModels_FailTest()
         {
-            Model newModel= new Model()
+            Model newModel = new Model()
             {
                 Name = "modelName",
             };

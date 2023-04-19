@@ -1,10 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Models;
-using System.Collections.Generic;
-using Controller.MaterialExceptions;
-using MemoryRepository.Exceptions;
+﻿using MemoryRepository.Exceptions;
 using MemoryRepository.MaterialRepository;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -64,7 +61,7 @@ namespace Test.MemoryRepositoryTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundMaterialException))]
-        public void RemoveMaterial_OkTest()
+        public void RemoveMaterial_FailTest()
         {
 
             Color NewColor = new Color()
@@ -89,7 +86,7 @@ namespace Test.MemoryRepositoryTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundMaterialException))]
-        public void RemoveMaterial_NotExistingMaterial_OkTest()
+        public void RemoveMaterial_NotExistingMaterial_FailTest()
         {
             Color NewColor = new Color()
             {

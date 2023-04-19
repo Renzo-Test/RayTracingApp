@@ -49,7 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Models.csproj">
+    <ProjectReference Include="..\Models\Models.csproj">
       <Project>{26fd191f-901d-4224-a0f4-c93819eda0de}</Project>
       <Name>Models</Name>
     </ProjectReference>

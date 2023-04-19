@@ -1,11 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using MemoryRepository;
-using Models;
-using System.Collections;
-using System.Linq;
-using System.Collections.Generic;
+﻿using MemoryRepository;
 using MemoryRepository.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
+using System.Collections.Generic;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -28,7 +25,7 @@ namespace Test.MemoryRepositoryTest
 
         [TestMethod]
         public void GetFiguresByClient_OwnerName_OkTest()
-        { 
+        {
             Figure newFigure = new Sphere()
             {
                 Name = "Test",
@@ -79,12 +76,12 @@ namespace Test.MemoryRepositoryTest
             List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
 
             CollectionAssert.Contains(iterable, newFigure);
-            
+
         }
 
-        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
-        public void RemoveFigure_OkTest()
+        [ExpectedException(typeof(NotFoundFigureException))]
+        public void RemoveFigure_FailTest()
         {
             Figure newFigure = new Sphere()
             {
@@ -97,9 +94,9 @@ namespace Test.MemoryRepositoryTest
             List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
         }
 
-        [ExpectedException(typeof(NotFoundFigureException))]
         [TestMethod]
-        public void RemoveFigure_NotExistingFigure_OkTest()
+        [ExpectedException(typeof(NotFoundFigureException))]
+        public void RemoveFigure_NotExistingFigure_FailTest()
         {
             Figure newFigure = new Sphere()
             {

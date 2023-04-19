@@ -1,11 +1,10 @@
 ﻿using Controller;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Models;
-using System.Collections.Generic;
-using MemoryRepository.Exceptions;
 using Controller.FigureExceptions;
+using MemoryRepository.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 using Models.SphereExceptions;
+using System.Collections.Generic;
 
 namespace Test.ControllerTest
 {
@@ -28,7 +27,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NotInExpectedRangeException))]
-        public void NameIsNotEmpty_EmptyString_OkTest()
+        public void NameIsNotEmpty_EmptyString_FailTest()
         {
             _figureController.RunEmptyNameChecker("");
         }
@@ -51,9 +50,9 @@ namespace Test.ControllerTest
             _figureController.RunSpacedNameChecker("FigureName");
         }
 
-        [ExpectedException(typeof(NotAlphanumericException))]
         [TestMethod]
-        public void NameHasNoSpaces_Figure_Name_OkTest()
+        [ExpectedException(typeof(NotAlphanumericException))]
+        public void NameHasNoSpaces_Figure_Name_FailTest()
         {
             _figureController.RunSpacedNameChecker("Figure Name");
         }
@@ -115,7 +114,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidFigureInputException))]
-        public void AddFigure_InvalidFigure_OkTest()
+        public void AddFigure_InvalidFigure_FailTest()
         {
             Client currentClient = new Client()
             {
@@ -135,7 +134,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidFigureInputException))]
-        public void AddFigure_DuplicatedFigureName_OkTest()
+        public void AddFigure_DuplicatedFigureName_FailTest()
         {
             Client currentClient = new Client()
             {
@@ -177,14 +176,14 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundFigureException))]
-        public void ListFigures_NonExistentClient_OkTest()
+        public void ListFigures_NonExistentClient_FailTest()
         {
             _figureController.ListFigures("nonExistentUsername");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundFigureException))]
-        public void RemoveFigures_ValidFigure_OkTest()
+        public void RemoveFigures_ValidFigure_FailTest()
         {
             Client currentClient = new Client()
             {
@@ -208,7 +207,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(FigureUsedByModelException))]
-        public void RemoveFigures_FigureUsedByModel_OkTest()
+        public void RemoveFigures_FigureUsedByModel_FailTest()
         {
             Figure figure = new Sphere()
             {
@@ -240,10 +239,10 @@ namespace Test.ControllerTest
 
             _figureController.FigurePropertiesAreValid(newSphere);
         }
-        
+
         [TestMethod]
         [ExpectedException(typeof(SmallerThanCeroRadiusException))]
-        public void FigureIsValid_InvalidFigure_OkTest()
+        public void FigureIsValid_InvalidFigure_FailTest()
         {
             Figure newSphere = new Sphere()
             {

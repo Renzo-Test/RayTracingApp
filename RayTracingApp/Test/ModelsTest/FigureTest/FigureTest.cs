@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using Models;
 
 namespace Test.ModelsTest
@@ -51,7 +50,7 @@ namespace Test.ModelsTest
                 Radius = 3.51
             };
             Assert.AreEqual(3.51, _sphere.Radius);
-            Assert.AreEqual("Balloon",_sphere.Name);
+            Assert.AreEqual("Balloon", _sphere.Name);
         }
 
         [TestMethod]

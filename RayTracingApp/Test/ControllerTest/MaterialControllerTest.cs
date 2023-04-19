@@ -1,10 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Models;
-using Controller;
-using MemoryRepository.Exceptions;
+﻿using Controller;
 using Controller.MaterialExceptions;
-using Controller.FigureExceptions;
+using MemoryRepository.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 using System.Collections.Generic;
 
 namespace Test.ControllerTest
@@ -115,7 +113,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundMaterialException))]
-        public void RemoveMaterials_OkTest()
+        public void RemoveMaterials_FailTest()
         {
             Material newMaterial = new Material()
             {
@@ -132,7 +130,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(MaterialUsedByModelException))]
-        public void RemoveMaterial_MaterialUsedByModel_OkTest()
+        public void RemoveMaterial_MaterialUsedByModel_FailTest()
         {
             Material material = new Material()
             {

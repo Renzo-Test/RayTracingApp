@@ -111,7 +111,7 @@ namespace Test.MemoryRepositoryTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundSceneException))]
-        public void GetScenesByClient_NoClient_OkTest()
+        public void GetScenesByClient_NoClient_FailTest()
         {
             _sceneRepository = new SceneRepository();
             _sceneRepository.GetScenesByClient("OwnerName");
@@ -119,7 +119,7 @@ namespace Test.MemoryRepositoryTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundSceneException))]
-        public void DeleteScene_ExistingScene_OkTest()
+        public void DeleteScene_ExistingScene_FailTest()
         {
             _sceneRepository = new SceneRepository();
 

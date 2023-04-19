@@ -3,12 +3,7 @@ using IRepository;
 using MemoryRepository;
 using MemoryRepository.Exceptions;
 using Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Controller
 {
@@ -94,7 +89,7 @@ namespace Controller
 
         public void RunSpacedNameChecker(string figureName)
         {
-            if(figureName.Contains(SpaceCharacterConstant))
+            if (figureName.Contains(SpaceCharacterConstant))
             {
                 throw new NotAlphanumericException(NotAlphanumericExceptionMessage);
             }
