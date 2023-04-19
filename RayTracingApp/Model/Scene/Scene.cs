@@ -16,5 +16,6 @@ namespace Models
         public int Fov { get; set; }
         public Coordinate CameraPosition { get; set; } = new Coordinate() { X = 0, Y = 2, Z = 0 };
         public Coordinate ObjectivePosition { get; set; } = new Coordinate() { X = 0, Y = 2, Z = 5 };
+        public List<PosisionatedModel> PosisionatedModels { get; set; }
     }
 }
