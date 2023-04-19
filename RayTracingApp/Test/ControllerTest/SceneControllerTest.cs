@@ -58,5 +58,17 @@ namespace Test.ControllerTest
 
             _sceneController.AddScene(newScene, "owneraName");
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidSpacePosition))]
+        public void AddScene_EndWithSpace_FailTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "sceneName "
+            };
+
+            _sceneController.AddScene(newScene, "owneraName");
+        }
     }
 }
