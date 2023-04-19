@@ -9,5 +9,6 @@ namespace Models
     public class Scene
     {
         public string Owner { get; set; }
+        public string Name { get; set; }
     }
 }

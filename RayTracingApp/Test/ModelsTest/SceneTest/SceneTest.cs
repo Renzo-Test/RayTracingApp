@@ -34,5 +34,14 @@ namespace Test.ModelsTest
             Assert.AreEqual("modelName", newScene.Name);
         }
 
+        [TestMethod]
+        public void CanGetRegisterTime_OkTest()
+        {
+            Scene newScene = new Scene();
+            String today = DateTime.Now.ToString("hh:mm:ss - yyyy/MM/dd");
+            Assert.AreEqual(today, newScene.RegisterTime);
+        }
+
+
     }
 }
