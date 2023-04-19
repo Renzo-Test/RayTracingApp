@@ -34,5 +34,25 @@ namespace Test.ModelsTest
                 Assert.AreEqual(property.GetValue(newCoordinate), property.GetValue(posisionatedModel.Position));
             }
         }
+
+        [TestMethod]
+        public void SetModel_OkTest()
+        {
+            Model newModel = new Model()
+            {
+                Name = "figureName",
+                Owner = "ownerName"
+            };
+
+            PosisionatedModel posisionatedModel = new PosisionatedModel()
+            {
+                Model = newModel,
+            };
+
+            foreach (PropertyInfo property in newModel.GetType().GetProperties())
+            {
+                Assert.AreEqual(property.GetValue(newModel), property.GetValue(posisionatedModel.Model));
+            }
+        }
     }
 }
