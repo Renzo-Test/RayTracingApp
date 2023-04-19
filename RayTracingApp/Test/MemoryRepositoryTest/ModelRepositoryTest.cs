@@ -119,6 +119,7 @@ namespace Test.MemoryRepositoryTest
             List<Model> iterable = _modelRepository.GetModelsByClient("OwnerName");
             CollectionAssert.DoesNotContain(iterable, NewModel);
         }
+
         [TestMethod]
         [ExpectedException(typeof(NotFoundModelException))]
         public void RemoveModel_NotExistingModel_OkTest()
