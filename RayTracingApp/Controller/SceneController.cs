@@ -22,11 +22,11 @@ namespace Controller
             }
             if (newScene.Name.StartsWith(" "))
             {
-                throw new InvalidSpacePosition("Scene's name must not start or end with blank space");
+                throw new InvalidSpacePositionException("Scene's name must not start or end with blank space");
             }
             if (newScene.Name.EndsWith(" "))
             {
-                throw new InvalidSpacePosition("Scene's name must not start or end with blank space");
+                throw new InvalidSpacePositionException("Scene's name must not start or end with blank space");
             }
 
             newScene.Owner = username;
