@@ -31,5 +31,10 @@ namespace MemoryRepository
             }
             return foundScenes;
         }
+
+        public void RemoveScene(Scene scene)
+        {
+            _scenes.Remove(scene);
+        }
     }
 }
