@@ -2,6 +2,7 @@
 using System;
 using Models;
 using MemoryRepository;
+using System.Collections.Generic;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -29,7 +30,8 @@ namespace Test.MemoryRepositoryTest
 
             _sceneRepository.AddScene(_scene);
 
-            Assert.AreEqual(_scene, _sceneRepository.GetScenesByClient("OwnerName")[0]);
+            List<Scene> iterable = _sceneRepository.GetScenesByClient("OwnerName");
+            CollectionAssert.Contains(iterable, _scene);
         }
 
         [TestMethod]
