@@ -10,5 +10,6 @@ namespace Models
     {
         public string Owner { get; set; }
         public string Name { get; set; }
+        public string RegisterTime { get; set; } = DateTime.Now.ToString("hh:mm:ss - yyyy/MM/dd");
     }
 }
