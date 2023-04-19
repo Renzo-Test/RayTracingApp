@@ -13,5 +13,6 @@ namespace Models
         public string RegisterTime { get; set; } = DateTime.Now.ToString("hh:mm:ss - yyyy/MM/dd");
         public string LastModificationDate { get; set; } = "unmodified";
         public string LastRenderDate { get; set; } = "unrendered";
+        public int Fov { get; set; }
     }
 }
