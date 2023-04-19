@@ -36,5 +36,16 @@ namespace Test.ModelsTest
             Assert.AreEqual(10, newCoordinate.Y);
         }
 
+        [TestMethod]
+        public void SetZ_OkTest()
+        {
+            Coordinate newCoordinate = new Coordinate()
+            {
+                Z = 10,
+            };
+
+            Assert.AreEqual(10, newCoordinate.Z);
+        }
+
     }
 }
