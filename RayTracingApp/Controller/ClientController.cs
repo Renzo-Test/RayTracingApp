@@ -3,7 +3,6 @@ using IRepository;
 using MemoryRepository;
 using MemoryRepository.Exceptions;
 using Models;
-using System;
 
 
 namespace Controller
@@ -32,14 +31,14 @@ namespace Controller
 
         private void RunSignUpChecker(string username, string password)
         {
-           if (ClientAlreadyExists(username))
-           {
+            if (ClientAlreadyExists(username))
+            {
                 string AlreadyExsitingClientMessage = $"Client with username {username} already exists";
                 throw new AlreadyExistingClientException(AlreadyExsitingClientMessage);
-           }
+            }
 
-           ClientValidator.RunPasswordConditions(password);
-           ClientValidator.RunUsernameConditions(username);
+            ClientValidator.RunPasswordConditions(password);
+            ClientValidator.RunUsernameConditions(username);
         }
 
         public bool ClientAlreadyExists(string username)
@@ -49,7 +48,7 @@ namespace Controller
                 Repository.GetClient(username);
                 return true;
             }
-            catch(NotFoundClientException)
+            catch (NotFoundClientException)
             {
                 return false;
             };

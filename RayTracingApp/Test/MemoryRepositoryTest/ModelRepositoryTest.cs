@@ -1,12 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Models;
-using System.Collections;
-using System.Linq;
-using System.Collections.Generic;
+﻿using MemoryRepository;
 using MemoryRepository.Exceptions;
-using MemoryRepository;
-using MemoryRepository.MaterialRepository;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
+using System.Collections.Generic;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -56,7 +52,7 @@ namespace Test.MemoryRepositoryTest
             Assert.AreEqual(NewModel, _modelRepository.GetModelsByClient(NewModel.Owner)[0]);
         }
         [TestMethod]
-        public void AddModel_OkTest() 
+        public void AddModel_OkTest()
         {
             Figure newFigure = new Sphere()
             {

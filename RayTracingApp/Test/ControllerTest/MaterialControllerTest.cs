@@ -1,10 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Models;
-using Controller;
-using MemoryRepository.Exceptions;
+﻿using Controller;
 using Controller.MaterialExceptions;
-using Controller.FigureExceptions;
+using MemoryRepository.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 using System.Collections.Generic;
 
 namespace Test.ControllerTest

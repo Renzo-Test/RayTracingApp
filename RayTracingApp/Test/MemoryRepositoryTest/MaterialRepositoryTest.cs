@@ -1,10 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Models;
-using System.Collections.Generic;
-using Controller.MaterialExceptions;
-using MemoryRepository.Exceptions;
+﻿using MemoryRepository.Exceptions;
 using MemoryRepository.MaterialRepository;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 
 namespace Test.MemoryRepositoryTest
 {

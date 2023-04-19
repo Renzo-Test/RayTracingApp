@@ -1,9 +1,7 @@
-﻿using System;
-using Models;
-using Controller;
+﻿using Controller;
 using Controller.ClientExceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MemoryRepository.Exceptions;
+using Models;
 
 namespace Test.ControllerTest
 {
@@ -62,7 +60,7 @@ namespace Test.ControllerTest
         [TestMethod]
         public void CheckSignUp_Gomez_Gom1_OkTest()
         {
-             _controller.SignUp("Gomez", "Gom1");
+            _controller.SignUp("Gomez", "Gom1");
         }
 
         [TestMethod]
@@ -76,7 +74,7 @@ namespace Test.ControllerTest
         public void CheckIfClientExists_Gomez_OkTest()
         {
             _controller.Repository.AddClient("Gomez", "GomezSecret");
-            
+
             bool result = _controller.ClientAlreadyExists("Gomez");
 
             Assert.IsTrue(result);

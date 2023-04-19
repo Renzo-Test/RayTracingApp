@@ -1,11 +1,10 @@
 ﻿using Controller;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Models;
-using System.Collections.Generic;
-using MemoryRepository.Exceptions;
 using Controller.FigureExceptions;
+using MemoryRepository.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 using Models.SphereExceptions;
+using System.Collections.Generic;
 
 namespace Test.ControllerTest
 {
@@ -240,7 +239,7 @@ namespace Test.ControllerTest
 
             _figureController.FigurePropertiesAreValid(newSphere);
         }
-        
+
         [TestMethod]
         [ExpectedException(typeof(SmallerThanCeroRadiusException))]
         public void FigureIsValid_InvalidFigure_OkTest()

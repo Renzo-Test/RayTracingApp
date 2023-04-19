@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Controller.ModelExceptions
+﻿namespace Controller.ModelExceptions
 {
     public class AlreadyExistingModelException : InvalidModelInputException
     {
-        public AlreadyExistingModelException(string message) : base (message) { }
+        public AlreadyExistingModelException(string message) : base(message) { }
     }
 }

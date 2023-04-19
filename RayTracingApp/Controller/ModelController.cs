@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Controller.ModelExceptions;
 using IRepository;
 using MemoryRepository;
-using MemoryRepository.MaterialRepository;
-using Models;
-using Controller.ModelExceptions;
 using MemoryRepository.Exceptions;
+using Models;
+using System.Collections.Generic;
 
 namespace Controller
 {
@@ -35,8 +30,8 @@ namespace Controller
                 RunModelChecker(model, username);
                 model.Owner = username;
                 Repository.AddModel(model);
-            } 
-            catch (InvalidModelInputException ex) 
+            }
+            catch (InvalidModelInputException ex)
             {
                 throw new InvalidModelInputException(ex.Message);
             }
@@ -55,7 +50,7 @@ namespace Controller
         }
         private void RunModelChecker(Model model, string username)
         {
-            if (ModelNameExist(model,username))
+            if (ModelNameExist(model, username))
             {
                 string AlreadyExistingModelName = $"Model with name {model.Name} already exist";
                 throw new AlreadyExistingModelException(AlreadyExistingModelName);
@@ -64,13 +59,13 @@ namespace Controller
             RunNameIsEmptyChecker(model);
         }
 
-        private bool ModelNameExist(Model model, string username) 
+        private bool ModelNameExist(Model model, string username)
         {
             try
             {
                 List<Model> clientModels = Repository.GetModelsByClient(username);
                 return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
-            } 
+            }
             catch (NotFoundModelException)
             {
                 return false;

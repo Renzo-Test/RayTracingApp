@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Controller;
+﻿using Controller;
 using Controller.ClientExceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
 namespace Test.ControllerTest
