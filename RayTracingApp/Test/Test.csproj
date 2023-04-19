@@ -62,6 +62,7 @@
     <Compile Include="ModelsTest\ClientTest\ClientTest.cs" />
     <Compile Include="ModelsTest\FigureTest\FigureTest.cs" />
     <Compile Include="ModelsTest\ModelTest\ModelTest.cs" />
+    <Compile Include="ModelsTest\SceneTest\SceneTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MemoryRepositoryTest\ClientRepositoryTest.cs" />
   </ItemGroup>

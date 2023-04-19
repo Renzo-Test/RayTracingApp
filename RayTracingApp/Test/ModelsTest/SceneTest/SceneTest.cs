@@ -2,7 +2,7 @@
 using System;
 using Models;
 
-namespace Test.ModelsTest.SceneTest
+namespace Test.ModelsTest
 {
     [TestClass]
 
