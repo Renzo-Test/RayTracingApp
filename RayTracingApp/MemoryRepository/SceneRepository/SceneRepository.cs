@@ -20,9 +20,9 @@ namespace MemoryRepository
             _scenes.Add(scene);
         }
 
-        public List<Scene> GetScenesByClient(string v)
+        public List<Scene> GetScenesByClient(string username)
         {
-            return _scenes;
+            return _scenes.FindAll(scene => scene.Owner.Equals(username));
         }
     }
 }
