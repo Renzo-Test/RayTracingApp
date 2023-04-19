@@ -58,6 +58,17 @@ namespace Test.ModelsTest
             Assert.AreEqual(expected, newScene.LastRenderDate);
         }
 
+        [TestMethod]
+        public void SetFov_OkTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Fov  = 100,
+            };
+            Assert.AreEqual(100, newScene.Fov);
+        }
+
+
 
 
     }
