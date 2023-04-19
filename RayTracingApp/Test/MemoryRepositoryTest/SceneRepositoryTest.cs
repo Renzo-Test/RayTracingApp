@@ -8,10 +8,12 @@ namespace Test.MemoryRepositoryTest
     [TestClass]
     public class SceneRepositoryTest
     {
+        private SceneRepository _sceneRepository;
+
         [TestMethod]
         public void CreateSceneRepository_OkTest()
         {
-            SceneRepository _sceneRepository = new SceneRepository();
+            _sceneRepository = new SceneRepository();
         }
     }
 }
