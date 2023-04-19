@@ -54,6 +54,7 @@
     <Compile Include="ControllerTest\FigureControllerTest.cs" />
     <Compile Include="ControllerTest\MaterialControllerTest.cs" />
     <Compile Include="ControllerTest\ModelControllerTest.cs" />
+    <Compile Include="MemoryRepositoryTest\SceneRepositoryTest.cs" />
     <Compile Include="MemoryRepositoryTest\FigureRepositoryTest.cs" />
     <Compile Include="MemoryRepositoryTest\MaterialRepositoryTest.cs" />
     <Compile Include="MemoryRepositoryTest\ModelRepositoryTest.cs" />

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Models;
-
+using MemoryRepository;
 
 namespace Test.MemoryRepositoryTest
 {
