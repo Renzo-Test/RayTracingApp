@@ -34,7 +34,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(EmptyNameException))]
-        public void AddScene_EmptyName_OkTest()
+        public void AddScene_EmptyName_FailTest()
         {
             Scene newScene = new Scene()
             {
