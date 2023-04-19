@@ -42,6 +42,15 @@ namespace Test.ModelsTest
             Assert.AreEqual(today, newScene.RegisterTime);
         }
 
+        [TestMethod]
+        public void CanGetLastModificationDate_OkTest()
+        {
+            Scene newScene = new Scene();
+            String expected = "unmodified";
+            Assert.AreEqual(expected, newScene.LastModificationDate);
+        }
+
+
 
     }
 }
