@@ -99,7 +99,10 @@ namespace Test.ModelsTest
 
             _scene = new Scene();
 
-            Assert.AreEqual(newCoordinate, _scene.CameraPosition);
+            Assert.AreEqual(newCoordinate.X, _scene.CameraPosition.X);
+            Assert.AreEqual(newCoordinate.Y, _scene.CameraPosition.Y);
+            Assert.AreEqual(newCoordinate.Z, _scene.CameraPosition.Z);
+
         }
 
 
