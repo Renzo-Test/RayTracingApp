@@ -73,7 +73,6 @@ namespace Test.ModelsTest
         [TestMethod]
         public void SetCameraPosition_OkTest()
         {
-            /*
             Coordinate newCoordinate = new Coordinate()
             {
                 X = 10,
@@ -85,8 +84,24 @@ namespace Test.ModelsTest
             {
                 CameraPosition = newCoordinate,
             };
-            Assert.AreEqual(newCoordinate, _scene.CameraPosition);*/
+            Assert.AreEqual(newCoordinate, _scene.CameraPosition);
         }
+
+        [TestMethod]
+        public void InitializeCameraPosition_DefaultValue_OkTest()
+        {
+            Coordinate newCoordinate = new Coordinate()
+            {
+                X = 0,
+                Y = 2,
+                Z = 0,
+            };
+
+            _scene = new Scene();
+
+            Assert.AreEqual(newCoordinate, _scene.CameraPosition);
+        }
+
 
 
 

@@ -14,5 +14,6 @@ namespace Models
         public string LastModificationDate { get; set; } = "unmodified";
         public string LastRenderDate { get; set; } = "unrendered";
         public int Fov { get; set; }
+        public Coordinate CameraPosition { get; set; }
     }
 }
