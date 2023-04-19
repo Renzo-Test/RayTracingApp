@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,11 @@ namespace MemoryRepository
 {
     public class SceneRepository
     {
+        private Scene _scene;
+
+        public void AddScene(Scene scene)
+        {
+            _scene = scene;
+        }
     }
 }
