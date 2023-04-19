@@ -108,6 +108,12 @@ namespace Test.MemoryRepositoryTest
             CollectionAssert.DoesNotContain(iterableOwner1, _scene2);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(NotFoundSceneException))]
+        public void GetScenesByClient_NoClient_OkTes()
+        {
+            _sceneRepository.GetScenesByClient("OwnerName");
+        }
 
     }
 }
