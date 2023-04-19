@@ -13,5 +13,16 @@ namespace Test.ModelsTest
         {
             Scene newScene = new Scene();
         }
+
+        [TestMethod]
+        public void SetOwner_OkTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Owner = "ownerName"
+            };
+            Assert.AreEqual("ownerName", newScene.Owner);
+        }
+
     }
 }
