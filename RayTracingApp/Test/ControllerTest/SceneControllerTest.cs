@@ -25,7 +25,10 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddScene_OkTest()
         {
-            Scene newScene = new Scene();
+            Scene newScene = new Scene()
+            {
+                Name = "Test",
+            };
 
             _sceneController.AddScene(newScene, "ownerName");
 
