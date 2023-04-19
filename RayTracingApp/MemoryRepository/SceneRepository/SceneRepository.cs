@@ -9,19 +9,20 @@ namespace MemoryRepository
 {
     public class SceneRepository
     {
-        private Scene _scene;
+        private readonly List<Scene> _scenes;
 
+        public SceneRepository()
+        {
+            _scenes = new List<Scene>();
+        }
         public void AddScene(Scene scene)
         {
-            _scene = scene;
+            _scenes.Add(scene);
         }
 
         public List<Scene> GetScenesByClient(string v)
         {
-            return new List<Scene>()
-            {
-                _scene,
-            };
+            return _scenes;
         }
     }
 }
