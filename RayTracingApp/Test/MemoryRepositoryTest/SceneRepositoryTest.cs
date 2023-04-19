@@ -79,6 +79,34 @@ namespace Test.MemoryRepositoryTest
             CollectionAssert.IsSubsetOf(subSet, iterable);
         }
 
+        [TestMethod]
+        public void AddDifferentClientScenes_OkTest()
+        {
+            _sceneRepository = new SceneRepository();
+
+            Scene _scene = new Scene()
+            {
+                Name = "Test",
+                Owner = "OwnerName",
+            };
+
+            Scene _scene2 = new Scene()
+            {
+                Name = "Test2",
+                Owner = "OwnerName2",
+            };
+
+            _sceneRepository.AddScene(_scene);
+            _sceneRepository.AddScene(_scene2);
+
+            List<Scene> iterableOwner1 = _sceneRepository.GetScenesByClient("OwnerName");
+            List<Scene> iterableOwner2 = _sceneRepository.GetScenesByClient("OwnerName2");
+
+            CollectionAssert.Contains(iterableOwner1, _scene);
+            CollectionAssert.Contains(iterableOwner2, _scene2);
+            CollectionAssert.DoesNotContain(iterableOwner2, _scene);
+            CollectionAssert.DoesNotContain(iterableOwner1, _scene2);
+        }
 
 
     }
