@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Models;
+using System.Reflection;
 
 namespace Test.ModelsTest
 {
@@ -99,10 +100,10 @@ namespace Test.ModelsTest
 
             _scene = new Scene();
 
-            Assert.AreEqual(newCoordinate.X, _scene.CameraPosition.X);
-            Assert.AreEqual(newCoordinate.Y, _scene.CameraPosition.Y);
-            Assert.AreEqual(newCoordinate.Z, _scene.CameraPosition.Z);
-
+            foreach (PropertyInfo property in newCoordinate.GetType().GetProperties())
+            {
+                Assert.AreEqual(property.GetValue(newCoordinate), property.GetValue(_scene.CameraPosition));
+            }
         }
 
 
