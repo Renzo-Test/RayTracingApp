@@ -13,6 +13,9 @@ namespace Controller
         private const string EmptyNameMessage = "Scene's name must not be empty";
         private const string SpaceCharacterConstant = " ";
         private const string StartOrEndWithSpaceMessage = "Scene's name must not start or end with blank space";
+
+        private const int MinFov = 1;
+        private const int MaxFov = 160;
         public IRepositoryScene Repository;
 
         public SceneController() 
@@ -81,7 +84,7 @@ namespace Controller
         {
             if (scene.Fov.Equals(0))
             {
-                throw new InvalidFovException("");
+                throw new InvalidFovException($"Scene's fov must be between {MinFov} and {MaxFov}");
             }
         }
 
