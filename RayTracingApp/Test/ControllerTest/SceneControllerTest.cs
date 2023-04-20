@@ -36,7 +36,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(EmptyNameException))]
+        [ExpectedException(typeof(InvalidSceneInputException))]
         public void AddScene_EmptyName_FailTest()
         {
             Scene newScene = new Scene()
@@ -48,7 +48,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidSpacePositionException))]
+        [ExpectedException(typeof(InvalidSceneInputException))]
         public void AddScene_StartWithSpace_FailTest()
         {
             Scene newScene = new Scene()
@@ -60,7 +60,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidSpacePositionException))]
+        [ExpectedException(typeof(InvalidSceneInputException))]
         public void AddScene_EndWithSpace_FailTest()
         {
             Scene newScene = new Scene()
@@ -72,7 +72,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(AlreadyExistingSceneException))]
+        [ExpectedException(typeof(InvalidSceneInputException))]
         public void AddScene_AlreadyExistingSceneName_FailTest()
         {
             Scene newScene = new Scene()

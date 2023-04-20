@@ -4,11 +4,15 @@ using IRepository;
 using MemoryRepository.Exceptions;
 using MemoryRepository;
 using System.Collections.Generic;
+using System;
 
 namespace Controller
 {
     public class SceneController
     {
+        private const string EmptyNameMessage = "Scene's name must not be empty";
+        private const string SpaceCharacterConstant = " ";
+        private const string StartOrEndWithSpaceMessage = "Scene's name must not start or end with blank space";
         public IRepositoryScene Repository;
 
         public SceneController() 
@@ -18,33 +22,58 @@ namespace Controller
 
         public void AddScene(Scene newScene, string username)
         {
-            if (newScene.Name.Equals(""))
+            try
             {
-                throw new EmptyNameException("Scene's name must not be empty");
+                SceneChecker(newScene, username);
+
+                newScene.Owner = username;
+                Repository.AddScene(newScene);
             }
-            if (newScene.Name.StartsWith(" "))
+            catch (InvalidSceneInputException ex)
             {
-                throw new InvalidSpacePositionException("Scene's name must not start or end with blank space");
+                throw new InvalidSceneInputException(ex.Message);
             }
-            if (newScene.Name.EndsWith(" "))
+        }
+
+        private void SceneChecker(Scene scene, string username)
+        {
+            if (SceneNameExist(scene, username))
             {
-                throw new InvalidSpacePositionException("Scene's name must not start or end with blank space");
+                string AlreadyExistingSceneMessage = $"Scene with name {scene.Name} already exists";
+                throw new AlreadyExistingSceneException(AlreadyExistingSceneMessage);
             }
 
+            NameIsEmpty(scene);
+            NameStartOrEndWithSpace(scene);
+        }
 
+        private bool SceneNameExist(Scene newScene, string username)
+        {
             try
             {
                 List<Scene> clientScenes = Repository.GetScenesByClient(username);
-                clientScenes.Find(scene => scene.Name.Equals(newScene.Name));
+                return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
             }
             catch (NotFoundSceneException)
             {
-                newScene.Owner = username;
-                Repository.AddScene(newScene);
-                return;
+                return false;
             }
+        }
 
-            throw new AlreadyExistingSceneException($"Scene with name {newScene.Name} already exists");
+        private static void NameIsEmpty(Scene scene)
+        {
+            if (scene.Name.Equals(string.Empty))
+            {
+                throw new EmptyNameException(EmptyNameMessage);
+            }
+        }
+
+        private static void NameStartOrEndWithSpace(Scene scene)
+        {
+            if (scene.Name.StartsWith(SpaceCharacterConstant) || scene.Name.EndsWith(SpaceCharacterConstant))
+            {
+                throw new InvalidSpacePositionException(StartOrEndWithSpaceMessage);
+            }
         }
     }
 }
