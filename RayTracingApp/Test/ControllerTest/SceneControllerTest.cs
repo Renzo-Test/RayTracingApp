@@ -190,5 +190,36 @@ namespace Test.ControllerTest
             _sceneController.RemoveScene("scene", "firstOwner");
             CollectionAssert.Contains(_sceneController.ListScenes("secondOwner"), anotherScene);
         }
+
+        [TestMethod]
+        public void GetAvailableModels_OkTest()
+        {
+            Model newModel = new Model()
+            {
+                Owner = "ownerName",
+                Name = "modelName"
+            };
+            PosisionatedModel posisionatedModel = new PosisionatedModel();
+            posisionatedModel.Model = newModel;
+
+            List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
+            sceneModels.Add(posisionatedModel);
+
+            Scene newScene = new Scene()
+            {
+                Name = "scene",
+                PosisionatedModels = sceneModels
+            };
+
+            Model availableModel = new Model()
+            {
+                Owner = "ownerName",
+                Name = "unusedModel"
+            };
+
+            _sceneController.AddScene(newScene, "ownerName");
+
+            CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene), availableModel);
+        }
     }
 }
