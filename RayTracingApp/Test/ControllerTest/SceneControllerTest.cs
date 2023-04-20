@@ -223,5 +223,72 @@ namespace Test.ControllerTest
 
             CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
         }
+
+        [TestMethod]
+        public void GetAvailableModels_ContainsAllUnusedModels_OkTest()
+        {
+            Model availableModel = new Model()
+            {
+                Name = "modelName"
+            };
+            PosisionatedModel posisionatedModel = new PosisionatedModel();
+            posisionatedModel.Model = availableModel;
+
+            List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
+            sceneModels.Add(posisionatedModel);
+
+            Scene newScene = new Scene()
+            {
+                Name = "scene",
+                PosisionatedModels = sceneModels
+            };
+
+            Model otherAvailableModel = new Model()
+            {
+                Name = "unusedModel"
+            };
+
+            ModelController modelController = new ModelController();
+            modelController.AddModel(otherAvailableModel, "ownerName");
+            modelController.AddModel(availableModel, "ownerName");
+            _sceneController.AddScene(newScene, "ownerName");
+            List<Model> ownerModels = modelController.ListModels("ownerName");
+
+            CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
+            CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), otherAvailableModel);
+        }
+
+        [TestMethod]
+        public void GetAvailableModels_OnlyContainsUnusedModels_OkTest()
+        {
+            Model newModel = new Model()
+            {
+                Name = "modelName"
+            };
+            PosisionatedModel posisionatedModel = new PosisionatedModel();
+            posisionatedModel.Model = newModel;
+
+            List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
+            sceneModels.Add(posisionatedModel);
+
+            Scene newScene = new Scene()
+            {
+                Name = "scene",
+                PosisionatedModels = sceneModels
+            };
+
+            Model availableModel = new Model()
+            {
+                Name = "unusedModel"
+            };
+
+            ModelController modelController = new ModelController();
+            modelController.AddModel(newModel, "ownerName");
+            modelController.AddModel(availableModel, "ownerName");
+            _sceneController.AddScene(newScene, "ownerName");
+            List<Model> ownerModels = modelController.ListModels("ownerName");
+
+            CollectionAssert.DoesNotContain(_sceneController.GetAvailableModels(newScene, ownerModels), newModel);
+        }
     }
 }

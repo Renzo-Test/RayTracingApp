@@ -119,10 +119,8 @@ namespace Controller
         }
 
         public List<Model> GetAvailableModels(Scene scene, List<Model> ownerModels)
-        {
-            List<Model> models = new List<Model>() { ownerModels[1] };
-        
-            return models;
+        {        
+            return ownerModels;
         }
     }
 }
