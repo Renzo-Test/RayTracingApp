@@ -2,6 +2,7 @@
 using Controller;
 using Models;
 using Controller.SceneExceptions;
+using System;
 
 namespace Test.ControllerTest
 {
@@ -82,6 +83,21 @@ namespace Test.ControllerTest
 
             _sceneController.AddScene(newScene, "owneraName");
             _sceneController.AddScene(newScene, "owneraName");
+        }
+
+        [TestMethod]
+        public void UpdateLastModificationDate_OkTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "sceneName"
+            };
+
+            _sceneController.UpdateLastModificationDate(newScene);
+
+            Assert.AreEqual(DateTime.Now.ToString(), newScene.LastModificationDate);
+
+            
         }
     }
 }
