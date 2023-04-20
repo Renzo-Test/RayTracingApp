@@ -155,5 +155,19 @@ namespace Test.ControllerTest
             CollectionAssert.Contains(ownerScenes, newScene);
             CollectionAssert.Contains(ownerScenes, anotherScene);
         }
+
+        [TestMethod]
+        public void RemoveScene_OkTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "scene"
+            };
+
+            _sceneController.AddScene(newScene, "ownerName");
+
+            _sceneController.RemoveScene("scene");
+            CollectionAssert.DoesNotContain(_sceneController.ListScenes("ownerName"), newScene);
+        }
     }
 }
