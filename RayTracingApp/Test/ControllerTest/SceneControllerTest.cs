@@ -196,7 +196,6 @@ namespace Test.ControllerTest
         {
             Model newModel = new Model()
             {
-                Owner = "ownerName",
                 Name = "modelName"
             };
             PosisionatedModel posisionatedModel = new PosisionatedModel();
@@ -213,13 +212,16 @@ namespace Test.ControllerTest
 
             Model availableModel = new Model()
             {
-                Owner = "ownerName",
                 Name = "unusedModel"
             };
 
+            ModelController modelController = new ModelController();
+            modelController.AddModel(newModel, "ownerName");
+            modelController.AddModel(availableModel, "ownerName");
             _sceneController.AddScene(newScene, "ownerName");
+            List<Model> ownerModels = modelController.ListModels("ownerName");
 
-            CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene), availableModel);
+            CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
         }
     }
 }

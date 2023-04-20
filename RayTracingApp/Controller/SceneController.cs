@@ -6,6 +6,7 @@ using MemoryRepository;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.Collections;
 
 namespace Controller
 {
@@ -115,6 +116,13 @@ namespace Controller
             List<Scene> userScenes = ListScenes(username);
             Scene removeScene = userScenes.Find(Scene => Scene.Name.Equals(name));
             Repository.RemoveScene(removeScene);
+        }
+
+        public List<Model> GetAvailableModels(Scene scene, List<Model> ownerModels)
+        {
+            List<Model> models = new List<Model>() { ownerModels[1] };
+        
+            return models;
         }
     }
 }
