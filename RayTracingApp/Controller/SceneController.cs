@@ -5,6 +5,7 @@ using MemoryRepository.Exceptions;
 using MemoryRepository;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace Controller
 {
@@ -82,7 +83,8 @@ namespace Controller
 
         private static void FovIsValid(Scene scene)
         {
-            if (scene.Fov.Equals(0))
+            int fov = scene.Fov;
+            if (!Enumerable.Range(MinFov, MaxFov).Contains(fov))
             {
                 throw new InvalidFovException($"Scene's fov must be between {MinFov} and {MaxFov}");
             }
