@@ -3,6 +3,7 @@ using Controller;
 using Models;
 using Controller.SceneExceptions;
 using System;
+using System.Collections.Generic;
 
 namespace Test.ControllerTest
 {
@@ -133,6 +134,26 @@ namespace Test.ControllerTest
 
             _sceneController.UpdateLastRenderDate(newScene);
             Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastRenderDate);
+        }
+
+        [TestMethod]
+        public void ListScenes_OkTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "scene"
+            };
+            Scene anotherScene = new Scene()
+            {
+                Name = "anotherScene"
+            };
+
+            _sceneController.AddScene(newScene, "ownerName");
+            _sceneController.AddScene(anotherScene, "ownerName");
+
+            List<Scene> ownerScenes = _sceneController.ListScenes("ownerName");
+            CollectionAssert.Contains(ownerScenes, newScene);
+            CollectionAssert.Contains(ownerScenes, anotherScene);
         }
     }
 }
