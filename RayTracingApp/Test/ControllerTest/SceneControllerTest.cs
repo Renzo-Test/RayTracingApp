@@ -86,6 +86,19 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidSceneInputException))]
+        public void AddScene_LessThanMinFov_FailTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "sceneName",
+                Fov = 0
+            };
+
+            _sceneController.AddScene(newScene, "owneraName");
+        }
+
+        [TestMethod]
         public void UpdateLastModificationDate_OkTest()
         {
             Scene newScene = new Scene()
@@ -105,7 +118,7 @@ namespace Test.ControllerTest
                 Name = "sceneName"
             };
 
-            _sceneController.UpdateLastRendernDate(newScene);
+            _sceneController.UpdateLastRenderDate(newScene);
             Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastRenderDate);
         }
     }

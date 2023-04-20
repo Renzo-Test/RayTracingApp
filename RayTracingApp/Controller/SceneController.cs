@@ -81,7 +81,7 @@ namespace Controller
             scene.LastModificationDate = TodayDate();
         }
 
-        public void UpdateLastRendernDate(Scene scene)
+        public void UpdateLastRenderDate(Scene scene)
         {
             scene.LastRenderDate = TodayDate();
         }
