@@ -78,12 +78,17 @@ namespace Controller
 
         public void UpdateLastModificationDate(Scene scene)
         {
-            scene.LastModificationDate = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+            scene.LastModificationDate = TodayDate();
         }
 
         public void UpdateLastRendernDate(Scene scene)
         {
-            scene.LastRenderDate = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+            scene.LastRenderDate = TodayDate();
+        }
+
+        private static string TodayDate()
+        {
+            return DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
         }
     }
 }
