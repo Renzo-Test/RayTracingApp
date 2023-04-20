@@ -96,5 +96,17 @@ namespace Test.ControllerTest
             _sceneController.UpdateLastModificationDate(newScene);
             Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastModificationDate);
         }
+
+        [TestMethod]
+        public void UpdateLastRenderDate_OkTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "sceneName"
+            };
+
+            _sceneController.UpdateLastRendernDate(newScene);
+            Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastRenderDate);
+        }
     }
 }
