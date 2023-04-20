@@ -104,5 +104,10 @@ namespace Controller
         {
             return DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
         }
+
+        public List<Scene> ListScenes(string username)
+        {
+            return Repository.GetScenesByClient(username);
+        }
     }
 }
