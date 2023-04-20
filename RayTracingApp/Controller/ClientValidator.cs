@@ -13,18 +13,18 @@ namespace Controller
 
         public static void RunUsernameConditions(string username)
         {
-            IsAphanumeric(username);
+            IsAlphanumeric(username);
             LengthInRangeUsername(username);
         }
 
         public static void RunPasswordConditions(string password)
         {
+            LengthInRangePassword(password);
             ContainsNumber(password);
             ContainsCapital(password);
-            LengthInRangePassword(password);
         }
 
-        public static void LengthInRangeUsername(string username)
+        private static void LengthInRangeUsername(string username)
         {
             if (!(username.Length >= 3 && username.Length <= 20))
             {
@@ -33,7 +33,7 @@ namespace Controller
         }
 
         //alphanumeric includes non special characters and no spaces
-        public static void IsAphanumeric(string username)
+        private static void IsAlphanumeric(string username)
         {
             if (!username.All(char.IsLetterOrDigit))
             {
@@ -41,7 +41,7 @@ namespace Controller
             }
         }
 
-        public static void ContainsNumber(string password)
+        private static void ContainsNumber(string password)
         {
             if (!password.Any(char.IsDigit))
             {
@@ -49,7 +49,7 @@ namespace Controller
             }
         }
 
-        public static void ContainsCapital(string password)
+        private static void ContainsCapital(string password)
         {
             if (!password.Any(char.IsUpper))
             {
@@ -57,7 +57,7 @@ namespace Controller
             }
         }
 
-        public static void LengthInRangePassword(string password)
+        private static void LengthInRangePassword(string password)
         {
             if (!(password.Length >= 5 && password.Length <= 25))
             {
