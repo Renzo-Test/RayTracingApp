@@ -85,9 +85,9 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        public void ContainsNumber_a1_OkTest()
+        public void ContainsNumber_ABCdEFG1_OkTest()
         {
-            ClientValidator.RunPasswordConditions("a1");
+            ClientValidator.RunPasswordConditions("ABCdEFG1");
         }
 
         [TestMethod]
