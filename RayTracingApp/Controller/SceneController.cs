@@ -45,6 +45,7 @@ namespace Controller
 
             NameIsEmpty(scene);
             NameStartOrEndWithSpace(scene);
+            FovIsValid(scene);
         }
 
         private bool SceneNameExist(Scene newScene, string username)
@@ -73,6 +74,14 @@ namespace Controller
             if (scene.Name.StartsWith(SpaceCharacterConstant) || scene.Name.EndsWith(SpaceCharacterConstant))
             {
                 throw new InvalidSpacePositionException(StartOrEndWithSpaceMessage);
+            }
+        }
+
+        private static void FovIsValid(Scene scene)
+        {
+            if (scene.Fov.Equals(0))
+            {
+                throw new InvalidFovException("");
             }
         }
 
