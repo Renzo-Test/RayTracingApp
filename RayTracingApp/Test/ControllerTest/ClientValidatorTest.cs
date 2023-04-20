@@ -98,9 +98,9 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        public void ContainsCapital_A_OkTest()
+        public void ContainsCapital_Abcd1_OkTest()
         {
-            ClientValidator.RunPasswordConditions("A");
+            ClientValidator.RunPasswordConditions("Abcd1");
         }
 
         [TestMethod]
