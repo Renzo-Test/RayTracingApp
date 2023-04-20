@@ -109,5 +109,12 @@ namespace Controller
         {
             return Repository.GetScenesByClient(username);
         }
+
+        public void RemoveScene(string name, string username)
+        {
+            List<Scene> userScenes = ListScenes(username);
+            Scene removeScene = userScenes.Find(Scene => Scene.Name.Equals(name));
+            Repository.RemoveScene(removeScene);
+        }
     }
 }

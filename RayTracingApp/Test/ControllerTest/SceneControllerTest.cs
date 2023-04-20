@@ -4,6 +4,7 @@ using Models;
 using Controller.SceneExceptions;
 using System;
 using System.Collections.Generic;
+using MemoryRepository.Exceptions;
 
 namespace Test.ControllerTest
 {
@@ -157,7 +158,8 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        public void RemoveScene_OkTest()
+        [ExpectedException(typeof(NotFoundSceneException))]
+        public void RemoveScene_FailTest()
         {
             Scene newScene = new Scene()
             {
@@ -166,8 +168,9 @@ namespace Test.ControllerTest
 
             _sceneController.AddScene(newScene, "ownerName");
 
-            _sceneController.RemoveScene("scene");
+            _sceneController.RemoveScene("scene", "ownerName");
             CollectionAssert.DoesNotContain(_sceneController.ListScenes("ownerName"), newScene);
         }
+
     }
 }
