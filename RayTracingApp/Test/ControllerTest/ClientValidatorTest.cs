@@ -117,9 +117,9 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        public void LengthInRangePassword_ABCDE_OkTest()
+        public void LengthInRangePassword_Abcd1_OkTest()
         {
-            ClientValidator.RunPasswordConditions("ABCDE");
+            ClientValidator.RunPasswordConditions("Abcd1");
         }
 
         [TestMethod]
