@@ -119,8 +119,14 @@ namespace Controller
         }
 
         public List<Model> GetAvailableModels(Scene scene, List<Model> ownerModels)
-        {        
-            return ownerModels;
+        {
+            List<Model> usedModels = new List<Model>();
+            foreach (PosisionatedModel posModel in scene.PosisionatedModels)
+            {
+                usedModels.Add(posModel.Model);
+            }
+
+            return ownerModels.Except(usedModels).ToList();
         }
     }
 }

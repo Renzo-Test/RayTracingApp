@@ -234,13 +234,10 @@ namespace Test.ControllerTest
             PosisionatedModel posisionatedModel = new PosisionatedModel();
             posisionatedModel.Model = availableModel;
 
-            List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
-            sceneModels.Add(posisionatedModel);
-
             Scene newScene = new Scene()
             {
                 Name = "scene",
-                PosisionatedModels = sceneModels
+                PosisionatedModels = new List<PosisionatedModel>()
             };
 
             Model otherAvailableModel = new Model()
