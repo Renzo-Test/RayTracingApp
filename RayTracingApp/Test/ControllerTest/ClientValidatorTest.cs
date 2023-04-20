@@ -31,7 +31,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        public void Alphanumeric_EmptyString_OkTest()
+        public void Alphanumeric_ab1_OkTest()
         {
             ClientValidator.RunUsernameConditions("ab1");
         }
@@ -73,9 +73,9 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NotContainsNumberException))]
-        public void ContainsNumber_EmptyString_FailTest()
+        public void ContainsNumber_abcde_FailTest()
         {
-            ClientValidator.RunPasswordConditions("");
+            ClientValidator.RunPasswordConditions("abcde");
         }
 
         [TestMethod]
