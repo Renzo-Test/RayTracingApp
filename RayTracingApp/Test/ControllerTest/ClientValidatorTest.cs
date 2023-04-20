@@ -14,119 +14,119 @@ namespace Test.ControllerTest
         [ExpectedException(typeof(NotInExpectedRangeException))]
         public void LengthInRangeUsername_EmptyString_FailTest()
         {
-            ClientValidator.LengthInRangeUsername("");
+            ClientValidator.RunUsernameConditions("");
         }
 
         [TestMethod]
         public void LengthInRangeUsername_ABC_OkTest()
         {
-            ClientValidator.LengthInRangeUsername("ABC");
+            ClientValidator.RunUsernameConditions("ABC");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotInExpectedRangeException))]
         public void LengthInRangeUsername_ABCDEFGHIJKLMNOPQRSTU_FailTest()
         {
-            ClientValidator.LengthInRangeUsername("ABCDEFGHIJKLMNOPQRSTU");
+            ClientValidator.RunUsernameConditions("ABCDEFGHIJKLMNOPQRSTU");
         }
 
         [TestMethod]
-        public void Alphanumeric_EmptyString_OkTest()
+        public void Alphanumeric_ab1_OkTest()
         {
-            ClientValidator.IsAphanumeric("");
+            ClientValidator.RunUsernameConditions("ab1");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotAlphanumericException))]
         public void Alphanumeric_QuestionMark_FailTest()
         {
-            ClientValidator.IsAphanumeric("?");
+            ClientValidator.RunUsernameConditions("?");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotAlphanumericException))]
         public void Alphanumeric_AQuestionMarkB_FailTest()
         {
-            ClientValidator.IsAphanumeric("A?B");
+            ClientValidator.RunUsernameConditions("A?B");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotAlphanumericException))]
         public void Alphanumeric_SpaceAB_FailTest()
         {
-            ClientValidator.IsAphanumeric(" AB");
+            ClientValidator.RunUsernameConditions(" AB");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotAlphanumericException))]
         public void Alphanumeric_ASpaceB_FailTest()
         {
-            ClientValidator.IsAphanumeric("A B");
+            ClientValidator.RunUsernameConditions("A B");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotAlphanumericException))]
         public void Alphanumeric_ABSpace_FailTest()
         {
-            ClientValidator.IsAphanumeric("AB ");
+            ClientValidator.RunUsernameConditions("AB ");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotContainsNumberException))]
-        public void ContainsNumber_EmptyString_FailTest()
+        public void ContainsNumber_abcde_FailTest()
         {
-            ClientValidator.ContainsNumber("");
+            ClientValidator.RunPasswordConditions("abcde");
         }
 
         [TestMethod]
-        public void ContainsNumber_1_OkTest()
+        public void ContainsNumber_abcd1_OkTest()
         {
-            ClientValidator.ContainsNumber("1");
+            ClientValidator.RunPasswordConditions("Abcd1");
         }
 
         [TestMethod]
-        public void ContainsNumber_a1_OkTest()
+        public void ContainsNumber_ABCdEFG1_OkTest()
         {
-            ClientValidator.ContainsNumber("a1");
+            ClientValidator.RunPasswordConditions("ABCdEFG1");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotContainsCapitalException))]
-        public void ContainsCapital_EmptyString_FailTest()
+        public void ContainsCapital_abcd1_FailTest()
         {
-            ClientValidator.ContainsCapital("");
+            ClientValidator.RunPasswordConditions("abcd1");
         }
 
         [TestMethod]
-        public void ContainsCapital_A_OkTest()
+        public void ContainsCapital_Abcd1_OkTest()
         {
-            ClientValidator.ContainsCapital("A");
+            ClientValidator.RunPasswordConditions("Abcd1");
         }
 
         [TestMethod]
-        public void ContainsCapital_aA_OkTest()
+        public void ContainsCapital_ABCdEFG1_OkTest()
         {
-            ClientValidator.ContainsCapital("aA");
+            ClientValidator.RunPasswordConditions("ABCdEFG1");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotInExpectedRangeException))]
         public void LengthInRangePassword_EmptyString_FailTest()
         {
-            ClientValidator.LengthInRangePassword("");
+            ClientValidator.RunPasswordConditions("");
         }
 
         [TestMethod]
-        public void LengthInRangePassword_ABCDE_OkTest()
+        public void LengthInRangePassword_Abcd1_OkTest()
         {
-            ClientValidator.LengthInRangePassword("ABCDE");
+            ClientValidator.RunPasswordConditions("Abcd1");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotInExpectedRangeException))]
         public void LengthInRangePassword_ABCDEFGHIJKLMNOPQRSTUVWXYZ_FailTest()
         {
-            ClientValidator.LengthInRangePassword("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+            ClientValidator.RunPasswordConditions("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         }
 
 
