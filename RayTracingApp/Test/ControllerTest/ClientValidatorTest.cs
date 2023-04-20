@@ -92,9 +92,9 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NotContainsCapitalException))]
-        public void ContainsCapital_EmptyString_FailTest()
+        public void ContainsCapital_abcd1_FailTest()
         {
-            ClientValidator.RunPasswordConditions("");
+            ClientValidator.RunPasswordConditions("abcd1");
         }
 
         [TestMethod]
