@@ -94,10 +94,7 @@ namespace Test.ControllerTest
             };
 
             _sceneController.UpdateLastModificationDate(newScene);
-
-            Assert.AreEqual(DateTime.Now.ToString(), newScene.LastModificationDate);
-
-            
+            Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastModificationDate);
         }
     }
 }

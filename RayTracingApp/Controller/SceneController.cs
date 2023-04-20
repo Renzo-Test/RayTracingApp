@@ -75,5 +75,10 @@ namespace Controller
                 throw new InvalidSpacePositionException(StartOrEndWithSpaceMessage);
             }
         }
+
+        public void UpdateLastModificationDate(Scene scene)
+        {
+            scene.LastModificationDate = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace Models
     {
         public string Owner { get; set; }
         public string Name { get; set; }
-        public string RegisterTime { get; set; } = DateTime.Now.ToString("hh:mm:ss - yyyy/MM/dd");
+        public string RegisterTime { get; set; } = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
         public string LastModificationDate { get; set; } = "unmodified";
         public string LastRenderDate { get; set; } = "unrendered";
         public int Fov { get; set; }
