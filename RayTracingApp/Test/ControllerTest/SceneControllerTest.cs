@@ -77,7 +77,7 @@ namespace Test.ControllerTest
         {
             Scene newScene = new Scene()
             {
-                Name = "sceneName "
+                Name = "sceneName"
             };
 
             _sceneController.AddScene(newScene, "owneraName");
