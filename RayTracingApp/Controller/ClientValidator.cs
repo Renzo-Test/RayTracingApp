@@ -13,7 +13,7 @@ namespace Controller
 
         public static void RunUsernameConditions(string username)
         {
-            IsAphanumeric(username);
+            IsAlphanumeric(username);
             LengthInRangeUsername(username);
         }
 
@@ -33,7 +33,7 @@ namespace Controller
         }
 
         //alphanumeric includes non special characters and no spaces
-        public static void IsAphanumeric(string username)
+        public static void IsAlphanumeric(string username)
         {
             if (!username.All(char.IsLetterOrDigit))
             {
