@@ -172,5 +172,23 @@ namespace Test.ControllerTest
             CollectionAssert.DoesNotContain(_sceneController.ListScenes("ownerName"), newScene);
         }
 
+        [TestMethod]
+        public void RemoveScene_TwoClients_OkTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "scene"
+            };
+            Scene anotherScene = new Scene()
+            {
+                Name = "anotherScene"
+            };
+
+            _sceneController.AddScene(newScene, "firstOwner");
+            _sceneController.AddScene(anotherScene, "secondOwner");
+
+            _sceneController.RemoveScene("scene", "firstOwner");
+            CollectionAssert.Contains(_sceneController.ListScenes("secondOwner"), anotherScene);
+        }
     }
 }
