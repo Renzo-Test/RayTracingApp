@@ -99,6 +99,19 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidSceneInputException))]
+        public void AddScene_BiggerThanMaxFov_FailTest()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "sceneName",
+                Fov = 161
+            };
+
+            _sceneController.AddScene(newScene, "owneraName");
+        }
+
+        [TestMethod]
         public void UpdateLastModificationDate_OkTest()
         {
             Scene newScene = new Scene()
