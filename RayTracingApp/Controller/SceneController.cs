@@ -128,5 +128,11 @@ namespace Controller
 
             return ownerModels.Except(usedModels).ToList();
         }
+
+        public Scene CreateBlankScene(string name)
+        {
+            Scene scene = new Scene() { Name = "SceneName" };
+            return scene;
+        }
     }
 }
