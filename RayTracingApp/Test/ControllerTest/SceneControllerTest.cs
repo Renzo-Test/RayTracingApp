@@ -287,5 +287,13 @@ namespace Test.ControllerTest
 
             CollectionAssert.DoesNotContain(_sceneController.GetAvailableModels(newScene, ownerModels), newModel);
         }
+
+        [TestMethod]
+        public void CreateBlankScene_SceneName_OkTest()
+        {
+            Scene blankScene = _sceneController.CreateBlankScene("SceneName");
+
+            Assert.AreEqual(blankScene.Name, "SceneName");
+        }
     }
 }
