@@ -131,7 +131,7 @@ namespace Controller
 
         public Scene CreateBlankScene(string name)
         {
-            Scene scene = new Scene() { Name = "SceneName" };
+            Scene scene = new Scene() { Name = name };
             return scene;
         }
     }
