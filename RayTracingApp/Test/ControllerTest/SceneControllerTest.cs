@@ -295,5 +295,13 @@ namespace Test.ControllerTest
 
             Assert.AreEqual(blankScene.Name, "SceneName");
         }
+
+        [TestMethod]
+        public void CreateBlankScene_AnotherSceneName_OkTest()
+        {
+            Scene blankScene = _sceneController.CreateBlankScene("AnotherSceneName");
+
+            Assert.AreEqual(blankScene.Name, "AnotherSceneName");
+        }
     }
 }
