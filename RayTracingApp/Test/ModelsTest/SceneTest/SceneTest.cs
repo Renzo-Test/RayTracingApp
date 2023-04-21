@@ -42,7 +42,7 @@ namespace Test.ModelsTest
         public void CanGetRegisterTime_OkTest()
         {
             _scene = new Scene();
-            String today = DateTime.Now.ToString("hh:mm:ss - yyyy/MM/dd");
+            String today = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
             Assert.AreEqual(today, _scene.RegisterTime);
         }
 

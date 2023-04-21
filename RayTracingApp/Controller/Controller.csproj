@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SceneController.cs" />
     <Compile Include="FigureExceptions\FigureUsedByModelException.cs" />
     <Compile Include="FigureExceptions\InvalidFigureRemoveException.cs" />
     <Compile Include="MaterialExceptions\MaterialUsedByModelException.cs" />
@@ -70,6 +71,11 @@
     <Compile Include="ModelExceptions\NotAlphanumericException.cs" />
     <Compile Include="ModelExceptions\InvalidModelInputException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SceneException\AlreadyExistingSceneException.cs" />
+    <Compile Include="SceneException\InvalidFovException.cs" />
+    <Compile Include="SceneException\InvalidSpacePositionException.cs" />
+    <Compile Include="SceneException\EmptyNameException.cs" />
+    <Compile Include="SceneException\InvalidSceneInputException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IRepository\IRepository.csproj">
