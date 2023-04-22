@@ -12,6 +12,9 @@ namespace GUI
 {
     public partial class SignIn : UserControl
     {
+        private const string UsernamePlaceHolder = "Username";
+        private const string PasswordPlaceHolder = "Password";
+
         private MainForm _mainForm;
         public SignIn(MainForm mainForm)
         {
@@ -26,26 +29,43 @@ namespace GUI
 
         private void txtUsernameSignIn_Enter(object sender, EventArgs e)
         {
-            if (txtUsernameSignIn.Text == "Username")
-                txtUsernameSignIn.Text = "";
+            SetPlaceHolder(txtUsernameSignIn, UsernamePlaceHolder);
+
         }
 
         private void txtUsernameSignIn_Leave(object sender, EventArgs e)
         {
-            if (txtUsernameSignIn.Text == "")
-                txtUsernameSignIn.Text = "Username";
+            RemovePlaceHolder(txtUsernameSignIn, UsernamePlaceHolder);
+
         }
 
         private void txtPasswordSignIn_Enter(object sender, EventArgs e)
         {
-            if (txtPasswordSignIn.Text == "Password")
-                txtPasswordSignIn.Text = "";
+            RemovePlaceHolder(txtPasswordSignIn, PasswordPlaceHolder);
+
         }
 
         private void txtPasswordSignIn_Leave(object sender, EventArgs e)
         {
-            if (txtPasswordSignIn.Text == "")
-                txtPasswordSignIn.Text = "Password";
+            SetPlaceHolder(txtPasswordSignIn, PasswordPlaceHolder);
+
+        }
+
+        private void RemovePlaceHolder(TextBox txtField, string placeHolder)
+        {
+            if (txtField.Text == placeHolder)
+            {
+                txtField.Text = string.Empty;
+
+            }
+        }
+        private void SetPlaceHolder(TextBox txtField, string placeHolder)
+        {
+            if (txtField.Text == string.Empty)
+            {
+                txtField.Text = placeHolder;
+
+            }
         }
     }
 }

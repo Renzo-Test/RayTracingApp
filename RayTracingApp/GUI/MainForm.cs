@@ -33,5 +33,6 @@ namespace GUI
             flyMain.Controls.Clear();
             flyMain.Controls.Add(_signUpPanel);
         }
+
     }
 }

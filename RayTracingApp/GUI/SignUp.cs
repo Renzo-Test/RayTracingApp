@@ -23,12 +23,15 @@ namespace GUI
             _mainForm = mainForm;
             InitializeComponent();
         }
+        private void label1_Click(object sender, EventArgs e)
+        {
+            _mainForm.GoToSignIn();
+        }
 
         private void txtUsername_Enter(object sender, EventArgs e)
         {
             RemovePlaceHolder(txtUsername, UsernamePlaceHolder);
         }
-
 
         private void txtUsername_Leave(object sender, EventArgs e)
         {
@@ -70,11 +73,6 @@ namespace GUI
                 txtField.Text = placeHolder;
 
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            _mainForm.GoToSignIn();
         }
     }
 }
