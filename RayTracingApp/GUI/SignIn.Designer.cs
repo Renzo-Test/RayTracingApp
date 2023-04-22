@@ -58,7 +58,7 @@
             this.txtPasswordSignIn.Location = new System.Drawing.Point(721, 321);
             this.txtPasswordSignIn.Name = "txtPasswordSignIn";
             this.txtPasswordSignIn.Size = new System.Drawing.Size(136, 20);
-            this.txtPasswordSignIn.TabIndex = 6;
+            this.txtPasswordSignIn.TabIndex = 1;
             this.txtPasswordSignIn.Text = "Password";
             this.txtPasswordSignIn.Enter += new System.EventHandler(this.txtPasswordSignIn_Enter);
             this.txtPasswordSignIn.Leave += new System.EventHandler(this.txtPasswordSignIn_Leave);
@@ -184,7 +184,7 @@
             this.txtUsernameSignIn.Location = new System.Drawing.Point(721, 249);
             this.txtUsernameSignIn.Name = "txtUsernameSignIn";
             this.txtUsernameSignIn.Size = new System.Drawing.Size(136, 20);
-            this.txtUsernameSignIn.TabIndex = 12;
+            this.txtUsernameSignIn.TabIndex = 0;
             this.txtUsernameSignIn.Text = "Username";
             this.txtUsernameSignIn.Enter += new System.EventHandler(this.txtUsernameSignIn_Enter);
             this.txtUsernameSignIn.Leave += new System.EventHandler(this.txtUsernameSignIn_Leave);
