@@ -13,10 +13,10 @@ namespace GUI
     public partial class Home : UserControl
     {
         private MainForm _mainForm;
+        private SceneHome _sceneHome;
+        private ModelHome _moedelHome;
         private FigureHome _figureHome;
         private MaterialHome _materialHome;
-        private ModelHome _moedelHome;
-        private SceneHome _sceneHome;
 
 
         public Home(MainForm mainForm)

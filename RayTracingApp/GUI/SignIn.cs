@@ -45,11 +45,27 @@ namespace GUI
         private void txtPasswordSignIn_Enter(object sender, EventArgs e)
         {
             RemovePlaceHolder(txtPasswordSignIn, PasswordPlaceHolder);
+            HidePassword(txtPasswordSignIn);
+        }
+
+        private void HidePassword(TextBox txtField)
+        {
+            txtField.PasswordChar = '*';
         }
 
         private void txtPasswordSignIn_Leave(object sender, EventArgs e)
         {
             SetPlaceHolder(txtPasswordSignIn, PasswordPlaceHolder);
+            ShowPassword(txtPasswordSignIn);
+
+        }
+
+        private void ShowPassword(TextBox txtField)
+        {
+            if (txtField.Text == PasswordPlaceHolder)
+            {
+                txtField.PasswordChar = '\0';
+            }
         }
 
         private void RemovePlaceHolder(TextBox txtField, string placeHolder)
