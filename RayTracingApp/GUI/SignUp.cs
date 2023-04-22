@@ -22,50 +22,49 @@ namespace GUI
 
         private void txtUsername_Enter(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "Username")
-            {
-                txtUsername.Text = "";
-
-            }
+            RemovePlaceHolder(txtUsername, "Username");
         }
+
 
         private void txtUsername_Leave(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "")
-            {
-                txtUsername.Text = "Username";
-            }
+            SetPlaceHolder(txtUsername, "Username");
         }
 
         private void txtPassword_Enter(object sender, EventArgs e)
         {
-            if (txtPassword.Text == "Password")
-            {
-                txtPassword.Text = "";
-            }
+            RemovePlaceHolder(txtPassword, "Password");
         }
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
-            if (txtPassword.Text == "")
-            {
-                txtPassword.Text = "Password";
-            }
+            SetPlaceHolder(txtPassword, "Password");
         }
 
         private void txtConfirmPassword_Enter(object sender, EventArgs e)
         {
-            if (txtConfirmPassword.Text == "Confirm Password")
-            {
-                txtConfirmPassword.Text = "";
-            }
+            RemovePlaceHolder(txtConfirmPassword, "Confirm Password");
         }
 
         private void txtConfirmPassword_Leave(object sender, EventArgs e)
         {
-            if (txtConfirmPassword.Text == "")
+            SetPlaceHolder(txtConfirmPassword, "Confirm Password");
+        }
+
+        private void RemovePlaceHolder(TextBox txtField, string placeHolder)
+        {
+            if (txtField.Text == placeHolder)
             {
-                txtConfirmPassword.Text = "Confirm Password";
+                txtField.Text = "";
+
+            }
+        }
+        private void SetPlaceHolder(TextBox txtField, string placeHolder)
+        {
+            if (txtField.Text == "")
+            {
+                txtField.Text = placeHolder;
+
             }
         }
 
