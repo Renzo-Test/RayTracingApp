@@ -14,10 +14,19 @@ namespace GUI
     {
         private MainForm _mainForm;
         private FigureHome _figureHome;
+        private MaterialHome _materialHome;
+        private ModelHome _moedelHome;
+        private SceneHome _sceneHome;
+
+
         public Home(MainForm mainForm)
         {
             _mainForm = mainForm;
+            _sceneHome = new SceneHome();
+            _moedelHome = new ModelHome();
             _figureHome = new FigureHome();
+            _materialHome = new MaterialHome();
+
             InitializeComponent();
             flyHome.Controls.Add(_figureHome);
 
@@ -30,22 +39,26 @@ namespace GUI
 
         private void btnScenes_Click(object sender, EventArgs e)
         {
-
+            flyHome.Controls.Clear();
+            flyHome.Controls.Add(_sceneHome);
         }
 
         private void btnModel_Click(object sender, EventArgs e)
         {
-
+            flyHome.Controls.Clear();
+            flyHome.Controls.Add(_moedelHome);
         }
 
         private void btnMaterial_Click(object sender, EventArgs e)
         {
-
+            flyHome.Controls.Clear();
+            flyHome.Controls.Add(_materialHome);
         }
 
         private void btnFigure_Click(object sender, EventArgs e)
         {
-
+            flyHome.Controls.Clear();
+            flyHome.Controls.Add(_figureHome);
         }
     }
 }
