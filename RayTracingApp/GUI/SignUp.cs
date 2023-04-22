@@ -12,6 +12,10 @@ namespace GUI
 {
     public partial class SignUp : UserControl
     {
+        private const string UsernamePlaceHolder = "Username";
+        private const string PasswordPlaceHolder = "Password";
+        private const string ConfirmPasswordPlaceholder = "Confirm Password";
+
         private MainForm _mainForm;
 
         public SignUp(MainForm mainForm)
@@ -22,46 +26,46 @@ namespace GUI
 
         private void txtUsername_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtUsername, "Username");
+            RemovePlaceHolder(txtUsername, UsernamePlaceHolder);
         }
 
 
         private void txtUsername_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtUsername, "Username");
+            SetPlaceHolder(txtUsername, UsernamePlaceHolder);
         }
 
         private void txtPassword_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtPassword, "Password");
+            RemovePlaceHolder(txtPassword, PasswordPlaceHolder);
         }
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtPassword, "Password");
+            SetPlaceHolder(txtPassword, PasswordPlaceHolder);
         }
 
         private void txtConfirmPassword_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtConfirmPassword, "Confirm Password");
+            RemovePlaceHolder(txtConfirmPassword, ConfirmPasswordPlaceholder);
         }
 
         private void txtConfirmPassword_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtConfirmPassword, "Confirm Password");
+            SetPlaceHolder(txtConfirmPassword, ConfirmPasswordPlaceholder);
         }
 
         private void RemovePlaceHolder(TextBox txtField, string placeHolder)
         {
             if (txtField.Text == placeHolder)
             {
-                txtField.Text = "";
+                txtField.Text = string.Empty;
 
             }
         }
         private void SetPlaceHolder(TextBox txtField, string placeHolder)
         {
-            if (txtField.Text == "")
+            if (txtField.Text == string.Empty)
             {
                 txtField.Text = placeHolder;
 
