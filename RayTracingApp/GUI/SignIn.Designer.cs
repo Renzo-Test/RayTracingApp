@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtUsernameSignIn = new System.Windows.Forms.TextBox();
             this.txtPasswordSignIn = new System.Windows.Forms.TextBox();
             this.picSignInButton = new System.Windows.Forms.PictureBox();
             this.picIconLock = new System.Windows.Forms.PictureBox();
@@ -40,6 +39,7 @@
             this.lblSignIn = new System.Windows.Forms.Label();
             this.lblAlreadyHaveAnAccount = new System.Windows.Forms.Label();
             this.lblSignUpRef = new System.Windows.Forms.Label();
+            this.txtUsernameSignIn = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picSignInButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconLock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldRectanglePassword)).BeginInit();
@@ -49,29 +49,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.picSphereBackground)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtUsernameSignIn
-            // 
-            this.txtUsernameSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.txtUsernameSignIn.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsernameSignIn.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsernameSignIn.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtUsernameSignIn.Location = new System.Drawing.Point(587, 182);
-            this.txtUsernameSignIn.Name = "txtUsernameSignIn";
-            this.txtUsernameSignIn.Size = new System.Drawing.Size(136, 19);
-            this.txtUsernameSignIn.TabIndex = 3;
-            this.txtUsernameSignIn.Text = "Username";
-            this.txtUsernameSignIn.Enter += new System.EventHandler(this.txtUsernameSignIn_Enter);
-            this.txtUsernameSignIn.Leave += new System.EventHandler(this.txtUsernameSignIn_Leave);
-            // 
             // txtPasswordSignIn
             // 
             this.txtPasswordSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.txtPasswordSignIn.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPasswordSignIn.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPasswordSignIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPasswordSignIn.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtPasswordSignIn.Location = new System.Drawing.Point(587, 254);
+            this.txtPasswordSignIn.Location = new System.Drawing.Point(721, 321);
             this.txtPasswordSignIn.Name = "txtPasswordSignIn";
-            this.txtPasswordSignIn.Size = new System.Drawing.Size(136, 19);
+            this.txtPasswordSignIn.Size = new System.Drawing.Size(136, 20);
             this.txtPasswordSignIn.TabIndex = 6;
             this.txtPasswordSignIn.Text = "Password";
             this.txtPasswordSignIn.Enter += new System.EventHandler(this.txtPasswordSignIn_Enter);
@@ -81,21 +67,22 @@
             // 
             this.picSignInButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSignInButton.Image = global::GUI.Properties.Resources.loginBackground;
-            this.picSignInButton.Location = new System.Drawing.Point(531, 316);
+            this.picSignInButton.Location = new System.Drawing.Point(667, 379);
             this.picSignInButton.Name = "picSignInButton";
-            this.picSignInButton.Size = new System.Drawing.Size(205, 66);
+            this.picSignInButton.Size = new System.Drawing.Size(216, 66);
             this.picSignInButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSignInButton.TabIndex = 8;
             this.picSignInButton.TabStop = false;
+            this.picSignInButton.Click += new System.EventHandler(this.picSignInButton_Click);
             // 
             // picIconLock
             // 
             this.picIconLock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.picIconLock.Enabled = false;
             this.picIconLock.Image = global::GUI.Properties.Resources.padlockIcon;
-            this.picIconLock.Location = new System.Drawing.Point(555, 254);
+            this.picIconLock.Location = new System.Drawing.Point(691, 317);
             this.picIconLock.Name = "picIconLock";
-            this.picIconLock.Size = new System.Drawing.Size(22, 22);
+            this.picIconLock.Size = new System.Drawing.Size(24, 24);
             this.picIconLock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIconLock.TabIndex = 7;
             this.picIconLock.TabStop = false;
@@ -103,9 +90,9 @@
             // picFieldRectanglePassword
             // 
             this.picFieldRectanglePassword.Image = global::GUI.Properties.Resources.fieldRectangle;
-            this.picFieldRectanglePassword.Location = new System.Drawing.Point(536, 244);
+            this.picFieldRectanglePassword.Location = new System.Drawing.Point(672, 307);
             this.picFieldRectanglePassword.Name = "picFieldRectanglePassword";
-            this.picFieldRectanglePassword.Size = new System.Drawing.Size(200, 39);
+            this.picFieldRectanglePassword.Size = new System.Drawing.Size(211, 48);
             this.picFieldRectanglePassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFieldRectanglePassword.TabIndex = 5;
             this.picFieldRectanglePassword.TabStop = false;
@@ -115,9 +102,9 @@
             this.picIconUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.picIconUser.Enabled = false;
             this.picIconUser.Image = global::GUI.Properties.Resources.userIcon;
-            this.picIconUser.Location = new System.Drawing.Point(555, 182);
+            this.picIconUser.Location = new System.Drawing.Point(691, 245);
             this.picIconUser.Name = "picIconUser";
-            this.picIconUser.Size = new System.Drawing.Size(22, 22);
+            this.picIconUser.Size = new System.Drawing.Size(24, 24);
             this.picIconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIconUser.TabIndex = 4;
             this.picIconUser.TabStop = false;
@@ -125,9 +112,9 @@
             // picFieldRectangleUsername
             // 
             this.picFieldRectangleUsername.Image = global::GUI.Properties.Resources.fieldRectangle;
-            this.picFieldRectangleUsername.Location = new System.Drawing.Point(536, 173);
+            this.picFieldRectangleUsername.Location = new System.Drawing.Point(672, 236);
             this.picFieldRectangleUsername.Name = "picFieldRectangleUsername";
-            this.picFieldRectangleUsername.Size = new System.Drawing.Size(200, 39);
+            this.picFieldRectangleUsername.Size = new System.Drawing.Size(211, 48);
             this.picFieldRectangleUsername.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFieldRectangleUsername.TabIndex = 2;
             this.picFieldRectangleUsername.TabStop = false;
@@ -135,9 +122,9 @@
             // picUserBackground
             // 
             this.picUserBackground.Image = global::GUI.Properties.Resources.userBackground;
-            this.picUserBackground.Location = new System.Drawing.Point(598, 57);
+            this.picUserBackground.Location = new System.Drawing.Point(710, 93);
             this.picUserBackground.Name = "picUserBackground";
-            this.picUserBackground.Size = new System.Drawing.Size(75, 73);
+            this.picUserBackground.Size = new System.Drawing.Size(115, 105);
             this.picUserBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picUserBackground.TabIndex = 1;
             this.picUserBackground.TabStop = false;
@@ -145,9 +132,9 @@
             // picSphereBackground
             // 
             this.picSphereBackground.Image = global::GUI.Properties.Resources.sphereBackground;
-            this.picSphereBackground.Location = new System.Drawing.Point(-283, -72);
+            this.picSphereBackground.Location = new System.Drawing.Point(-289, -69);
             this.picSphereBackground.Name = "picSphereBackground";
-            this.picSphereBackground.Size = new System.Drawing.Size(730, 602);
+            this.picSphereBackground.Size = new System.Drawing.Size(850, 742);
             this.picSphereBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSphereBackground.TabIndex = 0;
             this.picSphereBackground.TabStop = false;
@@ -158,7 +145,7 @@
             this.lblSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
             this.lblSignIn.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSignIn.ForeColor = System.Drawing.Color.White;
-            this.lblSignIn.Location = new System.Drawing.Point(593, 335);
+            this.lblSignIn.Location = new System.Drawing.Point(729, 398);
             this.lblSignIn.Name = "lblSignIn";
             this.lblSignIn.Size = new System.Drawing.Size(87, 28);
             this.lblSignIn.TabIndex = 9;
@@ -167,11 +154,11 @@
             // lblAlreadyHaveAnAccount
             // 
             this.lblAlreadyHaveAnAccount.AutoSize = true;
-            this.lblAlreadyHaveAnAccount.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlreadyHaveAnAccount.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAlreadyHaveAnAccount.ForeColor = System.Drawing.Color.White;
-            this.lblAlreadyHaveAnAccount.Location = new System.Drawing.Point(542, 385);
+            this.lblAlreadyHaveAnAccount.Location = new System.Drawing.Point(682, 458);
             this.lblAlreadyHaveAnAccount.Name = "lblAlreadyHaveAnAccount";
-            this.lblAlreadyHaveAnAccount.Size = new System.Drawing.Size(133, 15);
+            this.lblAlreadyHaveAnAccount.Size = new System.Drawing.Size(143, 16);
             this.lblAlreadyHaveAnAccount.TabIndex = 10;
             this.lblAlreadyHaveAnAccount.Text = "Dont have an account?";
             // 
@@ -179,20 +166,35 @@
             // 
             this.lblSignUpRef.AutoSize = true;
             this.lblSignUpRef.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblSignUpRef.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSignUpRef.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSignUpRef.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
-            this.lblSignUpRef.Location = new System.Drawing.Point(673, 385);
+            this.lblSignUpRef.Location = new System.Drawing.Point(822, 458);
             this.lblSignUpRef.Name = "lblSignUpRef";
-            this.lblSignUpRef.Size = new System.Drawing.Size(50, 15);
+            this.lblSignUpRef.Size = new System.Drawing.Size(53, 16);
             this.lblSignUpRef.TabIndex = 11;
             this.lblSignUpRef.Text = "Sign Up!";
             this.lblSignUpRef.Click += new System.EventHandler(this.lblSignUpRef_Click);
+            // 
+            // txtUsernameSignIn
+            // 
+            this.txtUsernameSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.txtUsernameSignIn.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsernameSignIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsernameSignIn.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtUsernameSignIn.Location = new System.Drawing.Point(721, 249);
+            this.txtUsernameSignIn.Name = "txtUsernameSignIn";
+            this.txtUsernameSignIn.Size = new System.Drawing.Size(136, 20);
+            this.txtUsernameSignIn.TabIndex = 12;
+            this.txtUsernameSignIn.Text = "Username";
+            this.txtUsernameSignIn.Enter += new System.EventHandler(this.txtUsernameSignIn_Enter);
+            this.txtUsernameSignIn.Leave += new System.EventHandler(this.txtUsernameSignIn_Leave);
             // 
             // SignIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.txtUsernameSignIn);
             this.Controls.Add(this.lblSignUpRef);
             this.Controls.Add(this.lblAlreadyHaveAnAccount);
             this.Controls.Add(this.lblSignIn);
@@ -201,14 +203,13 @@
             this.Controls.Add(this.txtPasswordSignIn);
             this.Controls.Add(this.picFieldRectanglePassword);
             this.Controls.Add(this.picIconUser);
-            this.Controls.Add(this.txtUsernameSignIn);
             this.Controls.Add(this.picFieldRectangleUsername);
             this.Controls.Add(this.picUserBackground);
             this.Controls.Add(this.picSphereBackground);
-            this.MaximumSize = new System.Drawing.Size(816, 489);
-            this.MinimumSize = new System.Drawing.Size(816, 489);
+            this.MaximumSize = new System.Drawing.Size(1009, 604);
+            this.MinimumSize = new System.Drawing.Size(1009, 604);
             this.Name = "SignIn";
-            this.Size = new System.Drawing.Size(816, 489);
+            this.Size = new System.Drawing.Size(1009, 604);
             ((System.ComponentModel.ISupportInitialize)(this.picSignInButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconLock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldRectanglePassword)).EndInit();
@@ -226,7 +227,6 @@
         private System.Windows.Forms.PictureBox picSphereBackground;
         private System.Windows.Forms.PictureBox picUserBackground;
         private System.Windows.Forms.PictureBox picFieldRectangleUsername;
-        private System.Windows.Forms.TextBox txtUsernameSignIn;
         private System.Windows.Forms.PictureBox picIconUser;
         private System.Windows.Forms.PictureBox picIconLock;
         private System.Windows.Forms.TextBox txtPasswordSignIn;
@@ -235,5 +235,6 @@
         private System.Windows.Forms.Label lblSignIn;
         private System.Windows.Forms.Label lblAlreadyHaveAnAccount;
         private System.Windows.Forms.Label lblSignUpRef;
+        private System.Windows.Forms.TextBox txtUsernameSignIn;
     }
 }

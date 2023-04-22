@@ -27,6 +27,12 @@ namespace GUI
         {
             _mainForm.GoToSignIn();
         }
+        
+        private void picSignUpBackground_Click(object sender, EventArgs e)
+        {
+            _mainForm.GoToSignIn();
+
+        }
 
         private void txtUsername_Enter(object sender, EventArgs e)
         {

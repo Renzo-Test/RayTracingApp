@@ -125,5 +125,20 @@
   <ItemGroup>
     <None Include="Resources\loginBackground.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sphereIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\materialIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\modelIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sceneIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\signoutIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

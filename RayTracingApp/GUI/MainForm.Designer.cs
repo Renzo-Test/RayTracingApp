@@ -33,16 +33,16 @@
             // 
             // flyMain
             // 
-            this.flyMain.Location = new System.Drawing.Point(0, 0);
+            this.flyMain.Location = new System.Drawing.Point(-3, 0);
             this.flyMain.Name = "flyMain";
-            this.flyMain.Size = new System.Drawing.Size(816, 489);
+            this.flyMain.Size = new System.Drawing.Size(1012, 604);
             this.flyMain.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(815, 483);
+            this.ClientSize = new System.Drawing.Size(1008, 601);
             this.Controls.Add(this.flyMain);
             this.Name = "MainForm";
             this.Text = "Form1";

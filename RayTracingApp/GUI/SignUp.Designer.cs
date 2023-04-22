@@ -57,9 +57,9 @@
             // picSphereBackground
             // 
             this.picSphereBackground.Image = global::GUI.Properties.Resources.sphereBackground;
-            this.picSphereBackground.Location = new System.Drawing.Point(-283, -72);
+            this.picSphereBackground.Location = new System.Drawing.Point(-289, -69);
             this.picSphereBackground.Name = "picSphereBackground";
-            this.picSphereBackground.Size = new System.Drawing.Size(730, 602);
+            this.picSphereBackground.Size = new System.Drawing.Size(850, 742);
             this.picSphereBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSphereBackground.TabIndex = 0;
             this.picSphereBackground.TabStop = false;
@@ -67,9 +67,9 @@
             // picUserBackground
             // 
             this.picUserBackground.Image = global::GUI.Properties.Resources.userBackground;
-            this.picUserBackground.Location = new System.Drawing.Point(598, 57);
+            this.picUserBackground.Location = new System.Drawing.Point(710, 93);
             this.picUserBackground.Name = "picUserBackground";
-            this.picUserBackground.Size = new System.Drawing.Size(75, 73);
+            this.picUserBackground.Size = new System.Drawing.Size(115, 105);
             this.picUserBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picUserBackground.TabIndex = 1;
             this.picUserBackground.TabStop = false;
@@ -77,9 +77,10 @@
             // picFieldRectangleUsername
             // 
             this.picFieldRectangleUsername.Image = global::GUI.Properties.Resources.fieldRectangle;
-            this.picFieldRectangleUsername.Location = new System.Drawing.Point(535, 155);
+            this.picFieldRectangleUsername.Location = new System.Drawing.Point(672, 236);
             this.picFieldRectangleUsername.Name = "picFieldRectangleUsername";
-            this.picFieldRectangleUsername.Size = new System.Drawing.Size(200, 39);
+            this.picFieldRectangleUsername.Size = new System.Drawing.Size(211, 48);
+            this.picFieldRectangleUsername.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFieldRectangleUsername.TabIndex = 2;
             this.picFieldRectangleUsername.TabStop = false;
             // 
@@ -87,11 +88,11 @@
             // 
             this.txtUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsername.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtUsername.Location = new System.Drawing.Point(586, 164);
+            this.txtUsername.Location = new System.Drawing.Point(728, 249);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(136, 19);
+            this.txtUsername.Size = new System.Drawing.Size(136, 20);
             this.txtUsername.TabIndex = 3;
             this.txtUsername.Text = "Username";
             this.txtUsername.Enter += new System.EventHandler(this.txtUsername_Enter);
@@ -101,9 +102,9 @@
             // 
             this.picIconUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.picIconUser.Image = global::GUI.Properties.Resources.userIcon;
-            this.picIconUser.Location = new System.Drawing.Point(554, 164);
+            this.picIconUser.Location = new System.Drawing.Point(691, 245);
             this.picIconUser.Name = "picIconUser";
-            this.picIconUser.Size = new System.Drawing.Size(26, 21);
+            this.picIconUser.Size = new System.Drawing.Size(24, 24);
             this.picIconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIconUser.TabIndex = 4;
             this.picIconUser.TabStop = false;
@@ -112,9 +113,9 @@
             // 
             this.picIconLock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.picIconLock.Image = global::GUI.Properties.Resources.padlockIcon;
-            this.picIconLock.Location = new System.Drawing.Point(554, 222);
+            this.picIconLock.Location = new System.Drawing.Point(691, 314);
             this.picIconLock.Name = "picIconLock";
-            this.picIconLock.Size = new System.Drawing.Size(26, 21);
+            this.picIconLock.Size = new System.Drawing.Size(24, 24);
             this.picIconLock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIconLock.TabIndex = 7;
             this.picIconLock.TabStop = false;
@@ -123,11 +124,11 @@
             // 
             this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPassword.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtPassword.Location = new System.Drawing.Point(586, 222);
+            this.txtPassword.Location = new System.Drawing.Point(728, 314);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(136, 19);
+            this.txtPassword.Size = new System.Drawing.Size(136, 20);
             this.txtPassword.TabIndex = 6;
             this.txtPassword.Text = "Password";
             this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
@@ -136,9 +137,10 @@
             // picFieldRectanglePassword
             // 
             this.picFieldRectanglePassword.Image = global::GUI.Properties.Resources.fieldRectangle;
-            this.picFieldRectanglePassword.Location = new System.Drawing.Point(535, 212);
+            this.picFieldRectanglePassword.Location = new System.Drawing.Point(672, 303);
             this.picFieldRectanglePassword.Name = "picFieldRectanglePassword";
-            this.picFieldRectanglePassword.Size = new System.Drawing.Size(200, 39);
+            this.picFieldRectanglePassword.Size = new System.Drawing.Size(211, 48);
+            this.picFieldRectanglePassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFieldRectanglePassword.TabIndex = 5;
             this.picFieldRectanglePassword.TabStop = false;
             // 
@@ -146,9 +148,9 @@
             // 
             this.txtIconLockConfirmPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.txtIconLockConfirmPassword.Image = global::GUI.Properties.Resources.padlockIcon;
-            this.txtIconLockConfirmPassword.Location = new System.Drawing.Point(554, 283);
+            this.txtIconLockConfirmPassword.Location = new System.Drawing.Point(691, 379);
             this.txtIconLockConfirmPassword.Name = "txtIconLockConfirmPassword";
-            this.txtIconLockConfirmPassword.Size = new System.Drawing.Size(26, 21);
+            this.txtIconLockConfirmPassword.Size = new System.Drawing.Size(24, 24);
             this.txtIconLockConfirmPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.txtIconLockConfirmPassword.TabIndex = 10;
             this.txtIconLockConfirmPassword.TabStop = false;
@@ -157,11 +159,11 @@
             // 
             this.txtConfirmPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.txtConfirmPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtConfirmPassword.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirmPassword.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConfirmPassword.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtConfirmPassword.Location = new System.Drawing.Point(586, 283);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(728, 383);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Size = new System.Drawing.Size(136, 19);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(136, 20);
             this.txtConfirmPassword.TabIndex = 9;
             this.txtConfirmPassword.Text = "Confirm Password";
             this.txtConfirmPassword.Enter += new System.EventHandler(this.txtConfirmPassword_Enter);
@@ -170,21 +172,24 @@
             // txtFieldRectangleConfirmPassword
             // 
             this.txtFieldRectangleConfirmPassword.Image = global::GUI.Properties.Resources.fieldRectangle;
-            this.txtFieldRectangleConfirmPassword.Location = new System.Drawing.Point(535, 273);
+            this.txtFieldRectangleConfirmPassword.Location = new System.Drawing.Point(672, 369);
             this.txtFieldRectangleConfirmPassword.Name = "txtFieldRectangleConfirmPassword";
-            this.txtFieldRectangleConfirmPassword.Size = new System.Drawing.Size(200, 39);
+            this.txtFieldRectangleConfirmPassword.Size = new System.Drawing.Size(211, 48);
+            this.txtFieldRectangleConfirmPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.txtFieldRectangleConfirmPassword.TabIndex = 8;
             this.txtFieldRectangleConfirmPassword.TabStop = false;
             // 
             // picSignUpBackground
             // 
+            this.picSignUpBackground.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSignUpBackground.Image = global::GUI.Properties.Resources.loginBackground;
-            this.picSignUpBackground.Location = new System.Drawing.Point(530, 337);
+            this.picSignUpBackground.Location = new System.Drawing.Point(672, 432);
             this.picSignUpBackground.Name = "picSignUpBackground";
-            this.picSignUpBackground.Size = new System.Drawing.Size(205, 66);
+            this.picSignUpBackground.Size = new System.Drawing.Size(216, 65);
             this.picSignUpBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSignUpBackground.TabIndex = 11;
             this.picSignUpBackground.TabStop = false;
+            this.picSignUpBackground.Click += new System.EventHandler(this.picSignUpBackground_Click);
             // 
             // lblSignUp
             // 
@@ -193,7 +198,7 @@
             this.lblSignUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSignUp.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSignUp.ForeColor = System.Drawing.Color.White;
-            this.lblSignUp.Location = new System.Drawing.Point(581, 354);
+            this.lblSignUp.Location = new System.Drawing.Point(723, 451);
             this.lblSignUp.Name = "lblSignUp";
             this.lblSignUp.Size = new System.Drawing.Size(98, 28);
             this.lblSignUp.TabIndex = 12;
@@ -202,11 +207,11 @@
             // lblAlreadyHaveAnAccount
             // 
             this.lblAlreadyHaveAnAccount.AutoSize = true;
-            this.lblAlreadyHaveAnAccount.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlreadyHaveAnAccount.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAlreadyHaveAnAccount.ForeColor = System.Drawing.Color.White;
-            this.lblAlreadyHaveAnAccount.Location = new System.Drawing.Point(532, 406);
+            this.lblAlreadyHaveAnAccount.Location = new System.Drawing.Point(678, 514);
             this.lblAlreadyHaveAnAccount.Name = "lblAlreadyHaveAnAccount";
-            this.lblAlreadyHaveAnAccount.Size = new System.Drawing.Size(150, 15);
+            this.lblAlreadyHaveAnAccount.Size = new System.Drawing.Size(164, 16);
             this.lblAlreadyHaveAnAccount.TabIndex = 13;
             this.lblAlreadyHaveAnAccount.Text = "Already have an account?";
             // 
@@ -214,11 +219,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
-            this.label1.Location = new System.Drawing.Point(683, 406);
+            this.label1.Location = new System.Drawing.Point(840, 514);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 15);
+            this.label1.Size = new System.Drawing.Size(48, 16);
             this.label1.TabIndex = 14;
             this.label1.Text = "Sign In!";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -243,10 +248,10 @@
             this.Controls.Add(this.picFieldRectangleUsername);
             this.Controls.Add(this.picUserBackground);
             this.Controls.Add(this.picSphereBackground);
-            this.MaximumSize = new System.Drawing.Size(816, 489);
-            this.MinimumSize = new System.Drawing.Size(816, 489);
+            this.MaximumSize = new System.Drawing.Size(1009, 604);
+            this.MinimumSize = new System.Drawing.Size(1009, 604);
             this.Name = "SignUp";
-            this.Size = new System.Drawing.Size(816, 489);
+            this.Size = new System.Drawing.Size(1009, 604);
             ((System.ComponentModel.ISupportInitialize)(this.picSphereBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUserBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldRectangleUsername)).EndInit();

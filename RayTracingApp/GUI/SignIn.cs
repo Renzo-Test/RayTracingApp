@@ -27,28 +27,29 @@ namespace GUI
             _mainForm.GoToSignUp();
         }
 
+        private void picSignInButton_Click(object sender, EventArgs e)
+        {
+            _mainForm.GoToHome();
+        }
+
         private void txtUsernameSignIn_Enter(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtUsernameSignIn, UsernamePlaceHolder);
-
+            RemovePlaceHolder(txtUsernameSignIn, UsernamePlaceHolder);
         }
 
         private void txtUsernameSignIn_Leave(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtUsernameSignIn, UsernamePlaceHolder);
-
+            SetPlaceHolder(txtUsernameSignIn, UsernamePlaceHolder);
         }
 
         private void txtPasswordSignIn_Enter(object sender, EventArgs e)
         {
             RemovePlaceHolder(txtPasswordSignIn, PasswordPlaceHolder);
-
         }
 
         private void txtPasswordSignIn_Leave(object sender, EventArgs e)
         {
             SetPlaceHolder(txtPasswordSignIn, PasswordPlaceHolder);
-
         }
 
         private void RemovePlaceHolder(TextBox txtField, string placeHolder)
@@ -67,5 +68,6 @@ namespace GUI
 
             }
         }
+
     }
 }

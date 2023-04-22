@@ -14,9 +14,12 @@ namespace GUI
     {
         private UserControl _signInPanel;
         private UserControl _signUpPanel;
+        private UserControl _homePanel;
+
         public MainForm()
         {
             InitializeComponent();
+            _homePanel = new Home(this);
             _signInPanel = new SignIn(this);
             _signUpPanel = new SignUp(this);
             flyMain.Controls.Add(_signInPanel);
@@ -34,5 +37,10 @@ namespace GUI
             flyMain.Controls.Add(_signUpPanel);
         }
 
+        public void GoToHome()
+        {
+            flyMain.Controls.Clear();
+            flyMain.Controls.Add(_homePanel);
+        }
     }
 }
