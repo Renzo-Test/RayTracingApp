@@ -13,10 +13,14 @@ namespace GUI
     public partial class Home : UserControl
     {
         private MainForm _mainForm;
+        private FigureHome _figureHome;
         public Home(MainForm mainForm)
         {
             _mainForm = mainForm;
+            _figureHome = new FigureHome();
             InitializeComponent();
+            flyHome.Controls.Add(_figureHome);
+
         }
 
         private void btnSignOut_Click(object sender, EventArgs e)

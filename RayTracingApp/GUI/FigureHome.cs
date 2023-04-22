@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GUI.HomeUserController
+namespace GUI
 {
-    public partial class Figure : UserControl
+    public partial class FigureHome : UserControl
     {
-        public Figure()
+        public FigureHome()
         {
             InitializeComponent();
-   
         }
     }
 }

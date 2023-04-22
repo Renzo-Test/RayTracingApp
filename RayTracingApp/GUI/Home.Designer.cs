@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.flyHome = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSignOut = new System.Windows.Forms.Button();
             this.btnScenes = new System.Windows.Forms.Button();
             this.btnModel = new System.Windows.Forms.Button();
             this.btnMaterial = new System.Windows.Forms.Button();
             this.btnFigure = new System.Windows.Forms.Button();
             this.pnlUser = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlUser)).BeginInit();
             this.SuspendLayout();
@@ -52,8 +52,16 @@
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
             this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Size = new System.Drawing.Size(180, 600);
+            this.pnlSidebar.Size = new System.Drawing.Size(176, 604);
             this.pnlSidebar.TabIndex = 0;
+            // 
+            // flyHome
+            // 
+            this.flyHome.Location = new System.Drawing.Point(175, 0);
+            this.flyHome.Margin = new System.Windows.Forms.Padding(0);
+            this.flyHome.Name = "flyHome";
+            this.flyHome.Size = new System.Drawing.Size(834, 604);
+            this.flyHome.TabIndex = 1;
             // 
             // btnSignOut
             // 
@@ -65,10 +73,10 @@
             this.btnSignOut.ForeColor = System.Drawing.Color.White;
             this.btnSignOut.Image = global::GUI.Properties.Resources.signoutIcon;
             this.btnSignOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSignOut.Location = new System.Drawing.Point(0, 535);
+            this.btnSignOut.Location = new System.Drawing.Point(0, 539);
             this.btnSignOut.Name = "btnSignOut";
             this.btnSignOut.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnSignOut.Size = new System.Drawing.Size(180, 65);
+            this.btnSignOut.Size = new System.Drawing.Size(176, 65);
             this.btnSignOut.TabIndex = 5;
             this.btnSignOut.Text = "   Sign out";
             this.btnSignOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -90,7 +98,7 @@
             this.btnScenes.Location = new System.Drawing.Point(0, 295);
             this.btnScenes.Name = "btnScenes";
             this.btnScenes.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnScenes.Size = new System.Drawing.Size(180, 65);
+            this.btnScenes.Size = new System.Drawing.Size(176, 65);
             this.btnScenes.TabIndex = 4;
             this.btnScenes.Text = "   Scene";
             this.btnScenes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -112,7 +120,7 @@
             this.btnModel.Location = new System.Drawing.Point(0, 230);
             this.btnModel.Name = "btnModel";
             this.btnModel.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btnModel.Size = new System.Drawing.Size(180, 65);
+            this.btnModel.Size = new System.Drawing.Size(176, 65);
             this.btnModel.TabIndex = 3;
             this.btnModel.Text = "  Model";
             this.btnModel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -134,7 +142,7 @@
             this.btnMaterial.Location = new System.Drawing.Point(0, 165);
             this.btnMaterial.Name = "btnMaterial";
             this.btnMaterial.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btnMaterial.Size = new System.Drawing.Size(180, 65);
+            this.btnMaterial.Size = new System.Drawing.Size(176, 65);
             this.btnMaterial.TabIndex = 2;
             this.btnMaterial.Text = "  Material";
             this.btnMaterial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -156,7 +164,7 @@
             this.btnFigure.Location = new System.Drawing.Point(0, 100);
             this.btnFigure.Name = "btnFigure";
             this.btnFigure.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnFigure.Size = new System.Drawing.Size(180, 65);
+            this.btnFigure.Size = new System.Drawing.Size(176, 65);
             this.btnFigure.TabIndex = 1;
             this.btnFigure.Text = "   Figure";
             this.btnFigure.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -170,27 +178,20 @@
             this.pnlUser.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlUser.Location = new System.Drawing.Point(0, 0);
             this.pnlUser.Name = "pnlUser";
-            this.pnlUser.Size = new System.Drawing.Size(180, 100);
+            this.pnlUser.Size = new System.Drawing.Size(176, 100);
             this.pnlUser.TabIndex = 0;
             this.pnlUser.TabStop = false;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(175, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(824, 599);
-            this.flowLayoutPanel1.TabIndex = 1;
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.flyHome);
             this.Controls.Add(this.pnlSidebar);
-            this.MaximumSize = new System.Drawing.Size(1000, 600);
-            this.MinimumSize = new System.Drawing.Size(1000, 600);
+            this.MaximumSize = new System.Drawing.Size(1009, 604);
+            this.MinimumSize = new System.Drawing.Size(1009, 604);
             this.Name = "Home";
-            this.Size = new System.Drawing.Size(1000, 600);
+            this.Size = new System.Drawing.Size(1009, 604);
             this.pnlSidebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlUser)).EndInit();
             this.ResumeLayout(false);
@@ -206,6 +207,6 @@
         private System.Windows.Forms.Button btnModel;
         private System.Windows.Forms.Button btnMaterial;
         private System.Windows.Forms.Button btnSignOut;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flyHome;
     }
 }

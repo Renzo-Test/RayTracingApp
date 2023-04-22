@@ -93,7 +93,7 @@
             this.txtUsername.Location = new System.Drawing.Point(728, 249);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(136, 20);
-            this.txtUsername.TabIndex = 3;
+            this.txtUsername.TabIndex = 0;
             this.txtUsername.Text = "Username";
             this.txtUsername.Enter += new System.EventHandler(this.txtUsername_Enter);
             this.txtUsername.Leave += new System.EventHandler(this.txtUsername_Leave);
@@ -129,7 +129,7 @@
             this.txtPassword.Location = new System.Drawing.Point(728, 314);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(136, 20);
-            this.txtPassword.TabIndex = 6;
+            this.txtPassword.TabIndex = 1;
             this.txtPassword.Text = "Password";
             this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
@@ -164,7 +164,7 @@
             this.txtConfirmPassword.Location = new System.Drawing.Point(728, 383);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(136, 20);
-            this.txtConfirmPassword.TabIndex = 9;
+            this.txtConfirmPassword.TabIndex = 2;
             this.txtConfirmPassword.Text = "Confirm Password";
             this.txtConfirmPassword.Enter += new System.EventHandler(this.txtConfirmPassword_Enter);
             this.txtConfirmPassword.Leave += new System.EventHandler(this.txtConfirmPassword_Leave);
