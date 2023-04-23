@@ -75,7 +75,7 @@
             this.btnSignOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSignOut.Location = new System.Drawing.Point(0, 539);
             this.btnSignOut.Name = "btnSignOut";
-            this.btnSignOut.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnSignOut.Padding = new System.Windows.Forms.Padding(15, 0, 0, 10);
             this.btnSignOut.Size = new System.Drawing.Size(176, 65);
             this.btnSignOut.TabIndex = 5;
             this.btnSignOut.Text = "   Sign out";

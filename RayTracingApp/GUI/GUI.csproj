@@ -66,49 +66,67 @@
     <Compile Include="SignIn.Designer.cs">
       <DependentUpon>SignIn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Home.cs">
+    <Compile Include="Home\Home.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Home.Designer.cs">
+    <Compile Include="Home\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="FigureHome.cs">
+    <Compile Include="Home\Figure\FigureHome.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FigureHome.Designer.cs">
+    <Compile Include="Home\Figure\FigureHome.Designer.cs">
       <DependentUpon>FigureHome.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaterialHome.cs">
+    <Compile Include="Home\MaterialHome.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MaterialHome.Designer.cs">
+    <Compile Include="Home\MaterialHome.Designer.cs">
       <DependentUpon>MaterialHome.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelHome.cs">
+    <Compile Include="Home\ModelHome.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ModelHome.Designer.cs">
+    <Compile Include="Home\ModelHome.Designer.cs">
       <DependentUpon>ModelHome.cs</DependentUpon>
     </Compile>
-    <Compile Include="SceneHome.cs">
+    <Compile Include="Home\SceneHome.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SceneHome.Designer.cs">
+    <Compile Include="Home\SceneHome.Designer.cs">
       <DependentUpon>SceneHome.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FigureHome.resx">
+    <Compile Include="Home\Figure\AddFigure.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Figure\AddFigure.Designer.cs">
+      <DependentUpon>AddFigure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Figure\ListFigures.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Figure\ListFigures.Designer.cs">
+      <DependentUpon>ListFigures.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Home\Figure\AddFigure.resx">
+      <DependentUpon>AddFigure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Figure\FigureHome.resx">
       <DependentUpon>FigureHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Figure\ListFigures.resx">
+      <DependentUpon>ListFigures.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Home.resx">
+    <EmbeddedResource Include="Home\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaterialHome.resx">
+    <EmbeddedResource Include="Home\MaterialHome.resx">
       <DependentUpon>MaterialHome.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModelHome.resx">
+    <EmbeddedResource Include="Home\ModelHome.resx">
       <DependentUpon>ModelHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -121,7 +139,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SceneHome.resx">
+    <EmbeddedResource Include="Home\SceneHome.resx">
       <DependentUpon>SceneHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
