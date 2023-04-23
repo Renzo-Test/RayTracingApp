@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class FigureHome
+    partial class FigureList
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,27 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flyFigureHome = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnAddFigure = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // flyFigureHome
+            // btnAddFigure
             // 
-            this.flyFigureHome.Location = new System.Drawing.Point(0, 0);
-            this.flyFigureHome.Name = "flyFigureHome";
-            this.flyFigureHome.Size = new System.Drawing.Size(834, 604);
-            this.flyFigureHome.TabIndex = 0;
+            this.btnAddFigure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.btnAddFigure.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddFigure.FlatAppearance.BorderSize = 0;
+            this.btnAddFigure.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddFigure.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddFigure.ForeColor = System.Drawing.Color.White;
+            this.btnAddFigure.Location = new System.Drawing.Point(330, 56);
+            this.btnAddFigure.Name = "btnAddFigure";
+            this.btnAddFigure.Size = new System.Drawing.Size(176, 65);
+            this.btnAddFigure.TabIndex = 0;
+            this.btnAddFigure.Text = "Add Figure";
+            this.btnAddFigure.UseVisualStyleBackColor = false;
             // 
-            // FigureHome
+            // FigureList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.flyFigureHome);
-            this.ForeColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.btnAddFigure);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.MaximumSize = new System.Drawing.Size(834, 604);
             this.MinimumSize = new System.Drawing.Size(834, 604);
-            this.Name = "FigureHome";
+            this.Name = "FigureList";
             this.Size = new System.Drawing.Size(834, 604);
             this.ResumeLayout(false);
 
@@ -56,6 +63,6 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flyFigureHome;
+        private System.Windows.Forms.Button btnAddFigure;
     }
 }

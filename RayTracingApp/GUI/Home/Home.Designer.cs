@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.pnlSidebar = new System.Windows.Forms.Panel();
-            this.flyHome = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSignOut = new System.Windows.Forms.Button();
             this.btnScenes = new System.Windows.Forms.Button();
             this.btnModel = new System.Windows.Forms.Button();
             this.btnMaterial = new System.Windows.Forms.Button();
             this.btnFigure = new System.Windows.Forms.Button();
             this.pnlUser = new System.Windows.Forms.PictureBox();
+            this.flyHome = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlUser)).BeginInit();
             this.SuspendLayout();
@@ -54,14 +54,6 @@
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(176, 604);
             this.pnlSidebar.TabIndex = 0;
-            // 
-            // flyHome
-            // 
-            this.flyHome.Location = new System.Drawing.Point(175, 0);
-            this.flyHome.Margin = new System.Windows.Forms.Padding(0);
-            this.flyHome.Name = "flyHome";
-            this.flyHome.Size = new System.Drawing.Size(834, 604);
-            this.flyHome.TabIndex = 1;
             // 
             // btnSignOut
             // 
@@ -181,6 +173,14 @@
             this.pnlUser.Size = new System.Drawing.Size(176, 100);
             this.pnlUser.TabIndex = 0;
             this.pnlUser.TabStop = false;
+            // 
+            // flyHome
+            // 
+            this.flyHome.Location = new System.Drawing.Point(175, 0);
+            this.flyHome.Margin = new System.Windows.Forms.Padding(0);
+            this.flyHome.Name = "flyHome";
+            this.flyHome.Size = new System.Drawing.Size(834, 604);
+            this.flyHome.TabIndex = 1;
             // 
             // Home
             // 

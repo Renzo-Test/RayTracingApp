@@ -12,9 +12,28 @@ namespace GUI
 {
     public partial class FigureHome : UserControl
     {
+        private UserControl _addFigurePanel;
+        private UserControl _figureListPanel;
+
         public FigureHome()
         {
             InitializeComponent();
+            _addFigurePanel = new AddFigure(this);
+            _figureListPanel = new FigureList(this);
+            flyFigureHome.Controls.Add(_figureListPanel);
         }
+
+        public void GoToAddFigure()
+        {
+            flyFigureHome.Controls.Clear();
+            flyFigureHome.Controls.Add(_addFigurePanel);
+        }
+
+        public void GoToFigureList()
+        {
+            flyFigureHome.Controls.Clear();
+            flyFigureHome.Controls.Add(_figureListPanel);
+        }
+
     }
 }

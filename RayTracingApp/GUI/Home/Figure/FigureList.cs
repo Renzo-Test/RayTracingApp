@@ -10,10 +10,13 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class ListFigures : UserControl
+    public partial class FigureList : UserControl
     {
-        public ListFigures()
+        private FigureHome _figureHome;
+
+        public FigureList(FigureHome figureHome)
         {
+            _figureHome = figureHome;
             InitializeComponent();
         }
     }

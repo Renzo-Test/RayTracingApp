@@ -12,8 +12,11 @@ namespace GUI
 {
     public partial class AddFigure : UserControl
     {
-        public AddFigure()
+        private FigureHome _figureHome;
+
+        public AddFigure(FigureHome figureHome)
         {
+            _figureHome = figureHome;
             InitializeComponent();
         }
     }
