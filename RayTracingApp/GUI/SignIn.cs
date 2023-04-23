@@ -73,7 +73,7 @@ namespace GUI
             if (txtField.Text == placeHolder)
             {
                 txtField.Text = string.Empty;
-
+                txtField.ForeColor = Color.Black;
             }
         }
         private void SetPlaceHolder(TextBox txtField, string placeHolder)
@@ -81,9 +81,8 @@ namespace GUI
             if (txtField.Text == string.Empty)
             {
                 txtField.Text = placeHolder;
-
+                txtField.ForeColor = Color.DimGray;
             }
         }
-
     }
 }

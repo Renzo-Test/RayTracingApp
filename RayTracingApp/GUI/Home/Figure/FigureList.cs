@@ -19,5 +19,11 @@ namespace GUI
             _figureHome = figureHome;
             InitializeComponent();
         }
+
+        private void picAddFigure_Click(object sender, EventArgs e)
+        {
+            _figureHome.GoToAddFigure();
+        }
+
     }
 }

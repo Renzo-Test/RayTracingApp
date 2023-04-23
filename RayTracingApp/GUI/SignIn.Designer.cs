@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.txtPasswordSignIn = new System.Windows.Forms.TextBox();
+            this.lblSignIn = new System.Windows.Forms.Label();
+            this.lblAlreadyHaveAnAccount = new System.Windows.Forms.Label();
+            this.lblSignUpRef = new System.Windows.Forms.Label();
+            this.txtUsernameSignIn = new System.Windows.Forms.TextBox();
             this.picSignInButton = new System.Windows.Forms.PictureBox();
             this.picIconLock = new System.Windows.Forms.PictureBox();
             this.picFieldRectanglePassword = new System.Windows.Forms.PictureBox();
@@ -36,10 +40,6 @@
             this.picFieldRectangleUsername = new System.Windows.Forms.PictureBox();
             this.picUserBackground = new System.Windows.Forms.PictureBox();
             this.picSphereBackground = new System.Windows.Forms.PictureBox();
-            this.lblSignIn = new System.Windows.Forms.Label();
-            this.lblAlreadyHaveAnAccount = new System.Windows.Forms.Label();
-            this.lblSignUpRef = new System.Windows.Forms.Label();
-            this.txtUsernameSignIn = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picSignInButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconLock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldRectanglePassword)).BeginInit();
@@ -54,7 +54,7 @@
             this.txtPasswordSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.txtPasswordSignIn.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPasswordSignIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPasswordSignIn.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtPasswordSignIn.ForeColor = System.Drawing.Color.DimGray;
             this.txtPasswordSignIn.Location = new System.Drawing.Point(721, 321);
             this.txtPasswordSignIn.Name = "txtPasswordSignIn";
             this.txtPasswordSignIn.Size = new System.Drawing.Size(136, 20);
@@ -62,6 +62,56 @@
             this.txtPasswordSignIn.Text = "Password";
             this.txtPasswordSignIn.Enter += new System.EventHandler(this.txtPasswordSignIn_Enter);
             this.txtPasswordSignIn.Leave += new System.EventHandler(this.txtPasswordSignIn_Leave);
+            // 
+            // lblSignIn
+            // 
+            this.lblSignIn.AutoSize = true;
+            this.lblSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.lblSignIn.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSignIn.ForeColor = System.Drawing.Color.White;
+            this.lblSignIn.Location = new System.Drawing.Point(729, 398);
+            this.lblSignIn.Name = "lblSignIn";
+            this.lblSignIn.Size = new System.Drawing.Size(87, 28);
+            this.lblSignIn.TabIndex = 9;
+            this.lblSignIn.Text = "Sign in";
+            // 
+            // lblAlreadyHaveAnAccount
+            // 
+            this.lblAlreadyHaveAnAccount.AutoSize = true;
+            this.lblAlreadyHaveAnAccount.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlreadyHaveAnAccount.ForeColor = System.Drawing.Color.White;
+            this.lblAlreadyHaveAnAccount.Location = new System.Drawing.Point(682, 458);
+            this.lblAlreadyHaveAnAccount.Name = "lblAlreadyHaveAnAccount";
+            this.lblAlreadyHaveAnAccount.Size = new System.Drawing.Size(143, 16);
+            this.lblAlreadyHaveAnAccount.TabIndex = 10;
+            this.lblAlreadyHaveAnAccount.Text = "Dont have an account?";
+            // 
+            // lblSignUpRef
+            // 
+            this.lblSignUpRef.AutoSize = true;
+            this.lblSignUpRef.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblSignUpRef.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSignUpRef.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.lblSignUpRef.Location = new System.Drawing.Point(822, 458);
+            this.lblSignUpRef.Name = "lblSignUpRef";
+            this.lblSignUpRef.Size = new System.Drawing.Size(53, 16);
+            this.lblSignUpRef.TabIndex = 11;
+            this.lblSignUpRef.Text = "Sign Up!";
+            this.lblSignUpRef.Click += new System.EventHandler(this.lblSignUpRef_Click);
+            // 
+            // txtUsernameSignIn
+            // 
+            this.txtUsernameSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.txtUsernameSignIn.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsernameSignIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsernameSignIn.ForeColor = System.Drawing.Color.DimGray;
+            this.txtUsernameSignIn.Location = new System.Drawing.Point(721, 249);
+            this.txtUsernameSignIn.Name = "txtUsernameSignIn";
+            this.txtUsernameSignIn.Size = new System.Drawing.Size(136, 20);
+            this.txtUsernameSignIn.TabIndex = 0;
+            this.txtUsernameSignIn.Text = "Username";
+            this.txtUsernameSignIn.Enter += new System.EventHandler(this.txtUsernameSignIn_Enter);
+            this.txtUsernameSignIn.Leave += new System.EventHandler(this.txtUsernameSignIn_Leave);
             // 
             // picSignInButton
             // 
@@ -138,56 +188,6 @@
             this.picSphereBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSphereBackground.TabIndex = 0;
             this.picSphereBackground.TabStop = false;
-            // 
-            // lblSignIn
-            // 
-            this.lblSignIn.AutoSize = true;
-            this.lblSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
-            this.lblSignIn.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSignIn.ForeColor = System.Drawing.Color.White;
-            this.lblSignIn.Location = new System.Drawing.Point(729, 398);
-            this.lblSignIn.Name = "lblSignIn";
-            this.lblSignIn.Size = new System.Drawing.Size(87, 28);
-            this.lblSignIn.TabIndex = 9;
-            this.lblSignIn.Text = "Sign in";
-            // 
-            // lblAlreadyHaveAnAccount
-            // 
-            this.lblAlreadyHaveAnAccount.AutoSize = true;
-            this.lblAlreadyHaveAnAccount.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlreadyHaveAnAccount.ForeColor = System.Drawing.Color.White;
-            this.lblAlreadyHaveAnAccount.Location = new System.Drawing.Point(682, 458);
-            this.lblAlreadyHaveAnAccount.Name = "lblAlreadyHaveAnAccount";
-            this.lblAlreadyHaveAnAccount.Size = new System.Drawing.Size(143, 16);
-            this.lblAlreadyHaveAnAccount.TabIndex = 10;
-            this.lblAlreadyHaveAnAccount.Text = "Dont have an account?";
-            // 
-            // lblSignUpRef
-            // 
-            this.lblSignUpRef.AutoSize = true;
-            this.lblSignUpRef.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblSignUpRef.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSignUpRef.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
-            this.lblSignUpRef.Location = new System.Drawing.Point(822, 458);
-            this.lblSignUpRef.Name = "lblSignUpRef";
-            this.lblSignUpRef.Size = new System.Drawing.Size(53, 16);
-            this.lblSignUpRef.TabIndex = 11;
-            this.lblSignUpRef.Text = "Sign Up!";
-            this.lblSignUpRef.Click += new System.EventHandler(this.lblSignUpRef_Click);
-            // 
-            // txtUsernameSignIn
-            // 
-            this.txtUsernameSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.txtUsernameSignIn.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsernameSignIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsernameSignIn.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtUsernameSignIn.Location = new System.Drawing.Point(721, 249);
-            this.txtUsernameSignIn.Name = "txtUsernameSignIn";
-            this.txtUsernameSignIn.Size = new System.Drawing.Size(136, 20);
-            this.txtUsernameSignIn.TabIndex = 0;
-            this.txtUsernameSignIn.Text = "Username";
-            this.txtUsernameSignIn.Enter += new System.EventHandler(this.txtUsernameSignIn_Enter);
-            this.txtUsernameSignIn.Leave += new System.EventHandler(this.txtUsernameSignIn_Leave);
             // 
             // SignIn
             // 
