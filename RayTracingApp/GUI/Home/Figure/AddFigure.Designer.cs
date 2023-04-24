@@ -101,6 +101,7 @@
             // picRectangleFieldSave
             // 
             this.picRectangleFieldSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+            this.picRectangleFieldSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRectangleFieldSave.Image = global::GUI.Properties.Resources.homeButtonsBackground;
             this.picRectangleFieldSave.Location = new System.Drawing.Point(222, 403);
             this.picRectangleFieldSave.Name = "picRectangleFieldSave";
@@ -108,6 +109,7 @@
             this.picRectangleFieldSave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picRectangleFieldSave.TabIndex = 6;
             this.picRectangleFieldSave.TabStop = false;
+            this.picRectangleFieldSave.Click += new System.EventHandler(this.picRectangleFieldSave_Click);
             // 
             // picDarkRectangleFieldRadius
             // 
@@ -159,6 +161,7 @@
             // 
             this.lblSave.AutoSize = true;
             this.lblSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.lblSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSave.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSave.ForeColor = System.Drawing.Color.White;
             this.lblSave.Location = new System.Drawing.Point(278, 414);
@@ -166,6 +169,7 @@
             this.lblSave.Size = new System.Drawing.Size(56, 23);
             this.lblSave.TabIndex = 10;
             this.lblSave.Text = "Save";
+            this.lblSave.Click += new System.EventHandler(this.lblSave_Click);
             // 
             // AddFigure
             // 

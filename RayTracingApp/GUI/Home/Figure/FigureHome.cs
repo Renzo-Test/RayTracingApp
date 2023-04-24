@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,10 +17,10 @@ namespace GUI
         private UserControl _addFigurePanel;
         private UserControl _figureListPanel;
 
-        public FigureHome()
+        public FigureHome(FigureController figureController, Client currentClient)
         {
             InitializeComponent();
-            _addFigurePanel = new AddFigure(this);
+            _addFigurePanel = new AddFigure(this, figureController, currentClient);
             _figureListPanel = new FigureList(this);
             flyFigureHome.Controls.Add(_figureListPanel);
         }

@@ -18,6 +18,7 @@ namespace GUI
         private const string UsernamePlaceHolder = "Username";
         private const string PasswordPlaceHolder = "Password";
         private const string ConfirmPasswordPlaceholder = "Confirm Password";
+        private const string PasswordConfirmationErrorMessage = "Password and password confirmation do not match";
 
         private MainForm _mainForm;
 
@@ -54,7 +55,7 @@ namespace GUI
             
             if(!PasswordMatch(password, passwordConfirmation))
             {
-                MessageBox.Show("Password and password confirmation do not match");
+                MessageBox.Show(PasswordConfirmationErrorMessage);
                 return;
             }
 

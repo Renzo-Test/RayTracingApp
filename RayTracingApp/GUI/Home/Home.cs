@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Controller;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,8 @@ namespace GUI
         private FigureHome _figureHome;
         private MaterialHome _materialHome;
 
+        private FigureController _figureController;
+
         private Client _currentClient;
 
 
@@ -27,9 +30,11 @@ namespace GUI
             _mainForm = mainForm;
             _currentClient = currentClient;
 
+            _figureController = new FigureController();
+
             _sceneHome = new SceneHome();
             _moedelHome = new ModelHome();
-            _figureHome = new FigureHome();
+            _figureHome = new FigureHome(_figureController, _currentClient);
             _materialHome = new MaterialHome();
 
             InitializeComponent();

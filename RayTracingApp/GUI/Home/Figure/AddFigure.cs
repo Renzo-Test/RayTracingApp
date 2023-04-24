@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Controller;
+using Models.FigureExceptions;
+using Models.SphereExceptions;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,12 +18,17 @@ namespace GUI
     {
         private const string NamelaceHolder = "Name";
         private const string RadiusPlaceHolder = "Radius";
+        private const string RadiusInputErrorMessage = "Input for radius must be a number";
 
         private FigureHome _figureHome;
+        private FigureController _figureController;
+        private Client _currentClient;
 
-        public AddFigure(FigureHome figureHome)
+        public AddFigure(FigureHome figureHome, FigureController figureController, Client currentClient)
         {
             _figureHome = figureHome;
+            _figureController = figureController;
+            _currentClient = currentClient;
             InitializeComponent();
         }
 
@@ -36,6 +45,69 @@ namespace GUI
         private void lblCancel_TextChanged(object sender, EventArgs e)
         {
             _figureHome.GoToFigureList();
+        }
+
+        private void picRectangleFieldSave_Click(object sender, EventArgs e)
+        {
+            AddNewFigure();
+        }
+
+        private void lblSave_Click(object sender, EventArgs e)
+        {
+            AddNewFigure();
+        }
+
+        private void AddNewFigure()
+        {
+            double radius = 0;
+
+            try
+            {
+                radius = GetParsedRadius();
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            Figure newFigure = CreateFigure(radius);
+
+            try
+            {
+                _figureController.AddFigure(newFigure, _currentClient.Username);
+                _figureHome.GoToFigureList();
+            }
+            catch (Controller.FigureExceptions.InvalidFigureInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Models.FigureExceptions.InvalidFigureInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private Figure CreateFigure(double radius)
+        {
+            return new Sphere()
+            {
+                Name = txtInputName.Text,
+                Radius = radius,
+            };
+        }
+
+        private double GetParsedRadius()
+        {
+            try
+            {
+                return Double.Parse(txtInputRadius.Text);
+            }
+            catch(FormatException)
+            {
+                throw new FormatException(RadiusInputErrorMessage);
+            }
+           
         }
 
         private void txtInputName_Enter(object sender, EventArgs e)
@@ -63,7 +135,7 @@ namespace GUI
             if (txtField.Text == placeHolder)
             {
                 txtField.Text = string.Empty;
-                txtField.ForeColor = Color.Black;
+                txtField.ForeColor = System.Drawing.Color.Black;
 
             }
         }
@@ -72,11 +144,9 @@ namespace GUI
             if (txtField.Text == string.Empty)
             {
                 txtField.Text = placeHolder;
-                txtField.ForeColor = Color.DimGray;
+                txtField.ForeColor = System.Drawing.Color.DimGray;
 
             }
         }
-
-
     }
 }
