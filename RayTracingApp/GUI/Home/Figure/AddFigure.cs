@@ -12,6 +12,9 @@ namespace GUI
 {
     public partial class AddFigure : UserControl
     {
+        private const string NamelaceHolder = "Name";
+        private const string RadiusPlaceHolder = "Radius";
+
         private FigureHome _figureHome;
 
         public AddFigure(FigureHome figureHome)
@@ -25,24 +28,34 @@ namespace GUI
             _figureHome.GoToFigureList();
         }
 
+        private void lblCancel_Click(object sender, EventArgs e)
+        {
+            _figureHome.GoToFigureList();
+        }
+
+        private void lblCancel_TextChanged(object sender, EventArgs e)
+        {
+            _figureHome.GoToFigureList();
+        }
+
         private void txtInputName_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtInputName, "Name");
+            RemovePlaceHolder(txtInputName, NamelaceHolder);
         }
 
         private void txtInputName_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtInputName, "Name");
+            SetPlaceHolder(txtInputName, NamelaceHolder);
         }
 
         private void txtInputRadius_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtInputRadius, "Radius");
+            RemovePlaceHolder(txtInputRadius, RadiusPlaceHolder);
         }
 
         private void txtInputRadius_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtInputRadius, "Radius");
+            SetPlaceHolder(txtInputRadius, RadiusPlaceHolder);
         }
 
         private void RemovePlaceHolder(TextBox txtField, string placeHolder)
@@ -63,6 +76,7 @@ namespace GUI
 
             }
         }
+
 
     }
 }

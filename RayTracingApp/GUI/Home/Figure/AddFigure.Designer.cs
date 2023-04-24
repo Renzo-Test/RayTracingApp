@@ -31,18 +31,18 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtInputName = new System.Windows.Forms.TextBox();
             this.txtInputRadius = new System.Windows.Forms.TextBox();
+            this.picRectangleFieldCancel = new System.Windows.Forms.PictureBox();
             this.picRectangleFieldSave = new System.Windows.Forms.PictureBox();
             this.picDarkRectangleFieldRadius = new System.Windows.Forms.PictureBox();
             this.picDarkRectangleFieldName = new System.Windows.Forms.PictureBox();
             this.picCard = new System.Windows.Forms.PictureBox();
-            this.lblSave = new System.Windows.Forms.TextBox();
-            this.lblCancel = new System.Windows.Forms.TextBox();
-            this.picRectangleFieldCancel = new System.Windows.Forms.PictureBox();
+            this.lblCancel = new System.Windows.Forms.Label();
+            this.lblSave = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.picRectangleFieldCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRectangleFieldSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleFieldRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleFieldName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCard)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRectangleFieldCancel)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -84,6 +84,19 @@
             this.txtInputRadius.Text = "Radius";
             this.txtInputRadius.Enter += new System.EventHandler(this.txtInputRadius_Enter);
             this.txtInputRadius.Leave += new System.EventHandler(this.txtInputRadius_Leave);
+            // 
+            // picRectangleFieldCancel
+            // 
+            this.picRectangleFieldCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+            this.picRectangleFieldCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picRectangleFieldCancel.Image = global::GUI.Properties.Resources.homeButtonsBackground;
+            this.picRectangleFieldCancel.Location = new System.Drawing.Point(451, 403);
+            this.picRectangleFieldCancel.Name = "picRectangleFieldCancel";
+            this.picRectangleFieldCancel.Size = new System.Drawing.Size(165, 45);
+            this.picRectangleFieldCancel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picRectangleFieldCancel.TabIndex = 8;
+            this.picRectangleFieldCancel.TabStop = false;
+            this.picRectangleFieldCancel.Click += new System.EventHandler(this.picRectangleFieldCancel_Click);
             // 
             // picRectangleFieldSave
             // 
@@ -128,51 +141,40 @@
             this.picCard.TabIndex = 0;
             this.picCard.TabStop = false;
             // 
-            // lblSave
-            // 
-            this.lblSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
-            this.lblSave.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lblSave.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSave.ForeColor = System.Drawing.Color.White;
-            this.lblSave.Location = new System.Drawing.Point(279, 413);
-            this.lblSave.Name = "lblSave";
-            this.lblSave.Size = new System.Drawing.Size(56, 24);
-            this.lblSave.TabIndex = 7;
-            this.lblSave.Text = "Save";
-            // 
             // lblCancel
             // 
+            this.lblCancel.AutoSize = true;
             this.lblCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
-            this.lblCancel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lblCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCancel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCancel.ForeColor = System.Drawing.Color.White;
-            this.lblCancel.Location = new System.Drawing.Point(499, 413);
+            this.lblCancel.Location = new System.Drawing.Point(495, 414);
             this.lblCancel.Name = "lblCancel";
-            this.lblCancel.Size = new System.Drawing.Size(72, 24);
+            this.lblCancel.Size = new System.Drawing.Size(78, 23);
             this.lblCancel.TabIndex = 9;
             this.lblCancel.Text = "Cancel";
+            this.lblCancel.Click += new System.EventHandler(this.lblCancel_Click);
             // 
-            // picRectangleFieldCancel
+            // lblSave
             // 
-            this.picRectangleFieldCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
-            this.picRectangleFieldCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picRectangleFieldCancel.Image = global::GUI.Properties.Resources.homeButtonsBackground;
-            this.picRectangleFieldCancel.Location = new System.Drawing.Point(451, 403);
-            this.picRectangleFieldCancel.Name = "picRectangleFieldCancel";
-            this.picRectangleFieldCancel.Size = new System.Drawing.Size(165, 45);
-            this.picRectangleFieldCancel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picRectangleFieldCancel.TabIndex = 8;
-            this.picRectangleFieldCancel.TabStop = false;
-            this.picRectangleFieldCancel.Click += new System.EventHandler(this.picRectangleFieldCancel_Click);
+            this.lblSave.AutoSize = true;
+            this.lblSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.lblSave.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSave.ForeColor = System.Drawing.Color.White;
+            this.lblSave.Location = new System.Drawing.Point(278, 414);
+            this.lblSave.Name = "lblSave";
+            this.lblSave.Size = new System.Drawing.Size(56, 23);
+            this.lblSave.TabIndex = 10;
+            this.lblSave.Text = "Save";
             // 
             // AddFigure
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.lblSave);
             this.Controls.Add(this.lblCancel);
             this.Controls.Add(this.picRectangleFieldCancel);
-            this.Controls.Add(this.lblSave);
             this.Controls.Add(this.picRectangleFieldSave);
             this.Controls.Add(this.txtInputRadius);
             this.Controls.Add(this.picDarkRectangleFieldRadius);
@@ -185,11 +187,11 @@
             this.MinimumSize = new System.Drawing.Size(834, 604);
             this.Name = "AddFigure";
             this.Size = new System.Drawing.Size(834, 604);
+            ((System.ComponentModel.ISupportInitialize)(this.picRectangleFieldCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRectangleFieldSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleFieldRadius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleFieldName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCard)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRectangleFieldCancel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,8 +206,8 @@
         private System.Windows.Forms.TextBox txtInputRadius;
         private System.Windows.Forms.PictureBox picDarkRectangleFieldRadius;
         private System.Windows.Forms.PictureBox picRectangleFieldSave;
-        private System.Windows.Forms.TextBox lblSave;
-        private System.Windows.Forms.TextBox lblCancel;
         private System.Windows.Forms.PictureBox picRectangleFieldCancel;
+        private System.Windows.Forms.Label lblCancel;
+        private System.Windows.Forms.Label lblSave;
     }
 }

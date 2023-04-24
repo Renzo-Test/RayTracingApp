@@ -173,6 +173,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap smallDarkFieldRectangle {
+            get {
+                object obj = ResourceManager.GetObject("smallDarkFieldRectangle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sphereBackground {
             get {
                 object obj = ResourceManager.GetObject("sphereBackground", resourceCulture);
@@ -206,6 +216,26 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap userIcon {
             get {
                 object obj = ResourceManager.GetObject("userIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap xSmallDarkFieldRectangle {
+            get {
+                object obj = ResourceManager.GetObject("xSmallDarkFieldRectangle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap xSmallGrayDarkFieldRectangle {
+            get {
+                object obj = ResourceManager.GetObject("xSmallGrayDarkFieldRectangle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

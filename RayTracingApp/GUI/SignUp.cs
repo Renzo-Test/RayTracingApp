@@ -23,9 +23,16 @@ namespace GUI
             _mainForm = mainForm;
             InitializeComponent();
         }
+        
         private void label1_Click(object sender, EventArgs e)
         {
             _mainForm.GoToSignIn();
+        }
+
+        private void lblSignUp_Click(object sender, EventArgs e)
+        {
+            _mainForm.GoToSignIn();
+
         }
         
         private void picSignUpBackground_Click(object sender, EventArgs e)
@@ -80,5 +87,7 @@ namespace GUI
                 txtField.ForeColor = Color.DimGray;
             }
         }
+
+
     }
 }

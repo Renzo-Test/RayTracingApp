@@ -25,5 +25,14 @@ namespace GUI
             _figureHome.GoToAddFigure();
         }
 
+        private void lblAddFigure_Click(object sender, EventArgs e)
+        {
+            _figureHome.GoToAddFigure();
+        }
+
+        private void picIconPlus_Click(object sender, EventArgs e)
+        {
+            _figureHome.GoToAddFigure();
+        }
     }
 }

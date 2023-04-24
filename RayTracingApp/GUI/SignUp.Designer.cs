@@ -108,6 +108,7 @@
             this.lblSignUp.Size = new System.Drawing.Size(98, 28);
             this.lblSignUp.TabIndex = 12;
             this.lblSignUp.Text = "Sign Up";
+            this.lblSignUp.Click += new System.EventHandler(this.lblSignUp_Click);
             // 
             // lblAlreadyHaveAnAccount
             // 

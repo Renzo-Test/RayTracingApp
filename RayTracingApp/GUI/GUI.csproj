@@ -108,6 +108,18 @@
     <Compile Include="Home\Figure\FigureList.Designer.cs">
       <DependentUpon>FigureList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Home\Material\AddMaterial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Material\AddMaterial.Designer.cs">
+      <DependentUpon>AddMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Material\MaterialList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Material\MaterialList.Designer.cs">
+      <DependentUpon>MaterialList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Home\Figure\AddFigure.resx">
       <DependentUpon>AddFigure.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +128,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Figure\FigureList.resx">
       <DependentUpon>FigureList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Material\AddMaterial.resx">
+      <DependentUpon>AddMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Material\MaterialList.resx">
+      <DependentUpon>MaterialList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -205,6 +223,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\homeButtonsBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smallDarkFieldRectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xSmallDarkFieldRectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xSmallGrayDarkFieldRectangle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

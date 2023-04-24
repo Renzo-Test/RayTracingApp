@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class FigureList
+    partial class MaterialList
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,66 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picAddFigure = new System.Windows.Forms.PictureBox();
-            this.lblAddFigure = new System.Windows.Forms.Label();
+            this.picAddMaterial = new System.Windows.Forms.PictureBox();
+            this.lblAddMaterial = new System.Windows.Forms.Label();
             this.picIconPlus = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picAddFigure)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAddMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).BeginInit();
             this.SuspendLayout();
             // 
-            // picAddFigure
+            // picAddMaterial
             // 
-            this.picAddFigure.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picAddFigure.Image = global::GUI.Properties.Resources.loginBackground;
-            this.picAddFigure.Location = new System.Drawing.Point(310, 44);
-            this.picAddFigure.Name = "picAddFigure";
-            this.picAddFigure.Size = new System.Drawing.Size(198, 72);
-            this.picAddFigure.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picAddFigure.TabIndex = 1;
-            this.picAddFigure.TabStop = false;
-            this.picAddFigure.Click += new System.EventHandler(this.picAddFigure_Click);
+            this.picAddMaterial.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picAddMaterial.Image = global::GUI.Properties.Resources.homeButtonsBackground;
+            this.picAddMaterial.Location = new System.Drawing.Point(310, 44);
+            this.picAddMaterial.Name = "picAddMaterial";
+            this.picAddMaterial.Size = new System.Drawing.Size(198, 72);
+            this.picAddMaterial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picAddMaterial.TabIndex = 0;
+            this.picAddMaterial.TabStop = false;
+            this.picAddMaterial.Click += new System.EventHandler(this.picAddMaterial_Click);
             // 
-            // lblAddFigure
+            // lblAddMaterial
             // 
-            this.lblAddFigure.AutoSize = true;
-            this.lblAddFigure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
-            this.lblAddFigure.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblAddFigure.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddFigure.ForeColor = System.Drawing.Color.White;
-            this.lblAddFigure.Location = new System.Drawing.Point(370, 69);
-            this.lblAddFigure.Name = "lblAddFigure";
-            this.lblAddFigure.Size = new System.Drawing.Size(111, 23);
-            this.lblAddFigure.TabIndex = 2;
-            this.lblAddFigure.Text = "Add Figure";
-            this.lblAddFigure.Click += new System.EventHandler(this.lblAddFigure_Click);
+            this.lblAddMaterial.AutoSize = true;
+            this.lblAddMaterial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.lblAddMaterial.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblAddMaterial.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddMaterial.ForeColor = System.Drawing.Color.White;
+            this.lblAddMaterial.Location = new System.Drawing.Point(361, 68);
+            this.lblAddMaterial.Name = "lblAddMaterial";
+            this.lblAddMaterial.Size = new System.Drawing.Size(132, 23);
+            this.lblAddMaterial.TabIndex = 1;
+            this.lblAddMaterial.Text = "Add Material";
+            this.lblAddMaterial.Click += new System.EventHandler(this.lblAddMaterial_Click);
             // 
             // picIconPlus
             // 
             this.picIconPlus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
             this.picIconPlus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picIconPlus.Image = global::GUI.Properties.Resources.plus;
-            this.picIconPlus.Location = new System.Drawing.Point(342, 69);
+            this.picIconPlus.Location = new System.Drawing.Point(333, 69);
             this.picIconPlus.Name = "picIconPlus";
             this.picIconPlus.Size = new System.Drawing.Size(22, 22);
             this.picIconPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picIconPlus.TabIndex = 3;
+            this.picIconPlus.TabIndex = 2;
             this.picIconPlus.TabStop = false;
             this.picIconPlus.Click += new System.EventHandler(this.picIconPlus_Click);
             // 
-            // FigureList
+            // MaterialList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
             this.Controls.Add(this.picIconPlus);
-            this.Controls.Add(this.lblAddFigure);
-            this.Controls.Add(this.picAddFigure);
+            this.Controls.Add(this.lblAddMaterial);
+            this.Controls.Add(this.picAddMaterial);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.MaximumSize = new System.Drawing.Size(834, 604);
-            this.MinimumSize = new System.Drawing.Size(834, 604);
-            this.Name = "FigureList";
+            this.Name = "MaterialList";
             this.Size = new System.Drawing.Size(834, 604);
-            ((System.ComponentModel.ISupportInitialize)(this.picAddFigure)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAddMaterial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -95,8 +93,9 @@
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox picAddFigure;
-        private System.Windows.Forms.Label lblAddFigure;
+
+        private System.Windows.Forms.PictureBox picAddMaterial;
+        private System.Windows.Forms.Label lblAddMaterial;
         private System.Windows.Forms.PictureBox picIconPlus;
     }
 }

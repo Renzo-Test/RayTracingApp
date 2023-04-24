@@ -67,6 +67,7 @@
             // 
             this.lblSignIn.AutoSize = true;
             this.lblSignIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.lblSignIn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSignIn.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSignIn.ForeColor = System.Drawing.Color.White;
             this.lblSignIn.Location = new System.Drawing.Point(729, 398);
@@ -74,6 +75,7 @@
             this.lblSignIn.Size = new System.Drawing.Size(87, 28);
             this.lblSignIn.TabIndex = 9;
             this.lblSignIn.Text = "Sign in";
+            this.lblSignIn.Click += new System.EventHandler(this.lblSignIn_Click);
             // 
             // lblAlreadyHaveAnAccount
             // 

@@ -14,8 +14,11 @@ namespace GUI
     {
         private const string UsernamePlaceHolder = "Username";
         private const string PasswordPlaceHolder = "Password";
+        private const char PasswordCharacter = '*';
+        private const char PlainTextCharacter = '\0';
 
         private MainForm _mainForm;
+
         public SignIn(MainForm mainForm)
         {
             _mainForm = mainForm;
@@ -25,6 +28,11 @@ namespace GUI
         private void lblSignUpRef_Click(object sender, EventArgs e)
         {
             _mainForm.GoToSignUp();
+        }
+
+        private void lblSignIn_Click(object sender, EventArgs e)
+        {
+            _mainForm.GoToHome();
         }
 
         private void picSignInButton_Click(object sender, EventArgs e)
@@ -50,7 +58,7 @@ namespace GUI
 
         private void HidePassword(TextBox txtField)
         {
-            txtField.PasswordChar = '*';
+            txtField.PasswordChar = PasswordCharacter;
         }
 
         private void txtPasswordSignIn_Leave(object sender, EventArgs e)
@@ -64,7 +72,7 @@ namespace GUI
         {
             if (txtField.Text == PasswordPlaceHolder)
             {
-                txtField.PasswordChar = '\0';
+                txtField.PasswordChar = PlainTextCharacter;
             }
         }
 
@@ -84,5 +92,7 @@ namespace GUI
                 txtField.ForeColor = Color.DimGray;
             }
         }
+
+
     }
 }
