@@ -50,12 +50,9 @@ namespace GUI
 
             flyFigureList.Controls.Clear();
 
-            foreach (Figure figure in figures)
+            foreach (Sphere sphere in figures)
             {
-                FigureListItem item = new FigureListItem();
-
-                item.Name = figure.Name;
-                item.Radius = 10;
+                FigureListItem item = new FigureListItem(_figureController, sphere);
                 flyFigureList.Controls.Add(item);
             }
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,34 +14,25 @@ namespace GUI
 {
     public partial class FigureListItem : UserControl
     {
+        private FigureController _figureController;
+        private string _currentClient;
 
-        public FigureListItem()
+        public FigureListItem(FigureController figureController, Sphere sphere)
         {
             InitializeComponent();
+            
+            lblFigureName.Text = sphere.Name;
+            lblRadius.Text = $"Radius: {sphere.Radius}";
+
+            _figureController = figureController;
+            _currentClient = sphere.Owner;
+
         }
 
-        private string _figureName;
-        public string FigureName 
-        { 
-            get => _figureName; 
-            set 
-            {
-                _figureName = value;
-                lblFigureName.Text = "aa";
-            }
-        }
-
-        private int _radius;
-        public int Radius
+        private void picIconX_Click(object sender, EventArgs e)
         {
-            get => _radius;
-            set
-            {
-                _radius = value;
-                lblRadius.Text = $"Radius: {value}";
-            }
+            /*TODO CORRECTLY USE MODELS*/
+            _figureController.RemoveFigure(lblFigureName.Text, _currentClient, new List<Model>()); 
         }
-
-
     }
 }
