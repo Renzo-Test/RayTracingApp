@@ -31,17 +31,26 @@ namespace GUI
             _mainForm = mainForm;
             _currentClient = currentClient;
 
+            InitializeControllers();
+            InitializeHomeScenes();
+            InitializeComponent();
+            SetCurrentClientLabel();
+            
+            flyHome.Controls.Add(_figureHome);
+        }
+
+        private void InitializeControllers()
+        {
             _figureController = new FigureController();
             _materialController = new MaterialController();
+        }
 
+        private void InitializeHomeScenes()
+        {
             _sceneHome = new SceneHome();
             _moedelHome = new ModelHome();
             _figureHome = new FigureHome(_figureController, _currentClient);
             _materialHome = new MaterialHome(_materialController, _currentClient);
-
-            InitializeComponent();
-            SetCurrentClientLabel();
-            flyHome.Controls.Add(_figureHome);
         }
 
         private void SetCurrentClientLabel()
