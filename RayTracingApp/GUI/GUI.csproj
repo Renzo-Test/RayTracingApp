@@ -102,10 +102,10 @@
     <Compile Include="Home\Figure\AddFigure.Designer.cs">
       <DependentUpon>AddFigure.cs</DependentUpon>
     </Compile>
-    <Compile Include="Home\Figure\FigureList.cs">
+    <Compile Include="Home\Figure\FigureList\FigureList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Home\Figure\FigureList.Designer.cs">
+    <Compile Include="Home\Figure\FigureList\FigureList.Designer.cs">
       <DependentUpon>FigureList.cs</DependentUpon>
     </Compile>
     <Compile Include="Home\Material\AddMaterial.cs">
@@ -120,14 +120,23 @@
     <Compile Include="Home\Material\MaterialList.Designer.cs">
       <DependentUpon>MaterialList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Home\Figure\FigureList\FigureListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Figure\FigureList\FigureListItem.Designer.cs">
+      <DependentUpon>FigureListItem.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Home\Figure\AddFigure.resx">
       <DependentUpon>AddFigure.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Figure\FigureHome.resx">
       <DependentUpon>FigureHome.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Home\Figure\FigureList.resx">
+    <EmbeddedResource Include="Home\Figure\FigureList\FigureList.resx">
       <DependentUpon>FigureList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Figure\FigureList\FigureListItem.resx">
+      <DependentUpon>FigureListItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Material\AddMaterial.resx">
       <DependentUpon>AddMaterial.cs</DependentUpon>
@@ -238,6 +247,10 @@
       <Project>{8AFD5675-EF7D-4C0C-9936-8EBF95410A98}</Project>
       <Name>Controller</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MemoryRepository\MemoryRepository.csproj">
+      <Project>{5E7FE5D8-E9A5-4B2C-AA81-E63CC8E6669F}</Project>
+      <Name>MemoryRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>
       <Name>Models</Name>
@@ -245,6 +258,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\userIcon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lSphereIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mX.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -113,6 +113,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lSphereIcon {
+            get {
+                object obj = ResourceManager.GetObject("lSphereIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap materialIcon {
             get {
                 object obj = ResourceManager.GetObject("materialIcon", resourceCulture);
@@ -126,6 +136,16 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap modelIcon {
             get {
                 object obj = ResourceManager.GetObject("modelIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mX {
+            get {
+                object obj = ResourceManager.GetObject("mX", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,6 +223,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sX {
+            get {
+                object obj = ResourceManager.GetObject("sX", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap userBackground {
             get {
                 object obj = ResourceManager.GetObject("userBackground", resourceCulture);
@@ -226,6 +256,16 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap userIcon1 {
             get {
                 object obj = ResourceManager.GetObject("userIcon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap x {
+            get {
+                object obj = ResourceManager.GetObject("x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

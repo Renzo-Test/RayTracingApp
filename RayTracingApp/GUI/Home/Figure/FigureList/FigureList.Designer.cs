@@ -28,24 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picAddFigure = new System.Windows.Forms.PictureBox();
             this.lblAddFigure = new System.Windows.Forms.Label();
+            this.flyFigureList = new System.Windows.Forms.FlowLayoutPanel();
             this.picIconPlus = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picAddFigure)).BeginInit();
+            this.picAddFigure = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAddFigure)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picAddFigure
-            // 
-            this.picAddFigure.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picAddFigure.Image = global::GUI.Properties.Resources.loginBackground;
-            this.picAddFigure.Location = new System.Drawing.Point(310, 44);
-            this.picAddFigure.Name = "picAddFigure";
-            this.picAddFigure.Size = new System.Drawing.Size(198, 72);
-            this.picAddFigure.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picAddFigure.TabIndex = 1;
-            this.picAddFigure.TabStop = false;
-            this.picAddFigure.Click += new System.EventHandler(this.picAddFigure_Click);
             // 
             // lblAddFigure
             // 
@@ -61,6 +50,15 @@
             this.lblAddFigure.Text = "Add Figure";
             this.lblAddFigure.Click += new System.EventHandler(this.lblAddFigure_Click);
             // 
+            // flyFigureList
+            // 
+            this.flyFigureList.AutoScroll = true;
+            this.flyFigureList.Location = new System.Drawing.Point(167, 148);
+            this.flyFigureList.Margin = new System.Windows.Forms.Padding(0);
+            this.flyFigureList.Name = "flyFigureList";
+            this.flyFigureList.Size = new System.Drawing.Size(500, 434);
+            this.flyFigureList.TabIndex = 4;
+            // 
             // picIconPlus
             // 
             this.picIconPlus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
@@ -74,11 +72,24 @@
             this.picIconPlus.TabStop = false;
             this.picIconPlus.Click += new System.EventHandler(this.picIconPlus_Click);
             // 
+            // picAddFigure
+            // 
+            this.picAddFigure.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picAddFigure.Image = global::GUI.Properties.Resources.loginBackground;
+            this.picAddFigure.Location = new System.Drawing.Point(310, 44);
+            this.picAddFigure.Name = "picAddFigure";
+            this.picAddFigure.Size = new System.Drawing.Size(198, 72);
+            this.picAddFigure.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picAddFigure.TabIndex = 1;
+            this.picAddFigure.TabStop = false;
+            this.picAddFigure.Click += new System.EventHandler(this.picAddFigure_Click);
+            // 
             // FigureList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.flyFigureList);
             this.Controls.Add(this.picIconPlus);
             this.Controls.Add(this.lblAddFigure);
             this.Controls.Add(this.picAddFigure);
@@ -87,8 +98,9 @@
             this.MinimumSize = new System.Drawing.Size(834, 604);
             this.Name = "FigureList";
             this.Size = new System.Drawing.Size(834, 604);
-            ((System.ComponentModel.ISupportInitialize)(this.picAddFigure)).EndInit();
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FigureList_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAddFigure)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,5 +110,6 @@
         private System.Windows.Forms.PictureBox picAddFigure;
         private System.Windows.Forms.Label lblAddFigure;
         private System.Windows.Forms.PictureBox picIconPlus;
+        private System.Windows.Forms.FlowLayoutPanel flyFigureList;
     }
 }
