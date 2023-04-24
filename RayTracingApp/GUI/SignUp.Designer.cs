@@ -33,7 +33,7 @@
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.lblSignUp = new System.Windows.Forms.Label();
             this.lblAlreadyHaveAnAccount = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSignIn = new System.Windows.Forms.Label();
             this.picSignUpBackground = new System.Windows.Forms.PictureBox();
             this.txtIconLockConfirmPassword = new System.Windows.Forms.PictureBox();
             this.txtFieldRectangleConfirmPassword = new System.Windows.Forms.PictureBox();
@@ -121,18 +121,18 @@
             this.lblAlreadyHaveAnAccount.TabIndex = 13;
             this.lblAlreadyHaveAnAccount.Text = "Already have an account?";
             // 
-            // label1
+            // lblSignIn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
-            this.label1.Location = new System.Drawing.Point(840, 514);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 16);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Sign In!";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.lblSignIn.AutoSize = true;
+            this.lblSignIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblSignIn.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSignIn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.lblSignIn.Location = new System.Drawing.Point(840, 514);
+            this.lblSignIn.Name = "lblSignIn";
+            this.lblSignIn.Size = new System.Drawing.Size(48, 16);
+            this.lblSignIn.TabIndex = 14;
+            this.lblSignIn.Text = "Sign In!";
+            this.lblSignIn.Click += new System.EventHandler(this.lblSignIn_Click);
             // 
             // picSignUpBackground
             // 
@@ -234,7 +234,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSignIn);
             this.Controls.Add(this.lblAlreadyHaveAnAccount);
             this.Controls.Add(this.lblSignUp);
             this.Controls.Add(this.picSignUpBackground);
@@ -283,6 +283,6 @@
         private System.Windows.Forms.PictureBox picSignUpBackground;
         private System.Windows.Forms.Label lblSignUp;
         private System.Windows.Forms.Label lblAlreadyHaveAnAccount;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSignIn;
     }
 }

@@ -24,7 +24,7 @@ namespace GUI
             InitializeComponent();
         }
         
-        private void label1_Click(object sender, EventArgs e)
+        private void lblSignIn_Click(object sender, EventArgs e)
         {
             _mainForm.GoToSignIn();
         }
