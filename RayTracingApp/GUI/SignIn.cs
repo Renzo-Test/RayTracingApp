@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Controller.ClientExceptions;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,8 +52,8 @@ namespace GUI
 
             try
             {
-                _clientController.SignIn(username, password);
-                _mainForm.GoToHome();
+                Client currentClient = _clientController.SignIn(username, password);
+                _mainForm.GoToHome(currentClient);
             }
             catch (InvalidCredentialsException ex)
             {
@@ -101,7 +102,7 @@ namespace GUI
             if (txtField.Text == placeHolder)
             {
                 txtField.Text = string.Empty;
-                txtField.ForeColor = Color.Black;
+                txtField.ForeColor = System.Drawing.Color.Black;
             }
         }
         private void SetPlaceHolder(TextBox txtField, string placeHolder)
@@ -109,7 +110,7 @@ namespace GUI
             if (txtField.Text == string.Empty)
             {
                 txtField.Text = placeHolder;
-                txtField.ForeColor = Color.DimGray;
+                txtField.ForeColor = System.Drawing.Color.DimGray;
             }
         }
 

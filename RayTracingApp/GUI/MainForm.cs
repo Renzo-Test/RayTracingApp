@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,7 @@ namespace GUI
         public MainForm()
         {
             InitializeComponent();
-            _homePanel = new Home(this);
+            
             _signInPanel = new SignIn(this, _clientController);
             _signUpPanel = new SignUp(this, _clientController);
             flyMain.Controls.Add(_signInPanel);
@@ -39,9 +40,10 @@ namespace GUI
             flyMain.Controls.Add(_signUpPanel);
         }
 
-        public void GoToHome()
+        public void GoToHome(Client currentClient)
         {
             flyMain.Controls.Clear();
+            _homePanel = new Home(this, currentClient);
             flyMain.Controls.Add(_homePanel);
         }
     }

@@ -29,20 +29,25 @@
         private void InitializeComponent()
         {
             this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.flyHome = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblCurrentClient = new System.Windows.Forms.Label();
+            this.picIconUser = new System.Windows.Forms.PictureBox();
             this.btnSignOut = new System.Windows.Forms.Button();
             this.btnScenes = new System.Windows.Forms.Button();
             this.btnModel = new System.Windows.Forms.Button();
             this.btnMaterial = new System.Windows.Forms.Button();
             this.btnFigure = new System.Windows.Forms.Button();
             this.pnlUser = new System.Windows.Forms.PictureBox();
-            this.flyHome = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlSidebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlUser)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSidebar
             // 
             this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.pnlSidebar.Controls.Add(this.picIconUser);
+            this.pnlSidebar.Controls.Add(this.lblCurrentClient);
             this.pnlSidebar.Controls.Add(this.btnSignOut);
             this.pnlSidebar.Controls.Add(this.btnScenes);
             this.pnlSidebar.Controls.Add(this.btnModel);
@@ -54,6 +59,35 @@
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(176, 604);
             this.pnlSidebar.TabIndex = 0;
+            // 
+            // flyHome
+            // 
+            this.flyHome.Location = new System.Drawing.Point(175, 0);
+            this.flyHome.Margin = new System.Windows.Forms.Padding(0);
+            this.flyHome.Name = "flyHome";
+            this.flyHome.Size = new System.Drawing.Size(834, 604);
+            this.flyHome.TabIndex = 1;
+            // 
+            // lblCurrentClient
+            // 
+            this.lblCurrentClient.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentClient.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentClient.Location = new System.Drawing.Point(3, 55);
+            this.lblCurrentClient.Name = "lblCurrentClient";
+            this.lblCurrentClient.Size = new System.Drawing.Size(170, 42);
+            this.lblCurrentClient.TabIndex = 6;
+            this.lblCurrentClient.Text = "Username";
+            this.lblCurrentClient.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // picIconUser
+            // 
+            this.picIconUser.Image = global::GUI.Properties.Resources.userIcon1;
+            this.picIconUser.Location = new System.Drawing.Point(76, 16);
+            this.picIconUser.Name = "picIconUser";
+            this.picIconUser.Size = new System.Drawing.Size(24, 24);
+            this.picIconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picIconUser.TabIndex = 7;
+            this.picIconUser.TabStop = false;
             // 
             // btnSignOut
             // 
@@ -174,14 +208,6 @@
             this.pnlUser.TabIndex = 0;
             this.pnlUser.TabStop = false;
             // 
-            // flyHome
-            // 
-            this.flyHome.Location = new System.Drawing.Point(175, 0);
-            this.flyHome.Margin = new System.Windows.Forms.Padding(0);
-            this.flyHome.Name = "flyHome";
-            this.flyHome.Size = new System.Drawing.Size(834, 604);
-            this.flyHome.TabIndex = 1;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -193,6 +219,8 @@
             this.Name = "Home";
             this.Size = new System.Drawing.Size(1009, 604);
             this.pnlSidebar.ResumeLayout(false);
+            this.pnlSidebar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlUser)).EndInit();
             this.ResumeLayout(false);
 
@@ -208,5 +236,7 @@
         private System.Windows.Forms.Button btnMaterial;
         private System.Windows.Forms.Button btnSignOut;
         private System.Windows.Forms.FlowLayoutPanel flyHome;
+        private System.Windows.Forms.Label lblCurrentClient;
+        private System.Windows.Forms.PictureBox picIconUser;
     }
 }

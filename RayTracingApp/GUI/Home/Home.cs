@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,18 +19,27 @@ namespace GUI
         private FigureHome _figureHome;
         private MaterialHome _materialHome;
 
+        private Client _currentClient;
 
-        public Home(MainForm mainForm)
+
+        public Home(MainForm mainForm, Client currentClient)
         {
             _mainForm = mainForm;
+            _currentClient = currentClient;
+
             _sceneHome = new SceneHome();
             _moedelHome = new ModelHome();
             _figureHome = new FigureHome();
             _materialHome = new MaterialHome();
 
             InitializeComponent();
+            SetCurrentClientLabel();
             flyHome.Controls.Add(_figureHome);
+        }
 
+        private void SetCurrentClientLabel()
+        {
+            lblCurrentClient.Text = _currentClient.Username;
         }
 
         private void btnSignOut_Click(object sender, EventArgs e)
