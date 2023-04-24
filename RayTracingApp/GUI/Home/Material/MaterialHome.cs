@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +17,11 @@ namespace GUI
         private UserControl _addMaterialPanel;
         private UserControl _materialListPanel;
 
-        public MaterialHome()
+        public MaterialHome(MaterialController materialController, Client currentClient)
         {
             InitializeComponent();
             _materialListPanel = new MaterialList(this);
-            _addMaterialPanel = new AddMaterial(this);
+            _addMaterialPanel = new AddMaterial(this, materialController, currentClient);
             flyMaterialHome.Controls.Add(_materialListPanel);
         }
 

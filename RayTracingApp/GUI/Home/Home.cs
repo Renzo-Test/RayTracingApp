@@ -21,6 +21,7 @@ namespace GUI
         private MaterialHome _materialHome;
 
         private FigureController _figureController;
+        private MaterialController _materialController;
 
         private Client _currentClient;
 
@@ -31,11 +32,12 @@ namespace GUI
             _currentClient = currentClient;
 
             _figureController = new FigureController();
+            _materialController = new MaterialController();
 
             _sceneHome = new SceneHome();
             _moedelHome = new ModelHome();
             _figureHome = new FigureHome(_figureController, _currentClient);
-            _materialHome = new MaterialHome();
+            _materialHome = new MaterialHome(_materialController, _currentClient);
 
             InitializeComponent();
             SetCurrentClientLabel();

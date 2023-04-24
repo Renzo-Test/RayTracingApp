@@ -136,6 +136,7 @@
             // 
             this.lblSave.AutoSize = true;
             this.lblSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.lblSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSave.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSave.ForeColor = System.Drawing.Color.White;
             this.lblSave.Location = new System.Drawing.Point(277, 442);
@@ -143,6 +144,7 @@
             this.lblSave.Size = new System.Drawing.Size(56, 23);
             this.lblSave.TabIndex = 12;
             this.lblSave.Text = "Save";
+            this.lblSave.Click += new System.EventHandler(this.lblSave_Click);
             // 
             // lblCancel
             // 
@@ -161,6 +163,7 @@
             // picRectangleFieldCancel
             // 
             this.picRectangleFieldCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+            this.picRectangleFieldCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRectangleFieldCancel.Image = global::GUI.Properties.Resources.loginBackground;
             this.picRectangleFieldCancel.Location = new System.Drawing.Point(454, 432);
             this.picRectangleFieldCancel.Name = "picRectangleFieldCancel";
@@ -173,6 +176,7 @@
             // picRectangleFieldSave
             // 
             this.picRectangleFieldSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+            this.picRectangleFieldSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRectangleFieldSave.Image = global::GUI.Properties.Resources.loginBackground;
             this.picRectangleFieldSave.Location = new System.Drawing.Point(225, 432);
             this.picRectangleFieldSave.Name = "picRectangleFieldSave";
@@ -180,6 +184,7 @@
             this.picRectangleFieldSave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picRectangleFieldSave.TabIndex = 11;
             this.picRectangleFieldSave.TabStop = false;
+            this.picRectangleFieldSave.Click += new System.EventHandler(this.picRectangleFieldSave_Click);
             // 
             // picDarkRectangleFieldBlue
             // 
