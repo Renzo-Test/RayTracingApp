@@ -60,6 +60,7 @@
             // 
             // picIconX
             // 
+            this.picIconX.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picIconX.Image = global::GUI.Properties.Resources.mX;
             this.picIconX.Location = new System.Drawing.Point(415, 33);
             this.picIconX.Name = "picIconX";

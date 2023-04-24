@@ -26,12 +26,14 @@ namespace GUI
         private Client _currentClient;
 
 
-        public Home(MainForm mainForm, Client currentClient)
+        public Home(MainForm mainForm, FigureController figureController, MaterialController materialController, Client currentClient)
         {
             _mainForm = mainForm;
             _currentClient = currentClient;
 
-            InitializeControllers();
+            _figureController = figureController;
+            _materialController = materialController;
+
             InitializeHomeScenes();
             InitializeComponent();
             SetCurrentClientLabel();
@@ -39,11 +41,6 @@ namespace GUI
             flyHome.Controls.Add(_figureHome);
         }
 
-        private void InitializeControllers()
-        {
-            _figureController = new FigureController();
-            _materialController = new MaterialController();
-        }
 
         private void InitializeHomeScenes()
         {
