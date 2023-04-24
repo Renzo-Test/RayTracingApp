@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Controller;
+using Controller.ClientExceptions;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,8 +21,11 @@ namespace GUI
 
         private MainForm _mainForm;
 
-        public SignUp(MainForm mainForm)
+        private ClientController _clientController;
+
+        public SignUp(MainForm mainForm, ClientController clientController)
         {
+            _clientController = clientController;
             _mainForm = mainForm;
             InitializeComponent();
         }
@@ -31,14 +37,41 @@ namespace GUI
 
         private void lblSignUp_Click(object sender, EventArgs e)
         {
-            _mainForm.GoToSignIn();
-
+            SignUpUser();
         }
         
         private void picSignUpBackground_Click(object sender, EventArgs e)
         {
-            _mainForm.GoToSignIn();
+            SignUpUser();
 
+        }
+
+        private void SignUpUser()
+        {
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
+            string passwordConfirmation = txtConfirmPassword.Text;
+            
+            if(!PasswordMatch(password, passwordConfirmation))
+            {
+                MessageBox.Show("Password and password confirmation do not match");
+                return;
+            }
+
+            try
+            {
+                _clientController.SignUp(username, password);
+                _mainForm.GoToSignIn();
+            }
+            catch (InvalidCredentialsException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private static bool PasswordMatch(string password, string passwordConfirmation)
+        {
+            return password.Equals(passwordConfirmation);
         }
 
         private void txtUsername_Enter(object sender, EventArgs e)
@@ -76,7 +109,7 @@ namespace GUI
             if (txtField.Text == placeHolder)
             {
                 txtField.Text = string.Empty;
-                txtField.ForeColor = Color.Black;
+                txtField.ForeColor = System.Drawing.Color.Black;
             }
         }
         private void SetPlaceHolder(TextBox txtField, string placeHolder)
@@ -84,10 +117,9 @@ namespace GUI
             if (txtField.Text == string.Empty)
             {
                 txtField.Text = placeHolder;
-                txtField.ForeColor = Color.DimGray;
+                txtField.ForeColor = System.Drawing.Color.DimGray;
             }
         }
-
 
     }
 }

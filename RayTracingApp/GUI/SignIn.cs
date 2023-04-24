@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Controller.ClientExceptions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,8 +21,10 @@ namespace GUI
 
         private MainForm _mainForm;
 
-        public SignIn(MainForm mainForm)
+        private ClientController _clientController;
+        public SignIn(MainForm mainForm, ClientController clientController)
         {
+            _clientController = clientController;
             _mainForm = mainForm;
             InitializeComponent();
         }
@@ -32,12 +36,28 @@ namespace GUI
 
         private void lblSignIn_Click(object sender, EventArgs e)
         {
-            _mainForm.GoToHome();
+            SignInUser();
         }
 
         private void picSignInButton_Click(object sender, EventArgs e)
         {
-            _mainForm.GoToHome();
+            SignInUser();
+        }
+
+        private void SignInUser()
+        {
+            string username = txtUsernameSignIn.Text;
+            string password = txtPasswordSignIn.Text;
+
+            try
+            {
+                _clientController.SignIn(username, password);
+                _mainForm.GoToHome();
+            }
+            catch (InvalidCredentialsException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void txtUsernameSignIn_Enter(object sender, EventArgs e)

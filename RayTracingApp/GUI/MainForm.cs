@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,12 +17,13 @@ namespace GUI
         private UserControl _signUpPanel;
         private UserControl _homePanel;
 
+        private ClientController _clientController = new ClientController();
         public MainForm()
         {
             InitializeComponent();
             _homePanel = new Home(this);
-            _signInPanel = new SignIn(this);
-            _signUpPanel = new SignUp(this);
+            _signInPanel = new SignIn(this, _clientController);
+            _signUpPanel = new SignUp(this, _clientController);
             flyMain.Controls.Add(_signInPanel);
         }
 
