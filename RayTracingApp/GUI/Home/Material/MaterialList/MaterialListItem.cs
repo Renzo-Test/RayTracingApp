@@ -23,6 +23,8 @@ namespace GUI
 
             lblMaterialName.Text = material.Name;
             lblRGB.Text = $"Red: {material.Color.Red} - Green: {material.Color.Green} - Blue: {material.Color.Blue}";
+            
+            picMaterialColor.BackColor = System.Drawing.Color.FromArgb(material.Color.Red, material.Color.Green, material.Color.Blue);
 
             _materialController = materialController;
             _currentClient = material.Owner;

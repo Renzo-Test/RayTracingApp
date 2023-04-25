@@ -87,7 +87,7 @@
             this.Controls.Add(this.lblRGB);
             this.Controls.Add(this.lblMaterialName);
             this.Controls.Add(this.picMaterialColor);
-            this.Margin = new System.Windows.Forms.Padding(0);
+            this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.Name = "MaterialListItem";
             this.Size = new System.Drawing.Size(470, 100);
             ((System.ComponentModel.ISupportInitialize)(this.picIconX)).EndInit();
