@@ -20,13 +20,21 @@ namespace GUI
         public FigureListItem(FigureController figureController, Sphere sphere)
         {
             InitializeComponent();
-            
-            lblFigureName.Text = sphere.Name;
-            lblRadius.Text = $"Radius: {sphere.Radius}";
+            InitializePanelAtributes(sphere);
+            InitializeControllerAtributes(figureController, sphere);
 
+        }
+
+        private void InitializeControllerAtributes(FigureController figureController, Sphere sphere)
+        {
             _figureController = figureController;
             _currentClient = sphere.Owner;
+        }
 
+        private void InitializePanelAtributes(Sphere sphere)
+        {
+            lblFigureName.Text = sphere.Name;
+            lblRadius.Text = $"Radius: {sphere.Radius}";
         }
 
         private void picIconX_Click(object sender, EventArgs e)
