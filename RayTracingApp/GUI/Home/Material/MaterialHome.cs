@@ -20,7 +20,7 @@ namespace GUI
         public MaterialHome(MaterialController materialController, Client currentClient)
         {
             InitializeComponent();
-            _materialListPanel = new MaterialList(this);
+            _materialListPanel = new MaterialList(this, materialController, currentClient);
             _addMaterialPanel = new AddMaterial(this, materialController, currentClient);
             flyMaterialHome.Controls.Add(_materialListPanel);
         }

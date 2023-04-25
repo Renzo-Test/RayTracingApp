@@ -31,6 +31,7 @@
             this.picAddMaterial = new System.Windows.Forms.PictureBox();
             this.lblAddMaterial = new System.Windows.Forms.Label();
             this.picIconPlus = new System.Windows.Forms.PictureBox();
+            this.flyMaterialList = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.picAddMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).BeginInit();
             this.SuspendLayout();
@@ -74,17 +75,27 @@
             this.picIconPlus.TabStop = false;
             this.picIconPlus.Click += new System.EventHandler(this.picIconPlus_Click);
             // 
+            // flyMaterialList
+            // 
+            this.flyMaterialList.Location = new System.Drawing.Point(167, 148);
+            this.flyMaterialList.Margin = new System.Windows.Forms.Padding(0);
+            this.flyMaterialList.Name = "flyMaterialList";
+            this.flyMaterialList.Size = new System.Drawing.Size(500, 434);
+            this.flyMaterialList.TabIndex = 3;
+            // 
             // MaterialList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.flyMaterialList);
             this.Controls.Add(this.picIconPlus);
             this.Controls.Add(this.lblAddMaterial);
             this.Controls.Add(this.picAddMaterial);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MaterialList";
             this.Size = new System.Drawing.Size(834, 604);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MaterialList_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.picAddMaterial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).EndInit();
             this.ResumeLayout(false);
@@ -97,5 +108,6 @@
         private System.Windows.Forms.PictureBox picAddMaterial;
         private System.Windows.Forms.Label lblAddMaterial;
         private System.Windows.Forms.PictureBox picIconPlus;
+        private System.Windows.Forms.FlowLayoutPanel flyMaterialList;
     }
 }

@@ -114,10 +114,10 @@
     <Compile Include="Home\Material\AddMaterial.Designer.cs">
       <DependentUpon>AddMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Home\Material\MaterialList.cs">
+    <Compile Include="Home\Material\MaterialList\MaterialList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Home\Material\MaterialList.Designer.cs">
+    <Compile Include="Home\Material\MaterialList\MaterialList.Designer.cs">
       <DependentUpon>MaterialList.cs</DependentUpon>
     </Compile>
     <Compile Include="Home\Figure\FigureList\FigureListItem.cs">
@@ -125,6 +125,12 @@
     </Compile>
     <Compile Include="Home\Figure\FigureList\FigureListItem.Designer.cs">
       <DependentUpon>FigureListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Material\MaterialList\MaterialListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Material\MaterialList\MaterialListItem.Designer.cs">
+      <DependentUpon>MaterialListItem.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Home\Figure\AddFigure.resx">
       <DependentUpon>AddFigure.cs</DependentUpon>
@@ -141,8 +147,11 @@
     <EmbeddedResource Include="Home\Material\AddMaterial.resx">
       <DependentUpon>AddMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Home\Material\MaterialList.resx">
+    <EmbeddedResource Include="Home\Material\MaterialList\MaterialList.resx">
       <DependentUpon>MaterialList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Material\MaterialList\MaterialListItem.resx">
+      <DependentUpon>MaterialListItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
