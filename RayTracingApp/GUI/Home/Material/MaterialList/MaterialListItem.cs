@@ -20,14 +20,29 @@ namespace GUI
         public MaterialListItem(MaterialController materialController, Material material)
         {
             InitializeComponent();
-
-            lblMaterialName.Text = material.Name;
-            lblRGB.Text = $"Red: {material.Color.Red} - Green: {material.Color.Green} - Blue: {material.Color.Blue}";
-            
-            picMaterialColor.BackColor = System.Drawing.Color.FromArgb(material.Color.Red, material.Color.Green, material.Color.Blue);
+            InitializeAtributes(material);
 
             _materialController = materialController;
             _currentClient = material.Owner;
+        }
+
+        private void InitializeAtributes(Material material)
+        {
+            InitializeColorAtributes(material);
+
+            lblMaterialName.Text = material.Name;
+
+        }
+
+        private void InitializeColorAtributes(Material material)
+        {
+            int red = material.Color.Red;
+            int green = material.Color.Green;
+            int blue = material.Color.Blue;
+
+            lblRGB.Text = $"Red: {red} - Green: {green} - Blue: {blue}";
+
+            picMaterialColor.BackColor = System.Drawing.Color.FromArgb(red, green, blue);
         }
 
         private void picIconX_Click(object sender, EventArgs e)
