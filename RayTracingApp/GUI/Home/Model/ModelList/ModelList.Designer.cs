@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class ModelHome
+    partial class ModelList
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,31 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flyModelHome = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // flyModelHome
-            // 
-            this.flyModelHome.Location = new System.Drawing.Point(0, 0);
-            this.flyModelHome.Name = "flyModelHome";
-            this.flyModelHome.Size = new System.Drawing.Size(834, 604);
-            this.flyModelHome.TabIndex = 0;
-            // 
-            // ModelHome
+            // ModelList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.flyModelHome);
-            this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "ModelHome";
+            this.Name = "ModelList";
             this.Size = new System.Drawing.Size(834, 604);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel flyModelHome;
     }
 }

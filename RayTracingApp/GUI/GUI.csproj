@@ -132,6 +132,18 @@
     <Compile Include="Home\Material\MaterialList\MaterialListItem.Designer.cs">
       <DependentUpon>MaterialListItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Home\Model\AddModel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Model\AddModel.Designer.cs">
+      <DependentUpon>AddModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Model\ModelList\ModelList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Model\ModelList\ModelList.Designer.cs">
+      <DependentUpon>ModelList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Home\Figure\AddFigure.resx">
       <DependentUpon>AddFigure.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,6 +164,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Material\MaterialList\MaterialListItem.resx">
       <DependentUpon>MaterialListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Model\AddModel.resx">
+      <DependentUpon>AddModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Model\ModelList\ModelList.resx">
+      <DependentUpon>ModelList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

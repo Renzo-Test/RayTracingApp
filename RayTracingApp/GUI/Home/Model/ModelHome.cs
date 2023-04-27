@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,28 @@ namespace GUI
 {
     public partial class ModelHome : UserControl
     {
-        public ModelHome()
+        private UserControl _addModelPanel;
+        private UserControl _modelListPanel;
+
+        public ModelHome(ModelController modelController, Client currentClient)
         {
             InitializeComponent();
+            _addModelPanel = new AddModel(this, modelController, currentClient);
+            _modelListPanel = new ModelList(this, modelController, currentClient);
+            flyModelHome.Controls.Add(_modelListPanel);
         }
+
+        public void GoToAddModel()
+        {
+            flyModelHome.Controls.Clear();
+            flyModelHome.Controls.Add(_addModelPanel);
+        }
+
+        public void GoToFigureList()
+        {
+            flyModelHome.Controls.Clear();
+            flyModelHome.Controls.Add(_modelListPanel);
+        }
+
     }
 }

@@ -22,15 +22,16 @@ namespace GUI
 
         private FigureController _figureController;
         private MaterialController _materialController;
+        private ModelController _modelController;
 
         private Client _currentClient;
 
-
-        public Home(MainForm mainForm, FigureController figureController, MaterialController materialController, Client currentClient)
+        public Home(MainForm mainForm, FigureController figureController, MaterialController materialController, ModelController modelController, Client currentClient)
         {
             _mainForm = mainForm;
             _currentClient = currentClient;
 
+            _modelController = modelController;
             _figureController = figureController;
             _materialController = materialController;
 
@@ -45,7 +46,7 @@ namespace GUI
         private void InitializeHomeScenes()
         {
             _sceneHome = new SceneHome();
-            _moedelHome = new ModelHome();
+            _moedelHome = new ModelHome(_modelController, _currentClient);
             _figureHome = new FigureHome(_figureController, _currentClient);
             _materialHome = new MaterialHome(_materialController, _currentClient);
         }
