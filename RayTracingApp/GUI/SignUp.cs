@@ -19,8 +19,6 @@ namespace GUI
         private const string PasswordPlaceHolder = "Password";
         private const string ConfirmPasswordPlaceholder = "Confirm Password";
         private const string PasswordConfirmationErrorMessage = "Password and password confirmation do not match";
-        private const char PasswordCharacter = '*';
-        private const char PlainTextCharacter = '\0';
 
         private MainForm _mainForm;
 
@@ -90,37 +88,26 @@ namespace GUI
         private void txtPassword_Enter(object sender, EventArgs e)
         {
             Utils.RemovePlaceHolder(ref txtPassword, PasswordPlaceHolder);
-            HidePassword(txtPassword);
+            Utils.HidePassword(ref txtPassword);
         }
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
             Utils.SetPlaceHolder(ref txtPassword, PasswordPlaceHolder);
-            ShowPassword(txtPassword);
+            Utils.ShowPassword(ref txtPassword);
         }
 
         private void txtConfirmPassword_Enter(object sender, EventArgs e)
         {
             Utils.RemovePlaceHolder(ref txtConfirmPassword, ConfirmPasswordPlaceholder);
-            HidePassword(txtConfirmPassword);
+            Utils.HidePassword(ref txtConfirmPassword);
         }
 
         private void txtConfirmPassword_Leave(object sender, EventArgs e)
         {
             Utils.SetPlaceHolder(ref txtConfirmPassword, ConfirmPasswordPlaceholder);
-            ShowPassword(txtConfirmPassword);
+            Utils.ShowPassword(ref txtConfirmPassword);
         }
 
-        private void ShowPassword(TextBox txtField)
-        {
-            if (txtField.Text == PasswordPlaceHolder)
-            {
-                txtField.PasswordChar = PlainTextCharacter;
-            }
-        }
-        private void HidePassword(TextBox txtField)
-        {
-            txtField.PasswordChar = PasswordCharacter;
-        }
     }
 }
