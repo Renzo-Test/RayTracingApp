@@ -82,7 +82,7 @@ namespace Test.MemoryRepositoryTest
             _modelRepository.AddModel(NewModel);
         }
 
-        public void RemoveModel_FailTest()
+        public void RemoveModel_OkTest()
         {
             Figure newFigure = new Sphere()
             {
@@ -116,7 +116,7 @@ namespace Test.MemoryRepositoryTest
         }
 
 
-        public void RemoveModel_NotExistingModel_FailTest()
+        public void RemoveModel_NotExistingModel_OkTest()
         {
             Figure newFigure = new Sphere()
             {
