@@ -40,9 +40,20 @@ namespace GUI
                 txtField.PasswordChar = PlainTextCharacter;
             }
         }
+        
         public static void HidePassword(ref TextBox txtField)
         {
             txtField.PasswordChar = PasswordCharacter;
         }
+
+        public static void ShowComboBox(ref ComboBox cmb)
+        {
+            if (cmb.Items.Count > 0)
+            {
+                cmb.DroppedDown = true;
+            }
+        }
+
+
     }
 }

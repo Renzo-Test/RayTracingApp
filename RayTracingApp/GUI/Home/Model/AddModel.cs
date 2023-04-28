@@ -103,19 +103,13 @@ namespace GUI
 
         private void picDropDownFigures_Click(object sender, EventArgs e)
         {
-            if (cmbFigures.Items.Count > 0)
-            {
-                cmbFigures.DroppedDown = true;
-            }
+            Utils.ShowComboBox(ref cmbFigures);
+
         }
 
         private void picDropDownMaterial_Click(object sender, EventArgs e)
         {
-            if (cmbMaterials.Items.Count > 0)
-            {
-                cmbMaterials.DroppedDown = true;
-            }
-
+            Utils.ShowComboBox(ref cmbMaterials);
         }
 
         private void txtInputName_Enter(object sender, EventArgs e)
