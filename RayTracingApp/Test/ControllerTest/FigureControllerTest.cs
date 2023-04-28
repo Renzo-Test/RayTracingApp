@@ -252,5 +252,25 @@ namespace Test.ControllerTest
 
             _figureController.FigurePropertiesAreValid(newSphere);
         }
+
+        public void GetFigure_ExistingClient_OkTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            Figure newFigure = new Sphere()
+            {
+                Name = "sphere",
+                Radius = 10,
+            };
+
+            _figureController.AddFigure(newFigure, currentClient.Username);
+            Figure expected = _figureController.GetFigure(currentClient.Username, newFigure.Name);
+
+            Assert.AreEqual(expected, newFigure);
+        }
     }
 }
