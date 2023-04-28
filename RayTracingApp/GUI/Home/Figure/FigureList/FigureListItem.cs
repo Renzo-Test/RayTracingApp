@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Controller.FigureExceptions;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -15,19 +16,22 @@ namespace GUI
     public partial class FigureListItem : UserControl
     {
         private FigureController _figureController;
+        private ModelController _modelController;
+
         private string _currentClient;
 
-        public FigureListItem(FigureController figureController, Sphere sphere)
+        public FigureListItem(MainController mainController, Sphere sphere)
         {
             InitializeComponent();
             InitializePanelAtributes(sphere);
-            InitializeControllerAtributes(figureController, sphere);
+            InitializeControllerAtributes(mainController, sphere);
 
         }
 
-        private void InitializeControllerAtributes(FigureController figureController, Sphere sphere)
+        private void InitializeControllerAtributes(MainController mainController, Sphere sphere)
         {
-            _figureController = figureController;
+            _modelController = mainController.ModelController;
+            _figureController = mainController.FigureController;
             _currentClient = sphere.Owner;
         }
 
@@ -39,8 +43,15 @@ namespace GUI
 
         private void picIconX_Click(object sender, EventArgs e)
         {
-            /*TODO CORRECTLY USE MODELS*/
-            _figureController.RemoveFigure(lblFigureName.Text, _currentClient, new List<Model>()); 
+            List<Model> models = _modelController.ListModels(_currentClient);
+            try
+            {
+                _figureController.RemoveFigure(lblFigureName.Text, _currentClient, models); 
+            }
+            catch(FigureUsedByModelException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

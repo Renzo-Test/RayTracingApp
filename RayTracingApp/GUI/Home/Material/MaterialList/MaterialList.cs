@@ -18,12 +18,17 @@ namespace GUI
         private MaterialHome _materialHome;
 
         private MaterialController _materialController;
+        private MainController _mainController;
+
         private Client _currentClient;
-        public MaterialList(MaterialHome materialHome, MaterialController materialController, Client currentClient)
+        public MaterialList(MaterialHome materialHome, MainController mainController, Client currentClient)
         {
-            _materialController = materialController;
+            _mainController = mainController;
+            _materialController = mainController.MaterialController;
+
             _currentClient = currentClient;
             _materialHome = materialHome;
+            
             InitializeComponent();
         }
 
@@ -51,7 +56,7 @@ namespace GUI
 
             foreach (Material material in materials)
             {
-                MaterialListItem item = new MaterialListItem(_materialController, material);
+                MaterialListItem item = new MaterialListItem(_mainController, material);
                 flyMaterialList.Controls.Add(item);
             }
 

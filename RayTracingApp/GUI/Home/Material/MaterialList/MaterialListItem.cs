@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Controller.MaterialExceptions;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,17 @@ namespace GUI
     public partial class MaterialListItem : UserControl
     {
         private MaterialController _materialController;
+        private ModelController _modelController;
+
         private string _currentClient;
 
-        public MaterialListItem(MaterialController materialController, Material material)
+        public MaterialListItem(MainController mainController, Material material)
         {
             InitializeComponent();
             InitializeAtributes(material);
 
-            _materialController = materialController;
+            _modelController = mainController.ModelController;
+            _materialController = mainController.MaterialController;
             _currentClient = material.Owner;
         }
 
@@ -47,8 +51,16 @@ namespace GUI
 
         private void picIconX_Click(object sender, EventArgs e)
         {
-            /*TODO CORRECTLY USE MODELS*/
-            _materialController.RemoveMaterial(lblMaterialName.Text, _currentClient, new List<Model>());
+            List<Model> models = _modelController.ListModels(_currentClient);
+            
+            try
+            {
+                _materialController.RemoveMaterial(lblMaterialName.Text, _currentClient, models);
+            }
+            catch (MaterialUsedByModelException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

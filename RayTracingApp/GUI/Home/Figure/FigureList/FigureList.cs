@@ -18,12 +18,16 @@ namespace GUI
         private FigureHome _figureHome;
 
         private FigureController _figureController;
+        private MainController _mainController;
+
         private Client _currentClient;
 
-        public FigureList(FigureHome figureHome, FigureController figureController, Client currentClient)
+        public FigureList(FigureHome figureHome, MainController mainController, Client currentClient)
         {
             _figureHome = figureHome;
-            _figureController = figureController;
+
+            _mainController = mainController;
+            _figureController = mainController.FigureController;
             _currentClient = currentClient;
 
             InitializeComponent();
@@ -52,7 +56,7 @@ namespace GUI
 
             foreach (Sphere sphere in figures)
             {
-                FigureListItem item = new FigureListItem(_figureController, sphere);
+                FigureListItem item = new FigureListItem(_mainController, sphere);
                 flyFigureList.Controls.Add(item);
             }
 

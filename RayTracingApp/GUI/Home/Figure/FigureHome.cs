@@ -21,7 +21,7 @@ namespace GUI
         {
             InitializeComponent();
             _addFigurePanel = new AddFigure(this, mainController.FigureController, currentClient);
-            _figureListPanel = new FigureList(this, mainController.FigureController, currentClient);
+            _figureListPanel = new FigureList(this, mainController, currentClient);
             flyFigureHome.Controls.Add(_figureListPanel);
         }
 
