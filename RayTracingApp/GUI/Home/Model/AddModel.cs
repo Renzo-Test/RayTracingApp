@@ -129,8 +129,8 @@ namespace GUI
         {
             Model newModel = new Model()
             {
-                Material = _materialController.ListMaterials(_currentClient.Username).Find(mat => mat.Name.Equals(cmbMaterials.Text)),
-                Figure = _figureController.ListFigures(_currentClient.Username).Find(Figure => Figure.Name.Equals(cmbFigures.Text)),
+                Material = _materialController.GetMaterial(_currentClient.Username, cmbMaterials.Text),
+                Figure = _figureController.GetFigure(_currentClient.Username, cmbMaterials.Text),
                 Name = txtInputName.Text,
             };
 
