@@ -112,7 +112,7 @@ namespace Test.ControllerTest
             Assert.AreEqual(2, _materialController.ListMaterials("username").Count);
         }
 
-        public void RemoveMaterials_FailTest()
+        public void RemoveMaterials_OkTest()
         {
             Material newMaterial = new Material()
             {
