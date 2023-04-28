@@ -63,17 +63,17 @@ namespace GUI
 
         private void txtUsernameSignIn_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtUsernameSignIn, UsernamePlaceHolder);
+            Utils.RemovePlaceHolder(ref txtUsernameSignIn, UsernamePlaceHolder);
         }
 
         private void txtUsernameSignIn_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtUsernameSignIn, UsernamePlaceHolder);
+            Utils.SetPlaceHolder(ref txtUsernameSignIn, UsernamePlaceHolder);
         }
 
         private void txtPasswordSignIn_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtPasswordSignIn, PasswordPlaceHolder);
+            Utils.RemovePlaceHolder(ref txtPasswordSignIn, PasswordPlaceHolder);
             HidePassword(txtPasswordSignIn);
         }
 
@@ -84,7 +84,7 @@ namespace GUI
 
         private void txtPasswordSignIn_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtPasswordSignIn, PasswordPlaceHolder);
+            Utils.SetPlaceHolder(ref txtPasswordSignIn, PasswordPlaceHolder);
             ShowPassword(txtPasswordSignIn);
 
         }
@@ -94,23 +94,6 @@ namespace GUI
             if (txtField.Text == PasswordPlaceHolder)
             {
                 txtField.PasswordChar = PlainTextCharacter;
-            }
-        }
-
-        private void RemovePlaceHolder(TextBox txtField, string placeHolder)
-        {
-            if (txtField.Text == placeHolder)
-            {
-                txtField.Text = string.Empty;
-                txtField.ForeColor = System.Drawing.Color.Black;
-            }
-        }
-        private void SetPlaceHolder(TextBox txtField, string placeHolder)
-        {
-            if (txtField.Text == string.Empty)
-            {
-                txtField.Text = placeHolder;
-                txtField.ForeColor = System.Drawing.Color.DimGray;
             }
         }
 

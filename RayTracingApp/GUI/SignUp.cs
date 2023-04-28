@@ -79,54 +79,38 @@ namespace GUI
 
         private void txtUsername_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtUsername, UsernamePlaceHolder);
+            Utils.RemovePlaceHolder(ref txtUsername, UsernamePlaceHolder);
         }
 
         private void txtUsername_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtUsername, UsernamePlaceHolder);
+            Utils.SetPlaceHolder(ref txtUsername, UsernamePlaceHolder);
         }
 
         private void txtPassword_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtPassword, PasswordPlaceHolder);
+            Utils.RemovePlaceHolder(ref txtPassword, PasswordPlaceHolder);
             HidePassword(txtPassword);
         }
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtPassword, PasswordPlaceHolder);
+            Utils.SetPlaceHolder(ref txtPassword, PasswordPlaceHolder);
             ShowPassword(txtPassword);
         }
 
         private void txtConfirmPassword_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtConfirmPassword, ConfirmPasswordPlaceholder);
+            Utils.RemovePlaceHolder(ref txtConfirmPassword, ConfirmPasswordPlaceholder);
             HidePassword(txtConfirmPassword);
         }
 
         private void txtConfirmPassword_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtConfirmPassword, ConfirmPasswordPlaceholder);
+            Utils.SetPlaceHolder(ref txtConfirmPassword, ConfirmPasswordPlaceholder);
             ShowPassword(txtConfirmPassword);
         }
 
-        private void RemovePlaceHolder(TextBox txtField, string placeHolder)
-        {
-            if (txtField.Text == placeHolder)
-            {
-                txtField.Text = string.Empty;
-                txtField.ForeColor = System.Drawing.Color.Black;
-            }
-        }
-        private void SetPlaceHolder(TextBox txtField, string placeHolder)
-        {
-            if (txtField.Text == string.Empty)
-            {
-                txtField.Text = placeHolder;
-                txtField.ForeColor = System.Drawing.Color.DimGray;
-            }
-        }
         private void ShowPassword(TextBox txtField)
         {
             if (txtField.Text == PasswordPlaceHolder)
