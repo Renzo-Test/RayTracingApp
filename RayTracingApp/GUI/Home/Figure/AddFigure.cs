@@ -112,41 +112,23 @@ namespace GUI
 
         private void txtInputName_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtInputName, NamelaceHolder);
+            Utils.RemovePlaceHolder(ref txtInputName, NamelaceHolder);
         }
 
         private void txtInputName_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtInputName, NamelaceHolder);
+            Utils.SetPlaceHolder(ref txtInputName, NamelaceHolder);
         }
 
         private void txtInputRadius_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtInputRadius, RadiusPlaceHolder);
+            Utils.RemovePlaceHolder(ref txtInputRadius, RadiusPlaceHolder);
         }
 
         private void txtInputRadius_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtInputRadius, RadiusPlaceHolder);
+            Utils.SetPlaceHolder(ref txtInputRadius, RadiusPlaceHolder);
         }
 
-        private void RemovePlaceHolder(TextBox txtField, string placeHolder)
-        {
-            if (txtField.Text == placeHolder)
-            {
-                txtField.Text = string.Empty;
-                txtField.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-        private void SetPlaceHolder(TextBox txtField, string placeHolder)
-        {
-            if (txtField.Text == string.Empty)
-            {
-                txtField.Text = placeHolder;
-                txtField.ForeColor = System.Drawing.Color.DimGray;
-
-            }
-        }
     }
 }

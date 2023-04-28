@@ -95,34 +95,14 @@ namespace GUI
 
         }
 
-        private void RemovePlaceHolder(TextBox txtField, string placeHolder)
-        {
-            if (txtField.Text == placeHolder)
-            {
-                txtField.Text = string.Empty;
-                txtField.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-        private void SetPlaceHolder(TextBox txtField, string placeHolder)
-        {
-            if (txtField.Text == string.Empty)
-            {
-                txtField.Text = placeHolder;
-                txtField.ForeColor = System.Drawing.Color.DimGray;
-
-            }
-
-        }
-
         private void txtInputName_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtInputName, "Name");
+            Utils.RemovePlaceHolder(ref txtInputName, "Name");
         }
 
         private void txtInputName_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtInputName, "Name");
+            Utils.SetPlaceHolder(ref txtInputName, "Name");
         }
 
         private void picRectangleFieldSave_Click(object sender, EventArgs e)
@@ -130,7 +110,7 @@ namespace GUI
             Model newModel = new Model()
             {
                 Material = _materialController.GetMaterial(_currentClient.Username, cmbMaterials.Text),
-                Figure = _figureController.GetFigure(_currentClient.Username, cmbMaterials.Text),
+                Figure = _figureController.GetFigure(_currentClient.Username, cmbFigures.Text),
                 Name = txtInputName.Text,
             };
 

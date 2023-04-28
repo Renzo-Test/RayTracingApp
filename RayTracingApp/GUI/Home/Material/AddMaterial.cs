@@ -122,61 +122,42 @@ namespace GUI
 
         private void txtInputName_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtInputName, NamePlaceholder);
+            Utils.RemovePlaceHolder(ref txtInputName, NamePlaceholder);
         }
 
         private void txtInputName_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtInputName, NamePlaceholder);
+            Utils.SetPlaceHolder(ref txtInputName, NamePlaceholder);
         }
 
         private void txtInputRed_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtInputRed, RedPlaceholder);
+            Utils.RemovePlaceHolder(ref txtInputRed, RedPlaceholder);
         }
 
-    private void txtInputRed_Leave(object sender, EventArgs e)
+        private void txtInputRed_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtInputRed, RedPlaceholder);
+            Utils.SetPlaceHolder(ref txtInputRed, RedPlaceholder);
         }
 
         private void txtInputGreen_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtInputGreen, GreenPlaceholder);
+            Utils.RemovePlaceHolder(ref txtInputGreen, GreenPlaceholder);
         }
 
         private void txtInputGreen_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtInputGreen, GreenPlaceholder);
+            Utils.SetPlaceHolder(ref txtInputGreen, GreenPlaceholder);
         }
 
         private void txtInputBlue_Enter(object sender, EventArgs e)
         {
-            RemovePlaceHolder(txtInputBlue, BluePlaceholder);
+            Utils.RemovePlaceHolder(ref txtInputBlue, BluePlaceholder);
         }
 
         private void txtInputBlue_Leave(object sender, EventArgs e)
         {
-            SetPlaceHolder(txtInputBlue, BluePlaceholder);
-        }
-
-        private void RemovePlaceHolder(TextBox txtField, string placeHolder)
-        {
-            if (txtField.Text == placeHolder)
-            {
-                txtField.Text = string.Empty;
-                txtField.ForeColor = System.Drawing.Color.Black;
-
-            }
-        }
-        private void SetPlaceHolder(TextBox txtField, string placeHolder)
-        {
-            if (txtField.Text == string.Empty)
-            {
-                txtField.Text = placeHolder;
-                txtField.ForeColor = System.Drawing.Color.DimGray;
-
-            }
+            Utils.SetPlaceHolder(ref txtInputBlue, BluePlaceholder);
         }
 
 
