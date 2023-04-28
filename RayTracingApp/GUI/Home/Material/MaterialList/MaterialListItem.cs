@@ -24,7 +24,11 @@ namespace GUI
         {
             InitializeComponent();
             InitializeAtributes(material);
+            InitializeControllers(mainController, material);
+        }
 
+        private void InitializeControllers(MainController mainController, Material material)
+        {
             _modelController = mainController.ModelController;
             _materialController = mainController.MaterialController;
             _currentClient = material.Owner;
