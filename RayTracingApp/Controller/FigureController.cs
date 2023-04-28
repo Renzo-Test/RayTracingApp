@@ -118,7 +118,7 @@ namespace Controller
 
         public Figure GetFigure(string username, string name)
         {
-            Figure getFigure = Repository.GetFiguresByClient(username).Find(fig => fig.Name.Equals(name));
+            Figure getFigure = ListFigures(username).Find(fig => fig.Name.Equals(name));
 
             if(getFigure is null)
             {
