@@ -30,22 +30,6 @@ namespace GUI
             _mainForm = mainForm;
             InitializeComponent();
         }
-        
-        private void lblSignIn_Click(object sender, EventArgs e)
-        {
-            _mainForm.GoToSignIn();
-        }
-
-        private void lblSignUp_Click(object sender, EventArgs e)
-        {
-            SignUpUser();
-        }
-        
-        private void picSignUpBackground_Click(object sender, EventArgs e)
-        {
-            SignUpUser();
-
-        }
 
         private void SignUpUser()
         {
@@ -73,6 +57,22 @@ namespace GUI
         private static bool PasswordMatch(string password, string passwordConfirmation)
         {
             return password.Equals(passwordConfirmation);
+        }
+
+        private void lblSignIn_Click(object sender, EventArgs e)
+        {
+            _mainForm.GoToSignIn();
+        }
+
+        private void lblSignUp_Click(object sender, EventArgs e)
+        {
+            SignUpUser();
+        }
+        
+        private void picSignUpBackground_Click(object sender, EventArgs e)
+        {
+            SignUpUser();
+
         }
 
         private void txtUsername_Enter(object sender, EventArgs e)
