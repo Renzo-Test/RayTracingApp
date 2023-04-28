@@ -50,10 +50,21 @@ namespace GUI
         {
             List<Figure> figures = _figureController.ListFigures(_currentClient.Username);
             List<Material> materials = _materialController.ListMaterials(_currentClient.Username);
+            
+            ClearComboBoxes();
 
+            AddItems(figures, materials);
+
+        }
+
+        private void ClearComboBoxes()
+        {
             cmbFigures.Items.Clear();
             cmbMaterials.Items.Clear();
+        }
 
+        private void AddItems(List<Figure> figures, List<Material> materials)
+        {
             foreach (Figure figure in figures)
             {
                 cmbFigures.Items.Add(figure.Name);
@@ -63,7 +74,6 @@ namespace GUI
             {
                 cmbMaterials.Items.Add(material.Name);
             }
-
         }
 
         private void SaveModel()
