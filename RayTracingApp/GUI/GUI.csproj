@@ -298,5 +298,8 @@
   <ItemGroup>
     <None Include="Resources\mX.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\caret-abajo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,20 +12,25 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class ModelList : UserControl
+    public partial class picAddModel : UserControl
     {
         private ModelHome _modelHome;
 
         private ModelController _modelController;
         private Client _currentClient;
 
-        public ModelList(ModelHome modelHome, ModelController modelController, Client currentClient)
+        public picAddModel(ModelHome modelHome, ModelController modelController, Client currentClient)
         {
             _modelHome = modelHome;
             _modelController = modelController;
             _currentClient = currentClient;
 
             InitializeComponent();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            _modelHome.GoToAddModel();
         }
     }
 }

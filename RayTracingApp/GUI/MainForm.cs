@@ -26,11 +26,11 @@ namespace GUI
         public MainForm()
         {
             InitializeComponent();
-            
+            InitializeControllers();
+
             _signInPanel = new SignIn(this, _clientController);
             _signUpPanel = new SignUp(this, _clientController);
 
-            InitializeControllers();
             flyMain.Controls.Add(_signInPanel);
         }
         private void InitializeControllers()

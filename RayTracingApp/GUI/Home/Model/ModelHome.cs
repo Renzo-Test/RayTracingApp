@@ -17,11 +17,11 @@ namespace GUI
         private UserControl _addModelPanel;
         private UserControl _modelListPanel;
 
-        public ModelHome(ModelController modelController, Client currentClient)
+        public ModelHome(ModelController modelController, FigureController figureController, MaterialController materialController, Client currentClient)
         {
             InitializeComponent();
-            _addModelPanel = new AddModel(this, modelController, currentClient);
-            _modelListPanel = new ModelList(this, modelController, currentClient);
+            _addModelPanel = new AddModel(this, modelController, figureController, materialController, currentClient);
+            _modelListPanel = new picAddModel(this, modelController, currentClient);
             flyModelHome.Controls.Add(_modelListPanel);
         }
 
@@ -31,7 +31,7 @@ namespace GUI
             flyModelHome.Controls.Add(_addModelPanel);
         }
 
-        public void GoToFigureList()
+        public void GoToModelList()
         {
             flyModelHome.Controls.Clear();
             flyModelHome.Controls.Add(_modelListPanel);

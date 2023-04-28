@@ -73,6 +73,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap caret_abajo {
+            get {
+                object obj = ResourceManager.GetObject("caret-abajo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap darkFieldRectangle {
             get {
                 object obj = ResourceManager.GetObject("darkFieldRectangle", resourceCulture);

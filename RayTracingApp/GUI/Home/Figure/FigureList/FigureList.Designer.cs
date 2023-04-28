@@ -52,6 +52,7 @@
             // 
             // flyFigureList
             // 
+            this.flyFigureList.AllowDrop = true;
             this.flyFigureList.AutoScroll = true;
             this.flyFigureList.Location = new System.Drawing.Point(167, 148);
             this.flyFigureList.Margin = new System.Windows.Forms.Padding(0);

@@ -127,14 +127,17 @@
   <data name="sceneIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sceneIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="card" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sX.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="userIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\userIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="darkFieldRectangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\darkFieldRectangle1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mX.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="homeButtonsBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\homeButtonsBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,14 +154,14 @@
   <data name="materialIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\materialIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sX.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sphereIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sphereIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sphereBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sphereBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fieldRectangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fieldRectangle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="modelIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\modelIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,10 +184,10 @@
   <data name="userBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\userBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fieldRectangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fieldRectangle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\card1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mX.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="caret-abajo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\caret-abajo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

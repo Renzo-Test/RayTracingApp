@@ -77,6 +77,7 @@
             // 
             // flyMaterialList
             // 
+            this.flyMaterialList.AutoScroll = true;
             this.flyMaterialList.Location = new System.Drawing.Point(167, 148);
             this.flyMaterialList.Margin = new System.Windows.Forms.Padding(0);
             this.flyMaterialList.Name = "flyMaterialList";
