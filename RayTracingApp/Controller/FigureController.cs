@@ -3,6 +3,7 @@ using IRepository;
 using MemoryRepository;
 using MemoryRepository.Exceptions;
 using Models;
+using System;
 using System.Collections.Generic;
 
 namespace Controller
@@ -113,6 +114,18 @@ namespace Controller
             }
 
             Repository.RemoveFigure(deleteFigure);
+        }
+
+        public Figure GetFigure(string username, string name)
+        {
+            List<Figure> list = Repository.GetFiguresByClient(username);
+
+            foreach(Figure fig in list)
+            {
+                if(fig.Name.Equals(name))
+                   return fig;
+            }
+            throw new NotFoundFigureException($"Figure with name {name} was not found");
         }
     }
 }
