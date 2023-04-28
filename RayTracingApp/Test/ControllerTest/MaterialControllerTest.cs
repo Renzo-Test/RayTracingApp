@@ -149,5 +149,38 @@ namespace Test.ControllerTest
 
             _materialController.RemoveMaterial("materialName", "ownerName", modelController.ListModels("ownerName"));
         }
+
+        [TestMethod]
+        public void GetMaterial_ExistingMaterial_OkTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            Material newMaterial = new Material()
+            {
+                Name = "sphere",
+            };
+
+            _materialController.AddMaterial(newMaterial, currentClient.Username);
+            Material expected = _materialController.GetMaterial(currentClient.Username, newMaterial.Name);
+
+            Assert.AreEqual(expected, newMaterial);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotFoundMaterialException))]
+        public void GetMaterial_ExistingMaterial_FailTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            _materialController.GetMaterial("newFigure", currentClient.Username);
+        }
     }
 }
