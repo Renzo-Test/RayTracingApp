@@ -140,6 +140,7 @@ namespace Test.ControllerTest
             _modelController.ListModels("username");
         }
 
+        [TestMethod]
         public void GetModel_ExistingClient_OkTest()
         {
             Client currentClient = new Client()
@@ -158,6 +159,21 @@ namespace Test.ControllerTest
 
             Assert.AreEqual(expected, newModel);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotFoundModelException))]
+        public void GetModel_ExistingClientNonExistingName_OkTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            _modelController.GetModel(currentClient.Username, "newModel");
+        }
+
+
 
 
     }
