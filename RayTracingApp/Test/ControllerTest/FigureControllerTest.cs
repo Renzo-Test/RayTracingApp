@@ -272,5 +272,18 @@ namespace Test.ControllerTest
 
             Assert.AreEqual(expected, newFigure);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotFoundFigureException))]
+        public void GetFigure_NonExistingFigure_FailTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            Figure expected = _figureController.GetFigure(currentClient.Username, "newFigure");
+        }
     }
 }

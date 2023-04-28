@@ -118,14 +118,14 @@ namespace Controller
 
         public Figure GetFigure(string username, string name)
         {
-            List<Figure> list = Repository.GetFiguresByClient(username);
+            Figure getFigure = Repository.GetFiguresByClient(username).Find(fig => fig.Name.Equals(name));
 
-            foreach(Figure fig in list)
+            if(getFigure is null)
             {
-                if(fig.Name.Equals(name))
-                   return fig;
+                throw new NotFoundFigureException($"Figure with name {name} was not found");
             }
-            throw new NotFoundFigureException($"Figure with name {name} was not found");
+
+            return getFigure;
         }
     }
 }
