@@ -21,7 +21,7 @@ namespace GUI
         {
             InitializeComponent();
             _addModelPanel = new AddModel(this, modelController, figureController, materialController, currentClient);
-            _modelListPanel = new picAddModel(this, modelController, currentClient);
+            _modelListPanel = new ModelList(this, modelController, currentClient);
             flyModelHome.Controls.Add(_modelListPanel);
         }
 

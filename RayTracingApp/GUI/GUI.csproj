@@ -144,6 +144,12 @@
     <Compile Include="Home\Model\ModelList\ModelList.Designer.cs">
       <DependentUpon>ModelList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Home\Model\ModelList\ModelListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Model\ModelList\ModelListItem.Designer.cs">
+      <DependentUpon>ModelListItem.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Home\Figure\AddFigure.resx">
       <DependentUpon>AddFigure.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Model\ModelList\ModelList.resx">
       <DependentUpon>ModelList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Model\ModelList\ModelListItem.resx">
+      <DependentUpon>ModelListItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

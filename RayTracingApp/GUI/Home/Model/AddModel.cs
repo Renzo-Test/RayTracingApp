@@ -30,11 +30,6 @@ namespace GUI
             _currentClient = currentClient;
             InitializeComponent();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
         private void picCard_Paint(object sender, PaintEventArgs e)
         {
             PopulateComboBoxes();
@@ -81,11 +76,6 @@ namespace GUI
         private void picRectangleFieldCancel_Click(object sender, EventArgs e)
         {
             _modelHome.GoToModelList();
-        }
-
-        private void picCard_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void picDropDownFigures_Click(object sender, EventArgs e)
@@ -153,6 +143,16 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void cmbFigures_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblFiguresList.Text = cmbFigures.Text;
+        }
+
+        private void cmbMaterials_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblMaterialsList.Text = cmbMaterials.Text;
         }
     }
 }

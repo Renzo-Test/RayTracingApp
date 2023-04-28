@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class picAddModel : UserControl
+    public partial class ModelList : UserControl
     {
         private ModelHome _modelHome;
 
         private ModelController _modelController;
         private Client _currentClient;
 
-        public picAddModel(ModelHome modelHome, ModelController modelController, Client currentClient)
+        public ModelList(ModelHome modelHome, ModelController modelController, Client currentClient)
         {
             _modelHome = modelHome;
             _modelController = modelController;
@@ -28,9 +28,37 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void picAddModel_Click(object sender, EventArgs e)
         {
             _modelHome.GoToAddModel();
+        }
+
+        private void ModelList_Paint(object sender, PaintEventArgs e)
+        {
+            PopulateItems();
+        }
+        public void PopulateItems()
+        {
+
+            List<Model> models;
+
+            try
+            {
+                models = _modelController.ListModels(_currentClient.Username);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+            flyModelList.Controls.Clear();
+
+            foreach (Model model in models)
+            {
+                ModelListItem item = new ModelListItem(_modelController, model);
+                flyModelList.Controls.Add(item);
+            }
+
         }
     }
 }

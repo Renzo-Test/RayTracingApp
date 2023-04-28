@@ -151,7 +151,6 @@
             this.picCard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picCard.TabIndex = 0;
             this.picCard.TabStop = false;
-            this.picCard.Click += new System.EventHandler(this.picCard_Click);
             this.picCard.Paint += new System.Windows.Forms.PaintEventHandler(this.picCard_Paint);
             // 
             // cmbFigures
@@ -164,6 +163,7 @@
             this.cmbFigures.Name = "cmbFigures";
             this.cmbFigures.Size = new System.Drawing.Size(289, 30);
             this.cmbFigures.TabIndex = 18;
+            this.cmbFigures.SelectedIndexChanged += new System.EventHandler(this.cmbFigures_SelectedIndexChanged);
             // 
             // picDropDownFigures
             // 
@@ -211,6 +211,7 @@
             this.cmbMaterials.Name = "cmbMaterials";
             this.cmbMaterials.Size = new System.Drawing.Size(289, 30);
             this.cmbMaterials.TabIndex = 26;
+            this.cmbMaterials.SelectedIndexChanged += new System.EventHandler(this.cmbMaterials_SelectedIndexChanged);
             // 
             // picDropDownMaterial
             // 

@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class picAddModel
+    partial class ModelList
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picAddModel = new System.Windows.Forms.PictureBox();
             this.lblAddFigure = new System.Windows.Forms.Label();
             this.picIconPlus = new System.Windows.Forms.PictureBox();
             this.flyModelList = new System.Windows.Forms.FlowLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAddModel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // picAddModel
             // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::GUI.Properties.Resources.homeButtonsBackground;
-            this.pictureBox1.Location = new System.Drawing.Point(310, 44);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(198, 72);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.picAddModel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picAddModel.Image = global::GUI.Properties.Resources.homeButtonsBackground;
+            this.picAddModel.Location = new System.Drawing.Point(310, 44);
+            this.picAddModel.Name = "picAddModel";
+            this.picAddModel.Size = new System.Drawing.Size(198, 72);
+            this.picAddModel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picAddModel.TabIndex = 0;
+            this.picAddModel.TabStop = false;
+            this.picAddModel.Click += new System.EventHandler(this.picAddModel_Click);
             // 
             // lblAddFigure
             // 
@@ -80,7 +80,7 @@
             this.flyModelList.Size = new System.Drawing.Size(500, 434);
             this.flyModelList.TabIndex = 3;
             // 
-            // picAddModel
+            // ModelList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,11 +88,12 @@
             this.Controls.Add(this.flyModelList);
             this.Controls.Add(this.picIconPlus);
             this.Controls.Add(this.lblAddFigure);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picAddModel);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "picAddModel";
+            this.Name = "ModelList";
             this.Size = new System.Drawing.Size(834, 604);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ModelList_Paint);
+            ((System.ComponentModel.ISupportInitialize)(this.picAddModel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -101,7 +102,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picAddModel;
         private System.Windows.Forms.Label lblAddFigure;
         private System.Windows.Forms.PictureBox picIconPlus;
         private System.Windows.Forms.FlowLayoutPanel flyModelList;
