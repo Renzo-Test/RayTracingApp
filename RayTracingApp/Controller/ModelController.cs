@@ -3,6 +3,7 @@ using IRepository;
 using MemoryRepository;
 using MemoryRepository.Exceptions;
 using Models;
+using System;
 using System.Collections.Generic;
 
 namespace Controller
@@ -86,5 +87,17 @@ namespace Controller
             }
         }
 
+        public Model GetModel(string username, string name)
+        {
+            Model getModel = ListModels(username).Find(mod => mod.Name.Equals(name));
+
+            if (getModel is null)
+            {
+                throw new NotFoundModelException($"Model with name {name} was not found");
+            }
+
+            return getModel;
+
+        }
     }
 }
