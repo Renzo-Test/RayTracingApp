@@ -32,34 +32,9 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void picRectangleFieldCancel_Click(object sender, EventArgs e)
-        {
-            _figureHome.GoToFigureList();
-        }
-
-        private void lblCancel_Click(object sender, EventArgs e)
-        {
-            _figureHome.GoToFigureList();
-        }
-
-        private void lblCancel_TextChanged(object sender, EventArgs e)
-        {
-            _figureHome.GoToFigureList();
-        }
-
-        private void picRectangleFieldSave_Click(object sender, EventArgs e)
-        {
-            AddNewFigure();
-        }
-
-        private void lblSave_Click(object sender, EventArgs e)
-        {
-            AddNewFigure();
-        }
-
         private void AddNewFigure()
         {
-            double radius = 0;
+            double radius;
 
             try
             {
@@ -103,11 +78,36 @@ namespace GUI
             {
                 return Double.Parse(txtInputRadius.Text);
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 throw new FormatException(RadiusInputErrorMessage);
             }
-           
+
+        }
+
+        private void picRectangleFieldCancel_Click(object sender, EventArgs e)
+        {
+            _figureHome.GoToFigureList();
+        }
+
+        private void lblCancel_Click(object sender, EventArgs e)
+        {
+            _figureHome.GoToFigureList();
+        }
+
+        private void lblCancel_TextChanged(object sender, EventArgs e)
+        {
+            _figureHome.GoToFigureList();
+        }
+
+        private void picRectangleFieldSave_Click(object sender, EventArgs e)
+        {
+            AddNewFigure();
+        }
+
+        private void lblSave_Click(object sender, EventArgs e)
+        {
+            AddNewFigure();
         }
 
         private void txtInputName_Enter(object sender, EventArgs e)

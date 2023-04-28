@@ -26,31 +26,15 @@ namespace GUI
         {
             _figureHome = figureHome;
 
-            _mainController = mainController;
-            _figureController = mainController.FigureController;
-            _currentClient = currentClient;
+            InitializeControllers(mainController, currentClient);
 
             InitializeComponent();
-        }
-
-        private void FigureList_Paint(object sender, PaintEventArgs e)
-        {
-            PopulateItems();
         }
 
         public void PopulateItems()
         {
 
-            List<Figure> figures;
-
-            try
-            {
-               figures = _figureController.ListFigures(_currentClient.Username);
-            }
-            catch (NotFoundFigureException)
-            {
-                return;
-            }
+            List<Figure> figures = _figureController.ListFigures(_currentClient.Username);
 
             flyFigureList.Controls.Clear();
 
@@ -60,6 +44,18 @@ namespace GUI
                 flyFigureList.Controls.Add(item);
             }
 
+        }
+
+        private void InitializeControllers(MainController mainController, Client currentClient)
+        {
+            _mainController = mainController;
+            _figureController = mainController.FigureController;
+            _currentClient = currentClient;
+        }
+
+        private void FigureList_Paint(object sender, PaintEventArgs e)
+        {
+            PopulateItems();
         }
 
         private void picAddFigure_Click(object sender, EventArgs e)
