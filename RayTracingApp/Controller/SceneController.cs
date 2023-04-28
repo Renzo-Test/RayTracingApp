@@ -55,15 +55,8 @@ namespace Controller
 
         private bool SceneNameExist(Scene newScene, string username)
         {
-            try
-            {
-                List<Scene> clientScenes = Repository.GetScenesByClient(username);
-                return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
-            }
-            catch (NotFoundSceneException)
-            {
-                return false;
-            }
+            List<Scene> clientScenes = Repository.GetScenesByClient(username);
+            return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
         }
 
         private static void NameIsEmpty(Scene scene)

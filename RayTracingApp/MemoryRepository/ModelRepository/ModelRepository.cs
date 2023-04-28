@@ -24,11 +24,6 @@ namespace MemoryRepository
         public List<Model> GetModelsByClient(string username) 
         {
             List<Model> foundModels = _models.FindAll(model => model.Owner.Equals(username));
-            if (!foundModels.Any())
-            {
-                string NotFoundModelMessage = $"no model with owner: {username} was found";
-                throw new NotFoundModelException(NotFoundModelMessage);
-            }
             return foundModels;
         }
         public void RemoveModel(Model model)
