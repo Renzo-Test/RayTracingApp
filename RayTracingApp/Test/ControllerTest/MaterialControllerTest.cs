@@ -151,7 +151,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        public void GetFigure_ExistingMaterial_OkTest()
+        public void GetMaterial_ExistingMaterial_OkTest()
         {
             Client currentClient = new Client()
             {
@@ -168,6 +168,19 @@ namespace Test.ControllerTest
             Material expected = _materialController.GetMaterial(currentClient.Username, newMaterial.Name);
 
             Assert.AreEqual(expected, newMaterial);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotFoundMaterialException))]
+        public void GetMaterial_ExistingMaterial_FailTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            _materialController.GetMaterial("newFigure", currentClient.Username);
         }
     }
 }
