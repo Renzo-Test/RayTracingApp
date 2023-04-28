@@ -20,20 +20,15 @@ namespace GUI
         private FigureHome _figureHome;
         private MaterialHome _materialHome;
 
-        private FigureController _figureController;
-        private MaterialController _materialController;
-        private ModelController _modelController;
+        private MainController _mainController;
 
         private Client _currentClient;
 
-        public Home(MainForm mainForm, FigureController figureController, MaterialController materialController, ModelController modelController, Client currentClient)
+        public Home(MainForm mainForm, MainController mainController, Client currentClient)
         {
             _mainForm = mainForm;
             _currentClient = currentClient;
-
-            _modelController = modelController;
-            _figureController = figureController;
-            _materialController = materialController;
+            _mainController = mainController;
 
             InitializeHomeScenes();
             InitializeComponent();
@@ -42,13 +37,12 @@ namespace GUI
             flyHome.Controls.Add(_figureHome);
         }
 
-
         private void InitializeHomeScenes()
         {
             _sceneHome = new SceneHome();
-            _moedelHome = new ModelHome(_modelController, _figureController, _materialController, _currentClient);
-            _figureHome = new FigureHome(_figureController, _currentClient);
-            _materialHome = new MaterialHome(_materialController, _currentClient);
+            _moedelHome = new ModelHome(_mainController, _currentClient);
+            _figureHome = new FigureHome(_mainController, _currentClient);
+            _materialHome = new MaterialHome(_mainController, _currentClient);
         }
 
         private void SetCurrentClientLabel()

@@ -17,11 +17,11 @@ namespace GUI
         private UserControl _addFigurePanel;
         private UserControl _figureListPanel;
 
-        public FigureHome(FigureController figureController, Client currentClient)
+        public FigureHome(MainController mainController, Client currentClient)
         {
             InitializeComponent();
-            _addFigurePanel = new AddFigure(this, figureController, currentClient);
-            _figureListPanel = new FigureList(this, figureController, currentClient);
+            _addFigurePanel = new AddFigure(this, mainController.FigureController, currentClient);
+            _figureListPanel = new FigureList(this, mainController.FigureController, currentClient);
             flyFigureHome.Controls.Add(_figureListPanel);
         }
 

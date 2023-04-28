@@ -17,11 +17,11 @@ namespace GUI
         private UserControl _addModelPanel;
         private UserControl _modelListPanel;
 
-        public ModelHome(ModelController modelController, FigureController figureController, MaterialController materialController, Client currentClient)
+        public ModelHome(MainController mainController, Client currentClient)
         {
             InitializeComponent();
-            _addModelPanel = new AddModel(this, modelController, figureController, materialController, currentClient);
-            _modelListPanel = new ModelList(this, modelController, currentClient);
+            _addModelPanel = new AddModel(this, mainController, currentClient);
+            _modelListPanel = new ModelList(this, mainController.ModelController, currentClient);
             flyModelHome.Controls.Add(_modelListPanel);
         }
 

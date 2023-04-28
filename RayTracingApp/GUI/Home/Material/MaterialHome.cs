@@ -17,11 +17,11 @@ namespace GUI
         private UserControl _addMaterialPanel;
         private UserControl _materialListPanel;
 
-        public MaterialHome(MaterialController materialController, Client currentClient)
+        public MaterialHome(MainController mainController, Client currentClient)
         {
             InitializeComponent();
-            _materialListPanel = new MaterialList(this, materialController, currentClient);
-            _addMaterialPanel = new AddMaterial(this, materialController, currentClient);
+            _materialListPanel = new MaterialList(this, mainController.MaterialController, currentClient);
+            _addMaterialPanel = new AddMaterial(this, mainController.MaterialController, currentClient);
             flyMaterialHome.Controls.Add(_materialListPanel);
         }
 

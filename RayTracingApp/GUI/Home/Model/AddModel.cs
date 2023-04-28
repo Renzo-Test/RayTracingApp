@@ -21,12 +21,12 @@ namespace GUI
         private FigureController _figureController;
         private ModelController _modelController;
 
-        public AddModel(ModelHome modelHome, ModelController modelController, FigureController figureController, MaterialController materialController, Client currentClient)
+        public AddModel(ModelHome modelHome, MainController mainController, Client currentClient)
         {
             _modelHome = modelHome;
-            _modelController = modelController;
-            _materialController = materialController;
-            _figureController = figureController;
+            _modelController = mainController.ModelController;
+            _materialController = mainController.MaterialController;
+            _figureController = mainController.FigureController;
             _currentClient = currentClient;
             InitializeComponent();
         }

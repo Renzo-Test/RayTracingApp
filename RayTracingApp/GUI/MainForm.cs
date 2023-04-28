@@ -18,27 +18,17 @@ namespace GUI
         private UserControl _signUpPanel;
         private UserControl _homePanel;
 
-        private ClientController _clientController;
-        private FigureController _figureController;
-        private MaterialController _materialController;
-        private ModelController _modelController;
+        private MainController _mainController;
 
         public MainForm()
         {
             InitializeComponent();
-            InitializeControllers();
+            _mainController = new MainController();
 
-            _signInPanel = new SignIn(this, _clientController);
-            _signUpPanel = new SignUp(this, _clientController);
+            _signInPanel = new SignIn(this, _mainController.ClientController);
+            _signUpPanel = new SignUp(this, _mainController.ClientController);
 
             flyMain.Controls.Add(_signInPanel);
-        }
-        private void InitializeControllers()
-        {
-            _clientController = new ClientController();
-            _figureController = new FigureController();
-            _materialController = new MaterialController();
-            _modelController = new ModelController();
         }
 
         public void GoToSignIn()
@@ -56,7 +46,7 @@ namespace GUI
         public void GoToHome(Client currentClient)
         {
             flyMain.Controls.Clear();
-            _homePanel = new Home(this, _figureController, _materialController, _modelController, currentClient);
+            _homePanel = new Home(this, _mainController, currentClient);
             flyMain.Controls.Add(_homePanel);
         }
     }
