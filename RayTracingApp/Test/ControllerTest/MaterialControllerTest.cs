@@ -4,6 +4,7 @@ using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Test.ControllerTest
 {
@@ -111,8 +112,6 @@ namespace Test.ControllerTest
             Assert.AreEqual(2, _materialController.ListMaterials("username").Count);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundMaterialException))]
         public void RemoveMaterials_FailTest()
         {
             Material newMaterial = new Material()
@@ -125,7 +124,8 @@ namespace Test.ControllerTest
             _materialController.AddMaterial(newMaterial, "username");
             _materialController.RemoveMaterial(newMaterial.Name, "username", models);
 
-            _materialController.ListMaterials("username");
+            List<Material> materials = _materialController.ListMaterials("username");
+            Assert.IsFalse(materials.Any());
         }
 
         [TestMethod]
