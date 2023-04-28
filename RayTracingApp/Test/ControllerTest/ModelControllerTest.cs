@@ -139,5 +139,42 @@ namespace Test.ControllerTest
             _modelController.RemoveModel(newModel.Name, "username");
             _modelController.ListModels("username");
         }
+
+        [TestMethod]
+        public void GetModel_ExistingClient_OkTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            Model newModel = new Model()
+            {
+                Name = "Test",
+            };
+
+            _modelController.AddModel(newModel, currentClient.Username);
+            Model expected = _modelController.GetModel(currentClient.Username, newModel.Name);
+
+            Assert.AreEqual(expected, newModel);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotFoundModelException))]
+        public void GetModel_ExistingClientNonExistingName_OkTest()
+        {
+            Client currentClient = new Client()
+            {
+                Username = "user",
+                Password = "pass"
+            };
+
+            _modelController.GetModel(currentClient.Username, "newModel");
+        }
+
+
+
+
     }
 }
