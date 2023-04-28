@@ -26,14 +26,14 @@ namespace Controller
 
         public Material GetMaterial(string username, string name)
         {
-            List<Material> materials = Repository.GetMaterialsByClient(username);
-
-            foreach(Material material in materials)
+            Material getMaterials = Repository.GetMaterialsByClient(username).Find(mat => mat.Name.Equals(name));
+            
+            if(getMaterials is null)
             {
-                if(material.Name.Equals(name))
-                    return material;
+                throw new NotFoundMaterialException($"Material with name {name} was not found");
             }
-            throw new NotFoundMaterialException($"Material with name {name} was not found");
+
+            return getMaterials;
         }
 
         public void AddMaterial(Material material, string username)
