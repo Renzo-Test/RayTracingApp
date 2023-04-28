@@ -89,14 +89,14 @@ namespace Controller
 
         public Model GetModel(string username, string name)
         {
-            List<Model> list = Repository.GetModelsByClient(username);
+            Model getModel = ListModels(username).Find(mod => mod.Name.Equals(name));
 
-            foreach(Model model in list)
+            if (getModel is null)
             {
-                if (model.Name.Equals(name))
-                    return model;
+                throw new NotFoundModelException($"Model with name {name} was not found");
             }
-            throw new NotFoundModelException($"Model with name {name} was not found");
+
+            return getModel;
 
         }
     }
