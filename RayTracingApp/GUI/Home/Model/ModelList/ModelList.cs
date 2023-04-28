@@ -27,29 +27,10 @@ namespace GUI
 
             InitializeComponent();
         }
-
-        private void picAddModel_Click(object sender, EventArgs e)
-        {
-            _modelHome.GoToAddModel();
-        }
-
-        private void ModelList_Paint(object sender, PaintEventArgs e)
-        {
-            PopulateItems();
-        }
         public void PopulateItems()
         {
 
-            List<Model> models;
-
-            try
-            {
-                models = _modelController.ListModels(_currentClient.Username);
-            }
-            catch (Exception)
-            {
-                return;
-            }
+            List<Model> models = _modelController.ListModels(_currentClient.Username);
 
             flyModelList.Controls.Clear();
 
@@ -60,5 +41,16 @@ namespace GUI
             }
 
         }
+
+        private void picAddModel_Click(object sender, EventArgs e)
+        {
+            _modelHome.GoToAddModel();
+        }
+
+        private void ModelList_Paint(object sender, PaintEventArgs e)
+        {
+            PopulateItems();
+        }
+  
     }
 }
