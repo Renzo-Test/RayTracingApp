@@ -157,7 +157,7 @@ namespace Test.ControllerTest
             CollectionAssert.Contains(ownerScenes, anotherScene);
         }
 
-        public void RemoveScene_FailTest()
+        public void RemoveScene_OkTest()
         {
             Scene newScene = new Scene()
             {
