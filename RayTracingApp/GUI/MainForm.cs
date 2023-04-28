@@ -45,8 +45,9 @@ namespace GUI
 
         public void GoToHome(Client currentClient)
         {
-            flyMain.Controls.Clear();
             _homePanel = new Home(this, _mainController, currentClient);
+
+            flyMain.Controls.Clear();
             flyMain.Controls.Add(_homePanel);
         }
     }
