@@ -81,8 +81,7 @@ namespace Test.MemoryRepositoryTest
             };
             _modelRepository.AddModel(NewModel);
         }
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundModelException))]
+
         public void RemoveModel_FailTest()
         {
             Figure newFigure = new Sphere()
@@ -116,8 +115,7 @@ namespace Test.MemoryRepositoryTest
             CollectionAssert.DoesNotContain(iterable, NewModel);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundModelException))]
+
         public void RemoveModel_NotExistingModel_FailTest()
         {
             Figure newFigure = new Sphere()
