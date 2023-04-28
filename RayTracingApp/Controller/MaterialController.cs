@@ -3,6 +3,7 @@ using IRepository;
 using MemoryRepository.Exceptions;
 using MemoryRepository.MaterialRepository;
 using Models;
+using System;
 using System.Collections.Generic;
 
 namespace Controller
@@ -21,6 +22,18 @@ namespace Controller
         public List<Material> ListMaterials(string username)
         {
             return Repository.GetMaterialsByClient(username);
+        }
+
+        public Material GetMaterial(string username, string name)
+        {
+            List<Material> materials = Repository.GetMaterialsByClient(username);
+
+            foreach(Material material in materials)
+            {
+                if(material.Name.Equals(name))
+                    return material;
+            }
+            throw new NotFoundMaterialException($"Material with name {name} was not found");
         }
 
         public void AddMaterial(Material material, string username)
@@ -101,5 +114,6 @@ namespace Controller
 
             Repository.RemoveMaterial(deleteMaterial);
         }
+
     }
 }
