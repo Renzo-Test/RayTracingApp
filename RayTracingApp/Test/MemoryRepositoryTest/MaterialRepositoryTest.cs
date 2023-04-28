@@ -61,7 +61,7 @@ namespace Test.MemoryRepositoryTest
 
         }
 
-        public void RemoveMaterial_FailTest()
+        public void RemoveMaterial_OkTestt()
         {
 
             Color NewColor = new Color()
@@ -86,7 +86,7 @@ namespace Test.MemoryRepositoryTest
             Assert.IsFalse(materials.Any());
         }
 
-        public void RemoveMaterial_NotExistingMaterial_FailTest()
+        public void RemoveMaterial_NotExistingMaterial_OkTest()
         {
             Color NewColor = new Color()
             {
