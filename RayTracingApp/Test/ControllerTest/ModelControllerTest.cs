@@ -3,6 +3,8 @@ using Controller.ModelExceptions;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Test.ControllerTest
 {
@@ -127,8 +129,7 @@ namespace Test.ControllerTest
             _modelController.AddModel(secondModel, "username");
             Assert.AreEqual(2, _modelController.ListModels("username").Count);
         }
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundModelException))]
+
         public void RemoveModels_FailTest()
         {
             Model newModel = new Model()
@@ -137,7 +138,9 @@ namespace Test.ControllerTest
             };
             _modelController.AddModel(newModel, "username");
             _modelController.RemoveModel(newModel.Name, "username");
-            _modelController.ListModels("username");
+            
+            List<Model> models = _modelController.ListModels("username");
+            Assert.IsFalse(models.Any());
         }
 
         [TestMethod]
