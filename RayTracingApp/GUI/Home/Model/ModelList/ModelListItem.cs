@@ -22,10 +22,10 @@ namespace GUI
         {
             InitializeComponent();
             InitializePanelAtributes(model);
-            InitializeControllerAtributes(modelController, model);
+            InitializeControllers(modelController, model);
         }
 
-        private void InitializeControllerAtributes(ModelController modelController, Model model)
+        private void InitializeControllers(ModelController modelController, Model model)
         {
             _modelController = modelController;
             _currentClient = model.Owner;
