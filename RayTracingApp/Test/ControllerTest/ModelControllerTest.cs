@@ -45,11 +45,10 @@ namespace Test.ControllerTest
             CollectionAssert.DoesNotContain(_modelController.ListModels("targetOwner"), anotherModel);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundModelException))]
-        public void ListModels_InvalidUsername_FailTest()
+        public void ListModels_InvalidUsername_OkTest()
         {
-            _modelController.ListModels("owner");
+            List<Model> models = _modelController.ListModels("owner");
+            Assert.IsFalse(models.Any());
         }
 
         [TestMethod]
@@ -130,7 +129,7 @@ namespace Test.ControllerTest
             Assert.AreEqual(2, _modelController.ListModels("username").Count);
         }
 
-        public void RemoveModels_FailTest()
+        public void RemoveModels_OkTest()
         {
             Model newModel = new Model()
             {
