@@ -62,15 +62,8 @@ namespace Controller
 
         private bool ModelNameExist(Model model, string username)
         {
-            try
-            {
-                List<Model> clientModels = Repository.GetModelsByClient(username);
-                return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
-            }
-            catch (NotFoundModelException)
-            {
-                return false;
-            }
+            List<Model> clientModels = Repository.GetModelsByClient(username);
+            return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
         }
         private static void RunNameIsSpacedChecker(Model model)
         {

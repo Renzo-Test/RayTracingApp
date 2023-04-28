@@ -25,11 +25,6 @@ namespace MemoryRepository
         public List<Scene> GetScenesByClient(string username)
         {
             List<Scene> foundScenes = _scenes.FindAll(scene => scene.Owner.Equals(username));
-            if (!foundScenes.Any())
-            {
-                string NotFoundScenelMessage = $"no scene with owner: {username} was found";
-                throw new NotFoundSceneException(NotFoundScenelMessage);
-            }
             return foundScenes;
         }
 

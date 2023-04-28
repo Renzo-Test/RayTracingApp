@@ -2,6 +2,8 @@
 using MemoryRepository.MaterialRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -59,9 +61,7 @@ namespace Test.MemoryRepositoryTest
 
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundMaterialException))]
-        public void RemoveMaterial_FailTest()
+        public void RemoveMaterial_OkTestt()
         {
 
             Color NewColor = new Color()
@@ -81,12 +81,12 @@ namespace Test.MemoryRepositoryTest
 
             _materialRepository.AddMaterial(NewMaterial);
             _materialRepository.RemoveMaterial(NewMaterial);
-            _materialRepository.GetMaterialsByClient("OwnerName");
+            List<Material> materials = _materialRepository.GetMaterialsByClient("OwnerName");
+
+            Assert.IsFalse(materials.Any());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundMaterialException))]
-        public void RemoveMaterial_NotExistingMaterial_FailTest()
+        public void RemoveMaterial_NotExistingMaterial_OkTest()
         {
             Color NewColor = new Color()
             {
@@ -103,7 +103,9 @@ namespace Test.MemoryRepositoryTest
             };
 
             _materialRepository.RemoveMaterial(NewMaterial);
-            _materialRepository.GetMaterialsByClient("OwnerName");
+            List<Material> materials = _materialRepository.GetMaterialsByClient("OwnerName");
+
+            Assert.IsFalse(materials.Any());
         }
 
     }

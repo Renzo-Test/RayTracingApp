@@ -55,16 +55,8 @@ namespace Controller
 
         public bool FigureNameExist(string name, string ownerName)
         {
-            try
-            {
-                List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
-
-                return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
-            }
-            catch (NotFoundFigureException)
-            {
-                return false;
-            }
+            List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
+            return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
         }
 
         public void FigurePropertiesAreValid(Figure figure)

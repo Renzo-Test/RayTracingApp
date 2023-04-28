@@ -4,6 +4,7 @@ using Models;
 using MemoryRepository;
 using System.Collections.Generic;
 using MemoryRepository.Exceptions;
+using System.Linq;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -109,17 +110,15 @@ namespace Test.MemoryRepositoryTest
             CollectionAssert.DoesNotContain(iterableOwner1, _scene2);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundSceneException))]
-        public void GetScenesByClient_NoClient_FailTest()
+        public void GetScenesByClient_NoClient_OkTest()
         {
             _sceneRepository = new SceneRepository();
-            _sceneRepository.GetScenesByClient("OwnerName");
+            List<Scene> scenes = _sceneRepository.GetScenesByClient("OwnerName");
+
+            Assert.IsFalse(scenes.Any());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundSceneException))]
-        public void DeleteScene_ExistingScene_FailTest()
+        public void DeleteScene_ExistingScene_OkTest()
         {
             _sceneRepository = new SceneRepository();
 

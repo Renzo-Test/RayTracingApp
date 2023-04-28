@@ -20,13 +20,6 @@ namespace MemoryRepository.MaterialRepository
         public List<Material> GetMaterialsByClient(string username)
         {
             List<Material> foundMaterials = _materials.FindAll(material => material.Owner.Equals(username));
-
-            if (!foundMaterials.Any())
-            {
-                string NotFoundMaterialMessage = $"no material with owner: {username} was found";
-                throw new NotFoundMaterialException(NotFoundMaterialMessage);
-            }
-
             return foundMaterials;
         }
 

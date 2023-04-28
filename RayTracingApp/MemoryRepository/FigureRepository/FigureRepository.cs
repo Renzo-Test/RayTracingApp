@@ -21,13 +21,6 @@ namespace MemoryRepository
         public List<Figure> GetFiguresByClient(string username)
         {
             List<Figure> foundFigures = _figures.FindAll(figure => figure.Owner.Equals(username));
-
-            if(!foundFigures.Any())
-            {
-                string NotFoundFigureMessage = $"no figures with owner: {username} was found";
-                throw new NotFoundFigureException(NotFoundFigureMessage);
-            }
-
             return foundFigures;
         }
 
