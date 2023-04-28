@@ -80,7 +80,7 @@ namespace Test.MemoryRepositoryTest
 
         }
 
-        public void RemoveFigure_FailTest()
+        public void RemoveFigure_OkTest()
         {
             Figure newFigure = new Sphere()
             {
@@ -95,7 +95,7 @@ namespace Test.MemoryRepositoryTest
             Assert.IsFalse(figures.Any());
         }
 
-        public void RemoveFigure_NotExistingFigure_FailTest()
+        public void RemoveFigure_NotExistingFigure_OkTest()
         {
             Figure newFigure = new Sphere()
             {
