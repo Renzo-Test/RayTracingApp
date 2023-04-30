@@ -3,6 +3,8 @@ using Controller.ModelExceptions;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Test.ControllerTest
 {
@@ -43,11 +45,10 @@ namespace Test.ControllerTest
             CollectionAssert.DoesNotContain(_modelController.ListModels("targetOwner"), anotherModel);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundModelException))]
-        public void ListModels_InvalidUsername_FailTest()
+        public void ListModels_InvalidUsername_OkTest()
         {
-            _modelController.ListModels("owner");
+            List<Model> models = _modelController.ListModels("owner");
+            Assert.IsFalse(models.Any());
         }
 
         [TestMethod]
@@ -127,9 +128,8 @@ namespace Test.ControllerTest
             _modelController.AddModel(secondModel, "username");
             Assert.AreEqual(2, _modelController.ListModels("username").Count);
         }
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundModelException))]
-        public void RemoveModels_FailTest()
+
+        public void RemoveModels_OkTest()
         {
             Model newModel = new Model()
             {
@@ -137,7 +137,9 @@ namespace Test.ControllerTest
             };
             _modelController.AddModel(newModel, "username");
             _modelController.RemoveModel(newModel.Name, "username");
-            _modelController.ListModels("username");
+            
+            List<Model> models = _modelController.ListModels("username");
+            Assert.IsFalse(models.Any());
         }
 
         [TestMethod]

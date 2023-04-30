@@ -82,16 +82,8 @@ namespace Controller
 
         private bool MaterialNameExist(Material material, string username)
         {
-            try
-            {
-                List<Material> clientMaterials = Repository.GetMaterialsByClient(username);
-
-                return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
-            }
-            catch (NotFoundMaterialException)
-            {
-                return false;
-            }
+            List<Material> clientMaterials = Repository.GetMaterialsByClient(username);
+            return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 
         }
 
@@ -106,6 +98,7 @@ namespace Controller
             }
 
             Model foundModel = models.Find(model => model.Material.Name.Equals(materialName));
+
             if (foundModel is object)
             {
                 string MaterialUsedByModelMessage = $"Material with name {materialName} is used by a model";

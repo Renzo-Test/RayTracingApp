@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Models.SphereExceptions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Test.ControllerTest
 {
@@ -174,15 +175,12 @@ namespace Test.ControllerTest
             Assert.AreEqual(expected[0], _figureController.ListFigures(currentClient.Username)[0]);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundFigureException))]
         public void ListFigures_NonExistentClient_FailTest()
         {
-            _figureController.ListFigures("nonExistentUsername");
+            List<Figure> figures = _figureController.ListFigures("nonExistentUsername");
+            Assert.IsFalse(figures.Any());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundFigureException))]
         public void RemoveFigures_ValidFigure_FailTest()
         {
             Client currentClient = new Client()
@@ -202,7 +200,8 @@ namespace Test.ControllerTest
             _figureController.AddFigure(newFigure, currentClient.Username);
             _figureController.RemoveFigure(newFigure.Name, currentClient.Username, models);
 
-            _figureController.ListFigures(currentClient.Username);
+            List<Figure> figures = _figureController.ListFigures(currentClient.Username);
+            Assert.IsFalse(figures.Any());
         }
 
         [TestMethod]

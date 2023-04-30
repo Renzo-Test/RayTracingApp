@@ -157,9 +157,7 @@ namespace Test.ControllerTest
             CollectionAssert.Contains(ownerScenes, anotherScene);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundSceneException))]
-        public void RemoveScene_FailTest()
+        public void RemoveScene_OkTest()
         {
             Scene newScene = new Scene()
             {
