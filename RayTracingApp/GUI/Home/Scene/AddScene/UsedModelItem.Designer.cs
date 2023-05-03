@@ -74,7 +74,7 @@
             this.Controls.Add(this.picIconX);
             this.Controls.Add(this.lblPosition);
             this.Controls.Add(this.lblName);
-            this.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UsedModelItem";
             this.Size = new System.Drawing.Size(127, 70);
             ((System.ComponentModel.ISupportInitialize)(this.picIconX)).EndInit();

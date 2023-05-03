@@ -45,6 +45,7 @@
             // 
             // picAddScene
             // 
+            this.picAddScene.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picAddScene.Image = global::GUI.Properties.Resources.homeButtonsBackground;
             this.picAddScene.Location = new System.Drawing.Point(310, 44);
             this.picAddScene.Name = "picAddScene";
@@ -58,6 +59,7 @@
             // 
             this.lblAddScene.AutoSize = true;
             this.lblAddScene.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.lblAddScene.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblAddScene.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddScene.ForeColor = System.Drawing.Color.White;
             this.lblAddScene.Location = new System.Drawing.Point(370, 69);
@@ -65,6 +67,7 @@
             this.lblAddScene.Size = new System.Drawing.Size(112, 23);
             this.lblAddScene.TabIndex = 2;
             this.lblAddScene.Text = "Add Scene";
+            this.lblAddScene.Click += new System.EventHandler(this.lblAddScene_Click);
             // 
             // picIconPlus
             // 
@@ -77,6 +80,7 @@
             this.picIconPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIconPlus.TabIndex = 3;
             this.picIconPlus.TabStop = false;
+            this.picIconPlus.Click += new System.EventHandler(this.picIconPlus_Click);
             // 
             // SceneList
             // 

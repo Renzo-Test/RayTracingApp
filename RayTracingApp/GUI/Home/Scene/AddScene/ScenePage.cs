@@ -14,8 +14,8 @@ namespace GUI
 {
     public partial class ScenePage : UserControl
     {
-        private const string LookFromPlaceholder = "Look From";
-        private const string LookAtPlaceholder = "Look At";
+        private const string LookFromPlaceholder = "(x, y, z)";
+        private const string LookAtPlaceholder = "(x, y, z)";
         private const string FovPlaceholder = "Fov";
 
         private SceneHome _sceneHome;
@@ -37,6 +37,11 @@ namespace GUI
 
             List<Model> models = _modelController.ListModels(_currentClient.Username);
 
+            if (models.Any())
+            {
+                flyModels.BackColor = System.Drawing.Color.FromArgb(45, 45, 65);
+            }
+
             flyModels.Controls.Clear();
 
             foreach (Model model in models)
@@ -51,8 +56,9 @@ namespace GUI
         {
             flyUsedModels.Controls.Clear();
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 3; i++)
             {
+                flyUsedModels.BackColor = System.Drawing.Color.FromArgb(45, 45, 65);
                 UsedModelItem item = new UsedModelItem();
                 flyUsedModels.Controls.Add(item);
             }   
@@ -98,6 +104,11 @@ namespace GUI
         private void txtFov_Leave(object sender, EventArgs e)
         {
             Utils.SetPlaceHolder(ref txtFov, FovPlaceholder);
+        }
+
+        private void picRender_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

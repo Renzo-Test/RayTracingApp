@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.lblModelName = new System.Windows.Forms.Label();
-            this.picIconSphere = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).BeginInit();
+            this.picIconSphere = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).BeginInit();
             this.SuspendLayout();
             // 
             // lblModelName
@@ -47,16 +47,6 @@
             this.lblModelName.TabIndex = 1;
             this.lblModelName.Text = "PlanetaVegetta";
             // 
-            // picIconSphere
-            // 
-            this.picIconSphere.Image = global::GUI.Properties.Resources.lSphereIcon;
-            this.picIconSphere.Location = new System.Drawing.Point(7, 15);
-            this.picIconSphere.Name = "picIconSphere";
-            this.picIconSphere.Size = new System.Drawing.Size(35, 35);
-            this.picIconSphere.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picIconSphere.TabIndex = 0;
-            this.picIconSphere.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GUI.Properties.Resources.plus;
@@ -67,6 +57,16 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // picIconSphere
+            // 
+            this.picIconSphere.Image = global::GUI.Properties.Resources.lSphereIcon;
+            this.picIconSphere.Location = new System.Drawing.Point(7, 15);
+            this.picIconSphere.Name = "picIconSphere";
+            this.picIconSphere.Size = new System.Drawing.Size(35, 35);
+            this.picIconSphere.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picIconSphere.TabIndex = 0;
+            this.picIconSphere.TabStop = false;
+            // 
             // AvailableModelItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -75,12 +75,12 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblModelName);
             this.Controls.Add(this.picIconSphere);
-            this.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AvailableModelItem";
             this.Size = new System.Drawing.Size(236, 70);
             this.Load += new System.EventHandler(this.AvailableModelItem_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

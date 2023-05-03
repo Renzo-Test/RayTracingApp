@@ -82,6 +82,5 @@ namespace GUI
             Utils.ShowPassword(ref txtPasswordSignIn);
 
         }
-
     }
 }

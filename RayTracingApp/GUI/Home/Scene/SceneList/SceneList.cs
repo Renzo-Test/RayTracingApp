@@ -44,14 +44,24 @@ namespace GUI
 
         }
 
+        private void SceneList_Paint(object sender, PaintEventArgs e)
+        {
+            PopulateItems();
+        }
+
         private void picAddScene_Click(object sender, EventArgs e)
         {
             _sceneHome.GoToAddScene();
         }
 
-        private void SceneList_Paint(object sender, PaintEventArgs e)
+        private void lblAddScene_Click(object sender, EventArgs e)
         {
-            PopulateItems();
+            _sceneHome.GoToAddScene();
+        }
+
+        private void picIconPlus_Click(object sender, EventArgs e)
+        {
+            _sceneHome.GoToAddScene();
         }
     }
 }
