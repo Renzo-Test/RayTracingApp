@@ -46,6 +46,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Home\Scene\SceneList\SceneList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\SceneList\SceneList.Designer.cs">
+      <DependentUpon>SceneList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\SceneList\SceneListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\SceneList\SceneListItem.Designer.cs">
+      <DependentUpon>SceneListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\ScenePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\ScenePage.Designer.cs">
+      <DependentUpon>ScenePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\AvailableModelItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\AvailableModelItem.Designer.cs">
+      <DependentUpon>AvailableModelItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\UsedModelItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\UsedModelItem.Designer.cs">
+      <DependentUpon>UsedModelItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -181,6 +211,21 @@
     <EmbeddedResource Include="Home\Model\ModelList\ModelListItem.resx">
       <DependentUpon>ModelListItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\AddScene\AvailableModelItem.resx">
+      <DependentUpon>AvailableModelItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\AddScene\ScenePage.resx">
+      <DependentUpon>ScenePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\AddScene\UsedModelItem.resx">
+      <DependentUpon>UsedModelItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\SceneList\SceneList.resx">
+      <DependentUpon>SceneList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\SceneList\SceneListItem.resx">
+      <DependentUpon>SceneListItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -310,6 +355,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\caret-abajo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leftArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blankScene.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mBlankScene.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\388x270Scene.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\darkBgScene.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -39,7 +39,7 @@ namespace GUI
 
         private void InitializeHomeScenes()
         {
-            _sceneHome = new SceneHome();
+            _sceneHome = new SceneHome(_mainController, _currentClient);
             _moedelHome = new ModelHome(_mainController, _currentClient);
             _figureHome = new FigureHome(_mainController, _currentClient);
             _materialHome = new MaterialHome(_mainController, _currentClient);

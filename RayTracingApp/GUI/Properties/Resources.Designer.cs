@@ -63,6 +63,26 @@ namespace GUI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _388x270Scene {
+            get {
+                object obj = ResourceManager.GetObject("388x270Scene", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blankScene {
+            get {
+                object obj = ResourceManager.GetObject("blankScene", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap card {
             get {
                 object obj = ResourceManager.GetObject("card", resourceCulture);
@@ -76,6 +96,16 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap caret_abajo {
             get {
                 object obj = ResourceManager.GetObject("caret-abajo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap darkBgScene {
+            get {
+                object obj = ResourceManager.GetObject("darkBgScene", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,6 +143,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap leftArrow {
+            get {
+                object obj = ResourceManager.GetObject("leftArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap loginBackground {
             get {
                 object obj = ResourceManager.GetObject("loginBackground", resourceCulture);
@@ -136,6 +176,16 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap materialIcon {
             get {
                 object obj = ResourceManager.GetObject("materialIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mBlankScene {
+            get {
+                object obj = ResourceManager.GetObject("mBlankScene", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

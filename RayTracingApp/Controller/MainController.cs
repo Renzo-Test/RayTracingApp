@@ -19,8 +19,11 @@ namespace Controller
             ModelController = new ModelController();
             SceneController = new SceneController();
             FigureController = new FigureController();
-            ClientController = new ClientController();
             MaterialController = new MaterialController();
+            ClientController = new ClientController();
+
+            /*TEST ENVIRONMENT ONLY*/
+            ClientController.SignUp("admin", "Admin1");
         }
     }
 }

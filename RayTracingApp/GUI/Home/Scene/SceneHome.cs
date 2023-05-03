@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,26 @@ namespace GUI
 {
     public partial class SceneHome : UserControl
     {
-        public SceneHome()
+        private UserControl _addScenePanel;
+        private UserControl _listScenePanel;
+        public SceneHome(MainController mainController, Client currentClient)
         {
             InitializeComponent();
+            _addScenePanel = new ScenePage(this, mainController, currentClient);
+            _listScenePanel = new SceneList(this, mainController.SceneController, currentClient);
+            flySceneHome.Controls.Add(_listScenePanel);
+        }
+
+        public void GoToAddScene()
+        {
+            flySceneHome.Controls.Clear();
+            flySceneHome.Controls.Add(_addScenePanel);
+        }
+
+        public void GoToSceneList()
+        {
+            flySceneHome.Controls.Clear();
+            flySceneHome.Controls.Add(_listScenePanel);
         }
     }
 }

@@ -28,13 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.flySceneHome = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
+            // 
+            // flySceneHome
+            // 
+            this.flySceneHome.Location = new System.Drawing.Point(0, 0);
+            this.flySceneHome.Name = "flySceneHome";
+            this.flySceneHome.Size = new System.Drawing.Size(834, 604);
+            this.flySceneHome.TabIndex = 0;
             // 
             // SceneHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Purple;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.flySceneHome);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "SceneHome";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -44,5 +53,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.FlowLayoutPanel flySceneHome;
     }
 }

@@ -28,27 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picIconX = new System.Windows.Forms.PictureBox();
             this.lblModelName = new System.Windows.Forms.Label();
             this.lblFigureName = new System.Windows.Forms.Label();
             this.lblMaterialName = new System.Windows.Forms.Label();
-            this.picIconSphere = new System.Windows.Forms.PictureBox();
             this.picMaterialColor = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picIconX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).BeginInit();
+            this.picIconSphere = new System.Windows.Forms.PictureBox();
+            this.picIconX = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picMaterialColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconX)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picIconX
-            // 
-            this.picIconX.Image = global::GUI.Properties.Resources.mX;
-            this.picIconX.Location = new System.Drawing.Point(414, 43);
-            this.picIconX.Name = "picIconX";
-            this.picIconX.Size = new System.Drawing.Size(32, 32);
-            this.picIconX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picIconX.TabIndex = 0;
-            this.picIconX.TabStop = false;
-            this.picIconX.Click += new System.EventHandler(this.picIconX_Click);
             // 
             // lblModelName
             // 
@@ -83,6 +72,15 @@
             this.lblMaterialName.TabIndex = 3;
             this.lblMaterialName.Text = "Material: Material1";
             // 
+            // picMaterialColor
+            // 
+            this.picMaterialColor.BackColor = System.Drawing.Color.White;
+            this.picMaterialColor.Location = new System.Drawing.Point(68, 17);
+            this.picMaterialColor.Name = "picMaterialColor";
+            this.picMaterialColor.Size = new System.Drawing.Size(30, 30);
+            this.picMaterialColor.TabIndex = 5;
+            this.picMaterialColor.TabStop = false;
+            // 
             // picIconSphere
             // 
             this.picIconSphere.Image = global::GUI.Properties.Resources.lSphereIcon;
@@ -93,14 +91,16 @@
             this.picIconSphere.TabIndex = 4;
             this.picIconSphere.TabStop = false;
             // 
-            // picMaterialColor
+            // picIconX
             // 
-            this.picMaterialColor.BackColor = System.Drawing.Color.White;
-            this.picMaterialColor.Location = new System.Drawing.Point(68, 17);
-            this.picMaterialColor.Name = "picMaterialColor";
-            this.picMaterialColor.Size = new System.Drawing.Size(30, 30);
-            this.picMaterialColor.TabIndex = 5;
-            this.picMaterialColor.TabStop = false;
+            this.picIconX.Image = global::GUI.Properties.Resources.mX;
+            this.picIconX.Location = new System.Drawing.Point(414, 43);
+            this.picIconX.Name = "picIconX";
+            this.picIconX.Size = new System.Drawing.Size(32, 32);
+            this.picIconX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picIconX.TabIndex = 0;
+            this.picIconX.TabStop = false;
+            this.picIconX.Click += new System.EventHandler(this.picIconX_Click);
             // 
             // ModelListItem
             // 
@@ -115,9 +115,9 @@
             this.Controls.Add(this.picIconX);
             this.Name = "ModelListItem";
             this.Size = new System.Drawing.Size(470, 110);
-            ((System.ComponentModel.ISupportInitialize)(this.picIconX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMaterialColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
