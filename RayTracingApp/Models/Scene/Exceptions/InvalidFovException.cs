@@ -1,4 +1,4 @@
-﻿namespace Controller.SceneExceptions
+﻿namespace Models.SceneExceptions
 {
     public class InvalidFovException : InvalidSceneInputException
     {

@@ -24,15 +24,15 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void AddClientToClientRepository_OkTest()
         {
-            _clientRepository.AddClient("Gomez", "GomezSecret");
+            _clientRepository.AddClient("Gomez", "GomezSecret123");
         }
 
         [TestMethod]
         public void GetClient_OkTest()
         {
-            _clientRepository.AddClient("user", "pass");
+            _clientRepository.AddClient("user", "Password123");
             Assert.AreEqual("user", _clientRepository.GetClient("user").Username);
-            Assert.AreEqual("pass", _clientRepository.GetClient("user").Password);
+            Assert.AreEqual("Password123", _clientRepository.GetClient("user").Password);
         }
 
         [TestMethod]

@@ -27,35 +27,52 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NotInExpectedRangeException))]
+        [ExpectedException(typeof(Models.FigureExceptions.InvalidFigureInputException))]
         public void NameIsNotEmpty_EmptyString_FailTest()
         {
-            _figureController.RunEmptyNameChecker("");
+            Figure newFigure = new Sphere()
+            {
+                Name = "",
+                Owner = "Owner123",
+            };
+            _figureController.AddFigure(newFigure, newFigure.Owner);
         }
 
         [TestMethod]
         public void NameIsNotEmpty_FigureName_OkTest()
         {
-            _figureController.RunEmptyNameChecker("FigureName");
+            Figure newFigure = new Sphere()
+            {
+                Name = "FigureName",
+                Owner = "Owner123",
+                Radius = 10
+            };
+            _figureController.AddFigure(newFigure, newFigure.Owner);
         }
 
         [TestMethod]
-        public void NameHasNoSpaces_EmptyString_OkTest()
+        public void NameHasNoSpaces_MegaBall_OkTest()
         {
-            _figureController.RunSpacedNameChecker("");
+            Figure newFigure = new Sphere()
+            {
+                Name = "MegaBall",
+                Owner = "Owner123",
+                Radius = 10,
+            };
+            _figureController.AddFigure(newFigure, newFigure.Owner);
         }
 
         [TestMethod]
-        public void NameHasNoSpaces_FigureName_OkTest()
-        {
-            _figureController.RunSpacedNameChecker("FigureName");
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NotAlphanumericException))]
+        [ExpectedException(typeof(Models.FigureExceptions.InvalidFigureInputException))]
         public void NameHasNoSpaces_Figure_Name_FailTest()
         {
-            _figureController.RunSpacedNameChecker("Figure Name");
+            Figure newFigure = new Sphere()
+            {
+                Name = "Figure Name",
+                Owner = "Owner123",
+                Radius = 10,
+            };
+            _figureController.AddFigure(newFigure, newFigure.Owner);
         }
 
         [TestMethod]
@@ -97,8 +114,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -114,13 +131,13 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidFigureInputException))]
+        [ExpectedException(typeof(Models.FigureExceptions.InvalidFigureInputException))]
         public void AddFigure_InvalidFigure_FailTest()
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -139,8 +156,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -159,8 +176,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -185,8 +202,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -256,8 +273,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -278,8 +295,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure expected = _figureController.GetFigure(currentClient.Username, "newFigure");

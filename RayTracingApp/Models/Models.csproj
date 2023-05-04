@@ -41,6 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Exceptions\InvalidCredentialsException.cs" />
+    <Compile Include="Client\Exceptions\NotAlphanumericException.cs" />
+    <Compile Include="Client\Exceptions\NotContainsCapitalException.cs" />
+    <Compile Include="Client\Exceptions\NotContainsNumberException.cs" />
+    <Compile Include="Client\Exceptions\NotInExpectedRangeException.cs" />
+    <Compile Include="Figure\Exceptions\NotAlphanumericException.cs" />
+    <Compile Include="Figure\Exceptions\NotInExpectedRangeException.cs" />
+    <Compile Include="Material\Exceptions\EmptyNameException.cs" />
+    <Compile Include="Material\Exceptions\InvalidMaterialInputException.cs" />
+    <Compile Include="Material\Exceptions\NotAlphanumericException.cs" />
+    <Compile Include="Model\Exceptions\EmptyNameException.cs" />
+    <Compile Include="Model\Exceptions\InvalidModelInputException.cs" />
+    <Compile Include="Model\Exceptions\NotAlphanumericException.cs" />
+    <Compile Include="Scene\Exceptions\EmptyNameException.cs" />
+    <Compile Include="Scene\Exceptions\InvalidFovException.cs" />
+    <Compile Include="Scene\Exceptions\InvalidSceneInputException.cs" />
+    <Compile Include="Scene\Exceptions\InvalidSpacePositionException.cs" />
     <Compile Include="Scene\PosisionatedModel.cs" />
     <Compile Include="Scene\Coordinate.cs" />
     <Compile Include="Scene\Scene.cs" />

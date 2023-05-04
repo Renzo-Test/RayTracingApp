@@ -71,7 +71,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidMaterialInputException))]
+        [ExpectedException(typeof(Models.MaterialExceptions.InvalidMaterialInputException))]
         public void AddMaterial_SpacedMaterialName_FailTest()
         {
             Material newMaterial = new Material()
@@ -83,7 +83,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidMaterialInputException))]
+        [ExpectedException(typeof(Models.MaterialExceptions.InvalidMaterialInputException))]
         public void AddMaterial_EmptyMaterialName_FailTest()
         {
             Material newMaterial = new Material()
@@ -155,8 +155,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Material newMaterial = new Material()
@@ -176,8 +176,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             _materialController.GetMaterial("newFigure", currentClient.Username);

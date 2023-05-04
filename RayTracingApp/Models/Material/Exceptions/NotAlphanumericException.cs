@@ -1,4 +1,4 @@
-﻿namespace Controller.MaterialExceptions
+﻿namespace Models.MaterialExceptions
 {
     public class NotAlphanumericException : InvalidMaterialInputException
     {

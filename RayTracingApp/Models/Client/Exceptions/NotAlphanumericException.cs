@@ -1,5 +1,5 @@
 ﻿
-namespace Controller.ClientExceptions
+namespace Models.ClientExceptions
 {
     public class NotAlphanumericException : InvalidCredentialsException
     {

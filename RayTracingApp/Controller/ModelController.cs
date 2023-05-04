@@ -11,10 +11,6 @@ namespace Controller
     public class ModelController
     {
         public IRepositoryModel Repository;
-        private const string SpaceCharacterConstant = " ";
-        private const string NotAlphanumericMessage = "Model's name must not start or end with blank space";
-        private const string EmptyNameMessage = "Model's name must not be empty";
-
         public ModelController()
         {
             Repository = new ModelRepository();
@@ -56,8 +52,6 @@ namespace Controller
                 string AlreadyExistingModelName = $"Model with name {model.Name} already exist";
                 throw new AlreadyExistingModelException(AlreadyExistingModelName);
             }
-            RunNameIsSpacedChecker(model);
-            RunNameIsEmptyChecker(model);
         }
 
         private bool ModelNameExist(Model model, string username)
@@ -65,21 +59,6 @@ namespace Controller
             List<Model> clientModels = Repository.GetModelsByClient(username);
             return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
         }
-        private static void RunNameIsSpacedChecker(Model model)
-        {
-            if (model.Name.StartsWith(SpaceCharacterConstant) || model.Name.EndsWith(SpaceCharacterConstant))
-            {
-                throw new NotAlphanumericException(NotAlphanumericMessage);
-            }
-        }
-        private static void RunNameIsEmptyChecker(Model model)
-        {
-            if (model.Name.Equals(string.Empty))
-            {
-                throw new EmptyNameException(EmptyNameMessage);
-            }
-        }
-
         public Model GetModel(string username, string name)
         {
             Model getModel = ListModels(username).Find(mod => mod.Name.Equals(name));

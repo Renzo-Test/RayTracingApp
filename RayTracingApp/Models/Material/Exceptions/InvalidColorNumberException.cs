@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Models.Exceptions
+namespace Models.MaterialExceptions
 {
     public class InvalidColorNumberException : Exception
     {
