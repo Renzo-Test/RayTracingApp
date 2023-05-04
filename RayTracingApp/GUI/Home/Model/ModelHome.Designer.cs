@@ -37,6 +37,7 @@
             this.flyModelHome.Name = "flyModelHome";
             this.flyModelHome.Size = new System.Drawing.Size(834, 604);
             this.flyModelHome.TabIndex = 0;
+            this.flyModelHome.Paint += new System.Windows.Forms.PaintEventHandler(this.flyModelHome_Paint);
             // 
             // ModelHome
             // 

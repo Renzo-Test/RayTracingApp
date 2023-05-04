@@ -124,9 +124,6 @@
   <data name="blankScene" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blankScene.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sX.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sphereBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sphereBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -154,6 +151,9 @@
   <data name="sceneIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sceneIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="userIcon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\userIcon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="materialIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\materialIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -162,6 +162,9 @@
   </data>
   <data name="caret-abajo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\caret-abajo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="modelIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\modelIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,6 +190,12 @@
   <data name="388x270Scene" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\388x270Scene.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="thunder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\thunder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tick.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="userBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\userBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -202,10 +211,10 @@
   <data name="fieldRectangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fieldRectangle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="userIcon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\userIcon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sX.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="thunder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\thunder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="whiteX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\whiteX.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

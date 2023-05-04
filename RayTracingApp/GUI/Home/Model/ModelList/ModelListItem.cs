@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Controller.ModelExceptions;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,11 @@ namespace GUI
     {
         private ModelController _modelController;
         private ModelList _modelList;
+
+        private Model _model;
+
         private string _currentClient;
+        private bool isEditing;
 
         public ModelListItem(ModelList modelList, ModelController modelController, Model model)
         {
@@ -31,6 +36,8 @@ namespace GUI
             _modelList = modelList;
             _modelController = modelController;
             _currentClient = model.Owner;
+            _model = model;
+            isEditing = false;
         }
 
         private void InitializePanelAtributes(Model model)
@@ -39,7 +46,7 @@ namespace GUI
             string MaterialName = model.Material.Name;
             Color materialColor = model.Material.Color;
             
-            lblModelName.Text = model.Name;
+            txtModelName.Text = model.Name;
             lblFigureName.Text = $"Figure: {FigureName}";
             lblMaterialName.Text = $"Material: {MaterialName}";
 
@@ -48,7 +55,64 @@ namespace GUI
 
         private void picIconX_Click(object sender, EventArgs e)
         {
-            _modelController.RemoveModel(lblModelName.Text, _currentClient);
+            _modelController.RemoveModel(txtModelName.Text, _currentClient);
+            _modelList.PopulateItems();
+        }
+
+        private void picIconPencilTick_Click(object sender, EventArgs e)
+        {
+            isEditing = !isEditing;
+
+            if (isEditing)
+            {
+                picIconPencilTick.Image = GUI.Properties.Resources.tick;
+                txtModelName.Enabled = true;
+                picXIcon.Visible = true;
+            }
+            else
+            {
+                picIconPencilTick.Image = GUI.Properties.Resources.pencil;
+                txtModelName.Enabled = false;
+                picXIcon.Visible = false;
+                ChangeModelName(txtModelName.Text, _model);
+            }
+        }
+
+        private void picXIcon_Click(object sender, EventArgs e)
+        {
+            isEditing = false;
+            picIconPencilTick.Image = GUI.Properties.Resources.pencil;
+
+            txtModelName.Enabled = false;
+            picXIcon.Visible = false;
+
+            _modelList.PopulateItems();
+        }
+
+        private void ChangeModelName(string newName, Model model)
+        {
+            try
+            {
+                Model newModel = new Model()
+                {
+                    Name = newName,
+                    Owner = model.Owner,
+                    Figure = model.Figure,
+                    Material = model.Material,
+                };
+
+                _modelController.AddModel(newModel, _currentClient);
+
+            }
+            catch (InvalidModelInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                _modelList.PopulateItems();
+
+                return;
+            }
+
+            _modelController.RemoveModel(model.Name, _currentClient); 
             _modelList.PopulateItems();
         }
     }

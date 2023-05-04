@@ -18,8 +18,11 @@ namespace GUI
         private MaterialController _materialController;
         private ModelController _modelController;
 
-        private string _currentClient;
         private MaterialList _materialList;
+        private Material _material;
+
+        private string _currentClient;
+        private bool isEditing;
 
         public MaterialListItem(MaterialList materialList, MainController mainController, Material material)
         {
@@ -34,13 +37,15 @@ namespace GUI
             _modelController = mainController.ModelController;
             _materialController = mainController.MaterialController;
             _currentClient = material.Owner;
+            _material = material;
+            isEditing = false;
         }
 
         private void InitializeAtributes(Material material)
         {
             InitializeColorAtributes(material);
 
-            lblMaterialName.Text = material.Name;
+            txtMaterialName.Text = material.Name;
 
         }
 
@@ -57,17 +62,78 @@ namespace GUI
 
         private void picIconX_Click(object sender, EventArgs e)
         {
+            RemoveMaterial(txtMaterialName.Text);
+        }
+
+        private void RemoveMaterial(string name)
+        {
             List<Model> models = _modelController.ListModels(_currentClient);
-            
+
             try
             {
-                _materialController.RemoveMaterial(lblMaterialName.Text, _currentClient, models);
+                _materialController.RemoveMaterial(name, _currentClient, models);
                 _materialList.PopulateItems();
             }
             catch (MaterialUsedByModelException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void picXIcon_Click(object sender, EventArgs e)
+        {
+            isEditing = false;
+            picIconPencilTick.Image = GUI.Properties.Resources.pencil;
+
+            txtMaterialName.Enabled = false;
+            picXIcon.Visible = false;
+
+            _materialList.PopulateItems();
+        }
+
+        private void picIconPencilTick_Click(object sender, EventArgs e)
+        {
+            isEditing = !isEditing;
+
+            if (isEditing)
+            {
+                picIconPencilTick.Image = GUI.Properties.Resources.tick;
+                txtMaterialName.Enabled = true;
+                picXIcon.Visible = true;
+            }
+            else
+            {
+                picIconPencilTick.Image = GUI.Properties.Resources.pencil;
+                txtMaterialName.Enabled = false;
+                picXIcon.Visible = false;
+                ChangeMaterialName(txtMaterialName.Text, _material);
+            }
+        }
+        private void ChangeMaterialName(string newName, Material material)
+        {
+            try
+            {
+                Material newMaterial = new Material()
+                {
+                    Name = newName,
+                    Owner = material.Owner,
+                    Color = material.Color,
+                    Type = material.Type,
+                };
+
+                _materialController.AddMaterial(newMaterial, _currentClient);
+
+            }
+            catch (InvalidMaterialInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                _materialList.PopulateItems();
+
+                return;
+            }
+
+            RemoveMaterial(material.Name);
+            _materialList.PopulateItems();
         }
     }
 }

@@ -14,8 +14,8 @@ namespace GUI
 {
     public partial class ScenePage : UserControl
     {
-        private const string LookFromPlaceholder = "(x, y, z)";
-        private const string LookAtPlaceholder = "(x, y, z)";
+        private const string LookFromPlaceholder = "x, y, z";
+        private const string LookAtPlaceholder = "x, y, z";
         private const string FovPlaceholder = "Fov";
 
         private SceneHome _sceneHome;
