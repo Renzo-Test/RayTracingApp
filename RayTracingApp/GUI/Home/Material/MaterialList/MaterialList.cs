@@ -40,7 +40,7 @@ namespace GUI
 
             foreach (Material material in materials)
             {
-                MaterialListItem item = new MaterialListItem(_mainController, material);
+                MaterialListItem item = new MaterialListItem(this, _mainController, material);
                 flyMaterialList.Controls.Add(item);
             }
 

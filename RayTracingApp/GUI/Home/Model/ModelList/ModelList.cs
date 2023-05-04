@@ -36,7 +36,7 @@ namespace GUI
 
             foreach (Model model in models)
             {
-                ModelListItem item = new ModelListItem(_modelController, model);
+                ModelListItem item = new ModelListItem(this, _modelController, model);
                 flyModelList.Controls.Add(item);
             }
 

@@ -19,16 +19,18 @@ namespace GUI
         private ModelController _modelController;
 
         private string _currentClient;
+        private MaterialList _materialList;
 
-        public MaterialListItem(MainController mainController, Material material)
+        public MaterialListItem(MaterialList materialList, MainController mainController, Material material)
         {
             InitializeComponent();
             InitializeAtributes(material);
-            InitializeControllers(mainController, material);
+            InitializeControllers(materialList, mainController, material);
         }
 
-        private void InitializeControllers(MainController mainController, Material material)
+        private void InitializeControllers(MaterialList materialList, MainController mainController, Material material)
         {
+            _materialList = materialList;
             _modelController = mainController.ModelController;
             _materialController = mainController.MaterialController;
             _currentClient = material.Owner;
@@ -60,6 +62,7 @@ namespace GUI
             try
             {
                 _materialController.RemoveMaterial(lblMaterialName.Text, _currentClient, models);
+                _materialList.PopulateItems();
             }
             catch (MaterialUsedByModelException ex)
             {

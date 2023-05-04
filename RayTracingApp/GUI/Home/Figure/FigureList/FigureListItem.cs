@@ -19,17 +19,19 @@ namespace GUI
         private ModelController _modelController;
 
         private string _currentClient;
+        private FigureList _figureList;
 
-        public FigureListItem(MainController mainController, Sphere sphere)
+        public FigureListItem(FigureList figureList, MainController mainController, Sphere sphere)
         {
             InitializeComponent();
             InitializePanelAtributes(sphere);
-            InitializeControllerAtributes(mainController, sphere);
+            InitializeControllerAtributes(figureList, mainController, sphere);
 
         }
 
-        private void InitializeControllerAtributes(MainController mainController, Sphere sphere)
+        private void InitializeControllerAtributes(FigureList figureList, MainController mainController, Sphere sphere)
         {
+            _figureList = figureList;
             _modelController = mainController.ModelController;
             _figureController = mainController.FigureController;
             _currentClient = sphere.Owner;
@@ -46,7 +48,8 @@ namespace GUI
             List<Model> models = _modelController.ListModels(_currentClient);
             try
             {
-                _figureController.RemoveFigure(lblFigureName.Text, _currentClient, models); 
+                _figureController.RemoveFigure(lblFigureName.Text, _currentClient, models);
+                _figureList.PopulateItems();
             }
             catch(FigureUsedByModelException ex)
             {

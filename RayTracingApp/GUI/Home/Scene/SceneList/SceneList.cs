@@ -38,7 +38,7 @@ namespace GUI
 
             foreach (Scene scene in scenes)
             {
-                SceneListItem item = new SceneListItem(_sceneController, scene);
+                SceneListItem item = new SceneListItem(this, _sceneController, scene);
                 flySceneList.Controls.Add(item);
             }
 

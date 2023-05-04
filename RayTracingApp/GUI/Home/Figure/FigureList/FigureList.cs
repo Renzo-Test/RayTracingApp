@@ -40,7 +40,7 @@ namespace GUI
 
             foreach (Sphere sphere in figures)
             {
-                FigureListItem item = new FigureListItem(_mainController, sphere);
+                FigureListItem item = new FigureListItem(this, _mainController, sphere);
                 flyFigureList.Controls.Add(item);
             }
 
