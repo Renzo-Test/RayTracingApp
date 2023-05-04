@@ -148,8 +148,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Model newModel = new Model()
@@ -169,8 +169,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             _modelController.GetModel(currentClient.Username, "newModel");

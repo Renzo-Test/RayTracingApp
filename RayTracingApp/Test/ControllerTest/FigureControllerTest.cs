@@ -114,8 +114,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -136,8 +136,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -156,8 +156,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -176,8 +176,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -202,8 +202,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -273,8 +273,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure newFigure = new Sphere()
@@ -295,8 +295,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Figure expected = _figureController.GetFigure(currentClient.Username, "newFigure");

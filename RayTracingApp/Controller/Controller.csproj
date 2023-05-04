@@ -50,15 +50,10 @@
     <Compile Include="FigureExceptions\AlreadyExistingFigureException.cs" />
     <Compile Include="FigureExceptions\InvalidFigureInputException.cs" />
     <Compile Include="MaterialController.cs" />
-    <Compile Include="ClientValidator.cs" />
     <Compile Include="ClientController.cs" />
     <Compile Include="ClientExceptions\AlreadyExistingClientException.cs" />
     <Compile Include="ClientExceptions\NotCorrectPasswordException.cs" />
     <Compile Include="ClientExceptions\InvalidCredentialsException.cs" />
-    <Compile Include="ClientExceptions\NotInExpectedRangeException.cs" />
-    <Compile Include="ClientExceptions\NotContainsNumberException.cs" />
-    <Compile Include="ClientExceptions\NotAlphanumericException.cs" />
-    <Compile Include="ClientExceptions\NotContainsCapitalException.cs" />
     <Compile Include="FigureController.cs" />
     <Compile Include="MaterialExceptions\AlreadyExsitingMaterialException.cs" />
     <Compile Include="MaterialExceptions\InvalidMaterialInputException.cs" />

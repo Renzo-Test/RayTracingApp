@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Exceptions\InvalidCredentialsException.cs" />
+    <Compile Include="Client\Exceptions\NotAlphanumericException.cs" />
+    <Compile Include="Client\Exceptions\NotContainsCapitalException.cs" />
+    <Compile Include="Client\Exceptions\NotContainsNumberException.cs" />
+    <Compile Include="Client\Exceptions\NotInExpectedRangeException.cs" />
     <Compile Include="Figure\Exceptions\NotAlphanumericException.cs" />
     <Compile Include="Figure\Exceptions\NotInExpectedRangeException.cs" />
     <Compile Include="Material\Exceptions\EmptyNameException.cs" />

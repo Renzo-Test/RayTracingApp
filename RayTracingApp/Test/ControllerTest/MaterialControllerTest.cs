@@ -155,8 +155,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Material newMaterial = new Material()
@@ -176,8 +176,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             _materialController.GetMaterial("newFigure", currentClient.Username);

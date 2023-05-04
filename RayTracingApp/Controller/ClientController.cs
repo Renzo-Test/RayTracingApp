@@ -36,9 +36,6 @@ namespace Controller
                 string AlreadyExsitingClientMessage = $"Client with username {username} already exists";
                 throw new AlreadyExistingClientException(AlreadyExsitingClientMessage);
             }
-
-            ClientValidator.RunPasswordConditions(password);
-            ClientValidator.RunUsernameConditions(username);
         }
 
         public bool ClientAlreadyExists(string username)
@@ -58,7 +55,7 @@ namespace Controller
         {
             try
             {
-                RunSignInChekcer(username, password);
+                RunSignInChecker(username, password);
                 return Repository.GetClient(username);
             }
             catch (InvalidCredentialsException ex)
@@ -68,7 +65,7 @@ namespace Controller
 
         }
 
-        private void RunSignInChekcer(string username, string password)
+        private void RunSignInChecker(string username, string password)
         {
             try
             {
