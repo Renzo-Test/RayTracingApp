@@ -1,4 +1,4 @@
-﻿using Models.Exceptions;
+﻿using Models.MaterialExceptions;
 
 namespace Models
 {

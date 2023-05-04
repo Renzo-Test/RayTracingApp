@@ -67,8 +67,6 @@
     <Compile Include="MaterialExceptions\NotAlphanumericException.cs" />
     <Compile Include="MaterialExceptions\InvalidMaterialInputException.cs" />
     <Compile Include="ModelExceptions\AlreadyExistingModelException.cs" />
-    <Compile Include="ModelExceptions\EmptyNameException.cs" />
-    <Compile Include="ModelExceptions\NotAlphanumericException.cs" />
     <Compile Include="ModelExceptions\InvalidModelInputException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SceneException\AlreadyExistingSceneException.cs" />

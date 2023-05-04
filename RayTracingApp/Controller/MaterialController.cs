@@ -10,9 +10,6 @@ namespace Controller
 {
     public class MaterialController
     {
-        private const string EmptyNameMessage = "Material's name must not be empty";
-        private const string NotAlphanumericMessage = "Material's name must not start or end with blank space";
-        private const string SpaceCharacterConstant = " ";
         public IRepositoryMaterial Repository;
 
         public MaterialController()
@@ -59,27 +56,7 @@ namespace Controller
                 string AlreadyExsitingMaterialMessage = $"Material with name {material.Name} already exists";
                 throw new AlreadyExsitingMaterialException(AlreadyExsitingMaterialMessage);
             }
-
-            RunNameIsSpacedChecker(material);
-            RunNameIsEmptyChecker(material);
         }
-
-        private static void RunNameIsEmptyChecker(Material material)
-        {
-            if (material.Name.Equals(string.Empty))
-            {
-                throw new EmptyNameException(EmptyNameMessage);
-            }
-        }
-
-        private static void RunNameIsSpacedChecker(Material material)
-        {
-            if (material.Name.StartsWith(SpaceCharacterConstant) || material.Name.EndsWith(SpaceCharacterConstant))
-            {
-                throw new NotAlphanumericException(NotAlphanumericMessage);
-            }
-        }
-
         private bool MaterialNameExist(Material material, string username)
         {
             List<Material> clientMaterials = Repository.GetMaterialsByClient(username);
