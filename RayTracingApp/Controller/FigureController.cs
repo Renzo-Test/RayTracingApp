@@ -10,9 +10,6 @@ namespace Controller
 {
     public class FigureController
     {
-        private const string NotAlphanumericExceptionMessage = "Figure's name must have no spaces";
-        private const string NotInExpectedRangeExceptionMessage = "Figure's name must not be empty";
-        private const string SpaceCharacterConstant = " ";
         public IRepositoryFigure Repository;
 
         public FigureController()
@@ -30,7 +27,6 @@ namespace Controller
             try
             {
                 RunFigureChecker(figure, username);
-
                 figure.Owner = username;
                 Repository.AddFigure(figure);
             }
@@ -49,8 +45,6 @@ namespace Controller
             }
 
             FigurePropertiesAreValid(figure);
-            RunEmptyNameChecker(figure.Name);
-            RunSpacedNameChecker(figure.Name);
         }
 
         public bool FigureNameExist(string name, string ownerName)
@@ -71,23 +65,6 @@ namespace Controller
                 throw new InvalidFigureInputException(ex.Message);
             }
         }
-
-        public void RunEmptyNameChecker(string figureName)
-        {
-            if (string.IsNullOrEmpty(figureName))
-            {
-                throw new NotInExpectedRangeException(NotInExpectedRangeExceptionMessage);
-            }
-        }
-
-        public void RunSpacedNameChecker(string figureName)
-        {
-            if (figureName.Contains(SpaceCharacterConstant))
-            {
-                throw new NotAlphanumericException(NotAlphanumericExceptionMessage);
-            }
-        }
-
         public void RemoveFigure(string figureName, string username, List<Model> models)
         {
             Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
@@ -112,7 +89,7 @@ namespace Controller
         {
             Figure getFigure = ListFigures(username).Find(fig => fig.Name.Equals(name));
 
-            if(getFigure is null)
+            if (getFigure is null)
             {
                 throw new NotFoundFigureException($"Figure with name {name} was not found");
             }

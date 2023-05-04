@@ -71,7 +71,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidMaterialInputException))]
+        [ExpectedException(typeof(Models.MaterialExceptions.InvalidMaterialInputException))]
         public void AddMaterial_SpacedMaterialName_FailTest()
         {
             Material newMaterial = new Material()
@@ -83,7 +83,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidMaterialInputException))]
+        [ExpectedException(typeof(Models.MaterialExceptions.InvalidMaterialInputException))]
         public void AddMaterial_EmptyMaterialName_FailTest()
         {
             Material newMaterial = new Material()
