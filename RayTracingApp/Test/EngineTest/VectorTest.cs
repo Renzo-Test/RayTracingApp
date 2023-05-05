@@ -359,5 +359,21 @@ namespace Test.EngineTest
             Assert.AreEqual(Math.Sqrt(4)/4, expected.Y);
             Assert.AreEqual(Math.Sqrt(2)/4, expected.Z);
         }
+
+        [TestMethod]
+        public void GetUnit_anotherVector_OkTest()
+        {
+            Vector vectorToGetUnit = new Vector()
+            {
+                X = Math.Sqrt(10),
+                Y = Math.Sqrt(15),
+                Z = Math.Sqrt(0),
+            };
+            Vector expected = vectorToGetUnit.GetUnit();
+
+            Assert.AreEqual(Math.Sqrt(10) / 5, expected.X);
+            Assert.AreEqual(Math.Sqrt(15) / 5, expected.Y);
+            Assert.AreEqual(Math.Sqrt(0) / 5, expected.Z);
+        }
     }
 }
