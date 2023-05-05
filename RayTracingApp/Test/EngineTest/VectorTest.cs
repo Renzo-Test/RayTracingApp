@@ -14,7 +14,8 @@ namespace Test.EngineTest
         {
             _vector = new Vector()
             {
-                X = 1
+                X = 1,
+                Y = 1,
             };
         }
 
@@ -67,7 +68,7 @@ namespace Test.EngineTest
         }
 
         [TestMethod]
-        public void Add_OkTest()
+        public void AddX_OkTest()
         {
             Vector vectorToAdd = new Vector()
             {
@@ -75,6 +76,17 @@ namespace Test.EngineTest
             };
             Vector finalVector = _vector.Add(vectorToAdd);
             Assert.AreEqual(2, finalVector.X);
+        }
+
+        [TestMethod]
+        public void AddY_OkTest()
+        {
+            Vector vectorToAdd = new Vector()
+            {
+                Y = 1,
+            };
+            Vector finalVector = _vector.Add(vectorToAdd);
+            Assert.AreEqual(2, finalVector.Y);
         }
     }
 }
