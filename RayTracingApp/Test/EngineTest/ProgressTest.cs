@@ -92,5 +92,14 @@ namespace Test.EngineTest
 
             Assert.AreEqual(999999, _progress.LinesCount);
         }
+
+        [TestMethod]
+        public void Calculate_OkTest()
+        {
+            _progress.LinesCount = 10;
+            _progress.ExpectedLines = 20;
+
+            Assert.AreEqual(50, _progress.Calculate());
+        }
     }
 }
