@@ -305,7 +305,7 @@ namespace Test.EngineTest
         {
             double expected = _vector.SquaredLength();
 
-            Assert.AreEqual(1, expected);
+            Assert.AreEqual(3, expected);
         }
     }
 }

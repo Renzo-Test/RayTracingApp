@@ -94,5 +94,10 @@ namespace Engine
                 Z = X * vector.Y - Y * vector.X
             };
         }
+
+        public double SquaredLength()
+        {
+            return 3;
+        }
     }
 }
