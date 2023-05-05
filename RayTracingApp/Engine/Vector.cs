@@ -61,9 +61,9 @@ namespace Engine
 
         public void SubstractFrom(Vector vector)
         {
-            this.X = 0;
-            this.Y = -1;
-            this.Z = -2;
+            this.X -= vector.X;
+            this.Y -= vector.Y;
+            this.Z -= vector.Z;
         }
     }
 }
