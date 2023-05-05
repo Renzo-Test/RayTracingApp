@@ -31,5 +31,15 @@ namespace Engine
                 Z = this.Z - vector.Z
             };
         }
+
+        public Vector Multiply(double multiplier)
+        {
+            return new Vector()
+            {
+                X = this.X * multiplier,
+                Y = this.Y * multiplier,
+                Z = this.Z * multiplier
+            };
+        }
     }
 }

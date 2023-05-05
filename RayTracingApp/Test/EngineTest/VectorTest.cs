@@ -115,12 +115,11 @@ namespace Test.EngineTest
         [TestMethod]
         public void Multiply_OkTest()
         {
-            Vector vectorToMultiply = new Vector()
-            {
-                Z = 2,
-            };
-            Vector finalVector = _vector.Multiply(vectorToMultiply);
-            Assert.AreEqual(-1, finalVector.Z);
+            double multiplier = 1.5;
+            Vector finalVector = _vector.Multiply(multiplier);
+            Assert.AreEqual(1.5, finalVector.X);
+            Assert.AreEqual(1.5, finalVector.Y);
+            Assert.AreEqual(1.5, finalVector.Z);
         }
     }
 }
