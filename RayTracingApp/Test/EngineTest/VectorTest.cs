@@ -317,10 +317,17 @@ namespace Test.EngineTest
                 Y = 0,
                 Z = 9,
             };
-
             double expected = vectorToSquared.SquaredLength();
 
             Assert.AreEqual(97, expected);
+        }
+
+        [TestMethod]
+        public void Length_OkTest()
+        {
+            double expected = _vector.Length();
+
+            Assert.AreEqual(Math.Sqrt(3), expected);
         }
     }
 }
