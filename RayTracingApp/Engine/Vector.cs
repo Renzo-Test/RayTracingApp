@@ -54,9 +54,9 @@ namespace Engine
 
         public void AddTo(Vector vector)
         {
-            this.X = 2;
-            this.Y = 3;
-            this.Z = 4;
+            this.X += vector.X;
+            this.Y += vector.Y;
+            this.Z += vector.Z;
         }
     }
 }
