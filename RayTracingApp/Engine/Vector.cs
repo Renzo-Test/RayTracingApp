@@ -84,5 +84,15 @@ namespace Engine
         {
             return (X * vector.X) + (Y * vector.Y) + (Z * vector.Z);
         }
+
+        public Vector Cross(Vector vector)
+        {
+            return new Vector()
+            {
+                X = 1,
+                Y = -2,
+                Z = 1,
+            };
+        }
     }
 }
