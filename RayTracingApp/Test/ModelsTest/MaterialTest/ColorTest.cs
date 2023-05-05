@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
-using Models.Exceptions;
+using Models.MaterialExceptions;
 
 namespace Test.ModelsTest
 {

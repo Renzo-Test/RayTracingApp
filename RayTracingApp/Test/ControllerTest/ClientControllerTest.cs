@@ -2,6 +2,7 @@
 using Controller.ClientExceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using Models.ClientExceptions;
 
 namespace Test.ControllerTest
 {
@@ -73,7 +74,7 @@ namespace Test.ControllerTest
         [TestMethod]
         public void CheckIfClientExists_Gomez_OkTest()
         {
-            _controller.Repository.AddClient("Gomez", "GomezSecret");
+            _controller.Repository.AddClient("Gomez", "GomezSecret123");
 
             bool result = _controller.ClientAlreadyExists("Gomez");
 
@@ -138,6 +139,124 @@ namespace Test.ControllerTest
 
             bool result = _controller.IsLoggedIn(_currentClient);
             Assert.IsFalse(result);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void LengthInRangeUsername_EmptyString_FailTest()
+        {
+            _controller.SignUp("", "Password123");
+        }
+
+        [TestMethod]
+        public void LengthInRangeUsername_Abc123_OkTest()
+        {
+            _controller.SignUp("Abc123", "Password123");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void LengthInRangeUsername_ABCDEFGHIJKLMNOPQRSTU_FailTest()
+        {
+            _controller.SignUp("ABCDEFGHIJKLMNOPQRSTU123", "Password123");
+        }
+
+        [TestMethod]
+        public void Alphanumeric_Abc123_OkTest()
+        {
+            _controller.SignUp("Abc123", "Password123");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void Alphanumeric_Abcde_FailTest()
+        {
+            _controller.SignUp("Abcde?", "Password123");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void Alphanumeric_QuestionMark_FailTest()
+        {
+            _controller.SignUp("?", "Password123");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void Alphanumeric_SpaceAbcde123_FailTest()
+        {
+            _controller.SignUp(" Abcde123", "Password123");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void Alphanumeric_AbSpaceCd123_FailTest()
+        {
+            _controller.SignUp("Ab Cd123", "Password123");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void Alphanumeric_Ab123Space_FailTest()
+        {
+            _controller.SignUp("Ab123 ", "Password123");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void ContainsNumber_abcde_FailTest()
+        {
+            _controller.SignUp("Username123", "abcde");
+        }
+
+        [TestMethod]
+        public void ContainsNumber_abcd1_OkTest()
+        {
+            _controller.SignUp("Username123", "Abcd1");
+        }
+
+        [TestMethod]
+        public void ContainsNumber_ABCdEFG1_OkTest()
+        {
+            _controller.SignUp("Username123", "ABCdEFG1");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void ContainsCapital_abcd1_FailTest()
+        {
+            _controller.SignUp("Username123", "abcd1");
+        }
+
+        [TestMethod]
+        public void ContainsCapital_Abcd1_OkTest()
+        {
+            _controller.SignUp("Username123", "Abcd1");
+        }
+
+        [TestMethod]
+        public void ContainsCapital_ABCdEFG1_OkTest()
+        {
+            _controller.SignUp("Username123", "ABCdEFG1");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void LengthInRangePassword_EmptyString_FailTest()
+        {
+            _controller.SignUp("Username123", "");
+        }
+
+        [TestMethod]
+        public void LengthInRangePassword_Abcd1_OkTest()
+        {
+            _controller.SignUp("Username123", "Abcd1");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidCredentialsException))]
+        public void LengthInRangePassword_ABCDEFGHIJKLMNOPQRSTUVWXYZ_FailTest()
+        {
+            _controller.SignUp("Username123", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         }
 
     }

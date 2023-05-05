@@ -1,5 +1,5 @@
 ﻿using Controller;
-using Controller.ModelExceptions;
+using Models.ModelExceptions;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
@@ -137,7 +137,7 @@ namespace Test.ControllerTest
             };
             _modelController.AddModel(newModel, "username");
             _modelController.RemoveModel(newModel.Name, "username");
-            
+
             List<Model> models = _modelController.ListModels("username");
             Assert.IsFalse(models.Any());
         }
@@ -147,8 +147,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Model newModel = new Model()
@@ -168,8 +168,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             _modelController.GetModel(currentClient.Username, "newModel");

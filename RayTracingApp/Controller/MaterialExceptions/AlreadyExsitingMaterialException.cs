@@ -1,4 +1,5 @@
-﻿
+﻿using Models.MaterialExceptions;
+
 namespace Controller.MaterialExceptions
 {
     public class AlreadyExsitingMaterialException : InvalidMaterialInputException

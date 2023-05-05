@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Controller.MaterialExceptions
+namespace Models.MaterialExceptions
 {
     public class InvalidMaterialInputException : Exception
     {

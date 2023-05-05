@@ -1,10 +1,11 @@
 ﻿using Controller;
-using Controller.MaterialExceptions;
+using Models.MaterialExceptions;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using System.Collections.Generic;
 using System.Linq;
+using Controller.MaterialExceptions;
 
 namespace Test.ControllerTest
 {
@@ -155,8 +156,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             Material newMaterial = new Material()
@@ -176,8 +177,8 @@ namespace Test.ControllerTest
         {
             Client currentClient = new Client()
             {
-                Username = "user",
-                Password = "pass"
+                Username = "Username123",
+                Password = "Password123"
             };
 
             _materialController.GetMaterial("newFigure", currentClient.Username);

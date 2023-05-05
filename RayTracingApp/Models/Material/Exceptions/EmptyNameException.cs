@@ -1,5 +1,5 @@
 ﻿
-namespace Controller.MaterialExceptions
+namespace Models.MaterialExceptions
 {
     public class EmptyNameException : InvalidMaterialInputException
     {

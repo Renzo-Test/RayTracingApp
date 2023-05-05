@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Controller.ClientExceptions
+namespace Models.ClientExceptions
 {
     public class InvalidCredentialsException : Exception
     {

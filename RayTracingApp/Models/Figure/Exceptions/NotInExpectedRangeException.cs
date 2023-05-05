@@ -1,5 +1,5 @@
 ﻿
-namespace Controller.FigureExceptions
+namespace Models.FigureExceptions
 {
     public class NotInExpectedRangeException : InvalidFigureInputException
     {

@@ -1,5 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Controller;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using Models.FigureExceptions;
 
 namespace Test.ModelsTest
 {
@@ -20,9 +22,9 @@ namespace Test.ModelsTest
         {
             _figure = new Sphere()
             {
-                Name = "Dragon Balloon",
+                Name = "DragonBalloon",
             };
-            Assert.AreEqual("Dragon Balloon", _figure.Name);
+            Assert.AreEqual("DragonBalloon", _figure.Name);
         }
 
         [TestMethod]
@@ -58,11 +60,11 @@ namespace Test.ModelsTest
         {
             _figure = new Sphere()
             {
-                Name = "Figure name",
-                Owner = "Owner name"
+                Name = "FigureName",
+                Owner = "OwnerName"
             };
-            Assert.AreEqual(_figure.Name, "Figure name");
-            Assert.AreEqual(_figure.Owner, "Owner name");
+            Assert.AreEqual(_figure.Name, "FigureName");
+            Assert.AreEqual(_figure.Owner, "OwnerName");
         }
     }
 }

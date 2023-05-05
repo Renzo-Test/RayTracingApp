@@ -1,4 +1,5 @@
-﻿
+﻿using Models.ClientExceptions;
+
 namespace Controller.ClientExceptions
 {
     public class NotCorrectPasswordException : InvalidCredentialsException

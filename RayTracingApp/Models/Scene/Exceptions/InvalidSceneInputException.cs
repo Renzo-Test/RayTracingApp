@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Controller.SceneExceptions
+namespace Models.SceneExceptions
 {
     public class InvalidSceneInputException : Exception
     {

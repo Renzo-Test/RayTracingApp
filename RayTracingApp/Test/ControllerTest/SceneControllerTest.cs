@@ -5,6 +5,7 @@ using Controller.SceneExceptions;
 using System;
 using System.Collections.Generic;
 using MemoryRepository.Exceptions;
+using Models.SceneExceptions;
 
 namespace Test.ControllerTest
 {

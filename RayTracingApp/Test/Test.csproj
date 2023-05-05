@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControllerTest\ClientControllerTest.cs" />
-    <Compile Include="ControllerTest\ClientValidatorTest.cs" />
     <Compile Include="ControllerTest\FigureControllerTest.cs" />
     <Compile Include="ControllerTest\MaterialControllerTest.cs" />
     <Compile Include="ControllerTest\ModelControllerTest.cs" />

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using Models.ClientExceptions;
 using System;
 
 
@@ -27,13 +28,13 @@ namespace Test.ModelsTest
         }
 
         [TestMethod]
-        public void SetPassword_GomezSecret_OkTest()
+        public void SetPassword_GomezSecret123_OkTest()
         {
             _client = new Client()
             {
-                Password = "GomezSecret",
+                Password = "GomezSecret123",
             };
-            Assert.AreEqual("GomezSecret", _client.Password);
+            Assert.AreEqual("GomezSecret123", _client.Password);
         }
 
         [TestMethod]
@@ -45,16 +46,16 @@ namespace Test.ModelsTest
         }
 
         [TestMethod]
-        public void CanRegisterClient_Rodriguez_RodriguezSecret_OkTest()
+        public void CanRegisterClient_Rodriguez_RodriguezSecret123_OkTest()
         {
             _client = new Client()
             {
                 Username = "Rodriguez",
-                Password = "RodriguezSecret",
+                Password = "RodriguezSecret123",
             };
 
             Assert.AreEqual("Rodriguez", _client.Username);
-            Assert.AreEqual("RodriguezSecret", _client.Password);
+            Assert.AreEqual("RodriguezSecret123", _client.Password);
         }
     }
 }

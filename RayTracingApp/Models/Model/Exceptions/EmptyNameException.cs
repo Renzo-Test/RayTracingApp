@@ -1,4 +1,4 @@
-﻿namespace Controller.ModelExceptions
+﻿namespace Models.ModelExceptions
 {
     public class EmptyNameException : InvalidModelInputException
     {
