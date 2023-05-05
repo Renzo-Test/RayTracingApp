@@ -100,5 +100,16 @@ namespace Test.EngineTest
             Vector finalVector = _vector.Add(vectorToAdd);
             Assert.AreEqual(2, finalVector.Z);
         }
+
+        [TestMethod]
+        public void Substract_OkTest()
+        {
+            Vector vectorToSubstract = new Vector()
+            {
+                Z = 2,
+            };
+            Vector finalVector = _vector.Substract(vectorToSubstract);
+            Assert.AreEqual(-1, finalVector.Z);
+        }
     }
 }
