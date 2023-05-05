@@ -24,6 +24,15 @@ namespace Test.EngineTest
             Assert.AreEqual(vector, ray.Origin);
         }
 
+        [TestMethod]
+        public void SetDirection_OkTest()
+        {
+            Ray ray = new Ray();
 
+            Vector vector = new Vector();
+            ray.Direction = vector;
+
+            Assert.AreEqual(vector, ray.Direction);
+        }
     }
 }
