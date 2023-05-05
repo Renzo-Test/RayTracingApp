@@ -54,6 +54,14 @@ namespace Test.EngineTest
         }
 
         [TestMethod]
+        public void SetExpectedLines_uint_OkTest()
+        {
+            _progress.ExpectedLines = 2147483648;
+
+            Assert.AreEqual(2147483648, _progress.ExpectedLines);
+        }
+
+        [TestMethod]
         public void Count_OkTest()
         {
             int linesToCount = 5000;
