@@ -50,7 +50,7 @@ namespace Test.EngineTest
         {
             _progress.ExpectedLines = 0;
 
-            Assert.AreEqual((uint)0, _progress.ExpectedLines);
+            Assert.AreEqual(0, _progress.ExpectedLines);
         }
 
         [TestMethod]
