@@ -101,5 +101,14 @@ namespace Test.EngineTest
 
             Assert.AreEqual(50, _progress.Calculate());
         }
+
+        [TestMethod]
+        public void Calculate_otherValueOkTest()
+        {
+            _progress.LinesCount = 20;
+            _progress.ExpectedLines = 20;
+
+            Assert.AreEqual(100, _progress.Calculate());
+        }
     }
 }
