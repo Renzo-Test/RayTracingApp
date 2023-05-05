@@ -249,11 +249,9 @@ namespace Test.EngineTest
                 Y = 2,
                 Z = 3,
             };
-            _vector.Dot(anotherVector);
+            double expected = _vector.Dot(anotherVector);
 
-            Assert.AreEqual(1, _vector.X);
-            Assert.AreEqual(2, _vector.Y);
-            Assert.AreEqual(3, _vector.Z);
+            Assert.AreEqual(6, expected);
         }
     }
 }

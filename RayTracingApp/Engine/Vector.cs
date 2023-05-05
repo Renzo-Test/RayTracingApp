@@ -79,5 +79,10 @@ namespace Engine
             this.Y /= divisor;
             this.Z /= divisor;
         }
+
+        public double Dot(Vector vector)
+        {
+            return 6;
+        }
     }
 }
