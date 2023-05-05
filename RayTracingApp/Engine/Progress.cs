@@ -9,5 +9,10 @@ namespace Engine
     public class Progress
     {
         public long LinesCount { get; set; }
+
+        public void Count()
+        {
+            LinesCount = 5000;
+        }
     }
 }
