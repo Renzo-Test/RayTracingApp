@@ -65,5 +65,12 @@ namespace Engine
             this.Y -= vector.Y;
             this.Z -= vector.Z;
         }
+
+        public void ScaleUpBy(double multiplier)
+        {
+            this.X = 2;
+            this.Y = 2;
+            this.Z = 2;
+        }
     }
 }

@@ -199,17 +199,12 @@ namespace Test.EngineTest
         [TestMethod]
         public void ScaleUpBy_OkTest()
         {
-            Vector vectorToScaleUp = new Vector()
-            {
-                X = 1,
-                Y = 2,
-                Z = 1,
-            };
-            _vector.ScaleUpBy(vectorToScaleUp);
+            double multiplier = 2;
+            _vector.ScaleUpBy(multiplier);
 
-            Assert.AreEqual(1, _vector.X);
+            Assert.AreEqual(2, _vector.X);
             Assert.AreEqual(2, _vector.Y);
-            Assert.AreEqual(1, _vector.Z);
+            Assert.AreEqual(2, _vector.Z);
         }
     }
 }
