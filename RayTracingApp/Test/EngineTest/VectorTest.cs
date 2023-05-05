@@ -329,5 +329,19 @@ namespace Test.EngineTest
 
             Assert.AreEqual(Math.Sqrt(3), expected);
         }
+
+        [TestMethod]
+        public void Length_anotherVector_OkTest()
+        {
+            Vector vectorToLength = new Vector()
+            {
+                X = 2,
+                Y = 5,
+                Z = 10,
+            };
+            double expected = vectorToLength.Length();
+
+            Assert.AreEqual(10, expected);
+        }
     }
 }
