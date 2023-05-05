@@ -52,7 +52,7 @@ namespace Engine
             };
         }
 
-        public void AddTo(Vector vector)
+        public void AddFrom(Vector vector)
         {
             this.X += vector.X;
             this.Y += vector.Y;

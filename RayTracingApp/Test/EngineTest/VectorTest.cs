@@ -133,7 +133,7 @@ namespace Test.EngineTest
         }
 
         [TestMethod]
-        public void AddTo_OkTest()
+        public void AddFrom_OkTest()
         {
             Vector vectorToAdd = new Vector()
             {
@@ -141,7 +141,7 @@ namespace Test.EngineTest
                 Y = 2,
                 Z = 3
             };
-            _vector.AddTo(vectorToAdd);
+            _vector.AddFrom(vectorToAdd);
 
             Assert.AreEqual(2, _vector.X);
             Assert.AreEqual(3, _vector.Y);
@@ -149,7 +149,7 @@ namespace Test.EngineTest
         }
 
         [TestMethod]
-        public void AddTo_anotherVector_OkTest()
+        public void AddFrom_anotherVector_OkTest()
         {
             Vector vectorToAdd = new Vector()
             {
@@ -157,11 +157,27 @@ namespace Test.EngineTest
                 Y = 1,
                 Z = 2,
             };
-            _vector.AddTo(vectorToAdd);
+            _vector.AddFrom(vectorToAdd);
 
             Assert.AreEqual(1, _vector.X);
             Assert.AreEqual(2, _vector.Y);
             Assert.AreEqual(3, _vector.Z);
+        }
+
+        [TestMethod]
+        public void SubstractFrom_OkTest()
+        {
+            Vector vectorToSubstract = new Vector()
+            {
+                X = 1,
+                Y = 2,
+                Z = 3
+            };
+            _vector.SubstractFrom(vectorToSubstract);
+
+            Assert.AreEqual(0, _vector.X);
+            Assert.AreEqual(-1, _vector.Y);
+            Assert.AreEqual(-2, _vector.Z);
         }
     }
 }
