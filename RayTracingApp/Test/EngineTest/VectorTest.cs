@@ -195,5 +195,21 @@ namespace Test.EngineTest
             Assert.AreEqual(0, _vector.Y);
             Assert.AreEqual(-1, _vector.Z);
         }
+
+        [TestMethod]
+        public void ScaleUpBy_OkTest()
+        {
+            Vector vectorToScaleUp = new Vector()
+            {
+                X = 1,
+                Y = 2,
+                Z = 1,
+            };
+            _vector.ScaleUpBy(vectorToScaleUp);
+
+            Assert.AreEqual(1, _vector.X);
+            Assert.AreEqual(2, _vector.Y);
+            Assert.AreEqual(1, _vector.Z);
+        }
     }
 }
