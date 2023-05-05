@@ -17,6 +17,7 @@ namespace Engine
             return new Vector()
             {
                 X = this.X + vector.X,
+                Y = this.Y + vector.Y,
             };
         }
     }
