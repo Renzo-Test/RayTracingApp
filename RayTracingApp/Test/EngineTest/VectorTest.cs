@@ -299,5 +299,13 @@ namespace Test.EngineTest
             Assert.AreEqual(-2, finalVector.Y);
             Assert.AreEqual(-5, finalVector.Z);
         }
+
+        [TestMethod]
+        public void SquaredLength_OkTest()
+        {
+            double expected = _vector.SquaredLength();
+
+            Assert.AreEqual(1, expected);
+        }
     }
 }
