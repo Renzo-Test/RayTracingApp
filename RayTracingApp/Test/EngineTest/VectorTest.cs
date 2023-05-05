@@ -38,5 +38,11 @@ namespace Test.EngineTest
         {
             _vector.Y = 1;
         }
+
+        [TestMethod]
+        public void SetY_double_OkTest()
+        {
+            _vector.Y = 1.5;
+        }
     }
 }
