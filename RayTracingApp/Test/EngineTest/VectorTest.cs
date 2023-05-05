@@ -253,5 +253,19 @@ namespace Test.EngineTest
 
             Assert.AreEqual(6, expected);
         }
+
+        [TestMethod]
+        public void Dot_anotherVector_OkTest()
+        {
+            Vector anotherVector = new Vector()
+            {
+                X = 1.5,
+                Y = 3.5,
+                Z = 3,
+            };
+            double expected = _vector.Dot(anotherVector);
+
+            Assert.AreEqual(8, expected);
+        }
     }
 }
