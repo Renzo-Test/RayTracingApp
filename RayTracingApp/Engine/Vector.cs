@@ -89,9 +89,9 @@ namespace Engine
         {
             return new Vector()
             {
-                X = 1,
-                Y = -2,
-                Z = 1,
+                X = Y * vector.Z - Z * vector.Y,
+                Y = Z * vector.X - X * vector.Z,
+                Z = X * vector.Y - Y * vector.X
             };
         }
     }
