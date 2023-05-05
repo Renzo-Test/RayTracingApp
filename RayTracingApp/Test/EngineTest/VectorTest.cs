@@ -318,7 +318,7 @@ namespace Test.EngineTest
                 Z = 9,
             };
 
-            double expected = _vector.SquaredLength();
+            double expected = vectorToSquared.SquaredLength();
 
             Assert.AreEqual(97, expected);
         }
