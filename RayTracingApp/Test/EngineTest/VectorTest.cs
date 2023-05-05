@@ -139,7 +139,7 @@ namespace Test.EngineTest
             {
                 X = 1,
                 Y = 2,
-                Z = 3
+                Z = 3,
             };
             _vector.AddFrom(vectorToAdd);
 
@@ -171,13 +171,29 @@ namespace Test.EngineTest
             {
                 X = 1,
                 Y = 2,
-                Z = 3
+                Z = 3,
             };
             _vector.SubstractFrom(vectorToSubstract);
 
             Assert.AreEqual(0, _vector.X);
             Assert.AreEqual(-1, _vector.Y);
             Assert.AreEqual(-2, _vector.Z);
+        }
+
+        [TestMethod]
+        public void SubstractFrom_anotherVector_OkTest()
+        {
+            Vector vectorToSubstract = new Vector()
+            {
+                X = 0,
+                Y = 1,
+                Z = 2,
+            };
+            _vector.SubstractFrom(vectorToSubstract);
+
+            Assert.AreEqual(1, _vector.X);
+            Assert.AreEqual(0, _vector.Y);
+            Assert.AreEqual(-1, _vector.Z);
         }
     }
 }
