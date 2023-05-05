@@ -111,5 +111,16 @@ namespace Test.EngineTest
             Vector finalVector = _vector.Substract(vectorToSubstract);
             Assert.AreEqual(-1, finalVector.Z);
         }
+
+        [TestMethod]
+        public void Multiply_OkTest()
+        {
+            Vector vectorToMultiply = new Vector()
+            {
+                Z = 2,
+            };
+            Vector finalVector = _vector.Multiply(vectorToMultiply);
+            Assert.AreEqual(-1, finalVector.Z);
+        }
     }
 }
