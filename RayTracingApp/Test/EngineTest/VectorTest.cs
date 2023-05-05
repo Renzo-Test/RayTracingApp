@@ -56,5 +56,12 @@ namespace Test.EngineTest
         {
             _vector.Z = 1.5;
         }
+
+        [TestMethod]
+        public void Add_OkTest()
+        {
+            Vector vectorToAdd = new Vector();
+            _vector.Add(vectorToAdd);
+        }
     }
 }
