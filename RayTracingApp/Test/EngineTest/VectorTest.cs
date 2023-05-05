@@ -228,5 +228,16 @@ namespace Test.EngineTest
             Assert.AreEqual(0.5, _vector.Y);
             Assert.AreEqual(0.5, _vector.Z);
         }
+
+        [TestMethod]
+        public void ScaleDownBy_anotherDouble_OkTest()
+        {
+            double divisor = 1;
+            _vector.ScaleDownBy(divisor);
+
+            Assert.AreEqual(1, _vector.X);
+            Assert.AreEqual(1, _vector.Y);
+            Assert.AreEqual(1, _vector.Z);
+        }
     }
 }
