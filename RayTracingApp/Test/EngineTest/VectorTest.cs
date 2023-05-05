@@ -206,5 +206,16 @@ namespace Test.EngineTest
             Assert.AreEqual(2, _vector.Y);
             Assert.AreEqual(2, _vector.Z);
         }
+
+        [TestMethod]
+        public void ScaleUpBy_anotherDouble_OkTest()
+        {
+            double multiplier = 5;
+            _vector.ScaleUpBy(multiplier);
+
+            Assert.AreEqual(5, _vector.X);
+            Assert.AreEqual(5, _vector.Y);
+            Assert.AreEqual(5, _vector.Z);
+        }
     }
 }
