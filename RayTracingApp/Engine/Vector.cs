@@ -82,7 +82,7 @@ namespace Engine
 
         public double Dot(Vector vector)
         {
-            return 6;
+            return (X * vector.X) + (Y * vector.Y) + (Z * vector.Z);
         }
     }
 }
