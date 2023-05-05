@@ -267,5 +267,21 @@ namespace Test.EngineTest
 
             Assert.AreEqual(8, expected);
         }
+
+        [TestMethod]
+        public void Cross_OkTest()
+        {
+            Vector vectorToCross = new Vector()
+            {
+                X = 1,
+                Y = 2,
+                Z = 3,
+            };
+            Vector finalVector = _vector.Cross(vectorToCross);
+
+            Assert.AreEqual(1, finalVector.X);
+            Assert.AreEqual(-2, finalVector.Y);
+            Assert.AreEqual(1, finalVector.Z);
+        }
     }
 }
