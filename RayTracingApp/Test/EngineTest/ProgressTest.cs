@@ -1,6 +1,7 @@
 ﻿using Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 
 namespace Test.EngineTest
 {
@@ -118,6 +119,19 @@ namespace Test.EngineTest
             _progress.ExpectedLines = 20;
 
             Assert.AreEqual(0, _progress.Calculate());
+        }
+
+        [TestMethod]
+        public void WriteCurrentPercentage_OkTest()
+        {
+            int linesToCount = 5000;
+            for (int i = 0; i < linesToCount; i++)
+            {
+                _progress.Count();
+                string actual = _progress.Calculate().ToString();
+                string expected = _progress.WriteCurrentPercentage();
+                Assert.AreEqual(actual, expected);
+            }
         }
     }
 }
