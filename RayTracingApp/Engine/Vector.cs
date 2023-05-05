@@ -99,5 +99,10 @@ namespace Engine
         {
             return (X * X) + (Y * Y) + (Z * Z);
         }
+
+        public double Length()
+        {
+            return Math.Sqrt(3);
+        }
     }
 }
