@@ -104,5 +104,10 @@ namespace Engine
         {
             return Math.Sqrt(SquaredLength());
         }
+
+        public Vector GetUnit()
+        {
+            return Divide(4);
+        }
     }
 }
