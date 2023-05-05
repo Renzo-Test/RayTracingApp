@@ -10,6 +10,6 @@ namespace Engine
     {
         public double X { get; set; }
         public double Y { get; set; }
-        public int Z { get; set; }
+        public double Z { get; set; }
     }
 }
