@@ -107,7 +107,7 @@ namespace Engine
 
         public Vector GetUnit()
         {
-            return Divide(4);
+            return Divide(Length());
         }
     }
 }
