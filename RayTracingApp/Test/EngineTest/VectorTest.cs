@@ -121,5 +121,47 @@ namespace Test.EngineTest
             Assert.AreEqual(1.5, finalVector.Y);
             Assert.AreEqual(1.5, finalVector.Z);
         }
+
+        [TestMethod]
+        public void Divide_OkTest()
+        {
+            double divisor = 2;
+            Vector finalVector = _vector.Divide(divisor);
+            Assert.AreEqual(0.5, finalVector.X);
+            Assert.AreEqual(0.5, finalVector.Y);
+            Assert.AreEqual(0.5, finalVector.Z);
+        }
+
+        [TestMethod]
+        public void AddTo_OkTest()
+        {
+            Vector vectorToAdd = new Vector()
+            {
+                X = 1,
+                Y = 2,
+                Z = 3
+            };
+            _vector.AddTo(vectorToAdd);
+
+            Assert.AreEqual(2, _vector.X);
+            Assert.AreEqual(3, _vector.Y);
+            Assert.AreEqual(4, _vector.Z);
+        }
+
+        [TestMethod]
+        public void AddTo_anotherVector_OkTest()
+        {
+            Vector vectorToAdd = new Vector()
+            {
+                X = 0,
+                Y = 1,
+                Z = 2,
+            };
+            _vector.AddTo(vectorToAdd);
+
+            Assert.AreEqual(1, _vector.X);
+            Assert.AreEqual(2, _vector.Y);
+            Assert.AreEqual(3, _vector.Z);
+        }
     }
 }

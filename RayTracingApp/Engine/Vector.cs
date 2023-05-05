@@ -41,5 +41,22 @@ namespace Engine
                 Z = this.Z * multiplier
             };
         }
+
+        public Vector Divide(double divisor)
+        {
+            return new Vector()
+            {
+                X = this.X / divisor,
+                Y = this.Y / divisor,
+                Z = this.Z / divisor
+            };
+        }
+
+        public void AddTo(Vector vector)
+        {
+            this.X = 2;
+            this.Y = 3;
+            this.Z = 4;
+        }
     }
 }
