@@ -335,13 +335,13 @@ namespace Test.EngineTest
         {
             Vector vectorToLength = new Vector()
             {
-                X = 2,
-                Y = 5,
-                Z = 10,
+                X = 1,
+                Y = 2,
+                Z = 2,
             };
             double expected = vectorToLength.Length();
 
-            Assert.AreEqual(10, expected);
+            Assert.AreEqual(3, expected);
         }
     }
 }

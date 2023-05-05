@@ -102,7 +102,7 @@ namespace Engine
 
         public double Length()
         {
-            return Math.Sqrt(3);
+            return Math.Sqrt(SquaredLength());
         }
     }
 }
