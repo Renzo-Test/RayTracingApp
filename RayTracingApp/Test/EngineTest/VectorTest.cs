@@ -44,5 +44,11 @@ namespace Test.EngineTest
         {
             _vector.Y = 1.5;
         }
+
+        [TestMethod]
+        public void SetZ_int_OkTest()
+        {
+            _vector.Z = 1;
+        }
     }
 }
