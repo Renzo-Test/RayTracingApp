@@ -39,5 +39,19 @@ namespace Test.EngineTest
 
             Assert.AreEqual(4294967296, progress.LinesCount);
         }
+
+        [TestMethod]
+        public void Count_OkTest()
+        {
+            Progress progress = new Progress();
+            
+            int linesToCount = 5000;
+            for (int i = 0; i < linesToCount; i++)
+            {
+                progress.Count();
+            }
+
+            Assert.AreEqual(5000, progress.LinesCount);
+        }
     }
 }
