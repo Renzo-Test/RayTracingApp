@@ -50,5 +50,11 @@ namespace Test.EngineTest
         {
             _vector.Z = 1;
         }
+
+        [TestMethod]
+        public void SetZ_double_OkTest()
+        {
+            _vector.Z = 1.5;
+        }
     }
 }
