@@ -17,7 +17,13 @@ namespace Test.EngineTest
         public void SetOrigin_OkTest()
         {
             Ray ray = new Ray();
-            ray.Origin = new Vector();
+
+            Vector vector = new Vector();
+            ray.Origin = vector;
+
+            Assert.AreEqual(vector, ray.Origin);
         }
+
+
     }
 }
