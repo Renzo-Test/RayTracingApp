@@ -14,7 +14,10 @@ namespace Engine
 
         public Vector Add(Vector vector)
         {
-            return new Vector();
+            return new Vector()
+            {
+                X = this.X + vector.X,
+            };
         }
     }
 }

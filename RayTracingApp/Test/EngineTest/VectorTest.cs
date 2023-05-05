@@ -12,7 +12,10 @@ namespace Test.EngineTest
         [TestInitialize]
         public void TestInitialize()
         {
-            _vector = new Vector();
+            _vector = new Vector()
+            {
+                X = 1
+            };
         }
 
         [TestMethod]
@@ -66,9 +69,12 @@ namespace Test.EngineTest
         [TestMethod]
         public void Add_OkTest()
         {
-            Vector vectorToAdd = new Vector();
-            _vector.Add(vectorToAdd);
-            Assert.AreEqual(2, _vector.X);
+            Vector vectorToAdd = new Vector()
+            {
+                X = 1,
+            };
+            Vector finalVector = _vector.Add(vectorToAdd);
+            Assert.AreEqual(2, finalVector.X);
         }
     }
 }
