@@ -18,9 +18,8 @@ namespace Test.EngineTest
         {
             Progress progress = new Progress();
             progress.LinesCount = 0;
-            uint expected = 0;
 
-            Assert.AreEqual(expected, progress.LinesCount);
+            Assert.AreEqual(0, progress.LinesCount);
         }
 
         [TestMethod]
