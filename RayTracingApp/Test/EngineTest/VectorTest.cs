@@ -16,6 +16,7 @@ namespace Test.EngineTest
             {
                 X = 1,
                 Y = 1,
+                Z = 1,
             };
         }
 
@@ -87,6 +88,17 @@ namespace Test.EngineTest
             };
             Vector finalVector = _vector.Add(vectorToAdd);
             Assert.AreEqual(2, finalVector.Y);
+        }
+
+        [TestMethod]
+        public void AddZ_OkTest()
+        {
+            Vector vectorToAdd = new Vector()
+            {
+                Z = 1,
+            };
+            Vector finalVector = _vector.Add(vectorToAdd);
+            Assert.AreEqual(2, finalVector.Z);
         }
     }
 }
