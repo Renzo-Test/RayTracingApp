@@ -9,5 +9,6 @@ namespace Engine
     public class Vector
     {
         public double X {  get; set; }
+        public int Y { get; set; }
     }
 }
