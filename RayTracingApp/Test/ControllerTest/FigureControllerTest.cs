@@ -1,11 +1,12 @@
 ﻿using Controller;
-using Controller.FigureExceptions;
+using Models.FigureExceptions;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Models.SphereExceptions;
 using System.Collections.Generic;
 using System.Linq;
+using Controller.FigureExceptions;
 
 namespace Test.ControllerTest
 {
@@ -257,7 +258,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(SmallerThanCeroRadiusException))]
+        [ExpectedException(typeof(InvalidFigureInputException))]
         public void FigureIsValid_InvalidFigure_FailTest()
         {
             Figure newSphere = new Sphere()

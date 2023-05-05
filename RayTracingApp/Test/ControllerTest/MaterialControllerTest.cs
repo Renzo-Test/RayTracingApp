@@ -1,10 +1,11 @@
 ﻿using Controller;
-using Controller.MaterialExceptions;
+using Models.MaterialExceptions;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using System.Collections.Generic;
 using System.Linq;
+using Controller.MaterialExceptions;
 
 namespace Test.ControllerTest
 {
@@ -71,7 +72,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.MaterialExceptions.InvalidMaterialInputException))]
+        [ExpectedException(typeof(InvalidMaterialInputException))]
         public void AddMaterial_SpacedMaterialName_FailTest()
         {
             Material newMaterial = new Material()
@@ -83,7 +84,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.MaterialExceptions.InvalidMaterialInputException))]
+        [ExpectedException(typeof(InvalidMaterialInputException))]
         public void AddMaterial_EmptyMaterialName_FailTest()
         {
             Material newMaterial = new Material()
