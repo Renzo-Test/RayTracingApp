@@ -18,17 +18,18 @@ namespace Test.EngineTest
         {
             Progress progress = new Progress();
             progress.LinesCount = 0;
+            uint expected = 0;
 
-            Assert.AreEqual(0, progress.LinesCount);
+            Assert.AreEqual(expected, progress.LinesCount);
         }
 
         [TestMethod]
         public void SetLinesCount_uint_OkTest()
         {
             Progress progress = new Progress();
-            progress.LinesCount = 2147483647 + 1;
+            progress.LinesCount = 2147483648;
 
-            Assert.AreEqual(2147483647 + 1, progress.LinesCount);
+            Assert.AreEqual(2147483648, progress.LinesCount);
         }
     }
 }

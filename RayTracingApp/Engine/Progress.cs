@@ -8,6 +8,6 @@ namespace Engine
 {
     public class Progress
     {
-        public int LinesCount { get; set; }
+        public uint LinesCount { get; set; }
     }
 }
