@@ -7,6 +7,14 @@ namespace Test.EngineTest
     [TestClass]
     public class VectorTest
     {
+        private Vector _vector;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _vector = new Vector();
+        }
+
         [TestMethod]
         public void CreateVector_OkTest()
         {
@@ -16,15 +24,13 @@ namespace Test.EngineTest
         [TestMethod]
         public void SetX_int_OkTest()
         {
-            Vector vector = new Vector();
-            vector.X = 1;
+            _vector.X = 1;
         }
 
         [TestMethod]
         public void SetX_double_OkTest()
         {
-            Vector vector = new Vector();
-            vector.X = 1.5;
+            _vector.X = 1.5;
         }
     }
 }
