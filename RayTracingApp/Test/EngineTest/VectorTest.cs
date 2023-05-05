@@ -13,6 +13,11 @@ namespace Test.EngineTest
             Vector vector = new Vector();
         }
 
-
+        [TestMethod]
+        public void SetX_int_OkTest()
+        {
+            Vector vector = new Vector();
+            vector.X = 1;
+        }
     }
 }
