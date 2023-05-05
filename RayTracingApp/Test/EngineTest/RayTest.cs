@@ -12,5 +12,12 @@ namespace Test.EngineTest
         {
             Ray ray = new Ray();
         }
+
+        [TestMethod]
+        public void SetOrigin_OkTest()
+        {
+            Ray ray = new Ray();
+            ray.Origin = new Vector();
+        }
     }
 }
