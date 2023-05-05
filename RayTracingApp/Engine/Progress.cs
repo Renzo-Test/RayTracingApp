@@ -12,7 +12,7 @@ namespace Engine
 
         public void Count()
         {
-            LinesCount = 5000;
+            LinesCount++;
         }
     }
 }

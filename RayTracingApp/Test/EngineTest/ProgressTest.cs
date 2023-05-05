@@ -55,7 +55,7 @@ namespace Test.EngineTest
         }
 
         [TestMethod]
-        public void Count_anotherValue_OkTest()
+        public void Count_otherValue_OkTest()
         {
             Progress progress = new Progress();
 
