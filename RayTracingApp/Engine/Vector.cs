@@ -75,9 +75,9 @@ namespace Engine
 
         public void ScaleDownBy(double divisor)
         {
-            this.X = 0.5;
-            this.Y = 0.5;
-            this.Z = 0.5;
+            this.X /= divisor;
+            this.Y /= divisor;
+            this.Z /= divisor;
         }
     }
 }
