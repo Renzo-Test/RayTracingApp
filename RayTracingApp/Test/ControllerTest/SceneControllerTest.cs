@@ -5,6 +5,7 @@ using Controller.SceneExceptions;
 using System;
 using System.Collections.Generic;
 using MemoryRepository.Exceptions;
+using Models.SceneExceptions;
 
 namespace Test.ControllerTest
 {
@@ -39,7 +40,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.SceneExceptions.InvalidSceneInputException))]
+        [ExpectedException(typeof(InvalidSceneInputException))]
         public void AddScene_EmptyName_FailTest()
         {
             Scene newScene = new Scene()
@@ -51,7 +52,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.SceneExceptions.InvalidSceneInputException))]
+        [ExpectedException(typeof(InvalidSceneInputException))]
         public void AddScene_StartWithSpace_FailTest()
         {
             Scene newScene = new Scene()
@@ -63,7 +64,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.SceneExceptions.InvalidSceneInputException))]
+        [ExpectedException(typeof(InvalidSceneInputException))]
         public void AddScene_EndWithSpace_FailTest()
         {
             Scene newScene = new Scene()
@@ -88,7 +89,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.SceneExceptions.InvalidSceneInputException))]
+        [ExpectedException(typeof(InvalidSceneInputException))]
         public void AddScene_LessThanMinFov_FailTest()
         {
             Scene newScene = new Scene()
@@ -101,7 +102,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.SceneExceptions.InvalidSceneInputException))]
+        [ExpectedException(typeof(InvalidSceneInputException))]
         public void AddScene_BiggerThanMaxFov_FailTest()
         {
             Scene newScene = new Scene()

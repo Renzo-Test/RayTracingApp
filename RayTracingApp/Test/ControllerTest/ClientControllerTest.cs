@@ -30,35 +30,35 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void CheckSignUp_GomezQuestionMark_GomezSecret1_FailTest()
         {
             _controller.SignUp("Gomez?", "GomezSecret1");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void CheckSignUp_Go_GomezSecret1_FailTest()
         {
             _controller.SignUp("Go", "GomezSecret1");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void CheckSignUp_Gomez_gomezsecret1_FailTest()
         {
             _controller.SignUp("Gomez", "gomezsecret1");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void CheckSignUp_Gomez_GomezSecret_FailTest()
         {
             _controller.SignUp("Gomez", "GomezSecret");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void CheckSignUp_Gomez_Gom1_FailTest()
         {
             _controller.SignUp("Gomez", "Gom1");
@@ -88,7 +88,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Controller.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void CheckSignUp_AlreadyExisting_Gomez_GomezSecret1_FailTest()
         {
             _controller.SignUp("Gomez", "GomezSecret1");
@@ -96,7 +96,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Controller.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void CheckSignIn_NotRegistered_Gomez_GomezSecret1_FailTest()
         {
             Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
@@ -141,7 +141,7 @@ namespace Test.ControllerTest
             Assert.IsFalse(result);
         }
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void LengthInRangeUsername_EmptyString_FailTest()
         {
             _controller.SignUp("", "Password123");
@@ -154,7 +154,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void LengthInRangeUsername_ABCDEFGHIJKLMNOPQRSTU_FailTest()
         {
             _controller.SignUp("ABCDEFGHIJKLMNOPQRSTU123", "Password123");
@@ -167,42 +167,42 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void Alphanumeric_Abcde_FailTest()
         {
             _controller.SignUp("Abcde?", "Password123");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void Alphanumeric_QuestionMark_FailTest()
         {
             _controller.SignUp("?", "Password123");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void Alphanumeric_SpaceAbcde123_FailTest()
         {
             _controller.SignUp(" Abcde123", "Password123");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void Alphanumeric_AbSpaceCd123_FailTest()
         {
             _controller.SignUp("Ab Cd123", "Password123");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void Alphanumeric_Ab123Space_FailTest()
         {
             _controller.SignUp("Ab123 ", "Password123");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void ContainsNumber_abcde_FailTest()
         {
             _controller.SignUp("Username123", "abcde");
@@ -221,7 +221,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void ContainsCapital_abcd1_FailTest()
         {
             _controller.SignUp("Username123", "abcd1");
@@ -240,7 +240,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void LengthInRangePassword_EmptyString_FailTest()
         {
             _controller.SignUp("Username123", "");
@@ -253,7 +253,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ClientExceptions.InvalidCredentialsException))]
+        [ExpectedException(typeof(InvalidCredentialsException))]
         public void LengthInRangePassword_ABCDEFGHIJKLMNOPQRSTUVWXYZ_FailTest()
         {
             _controller.SignUp("Username123", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");

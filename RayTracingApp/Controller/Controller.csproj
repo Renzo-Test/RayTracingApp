@@ -48,20 +48,15 @@
     <Compile Include="MaterialExceptions\InvalidMaterialRemoveException.cs" />
     <Compile Include="ModelController.cs" />
     <Compile Include="FigureExceptions\AlreadyExistingFigureException.cs" />
-    <Compile Include="FigureExceptions\InvalidFigureInputException.cs" />
     <Compile Include="MaterialController.cs" />
     <Compile Include="ClientController.cs" />
     <Compile Include="ClientExceptions\AlreadyExistingClientException.cs" />
     <Compile Include="ClientExceptions\NotCorrectPasswordException.cs" />
-    <Compile Include="ClientExceptions\InvalidCredentialsException.cs" />
     <Compile Include="FigureController.cs" />
     <Compile Include="MaterialExceptions\AlreadyExsitingMaterialException.cs" />
-    <Compile Include="MaterialExceptions\InvalidMaterialInputException.cs" />
     <Compile Include="ModelExceptions\AlreadyExistingModelException.cs" />
-    <Compile Include="ModelExceptions\InvalidModelInputException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SceneException\AlreadyExistingSceneException.cs" />
-    <Compile Include="SceneException\InvalidSceneInputException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IRepository\IRepository.csproj">

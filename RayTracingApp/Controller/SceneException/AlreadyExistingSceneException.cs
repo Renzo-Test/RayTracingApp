@@ -1,4 +1,6 @@
-﻿namespace Controller.SceneExceptions
+﻿using Models.SceneExceptions;
+
+namespace Controller.SceneExceptions
 {
     public class AlreadyExistingSceneException : InvalidSceneInputException
     {

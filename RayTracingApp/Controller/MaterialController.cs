@@ -3,6 +3,7 @@ using IRepository;
 using MemoryRepository.Exceptions;
 using MemoryRepository.MaterialRepository;
 using Models;
+using Models.MaterialExceptions;
 using System;
 using System.Collections.Generic;
 

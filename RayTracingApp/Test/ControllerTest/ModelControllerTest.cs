@@ -1,5 +1,4 @@
 ﻿using Controller;
-using Controller.ModelExceptions;
 using Models.ModelExceptions;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -64,7 +63,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Controller.ModelExceptions.InvalidModelInputException))]
+        [ExpectedException(typeof(InvalidModelInputException))]
         public void AddModel_DuplicatedModel_FailTest()
         {
             Model _newModel = new Model()
@@ -92,7 +91,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ModelExceptions.InvalidModelInputException))]
+        [ExpectedException(typeof(InvalidModelInputException))]
         public void AddModel_SpacedModelName_FailTest()
         {
             Model _newModel = new Model()
@@ -103,7 +102,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.ModelExceptions.InvalidModelInputException))]
+        [ExpectedException(typeof(InvalidModelInputException))]
         public void AddModel_EmptyModelName_FailTest()
         {
             Model _newModel = new Model()

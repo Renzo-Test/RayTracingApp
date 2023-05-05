@@ -1,4 +1,6 @@
 ﻿
+using Models.ClientExceptions;
+
 namespace Controller.ClientExceptions
 {
     public class AlreadyExistingClientException : InvalidCredentialsException

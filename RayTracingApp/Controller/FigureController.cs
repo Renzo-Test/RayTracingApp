@@ -3,6 +3,7 @@ using IRepository;
 using MemoryRepository;
 using MemoryRepository.Exceptions;
 using Models;
+using Models.FigureExceptions;
 using System;
 using System.Collections.Generic;
 
