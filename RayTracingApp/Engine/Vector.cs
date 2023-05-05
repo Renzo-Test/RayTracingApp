@@ -97,7 +97,7 @@ namespace Engine
 
         public double SquaredLength()
         {
-            return 3;
+            return (X * X) + (Y * Y) + (Z * Z);
         }
     }
 }
