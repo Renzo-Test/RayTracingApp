@@ -307,5 +307,20 @@ namespace Test.EngineTest
 
             Assert.AreEqual(3, expected);
         }
+
+        [TestMethod]
+        public void SquaredLength_anotherVector_OkTest()
+        {
+            Vector vectorToSquared = new Vector()
+            {
+                X = 4,
+                Y = 0,
+                Z = 9,
+            };
+
+            double expected = _vector.SquaredLength();
+
+            Assert.AreEqual(97, expected);
+        }
     }
 }
