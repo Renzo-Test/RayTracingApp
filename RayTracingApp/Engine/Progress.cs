@@ -15,5 +15,10 @@ namespace Engine
         {
             LinesCount++;
         }
+
+        public long Calculate()
+        {
+            return 50;
+        }
     }
 }
