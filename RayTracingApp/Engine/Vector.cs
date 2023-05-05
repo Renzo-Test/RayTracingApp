@@ -68,9 +68,9 @@ namespace Engine
 
         public void ScaleUpBy(double multiplier)
         {
-            this.X = 2;
-            this.Y = 2;
-            this.Z = 2;
+            this.X *= multiplier;
+            this.Y *= multiplier;
+            this.Z *= multiplier;
         }
     }
 }
