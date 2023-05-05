@@ -16,5 +16,10 @@ namespace GUI
         {
             InitializeComponent();
         }
+
+        private void picIconX_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -65,6 +65,7 @@
             this.picIconX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picIconX.TabIndex = 3;
             this.picIconX.TabStop = false;
+            this.picIconX.Click += new System.EventHandler(this.picIconX_Click);
             // 
             // UsedModelItem
             // 

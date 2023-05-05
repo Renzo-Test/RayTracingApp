@@ -1,7 +1,7 @@
 ﻿using Controller;
 using Controller.MaterialExceptions;
 using Models;
-using Models.Exceptions;
+using Models.MaterialExceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,16 +36,6 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void picRectangleFieldSave_Click(object sender, EventArgs e)
-        {
-            AddNewMaterial();
-        }
-
-        private void lblSave_Click(object sender, EventArgs e)
-        {
-            AddNewMaterial();
-        }
-
         private void AddNewMaterial()
         {
             Color newColor;
@@ -60,11 +50,11 @@ namespace GUI
                 return;
             }
 
-            string Name = txtInputName.Text;
-            Material newMaterial = CreateMaterial(newColor, Name);
-
             try
             {
+                string Name = txtInputName.Text;
+                Material newMaterial = CreateMaterial(newColor, Name);
+                
                 _materialController.AddMaterial(newMaterial, _currentClient.Username);
                 _materialHome.GoToMaterialList();
             }
@@ -73,32 +63,6 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void ReplaceFontColor()
-        {
-            Color currentColor;
-
-            try
-            {
-                currentColor = CreateColor();
-            }
-            catch (InvalidMaterialInputException)
-            {
-                currentColor = new Color()
-                {
-                    Red = 30,
-                    Green = 30,
-                    Blue = 30,
-                };
-            }
-
-            int red = currentColor.Red;
-            int green = currentColor.Green;
-            int blue = currentColor.Blue;
-
-            lblColor.ForeColor = System.Drawing.Color.FromArgb(red, green, blue);
-        }
-
         private static Material CreateMaterial(Color newColor, string Name)
         {
             return new Material()
@@ -133,6 +97,40 @@ namespace GUI
                 Green = green,
                 Blue = blue
             };
+        }
+        private void ReplaceFontColor()
+        {
+            Color currentColor;
+
+            try
+            {
+                currentColor = CreateColor();
+            }
+            catch (InvalidMaterialInputException)
+            {
+                currentColor = new Color()
+                {
+                    Red = 30,
+                    Green = 30,
+                    Blue = 30,
+                };
+            }
+
+            int red = currentColor.Red;
+            int green = currentColor.Green;
+            int blue = currentColor.Blue;
+
+            lblColor.ForeColor = System.Drawing.Color.FromArgb(red, green, blue);
+        }
+
+        private void picRectangleFieldSave_Click(object sender, EventArgs e)
+        {
+            AddNewMaterial();
+        }
+
+        private void lblSave_Click(object sender, EventArgs e)
+        {
+            AddNewMaterial();
         }
 
         private void picRectangleFieldCancel_Click(object sender, EventArgs e)

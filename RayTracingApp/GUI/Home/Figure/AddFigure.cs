@@ -46,18 +46,13 @@ namespace GUI
                 return;
             }
 
-            Figure newFigure = CreateFigure(radius);
-
             try
             {
+                Figure newFigure = CreateFigure(radius);
                 _figureController.AddFigure(newFigure, _currentClient.Username);
                 _figureHome.GoToFigureList();
             }
-            catch (Controller.FigureExceptions.InvalidFigureInputException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (Models.FigureExceptions.InvalidFigureInputException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

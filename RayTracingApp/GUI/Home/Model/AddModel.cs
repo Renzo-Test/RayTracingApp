@@ -10,12 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Controller.ModelExceptions;
+using Models.ModelExceptions;
 
 namespace GUI
 {
     public partial class AddModel : UserControl
     {
         private const string NamePlaceholder = "Name";
+        private const string NoMaterialSelectedErrorMessage = "No Material was Selected";
+        private const string NoFigureSelectedErrorMessage = "No Figure was Selected";
 
         private ModelHome _modelHome;
 
@@ -78,10 +81,22 @@ namespace GUI
 
         private void SaveModel()
         {
-            Model newModel = CreateModel();
+            if (string.IsNullOrEmpty(cmbMaterials.Text))
+            {
+                MessageBox.Show(NoMaterialSelectedErrorMessage);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(cmbFigures.Text))
+            {
+                MessageBox.Show(NoFigureSelectedErrorMessage);
+                return;
+            }
 
             try
             {
+                Model newModel = CreateModel();
+
                 _modelController.AddModel(newModel, _currentClient.Username);
                 _modelHome.GoToModelList();
             }

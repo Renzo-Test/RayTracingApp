@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Controller.ClientExceptions;
 using Models;
+using Models.ClientExceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

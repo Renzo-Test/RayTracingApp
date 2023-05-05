@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Controller.MaterialExceptions;
 using Models;
+using Models.MaterialExceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

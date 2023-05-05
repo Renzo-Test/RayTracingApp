@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Controller.ModelExceptions;
 using Models;
+using Models.ModelExceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

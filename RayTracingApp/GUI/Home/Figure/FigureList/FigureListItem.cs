@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Controller.FigureExceptions;
 using Models;
+using Models.FigureExceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
