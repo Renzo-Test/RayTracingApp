@@ -72,5 +72,12 @@ namespace Engine
             this.Y *= multiplier;
             this.Z *= multiplier;
         }
+
+        public void ScaleDownBy(double divisor)
+        {
+            this.X = 0.5;
+            this.Y = 0.5;
+            this.Z = 0.5;
+        }
     }
 }
