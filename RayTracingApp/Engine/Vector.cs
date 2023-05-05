@@ -18,6 +18,7 @@ namespace Engine
             {
                 X = this.X + vector.X,
                 Y = this.Y + vector.Y,
+                Z = this.Z + vector.Z
             };
         }
     }
