@@ -8,5 +8,6 @@ namespace Engine
 {
     public class Vector
     {
+        public int X {  get; set; }
     }
 }
