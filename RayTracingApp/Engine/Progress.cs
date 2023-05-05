@@ -16,6 +16,11 @@ namespace Engine
             LinesCount++;
         }
 
+        public void WriteCurrentPercentage()
+        {
+            Console.Write("\r{0}", Calculate());
+        }
+
         public long Calculate()
         {
             return (LinesCount * 100) / ExpectedLines;

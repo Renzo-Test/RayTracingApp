@@ -124,13 +124,22 @@ namespace Test.EngineTest
         [TestMethod]
         public void WriteCurrentPercentage_OkTest()
         {
-            int linesToCount = 5000;
+            _progress.ExpectedLines = 50;
+            long linesToCount = _progress.ExpectedLines;
+
             for (int i = 0; i < linesToCount; i++)
             {
                 _progress.Count();
-                string actual = _progress.Calculate().ToString();
-                string expected = _progress.WriteCurrentPercentage();
-                Assert.AreEqual(actual, expected);
+                using (StringWriter stringWriter = new StringWriter())
+                {
+                    Console.SetOut(stringWriter);
+
+                    _progress.WriteCurrentPercentage();
+
+                    string consoleOutput = stringWriter.ToString();
+                    string actual = "\r"+_progress.Calculate().ToString();
+                    Assert.AreEqual(actual, consoleOutput);
+                }
             }
         }
     }
