@@ -36,6 +36,8 @@ namespace Test.EngineTest
         {
             Progress progress = new Progress();
             progress.LinesCount = 4294967296;
+
+            Assert.AreEqual(4294967296, progress.LinesCount);
         }
     }
 }
