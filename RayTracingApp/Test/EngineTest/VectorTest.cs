@@ -239,5 +239,21 @@ namespace Test.EngineTest
             Assert.AreEqual(1, _vector.Y);
             Assert.AreEqual(1, _vector.Z);
         }
+
+        [TestMethod]
+        public void Dot_OkTest()
+        {
+            Vector anotherVector = new Vector()
+            {
+                X = 1,
+                Y = 2,
+                Z = 3,
+            };
+            _vector.Dot(anotherVector);
+
+            Assert.AreEqual(1, _vector.X);
+            Assert.AreEqual(2, _vector.Y);
+            Assert.AreEqual(3, _vector.Z);
+        }
     }
 }
