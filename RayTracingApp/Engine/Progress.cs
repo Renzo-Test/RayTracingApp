@@ -18,8 +18,7 @@ namespace Engine
 
         public long Calculate()
         {
-            if (LinesCount == ExpectedLines) return 100;
-            else return 50;
+            return (LinesCount * 100) / ExpectedLines;
         }
     }
 }
