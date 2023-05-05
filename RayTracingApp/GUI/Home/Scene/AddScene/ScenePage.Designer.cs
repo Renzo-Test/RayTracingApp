@@ -244,6 +244,7 @@
             this.picRender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picRender.TabIndex = 36;
             this.picRender.TabStop = false;
+            this.picRender.Click += new System.EventHandler(this.picRender_Click);
             // 
             // picFieldLookFrom
             // 

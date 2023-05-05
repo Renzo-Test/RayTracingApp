@@ -74,6 +74,31 @@ namespace GUI
             }
         }
 
+        private void ReplaceFontColor()
+        {
+            Color currentColor;
+
+            try
+            {
+                currentColor = CreateColor();
+            }
+            catch (InvalidMaterialInputException)
+            {
+                currentColor = new Color()
+                {
+                    Red = 30,
+                    Green = 30,
+                    Blue = 30,
+                };
+            }
+
+            int red = currentColor.Red;
+            int green = currentColor.Green;
+            int blue = currentColor.Blue;
+
+            lblColor.ForeColor = System.Drawing.Color.FromArgb(red, green, blue);
+        }
+
         private static Material CreateMaterial(Color newColor, string Name)
         {
             return new Material()
@@ -158,6 +183,21 @@ namespace GUI
         private void txtInputBlue_Leave(object sender, EventArgs e)
         {
             Utils.SetPlaceHolder(ref txtInputBlue, BluePlaceholder);
+        }
+
+        private void txtInputRed_TextChanged(object sender, EventArgs e)
+        {
+            ReplaceFontColor();
+        }
+
+        private void txtInputGreen_TextChanged(object sender, EventArgs e)
+        {
+            ReplaceFontColor();
+        }
+
+        private void txtInputBlue_TextChanged(object sender, EventArgs e)
+        {
+            ReplaceFontColor();
         }
 
 

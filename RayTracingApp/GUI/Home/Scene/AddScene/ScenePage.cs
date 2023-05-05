@@ -106,5 +106,9 @@ namespace GUI
             Utils.SetPlaceHolder(ref txtFov, FovPlaceholder);
         }
 
+        private void picRender_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

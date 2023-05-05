@@ -87,7 +87,7 @@
             this.lblSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
             this.lblSave.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSave.ForeColor = System.Drawing.Color.White;
-            this.lblSave.Location = new System.Drawing.Point(277, 442);
+            this.lblSave.Location = new System.Drawing.Point(510, 442);
             this.lblSave.Name = "lblSave";
             this.lblSave.Size = new System.Drawing.Size(56, 23);
             this.lblSave.TabIndex = 13;
@@ -99,7 +99,7 @@
             this.lblCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
             this.lblCancel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCancel.ForeColor = System.Drawing.Color.White;
-            this.lblCancel.Location = new System.Drawing.Point(501, 442);
+            this.lblCancel.Location = new System.Drawing.Point(270, 442);
             this.lblCancel.Name = "lblCancel";
             this.lblCancel.Size = new System.Drawing.Size(78, 23);
             this.lblCancel.TabIndex = 15;
@@ -110,7 +110,7 @@
             this.picRectangleFieldCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.picRectangleFieldCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRectangleFieldCancel.Image = global::GUI.Properties.Resources.homeButtonsBackground;
-            this.picRectangleFieldCancel.Location = new System.Drawing.Point(454, 432);
+            this.picRectangleFieldCancel.Location = new System.Drawing.Point(225, 432);
             this.picRectangleFieldCancel.Name = "picRectangleFieldCancel";
             this.picRectangleFieldCancel.Size = new System.Drawing.Size(165, 45);
             this.picRectangleFieldCancel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -123,7 +123,7 @@
             this.picRectangleFieldSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.picRectangleFieldSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRectangleFieldSave.Image = global::GUI.Properties.Resources.homeButtonsBackground;
-            this.picRectangleFieldSave.Location = new System.Drawing.Point(225, 432);
+            this.picRectangleFieldSave.Location = new System.Drawing.Point(454, 432);
             this.picRectangleFieldSave.Name = "picRectangleFieldSave";
             this.picRectangleFieldSave.Size = new System.Drawing.Size(165, 45);
             this.picRectangleFieldSave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

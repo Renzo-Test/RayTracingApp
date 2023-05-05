@@ -33,7 +33,7 @@
             this.txtInputRed = new System.Windows.Forms.TextBox();
             this.txtInputGreen = new System.Windows.Forms.TextBox();
             this.txtInputBlue = new System.Windows.Forms.TextBox();
-            this.lblColorTitle = new System.Windows.Forms.Label();
+            this.lblPickTitle = new System.Windows.Forms.Label();
             this.lblSave = new System.Windows.Forms.Label();
             this.lblCancel = new System.Windows.Forms.Label();
             this.picRectangleFieldCancel = new System.Windows.Forms.PictureBox();
@@ -43,6 +43,7 @@
             this.picDarkRectangleFieldRed = new System.Windows.Forms.PictureBox();
             this.picDarkRectangleFieldName = new System.Windows.Forms.PictureBox();
             this.picCard = new System.Windows.Forms.PictureBox();
+            this.lblColor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picRectangleFieldCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRectangleFieldSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleFieldBlue)).BeginInit();
@@ -89,6 +90,7 @@
             this.txtInputRed.Size = new System.Drawing.Size(74, 24);
             this.txtInputRed.TabIndex = 5;
             this.txtInputRed.Text = "Red";
+            this.txtInputRed.TextChanged += new System.EventHandler(this.txtInputRed_TextChanged);
             this.txtInputRed.Enter += new System.EventHandler(this.txtInputRed_Enter);
             this.txtInputRed.Leave += new System.EventHandler(this.txtInputRed_Leave);
             // 
@@ -103,6 +105,7 @@
             this.txtInputGreen.Size = new System.Drawing.Size(77, 24);
             this.txtInputGreen.TabIndex = 7;
             this.txtInputGreen.Text = "Green";
+            this.txtInputGreen.TextChanged += new System.EventHandler(this.txtInputGreen_TextChanged);
             this.txtInputGreen.Enter += new System.EventHandler(this.txtInputGreen_Enter);
             this.txtInputGreen.Leave += new System.EventHandler(this.txtInputGreen_Leave);
             // 
@@ -117,20 +120,21 @@
             this.txtInputBlue.Size = new System.Drawing.Size(72, 24);
             this.txtInputBlue.TabIndex = 9;
             this.txtInputBlue.Text = "Blue";
+            this.txtInputBlue.TextChanged += new System.EventHandler(this.txtInputBlue_TextChanged);
             this.txtInputBlue.Enter += new System.EventHandler(this.txtInputBlue_Enter);
             this.txtInputBlue.Leave += new System.EventHandler(this.txtInputBlue_Leave);
             // 
-            // lblColorTitle
+            // lblPickTitle
             // 
-            this.lblColorTitle.AutoSize = true;
-            this.lblColorTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
-            this.lblColorTitle.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColorTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.lblColorTitle.Location = new System.Drawing.Point(353, 258);
-            this.lblColorTitle.Name = "lblColorTitle";
-            this.lblColorTitle.Size = new System.Drawing.Size(146, 32);
-            this.lblColorTitle.TabIndex = 10;
-            this.lblColorTitle.Text = "Pick Color";
+            this.lblPickTitle.AutoSize = true;
+            this.lblPickTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+            this.lblPickTitle.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPickTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.lblPickTitle.Location = new System.Drawing.Point(353, 258);
+            this.lblPickTitle.Name = "lblPickTitle";
+            this.lblPickTitle.Size = new System.Drawing.Size(68, 32);
+            this.lblPickTitle.TabIndex = 10;
+            this.lblPickTitle.Text = "Pick";
             // 
             // lblSave
             // 
@@ -139,7 +143,7 @@
             this.lblSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSave.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSave.ForeColor = System.Drawing.Color.White;
-            this.lblSave.Location = new System.Drawing.Point(277, 442);
+            this.lblSave.Location = new System.Drawing.Point(510, 442);
             this.lblSave.Name = "lblSave";
             this.lblSave.Size = new System.Drawing.Size(56, 23);
             this.lblSave.TabIndex = 12;
@@ -153,7 +157,7 @@
             this.lblCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCancel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCancel.ForeColor = System.Drawing.Color.White;
-            this.lblCancel.Location = new System.Drawing.Point(501, 442);
+            this.lblCancel.Location = new System.Drawing.Point(270, 442);
             this.lblCancel.Name = "lblCancel";
             this.lblCancel.Size = new System.Drawing.Size(78, 23);
             this.lblCancel.TabIndex = 14;
@@ -165,7 +169,7 @@
             this.picRectangleFieldCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.picRectangleFieldCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRectangleFieldCancel.Image = global::GUI.Properties.Resources.loginBackground;
-            this.picRectangleFieldCancel.Location = new System.Drawing.Point(454, 432);
+            this.picRectangleFieldCancel.Location = new System.Drawing.Point(225, 432);
             this.picRectangleFieldCancel.Name = "picRectangleFieldCancel";
             this.picRectangleFieldCancel.Size = new System.Drawing.Size(165, 45);
             this.picRectangleFieldCancel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -178,7 +182,7 @@
             this.picRectangleFieldSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.picRectangleFieldSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRectangleFieldSave.Image = global::GUI.Properties.Resources.loginBackground;
-            this.picRectangleFieldSave.Location = new System.Drawing.Point(225, 432);
+            this.picRectangleFieldSave.Location = new System.Drawing.Point(454, 432);
             this.picRectangleFieldSave.Name = "picRectangleFieldSave";
             this.picRectangleFieldSave.Size = new System.Drawing.Size(165, 45);
             this.picRectangleFieldSave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -240,16 +244,29 @@
             this.picCard.TabIndex = 0;
             this.picCard.TabStop = false;
             // 
+            // lblColor
+            // 
+            this.lblColor.AutoSize = true;
+            this.lblColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+            this.lblColor.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.lblColor.Location = new System.Drawing.Point(417, 258);
+            this.lblColor.Name = "lblColor";
+            this.lblColor.Size = new System.Drawing.Size(84, 32);
+            this.lblColor.TabIndex = 15;
+            this.lblColor.Text = "Color";
+            // 
             // AddMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.lblColor);
             this.Controls.Add(this.lblCancel);
             this.Controls.Add(this.picRectangleFieldCancel);
             this.Controls.Add(this.lblSave);
             this.Controls.Add(this.picRectangleFieldSave);
-            this.Controls.Add(this.lblColorTitle);
+            this.Controls.Add(this.lblPickTitle);
             this.Controls.Add(this.txtInputBlue);
             this.Controls.Add(this.picDarkRectangleFieldBlue);
             this.Controls.Add(this.txtInputGreen);
@@ -287,10 +304,11 @@
         private System.Windows.Forms.PictureBox picDarkRectangleFieldGreen;
         private System.Windows.Forms.TextBox txtInputBlue;
         private System.Windows.Forms.PictureBox picDarkRectangleFieldBlue;
-        private System.Windows.Forms.Label lblColorTitle;
+        private System.Windows.Forms.Label lblPickTitle;
         private System.Windows.Forms.PictureBox picRectangleFieldSave;
         private System.Windows.Forms.Label lblSave;
         private System.Windows.Forms.Label lblCancel;
         private System.Windows.Forms.PictureBox picRectangleFieldCancel;
+        private System.Windows.Forms.Label lblColor;
     }
 }

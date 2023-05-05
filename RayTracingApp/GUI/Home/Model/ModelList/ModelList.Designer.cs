@@ -48,6 +48,7 @@
             this.lblAddModel.Size = new System.Drawing.Size(114, 23);
             this.lblAddModel.TabIndex = 1;
             this.lblAddModel.Text = "Add Model";
+            this.lblAddModel.Click += new System.EventHandler(this.lblAddModel_Click);
             // 
             // flyModelList
             // 

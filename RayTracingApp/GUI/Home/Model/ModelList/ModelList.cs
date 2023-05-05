@@ -46,7 +46,11 @@ namespace GUI
         {
             _modelHome.GoToAddModel();
         }
-
+        private void lblAddModel_Click(object sender, EventArgs e)
+        {
+            _modelHome.GoToAddModel();
+        }
+        
         private void ModelList_Paint(object sender, PaintEventArgs e)
         {
             PopulateItems();
