@@ -90,7 +90,7 @@ namespace Test.ModelsTest
         {
             _newColor = new Color()
             {
-                Green = 256,
+                Blue = 256,
             };
         }
 
@@ -100,7 +100,7 @@ namespace Test.ModelsTest
         {
             _newColor = new Color()
             {
-                Green = -1,
+                Blue = -1,
             };
         }
     }
