@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
 {
@@ -10,7 +11,8 @@ namespace Test.ModelsTest
         private Material _material;
 
         [TestMethod]
-        public void CanCreateMaterial_OkTest()
+		[ExcludeFromCodeCoverage]
+		public void CanCreateMaterial_OkTest()
         {
             _material = new Material();
         }
