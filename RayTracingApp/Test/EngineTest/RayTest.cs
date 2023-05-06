@@ -26,9 +26,6 @@ namespace Test.EngineTest
         [TestMethod]
         public void SetOrigin_OkTest()
         {
-            Ray _ray = new Ray();
-
-            Vector _vector = new Vector();
             _ray.Origin = _vector;
 
             Assert.AreEqual(_vector, _ray.Origin);
@@ -37,9 +34,6 @@ namespace Test.EngineTest
         [TestMethod]
         public void SetDirection_OkTest()
         {
-            Ray _ray = new Ray();
-
-            Vector _vector = new Vector();
             _ray.Direction = _vector;
 
             Assert.AreEqual(_vector, _ray.Direction);
