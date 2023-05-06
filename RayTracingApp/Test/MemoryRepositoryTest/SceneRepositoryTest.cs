@@ -110,6 +110,7 @@ namespace Test.MemoryRepositoryTest
             CollectionAssert.DoesNotContain(iterableOwner1, _scene2);
         }
 
+        [TestMethod]
         public void GetScenesByClient_NoClient_OkTest()
         {
             _sceneRepository = new SceneRepository();
@@ -118,7 +119,8 @@ namespace Test.MemoryRepositoryTest
             Assert.IsFalse(scenes.Any());
         }
 
-        public void DeleteScene_ExistingScene_OkTest()
+		[TestMethod]
+		public void DeleteScene_ExistingScene_OkTest()
         {
             _sceneRepository = new SceneRepository();
 
