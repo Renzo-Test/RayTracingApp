@@ -25,8 +25,8 @@ namespace Controller
         public Material GetMaterial(string username, string name)
         {
             Material getMaterials = ListMaterials(username).Find(mat => mat.Name.Equals(name));
-            
-            if(getMaterials is null)
+
+            if (getMaterials is null)
             {
                 throw new NotFoundMaterialException($"Material with name {name} was not found");
             }
@@ -50,21 +50,6 @@ namespace Controller
             }
         }
 
-        private void RunMaterialChecker(Material material, string username)
-        {
-            if (MaterialNameExist(material, username))
-            {
-                string AlreadyExsitingMaterialMessage = $"Material with name {material.Name} already exists";
-                throw new AlreadyExsitingMaterialException(AlreadyExsitingMaterialMessage);
-            }
-        }
-        private bool MaterialNameExist(Material material, string username)
-        {
-            List<Material> clientMaterials = Repository.GetMaterialsByClient(username);
-            return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
-
-        }
-
         public void RemoveMaterial(string materialName, string username, List<Model> models)
         {
             Material deleteMaterial = Repository.GetMaterialsByClient(username).Find(mat => mat.Name.Equals(materialName));
@@ -86,5 +71,19 @@ namespace Controller
             Repository.RemoveMaterial(deleteMaterial);
         }
 
+        private void RunMaterialChecker(Material material, string username)
+        {
+            if (MaterialNameExist(material, username))
+            {
+                string AlreadyExsitingMaterialMessage = $"Material with name {material.Name} already exists";
+                throw new AlreadyExsitingMaterialException(AlreadyExsitingMaterialMessage);
+            }
+        }
+        private bool MaterialNameExist(Material material, string username)
+        {
+            List<Material> clientMaterials = Repository.GetMaterialsByClient(username);
+            return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
+
+        }
     }
 }

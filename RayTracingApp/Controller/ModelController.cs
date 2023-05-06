@@ -46,6 +46,19 @@ namespace Controller
 
             Repository.RemoveModel(deleteModel);
         }
+
+        public Model GetModel(string username, string name)
+        {
+            Model getModel = ListModels(username).Find(mod => mod.Name.Equals(name));
+
+            if (getModel is null)
+            {
+                throw new NotFoundModelException($"Model with name {name} was not found");
+            }
+
+            return getModel;
+
+        }
         private void RunModelChecker(Model model, string username)
         {
             if (ModelNameExist(model, username))
@@ -59,18 +72,6 @@ namespace Controller
         {
             List<Model> clientModels = Repository.GetModelsByClient(username);
             return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
-        }
-        public Model GetModel(string username, string name)
-        {
-            Model getModel = ListModels(username).Find(mod => mod.Name.Equals(name));
-
-            if (getModel is null)
-            {
-                throw new NotFoundModelException($"Model with name {name} was not found");
-            }
-
-            return getModel;
-
         }
     }
 }

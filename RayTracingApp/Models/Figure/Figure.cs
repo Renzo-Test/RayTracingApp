@@ -33,6 +33,7 @@ namespace Models
             }
         }
 
+        public abstract void FigurePropertiesAreValid();
         private static void RunEmptyNameChecker(string figureName)
         {
             if (string.IsNullOrEmpty(figureName))
@@ -48,6 +49,5 @@ namespace Models
                 throw new NotAlphanumericException(NotAlphanumericExceptionMessage);
             }
         }
-        public abstract void FigurePropertiesAreValid();
     }
 }

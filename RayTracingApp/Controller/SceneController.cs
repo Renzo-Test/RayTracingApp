@@ -34,20 +34,6 @@ namespace Controller
             }
         }
 
-        private void SceneChecker(Scene scene, string username)
-        {
-            if (SceneNameExist(scene, username))
-            {
-                string AlreadyExistingSceneMessage = $"Scene with name {scene.Name} already exists";
-                throw new AlreadyExistingSceneException(AlreadyExistingSceneMessage);
-            }
-        }
-
-        private bool SceneNameExist(Scene newScene, string username)
-        {
-            List<Scene> clientScenes = Repository.GetScenesByClient(username);
-            return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
-        }
         public void UpdateLastModificationDate(Scene scene)
         {
             scene.LastModificationDate = TodayDate();
@@ -57,12 +43,6 @@ namespace Controller
         {
             scene.LastRenderDate = TodayDate();
         }
-
-        private static string TodayDate()
-        {
-            return DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
-        }
-
         public List<Scene> ListScenes(string username)
         {
             return Repository.GetScenesByClient(username);
@@ -90,6 +70,25 @@ namespace Controller
         {
             Scene scene = new Scene() { Name = name };
             return scene;
+        }
+
+        private void SceneChecker(Scene scene, string username)
+        {
+            if (SceneNameExist(scene, username))
+            {
+                string AlreadyExistingSceneMessage = $"Scene with name {scene.Name} already exists";
+                throw new AlreadyExistingSceneException(AlreadyExistingSceneMessage);
+            }
+        }
+
+        private bool SceneNameExist(Scene newScene, string username)
+        {
+            List<Scene> clientScenes = Repository.GetScenesByClient(username);
+            return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
+        }
+        private static string TodayDate()
+        {
+            return DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
         }
     }
 }

@@ -37,35 +37,6 @@ namespace Controller
             }
         }
 
-        public void RunFigureChecker(Figure figure, string ownerName)
-        {
-            if (FigureNameExist(figure.Name, ownerName))
-            {
-                string AlreadyExsitingFigureMessage = $"Figure with name {figure.Name} already exists";
-                throw new AlreadyExistingFigureException(AlreadyExsitingFigureMessage);
-            }
-
-            FigurePropertiesAreValid(figure);
-        }
-
-        public bool FigureNameExist(string name, string ownerName)
-        {
-            List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
-            return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
-        }
-
-        public void FigurePropertiesAreValid(Figure figure)
-        {
-            try
-            {
-                figure.FigurePropertiesAreValid();
-            }
-
-            catch (InvalidFigureInputException ex)
-            {
-                throw new InvalidFigureInputException(ex.Message);
-            }
-        }
         public void RemoveFigure(string figureName, string username, List<Model> models)
         {
             Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
@@ -96,6 +67,36 @@ namespace Controller
             }
 
             return getFigure;
+        }
+
+        private void RunFigureChecker(Figure figure, string ownerName)
+        {
+            if (FigureNameExist(figure.Name, ownerName))
+            {
+                string AlreadyExsitingFigureMessage = $"Figure with name {figure.Name} already exists";
+                throw new AlreadyExistingFigureException(AlreadyExsitingFigureMessage);
+            }
+
+            FigurePropertiesAreValid(figure);
+        }
+
+        private bool FigureNameExist(string name, string ownerName)
+        {
+            List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
+            return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
+        }
+
+        private void FigurePropertiesAreValid(Figure figure)
+        {
+            try
+            {
+                figure.FigurePropertiesAreValid();
+            }
+
+            catch (InvalidFigureInputException ex)
+            {
+                throw new InvalidFigureInputException(ex.Message);
+            }
         }
     }
 }
