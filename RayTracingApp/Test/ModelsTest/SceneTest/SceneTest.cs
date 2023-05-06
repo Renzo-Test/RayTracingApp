@@ -2,13 +2,14 @@
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Test.ModelsTest
 {
     [TestClass]
-
-    public class SceneTest
+	[ExcludeFromCodeCoverage]
+	public class SceneTest
     {
         private Scene _scene;
 
@@ -36,6 +37,18 @@ namespace Test.ModelsTest
                 Name = "modelName"
             };
             Assert.AreEqual("modelName", _scene.Name);
+        }
+
+        [TestMethod]
+        public void SetRegisterTime_OkTest()
+        {
+            _scene = new Scene()
+            {
+                RegisterTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"),
+            };
+            string expected = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+
+            Assert.AreEqual(expected, _scene.RegisterTime);
         }
 
         [TestMethod]

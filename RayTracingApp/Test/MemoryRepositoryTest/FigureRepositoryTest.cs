@@ -3,11 +3,13 @@ using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Test.MemoryRepositoryTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class FigureRepositoryTest
     {
         private FigureRepository _figureRepository;
@@ -58,6 +60,7 @@ namespace Test.MemoryRepositoryTest
             Assert.AreEqual("FigureTwo", _figureRepository.GetFiguresByClient("OwnerTwo")[0].Name);
         }
 
+        [TestMethod]
         public void GetFiguresByClient_NotExisting2Client()
         {
             _figureRepository.GetFiguresByClient("");
@@ -80,6 +83,7 @@ namespace Test.MemoryRepositoryTest
 
         }
 
+        [TestMethod]
         public void RemoveFigure_OkTest()
         {
             Figure newFigure = new Sphere()
@@ -95,6 +99,7 @@ namespace Test.MemoryRepositoryTest
             Assert.IsFalse(figures.Any());
         }
 
+        [TestMethod]
         public void RemoveFigure_NotExistingFigure_OkTest()
         {
             Figure newFigure = new Sphere()

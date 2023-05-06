@@ -1,12 +1,14 @@
 ﻿using Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace Test.EngineTest
 {
     [TestClass]
-    public class ProgressTest
+	[ExcludeFromCodeCoverage]
+	public class ProgressTest
     {
         private Progress _progress;
 

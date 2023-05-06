@@ -1,13 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class ModelsTest
     {
         [TestMethod]
-        public void CreateModels_OkTest()
+		public void CreateModels_OkTest()
         {
             Model newModel = new Model();
         }

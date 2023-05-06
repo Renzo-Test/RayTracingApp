@@ -7,10 +7,12 @@ using Models.SphereExceptions;
 using System.Collections.Generic;
 using System.Linq;
 using Controller.FigureExceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class FigureControllerTest
     {
         private FigureController _figureController;
@@ -28,7 +30,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.FigureExceptions.InvalidFigureInputException))]
+        [ExpectedException(typeof(InvalidFigureInputException))]
         public void NameIsNotEmpty_EmptyString_FailTest()
         {
             Figure newFigure = new Sphere()
@@ -64,7 +66,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.FigureExceptions.InvalidFigureInputException))]
+        [ExpectedException(typeof(InvalidFigureInputException))]
         public void NameHasNoSpaces_Figure_Name_FailTest()
         {
             Figure newFigure = new Sphere()
@@ -85,15 +87,13 @@ namespace Test.ControllerTest
                 Owner = "owner",
             };
             _figureController.Repository.AddFigure(newFigure);
-
-            _figureController.FigureNameExist("figure", "owner");
         }
 
         [TestMethod]
+        [ExpectedException(typeof(NotFoundFigureException))]
         public void FigureNameExist_NotExistingFigure_OkTest()
         {
-            bool result = _figureController.FigureNameExist("figure", "owner");
-            Assert.IsFalse(result);
+            _figureController.GetFigure("Username123", "figure");
         }
 
         [TestMethod]
@@ -146,9 +146,6 @@ namespace Test.ControllerTest
                 Name = "invalid name",
                 Radius = 10,
             };
-
-            _figureController.AddFigure(newFigure, currentClient.Username);
-            _figureController.Repository.GetFiguresByClient(currentClient.Username);
         }
 
         [TestMethod]
@@ -169,7 +166,6 @@ namespace Test.ControllerTest
 
             _figureController.AddFigure(newFigure, currentClient.Username);
             _figureController.AddFigure(newFigure, currentClient.Username);
-            List<Figure> clientFigures = _figureController.Repository.GetFiguresByClient(currentClient.Username);
         }
 
         [TestMethod]
@@ -193,12 +189,14 @@ namespace Test.ControllerTest
             Assert.AreEqual(expected[0], _figureController.ListFigures(currentClient.Username)[0]);
         }
 
+        [TestMethod]
         public void ListFigures_NonExistentClient_FailTest()
         {
             List<Figure> figures = _figureController.ListFigures("nonExistentUsername");
             Assert.IsFalse(figures.Any());
         }
 
+        [TestMethod]
         public void RemoveFigures_ValidFigure_FailTest()
         {
             Client currentClient = new Client()
@@ -222,7 +220,23 @@ namespace Test.ControllerTest
             Assert.IsFalse(figures.Any());
         }
 
-        [TestMethod]
+		[TestMethod]
+		[ExpectedException(typeof(NotFoundFigureException))]
+		public void RemoveFigures_InvalidFigureName_FailTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			List<Model> models = new List<Model>();
+
+			_figureController.RemoveFigure("InvalidFigureName", currentClient.Username, models);
+
+		}
+
+		[TestMethod]
         [ExpectedException(typeof(FigureUsedByModelException))]
         public void RemoveFigures_FigureUsedByModel_FailTest()
         {
@@ -252,9 +266,10 @@ namespace Test.ControllerTest
             {
                 Name = "sphere",
                 Radius = 10,
+                Owner = "Username123"
             };
 
-            _figureController.FigurePropertiesAreValid(newSphere);
+            _figureController.AddFigure(newSphere, newSphere.Owner);
         }
 
         [TestMethod]
@@ -265,12 +280,13 @@ namespace Test.ControllerTest
             {
                 Name = "sphere",
                 Radius = 0,
+                Owner = "Username123"
             };
-
-            _figureController.FigurePropertiesAreValid(newSphere);
+            _figureController.AddFigure(newSphere,newSphere.Owner);
         }
 
-        public void GetFigure_ExistingClient_OkTest()
+        [TestMethod]
+		public void GetFigure_ExistingClient_OkTest()
         {
             Client currentClient = new Client()
             {

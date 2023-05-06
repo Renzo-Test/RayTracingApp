@@ -1,14 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
-
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
 {
     [TestClass]
-    public class CoordinateTest
+	[ExcludeFromCodeCoverage]
+	public class CoordinateTest
     {
         [TestMethod]
-        public void CreateCoordinate_OkTest()
+		public void CreateCoordinate_OkTest()
         {
             Coordinate newCoordinate = new Coordinate();
         }
