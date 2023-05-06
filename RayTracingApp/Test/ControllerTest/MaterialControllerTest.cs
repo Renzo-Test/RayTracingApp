@@ -129,7 +129,20 @@ namespace Test.ControllerTest
             Assert.IsFalse(materials.Any());
         }
 
-        [TestMethod]
+		[TestMethod]
+		[ExpectedException(typeof(NotFoundMaterialException))]
+		public void RemoveMaterials_InvalidMaterialName_OkTest()
+		{
+
+			List<Model> models = new List<Model>();
+
+			_materialController.RemoveMaterial("InvalidMaterialName", "username", models);
+
+			List<Material> materials = _materialController.ListMaterials("username");
+			Assert.IsFalse(materials.Any());
+		}
+
+		[TestMethod]
         [ExpectedException(typeof(MaterialUsedByModelException))]
         public void RemoveMaterial_MaterialUsedByModel_FailTest()
         {
