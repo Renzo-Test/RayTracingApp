@@ -1,10 +1,12 @@
 ﻿using Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.EngineTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class VectorTest
     {
         private Vector _vector;
