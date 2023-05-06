@@ -222,7 +222,23 @@ namespace Test.ControllerTest
             Assert.IsFalse(figures.Any());
         }
 
-        [TestMethod]
+		[TestMethod]
+		[ExpectedException(typeof(NotFoundFigureException))]
+		public void RemoveFigures_InvalidFigureName_FailTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			List<Model> models = new List<Model>();
+
+			_figureController.RemoveFigure("InvalidFigureName", currentClient.Username, models);
+
+		}
+
+		[TestMethod]
         [ExpectedException(typeof(FigureUsedByModelException))]
         public void RemoveFigures_FigureUsedByModel_FailTest()
         {
