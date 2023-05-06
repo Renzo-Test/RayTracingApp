@@ -8,7 +8,8 @@ namespace Test.ModelsTest
     public class CoordinateTest
     {
         [TestMethod]
-        public void CreateCoordinate_OkTest()
+		[ExcludeFromCodeCoverage]
+		public void CreateCoordinate_OkTest()
         {
             Coordinate newCoordinate = new Coordinate();
         }
