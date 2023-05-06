@@ -66,5 +66,33 @@ namespace Test.EngineTest
             };
             Vector actual = _ray.PointAt(2);
         }
+
+        [TestMethod]
+        public void PointAt_anotherVector_OkTest()
+        {
+            Vector origin = new Vector()
+            {
+                X = 0,
+                Y = 0,
+                Z = 1,
+            };
+            Vector direction = new Vector()
+            {
+                X = 0,
+                Y = 4,
+                Z = 3,
+            };
+
+            _ray.Origin = origin;
+            _ray.Direction = direction;
+
+            Vector expected = new Vector()
+            {
+                X = 0,
+                Y = 16,
+                Z = 13,
+            };
+            Vector actual = _ray.PointAt(4);
+        }
     }
 }
