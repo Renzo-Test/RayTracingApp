@@ -1,11 +1,13 @@
 ﻿using Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.EngineTest
 {
     [TestClass]
-    public class RayTest
+	[ExcludeFromCodeCoverage]
+	public class RayTest
     {
         private Ray _ray;
         private Vector _vector;
