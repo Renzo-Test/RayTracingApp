@@ -2,12 +2,11 @@
 using Models;
 using Models.ClientExceptions;
 using System;
-
-
 namespace Test.ModelsTest
 {
     [TestClass]
-    public class ClientTest
+	[ExcludeFromCodeCoverage]
+	public class ClientTest
     {
         private Client _client;
 
