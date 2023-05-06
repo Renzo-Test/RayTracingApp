@@ -3,11 +3,13 @@ using Controller.ClientExceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Models.ClientExceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
     [TestClass]
-    public class ClientControllerTest
+	[ExcludeFromCodeCoverage]
+	public class ClientControllerTest
     {
         private ClientController _controller;
 
