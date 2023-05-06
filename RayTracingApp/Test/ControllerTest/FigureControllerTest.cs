@@ -28,7 +28,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.FigureExceptions.InvalidFigureInputException))]
+        [ExpectedException(typeof(InvalidFigureInputException))]
         public void NameIsNotEmpty_EmptyString_FailTest()
         {
             Figure newFigure = new Sphere()
@@ -64,7 +64,7 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Models.FigureExceptions.InvalidFigureInputException))]
+        [ExpectedException(typeof(InvalidFigureInputException))]
         public void NameHasNoSpaces_Figure_Name_FailTest()
         {
             Figure newFigure = new Sphere()
@@ -85,15 +85,13 @@ namespace Test.ControllerTest
                 Owner = "owner",
             };
             _figureController.Repository.AddFigure(newFigure);
-
-            _figureController.FigureNameExist("figure", "owner");
         }
 
         [TestMethod]
+        [ExpectedException(typeof(NotFoundFigureException))]
         public void FigureNameExist_NotExistingFigure_OkTest()
         {
-            bool result = _figureController.FigureNameExist("figure", "owner");
-            Assert.IsFalse(result);
+            _figureController.GetFigure("Username123", "figure");
         }
 
         [TestMethod]
@@ -252,9 +250,10 @@ namespace Test.ControllerTest
             {
                 Name = "sphere",
                 Radius = 10,
+                Owner = "Username123"
             };
 
-            _figureController.FigurePropertiesAreValid(newSphere);
+            _figureController.AddFigure(newSphere, newSphere.Owner);
         }
 
         [TestMethod]
@@ -265,9 +264,9 @@ namespace Test.ControllerTest
             {
                 Name = "sphere",
                 Radius = 0,
+                Owner = "Username123"
             };
-
-            _figureController.FigurePropertiesAreValid(newSphere);
+            _figureController.AddFigure(newSphere,newSphere.Owner);
         }
 
         public void GetFigure_ExistingClient_OkTest()

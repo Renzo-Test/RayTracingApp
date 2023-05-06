@@ -28,16 +28,6 @@ namespace Controller
                 throw new InvalidCredentialsException(ex.Message);
             }
         }
-
-        private void RunSignUpChecker(string username, string password)
-        {
-            if (ClientAlreadyExists(username))
-            {
-                string AlreadyExsitingClientMessage = $"Client with username {username} already exists";
-                throw new AlreadyExistingClientException(AlreadyExsitingClientMessage);
-            }
-        }
-
         public bool ClientAlreadyExists(string username)
         {
             try
@@ -64,6 +54,24 @@ namespace Controller
             }
 
         }
+        public void SignOut(ref Client currentClient)
+        {
+            currentClient = null;
+        }
+
+        public bool IsLoggedIn(Client currentClient)
+        {
+            return currentClient is object;
+        }
+
+        private void RunSignUpChecker(string username, string password)
+        {
+            if (ClientAlreadyExists(username))
+            {
+                string AlreadyExsitingClientMessage = $"Client with username {username} already exists";
+                throw new AlreadyExistingClientException(AlreadyExsitingClientMessage);
+            }
+        }
 
         private void RunSignInChecker(string username, string password)
         {
@@ -80,16 +88,6 @@ namespace Controller
             {
                 throw new NotCorrectPasswordException(WrongPasswordMessage);
             }
-        }
-
-        public void SignOut(ref Client currentClient)
-        {
-            currentClient = null;
-        }
-
-        public bool IsLoggedIn(Client currentClient)
-        {
-            return currentClient is object;
         }
     }
 }
