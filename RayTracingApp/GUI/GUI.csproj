@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Home\Scene\DefaultCam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\DefaultCam.Designer.cs">
+      <DependentUpon>DefaultCam.cs</DependentUpon>
+    </Compile>
     <Compile Include="Home\Scene\SceneList\SceneList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -220,6 +226,9 @@
     <EmbeddedResource Include="Home\Scene\AddScene\UsedModelItem.resx">
       <DependentUpon>UsedModelItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\DefaultCam.resx">
+      <DependentUpon>DefaultCam.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home\Scene\SceneList\SceneList.resx">
       <DependentUpon>SceneList.cs</DependentUpon>
     </EmbeddedResource>
@@ -382,6 +391,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\whiteX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cam.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

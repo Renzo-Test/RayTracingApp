@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.flySceneList = new System.Windows.Forms.FlowLayoutPanel();
-            this.picAddScene = new System.Windows.Forms.PictureBox();
             this.lblAddScene = new System.Windows.Forms.Label();
             this.picIconPlus = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picAddScene)).BeginInit();
+            this.picAddScene = new System.Windows.Forms.PictureBox();
+            this.picCamDefaultValues = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAddScene)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCamDefaultValues)).BeginInit();
             this.SuspendLayout();
             // 
             // flySceneList
@@ -42,18 +44,6 @@
             this.flySceneList.Name = "flySceneList";
             this.flySceneList.Size = new System.Drawing.Size(500, 434);
             this.flySceneList.TabIndex = 0;
-            // 
-            // picAddScene
-            // 
-            this.picAddScene.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picAddScene.Image = global::GUI.Properties.Resources.homeButtonsBackground;
-            this.picAddScene.Location = new System.Drawing.Point(310, 44);
-            this.picAddScene.Name = "picAddScene";
-            this.picAddScene.Size = new System.Drawing.Size(198, 72);
-            this.picAddScene.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picAddScene.TabIndex = 1;
-            this.picAddScene.TabStop = false;
-            this.picAddScene.Click += new System.EventHandler(this.picAddScene_Click);
             // 
             // lblAddScene
             // 
@@ -82,11 +72,37 @@
             this.picIconPlus.TabStop = false;
             this.picIconPlus.Click += new System.EventHandler(this.picIconPlus_Click);
             // 
+            // picAddScene
+            // 
+            this.picAddScene.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picAddScene.Image = global::GUI.Properties.Resources.homeButtonsBackground;
+            this.picAddScene.Location = new System.Drawing.Point(310, 44);
+            this.picAddScene.Name = "picAddScene";
+            this.picAddScene.Size = new System.Drawing.Size(198, 72);
+            this.picAddScene.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picAddScene.TabIndex = 1;
+            this.picAddScene.TabStop = false;
+            this.picAddScene.Click += new System.EventHandler(this.picAddScene_Click);
+            // 
+            // picCamDefaultValues
+            // 
+            this.picCamDefaultValues.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.picCamDefaultValues.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picCamDefaultValues.Image = global::GUI.Properties.Resources.cam;
+            this.picCamDefaultValues.Location = new System.Drawing.Point(782, 19);
+            this.picCamDefaultValues.Name = "picCamDefaultValues";
+            this.picCamDefaultValues.Size = new System.Drawing.Size(32, 32);
+            this.picCamDefaultValues.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picCamDefaultValues.TabIndex = 5;
+            this.picCamDefaultValues.TabStop = false;
+            this.picCamDefaultValues.Click += new System.EventHandler(this.picCamDefaultValues_Click);
+            // 
             // SceneList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.picCamDefaultValues);
             this.Controls.Add(this.picIconPlus);
             this.Controls.Add(this.lblAddScene);
             this.Controls.Add(this.picAddScene);
@@ -95,8 +111,9 @@
             this.Name = "SceneList";
             this.Size = new System.Drawing.Size(834, 604);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.SceneList_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.picAddScene)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAddScene)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCamDefaultValues)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,5 +125,6 @@
         private System.Windows.Forms.PictureBox picAddScene;
         private System.Windows.Forms.Label lblAddScene;
         private System.Windows.Forms.PictureBox picIconPlus;
+        private System.Windows.Forms.PictureBox picCamDefaultValues;
     }
 }

@@ -56,6 +56,7 @@
             this.lblTitle.Size = new System.Drawing.Size(157, 32);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Add Figure";
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // txtInputName
             // 
@@ -68,6 +69,7 @@
             this.txtInputName.Size = new System.Drawing.Size(276, 24);
             this.txtInputName.TabIndex = 3;
             this.txtInputName.Text = "Name";
+            this.txtInputName.TextChanged += new System.EventHandler(this.txtInputName_TextChanged);
             this.txtInputName.Enter += new System.EventHandler(this.txtInputName_Enter);
             this.txtInputName.Leave += new System.EventHandler(this.txtInputName_Leave);
             // 
@@ -82,6 +84,7 @@
             this.txtInputRadius.Size = new System.Drawing.Size(278, 24);
             this.txtInputRadius.TabIndex = 5;
             this.txtInputRadius.Text = "Radius";
+            this.txtInputRadius.TextChanged += new System.EventHandler(this.txtInputRadius_TextChanged);
             this.txtInputRadius.Enter += new System.EventHandler(this.txtInputRadius_Enter);
             this.txtInputRadius.Leave += new System.EventHandler(this.txtInputRadius_Leave);
             // 
@@ -121,6 +124,7 @@
             this.picDarkRectangleFieldRadius.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picDarkRectangleFieldRadius.TabIndex = 4;
             this.picDarkRectangleFieldRadius.TabStop = false;
+            this.picDarkRectangleFieldRadius.Click += new System.EventHandler(this.picDarkRectangleFieldRadius_Click);
             // 
             // picDarkRectangleFieldName
             // 
@@ -132,6 +136,7 @@
             this.picDarkRectangleFieldName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picDarkRectangleFieldName.TabIndex = 2;
             this.picDarkRectangleFieldName.TabStop = false;
+            this.picDarkRectangleFieldName.Click += new System.EventHandler(this.picDarkRectangleFieldName_Click);
             // 
             // picCard
             // 
