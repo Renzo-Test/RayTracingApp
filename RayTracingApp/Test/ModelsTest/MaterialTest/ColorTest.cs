@@ -1,10 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Models.MaterialExceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class ColorTest
     {
         private Color _newColor;
@@ -28,7 +30,6 @@ namespace Test.ModelsTest
             {
                 Red = 256,
             };
-
         }
 
         [TestMethod]
@@ -39,7 +40,6 @@ namespace Test.ModelsTest
             {
                 Red = -1,
             };
-
         }
 
         [TestMethod]
@@ -61,7 +61,6 @@ namespace Test.ModelsTest
             {
                 Green = 256,
             };
-
         }
 
         [TestMethod]
@@ -72,7 +71,6 @@ namespace Test.ModelsTest
             {
                 Green = -1,
             };
-
         }
 
         [TestMethod]
@@ -94,7 +92,6 @@ namespace Test.ModelsTest
             {
                 Green = 256,
             };
-
         }
 
         [TestMethod]
@@ -105,7 +102,6 @@ namespace Test.ModelsTest
             {
                 Green = -1,
             };
-
         }
     }
 }
