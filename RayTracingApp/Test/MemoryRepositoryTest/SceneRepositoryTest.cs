@@ -5,11 +5,13 @@ using MemoryRepository;
 using System.Collections.Generic;
 using MemoryRepository.Exceptions;
 using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.MemoryRepositoryTest
 {
     [TestClass]
-    public class SceneRepositoryTest
+	[ExcludeFromCodeCoverage]
+	public class SceneRepositoryTest
     {
         private SceneRepository _sceneRepository;
 
@@ -119,8 +121,8 @@ namespace Test.MemoryRepositoryTest
             Assert.IsFalse(scenes.Any());
         }
 
-		[TestMethod]
-		public void DeleteScene_ExistingScene_OkTest()
+        [TestMethod]
+        public void DeleteScene_ExistingScene_OkTest()
         {
             _sceneRepository = new SceneRepository();
 
@@ -137,6 +139,5 @@ namespace Test.MemoryRepositoryTest
             List<Scene> iterableOwner1 = _sceneRepository.GetScenesByClient("OwnerName");
             CollectionAssert.DoesNotContain(iterableOwner1, _scene);
         }
-
     }
 }
