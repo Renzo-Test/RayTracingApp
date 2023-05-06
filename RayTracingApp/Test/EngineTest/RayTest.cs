@@ -7,6 +7,16 @@ namespace Test.EngineTest
     [TestClass]
     public class RayTest
     {
+        private Ray _ray;
+        private Vector _vector;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _ray = new Ray();
+            _vector = new Vector();
+        }
+
         [TestMethod]
         public void CreateRay_OkTest()
         {
@@ -16,23 +26,23 @@ namespace Test.EngineTest
         [TestMethod]
         public void SetOrigin_OkTest()
         {
-            Ray ray = new Ray();
+            Ray _ray = new Ray();
 
-            Vector vector = new Vector();
-            ray.Origin = vector;
+            Vector _vector = new Vector();
+            _ray.Origin = _vector;
 
-            Assert.AreEqual(vector, ray.Origin);
+            Assert.AreEqual(_vector, _ray.Origin);
         }
 
         [TestMethod]
         public void SetDirection_OkTest()
         {
-            Ray ray = new Ray();
+            Ray _ray = new Ray();
 
-            Vector vector = new Vector();
-            ray.Direction = vector;
+            Vector _vector = new Vector();
+            _ray.Direction = _vector;
 
-            Assert.AreEqual(vector, ray.Direction);
+            Assert.AreEqual(_vector, _ray.Direction);
         }
     }
 }
