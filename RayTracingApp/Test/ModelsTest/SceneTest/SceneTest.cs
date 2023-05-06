@@ -7,8 +7,8 @@ using System.Reflection;
 namespace Test.ModelsTest
 {
     [TestClass]
-
-    public class SceneTest
+	[ExcludeFromCodeCoverage]
+	public class SceneTest
     {
         private Scene _scene;
 
