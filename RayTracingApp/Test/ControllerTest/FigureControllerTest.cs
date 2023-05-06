@@ -7,10 +7,12 @@ using Models.SphereExceptions;
 using System.Collections.Generic;
 using System.Linq;
 using Controller.FigureExceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class FigureControllerTest
     {
         private FigureController _figureController;
@@ -146,9 +148,6 @@ namespace Test.ControllerTest
                 Name = "invalid name",
                 Radius = 10,
             };
-
-            _figureController.AddFigure(newFigure, currentClient.Username);
-            _figureController.Repository.GetFiguresByClient(currentClient.Username);
         }
 
         [TestMethod]
@@ -169,7 +168,6 @@ namespace Test.ControllerTest
 
             _figureController.AddFigure(newFigure, currentClient.Username);
             _figureController.AddFigure(newFigure, currentClient.Username);
-            List<Figure> clientFigures = _figureController.Repository.GetFiguresByClient(currentClient.Username);
         }
 
         [TestMethod]
@@ -193,12 +191,14 @@ namespace Test.ControllerTest
             Assert.AreEqual(expected[0], _figureController.ListFigures(currentClient.Username)[0]);
         }
 
+        [TestMethod]
         public void ListFigures_NonExistentClient_FailTest()
         {
             List<Figure> figures = _figureController.ListFigures("nonExistentUsername");
             Assert.IsFalse(figures.Any());
         }
 
+        [TestMethod]
         public void RemoveFigures_ValidFigure_FailTest()
         {
             Client currentClient = new Client()
@@ -270,7 +270,8 @@ namespace Test.ControllerTest
             _figureController.FigurePropertiesAreValid(newSphere);
         }
 
-        public void GetFigure_ExistingClient_OkTest()
+        [TestMethod]
+		public void GetFigure_ExistingClient_OkTest()
         {
             Client currentClient = new Client()
             {
