@@ -145,6 +145,13 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
+		[ExpectedException(typeof(NotFoundModelException))]
+		public void RemoveModels_InvalidModelName_FailTest()
+		{
+			_modelController.RemoveModel("InvaledModelName", "username");
+		}
+
+		[TestMethod]
         public void GetModel_ExistingClient_OkTest()
         {
             Client currentClient = new Client()
@@ -166,7 +173,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundModelException))]
-        public void GetModel_ExistingClientNonExistingName_OkTest()
+        public void GetModel_ExistingClientNonExistingName_FailTest()
         {
             Client currentClient = new Client()
             {

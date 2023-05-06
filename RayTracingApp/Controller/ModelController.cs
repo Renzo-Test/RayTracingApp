@@ -41,7 +41,7 @@ namespace Controller
             if (deleteModel is null)
             {
                 string NotFoundModelMessage = $"Model with name {name} was not found";
-                throw new NotFoundMaterialException(NotFoundModelMessage);
+                throw new NotFoundModelException(NotFoundModelMessage);
             }
 
             Repository.RemoveModel(deleteModel);
