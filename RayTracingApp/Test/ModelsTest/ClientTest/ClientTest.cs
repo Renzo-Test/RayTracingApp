@@ -2,6 +2,8 @@
 using Models;
 using Models.ClientExceptions;
 using System;
+using System.Diagnostics.CodeAnalysis;
+
 namespace Test.ModelsTest
 {
     [TestClass]
