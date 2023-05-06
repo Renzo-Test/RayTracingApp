@@ -13,7 +13,7 @@ namespace Engine
 
         public Vector PointAt(double multiplier)
         {
-            return new Vector() { X = 5, Y = 7, Z = 2 };
+            return Origin.Add(Direction.Multiply(multiplier));
         }
     }
 }
