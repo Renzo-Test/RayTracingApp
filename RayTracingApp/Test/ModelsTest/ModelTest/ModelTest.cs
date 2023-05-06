@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
 {
@@ -7,7 +8,8 @@ namespace Test.ModelsTest
     public class ModelsTest
     {
         [TestMethod]
-        public void CreateModels_OkTest()
+		[ExcludeFromCodeCoverage]
+		public void CreateModels_OkTest()
         {
             Model newModel = new Model();
         }
