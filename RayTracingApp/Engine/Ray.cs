@@ -10,5 +10,10 @@ namespace Engine
     {
         public Vector Origin { get; set; }
         public Vector Direction { get; set; }
+
+        public Vector PointAt(double multiplier)
+        {
+            return new Vector() { X = 5, Y = 7, Z = 2 };
+        }
     }
 }
