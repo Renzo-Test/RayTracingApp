@@ -5,13 +5,14 @@ using System.Diagnostics.CodeAnalysis;
 namespace Test.ModelsTest
 {
     [TestClass]
+	[ExcludeFromCodeCoverage]
 
-    public class MaterialTest
+	public class MaterialTest
     {
         private Material _material;
 
         [TestMethod]
-		[ExcludeFromCodeCoverage]
+
 		public void CanCreateMaterial_OkTest()
         {
             _material = new Material();

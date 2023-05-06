@@ -5,10 +5,10 @@ using System.Diagnostics.CodeAnalysis;
 namespace Test.ModelsTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class ModelsTest
     {
         [TestMethod]
-		[ExcludeFromCodeCoverage]
 		public void CreateModels_OkTest()
         {
             Model newModel = new Model();
