@@ -51,5 +51,18 @@ namespace Test.ModelsTest
             Assert.AreEqual(_newColor, _material.Color);
         }
 
+        [TestMethod]
+        public void SetType_OkTest()
+        {
+            MaterialEnum emptyEnum = new MaterialEnum();
+
+            _material = new Material()
+            {
+                Type = emptyEnum
+            };
+
+            Assert.AreEqual(emptyEnum, _material.Type);
+        }
+
     }
 }

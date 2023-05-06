@@ -6,10 +6,10 @@ using System.Reflection;
 namespace Test.ModelsTest
 {
     [TestClass]
+	[ExcludeFromCodeCoverage]
     public class PosisionatedModelTest
     {
         [TestMethod]
-		[ExcludeFromCodeCoverage]
 		public void CreatePosisionatedModel_OkTest()
         {
             PosisionatedModel posisionatedModel = new PosisionatedModel();
