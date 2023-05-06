@@ -40,6 +40,18 @@ namespace Test.ModelsTest
         }
 
         [TestMethod]
+        public void SetRegisterTime_OkTest()
+        {
+            _scene = new Scene()
+            {
+                RegisterTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"),
+            };
+            string expected = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+
+            Assert.AreEqual(expected, _scene.RegisterTime);
+        }
+
+        [TestMethod]
         public void CanGetRegisterTime_OkTest()
         {
             _scene = new Scene();
