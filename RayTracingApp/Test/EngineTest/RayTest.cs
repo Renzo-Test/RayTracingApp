@@ -38,5 +38,33 @@ namespace Test.EngineTest
 
             Assert.AreEqual(_vector, _ray.Direction);
         }
+
+        [TestMethod]
+        public void PointAt_OkTest()
+        {
+            Vector origin = new Vector()
+            {
+                X = 1,
+                Y = 1,
+                Z = 2,
+            };
+            Vector direction = new Vector()
+            {
+                X = 2,
+                Y = 3,
+                Z = 0,
+            };
+
+            _ray.Origin = origin;
+            _ray.Direction = direction;
+
+            Vector expected = new Vector()
+            {
+                X = 5,
+                Y = 7,
+                Z = 2,
+            };
+            Vector actual = _ray.PointAt(2);
+        }
     }
 }
