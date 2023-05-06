@@ -104,7 +104,15 @@ namespace Test.ControllerTest
             Client _currentClient = _controller.SignIn("Gomez", "GomezSecret1");
         }
 
-        [TestMethod]
+		[TestMethod]
+		[ExpectedException(typeof(InvalidCredentialsException))]
+		public void CheckSignIn_WrongPassword_Gomez_GomezSecret1_OkTest()
+		{
+			_controller.SignUp("Gomez", "GomezSecret1");
+			Client _currentClient = _controller.SignIn("Gomez", "wrongpassword");
+		}
+
+		[TestMethod]
         public void CheckSignIn_Registered_Gomez_GomezSecret1_OkTest()
         {
             _controller.SignUp("Gomez", "GomezSecret1");
@@ -112,7 +120,9 @@ namespace Test.ControllerTest
             Assert.AreEqual(_currentClient.Username, "Gomez");
         }
 
-        [TestMethod]
+
+
+		[TestMethod]
         public void GetCurrentClient_SignedOut_EmptyString_OkTest()
         {
             _controller.SignUp("Gomez", "GomezSecret1");
