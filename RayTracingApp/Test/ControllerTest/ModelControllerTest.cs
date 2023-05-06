@@ -5,10 +5,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class ModelControllerTest
     {
         private ModelController _modelController;
@@ -45,7 +47,8 @@ namespace Test.ControllerTest
             CollectionAssert.DoesNotContain(_modelController.ListModels("targetOwner"), anotherModel);
         }
 
-        public void ListModels_InvalidUsername_OkTest()
+        [TestMethod]
+		public void ListModels_InvalidUsername_OkTest()
         {
             List<Model> models = _modelController.ListModels("owner");
             Assert.IsFalse(models.Any());
@@ -98,7 +101,6 @@ namespace Test.ControllerTest
             {
                 Name = "  spacedName"
             };
-            _modelController.AddModel(_newModel, "user");
         }
 
         [TestMethod]
@@ -109,7 +111,6 @@ namespace Test.ControllerTest
             {
                 Name = "",
             };
-            _modelController.AddModel(_newModel, "user");
         }
 
         [TestMethod]
@@ -129,6 +130,7 @@ namespace Test.ControllerTest
             Assert.AreEqual(2, _modelController.ListModels("username").Count);
         }
 
+        [TestMethod]
         public void RemoveModels_OkTest()
         {
             Model newModel = new Model()
@@ -143,6 +145,13 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
+		[ExpectedException(typeof(NotFoundModelException))]
+		public void RemoveModels_InvalidModelName_FailTest()
+		{
+			_modelController.RemoveModel("InvaledModelName", "username");
+		}
+
+		[TestMethod]
         public void GetModel_ExistingClient_OkTest()
         {
             Client currentClient = new Client()
@@ -164,7 +173,7 @@ namespace Test.ControllerTest
 
         [TestMethod]
         [ExpectedException(typeof(NotFoundModelException))]
-        public void GetModel_ExistingClientNonExistingName_OkTest()
+        public void GetModel_ExistingClientNonExistingName_FailTest()
         {
             Client currentClient = new Client()
             {
@@ -174,9 +183,5 @@ namespace Test.ControllerTest
 
             _modelController.GetModel(currentClient.Username, "newModel");
         }
-
-
-
-
     }
 }

@@ -2,12 +2,13 @@
 using Models;
 using Models.ClientExceptions;
 using System;
-
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
 {
     [TestClass]
-    public class ClientTest
+	[ExcludeFromCodeCoverage]
+	public class ClientTest
     {
         private Client _client;
 

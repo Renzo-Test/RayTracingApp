@@ -1,14 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Test.ModelsTest
 {
     [TestClass]
+	[ExcludeFromCodeCoverage]
     public class PosisionatedModelTest
     {
         [TestMethod]
-        public void CreatePosisionatedModel_OkTest()
+		public void CreatePosisionatedModel_OkTest()
         {
             PosisionatedModel posisionatedModel = new PosisionatedModel();
         }

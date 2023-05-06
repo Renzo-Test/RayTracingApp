@@ -2,11 +2,13 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Models.FigureExceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
 {
     [TestClass]
-    public class FigureTest
+	[ExcludeFromCodeCoverage]
+	public class FigureTest
     {
         private Figure _figure;
         private Sphere _sphere;

@@ -6,11 +6,13 @@ using Models;
 using System.Collections.Generic;
 using System.Linq;
 using Controller.MaterialExceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
     [TestClass]
-    public class MaterialControllerTest
+	[ExcludeFromCodeCoverage]
+	public class MaterialControllerTest
     {
         private MaterialController _materialController;
 
@@ -80,7 +82,6 @@ namespace Test.ControllerTest
                 Name = " spacedName ",
             };
 
-            _materialController.AddMaterial(newMaterial, "user");
         }
 
         [TestMethod]
@@ -91,8 +92,6 @@ namespace Test.ControllerTest
             {
                 Name = "",
             };
-
-            _materialController.AddMaterial(newMaterial, "user");
         }
 
         [TestMethod]
@@ -113,6 +112,7 @@ namespace Test.ControllerTest
             Assert.AreEqual(2, _materialController.ListMaterials("username").Count);
         }
 
+        [TestMethod]
         public void RemoveMaterials_OkTest()
         {
             Material newMaterial = new Material()
@@ -129,7 +129,20 @@ namespace Test.ControllerTest
             Assert.IsFalse(materials.Any());
         }
 
-        [TestMethod]
+		[TestMethod]
+		[ExpectedException(typeof(NotFoundMaterialException))]
+		public void RemoveMaterials_InvalidMaterialName_OkTest()
+		{
+
+			List<Model> models = new List<Model>();
+
+			_materialController.RemoveMaterial("InvalidMaterialName", "username", models);
+
+			List<Material> materials = _materialController.ListMaterials("username");
+			Assert.IsFalse(materials.Any());
+		}
+
+		[TestMethod]
         [ExpectedException(typeof(MaterialUsedByModelException))]
         public void RemoveMaterial_MaterialUsedByModel_FailTest()
         {

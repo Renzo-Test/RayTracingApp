@@ -3,12 +3,14 @@ using MemoryRepository.MaterialRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Test.MemoryRepositoryTest
 {
     [TestClass]
-    public class MaterialRepositoryTest
+	[ExcludeFromCodeCoverage]
+	public class MaterialRepositoryTest
     {
         private MaterialRepository _materialRepository;
 
@@ -61,6 +63,7 @@ namespace Test.MemoryRepositoryTest
 
         }
 
+        [TestMethod]
         public void RemoveMaterial_OkTestt()
         {
 
@@ -86,6 +89,7 @@ namespace Test.MemoryRepositoryTest
             Assert.IsFalse(materials.Any());
         }
 
+        [TestMethod]
         public void RemoveMaterial_NotExistingMaterial_OkTest()
         {
             Color NewColor = new Color()
@@ -107,6 +111,5 @@ namespace Test.MemoryRepositoryTest
 
             Assert.IsFalse(materials.Any());
         }
-
     }
 }

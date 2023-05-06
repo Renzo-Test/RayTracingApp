@@ -1,11 +1,14 @@
 ﻿using MemoryRepository;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.MemoryRepositoryTest
 {
     [TestClass]
-    public class ClientRepositoryTest
+	[ExcludeFromCodeCoverage]
+
+	public class ClientRepositoryTest
     {
         private ClientRepository _clientRepository;
 

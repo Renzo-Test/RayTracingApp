@@ -3,11 +3,13 @@ using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.MemoryRepositoryTest
 {
     [TestClass]
-    public class ModelRepositoryTest
+	[ExcludeFromCodeCoverage]
+	public class ModelRepositoryTest
     {
         private ModelRepository _modelRepository;
         [TestInitialize]
@@ -82,6 +84,7 @@ namespace Test.MemoryRepositoryTest
             _modelRepository.AddModel(NewModel);
         }
 
+        [TestMethod]
         public void RemoveModel_OkTest()
         {
             Figure newFigure = new Sphere()
@@ -115,7 +118,7 @@ namespace Test.MemoryRepositoryTest
             CollectionAssert.DoesNotContain(iterable, NewModel);
         }
 
-
+        [TestMethod]
         public void RemoveModel_NotExistingModel_OkTest()
         {
             Figure newFigure = new Sphere()

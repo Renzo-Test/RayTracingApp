@@ -6,11 +6,13 @@ using System;
 using System.Collections.Generic;
 using MemoryRepository.Exceptions;
 using Models.SceneExceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
     [TestClass]
-    public class SceneControllerTest
+	[ExcludeFromCodeCoverage]
+	public class SceneControllerTest
     {
         private SceneController _sceneController;
 
@@ -47,8 +49,6 @@ namespace Test.ControllerTest
             {
                 Name = ""
             };
-
-            _sceneController.AddScene(newScene, "owneraName");
         }
 
         [TestMethod]
@@ -59,8 +59,6 @@ namespace Test.ControllerTest
             {
                 Name = " sceneName"
             };
-
-            _sceneController.AddScene(newScene, "owneraName");
         }
 
         [TestMethod]
@@ -71,8 +69,6 @@ namespace Test.ControllerTest
             {
                 Name = "sceneName "
             };
-
-            _sceneController.AddScene(newScene, "owneraName");
         }
 
         [TestMethod]
@@ -97,8 +93,6 @@ namespace Test.ControllerTest
                 Name = "sceneName",
                 Fov = 0
             };
-
-            _sceneController.AddScene(newScene, "owneraName");
         }
 
         [TestMethod]
@@ -110,8 +104,6 @@ namespace Test.ControllerTest
                 Name = "sceneName",
                 Fov = 161
             };
-
-            _sceneController.AddScene(newScene, "owneraName");
         }
 
         [TestMethod]
@@ -158,6 +150,7 @@ namespace Test.ControllerTest
             CollectionAssert.Contains(ownerScenes, anotherScene);
         }
 
+        [TestMethod]
         public void RemoveScene_OkTest()
         {
             Scene newScene = new Scene()

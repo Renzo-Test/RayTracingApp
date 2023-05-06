@@ -1,16 +1,19 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
 {
     [TestClass]
+	[ExcludeFromCodeCoverage]
 
-    public class MaterialTest
+	public class MaterialTest
     {
         private Material _material;
 
         [TestMethod]
-        public void CanCreateMaterial_OkTest()
+
+		public void CanCreateMaterial_OkTest()
         {
             _material = new Material();
         }
@@ -46,6 +49,19 @@ namespace Test.ModelsTest
             };
 
             Assert.AreEqual(_newColor, _material.Color);
+        }
+
+        [TestMethod]
+        public void SetType_OkTest()
+        {
+            MaterialEnum emptyEnum = new MaterialEnum();
+
+            _material = new Material()
+            {
+                Type = emptyEnum
+            };
+
+            Assert.AreEqual(emptyEnum, _material.Type);
         }
 
     }
