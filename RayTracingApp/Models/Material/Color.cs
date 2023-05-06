@@ -14,7 +14,7 @@ namespace Models
             get => _red;
             set
             {
-                if (IsValid(value))
+                if (!IsValid(value))
                 {
                     throw new InvalidColorNumberException(ColorErrorMessage);
                 }
@@ -50,7 +50,7 @@ namespace Models
 
         private static bool IsValid(int value)
         {
-            return value < 0 || value > 255;
+            return value > 0 && value < 255;
         }
     }
 }
