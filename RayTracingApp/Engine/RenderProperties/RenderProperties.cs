@@ -52,6 +52,8 @@ namespace Engine.RenderProperties
 
 		public double AspectRatio { get; set; } = 3.0 / 2.0;
 
+		public int SamplesPerPixel { get; set; }
+
 		private void IsLowerThanZero(int value)
 		{
 			if(value <= 0)

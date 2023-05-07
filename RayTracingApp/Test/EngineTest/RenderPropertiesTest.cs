@@ -96,7 +96,7 @@ namespace Test.EngineTest
 		{
 			_properties.SamplesPerPixel = 50;
 
-			Assert.AreEqual(50, _properties.SamplesPerPixel)
+			Assert.AreEqual(50, _properties.SamplesPerPixel);
 		}
 	}
 }
