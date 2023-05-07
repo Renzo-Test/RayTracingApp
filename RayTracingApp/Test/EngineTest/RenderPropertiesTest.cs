@@ -111,5 +111,13 @@ namespace Test.EngineTest
 		{
 			Assert.AreEqual(50, _properties.SamplesPerPixel);
 		}
+
+		[TestMethod]
+		public void SetMaxDepth_OkTest()
+		{
+			_properties.MaxDepth = 50;
+
+			Assert.AreEqual(50, _properties.MaxDepth);
+		}
 	}
 }
