@@ -16,6 +16,15 @@ namespace Engine
 
             Bitmap image = new Bitmap(width, height);
 
+            string line = imgReader.ReadLine();
+            string[] colors = line.Split(' ');
+
+            int r = int.Parse(colors[0]);
+            int g = int.Parse(colors[1]);
+            int b = int.Parse(colors[2]);
+
+            image.SetPixel(0, 0, System.Drawing.Color.FromArgb(r, g, b));
+
             return image;
         }
 

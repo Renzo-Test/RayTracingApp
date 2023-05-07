@@ -37,6 +37,14 @@ namespace Test.EngineTest
             Bitmap image = _scanner.ScanImage("P3\n1 1\n255\n255 0 0");
         }
 
+        [TestMethod]
+        public void CanSetPixel_OkTest()
+        {
+            Bitmap image = _scanner.ScanImage("P3\n1 1\n255\n255 0 0");
+
+            Assert.AreEqual(image.GetPixel(0, 0), System.Drawing.Color.FromArgb(255, 0, 0));
+        }
+
 
 
     }
