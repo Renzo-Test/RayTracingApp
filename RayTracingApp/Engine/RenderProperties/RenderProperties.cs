@@ -70,7 +70,7 @@ namespace Engine.RenderProperties
 			}
 		}
 
-		private int _maxDepth;
+		private int _maxDepth = 50;
 		public int MaxDepth
 		{
 			get => _maxDepth;
