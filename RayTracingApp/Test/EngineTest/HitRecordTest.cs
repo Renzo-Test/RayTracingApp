@@ -7,6 +7,14 @@ namespace Test.EngineTest
 	[TestClass]
 	public class HitRecordTest
 	{
+		private HitRecord _hitRecord;
+
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_hitRecord = new HitRecord();
+		}
+
 		[TestMethod]
 		public void CreateHitRecord_OkTest()
 		{
@@ -16,19 +24,17 @@ namespace Test.EngineTest
 		[TestMethod]
 		public void SetT_OkTest()
 		{
-			HitRecord hitRecord = new HitRecord();
-			hitRecord.T = 1;
+			_hitRecord.T = 1;
 
-			Assert.AreEqual(1, hitRecord.T);
+			Assert.AreEqual(1, _hitRecord.T);
 		}
 
 		[TestMethod]
 		public void SetT_double_OkTest()
 		{
-			HitRecord hitRecord = new HitRecord();
-			hitRecord.T = 1.5;
+			_hitRecord.T = 1.5;
 
-			Assert.AreEqual(1.5, hitRecord.T);
+			Assert.AreEqual(1.5, _hitRecord.T);
 		}
 	}
 }
