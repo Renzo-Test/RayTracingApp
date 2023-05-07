@@ -16,14 +16,9 @@ namespace Engine
 
             Bitmap image = new Bitmap(width, height);
 
-            string line = imgReader.ReadLine();
-            string[] colors = line.Split(' ');
+            var (red, green, blue) = GetPixelColor(imgReader);
 
-            int r = int.Parse(colors[0]);
-            int g = int.Parse(colors[1]);
-            int b = int.Parse(colors[2]);
-
-            image.SetPixel(0, 0, System.Drawing.Color.FromArgb(r, g, b));
+            image.SetPixel(0, 0, System.Drawing.Color.FromArgb(red, green, blue));
 
             return image;
         }
@@ -48,6 +43,17 @@ namespace Engine
         {
             string line = imgReader.ReadLine();
             return int.Parse(line);
+        }
+        private static (int, int, int) GetPixelColor(StringReader imgReader)
+        {
+            string line = imgReader.ReadLine();
+            string[] colors = line.Split(' ');
+
+            int r = int.Parse(colors[0]);
+            int g = int.Parse(colors[1]);
+            int b = int.Parse(colors[2]);
+
+            return (r, g, b);
         }
     }
 }
