@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +48,7 @@
     <Compile Include="RenderProperties\Exceptions\InputLowerThanZero.cs" />
     <Compile Include="RenderProperties\Exceptions\InvalidRenderPropertiesException.cs" />
     <Compile Include="RenderProperties\RenderProperties.cs" />
+    <Compile Include="Scanner.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
