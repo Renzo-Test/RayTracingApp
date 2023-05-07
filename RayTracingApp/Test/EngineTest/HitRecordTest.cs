@@ -54,5 +54,14 @@ namespace Test.EngineTest
 
 			Assert.AreEqual(expected, _hitRecord.Normal);
 		}
+
+		[TestMethod]
+		public void SetAttenuation_OkTest()
+		{
+			Vector expected = new Vector();
+			_hitRecord.Attenuation = expected;
+
+			Assert.AreEqual(expected, _hitRecord.Attenuation);
+		}
 	}
 }
