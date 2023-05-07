@@ -8,6 +8,6 @@ namespace Engine
 {
 	public class HitRecord
 	{
-		public int T { get; set; }
+		public double T { get; set; }
 	}
 }
