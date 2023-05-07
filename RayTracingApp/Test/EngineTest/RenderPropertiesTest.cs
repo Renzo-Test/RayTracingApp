@@ -100,6 +100,13 @@ namespace Test.EngineTest
 		}
 
 		[TestMethod]
+		[ExpectedException (typeof(InvalidRenderPropertiesInputException))]
+		public void SetSamplesPerPixel_LowerThanMin_FailTest()
+		{
+			_properties.SamplesPerPixel = 0;
+		}
+
+		[TestMethod]
 		public void DefaultSamplesPerPixel_OkTest()
 		{
 			Assert.AreEqual(50, _properties.SamplesPerPixel);
