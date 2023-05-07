@@ -2,8 +2,8 @@
 
 namespace Models.MaterialExceptions
 {
-    public class InvalidColorNumberException : Exception
-    {
-        public InvalidColorNumberException(string message) : base(message) { }
-    }
+	public class InvalidColorNumberException : Exception
+	{
+		public InvalidColorNumberException(string message) : base(message) { }
+	}
 }

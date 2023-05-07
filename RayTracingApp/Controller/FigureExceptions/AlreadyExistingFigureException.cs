@@ -2,8 +2,8 @@
 
 namespace Controller.FigureExceptions
 {
-    public class AlreadyExistingFigureException : InvalidFigureInputException
-    {
-        public AlreadyExistingFigureException(string message) : base(message) { }
-    }
+	public class AlreadyExistingFigureException : InvalidFigureInputException
+	{
+		public AlreadyExistingFigureException(string message) : base(message) { }
+	}
 }

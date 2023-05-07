@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MemoryRepository.Exceptions
 {
-    public class NotFoundMaterialException : Exception
-    {
-        public NotFoundMaterialException(string message) : base(message) { }
-    }
+	public class NotFoundMaterialException : Exception
+	{
+		public NotFoundMaterialException(string message) : base(message) { }
+	}
 }
