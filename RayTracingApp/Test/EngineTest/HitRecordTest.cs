@@ -12,5 +12,14 @@ namespace Test.EngineTest
 		{
 			HitRecord hitRecord = new HitRecord();
 		}
+
+		[TestMethod]
+		public void SetT_OkTest()
+		{
+			HitRecord hitRecord = new HitRecord();
+			hitRecord.T = 1;
+
+			Assert.AreEqual(1, hitRecord.T);
+		}
 	}
 }
