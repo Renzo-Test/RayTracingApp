@@ -38,5 +38,13 @@ namespace Test.EngineTest
 
 			Assert.AreEqual(300, properties.ResolutionY);
 		}
+
+		[TestMethod]
+		public void DefaultResolutionY_OkTest()
+		{
+			RenderProperties properties = new RenderProperties();
+
+			Assert.AreEqual(200, properties.ResolutionY);
+		}
 	}
 }
