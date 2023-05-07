@@ -70,6 +70,8 @@ namespace Engine.RenderProperties
 			}
 		}
 
+		public int MaxDepth { get; set; }
+
 		private void IsLowerThanZero(int value)
 		{
 			if(value <= 0)
