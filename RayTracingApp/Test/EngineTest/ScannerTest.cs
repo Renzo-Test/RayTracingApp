@@ -1,7 +1,7 @@
 ﻿using Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 
 namespace Test.EngineTest
 {
@@ -22,6 +22,16 @@ namespace Test.EngineTest
         {
             _scanner = new Scanner();
         }
+
+        [TestMethod]
+        public void CreateImage_OkTest()
+        {
+            Bitmap image = _scanner.ScanImage("P3\n1 1\n255 0 0");
+
+            Assert.AreEqual(image.Height, 1);
+        }
+
+
 
     }
 }
