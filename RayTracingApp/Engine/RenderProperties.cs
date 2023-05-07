@@ -17,7 +17,7 @@ namespace Engine
 			}
 			set
 			{
-				double aspectRatio = AspectRatio();
+				double aspectRatio = AspectRatio;
 				_resolutionX = value;
 				_resolutionY = (int)(_resolutionX / aspectRatio);
 			}
@@ -32,15 +32,12 @@ namespace Engine
 			}
 			set
 			{
-				double aspectRatio = AspectRatio();
+				double aspectRatio = AspectRatio;
 				_resolutionY = value;
 				_resolutionX = (int)(_resolutionY * aspectRatio);
 			}
 		}
 
-		public double AspectRatio()
-		{
-			return (double)ResolutionX / ResolutionY;
-		}
+		public double AspectRatio { get; set; } = 3 / 2;
 	}
 }
