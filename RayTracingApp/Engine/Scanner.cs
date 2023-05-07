@@ -12,6 +12,8 @@ namespace Engine
 
             string ppmVersion = GetVersion(imgReader);
             var (width, height) = GetDimensions(imgReader);
+            string line = imgReader.ReadLine();
+            int maxPixelValue  = int.Parse(line);
 
             Bitmap image = new Bitmap(width, height);
 

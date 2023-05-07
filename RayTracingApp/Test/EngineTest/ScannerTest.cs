@@ -26,9 +26,15 @@ namespace Test.EngineTest
         [TestMethod]
         public void CreateImage_OkTest()
         {
-            Bitmap image = _scanner.ScanImage("P3\n1 1\n255 0 0");
+            Bitmap image = _scanner.ScanImage("P3\n1 1\n255\n255 0 0");
 
             Assert.AreEqual(image.Height, 1);
+        }
+
+        [TestMethod]
+        public void CanReadMaxPixelValue_OkTest()
+        {
+            Bitmap image = _scanner.ScanImage("P3\n1 1\n255\n255 0 0");
         }
 
 
