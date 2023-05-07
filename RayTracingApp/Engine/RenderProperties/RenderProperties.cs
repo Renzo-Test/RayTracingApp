@@ -40,9 +40,18 @@ namespace Engine.RenderProperties
 			}
 			set
 			{
-				_resolutionY = value;
-				_resolutionX = (int)(_resolutionY * AspectRatio);
+				try
+				{
+					IsLowerThanZero(value);
+					_resolutionY = value;
+					_resolutionX = (int)(_resolutionY * AspectRatio);
+				}
+				catch (InvalidRenderPropertiesInputException ex)
+				{
+					throw new InvalidRenderPropertiesInputException(ex.Message);
+				}
 			}
+
 		}
 
 		public double AspectRatio { get; set; } = 3.0 / 2.0;
