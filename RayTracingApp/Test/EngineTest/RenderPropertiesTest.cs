@@ -1,4 +1,5 @@
-﻿using Engine;
+﻿using Engine.RenderProperties;
+using Engine.RenderProperties.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -30,7 +31,7 @@ namespace Test.EngineTest
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(InvalidRenderInputException))]
+		[ExpectedException(typeof(InvalidRenderPropertiesInputException))]
 		public void SetResolutionX_LowerThanMin_FailTest()
 		{
 			_properties.ResolutionX = 0;

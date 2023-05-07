@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Engine.RenderProperties.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine
+namespace Engine.RenderProperties
 {
 	public class RenderProperties
 	{
@@ -17,8 +18,16 @@ namespace Engine
 			}
 			set
 			{
-				_resolutionX = value;
-				_resolutionY = (int)(_resolutionX / AspectRatio);
+				try
+				{
+					IsLowerThanZero(value);
+					_resolutionX = value;
+					_resolutionY = (int)(_resolutionX / AspectRatio);
+				}
+				catch (InvalidRenderPropertiesInputException ex)
+				{
+					throw new InvalidRenderPropertiesInputException(ex.Message);
+				}
 			}
 		}
 
@@ -37,5 +46,13 @@ namespace Engine
 		}
 
 		public double AspectRatio { get; set; } = 3.0 / 2.0;
+
+		private void IsLowerThanZero(int value)
+		{
+			if(value <= 0)
+			{
+				throw new InvalidRenderPropertiesInputException("This value must be greater than zero");
+			}
+		}
 	}
 }
