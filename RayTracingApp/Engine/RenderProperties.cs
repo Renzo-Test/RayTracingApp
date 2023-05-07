@@ -13,7 +13,7 @@ namespace Engine
 
 		public double AspectRatio()
 		{
-			return 1.5;
+			return (double)ResolutionX / (double)ResolutionY;
 		}
 	}
 }
