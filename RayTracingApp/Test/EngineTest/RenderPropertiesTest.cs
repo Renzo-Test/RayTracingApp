@@ -24,7 +24,6 @@ namespace Test.EngineTest
 		[TestMethod]
 		public void SetResolutionX_OkTest()
 		{
-			RenderProperties _properties = new RenderProperties();
 			_properties.ResolutionX = 300;
 
 			Assert.AreEqual(300, _properties.ResolutionX);
@@ -33,15 +32,12 @@ namespace Test.EngineTest
 		[TestMethod]
 		public void DefaultResolutionX_OkTest()
 		{
-			RenderProperties _properties = new RenderProperties();
-
 			Assert.AreEqual(300, _properties.ResolutionX);
 		}
 
 		[TestMethod]
 		public void SetResolutionY_OkTest()
 		{
-			RenderProperties _properties = new RenderProperties();
 			_properties.ResolutionY = 300;
 
 			Assert.AreEqual(300, _properties.ResolutionY);
@@ -50,7 +46,6 @@ namespace Test.EngineTest
 		[TestMethod]
 		public void DefaultResolutionY_OkTest()
 		{
-			RenderProperties _properties = new RenderProperties();
 
 			Assert.AreEqual(200, _properties.ResolutionY);
 		}
