@@ -48,6 +48,22 @@ namespace Test.EngineTest
             Assert.AreEqual(pixel, expectedPixel);
         }
 
+        [TestMethod]
+        public void CanSetPixel_MultiplePixels_OkTest()
+        {
+            Bitmap image = _scanner.ScanImage("P3\n2 1\n255\n255 0 0\n0 255 0");
+
+            Color firstPixel = image.GetPixel(0, 0);
+            Color secondPixel = image.GetPixel(0, 1);
+
+            Color firstExpectedPixel = System.Drawing.Color.FromArgb(255, 0, 0);
+            Color secondExpectedPixel = System.Drawing.Color.FromArgb(0, 255, 0);
+
+            Assert.AreEqual(firstPixel, firstExpectedPixel);
+            Assert.AreEqual(secondPixel, secondExpectedPixel);
+
+        }
+
 
 
     }
