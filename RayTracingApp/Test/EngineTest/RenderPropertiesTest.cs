@@ -22,6 +22,12 @@ namespace Test.EngineTest
 			Assert.AreEqual(300, properties.ResolutionX);
 		}
 
+		[TestMethod]
+		public void DefaultResolutionX_OkTest()
+		{
+			RenderProperties properties = new RenderProperties();
 
+			Assert.AreEqual(300, properties.ResolutionX);
+		}
 	}
 }
