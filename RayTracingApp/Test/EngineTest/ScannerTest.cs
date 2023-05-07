@@ -42,7 +42,10 @@ namespace Test.EngineTest
         {
             Bitmap image = _scanner.ScanImage("P3\n1 1\n255\n255 0 0");
 
-            Assert.AreEqual(image.GetPixel(0, 0), System.Drawing.Color.FromArgb(255, 0, 0));
+            Color pixel = image.GetPixel(0, 0);
+            Color expectedPixel = System.Drawing.Color.FromArgb(255, 0, 0);
+
+            Assert.AreEqual(pixel, expectedPixel);
         }
 
 
