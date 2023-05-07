@@ -16,9 +16,14 @@ namespace Engine
 
             Bitmap image = new Bitmap(width, height);
 
-            var (red, green, blue) = GetPixelColor(imgReader);
-
-            image.SetPixel(0, 0, CreateColor(red, green, blue));
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var (red, green, blue) = GetPixelColor(imgReader);
+                    image.SetPixel(x, y, CreateColor(red, green, blue));
+                }
+            }
 
             return image;
         }
