@@ -9,6 +9,6 @@ namespace Engine
 	public class RenderProperties
 	{
 		public int ResolutionX { get; set; } = 300;
-		public int ResolutionY { get; set; }
+		public int ResolutionY { get; set; } = 200;
 	}
 }
