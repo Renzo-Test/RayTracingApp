@@ -77,5 +77,13 @@ namespace Test.EngineTest
 
 			Assert.AreEqual(400, _properties.ResolutionY);
 		}
+
+		[TestMethod]
+		public void SetResolutionYNotChangeAspectRatio_OkTest()
+		{
+			_properties.ResolutionY = 400;
+
+			Assert.AreEqual(600, _properties.ResolutionX);
+		}
 	}
 }
