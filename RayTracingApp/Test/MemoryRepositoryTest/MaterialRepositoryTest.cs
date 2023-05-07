@@ -1,5 +1,4 @@
-﻿using MemoryRepository.Exceptions;
-using MemoryRepository.MaterialRepository;
+﻿using MemoryRepository.MaterialRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using System.Collections.Generic;
@@ -8,108 +7,108 @@ using System.Linq;
 
 namespace Test.MemoryRepositoryTest
 {
-    [TestClass]
+	[TestClass]
 	[ExcludeFromCodeCoverage]
 	public class MaterialRepositoryTest
-    {
-        private MaterialRepository _materialRepository;
+	{
+		private MaterialRepository _materialRepository;
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _materialRepository = new MaterialRepository();
-        }
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_materialRepository = new MaterialRepository();
+		}
 
-        [TestMethod]
-        public void GetFiguresByClient_OwnerName_OkTest()
-        {
-            Color NewColor = new Color()
-            {
-                Red = 222,
-                Green = 222,
-                Blue = 222,
-            };
+		[TestMethod]
+		public void GetFiguresByClient_OwnerName_OkTest()
+		{
+			Color NewColor = new Color()
+			{
+				Red = 222,
+				Green = 222,
+				Blue = 222,
+			};
 
-            Material NewMaterial = new Material()
-            {
-                Name = "Test",
-                Owner = "OwnerName",
-                Color = NewColor,
-            };
+			Material NewMaterial = new Material()
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+				Color = NewColor,
+			};
 
-            _materialRepository.AddMaterial(NewMaterial);
+			_materialRepository.AddMaterial(NewMaterial);
 
-            Assert.AreEqual(NewMaterial, _materialRepository.GetMaterialsByClient("OwnerName")[0]);
-        }
+			Assert.AreEqual(NewMaterial, _materialRepository.GetMaterialsByClient("OwnerName")[0]);
+		}
 
-        [TestMethod]
-        public void AddMaterial_OkTest()
-        {
-            Color NewColor = new Color()
-            {
-                Red = 222,
-                Green = 222,
-                Blue = 222,
-            };
+		[TestMethod]
+		public void AddMaterial_OkTest()
+		{
+			Color NewColor = new Color()
+			{
+				Red = 222,
+				Green = 222,
+				Blue = 222,
+			};
 
-            Material NewMaterial = new Material()
-            {
-                Name = "Test",
-                Owner = "OwnerName",
-                Color = NewColor,
-            };
+			Material NewMaterial = new Material()
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+				Color = NewColor,
+			};
 
-            _materialRepository.AddMaterial(NewMaterial);
+			_materialRepository.AddMaterial(NewMaterial);
 
-        }
+		}
 
-        [TestMethod]
-        public void RemoveMaterial_OkTestt()
-        {
+		[TestMethod]
+		public void RemoveMaterial_OkTestt()
+		{
 
-            Color NewColor = new Color()
-            {
-                Red = 222,
-                Green = 222,
-                Blue = 222,
-            };
+			Color NewColor = new Color()
+			{
+				Red = 222,
+				Green = 222,
+				Blue = 222,
+			};
 
-            Material NewMaterial = new Material()
-            {
-                Name = "Test",
-                Owner = "OwnerName",
-                Color = NewColor,
-            };
+			Material NewMaterial = new Material()
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+				Color = NewColor,
+			};
 
 
-            _materialRepository.AddMaterial(NewMaterial);
-            _materialRepository.RemoveMaterial(NewMaterial);
-            List<Material> materials = _materialRepository.GetMaterialsByClient("OwnerName");
+			_materialRepository.AddMaterial(NewMaterial);
+			_materialRepository.RemoveMaterial(NewMaterial);
+			List<Material> materials = _materialRepository.GetMaterialsByClient("OwnerName");
 
-            Assert.IsFalse(materials.Any());
-        }
+			Assert.IsFalse(materials.Any());
+		}
 
-        [TestMethod]
-        public void RemoveMaterial_NotExistingMaterial_OkTest()
-        {
-            Color NewColor = new Color()
-            {
-                Red = 222,
-                Green = 222,
-                Blue = 222,
-            };
+		[TestMethod]
+		public void RemoveMaterial_NotExistingMaterial_OkTest()
+		{
+			Color NewColor = new Color()
+			{
+				Red = 222,
+				Green = 222,
+				Blue = 222,
+			};
 
-            Material NewMaterial = new Material()
-            {
-                Name = "Test",
-                Owner = "OwnerName",
-                Color = NewColor,
-            };
+			Material NewMaterial = new Material()
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+				Color = NewColor,
+			};
 
-            _materialRepository.RemoveMaterial(NewMaterial);
-            List<Material> materials = _materialRepository.GetMaterialsByClient("OwnerName");
+			_materialRepository.RemoveMaterial(NewMaterial);
+			List<Material> materials = _materialRepository.GetMaterialsByClient("OwnerName");
 
-            Assert.IsFalse(materials.Any());
-        }
-    }
+			Assert.IsFalse(materials.Any());
+		}
+	}
 }

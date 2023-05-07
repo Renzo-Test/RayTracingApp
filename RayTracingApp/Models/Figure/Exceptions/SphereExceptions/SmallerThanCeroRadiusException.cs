@@ -2,8 +2,8 @@
 
 namespace Models.SphereExceptions
 {
-    public class SmallerThanCeroRadiusException : InvalidFigureInputException
-    {
-        public SmallerThanCeroRadiusException(string message) : base(message) { }
-    }
+	public class SmallerThanCeroRadiusException : InvalidFigureInputException
+	{
+		public SmallerThanCeroRadiusException(string message) : base(message) { }
+	}
 }

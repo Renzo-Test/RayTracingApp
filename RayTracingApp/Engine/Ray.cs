@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Engine
+﻿namespace Engine
 {
-    public class Ray
-    {
-        public Vector Origin { get; set; }
-        public Vector Direction { get; set; }
+	public class Ray
+	{
+		public Vector Origin { get; set; }
+		public Vector Direction { get; set; }
 
-        public Vector PointAt(double multiplier)
-        {
-            return Origin.Add(Direction.Multiply(multiplier));
-        }
-    }
+		public Vector PointAt(double multiplier)
+		{
+			return Origin.Add(Direction.Multiply(multiplier));
+		}
+	}
 }

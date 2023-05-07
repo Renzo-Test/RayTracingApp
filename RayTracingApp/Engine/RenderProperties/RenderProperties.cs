@@ -1,9 +1,4 @@
 ﻿using Engine.RenderProperties.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Engine.RenderProperties
 {
@@ -90,7 +85,7 @@ namespace Engine.RenderProperties
 
 		private void IsLowerThanZero(int value)
 		{
-			if(value <= 0)
+			if (value <= 0)
 			{
 				throw new InvalidRenderPropertiesInputException(ValueLowerThanZero);
 			}

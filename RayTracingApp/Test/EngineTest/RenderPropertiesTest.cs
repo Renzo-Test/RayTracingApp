@@ -1,7 +1,6 @@
 ﻿using Engine.RenderProperties;
 using Engine.RenderProperties.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Test.EngineTest
@@ -100,7 +99,7 @@ namespace Test.EngineTest
 		}
 
 		[TestMethod]
-		[ExpectedException (typeof(InvalidRenderPropertiesInputException))]
+		[ExpectedException(typeof(InvalidRenderPropertiesInputException))]
 		public void SetSamplesPerPixel_LowerThanMin_FailTest()
 		{
 			_properties.SamplesPerPixel = 0;

@@ -2,8 +2,8 @@
 
 namespace Models.SceneExceptions
 {
-    public class InvalidSceneInputException : Exception
-    {
-        public InvalidSceneInputException(string message) : base(message) { }
-    }
+	public class InvalidSceneInputException : Exception
+	{
+		public InvalidSceneInputException(string message) : base(message) { }
+	}
 }

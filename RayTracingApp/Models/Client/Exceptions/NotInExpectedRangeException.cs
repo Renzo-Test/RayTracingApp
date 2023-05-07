@@ -1,8 +1,8 @@
 ﻿
 namespace Models.ClientExceptions
 {
-    public class NotInExpectedRangeException : InvalidCredentialsException
-    {
-        public NotInExpectedRangeException(string message) : base(message) { }
-    }
+	public class NotInExpectedRangeException : InvalidCredentialsException
+	{
+		public NotInExpectedRangeException(string message) : base(message) { }
+	}
 }

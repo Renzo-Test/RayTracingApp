@@ -4,48 +4,48 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
 {
-    [TestClass]
+	[TestClass]
 	[ExcludeFromCodeCoverage]
 	public class CoordinateTest
-    {
-        [TestMethod]
+	{
+		[TestMethod]
 		public void CreateCoordinate_OkTest()
-        {
-            Coordinate newCoordinate = new Coordinate();
-        }
+		{
+			Coordinate newCoordinate = new Coordinate();
+		}
 
-        [TestMethod]
-        public void SetX_OkTest()
-        {
-            Coordinate newCoordinate = new Coordinate()
-            {
-                X = 10,
-            };
+		[TestMethod]
+		public void SetX_OkTest()
+		{
+			Coordinate newCoordinate = new Coordinate()
+			{
+				X = 10,
+			};
 
-            Assert.AreEqual(10, newCoordinate.X);
-        }
+			Assert.AreEqual(10, newCoordinate.X);
+		}
 
-        [TestMethod]
-        public void SetY_OkTest()
-        {
-            Coordinate newCoordinate = new Coordinate()
-            {
-                Y = 10,
-            };
+		[TestMethod]
+		public void SetY_OkTest()
+		{
+			Coordinate newCoordinate = new Coordinate()
+			{
+				Y = 10,
+			};
 
-            Assert.AreEqual(10, newCoordinate.Y);
-        }
+			Assert.AreEqual(10, newCoordinate.Y);
+		}
 
-        [TestMethod]
-        public void SetZ_OkTest()
-        {
-            Coordinate newCoordinate = new Coordinate()
-            {
-                Z = 10,
-            };
+		[TestMethod]
+		public void SetZ_OkTest()
+		{
+			Coordinate newCoordinate = new Coordinate()
+			{
+				Z = 10,
+			};
 
-            Assert.AreEqual(10, newCoordinate.Z);
-        }
+			Assert.AreEqual(10, newCoordinate.Z);
+		}
 
-    }
+	}
 }

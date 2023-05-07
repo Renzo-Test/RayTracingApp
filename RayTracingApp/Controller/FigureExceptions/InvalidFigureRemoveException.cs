@@ -2,8 +2,8 @@
 
 namespace Controller.FigureExceptions
 {
-    public class InvalidFigureRemoveException : Exception
-    {
-        public InvalidFigureRemoveException(string message) : base(message) { }
-    }
+	public class InvalidFigureRemoveException : Exception
+	{
+		public InvalidFigureRemoveException(string message) : base(message) { }
+	}
 }
