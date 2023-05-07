@@ -8,7 +8,21 @@ namespace Engine
 {
 	public class RenderProperties
 	{
-		public int ResolutionX { get; set; } = 300;
+		private int _resolutionX = 300;
+		public int ResolutionX
+		{
+			get
+			{
+				return _resolutionX;
+			}
+			set
+			{
+				double aspectRatio = AspectRatio();
+				_resolutionX = value;
+				ResolutionY = (int)(_resolutionX / aspectRatio);
+			}
+		}
+
 		public int ResolutionY { get; set; } = 200;
 
 		public double AspectRatio()
