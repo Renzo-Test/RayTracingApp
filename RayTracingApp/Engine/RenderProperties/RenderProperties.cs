@@ -9,6 +9,8 @@ namespace Engine.RenderProperties
 {
 	public class RenderProperties
 	{
+		private const string ValueLowerThanZero = "This value must be greater than zero";
+
 		private int _resolutionX = 300;
 		public int ResolutionX
 		{
@@ -54,7 +56,7 @@ namespace Engine.RenderProperties
 		{
 			if(value <= 0)
 			{
-				throw new InvalidRenderPropertiesInputException("This value must be greater than zero");
+				throw new InvalidRenderPropertiesInputException(ValueLowerThanZero);
 			}
 		}
 	}

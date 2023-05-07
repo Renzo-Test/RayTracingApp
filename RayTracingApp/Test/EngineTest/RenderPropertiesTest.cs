@@ -39,12 +39,6 @@ namespace Test.EngineTest
 			_properties.ResolutionX = 0;
 		}
 
-		[TestMethod]
-		[ExpectedException(typeof(InvalidRenderPropertiesInputException))]
-		public void SetResolutionY_LowerThanMin_FailTest()
-		{
-			_properties.ResolutionY = 0;
-		}
 
 		[TestMethod]
 		public void DefaultResolutionX_OkTest()
@@ -58,6 +52,13 @@ namespace Test.EngineTest
 			_properties.ResolutionY = 300;
 
 			Assert.AreEqual(300, _properties.ResolutionY);
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(InvalidRenderPropertiesInputException))]
+		public void SetResolutionY_LowerThanMin_FailTest()
+		{
+			_properties.ResolutionY = 0;
 		}
 
 		[TestMethod]
