@@ -46,28 +46,15 @@ namespace Test.EngineTest
 		[TestMethod]
 		public void DefaultResolutionY_OkTest()
 		{
-
 			Assert.AreEqual(200, _properties.ResolutionY);
 		}
 
 		[TestMethod]
-		public void AspectRatio_OkTest()
+		public void SetAspectRatio_OkTest()
 		{
-			_properties.ResolutionX = 600;
-			_properties.ResolutionY = 400;
-			double expected = 3.0 / 2.0;
+			_properties.AspectRatio = 1;
 
-			Assert.AreEqual(expected, _properties.AspectRatio());
-		}
-
-		[TestMethod]
-		public void AspectRatio_otherValue_OkTest()
-		{
-			_properties.ResolutionX = 1920;
-			_properties.ResolutionY = 1080;
-			double expected = 16.0 / 9.0;
-
-			Assert.AreEqual(expected, _properties.AspectRatio());
+			Assert.AreEqual(1, _properties.AspectRatio);
 		}
 
 		[TestMethod]
