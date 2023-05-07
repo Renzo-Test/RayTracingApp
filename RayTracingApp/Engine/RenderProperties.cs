@@ -31,7 +31,6 @@ namespace Engine
 			}
 			set
 			{
-				double aspectRatio = AspectRatio;
 				_resolutionY = value;
 				_resolutionX = (int)(_resolutionY * AspectRatio);
 			}
