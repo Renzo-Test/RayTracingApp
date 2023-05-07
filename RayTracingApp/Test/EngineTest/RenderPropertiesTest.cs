@@ -12,5 +12,14 @@ namespace Test.EngineTest
 		{
 			RenderProperties properties = new RenderProperties();
 		}
+
+		[TestMethod]
+		public void SetResolutionX_OkTest()
+		{
+			RenderProperties properties = new RenderProperties();
+			properties.ResolutionX = 300;
+
+			Assert.AreEqual(300, properties.ResolutionX);
+		}
 	}
 }
