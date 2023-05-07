@@ -56,7 +56,7 @@ namespace Test.EngineTest
 			_properties.ResolutionX = 600;
 			_properties.ResolutionY = 400;
 
-			Assert.AreEqual(1.5, _properties.AspectRatio);
+			Assert.AreEqual(1.5, _properties.AspectRatio());
 		}
 	}
 }
