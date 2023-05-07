@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HitRecord.cs" />
     <Compile Include="Ray.cs" />
     <Compile Include="Progress.cs" />
     <Compile Include="Vector.cs" />
