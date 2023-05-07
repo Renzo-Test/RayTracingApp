@@ -8,5 +8,6 @@ namespace Engine
 {
 	public class RenderProperties
 	{
+		public int ResolutionX { get; set; }
 	}
 }

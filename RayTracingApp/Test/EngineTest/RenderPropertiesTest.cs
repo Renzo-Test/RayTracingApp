@@ -21,5 +21,7 @@ namespace Test.EngineTest
 
 			Assert.AreEqual(300, properties.ResolutionX);
 		}
+
+
 	}
 }
