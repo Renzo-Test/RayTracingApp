@@ -44,6 +44,9 @@
     <Compile Include="HitRecord.cs" />
     <Compile Include="Ray.cs" />
     <Compile Include="Progress.cs" />
+    <Compile Include="RenderProperties\Exceptions\InputLowerThanZero.cs" />
+    <Compile Include="RenderProperties\Exceptions\InvalidRenderPropertiesException.cs" />
+    <Compile Include="RenderProperties\RenderProperties.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
