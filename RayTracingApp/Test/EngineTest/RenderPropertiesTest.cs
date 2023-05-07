@@ -119,5 +119,12 @@ namespace Test.EngineTest
 
 			Assert.AreEqual(50, _properties.MaxDepth);
 		}
+
+		[TestMethod]
+		[ExpectedException(typeof(InvalidRenderPropertiesInputException))]
+		public void SetMaxDepth_LowerThanMin_OkTest()
+		{
+			_properties.MaxDepth = 0;
+		}
 	}
 }
