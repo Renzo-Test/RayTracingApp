@@ -70,7 +70,23 @@ namespace Engine.RenderProperties
 			}
 		}
 
-		public int MaxDepth { get; set; }
+		private int _maxDepth;
+		public int MaxDepth
+		{
+			get => _maxDepth;
+			set
+			{
+				try
+				{
+					IsLowerThanZero(value);
+					_maxDepth = value;
+				}
+				catch (InvalidRenderPropertiesInputException ex)
+				{
+					throw new InvalidRenderPropertiesInputException(ex.Message);
+				}
+			}
+		}
 
 		private void IsLowerThanZero(int value)
 		{
