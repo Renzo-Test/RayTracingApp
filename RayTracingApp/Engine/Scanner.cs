@@ -18,7 +18,7 @@ namespace Engine
 
             var (red, green, blue) = GetPixelColor(imgReader);
 
-            image.SetPixel(0, 0, System.Drawing.Color.FromArgb(red, green, blue));
+            image.SetPixel(0, 0, CreateColor(red, green, blue));
 
             return image;
         }
@@ -54,6 +54,10 @@ namespace Engine
             int b = int.Parse(colors[2]);
 
             return (r, g, b);
+        }
+        static Color CreateColor(int red, int green, int blue)
+        {
+            return Color.FromArgb(red, green, blue);
         }
     }
 }
