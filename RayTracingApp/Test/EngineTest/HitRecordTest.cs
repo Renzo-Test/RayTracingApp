@@ -36,5 +36,14 @@ namespace Test.EngineTest
 
 			Assert.AreEqual(1.5, _hitRecord.T);
 		}
+
+		[TestMethod]
+		public void SetIntersection_OkTest()
+		{
+			Vector expected = new Vector();
+			_hitRecord.Intersection = expected;
+
+			Assert.AreEqual(expected, _hitRecord.Intersection)
+		}
 	}
 }
