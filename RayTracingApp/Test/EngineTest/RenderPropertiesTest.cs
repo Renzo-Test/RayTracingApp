@@ -7,6 +7,14 @@ namespace Test.EngineTest
 	[TestClass]
 	public class RenderPropertiesTest
 	{
+		private RenderProperties _properties;
+
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_properties = new RenderProperties();
+		}
+
 		[TestMethod]
 		public void CreateRenderProperties_OkTest()
 		{
@@ -16,35 +24,35 @@ namespace Test.EngineTest
 		[TestMethod]
 		public void SetResolutionX_OkTest()
 		{
-			RenderProperties properties = new RenderProperties();
-			properties.ResolutionX = 300;
+			RenderProperties _properties = new RenderProperties();
+			_properties.ResolutionX = 300;
 
-			Assert.AreEqual(300, properties.ResolutionX);
+			Assert.AreEqual(300, _properties.ResolutionX);
 		}
 
 		[TestMethod]
 		public void DefaultResolutionX_OkTest()
 		{
-			RenderProperties properties = new RenderProperties();
+			RenderProperties _properties = new RenderProperties();
 
-			Assert.AreEqual(300, properties.ResolutionX);
+			Assert.AreEqual(300, _properties.ResolutionX);
 		}
 
 		[TestMethod]
 		public void SetResolutionY_OkTest()
 		{
-			RenderProperties properties = new RenderProperties();
-			properties.ResolutionY = 300;
+			RenderProperties _properties = new RenderProperties();
+			_properties.ResolutionY = 300;
 
-			Assert.AreEqual(300, properties.ResolutionY);
+			Assert.AreEqual(300, _properties.ResolutionY);
 		}
 
 		[TestMethod]
 		public void DefaultResolutionY_OkTest()
 		{
-			RenderProperties properties = new RenderProperties();
+			RenderProperties _properties = new RenderProperties();
 
-			Assert.AreEqual(200, properties.ResolutionY);
+			Assert.AreEqual(200, _properties.ResolutionY);
 		}
 	}
 }
