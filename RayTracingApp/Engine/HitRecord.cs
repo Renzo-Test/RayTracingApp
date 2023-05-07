@@ -9,5 +9,6 @@ namespace Engine
 	public class HitRecord
 	{
 		public double T { get; set; }
+		public Vector Intersection { get; set; }
 	}
 }

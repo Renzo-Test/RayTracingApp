@@ -43,7 +43,7 @@ namespace Test.EngineTest
 			Vector expected = new Vector();
 			_hitRecord.Intersection = expected;
 
-			Assert.AreEqual(expected, _hitRecord.Intersection)
+			Assert.AreEqual(expected, _hitRecord.Intersection);
 		}
 	}
 }
