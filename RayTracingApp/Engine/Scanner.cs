@@ -10,16 +10,28 @@ namespace Engine
         {
             StringReader imgReader = new StringReader(ppmImage);
 
-            string ppmVersion = imgReader.ReadLine();
+            string ppmVersion = GetVersion(imgReader);
+            var (width, height) = GetDimensions(imgReader);
+
+            Bitmap image = new Bitmap(width, height);
+
+            return image;
+        }
+
+        private static (int, int) GetDimensions(StringReader imgReader)
+        {
             string line = imgReader.ReadLine();
             string[] dimensions = line.Split(' ');
 
             int width = int.Parse(dimensions[0]);
             int height = int.Parse(dimensions[1]);
 
-            Bitmap image = new Bitmap(width, height);
+            return (width, height);
+        }
 
-            return image;
+        private static string GetVersion(StringReader imgReader)
+        {
+            return imgReader.ReadLine();
         }
     }
 }
