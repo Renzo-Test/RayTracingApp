@@ -126,5 +126,11 @@ namespace Test.EngineTest
 		{
 			_properties.MaxDepth = 0;
 		}
+
+		[TestMethod]
+		public void DefaultMaxDepth_OkTest()
+		{
+			Assert.AreEqual(50, _properties.MaxDepth);
+		}
 	}
 }
