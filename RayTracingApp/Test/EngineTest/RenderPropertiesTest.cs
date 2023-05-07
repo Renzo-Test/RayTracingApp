@@ -49,5 +49,14 @@ namespace Test.EngineTest
 
 			Assert.AreEqual(200, _properties.ResolutionY);
 		}
+
+		[TestMethod]
+		public void AspectRatio_OkTEst()
+		{
+			_properties.ResolutionX = 600;
+			_properties.ResolutionY = 400;
+
+			Assert.AreEqual(1.5, _properties.AspectRatio);
+		}
 	}
 }
