@@ -90,5 +90,13 @@ namespace Test.EngineTest
 
 			Assert.AreEqual(600, _properties.ResolutionX);
 		}
+
+		[TestMethod]
+		public void SetSamplesPerPixel_OkTest()
+		{
+			_properties.SamplesPerPixel = 50;
+
+			Assert.AreEqual(50, _properties.SamplesPerPixel)
+		}
 	}
 }
