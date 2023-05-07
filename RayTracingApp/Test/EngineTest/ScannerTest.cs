@@ -9,10 +9,18 @@ namespace Test.EngineTest
     [ExcludeFromCodeCoverage]
     public class ScannerTest
     {
+        private Scanner _scanner;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _scanner = new Scanner();
+        }
+
         [TestMethod]
         public void CreateScanner_OkTest()
         {
-            Scanner scanner = new Scanner();
+            _scanner = new Scanner();
         }
 
     }
