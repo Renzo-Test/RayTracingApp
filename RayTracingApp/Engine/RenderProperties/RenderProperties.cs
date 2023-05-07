@@ -12,10 +12,7 @@ namespace Engine.RenderProperties
 		private int _resolutionX = 300;
 		public int ResolutionX
 		{
-			get
-			{
-				return _resolutionX;
-			}
+			get => _resolutionX;
 			set
 			{
 				try
@@ -34,10 +31,7 @@ namespace Engine.RenderProperties
 		private int _resolutionY = 200;
 		public int ResolutionY
 		{
-			get
-			{
-				return _resolutionY;
-			}
+			get => _resolutionY;
 			set
 			{
 				try

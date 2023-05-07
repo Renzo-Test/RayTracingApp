@@ -2,10 +2,12 @@
 using Engine.RenderProperties.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.EngineTest
 {
 	[TestClass]
+	[ExcludeFromCodeCoverage]
 	public class RenderPropertiesTest
 	{
 		private RenderProperties _properties;
