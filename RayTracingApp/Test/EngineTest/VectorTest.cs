@@ -120,6 +120,18 @@ namespace Test.EngineTest
 		}
 
 		[TestMethod]
+		public void VectorColor_51Green_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				Y = 0.2,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(51, vectorColor.Green);
+		}
+
+		[TestMethod]
 		public void AddX_OkTest()
 		{
 			Vector vectorToAdd = new Vector()
