@@ -2,7 +2,7 @@
 using Engine;
 using System;
 using System.Collections.Generic;
-using Models;
+using Domain;
 
 namespace Test.EngineTest
 {
