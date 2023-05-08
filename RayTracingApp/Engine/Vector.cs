@@ -14,7 +14,7 @@ namespace Engine
 			Color vectorColor = new Color()
 			{
 				Red = (int)(X * 255),
-				Green = 255,
+				Green = (int)(Y * 255),
 				Blue = 255,
 			};
 
