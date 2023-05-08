@@ -5,9 +5,9 @@ namespace Domain
 	public class Color
 	{
 		private const string ColorErrorMessage = "Color's number must not be smaller than 0 or greater than 255";
-		private int _red;
-		private int _green;
-		private int _blue;
+		private int _red = 0;
+		private int _green = 0;
+		private int _blue = 0;
 
 		public int Red
 		{
