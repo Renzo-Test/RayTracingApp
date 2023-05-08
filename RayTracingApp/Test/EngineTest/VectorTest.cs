@@ -144,7 +144,7 @@ namespace Test.EngineTest
 		}
 
 		[TestMethod]
-		public void VectorColor_63Red_OkTest()
+		public void VectorColor_64Red_OkTest()
 		{
 			Vector vector = new Vector()
 			{
@@ -152,7 +152,7 @@ namespace Test.EngineTest
 			};
 			Color vectorColor = vector.Color();
 
-			Assert.AreEqual(63, vectorColor.Red);
+			Assert.AreEqual(64, vectorColor.Red);
 		}
 
 		[TestMethod]
