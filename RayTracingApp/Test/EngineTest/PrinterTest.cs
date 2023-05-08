@@ -33,9 +33,10 @@ namespace Test.EngineTest
                 ResolutionX = 1,
                 ResolutionY = 1,
             };
+			Progress progress = new Progress();
 
 			string expected = $"P3\n1 1\n255\n";
-            Assert.AreEqual(expected, printer.Save(pixels, properties, null));
+            Assert.AreEqual(expected, printer.Save(pixels, properties, ref progress));
 		}
 
 		[TestMethod]
@@ -54,9 +55,10 @@ namespace Test.EngineTest
                 Blue = 100,
             };
             pixels.Add(new List<Color> { color });
+            Progress progress = new Progress();
 
 			string expected = $"P3\n1 1\n255\n100 100 100\n";
-			Assert.AreEqual(expected, printer.Save(pixels, properties, null));
+			Assert.AreEqual(expected, printer.Save(pixels, properties, ref progress));
 		}
 
         [TestMethod]
@@ -80,7 +82,8 @@ namespace Test.EngineTest
                 ExpectedLines = 1,
             };
 
-            Assert.AreEqual(100, progress.Calculate());
+			printer.Save(pixels, properties, ref progress);
+			Assert.AreEqual(100, progress.Calculate());
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace Engine
 {
     public class Printer
     {
-        public string Save(List<List<Color>> Pixels, RenderProperties properties, Progress progress)
+        public string Save(List<List<Color>> Pixels, RenderProperties properties, ref Progress progress)
         {
             string imageString = InitializeImageProperties(properties);
 
@@ -21,6 +21,7 @@ namespace Engine
 					{
 						Color color = Pixels[j][i];
 						imageString += color.Red + " " + color.Green + " " + color.Blue + "\n";
+						progress.Count();
 					}
 				}
 			}
