@@ -24,9 +24,10 @@ namespace Test.EngineTest
                 ResolutionX = 1,
                 ResolutionY = 1,
             };
+			List<List<Color>> pixels = new List<List<Color>>();
 
-            string expected = $"P3\n1 1\n255\n";
-            Assert.AreEqual(expected, printer.Save(null, properties, null));
+			string expected = $"P3\n1 1\n255\n";
+            Assert.AreEqual(expected, printer.Save(pixels, properties, null));
 		}
 
 		[TestMethod]

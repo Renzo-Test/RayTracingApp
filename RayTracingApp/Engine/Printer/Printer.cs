@@ -13,12 +13,15 @@ namespace Engine
         {
             string imageString = InitializeImageProperties(properties);
 
-			for (var j = 0; j < properties.ResolutionY; j++)
+			if (Pixels.Any())
 			{
-				for (var i = 0; i < properties.ResolutionX; i++)
+				for (var j = 0; j < properties.ResolutionY; j++)
 				{
-					Color color = Pixels[j][i];
-					imageString += color.Red + " " + color.Green + " " + color.Blue + "\n";
+					for (var i = 0; i < properties.ResolutionX; i++)
+					{
+						Color color = Pixels[j][i];
+						imageString += color.Red + " " + color.Green + " " + color.Blue + "\n";
+					}
 				}
 			}
 
