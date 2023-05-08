@@ -14,6 +14,7 @@ namespace Engine
 			Color vectorColor = new Color()
 			{
 				Red = 255,
+				Green = 255,
 			};
 
 			return vectorColor;
