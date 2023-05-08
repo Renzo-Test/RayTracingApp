@@ -1,5 +1,5 @@
-﻿using Engine.RenderProperties;
-using Engine.RenderProperties.Exceptions;
+﻿using Engine;
+using Engine.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
 
