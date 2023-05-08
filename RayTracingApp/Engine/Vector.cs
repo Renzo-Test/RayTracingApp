@@ -15,7 +15,7 @@ namespace Engine
 			{
 				Red = (int)(X * 255),
 				Green = (int)(Y * 255),
-				Blue = 255,
+				Blue = (int)(Z * 255),
 			};
 
 			return vectorColor;
