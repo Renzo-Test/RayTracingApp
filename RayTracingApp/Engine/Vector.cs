@@ -15,6 +15,7 @@ namespace Engine
 			{
 				Red = 255,
 				Green = 255,
+				Blue = 255,
 			};
 
 			return vectorColor;
