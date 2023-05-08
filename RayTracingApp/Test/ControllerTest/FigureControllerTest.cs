@@ -317,5 +317,26 @@ namespace Test.ControllerTest
 
 			Figure expected = _figureController.GetFigure(currentClient.Username, "newFigure");
 		}
+
+		[TestMethod]
+		public void ChangeFigureName_OkTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			Figure newFigure = new Sphere()
+			{
+				Name = "sphere",
+				Radius = 10,
+			};
+
+			_figureController.UpdateFigureName(newFigure, currentClient.Username, "newNameSphere");
+
+			Assert.AreEqual(newFigure.Name, "newNameSphere");
+		}
+
 	}
 }
