@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Engine;
 using System;
-using Engine.RenderProperties;
 
 namespace Test.EngineTest
 {
@@ -20,13 +19,12 @@ namespace Test.EngineTest
             Printer printer = new Printer();
             RenderProperties properties = new RenderProperties()
             {
-                ResolutionX = 0,
-                ResolutionY = 0,
+                ResolutionX = 1,
+                ResolutionY = 1,
                 
             };
-            printer.InitializeImageProperties(properties);
-            string expected = $"P3\n 0 0 \n255\n";
 
+            string expected = $"P3\n 1 1 \n255\n";
             Assert.AreEqual(expected, printer.Save(null, properties, null));
 		}
     }

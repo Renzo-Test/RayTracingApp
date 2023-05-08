@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Printer.cs" />
+    <Compile Include="Printer\Printer.cs" />
     <Compile Include="HitRecord.cs" />
     <Compile Include="Ray.cs" />
     <Compile Include="Progress.cs" />
@@ -50,6 +50,12 @@
     <Compile Include="RenderProperties\RenderProperties.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
