@@ -23,7 +23,6 @@ namespace Test.EngineTest
             {
                 ResolutionX = 1,
                 ResolutionY = 1,
-                
             };
 
             string expected = $"P3\n1 1\n255\n";
@@ -49,7 +48,7 @@ namespace Test.EngineTest
             };
             pixels.Add(new List<Color> { color });
 
-			string expected = $"P3\n1 1\n255\n100 100 100";
+			string expected = $"P3\n1 1\n255\n100 100 100\n";
 			Assert.AreEqual(expected, printer.Save(pixels, properties, null));
 		}
 	}

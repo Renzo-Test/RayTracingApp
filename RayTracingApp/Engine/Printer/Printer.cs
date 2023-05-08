@@ -11,7 +11,18 @@ namespace Engine
     {
         public string Save(List<List<Color>> Pixels, RenderProperties properties, Progress progress)
         {
-            return InitializeImageProperties(properties);
+            string imageString = InitializeImageProperties(properties);
+
+			for (var j = 0; j < properties.ResolutionY; j++)
+			{
+				for (var i = 0; i < properties.ResolutionX; i++)
+				{
+					Color color = Pixels[j][i];
+					imageString += color.Red + " " + color.Green + " " + color.Blue + "\n";
+				}
+			}
+
+			return imageString;
 		}
 
         private static string InitializeImageProperties(RenderProperties properties)
