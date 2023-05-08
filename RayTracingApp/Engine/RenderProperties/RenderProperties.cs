@@ -1,6 +1,6 @@
-﻿using Engine.RenderProperties.Exceptions;
+﻿using Engine.Exceptions;
 
-namespace Engine.RenderProperties
+namespace Engine
 {
 	public class RenderProperties
 	{
