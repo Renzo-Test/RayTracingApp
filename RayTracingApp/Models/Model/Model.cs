@@ -1,7 +1,7 @@
-﻿using Models.ModelExceptions;
+﻿using Domain.Exceptions;
 using System;
 
-namespace Models
+namespace Domain
 {
 	public class Model
 	{
@@ -56,7 +56,7 @@ namespace Models
 		{
 			if (value.Equals(string.Empty))
 			{
-				throw new EmptyNameException(EmptyNameMessage);
+				throw new EmptyNameModelException(EmptyNameMessage);
 			}
 		}
 	}

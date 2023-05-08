@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
-using Models.MaterialExceptions;
+using Domain;
+using Domain.Exceptions;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest

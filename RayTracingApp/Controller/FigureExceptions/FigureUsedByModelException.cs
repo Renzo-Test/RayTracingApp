@@ -1,4 +1,4 @@
-﻿namespace Controller.FigureExceptions
+﻿namespace Controller.Exceptions
 {
 	public class FigureUsedByModelException : InvalidFigureRemoveException
 	{

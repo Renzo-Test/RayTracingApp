@@ -1,6 +1,5 @@
-﻿using Models.FigureExceptions;
-
-namespace Models.SphereExceptions
+﻿
+namespace Domain.Exceptions
 {
 	public class SmallerThanCeroRadiusException : InvalidFigureInputException
 	{

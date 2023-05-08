@@ -1,6 +1,6 @@
-﻿using Models.ModelExceptions;
+﻿using Domain.Exceptions;
 
-namespace Controller.ModelExceptions
+namespace Controller.Exceptions
 {
 	public class AlreadyExistingModelException : InvalidModelInputException
 	{

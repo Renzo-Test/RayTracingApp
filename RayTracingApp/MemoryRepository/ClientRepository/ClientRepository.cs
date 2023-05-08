@@ -1,6 +1,6 @@
 ﻿using IRepository;
 using MemoryRepository.Exceptions;
-using Models;
+using Domain;
 using System.Collections.Generic;
 
 namespace MemoryRepository

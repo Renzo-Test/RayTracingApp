@@ -1,6 +1,6 @@
 ﻿using MemoryRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
+using Domain;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;

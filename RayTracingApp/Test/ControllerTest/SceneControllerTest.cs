@@ -1,7 +1,7 @@
 ﻿using Controller;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
-using Models.SceneExceptions;
+using Domain;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;

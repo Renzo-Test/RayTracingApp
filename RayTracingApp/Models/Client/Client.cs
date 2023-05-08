@@ -1,8 +1,8 @@
-﻿using Models.ClientExceptions;
+﻿using Domain.Exceptions;
 using System;
 using System.Linq;
 
-namespace Models
+namespace Domain
 {
 
 	public class Client
@@ -64,7 +64,7 @@ namespace Models
 		{
 			if (!(username.Length >= 3 && username.Length <= 20))
 			{
-				throw new NotInExpectedRangeException(NotInExpectedRangeUsernameMessage);
+				throw new NotInExpectedRangeClientException(NotInExpectedRangeUsernameMessage);
 			}
 		}
 
@@ -73,7 +73,7 @@ namespace Models
 		{
 			if (!username.All(char.IsLetterOrDigit))
 			{
-				throw new NotAlphanumericException(NotAlphanumericMessage);
+				throw new NotAlphanumericClientException(NotAlphanumericMessage);
 			}
 		}
 
@@ -97,7 +97,7 @@ namespace Models
 		{
 			if (!(password.Length >= 5 && password.Length <= 25))
 			{
-				throw new NotInExpectedRangeException(NotInExpectedRangePasswordMessage);
+				throw new NotInExpectedRangeClientException(NotInExpectedRangePasswordMessage);
 			}
 		}
 	}

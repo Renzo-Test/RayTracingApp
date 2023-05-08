@@ -96,9 +96,9 @@
       <Project>{5e7fe5d8-e9a5-4b2c-aa81-e63cc8e6669f}</Project>
       <Name>MemoryRepository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Domain.csproj">
       <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>
-      <Name>Models</Name>
+      <Name>Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\RayTracingApp\RayTracingApp.csproj">
       <Project>{df2d8ac3-acd5-4ad8-a67b-7c7e3acc9f83}</Project>

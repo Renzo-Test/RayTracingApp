@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Models.ModelExceptions
+namespace Domain.Exceptions
 {
 	public class InvalidModelInputException : Exception
 	{

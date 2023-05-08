@@ -1,9 +1,9 @@
-﻿using Controller.MaterialExceptions;
+﻿using Controller.Exceptions;
 using IRepository;
 using MemoryRepository.Exceptions;
 using MemoryRepository.MaterialRepository;
-using Models;
-using Models.MaterialExceptions;
+using Domain;
+using Domain.Exceptions;
 using System.Collections.Generic;
 
 namespace Controller

@@ -1,4 +1,4 @@
-﻿namespace Models.ModelExceptions
+﻿namespace Domain.Exceptions
 {
 	public class NotAlphanumericException : InvalidModelInputException
 	{
