@@ -15,7 +15,7 @@ namespace Engine
 			{
 				Red = (int)Math.Abs(Math.Round(X * 255)),
 				Green = (int)Math.Abs(Math.Round(Y * 255)),
-				Blue = (int)Math.Round(Z * 255),
+				Blue = (int)Math.Abs(Math.Round(Z * 255)),
 			};
 
 			return vectorColor;
