@@ -12,6 +12,8 @@ namespace Engine
         public string Save(List<List<Color>> Pixels, RenderProperties properties, ref Progress progress)
         {
             string imageString = InitializeImageProperties(properties);
+			StringBuilder sb = new StringBuilder();
+			sb.Append(imageString);
 
 			if (Pixels.Any())
 			{
@@ -20,13 +22,13 @@ namespace Engine
 					for (var i = 0; i < properties.ResolutionX; i++)
 					{
 						Color color = Pixels[j][i];
-						imageString += color.Red + " " + color.Green + " " + color.Blue + "\n";
+						sb.Append($"{color.Red} {color.Green} {color.Blue}\n");
 						progress.Count();
 					}
 				}
 			}
 
-			return imageString;
+			return sb.ToString();
 		}
 
         private static string InitializeImageProperties(RenderProperties properties)
