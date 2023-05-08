@@ -1,4 +1,5 @@
 ﻿using System;
+using Domain;
 
 namespace Engine
 {
@@ -7,6 +8,23 @@ namespace Engine
 		public double X { get; set; }
 		public double Y { get; set; }
 		public double Z { get; set; }
+
+		public Color Color()
+		{
+			Color vectorColor = new Color()
+			{
+				Red = AxisToColor(X),
+				Green = AxisToColor(Y),
+				Blue = AxisToColor(Z),
+			};
+
+			return vectorColor;
+		}
+
+		private int AxisToColor(double axis)
+		{
+			return (int)Math.Abs(Math.Round(axis * 255));
+		}
 
 		public Vector Add(Vector vector)
 		{

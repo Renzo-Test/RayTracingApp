@@ -1,4 +1,5 @@
-﻿using Engine;
+﻿using Domain;
+using Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -68,6 +69,150 @@ namespace Test.EngineTest
 		{
 			_vector.Z = 1.5;
 			Assert.AreEqual(1.5, _vector.Z);
+		}
+
+		[TestMethod]
+		public void VectorColor_255Red_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				X = 1,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Red);
+		}
+
+		[TestMethod]
+		public void VectorColor_255Green_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				Y = 1,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Green);
+		}
+
+		[TestMethod]
+		public void VectorColor_255Blue_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				Z = 1,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Blue);
+		}
+
+		[TestMethod]
+		public void VectorColor_51Red_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				X = 0.2,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(51, vectorColor.Red);
+		}
+
+		[TestMethod]
+		public void VectorColor_51Green_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				Y = 0.2,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(51, vectorColor.Green);
+		}
+
+		[TestMethod]
+		public void VectorColor_51Blue_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				Z = 0.2,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(51, vectorColor.Blue);
+		}
+
+		[TestMethod]
+		public void VectorColor_64Red_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				X = 0.25,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(64, vectorColor.Red);
+		}
+
+		[TestMethod]
+		public void VectorColor_64Green_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				Y = 0.25,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(64, vectorColor.Green);
+		}
+
+		[TestMethod]
+		public void VectorColor_64Blue_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				Z = 0.25,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(64, vectorColor.Blue);
+		}
+
+		[TestMethod]
+		public void VectorColor_NegativeRed_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				X = -1,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Red);
+		}
+
+		[TestMethod]
+		public void VectorColor_NegativeGreen_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				Y = -1,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Green);
+		}
+
+		[TestMethod]
+		public void VectorColor_NegativeBlue_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				Z = -1,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Blue);
 		}
 
 		[TestMethod]
