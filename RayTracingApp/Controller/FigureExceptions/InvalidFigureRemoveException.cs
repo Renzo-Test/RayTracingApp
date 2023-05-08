@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Controller.FigureExceptions
+namespace Controller.Exceptions
 {
 	public class InvalidFigureRemoveException : Exception
 	{

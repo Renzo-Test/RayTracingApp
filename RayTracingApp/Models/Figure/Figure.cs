@@ -1,7 +1,7 @@
-﻿using Models.FigureExceptions;
+﻿using Domain.Exceptions;
 using System;
 
-namespace Models
+namespace Domain
 {
 	public abstract class Figure
 	{
@@ -38,7 +38,7 @@ namespace Models
 		{
 			if (string.IsNullOrEmpty(figureName))
 			{
-				throw new NotInExpectedRangeException(NotInExpectedRangeExceptionMessage);
+				throw new NotInExpectedRangeFigureException(NotInExpectedRangeExceptionMessage);
 			}
 		}
 
@@ -46,7 +46,7 @@ namespace Models
 		{
 			if (figureName.Contains(SpaceCharacterConstant))
 			{
-				throw new NotAlphanumericException(NotAlphanumericExceptionMessage);
+				throw new NotAlphanumericFigureException(NotAlphanumericExceptionMessage);
 			}
 		}
 	}

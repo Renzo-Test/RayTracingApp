@@ -1,9 +1,9 @@
 ﻿using Controller;
-using Controller.FigureExceptions;
+using Controller.Exceptions;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
-using Models.FigureExceptions;
+using Domain;
+using Domain.Exceptions;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -131,7 +131,7 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(Models.FigureExceptions.InvalidFigureInputException))]
+		[ExpectedException(typeof(InvalidFigureInputException))]
 		public void AddFigure_InvalidFigure_FailTest()
 		{
 			Client currentClient = new Client()

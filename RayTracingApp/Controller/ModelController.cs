@@ -1,9 +1,9 @@
-﻿using Controller.ModelExceptions;
+﻿using Controller.Exceptions;
 using IRepository;
 using MemoryRepository;
 using MemoryRepository.Exceptions;
-using Models;
-using Models.ModelExceptions;
+using Domain;
+using Domain.Exceptions;
 using System.Collections.Generic;
 
 namespace Controller

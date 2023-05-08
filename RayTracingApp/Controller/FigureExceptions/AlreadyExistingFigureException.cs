@@ -1,6 +1,6 @@
-﻿using Models.FigureExceptions;
+﻿using Domain.Exceptions;
 
-namespace Controller.FigureExceptions
+namespace Controller.Exceptions
 {
 	public class AlreadyExistingFigureException : InvalidFigureInputException
 	{

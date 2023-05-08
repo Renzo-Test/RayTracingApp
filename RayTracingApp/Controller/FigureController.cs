@@ -1,9 +1,9 @@
-﻿using Controller.FigureExceptions;
+﻿using Controller.Exceptions;
 using IRepository;
 using MemoryRepository;
 using MemoryRepository.Exceptions;
-using Models;
-using Models.FigureExceptions;
+using Domain;
+using Domain.Exceptions;
 using System.Collections.Generic;
 
 namespace Controller

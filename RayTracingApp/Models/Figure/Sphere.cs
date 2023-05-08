@@ -1,7 +1,7 @@
-﻿using Models.SphereExceptions;
+﻿using Domain.Exceptions;
 using System;
 
-namespace Models
+namespace Domain
 {
 	public class Sphere : Figure
 	{

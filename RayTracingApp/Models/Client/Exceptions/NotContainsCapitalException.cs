@@ -1,5 +1,5 @@
 ﻿
-namespace Models.ClientExceptions
+namespace Domain.Exceptions
 {
 	public class NotContainsCapitalException : InvalidCredentialsException
 	{

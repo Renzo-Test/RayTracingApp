@@ -1,9 +1,9 @@
-﻿using Models.SceneExceptions;
+﻿using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Models
+namespace Domain
 {
 	public class Scene
 	{
@@ -94,7 +94,7 @@ namespace Models
 		{
 			if (value.Equals(string.Empty))
 			{
-				throw new EmptyNameException(EmptyNameMessage);
+				throw new EmptyNameSceneException(EmptyNameMessage);
 			}
 		}
 

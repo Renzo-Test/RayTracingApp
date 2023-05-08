@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Controller.MaterialExceptions
+namespace Controller.Exceptions
 {
 	public class InvalidMaterialRemoveException : Exception
 	{

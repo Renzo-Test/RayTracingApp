@@ -1,8 +1,7 @@
 ﻿using MemoryRepository;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
-using Models.MaterialExceptions;
+using Domain;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 

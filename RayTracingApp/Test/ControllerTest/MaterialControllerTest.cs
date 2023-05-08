@@ -1,9 +1,9 @@
 ﻿using Controller;
-using Controller.MaterialExceptions;
+using Controller.Exceptions;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
-using Models.MaterialExceptions;
+using Domain;
+using Domain.Exceptions;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;

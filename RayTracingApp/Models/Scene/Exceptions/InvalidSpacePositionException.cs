@@ -1,4 +1,4 @@
-﻿namespace Models.SceneExceptions
+﻿namespace Domain.Exceptions
 {
 	public class InvalidSpacePositionException : InvalidSceneInputException
 	{

@@ -1,6 +1,6 @@
-﻿using Models.MaterialExceptions;
+﻿using Domain.Exceptions;
 
-namespace Models
+namespace Domain
 {
 	public class Color
 	{

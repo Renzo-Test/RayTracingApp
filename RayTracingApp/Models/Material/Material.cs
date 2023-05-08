@@ -1,6 +1,6 @@
-﻿using Models.MaterialExceptions;
+﻿using Domain.Exceptions;
 
-namespace Models
+namespace Domain
 {
 	public class Material
 	{
@@ -47,7 +47,7 @@ namespace Models
 		{
 			if (value.Equals(string.Empty))
 			{
-				throw new EmptyNameException(EmptyNameMessage);
+				throw new EmptyNameMaterialException(EmptyNameMessage);
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace Models
 		{
 			if (value.StartsWith(SpaceCharacterConstant) || value.EndsWith(SpaceCharacterConstant))
 			{
-				throw new NotAlphanumericException(NotAlphanumericMessage);
+				throw new NotAlphanumericMaterialException(NotAlphanumericMessage);
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
+using Domain;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 

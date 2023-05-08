@@ -1,8 +1,8 @@
-﻿using Controller.SceneExceptions;
+﻿using Controller.Exceptions;
 using IRepository;
 using MemoryRepository;
-using Models;
-using Models.SceneExceptions;
+using Domain;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
