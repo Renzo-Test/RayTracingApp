@@ -1,6 +1,8 @@
 ﻿using MemoryRepository;
+using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using Models.MaterialExceptions;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -99,7 +101,8 @@ namespace Test.MemoryRepositoryTest
 		}
 
 		[TestMethod]
-		public void RemoveFigure_NotExistingFigure_OkTest()
+        [ExpectedException(typeof(NotFoundFigureException))]
+        public void RemoveFigure_NotExistingFigure_OkTest()
 		{
 			Figure newFigure = new Sphere()
 			{
