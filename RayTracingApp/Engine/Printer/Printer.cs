@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,9 +12,7 @@ namespace Engine
     {
         public string Save(List<List<Color>> Pixels, RenderProperties properties, ref Progress progress)
         {
-            string imageString = InitializeImageProperties(properties);
-			StringBuilder sb = new StringBuilder();
-			sb.Append(imageString);
+            StringBuilder image = InitializateImage(properties);
 
 			if (Pixels.Any())
 			{
@@ -22,18 +21,21 @@ namespace Engine
 					for (var i = 0; i < properties.ResolutionX; i++)
 					{
 						Color color = Pixels[j][i];
-						sb.Append($"{color.Red} {color.Green} {color.Blue}\n");
+						image.Append($"{color.Red} {color.Green} {color.Blue}\n");
 						progress.Count();
 					}
 				}
 			}
 
-			return sb.ToString();
+			return image.ToString();
 		}
 
-        private static string InitializeImageProperties(RenderProperties properties)
+        private static StringBuilder InitializateImage(RenderProperties properties)
         {
-			return $"P3\n{properties.ResolutionX} {properties.ResolutionY}\n255\n";
+			string imageString = $"P3\n{properties.ResolutionX} {properties.ResolutionY}\n255\n";
+			StringBuilder sb = new StringBuilder();
+			sb.Append(imageString);
+			return sb;
 		}
     }
 }
