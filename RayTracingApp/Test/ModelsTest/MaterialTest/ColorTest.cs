@@ -2,6 +2,7 @@
 using Domain;
 using Domain.Exceptions;
 using System.Diagnostics.CodeAnalysis;
+using Engine;
 
 namespace Test.ModelsTest
 {

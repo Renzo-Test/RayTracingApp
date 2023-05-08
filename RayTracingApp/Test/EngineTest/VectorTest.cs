@@ -1,4 +1,5 @@
-﻿using Engine;
+﻿using Domain;
+using Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -68,6 +69,18 @@ namespace Test.EngineTest
 		{
 			_vector.Z = 1.5;
 			Assert.AreEqual(1.5, _vector.Z);
+		}
+
+		[TestMethod]
+		public void VectorColor_255Red_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				X = 1,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Red);
 		}
 
 		[TestMethod]
