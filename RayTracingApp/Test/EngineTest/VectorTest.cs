@@ -180,6 +180,18 @@ namespace Test.EngineTest
 		}
 
 		[TestMethod]
+		public void VectorColor_NegativeRed_OkTest()
+		{
+			Vector vector = new Vector()
+			{
+				X = -1,
+			};
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Red);
+		}
+
+		[TestMethod]
 		public void AddX_OkTest()
 		{
 			Vector vectorToAdd = new Vector()
