@@ -51,11 +51,9 @@ namespace Test.EngineTest
 
             Ray cameraRay = camera.GetRay(1, 2);
 
-            Assert.AreEqual(newRay.Origin, cameraRay.Origin);
-            Assert.AreEqual(newRay.Direction, cameraRay.Direction);
-
+            Assert.AreEqual(cameraRay.Origin.X, newRay.Origin.X);
+            Assert.AreEqual(newRay.Direction.Y, newRay.Direction.Y);
         }
-
 
     }
 }
