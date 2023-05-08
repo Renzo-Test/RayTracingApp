@@ -5,6 +5,7 @@ using MemoryRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
 using System.Collections.Generic;
+using System;
 
 namespace Controller
 {
@@ -97,5 +98,10 @@ namespace Controller
 				throw new InvalidFigureInputException(ex.Message);
 			}
 		}
-	}
+
+        public void UpdateFigureName(Figure newFigure, string currentClient, string newName)
+        {
+			newFigure.Name = newName;
+        }
+    }
 }
