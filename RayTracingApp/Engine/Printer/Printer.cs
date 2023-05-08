@@ -16,7 +16,7 @@ namespace Engine
 
         private static string InitializeImageProperties(RenderProperties properties)
         {
-			return $"P3\n {properties.ResolutionX} {properties.ResolutionY} \n255\n";
+			return $"P3\n{properties.ResolutionX} {properties.ResolutionY}\n255\n";
 		}
     }
 }
