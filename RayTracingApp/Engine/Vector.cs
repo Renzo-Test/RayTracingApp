@@ -13,7 +13,7 @@ namespace Engine
 		{
 			Color vectorColor = new Color()
 			{
-				Red = (int)(X * 255),
+				Red = (int)Math.Round(X * 255),
 				Green = (int)(Y * 255),
 				Blue = (int)(Z * 255),
 			};
