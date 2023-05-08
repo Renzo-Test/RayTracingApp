@@ -1,4 +1,5 @@
 ﻿using System;
+using Domain;
 
 namespace Engine
 {
@@ -8,6 +9,15 @@ namespace Engine
 		public double Y { get; set; }
 		public double Z { get; set; }
 
+		public Color Color()
+		{
+			Color vectorColor = new Color()
+			{
+				Red = 255,
+			};
+
+			return vectorColor;
+		}
 
 		public Vector Add(Vector vector)
 		{
