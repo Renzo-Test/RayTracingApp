@@ -338,5 +338,23 @@ namespace Test.ControllerTest
 			Assert.AreEqual(newFigure.Name, "newNameSphere");
 		}
 
+		[TestMethod]
+		[ExpectedException(typeof(InvalidFigureInputException))]
+		public void ChangeFigureName_FailTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			Figure newFigure = new Sphere()
+			{
+				Name = "sphere",
+				Radius = 10,
+			};
+
+			_figureController.UpdateFigureName(newFigure, currentClient.Username, "newNameSp here");
+		}
 	}
 }
