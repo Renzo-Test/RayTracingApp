@@ -13,12 +13,17 @@ namespace Engine
 		{
 			Color vectorColor = new Color()
 			{
-				Red = (int)Math.Abs(Math.Round(X * 255)),
-				Green = (int)Math.Abs(Math.Round(Y * 255)),
-				Blue = (int)Math.Abs(Math.Round(Z * 255)),
+				Red = AxisToColor(X),
+				Green = AxisToColor(Y),
+				Blue = AxisToColor(Z),
 			};
 
 			return vectorColor;
+		}
+
+		private int AxisToColor(double axis)
+		{
+			return (int)Math.Abs(Math.Round(axis * 255));
 		}
 
 		public Vector Add(Vector vector)
