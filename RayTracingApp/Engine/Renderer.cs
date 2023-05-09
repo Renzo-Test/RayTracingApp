@@ -100,8 +100,7 @@ namespace Engine
 
 			foreach (PosisionatedModel posisionatedModel in _scene.PosisionatedModels)
 			{
-				Figure figure = posisionatedModel.Model.Figure;
-				HitRecord hit = IsSphereHit(figure, ray, 0.001, tMax);
+				HitRecord hit = IsSphereHit(posisionatedModel, ray, 0.001, tMax);
 				if (hit is object)
 				{
 					hitRecord = hit;
@@ -161,6 +160,43 @@ namespace Engine
 					Z = 1
 				};
 				return colorStart.Multiply(1 - posY).Add(colorEnd.Multiply(posY));
+			}
+		}
+
+		private HitRecord IsSphereHit(PosisionatedModel posisionatedModel, Ray ray, double tMin, double tMax)
+		{
+			Sphere sphere = (Sphere)posisionatedModel.Model.Figure;
+			Vector position = posisionatedModel.Position;
+			var vectorOriginCenter = ray.Origin.Substract(position);
+			var a = ray.Direction.Dot(ray.Direction);
+			var b = vectorOriginCenter.Dot(ray.Direction) * 2;
+			var c = vectorOriginCenter.Dot(vectorOriginCenter) - (sphere.Radius * sphere.Radius);
+			var discriminant = (b * b) - (4 * a * c);
+
+			if (discriminant < 0)
+			{
+				return null;
+			}
+			else
+			{
+				double t = ((-1 * b) - Math.Sqrt(discriminant)) / (2 * a);
+				Vector intersectionPoint = ray.PointAt(t);
+				Vector Normal = intersectionPoint.Substract(position).Divide(sphere.Radius);
+
+				if (t < tMax && t > tMin)
+				{
+					return new HitRecord()
+					{
+						T = t,
+						Intersection = intersectionPoint,
+						Normal = Normal,
+						Attenuation = posisionatedModel.Model.Material.Color,
+					};
+				}
+				else
+				{
+					return null;
+				}
 			}
 		}
 	}
