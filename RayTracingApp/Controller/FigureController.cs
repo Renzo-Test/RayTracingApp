@@ -69,6 +69,27 @@ namespace Controller
 			return getFigure;
 		}
 
+		public void UpdateFigureName(Figure sphere, string currentClient, string newName)
+		{
+			try
+			{
+				Figure newFigure = new Sphere()
+				{
+					Name = newName,
+					Owner = sphere.Owner,
+					Radius = 10
+				};
+
+				RunFigureChecker(newFigure, currentClient);
+
+				sphere.Name = newName;
+			}
+			catch (InvalidFigureInputException ex)
+			{
+				throw new InvalidFigureInputException(ex.Message);
+			}
+		}
+
 		private void RunFigureChecker(Figure figure, string ownerName)
 		{
 			if (FigureNameExist(figure.Name, ownerName))
@@ -93,27 +114,6 @@ namespace Controller
 				figure.FigurePropertiesAreValid();
 			}
 
-			catch (InvalidFigureInputException ex)
-			{
-				throw new InvalidFigureInputException(ex.Message);
-			}
-		}
-
-		public void UpdateFigureName(Figure sphere, string currentClient, string newName)
-		{
-			try
-			{
-				Figure newFigure = new Sphere()
-				{
-					Name = newName,
-					Owner = sphere.Owner,
-					Radius = 10
-				};
-
-				RunFigureChecker(newFigure, currentClient);
-
-				sphere.Name = newName;
-			}
 			catch (InvalidFigureInputException ex)
 			{
 				throw new InvalidFigureInputException(ex.Message);
