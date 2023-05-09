@@ -183,5 +183,24 @@ namespace Test.ControllerTest
 
 			_modelController.GetModel(currentClient.Username, "newModel");
 		}
+
+		[TestMethod]
+		public void ChangeModelName_OkTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			Model newModel = new Model()
+			{
+				Name = "Test",
+			};
+
+			_modelController.UpdateModelName(newModel, currentClient.Username, "newName");
+
+			Assert.AreEqual(newModel.Name, "newName");
+		}
 	}
 }
