@@ -1,16 +1,13 @@
 ﻿using IRepository;
-using MemoryRepository.Exceptions;
-using Models;
-using System;
+using Domain;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MemoryRepository.Exceptions;
 
 namespace MemoryRepository
 {
     public class ModelRepository : IRepositoryModel
     {
+        private const string NotFoundModelMessage = "Model was not found or already deleted";
         private readonly List<Model> _models;
 
         public ModelRepository()
@@ -21,14 +18,22 @@ namespace MemoryRepository
         {
             _models.Add(newModel);
         }
-        public List<Model> GetModelsByClient(string username) 
+        public List<Model> GetModelsByClient(string username)
         {
             List<Model> foundModels = _models.FindAll(model => model.Owner.Equals(username));
             return foundModels;
         }
         public void RemoveModel(Model model)
         {
-            _models.Remove(model);
+            if (!_models.Remove(model))
+            {
+                throw new NotFoundModelException(NotFoundModelMessage);
+            }
+            else
+            {
+                _models.Remove(model);
+            }
+
         }
     }
 }

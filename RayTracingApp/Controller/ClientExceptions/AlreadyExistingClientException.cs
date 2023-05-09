@@ -1,10 +1,9 @@
-﻿
-using Models.ClientExceptions;
+﻿using Domain.Exceptions;
 
-namespace Controller.ClientExceptions
+namespace Controller.Exceptions
 {
-    public class AlreadyExistingClientException : InvalidCredentialsException
-    {
-        public AlreadyExistingClientException(string message) : base(message) { }
-    }
+	public class AlreadyExistingClientException : InvalidCredentialsException
+	{
+		public AlreadyExistingClientException(string message) : base(message) { }
+	}
 }

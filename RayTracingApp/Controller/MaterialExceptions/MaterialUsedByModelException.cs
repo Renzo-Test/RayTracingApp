@@ -1,9 +1,9 @@
-﻿using Models.MaterialExceptions;
+﻿using Domain.Exceptions;
 
-namespace Controller.MaterialExceptions
+namespace Controller.Exceptions
 {
-    public class MaterialUsedByModelException : InvalidMaterialInputException
-    {
-        public MaterialUsedByModelException(string message) : base(message) { }
-    }
+	public class MaterialUsedByModelException : InvalidMaterialInputException
+	{
+		public MaterialUsedByModelException(string message) : base(message) { }
+	}
 }

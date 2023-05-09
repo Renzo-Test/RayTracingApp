@@ -1,7 +1,7 @@
-﻿namespace Controller.FigureExceptions
+﻿namespace Controller.Exceptions
 {
-    public class FigureUsedByModelException : InvalidFigureRemoveException
-    {
-        public FigureUsedByModelException(string message) : base(message) { }
-    }
+	public class FigureUsedByModelException : InvalidFigureRemoveException
+	{
+		public FigureUsedByModelException(string message) : base(message) { }
+	}
 }

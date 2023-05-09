@@ -1,57 +1,59 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
+using Domain;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Test.ModelsTest
 {
-    [TestClass]
-    public class PosisionatedModelTest
-    {
-        [TestMethod]
-        public void CreatePosisionatedModel_OkTest()
-        {
-            PosisionatedModel posisionatedModel = new PosisionatedModel();
-        }
+	[TestClass]
+	[ExcludeFromCodeCoverage]
+	public class PosisionatedModelTest
+	{
+		[TestMethod]
+		public void CreatePosisionatedModel_OkTest()
+		{
+			PosisionatedModel posisionatedModel = new PosisionatedModel();
+		}
 
-        [TestMethod]
-        public void SetPosition_OkTest()
-        {
-            Coordinate newCoordinate = new Coordinate()
-            {
-                X = 10,
-                Y = 20,
-                Z = 30,
-            };
+		[TestMethod]
+		public void SetPosition_OkTest()
+		{
+			Coordinate newCoordinate = new Coordinate()
+			{
+				X = 10,
+				Y = 20,
+				Z = 30,
+			};
 
-            PosisionatedModel posisionatedModel = new PosisionatedModel()
-            {
-                Position = newCoordinate,
-            };
+			PosisionatedModel posisionatedModel = new PosisionatedModel()
+			{
+				Position = newCoordinate,
+			};
 
-            foreach (PropertyInfo property in newCoordinate.GetType().GetProperties())
-            {
-                Assert.AreEqual(property.GetValue(newCoordinate), property.GetValue(posisionatedModel.Position));
-            }
-        }
+			foreach (PropertyInfo property in newCoordinate.GetType().GetProperties())
+			{
+				Assert.AreEqual(property.GetValue(newCoordinate), property.GetValue(posisionatedModel.Position));
+			}
+		}
 
-        [TestMethod]
-        public void SetModel_OkTest()
-        {
-            Model newModel = new Model()
-            {
-                Name = "figureName",
-                Owner = "ownerName"
-            };
+		[TestMethod]
+		public void SetModel_OkTest()
+		{
+			Model newModel = new Model()
+			{
+				Name = "figureName",
+				Owner = "ownerName"
+			};
 
-            PosisionatedModel posisionatedModel = new PosisionatedModel()
-            {
-                Model = newModel,
-            };
+			PosisionatedModel posisionatedModel = new PosisionatedModel()
+			{
+				Model = newModel,
+			};
 
-            foreach (PropertyInfo property in newModel.GetType().GetProperties())
-            {
-                Assert.AreEqual(property.GetValue(newModel), property.GetValue(posisionatedModel.Model));
-            }
-        }
-    }
+			foreach (PropertyInfo property in newModel.GetType().GetProperties())
+			{
+				Assert.AreEqual(property.GetValue(newModel), property.GetValue(posisionatedModel.Model));
+			}
+		}
+	}
 }

@@ -1,16 +1,13 @@
 ﻿using IRepository;
-using MemoryRepository.Exceptions;
-using Models;
-using System;
+using Domain;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MemoryRepository.Exceptions;
 
 namespace MemoryRepository.MaterialRepository
 {
     public class MaterialRepository : IRepositoryMaterial
     {
+        private const string NotFoundMaterialMessage = "Material was not found or already deleted";
         private readonly List<Material> _materials;
 
         public MaterialRepository()
@@ -30,7 +27,14 @@ namespace MemoryRepository.MaterialRepository
 
         public void RemoveMaterial(Material material)
         {
-            _materials.Remove(material);
+            if (!_materials.Remove(material))
+            {
+                throw new NotFoundMaterialException(NotFoundMaterialMessage);
+            }
+            else
+            {
+                _materials.Remove(material);
+            }
         }
     }
 }

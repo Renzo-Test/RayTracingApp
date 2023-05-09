@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControllerTest\ClientControllerTest.cs" />
@@ -54,6 +55,14 @@
     <Compile Include="ControllerTest\MaterialControllerTest.cs" />
     <Compile Include="ControllerTest\ModelControllerTest.cs" />
     <Compile Include="ControllerTest\SceneControllerTest.cs" />
+    <Compile Include="EngineTest\ScannerTest.cs" />
+    <Compile Include="EngineTest\ProgressTest.cs" />
+    <Compile Include="EngineTest\RayTest.cs" />
+    <Compile Include="EngineTest\RenderPropertiesTest.cs" />
+    <Compile Include="EngineTest\HitRecordTest.cs" />
+    <Compile Include="EngineTest\PrinterTest.cs" />
+    <Compile Include="EngineTest\CameraTest.cs" />
+    <Compile Include="EngineTest\VectorTest.cs" />
     <Compile Include="MemoryRepositoryTest\SceneRepositoryTest.cs" />
     <Compile Include="MemoryRepositoryTest\FigureRepositoryTest.cs" />
     <Compile Include="MemoryRepositoryTest\MaterialRepositoryTest.cs" />
@@ -77,6 +86,10 @@
       <Project>{8afd5675-ef7d-4c0c-9936-8ebf95410a98}</Project>
       <Name>Controller</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Engine\Engine.csproj">
+      <Project>{b423631e-ffb8-41f2-9658-9d7b3cd0e47e}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRepository\IRepository.csproj">
       <Project>{d74d687a-51aa-4f86-9a2e-bdc3bf517078}</Project>
       <Name>IRepository</Name>
@@ -85,9 +98,9 @@
       <Project>{5e7fe5d8-e9a5-4b2c-aa81-e63cc8e6669f}</Project>
       <Name>MemoryRepository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>
-      <Name>Models</Name>
+      <Name>Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\RayTracingApp\RayTracingApp.csproj">
       <Project>{df2d8ac3-acd5-4ad8-a67b-7c7e3acc9f83}</Project>

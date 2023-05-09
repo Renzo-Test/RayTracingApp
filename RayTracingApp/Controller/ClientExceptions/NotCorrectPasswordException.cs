@@ -1,9 +1,9 @@
-﻿using Models.ClientExceptions;
+﻿using Domain.Exceptions;
 
-namespace Controller.ClientExceptions
+namespace Controller.Exceptions
 {
-    public class NotCorrectPasswordException : InvalidCredentialsException
-    {
-        public NotCorrectPasswordException(string message) : base(message) { }
-    }
+	public class NotCorrectPasswordException : InvalidCredentialsException
+	{
+		public NotCorrectPasswordException(string message) : base(message) { }
+	}
 }

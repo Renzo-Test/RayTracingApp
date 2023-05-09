@@ -1,306 +1,297 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Controller;
-using Models;
-using Controller.SceneExceptions;
+﻿using Controller;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Domain;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
-using MemoryRepository.Exceptions;
-using Models.SceneExceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
-    [TestClass]
-    public class SceneControllerTest
-    {
-        private SceneController _sceneController;
+	[TestClass]
+	[ExcludeFromCodeCoverage]
+	public class SceneControllerTest
+	{
+		private SceneController _sceneController;
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _sceneController = new SceneController();
-        }
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_sceneController = new SceneController();
+		}
 
-        [TestMethod]
-        public void CreateSceneController_OkTest()
-        {
-            SceneController sceneController = new SceneController(); 
-        }
+		[TestMethod]
+		public void CreateSceneController_OkTest()
+		{
+			SceneController sceneController = new SceneController();
+		}
 
-        [TestMethod]
-        public void AddScene_OkTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "Test",
-            };
+		[TestMethod]
+		public void AddScene_OkTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = "Test",
+			};
 
-            _sceneController.AddScene(newScene, "ownerName");
+			_sceneController.AddScene(newScene, "ownerName");
 
-            CollectionAssert.Contains(_sceneController.Repository.GetScenesByClient("ownerName"), newScene);
-        }
+			CollectionAssert.Contains(_sceneController.Repository.GetScenesByClient("ownerName"), newScene);
+		}
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidSceneInputException))]
-        public void AddScene_EmptyName_FailTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = ""
-            };
+		[TestMethod]
+		[ExpectedException(typeof(InvalidSceneInputException))]
+		public void AddScene_EmptyName_FailTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = ""
+			};
+		}
 
-            _sceneController.AddScene(newScene, "owneraName");
-        }
+		[TestMethod]
+		[ExpectedException(typeof(InvalidSceneInputException))]
+		public void AddScene_StartWithSpace_FailTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = " sceneName"
+			};
+		}
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidSceneInputException))]
-        public void AddScene_StartWithSpace_FailTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = " sceneName"
-            };
+		[TestMethod]
+		[ExpectedException(typeof(InvalidSceneInputException))]
+		public void AddScene_EndWithSpace_FailTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = "sceneName "
+			};
+		}
 
-            _sceneController.AddScene(newScene, "owneraName");
-        }
+		[TestMethod]
+		[ExpectedException(typeof(InvalidSceneInputException))]
+		public void AddScene_AlreadyExistingSceneName_FailTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = "sceneName"
+			};
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidSceneInputException))]
-        public void AddScene_EndWithSpace_FailTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "sceneName "
-            };
+			_sceneController.AddScene(newScene, "owneraName");
+			_sceneController.AddScene(newScene, "owneraName");
+		}
 
-            _sceneController.AddScene(newScene, "owneraName");
-        }
+		[TestMethod]
+		[ExpectedException(typeof(InvalidSceneInputException))]
+		public void AddScene_LessThanMinFov_FailTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = "sceneName",
+				Fov = 0
+			};
+		}
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidSceneInputException))]
-        public void AddScene_AlreadyExistingSceneName_FailTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "sceneName"
-            };
+		[TestMethod]
+		[ExpectedException(typeof(InvalidSceneInputException))]
+		public void AddScene_BiggerThanMaxFov_FailTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = "sceneName",
+				Fov = 161
+			};
+		}
 
-            _sceneController.AddScene(newScene, "owneraName");
-            _sceneController.AddScene(newScene, "owneraName");
-        }
+		[TestMethod]
+		public void UpdateLastModificationDate_OkTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = "sceneName"
+			};
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidSceneInputException))]
-        public void AddScene_LessThanMinFov_FailTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "sceneName",
-                Fov = 0
-            };
+			_sceneController.UpdateLastModificationDate(newScene);
+			Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastModificationDate);
+		}
 
-            _sceneController.AddScene(newScene, "owneraName");
-        }
+		[TestMethod]
+		public void UpdateLastRenderDate_OkTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = "sceneName"
+			};
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidSceneInputException))]
-        public void AddScene_BiggerThanMaxFov_FailTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "sceneName",
-                Fov = 161
-            };
+			_sceneController.UpdateLastRenderDate(newScene);
+			Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastRenderDate);
+		}
 
-            _sceneController.AddScene(newScene, "owneraName");
-        }
+		[TestMethod]
+		public void ListScenes_OkTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = "scene"
+			};
+			Scene anotherScene = new Scene()
+			{
+				Name = "anotherScene"
+			};
 
-        [TestMethod]
-        public void UpdateLastModificationDate_OkTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "sceneName"
-            };
+			_sceneController.AddScene(newScene, "ownerName");
+			_sceneController.AddScene(anotherScene, "ownerName");
 
-            _sceneController.UpdateLastModificationDate(newScene);
-            Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastModificationDate);
-        }
+			List<Scene> ownerScenes = _sceneController.ListScenes("ownerName");
+			CollectionAssert.Contains(ownerScenes, newScene);
+			CollectionAssert.Contains(ownerScenes, anotherScene);
+		}
 
-        [TestMethod]
-        public void UpdateLastRenderDate_OkTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "sceneName"
-            };
+		[TestMethod]
+		public void RemoveScene_OkTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = "scene"
+			};
 
-            _sceneController.UpdateLastRenderDate(newScene);
-            Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastRenderDate);
-        }
+			_sceneController.AddScene(newScene, "ownerName");
 
-        [TestMethod]
-        public void ListScenes_OkTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "scene"
-            };
-            Scene anotherScene = new Scene()
-            {
-                Name = "anotherScene"
-            };
+			_sceneController.RemoveScene("scene", "ownerName");
+			CollectionAssert.DoesNotContain(_sceneController.ListScenes("ownerName"), newScene);
+		}
 
-            _sceneController.AddScene(newScene, "ownerName");
-            _sceneController.AddScene(anotherScene, "ownerName");
+		[TestMethod]
+		public void RemoveScene_TwoClients_OkTest()
+		{
+			Scene newScene = new Scene()
+			{
+				Name = "scene"
+			};
+			Scene anotherScene = new Scene()
+			{
+				Name = "anotherScene"
+			};
 
-            List<Scene> ownerScenes = _sceneController.ListScenes("ownerName");
-            CollectionAssert.Contains(ownerScenes, newScene);
-            CollectionAssert.Contains(ownerScenes, anotherScene);
-        }
+			_sceneController.AddScene(newScene, "firstOwner");
+			_sceneController.AddScene(anotherScene, "secondOwner");
 
-        public void RemoveScene_OkTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "scene"
-            };
+			_sceneController.RemoveScene("scene", "firstOwner");
+			CollectionAssert.Contains(_sceneController.ListScenes("secondOwner"), anotherScene);
+		}
 
-            _sceneController.AddScene(newScene, "ownerName");
+		[TestMethod]
+		public void GetAvailableModels_OkTest()
+		{
+			Model newModel = new Model()
+			{
+				Name = "modelName"
+			};
+			PosisionatedModel posisionatedModel = new PosisionatedModel();
+			posisionatedModel.Model = newModel;
 
-            _sceneController.RemoveScene("scene", "ownerName");
-            CollectionAssert.DoesNotContain(_sceneController.ListScenes("ownerName"), newScene);
-        }
+			List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
+			sceneModels.Add(posisionatedModel);
 
-        [TestMethod]
-        public void RemoveScene_TwoClients_OkTest()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "scene"
-            };
-            Scene anotherScene = new Scene()
-            {
-                Name = "anotherScene"
-            };
+			Scene newScene = new Scene()
+			{
+				Name = "scene",
+				PosisionatedModels = sceneModels
+			};
 
-            _sceneController.AddScene(newScene, "firstOwner");
-            _sceneController.AddScene(anotherScene, "secondOwner");
+			Model availableModel = new Model()
+			{
+				Name = "unusedModel"
+			};
 
-            _sceneController.RemoveScene("scene", "firstOwner");
-            CollectionAssert.Contains(_sceneController.ListScenes("secondOwner"), anotherScene);
-        }
+			ModelController modelController = new ModelController();
+			modelController.AddModel(newModel, "ownerName");
+			modelController.AddModel(availableModel, "ownerName");
+			_sceneController.AddScene(newScene, "ownerName");
+			List<Model> ownerModels = modelController.ListModels("ownerName");
 
-        [TestMethod]
-        public void GetAvailableModels_OkTest()
-        {
-            Model newModel = new Model()
-            {
-                Name = "modelName"
-            };
-            PosisionatedModel posisionatedModel = new PosisionatedModel();
-            posisionatedModel.Model = newModel;
+			CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
+		}
 
-            List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
-            sceneModels.Add(posisionatedModel);
+		[TestMethod]
+		public void GetAvailableModels_ContainsAllUnusedModels_OkTest()
+		{
+			Model availableModel = new Model()
+			{
+				Name = "modelName"
+			};
+			PosisionatedModel posisionatedModel = new PosisionatedModel();
+			posisionatedModel.Model = availableModel;
 
-            Scene newScene = new Scene()
-            {
-                Name = "scene",
-                PosisionatedModels = sceneModels
-            };
+			Scene newScene = new Scene()
+			{
+				Name = "scene",
+				PosisionatedModels = new List<PosisionatedModel>()
+			};
 
-            Model availableModel = new Model()
-            {
-                Name = "unusedModel"
-            };
+			Model otherAvailableModel = new Model()
+			{
+				Name = "unusedModel"
+			};
 
-            ModelController modelController = new ModelController();
-            modelController.AddModel(newModel, "ownerName");
-            modelController.AddModel(availableModel, "ownerName");
-            _sceneController.AddScene(newScene, "ownerName");
-            List<Model> ownerModels = modelController.ListModels("ownerName");
+			ModelController modelController = new ModelController();
+			modelController.AddModel(otherAvailableModel, "ownerName");
+			modelController.AddModel(availableModel, "ownerName");
+			_sceneController.AddScene(newScene, "ownerName");
+			List<Model> ownerModels = modelController.ListModels("ownerName");
 
-            CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
-        }
+			CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
+			CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), otherAvailableModel);
+		}
 
-        [TestMethod]
-        public void GetAvailableModels_ContainsAllUnusedModels_OkTest()
-        {
-            Model availableModel = new Model()
-            {
-                Name = "modelName"
-            };
-            PosisionatedModel posisionatedModel = new PosisionatedModel();
-            posisionatedModel.Model = availableModel;
+		[TestMethod]
+		public void GetAvailableModels_OnlyContainsUnusedModels_OkTest()
+		{
+			Model newModel = new Model()
+			{
+				Name = "modelName"
+			};
+			PosisionatedModel posisionatedModel = new PosisionatedModel();
+			posisionatedModel.Model = newModel;
 
-            Scene newScene = new Scene()
-            {
-                Name = "scene",
-                PosisionatedModels = new List<PosisionatedModel>()
-            };
+			List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
+			sceneModels.Add(posisionatedModel);
 
-            Model otherAvailableModel = new Model()
-            {
-                Name = "unusedModel"
-            };
+			Scene newScene = new Scene()
+			{
+				Name = "scene",
+				PosisionatedModels = sceneModels
+			};
 
-            ModelController modelController = new ModelController();
-            modelController.AddModel(otherAvailableModel, "ownerName");
-            modelController.AddModel(availableModel, "ownerName");
-            _sceneController.AddScene(newScene, "ownerName");
-            List<Model> ownerModels = modelController.ListModels("ownerName");
+			Model availableModel = new Model()
+			{
+				Name = "unusedModel"
+			};
 
-            CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
-            CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), otherAvailableModel);
-        }
+			ModelController modelController = new ModelController();
+			modelController.AddModel(newModel, "ownerName");
+			modelController.AddModel(availableModel, "ownerName");
+			_sceneController.AddScene(newScene, "ownerName");
+			List<Model> ownerModels = modelController.ListModels("ownerName");
 
-        [TestMethod]
-        public void GetAvailableModels_OnlyContainsUnusedModels_OkTest()
-        {
-            Model newModel = new Model()
-            {
-                Name = "modelName"
-            };
-            PosisionatedModel posisionatedModel = new PosisionatedModel();
-            posisionatedModel.Model = newModel;
+			CollectionAssert.DoesNotContain(_sceneController.GetAvailableModels(newScene, ownerModels), newModel);
+		}
 
-            List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
-            sceneModels.Add(posisionatedModel);
+		[TestMethod]
+		public void CreateBlankScene_SceneName_OkTest()
+		{
+			Scene blankScene = _sceneController.CreateBlankScene("SceneName");
 
-            Scene newScene = new Scene()
-            {
-                Name = "scene",
-                PosisionatedModels = sceneModels
-            };
+			Assert.AreEqual(blankScene.Name, "SceneName");
+		}
 
-            Model availableModel = new Model()
-            {
-                Name = "unusedModel"
-            };
+		[TestMethod]
+		public void CreateBlankScene_AnotherSceneName_OkTest()
+		{
+			Scene blankScene = _sceneController.CreateBlankScene("AnotherSceneName");
 
-            ModelController modelController = new ModelController();
-            modelController.AddModel(newModel, "ownerName");
-            modelController.AddModel(availableModel, "ownerName");
-            _sceneController.AddScene(newScene, "ownerName");
-            List<Model> ownerModels = modelController.ListModels("ownerName");
-
-            CollectionAssert.DoesNotContain(_sceneController.GetAvailableModels(newScene, ownerModels), newModel);
-        }
-
-        [TestMethod]
-        public void CreateBlankScene_SceneName_OkTest()
-        {
-            Scene blankScene = _sceneController.CreateBlankScene("SceneName");
-
-            Assert.AreEqual(blankScene.Name, "SceneName");
-        }
-
-        [TestMethod]
-        public void CreateBlankScene_AnotherSceneName_OkTest()
-        {
-            Scene blankScene = _sceneController.CreateBlankScene("AnotherSceneName");
-
-            Assert.AreEqual(blankScene.Name, "AnotherSceneName");
-        }
-    }
+			Assert.AreEqual(blankScene.Name, "AnotherSceneName");
+		}
+	}
 }

@@ -1,16 +1,13 @@
 ﻿using IRepository;
-using MemoryRepository.Exceptions;
-using Models;
-using System;
+using Domain;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MemoryRepository.Exceptions;
 
 namespace MemoryRepository
 {
     public class SceneRepository : IRepositoryScene
     {
+        private const string NotFoundSceneMessage = "Scene was not found or already deleted";
         private readonly List<Scene> _scenes;
 
         public SceneRepository()
@@ -30,7 +27,14 @@ namespace MemoryRepository
 
         public void RemoveScene(Scene scene)
         {
-            _scenes.Remove(scene);
+            if (!_scenes.Remove(scene))
+            {
+                throw new NotFoundSceneException(NotFoundSceneMessage);
+            }
+            else
+            {
+                _scenes.Remove(scene);
+            }
         }
     }
 }

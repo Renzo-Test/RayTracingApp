@@ -1,45 +1,48 @@
 ﻿using MemoryRepository;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.MemoryRepositoryTest
 {
-    [TestClass]
-    public class ClientRepositoryTest
-    {
-        private ClientRepository _clientRepository;
+	[TestClass]
+	[ExcludeFromCodeCoverage]
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _clientRepository = new ClientRepository();
-        }
+	public class ClientRepositoryTest
+	{
+		private ClientRepository _clientRepository;
 
-        [TestMethod]
-        public void CreateClientRepository_OkTest()
-        {
-            _clientRepository = new ClientRepository();
-        }
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_clientRepository = new ClientRepository();
+		}
 
-        [TestMethod]
-        public void AddClientToClientRepository_OkTest()
-        {
-            _clientRepository.AddClient("Gomez", "GomezSecret123");
-        }
+		[TestMethod]
+		public void CreateClientRepository_OkTest()
+		{
+			_clientRepository = new ClientRepository();
+		}
 
-        [TestMethod]
-        public void GetClient_OkTest()
-        {
-            _clientRepository.AddClient("user", "Password123");
-            Assert.AreEqual("user", _clientRepository.GetClient("user").Username);
-            Assert.AreEqual("Password123", _clientRepository.GetClient("user").Password);
-        }
+		[TestMethod]
+		public void AddClientToClientRepository_OkTest()
+		{
+			_clientRepository.AddClient("Gomez", "GomezSecret123");
+		}
 
-        [TestMethod]
-        [ExpectedException(typeof(NotFoundClientException))]
-        public void GetClient_NotAddedClient_FailTest()
-        {
-            Assert.AreEqual("user", _clientRepository.GetClient("user").Username);
-        }
-    }
+		[TestMethod]
+		public void GetClient_OkTest()
+		{
+			_clientRepository.AddClient("user", "Password123");
+			Assert.AreEqual("user", _clientRepository.GetClient("user").Username);
+			Assert.AreEqual("Password123", _clientRepository.GetClient("user").Password);
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(NotFoundClientException))]
+		public void GetClient_NotAddedClient_FailTest()
+		{
+			Assert.AreEqual("user", _clientRepository.GetClient("user").Username);
+		}
+	}
 }

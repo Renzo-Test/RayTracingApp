@@ -1,16 +1,13 @@
-﻿using System;
+﻿using IRepository;
+using Domain;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IRepository;
 using MemoryRepository.Exceptions;
-using Models;
 
 namespace MemoryRepository
 {
     public class FigureRepository : IRepositoryFigure
     {
+        private const string NotFoundFigureMessage = "Figure was not found or already deleted";
         private readonly List<Figure> _figures;
 
         public FigureRepository()
@@ -31,7 +28,14 @@ namespace MemoryRepository
 
         public void RemoveFigure(Figure figure)
         {
-            _figures.Remove(figure);
+            if (!_figures.Remove(figure))
+            {
+                throw new NotFoundFigureException(NotFoundFigureMessage);
+            }
+            else
+            {
+                _figures.Remove(figure);
+            }
         }
 
     }

@@ -1,101 +1,101 @@
-﻿using Controller.FigureExceptions;
+﻿using Controller.Exceptions;
 using IRepository;
 using MemoryRepository;
 using MemoryRepository.Exceptions;
-using Models;
-using Models.FigureExceptions;
-using System;
+using Domain;
+using Domain.Exceptions;
 using System.Collections.Generic;
 
 namespace Controller
 {
-    public class FigureController
-    {
-        public IRepositoryFigure Repository;
+	public class FigureController
+	{
+		public IRepositoryFigure Repository;
 
-        public FigureController()
-        {
-            Repository = new FigureRepository();
-        }
+		public FigureController()
+		{
+			Repository = new FigureRepository();
+		}
 
-        public List<Figure> ListFigures(string username)
-        {
-            return Repository.GetFiguresByClient(username);
-        }
+		public List<Figure> ListFigures(string username)
+		{
+			return Repository.GetFiguresByClient(username);
+		}
 
-        public void AddFigure(Figure figure, string username)
-        {
-            try
-            {
-                RunFigureChecker(figure, username);
-                figure.Owner = username;
-                Repository.AddFigure(figure);
-            }
-            catch (InvalidFigureInputException ex)
-            {
-                throw new InvalidFigureInputException(ex.Message);
-            }
-        }
+		public void AddFigure(Figure figure, string username)
+		{
+			try
+			{
+				RunFigureChecker(figure, username);
+				figure.Owner = username;
+				Repository.AddFigure(figure);
+			}
+			catch (InvalidFigureInputException ex)
+			{
+				throw new InvalidFigureInputException(ex.Message);
+			}
+		}
 
-        public void RunFigureChecker(Figure figure, string ownerName)
-        {
-            if (FigureNameExist(figure.Name, ownerName))
-            {
-                string AlreadyExsitingFigureMessage = $"Figure with name {figure.Name} already exists";
-                throw new AlreadyExistingFigureException(AlreadyExsitingFigureMessage);
-            }
+		public void RemoveFigure(string figureName, string username, List<Model> models)
+		{
+			Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
 
-            FigurePropertiesAreValid(figure);
-        }
+			if (deleteFigure is null)
+			{
+				string NotFoundFigureMessage = $"Figure with name {figureName} was not found";
+				throw new NotFoundFigureException(NotFoundFigureMessage);
+			}
 
-        public bool FigureNameExist(string name, string ownerName)
-        {
-            List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
-            return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
-        }
+			Model foundModel = models.Find(model => model.Figure.Name.Equals(figureName));
+			if (foundModel is object)
+			{
+				string FigureUsedByModelMessage = $"Figure with name {figureName} is used by a model";
+				throw new FigureUsedByModelException(FigureUsedByModelMessage);
+			}
 
-        public void FigurePropertiesAreValid(Figure figure)
-        {
-            try
-            {
-                figure.FigurePropertiesAreValid();
-            }
+			Repository.RemoveFigure(deleteFigure);
+		}
 
-            catch (InvalidFigureInputException ex)
-            {
-                throw new InvalidFigureInputException(ex.Message);
-            }
-        }
-        public void RemoveFigure(string figureName, string username, List<Model> models)
-        {
-            Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
+		public Figure GetFigure(string username, string name)
+		{
+			Figure getFigure = ListFigures(username).Find(fig => fig.Name.Equals(name));
 
-            if (deleteFigure is null)
-            {
-                string NotFoundFigureMessage = $"Figure with name {figureName} was not found";
-                throw new NotFoundFigureException(NotFoundFigureMessage);
-            }
+			if (getFigure is null)
+			{
+				throw new NotFoundFigureException($"Figure with name {name} was not found");
+			}
 
-            Model foundModel = models.Find(model => model.Figure.Name.Equals(figureName));
-            if (foundModel is object)
-            {
-                string FigureUsedByModelMessage = $"Figure with name {figureName} is used by a model";
-                throw new FigureUsedByModelException(FigureUsedByModelMessage);
-            }
+			return getFigure;
+		}
 
-            Repository.RemoveFigure(deleteFigure);
-        }
+		private void RunFigureChecker(Figure figure, string ownerName)
+		{
+			if (FigureNameExist(figure.Name, ownerName))
+			{
+				string AlreadyExsitingFigureMessage = $"Figure with name {figure.Name} already exists";
+				throw new AlreadyExistingFigureException(AlreadyExsitingFigureMessage);
+			}
 
-        public Figure GetFigure(string username, string name)
-        {
-            Figure getFigure = ListFigures(username).Find(fig => fig.Name.Equals(name));
+			FigurePropertiesAreValid(figure);
+		}
 
-            if (getFigure is null)
-            {
-                throw new NotFoundFigureException($"Figure with name {name} was not found");
-            }
+		private bool FigureNameExist(string name, string ownerName)
+		{
+			List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
+			return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
+		}
 
-            return getFigure;
-        }
-    }
+		private void FigurePropertiesAreValid(Figure figure)
+		{
+			try
+			{
+				figure.FigurePropertiesAreValid();
+			}
+
+			catch (InvalidFigureInputException ex)
+			{
+				throw new InvalidFigureInputException(ex.Message);
+			}
+		}
+	}
 }

@@ -1,150 +1,154 @@
 ﻿using MemoryRepository;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
+using Domain;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.MemoryRepositoryTest
 {
-    [TestClass]
-    public class ModelRepositoryTest
-    {
-        private ModelRepository _modelRepository;
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _modelRepository = new ModelRepository();
-        }
-        [TestMethod]
-        public void CreateModelRepositoryOk_Test()
-        {
-            _modelRepository = new ModelRepository();
-        }
-        [TestMethod]
-        public void GetModelsByClient_Username_OkTest()
-        {
-            Figure newFigure = new Sphere()
-            {
-                Owner = "OwnerName",
-                Name = "Name",
-            };
-            Color NewColor = new Color()
-            {
-                Red = 222,
-                Green = 222,
-                Blue = 222,
-            };
+	[TestClass]
+	[ExcludeFromCodeCoverage]
+	public class ModelRepositoryTest
+	{
+		private ModelRepository _modelRepository;
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_modelRepository = new ModelRepository();
+		}
+		[TestMethod]
+		public void CreateModelRepositoryOk_Test()
+		{
+			_modelRepository = new ModelRepository();
+		}
+		[TestMethod]
+		public void GetModelsByClient_Username_OkTest()
+		{
+			Figure newFigure = new Sphere()
+			{
+				Owner = "OwnerName",
+				Name = "Name",
+			};
+			Color NewColor = new Color()
+			{
+				Red = 222,
+				Green = 222,
+				Blue = 222,
+			};
 
-            Material NewMaterial = new Material()
-            {
-                Name = "Test",
-                Owner = "OwnerName",
-                Color = NewColor,
-            };
-            Model NewModel = new Model()
-            {
-                Owner = "Username",
-                Name = "Test",
-                Material = NewMaterial,
-                Figure = newFigure
-            };
-            _modelRepository.AddModel(NewModel);
-            Assert.AreEqual(NewModel, _modelRepository.GetModelsByClient(NewModel.Owner)[0]);
-        }
-        [TestMethod]
-        public void AddModel_OkTest()
-        {
-            Figure newFigure = new Sphere()
-            {
-                Owner = "OwnerName",
-                Name = "Name",
-            };
-            Color NewColor = new Color()
-            {
-                Red = 222,
-                Green = 222,
-                Blue = 222,
-            };
+			Material NewMaterial = new Material()
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+				Color = NewColor,
+			};
+			Model NewModel = new Model()
+			{
+				Owner = "Username",
+				Name = "Test",
+				Material = NewMaterial,
+				Figure = newFigure
+			};
+			_modelRepository.AddModel(NewModel);
+			Assert.AreEqual(NewModel, _modelRepository.GetModelsByClient(NewModel.Owner)[0]);
+		}
+		[TestMethod]
+		public void AddModel_OkTest()
+		{
+			Figure newFigure = new Sphere()
+			{
+				Owner = "OwnerName",
+				Name = "Name",
+			};
+			Color NewColor = new Color()
+			{
+				Red = 222,
+				Green = 222,
+				Blue = 222,
+			};
 
-            Material NewMaterial = new Material()
-            {
-                Name = "Test",
-                Owner = "OwnerName",
-                Color = NewColor,
-            };
-            Model NewModel = new Model()
-            {
-                Owner = "Username",
-                Name = "Test",
-                Material = NewMaterial,
-                Figure = newFigure
-            };
-            _modelRepository.AddModel(NewModel);
-        }
+			Material NewMaterial = new Material()
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+				Color = NewColor,
+			};
+			Model NewModel = new Model()
+			{
+				Owner = "Username",
+				Name = "Test",
+				Material = NewMaterial,
+				Figure = newFigure
+			};
+			_modelRepository.AddModel(NewModel);
+		}
 
-        public void RemoveModel_OkTest()
-        {
-            Figure newFigure = new Sphere()
-            {
-                Owner = "OwnerName",
-                Name = "Name",
-            };
-            Color NewColor = new Color()
-            {
-                Red = 222,
-                Green = 222,
-                Blue = 222,
-            };
+		[TestMethod]
+		public void RemoveModel_OkTest()
+		{
+			Figure newFigure = new Sphere()
+			{
+				Owner = "OwnerName",
+				Name = "Name",
+			};
+			Color NewColor = new Color()
+			{
+				Red = 222,
+				Green = 222,
+				Blue = 222,
+			};
 
-            Material NewMaterial = new Material()
-            {
-                Name = "Test",
-                Owner = "OwnerName",
-                Color = NewColor,
-            };
-            Model NewModel = new Model()
-            {
-                Owner = "OwnerName",
-                Name = "Test",
-                Material = NewMaterial,
-                Figure = newFigure
-            };
-            _modelRepository.AddModel(NewModel);
-            _modelRepository.RemoveModel(NewModel);
-            List<Model> iterable = _modelRepository.GetModelsByClient("OwnerName");
-            CollectionAssert.DoesNotContain(iterable, NewModel);
-        }
+			Material NewMaterial = new Material()
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+				Color = NewColor,
+			};
+			Model NewModel = new Model()
+			{
+				Owner = "OwnerName",
+				Name = "Test",
+				Material = NewMaterial,
+				Figure = newFigure
+			};
+			_modelRepository.AddModel(NewModel);
+			_modelRepository.RemoveModel(NewModel);
+			List<Model> iterable = _modelRepository.GetModelsByClient("OwnerName");
+			CollectionAssert.DoesNotContain(iterable, NewModel);
+		}
 
-
+		[TestMethod]
+        [ExpectedException(typeof(NotFoundModelException))]
         public void RemoveModel_NotExistingModel_OkTest()
-        {
-            Figure newFigure = new Sphere()
-            {
-                Owner = "OwnerName",
-                Name = "Name",
-            };
-            Color NewColor = new Color()
-            {
-                Red = 222,
-                Green = 222,
-                Blue = 222,
-            };
+		{
+			Figure newFigure = new Sphere()
+			{
+				Owner = "OwnerName",
+				Name = "Name",
+			};
+			Color NewColor = new Color()
+			{
+				Red = 222,
+				Green = 222,
+				Blue = 222,
+			};
 
-            Material NewMaterial = new Material()
-            {
-                Name = "Test",
-                Owner = "OwnerName",
-                Color = NewColor,
-            };
-            Model NewModel = new Model()
-            {
-                Owner = "OwnerName",
-                Name = "Test",
-                Material = NewMaterial,
-                Figure = newFigure
-            };
-            _modelRepository.RemoveModel(NewModel);
-            _modelRepository.GetModelsByClient("OwnerName");
-        }
-    }
+			Material NewMaterial = new Material()
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+				Color = NewColor,
+			};
+			Model NewModel = new Model()
+			{
+				Owner = "OwnerName",
+				Name = "Test",
+				Material = NewMaterial,
+				Figure = newFigure
+			};
+			_modelRepository.RemoveModel(NewModel);
+			_modelRepository.GetModelsByClient("OwnerName");
+		}
+	}
 }

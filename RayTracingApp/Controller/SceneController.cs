@@ -1,95 +1,92 @@
-﻿using Controller.SceneExceptions;
-using Models;
+﻿using Controller.Exceptions;
 using IRepository;
-using MemoryRepository.Exceptions;
 using MemoryRepository;
-using System.Collections.Generic;
+using Domain;
+using Domain.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
-using Models.SceneExceptions;
 
 namespace Controller
 {
-    public class SceneController
-    {
-        public IRepositoryScene Repository;
+	public class SceneController
+	{
+		public IRepositoryScene Repository;
 
-        public SceneController()
-        {
-            Repository = new SceneRepository();
-        }
+		public SceneController()
+		{
+			Repository = new SceneRepository();
+		}
 
-        public void AddScene(Scene newScene, string username)
-        {
-            try
-            {
-                SceneChecker(newScene, username);
-                newScene.Owner = username;
-                Repository.AddScene(newScene);
-            }
-            catch (InvalidSceneInputException ex)
-            {
-                throw new InvalidSceneInputException(ex.Message);
-            }
-        }
+		public void AddScene(Scene newScene, string username)
+		{
+			try
+			{
+				SceneChecker(newScene, username);
+				newScene.Owner = username;
+				Repository.AddScene(newScene);
+			}
+			catch (InvalidSceneInputException ex)
+			{
+				throw new InvalidSceneInputException(ex.Message);
+			}
+		}
 
-        private void SceneChecker(Scene scene, string username)
-        {
-            if (SceneNameExist(scene, username))
-            {
-                string AlreadyExistingSceneMessage = $"Scene with name {scene.Name} already exists";
-                throw new AlreadyExistingSceneException(AlreadyExistingSceneMessage);
-            }
-        }
+		public void UpdateLastModificationDate(Scene scene)
+		{
+			scene.LastModificationDate = TodayDate();
+		}
 
-        private bool SceneNameExist(Scene newScene, string username)
-        {
-            List<Scene> clientScenes = Repository.GetScenesByClient(username);
-            return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
-        }
-        public void UpdateLastModificationDate(Scene scene)
-        {
-            scene.LastModificationDate = TodayDate();
-        }
+		public void UpdateLastRenderDate(Scene scene)
+		{
+			scene.LastRenderDate = TodayDate();
+		}
+		public List<Scene> ListScenes(string username)
+		{
+			return Repository.GetScenesByClient(username);
+		}
 
-        public void UpdateLastRenderDate(Scene scene)
-        {
-            scene.LastRenderDate = TodayDate();
-        }
+		public void RemoveScene(string name, string username)
+		{
+			List<Scene> userScenes = ListScenes(username);
+			Scene removeScene = userScenes.Find(Scene => Scene.Name.Equals(name));
+			Repository.RemoveScene(removeScene);
+		}
 
-        private static string TodayDate()
-        {
-            return DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
-        }
+		public List<Model> GetAvailableModels(Scene scene, List<Model> ownerModels)
+		{
+			List<Model> usedModels = new List<Model>();
+			foreach (PosisionatedModel posModel in scene.PosisionatedModels)
+			{
+				usedModels.Add(posModel.Model);
+			}
 
-        public List<Scene> ListScenes(string username)
-        {
-            return Repository.GetScenesByClient(username);
-        }
+			return ownerModels.Except(usedModels).ToList();
+		}
 
-        public void RemoveScene(string name, string username)
-        {
-            List<Scene> userScenes = ListScenes(username);
-            Scene removeScene = userScenes.Find(Scene => Scene.Name.Equals(name));
-            Repository.RemoveScene(removeScene);
-        }
+		public Scene CreateBlankScene(string name)
+		{
+			Scene scene = new Scene() { Name = name };
+			return scene;
+		}
 
-        public List<Model> GetAvailableModels(Scene scene, List<Model> ownerModels)
-        {
-            List<Model> usedModels = new List<Model>();
-            foreach (PosisionatedModel posModel in scene.PosisionatedModels)
-            {
-                usedModels.Add(posModel.Model);
-            }
+		private void SceneChecker(Scene scene, string username)
+		{
+			if (SceneNameExist(scene, username))
+			{
+				string AlreadyExistingSceneMessage = $"Scene with name {scene.Name} already exists";
+				throw new AlreadyExistingSceneException(AlreadyExistingSceneMessage);
+			}
+		}
 
-            return ownerModels.Except(usedModels).ToList();
-        }
-
-        public Scene CreateBlankScene(string name)
-        {
-            Scene scene = new Scene() { Name = name };
-            return scene;
-        }
-    }
+		private bool SceneNameExist(Scene newScene, string username)
+		{
+			List<Scene> clientScenes = Repository.GetScenesByClient(username);
+			return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
+		}
+		private static string TodayDate()
+		{
+			return DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+		}
+	}
 }
