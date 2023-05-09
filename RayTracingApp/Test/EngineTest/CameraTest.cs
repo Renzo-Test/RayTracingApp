@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Engine;
+using Domain;
 
 namespace Test.EngineTest
 {

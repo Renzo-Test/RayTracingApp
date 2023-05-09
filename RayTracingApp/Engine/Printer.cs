@@ -1,6 +1,8 @@
 ﻿
+using Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -20,13 +22,15 @@ namespace Engine
 				{
 					for (var i = 0; i < properties.ResolutionX; i++)
 					{
-						Vector color = Pixels[j][i];
-						image.Append($"{color.Red()} {color.Green()} {color.Blue()}\n");
+						Color color = Pixels[j][i].Color();
+						image.Append($"{color.Red} {color.Green} {color.Blue}\n");
 						progress.Count();
 					}
 				}
 			}
 
+			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+			File.WriteAllText($"{path}/prueba.ppm", image.ToString());
 			return image.ToString();
 		}
 

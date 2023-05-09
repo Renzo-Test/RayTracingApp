@@ -18,9 +18,9 @@ namespace Domain
 		private string _lastModificationDate = "unmodified";
 		private string _lastRenderDate = "unrendered";
 		private int _fov = 30;
-		private Coordinate _cameraPosition = new Coordinate() { X = 0, Y = 2, Z = 0 };
-		private Coordinate _objectivePosition = new Coordinate() { X = 0, Y = 2, Z = 5 };
-		private List<PosisionatedModel> _posisionatedModels;
+		public Vector CameraPosition = new Vector() { X = 0, Y = 2, Z = 0 };
+		public Vector ObjectivePosition = new Vector() { X = 0, Y = 2, Z = 5 };
+		public List<PosisionatedModel> PosisionatedModels;
 		public string Owner
 		{
 			get => _owner;
@@ -73,21 +73,6 @@ namespace Domain
 					throw new InvalidSceneInputException(ex.Message);
 				}
 			}
-		}
-		public Coordinate CameraPosition
-		{
-			get => _cameraPosition;
-			set => _cameraPosition = value;
-		}
-		public Coordinate ObjectivePosition
-		{
-			get => _objectivePosition;
-			set => _objectivePosition = value;
-		}
-		public List<PosisionatedModel> PosisionatedModels
-		{
-			get => _posisionatedModels;
-			set => _posisionatedModels = value;
 		}
 
 		private static void RunNameIsEmptyChecker(string value)

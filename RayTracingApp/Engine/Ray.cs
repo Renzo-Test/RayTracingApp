@@ -1,4 +1,6 @@
-﻿namespace Engine
+﻿using Domain;
+
+namespace Engine
 {
 	public class Ray
 	{
