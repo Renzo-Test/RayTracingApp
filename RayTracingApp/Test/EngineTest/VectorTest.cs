@@ -522,5 +522,19 @@ namespace Test.EngineTest
 			Assert.AreEqual(Math.Sqrt(15) / 5, expected.Y);
 			Assert.AreEqual(Math.Sqrt(0) / 5, expected.Z);
 		}
+
+		[TestMethod]
+		public void ToString_OkTEst()
+		{
+			Vector vector = new Vector()
+			{
+				X = 1,
+				Y = 2,
+				Z = 2,
+			};
+
+			string expected = "(1,2,2)";
+			Assert.AreEqual(expected, vector.ToString());
+		}
 	}
 }
