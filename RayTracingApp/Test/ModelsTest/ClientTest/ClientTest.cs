@@ -109,6 +109,14 @@ namespace Test.ModelsTest
 		}
 
 		[TestMethod]
+		public void DefaultLookFromZ_OkTest()
+		{
+			_client = new Client();
+
+			Assert.AreEqual(0, _client.DefaultLookFrom.Z);
+		}
+
+		[TestMethod]
 		public void CanGetRegisterDate_OkTest()
 		{
 			_client = new Client();
