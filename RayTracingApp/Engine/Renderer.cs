@@ -30,7 +30,7 @@ namespace Engine
 			_printer = new Printer();
 				
 			Vector LookFrom = _scene.CameraPosition;
-			Vector LookAt = _scene.ObjetivePosition;
+			Vector LookAt = _scene.ObjectivePosition;
 			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
 			int FieldOfView = _scene.Fov;
 			double AspectRatio = _properties.AspectRatio;
