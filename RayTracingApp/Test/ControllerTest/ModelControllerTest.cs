@@ -202,5 +202,23 @@ namespace Test.ControllerTest
 
 			Assert.AreEqual(newModel.Name, "newName");
 		}
+
+		[TestMethod]
+		[ExpectedException(typeof(InvalidModelInputException))]
+		public void ChangeModelName_FailTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			Model newModel = new Model()
+			{
+				Name = "Test",
+			};
+
+			_modelController.UpdateModelName(newModel, currentClient.Username, " newName ");
+		}
 	}
 }
