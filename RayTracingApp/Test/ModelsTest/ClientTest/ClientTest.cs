@@ -93,6 +93,14 @@ namespace Test.ModelsTest
 		}
 
 		[TestMethod]
+		public void DefaultLookFromX_OkTest()
+		{
+			_client = new Client();
+
+			Assert.AreEqual(0, _client.DefaultLookFrom.X);
+		}
+
+		[TestMethod]
 		public void CanGetRegisterDate_OkTest()
 		{
 			_client = new Client();
