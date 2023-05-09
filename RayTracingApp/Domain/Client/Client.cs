@@ -14,6 +14,7 @@ namespace Domain
 		private const string NotInExpectedRangePasswordMessage = "Password's length must be greater than 4 and smaller than 26";
 		private string _username;
 		private string _password;
+		public int DefaultFov;
 		public String Username
 		{
 			get => _username;
