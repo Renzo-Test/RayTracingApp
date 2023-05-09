@@ -110,31 +110,21 @@ namespace GUI
                 ChangeMaterialName(txtMaterialName.Text, _material);
             }
         }
+
         private void ChangeMaterialName(string newName, Material material)
         {
             try
             {
-                Material newMaterial = new Material()
-                {
-                    Name = newName,
-                    Owner = material.Owner,
-                    Color = material.Color,
-                    Type = material.Type,
-                };
-
-                _materialController.AddMaterial(newMaterial, _currentClient);
+                _materialController.UpdateMaterialName(material, _currentClient, newName);
+                _materialList.PopulateItems();
 
             }
             catch (InvalidMaterialInputException ex)
             {
-                MessageBox.Show(ex.Message);
                 _materialList.PopulateItems();
-
-                return;
+                MessageBox.Show(ex.Message);
             }
-
-            RemoveMaterial(material.Name);
-            _materialList.PopulateItems();
         }
+
     }
 }

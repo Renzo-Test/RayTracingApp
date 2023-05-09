@@ -93,26 +93,15 @@ namespace GUI
         {
             try
             {
-                Figure newFigure = new Sphere() 
-                { 
-                    Name = newName,
-                    Owner = sphere.Owner,
-                    Radius = sphere.Radius,
-                };
-
-                _figureController.AddFigure(newFigure, _currentClient);
+                _figureController.UpdateFigureName(sphere, _currentClient, newName);
+                _figureList.PopulateItems();
 
             }
             catch (InvalidFigureInputException ex)
             {
-                MessageBox.Show(ex.Message);
                 _figureList.PopulateItems();
-
-                return;
+                MessageBox.Show(ex.Message);
             }
-
-            RemoveFigure(sphere.Name);
-            _figureList.PopulateItems();
         }
 
         private void picXIcon_Click(object sender, EventArgs e)

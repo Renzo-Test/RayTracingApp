@@ -94,28 +94,16 @@ namespace GUI
         {
             try
             {
-                Model newModel = new Model()
-                {
-                    Name = newName,
-                    Owner = model.Owner,
-                    Figure = model.Figure,
-                    Material = model.Material,
-                };
-
-                _modelController.AddModel(newModel, _currentClient);
-
+                _modelController.UpdateModelName(model, _currentClient, newName);
+                _modelList.PopulateItems();
             }
             catch (InvalidModelInputException ex)
             {
-                MessageBox.Show(ex.Message);
                 _modelList.PopulateItems();
-
-                return;
+                MessageBox.Show(ex.Message);
             }
-
-            _modelController.RemoveModel(model.Name, _currentClient); 
-            _modelList.PopulateItems();
         }
+
     }
 }
 
