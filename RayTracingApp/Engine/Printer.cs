@@ -1,6 +1,8 @@
-﻿using Domain;
+﻿
+using Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -10,7 +12,7 @@ namespace Engine
 {
     public class Printer
     {
-        public string Save(List<List<Color>> Pixels, RenderProperties properties, ref Progress progress)
+        public string Save(List<List<Vector>> Pixels, RenderProperties properties, ref Progress progress)
         {
             StringBuilder image = InitializateImage(properties);
 
@@ -20,13 +22,15 @@ namespace Engine
 				{
 					for (var i = 0; i < properties.ResolutionX; i++)
 					{
-						Color color = Pixels[j][i];
+						Color color = Pixels[j][i].Color();
 						image.Append($"{color.Red} {color.Green} {color.Blue}\n");
 						progress.Count();
 					}
 				}
 			}
 
+			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+			File.WriteAllText($"{path}/prueba.ppm", image.ToString());
 			return image.ToString();
 		}
 

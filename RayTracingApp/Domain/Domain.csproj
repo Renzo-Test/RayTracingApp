@@ -59,7 +59,6 @@
     <Compile Include="Scene\Exceptions\InvalidSceneInputException.cs" />
     <Compile Include="Scene\Exceptions\InvalidSpacePositionException.cs" />
     <Compile Include="Scene\PosisionatedModel.cs" />
-    <Compile Include="Scene\Coordinate.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="Material\Color.cs" />
     <Compile Include="Material\Exceptions\InvalidColorNumberException.cs" />
@@ -71,6 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Figure\Exceptions\InvalidFigureInputException.cs" />
     <Compile Include="Figure\Exceptions\SphereExceptions\SmallerThanCeroRadiusException.cs" />
+    <Compile Include="Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

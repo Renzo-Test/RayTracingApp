@@ -88,7 +88,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetCameraPosition_OkTest()
 		{
-			Coordinate newCoordinate = new Coordinate()
+			Vector newCoordinate = new Vector()
 			{
 				X = 10,
 				Y = 20,
@@ -105,7 +105,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void InitializeCameraPosition_DefaultValue_OkTest()
 		{
-			Coordinate newCoordinate = new Coordinate()
+			Vector newCoordinate = new Vector()
 			{
 				X = 0,
 				Y = 2,
@@ -123,7 +123,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetObjectivePosition_OkTest()
 		{
-			Coordinate newCoordinate = new Coordinate()
+			Vector newCoordinate = new Vector()
 			{
 				X = 10,
 				Y = 20,
@@ -140,7 +140,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void InitializeObjectivePosition_DefaultValue_OkTest()
 		{
-			Coordinate newCoordinate = new Coordinate()
+			Vector newCoordinate = new Vector()
 			{
 				X = 0,
 				Y = 2,
@@ -159,14 +159,14 @@ namespace Test.ModelsTest
 		public void SetPosisionatedModels_OkTest()
 		{
 
-			Coordinate firstCoordinate = new Coordinate()
+			Vector firstCoordinate = new Vector()
 			{
 				X = 0,
 				Y = 2,
 				Z = 5,
 			};
 
-			Coordinate secondCoordinate = new Coordinate()
+			Vector secondCoordinate = new Vector()
 			{
 				X = 12,
 				Y = 0,
