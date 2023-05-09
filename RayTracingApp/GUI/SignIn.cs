@@ -1,7 +1,7 @@
 ﻿using Controller;
-using Controller.ClientExceptions;
-using Models;
-using Models.ClientExceptions;
+using Controller.Exceptions;
+using Domain;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

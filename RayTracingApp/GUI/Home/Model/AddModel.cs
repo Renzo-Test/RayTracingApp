@@ -1,5 +1,5 @@
 ﻿using Controller;
-using Models;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,8 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Controller.ModelExceptions;
-using Models.ModelExceptions;
+using Controller.Exceptions;
+using Domain.Exceptions;
 
 namespace GUI
 {

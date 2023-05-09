@@ -1,7 +1,7 @@
 ﻿using Controller;
-using Controller.FigureExceptions;
-using Models;
-using Models.FigureExceptions;
+using Controller.Exceptions;
+using Domain;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

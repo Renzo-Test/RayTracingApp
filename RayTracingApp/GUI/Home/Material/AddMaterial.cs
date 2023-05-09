@@ -1,7 +1,7 @@
 ﻿using Controller;
-using Controller.MaterialExceptions;
-using Models;
-using Models.MaterialExceptions;
+using Controller.Exceptions;
+using Domain;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Color = Models.Color;
+using Color = Domain.Color;
 
 namespace GUI
 {
