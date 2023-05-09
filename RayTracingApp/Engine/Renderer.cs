@@ -199,5 +199,28 @@ namespace Engine
 				}
 			}
 		}
+
+		private Vector GetRandomInUnitSphere()
+		{
+			Vector vector;
+			do
+			{
+				Vector vectorTemp = new Vector()
+				{
+					X = random.Value.NextDouble(),
+					Y = random.Value.NextDouble(),
+					Z = random.Value.NextDouble(),
+				};
+				Vector vectorSubstract = new Vector()
+				{
+					X = 1,
+					Y = 1,
+					Z = 1,
+				};
+				vector = vectorTemp.Multiply(2).Substract(vectorSubstract);
+			} while (vector.SquaredLength() >= 1);
+
+			return vector;
+		}
 	}
 }
