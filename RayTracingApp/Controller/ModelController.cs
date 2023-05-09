@@ -5,6 +5,7 @@ using MemoryRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
 using System.Collections.Generic;
+using System;
 
 namespace Controller
 {
@@ -72,5 +73,10 @@ namespace Controller
 			List<Model> clientModels = Repository.GetModelsByClient(username);
 			return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
 		}
-	}
+
+        public void UpdateModelName(Model newModel, string username, string newName)
+        {
+            newModel.Name = newName;
+        }
+    }
 }
