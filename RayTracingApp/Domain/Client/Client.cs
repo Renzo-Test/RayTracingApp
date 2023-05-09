@@ -51,7 +51,7 @@ namespace Domain
 		public String RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
 		public int DefaultFov = 30;
 		public Vector DefaultLookFrom { get; set; } = new Vector() { X = 0, Y = 2, Z = 0};
-		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2};
+		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5};
 
 		private static void RunUsernameConditions(string username)
 		{
