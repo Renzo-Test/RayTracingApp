@@ -9,16 +9,19 @@ namespace Engine
 		public double Y { get; set; }
 		public double Z { get; set; }
 
-		public Color Color()
+		public int Red()
 		{
-			Color vectorColor = new Color()
-			{
-				Red = AxisToColor(X),
-				Green = AxisToColor(Y),
-				Blue = AxisToColor(Z),
-			};
+			return AxisToColor(X);
+		}
 
-			return vectorColor;
+		public int Green()
+		{
+			return AxisToColor(Y);
+		}
+
+		public int Blue()
+		{
+			return AxisToColor(Z);
 		}
 
 		private int AxisToColor(double axis)
