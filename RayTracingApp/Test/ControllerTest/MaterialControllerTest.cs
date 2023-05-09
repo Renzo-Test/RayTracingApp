@@ -231,7 +231,7 @@ namespace Test.ControllerTest
 				Name = "materialName",
 			};
 
-			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, "newNameMat erial");
+			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, " newNameMaterial ");
 		}
 	}
 }
