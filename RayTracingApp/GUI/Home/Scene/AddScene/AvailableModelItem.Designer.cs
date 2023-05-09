@@ -43,15 +43,15 @@
             this.lblModelName.Location = new System.Drawing.Point(46, 21);
             this.lblModelName.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblModelName.Name = "lblModelName";
-            this.lblModelName.Size = new System.Drawing.Size(160, 22);
+            this.lblModelName.Size = new System.Drawing.Size(133, 22);
             this.lblModelName.TabIndex = 1;
-            this.lblModelName.Text = "PlanetaVegetta";
+            this.lblModelName.Text = "PlanetaVege";
             // 
             // picAddButton
             // 
             this.picAddButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picAddButton.Image = global::GUI.Properties.Resources.plus;
-            this.picAddButton.Location = new System.Drawing.Point(210, 25);
+            this.picAddButton.Location = new System.Drawing.Point(183, 25);
             this.picAddButton.Name = "picAddButton";
             this.picAddButton.Size = new System.Drawing.Size(18, 18);
             this.picAddButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -79,7 +79,7 @@
             this.Controls.Add(this.picIconSphere);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AvailableModelItem";
-            this.Size = new System.Drawing.Size(236, 70);
+            this.Size = new System.Drawing.Size(212, 65);
             this.Load += new System.EventHandler(this.AvailableModelItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picAddButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).EndInit();

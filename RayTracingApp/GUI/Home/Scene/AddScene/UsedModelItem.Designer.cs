@@ -60,7 +60,7 @@
             // 
             this.picIconX.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picIconX.Image = global::GUI.Properties.Resources.sX;
-            this.picIconX.Location = new System.Drawing.Point(87, 38);
+            this.picIconX.Location = new System.Drawing.Point(128, 17);
             this.picIconX.Name = "picIconX";
             this.picIconX.Size = new System.Drawing.Size(16, 16);
             this.picIconX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -74,9 +74,9 @@
             this.txtPosition.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPosition.ForeColor = System.Drawing.Color.White;
-            this.txtPosition.Location = new System.Drawing.Point(15, 38);
+            this.txtPosition.Location = new System.Drawing.Point(15, 35);
             this.txtPosition.Name = "txtPosition";
-            this.txtPosition.Size = new System.Drawing.Size(53, 19);
+            this.txtPosition.Size = new System.Drawing.Size(133, 19);
             this.txtPosition.TabIndex = 4;
             this.txtPosition.Text = "x,y,z";
             this.txtPosition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPosition_KeyPress);
@@ -92,7 +92,7 @@
             this.Controls.Add(this.lblName);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UsedModelItem";
-            this.Size = new System.Drawing.Size(127, 70);
+            this.Size = new System.Drawing.Size(152, 65);
             ((System.ComponentModel.ISupportInitialize)(this.picIconX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
