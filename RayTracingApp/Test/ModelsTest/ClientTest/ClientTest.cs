@@ -37,6 +37,19 @@ namespace Test.ModelsTest
 			Assert.AreEqual("GomezSecret123", _client.Password);
 		}
 
+
+		[TestMethod]
+		public void SetDefaultFov_OkTest()
+		{
+
+			_client = new Client()
+			{
+				DefaultFov = 55
+			};
+
+			Assert.AreEqual(55, _client.DefaultFov);
+		}
+
 		[TestMethod]
 		public void CanGetRegisterDate_OkTest()
 		{
