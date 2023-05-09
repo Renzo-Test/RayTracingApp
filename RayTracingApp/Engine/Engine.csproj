@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Renderer.cs" />
+    <Compile Include="Camera.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="HitRecord.cs" />
     <Compile Include="Ray.cs" />
