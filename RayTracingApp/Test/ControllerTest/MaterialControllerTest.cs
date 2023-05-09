@@ -196,5 +196,24 @@ namespace Test.ControllerTest
 
 			_materialController.GetMaterial("newFigure", currentClient.Username);
 		}
+
+		[TestMethod]
+		public void ChangeFigureName_OkTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			Material newMaterial = new Material()
+			{
+				Name = "sphere",
+			};
+
+			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, "newName");
+			
+			Assert.AreEqual(newMaterial.Name, "newNameSphere");
+		}
 	}
 }
