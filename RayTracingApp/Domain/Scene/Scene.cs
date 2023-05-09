@@ -18,9 +18,9 @@ namespace Domain
 		private string _lastModificationDate = "unmodified";
 		private string _lastRenderDate = "unrendered";
 		private int _fov = 30;
-		public Coordinate _cameraPosition = new Coordinate() { X = 0, Y = 2, Z = 0 };
-		public Coordinate _objectivePosition = new Coordinate() { X = 0, Y = 2, Z = 5 };
-		public List<PosisionatedModel> _posisionatedModels;
+		public Coordinate CameraPosition = new Coordinate() { X = 0, Y = 2, Z = 0 };
+		public Coordinate ObjectivePosition = new Coordinate() { X = 0, Y = 2, Z = 5 };
+		public List<PosisionatedModel> PosisionatedModels;
 		public string Owner
 		{
 			get => _owner;
