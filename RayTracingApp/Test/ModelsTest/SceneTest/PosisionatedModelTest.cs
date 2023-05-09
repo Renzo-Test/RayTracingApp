@@ -18,7 +18,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetPosition_OkTest()
 		{
-			Coordinate newCoordinate = new Coordinate()
+			Vector newCoordinate = new Vector()
 			{
 				X = 10,
 				Y = 20,
