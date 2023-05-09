@@ -64,7 +64,7 @@ namespace Test.ModelsTest
 				DefaultLookFrom = defaultVector
 			};
 
-			Assert.AreEqual(defaultVector, _client.DefaultLookFrom)
+			Assert.AreEqual(defaultVector, _client.DefaultLookFrom);
 		}
 
 		[TestMethod]

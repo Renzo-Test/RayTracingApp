@@ -15,6 +15,7 @@ namespace Domain
 		private string _username;
 		private string _password;
 		public int DefaultFov;
+		public Vector DefaultLookFrom { get; set; }
 		public String Username
 		{
 			get => _username;
