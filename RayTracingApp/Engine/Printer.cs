@@ -1,4 +1,4 @@
-﻿using Domain;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Engine
 {
     public class Printer
     {
-        public string Save(List<List<Color>> Pixels, RenderProperties properties, ref Progress progress)
+        public string Save(List<List<Vector>> Pixels, RenderProperties properties, ref Progress progress)
         {
             StringBuilder image = InitializateImage(properties);
 
@@ -20,8 +20,8 @@ namespace Engine
 				{
 					for (var i = 0; i < properties.ResolutionX; i++)
 					{
-						Color color = Pixels[j][i];
-						image.Append($"{color.Red} {color.Green} {color.Blue}\n");
+						Vector color = Pixels[j][i];
+						image.Append($"{color.Red()} {color.Green()} {color.Blue()}\n");
 						progress.Count();
 					}
 				}

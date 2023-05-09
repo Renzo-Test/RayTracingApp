@@ -9,13 +9,13 @@ namespace Test.EngineTest
     [TestClass]
     public class PrinterTest
     {
-        private List<List<Color>> pixels;
+        private List<List<Vector>> pixels;
         private Printer printer;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            pixels = new List<List<Color>>();
+            pixels = new List<List<Vector>>();
             printer = new Printer();
         }
 
@@ -48,16 +48,16 @@ namespace Test.EngineTest
 				ResolutionY = 1,
 
 			};
-            Color color = new Color()
+            Vector color = new Vector()
             {
-                Red = 100,
-                Green = 100,
-                Blue = 100,
+                X = 0.2,
+                Y = 0.2,
+                Z = 0.2,
             };
-            pixels.Add(new List<Color> { color });
+            pixels.Add(new List<Vector> { color });
             Progress progress = new Progress();
 
-			string expected = $"P3\n1 1\n255\n100 100 100\n";
+			string expected = $"P3\n1 1\n255\n51 51 51\n";
 			Assert.AreEqual(expected, printer.Save(pixels, properties, ref progress));
 		}
 
@@ -70,13 +70,13 @@ namespace Test.EngineTest
 				ResolutionY = 1,
 
 			};
-			Color color = new Color()
+			Vector color = new Vector()
 			{
-				Red = 100,
-				Green = 100,
-				Blue = 100,
+				X = 1,
+				Y = 1,
+				Z = 1,
 			};
-			pixels.Add(new List<Color> { color });
+			pixels.Add(new List<Vector> { color });
             Progress progress = new Progress()
             {
                 ExpectedLines = 1,
