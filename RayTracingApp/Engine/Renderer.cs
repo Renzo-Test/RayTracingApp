@@ -12,13 +12,12 @@ namespace Engine
 {
 	public class Renderer
 	{
+		public RenderProperties Properties;
+		public Scene Scene;
+
 		private Printer _printer;
 		private List<List<Vector>> _pixels;
 		private Progress _progress;
-
-		private readonly RenderProperties _properties;
-		private readonly Scene _scene;
-
 		private Camera _camera;
 
 		private static readonly ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
@@ -29,26 +28,26 @@ namespace Engine
 			_pixels = new List<List<Vector>>();
 			_printer = new Printer();
 				
-			Vector LookFrom = _scene.CameraPosition;
-			Vector LookAt = _scene.ObjectivePosition;
+			Vector LookFrom = Scene.CameraPosition;
+			Vector LookAt = Scene.ObjectivePosition;
 			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
-			int FieldOfView = _scene.Fov;
-			double AspectRatio = _properties.AspectRatio;
+			int FieldOfView = Scene.Fov;
+			double AspectRatio = Properties.AspectRatio;
 			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
 
-			_progress.ExpectedLines = (_properties.ResolutionY * _properties.ResolutionX * _properties.SamplesPerPixel) + _properties.ResolutionY;
+			_progress.ExpectedLines = (Properties.ResolutionY * Properties.ResolutionX * Properties.SamplesPerPixel) + Properties.ResolutionY;
 
 
-			for (int i = 0; i < _properties.ResolutionY; i++)
+			for (int i = 0; i < Properties.ResolutionY; i++)
 			{
 				_pixels.Add(new List<Vector>());
 			}
 
-			int row = _properties.ResolutionY - 1;
+			int row = Properties.ResolutionY - 1;
 			Parallel.For(0, row + 1, index =>
 			{
 				int derivatedIndex = row - index;
-				for (int column = 0; column < _properties.ResolutionX; column++)
+				for (int column = 0; column < Properties.ResolutionX; column++)
 				{
 					Vector vector = new Vector()
 					{
@@ -57,33 +56,33 @@ namespace Engine
 						Z = 0
 					};
 
-					for (int sample = 0; sample < _properties.SamplesPerPixel; sample++)
+					for (int sample = 0; sample < Properties.SamplesPerPixel; sample++)
 					{
 						double fstRnd = random.Value.NextDouble();
 						double sndRnd = random.Value.NextDouble();
 
-						double u = (column + fstRnd) / _properties.ResolutionX;
-						double v = (derivatedIndex + sndRnd) / _properties.ResolutionY;
+						double u = (column + fstRnd) / Properties.ResolutionX;
+						double v = (derivatedIndex + sndRnd) / Properties.ResolutionY;
 
 						var ray = _camera.GetRay(u, v);
-						vector.AddFrom(ShootRay(ray, _properties.MaxDepth));
+						vector.AddFrom(ShootRay(ray, Properties.MaxDepth));
 						_progress.Count(); ;
 					}
 
-					vector = vector.Divide(_properties.SamplesPerPixel);
+					vector = vector.Divide(Properties.SamplesPerPixel);
 					Vector color = new Vector();
 					SavePixel(derivatedIndex, column, color);
 				}
 			});
-			return _printer.Save(_pixels, _properties, ref _progress);
+			return _printer.Save(_pixels, Properties, ref _progress);
 		}
 
 		private void SavePixel(int row, int column, Vector pixelRGB)
 		{
 			int posX = column;
-			int posY = _properties.ResolutionY - row - 1;
+			int posY = Properties.ResolutionY - row - 1;
 
-			if (posY < _properties.ResolutionY)
+			if (posY < Properties.ResolutionY)
 			{
 				_pixels[posY].Add(pixelRGB);
 			}
@@ -98,7 +97,7 @@ namespace Engine
 			HitRecord hitRecord = null;
 			double tMax = 3.4 * Math.Pow(10, 38);
 
-			foreach (PosisionatedModel posisionatedModel in _scene.PosisionatedModels)
+			foreach (PosisionatedModel posisionatedModel in Scene.PosisionatedModels)
 			{
 				HitRecord hit = IsSphereHit(posisionatedModel, ray, 0.001, tMax);
 				if (hit is object)
