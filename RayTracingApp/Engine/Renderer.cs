@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Engine
 {
@@ -16,22 +17,27 @@ namespace Engine
 		private Progress _progress;
 
 		private readonly RenderProperties _properties;
+		private readonly Scene _scene;
 
 		private Camera _camera;
 
 		private static readonly ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 
-		public string Render(Scene scene)
+		public string Render()
 		{
 			_progress = new Progress();
 			_pixels = new List<List<Vector>>();
 			_printer = new Printer();
 
+			Vector LookFrom = _scene.CameraPosition;
+			Vector LookAt = _scene.ObjetivePosition;
+			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
+			int FieldOfView = _scene.Fov;
+			double AspectRatio = _properties.AspectRatio;
+			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
 
 			_progress.ExpectedLines = (_properties.ResolutionY * _properties.ResolutionX * _properties.SamplesPerPixel) + _properties.ResolutionY;
 
-
-			double AspectRatio = _properties.AspectRatio;
 
 			for (int i = 0; i < _properties.ResolutionY; i++)
 			{
@@ -84,6 +90,77 @@ namespace Engine
 			else
 			{
 				throw new Exception("Pixel Overflow Error");
+			}
+		}
+
+		private Vector ShootRay(Ray ray, int depth)
+		{
+			HitRecord hitRecord = null;
+			double tMax = 3.4 * Math.Pow(10, 38);
+
+			foreach (PosisionatedModel posisionatedModel in _scene.PosisionatedModels)
+			{
+				Figure figure = posisionatedModel.Model.Figure;
+				HitRecord hit = IsSphereHit(figure, ray, 0.001, tMax);
+				if (hit is object)
+				{
+					hitRecord = hit;
+					tMax = hit.T;
+				}
+			}
+
+			if (hitRecord is object)
+			{
+				if (depth > 0)
+				{
+					Vector newVectorPoint = hitRecord.Intersection.Add(hitRecord.Normal).Add(GetRandomInUnitSphere());
+					Vector newVector = newVectorPoint.Substract(hitRecord.Intersection);
+
+					Ray newRay = new Ray()
+					{
+						Origin = hitRecord.Intersection,
+						Direction = newVector
+					};
+
+					Vector color = ShootRay(newRay, depth - 1);
+					Vector attenuation = hitRecord.Attenuation;
+
+					return new Vector()
+					{
+						X = color.X * attenuation.X,
+						Y = color.Y * attenuation.Y,
+						Z = color.Z * attenuation.Z
+					};
+				}
+				else
+				{
+					Vector vector = new Vector()
+					{
+						X = 0,
+						Y = 0,
+						Z = 0
+					};
+					return vector;
+				}
+
+			}
+			else
+			{
+				Vector vectorDirectionUnit = ray.Direction.GetUnit();
+				double posY = 0.5 * (vectorDirectionUnit.Y + 1);
+				Vector colorStart = new Vector()
+				{
+					X = 1,
+					Y = 1,
+					Z = 1
+				};
+				Vector colorEnd = new Vector()
+				{
+					X = 0.5,
+					Y = 0.7,
+					Z = 1
+				};
+				return colorStart.Multiply(1 - posY).Add(colorEnd.Multiply(posY));
 			}
 		}
 	}
