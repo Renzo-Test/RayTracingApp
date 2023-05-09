@@ -15,59 +15,76 @@ namespace Engine
 		private List<List<Vector>> _pixels;
 		private Progress _progress;
 
+		private readonly RenderProperties _properties;
+
 		private Camera _camera;
 
 		private static readonly ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 
-		public string Render(Scene scene, RenderProperties properties)
+		public string Render(Scene scene)
 		{
 			_progress = new Progress();
 			_pixels = new List<List<Vector>>();
 			_printer = new Printer();
 
-			_progress.ExpectedLines = (properties.ResolutionY * properties.ResolutionX * properties.SamplesPerPixel) + properties.ResolutionY;
+
+			_progress.ExpectedLines = (_properties.ResolutionY * _properties.ResolutionX * _properties.SamplesPerPixel) + _properties.ResolutionY;
 
 
-			double AspectRatio = properties.AspectRatio;
+			double AspectRatio = _properties.AspectRatio;
 
-			//created before iterate
-			for (int i = 0; i < properties.ResolutionY; i++)
+			for (int i = 0; i < _properties.ResolutionY; i++)
 			{
 				_pixels.Add(new List<Vector>());
 			}
 
-			int row = properties.ResolutionY - 1;
+			int row = _properties.ResolutionY - 1;
 			Parallel.For(0, row + 1, index =>
 			{
 				int derivatedIndex = row - index;
-				for (int column = 0; column < properties.ResolutionX; column++)
+				for (int column = 0; column < _properties.ResolutionX; column++)
 				{
-					Vector vector = new Vector() //no pongo constructor por clean code
+					Vector vector = new Vector()
 					{
 						X = 0,
 						Y = 0,
 						Z = 0
 					};
 
-					for (int sample = 0; sample < properties.SamplesPerPixel; sample++)
+					for (int sample = 0; sample < _properties.SamplesPerPixel; sample++)
 					{
 						double fstRnd = random.Value.NextDouble();
 						double sndRnd = random.Value.NextDouble();
 
-						double u = (column + fstRnd) / properties.ResolutionX;
-						double v = (derivatedIndex + sndRnd) / properties.ResolutionY;
+						double u = (column + fstRnd) / _properties.ResolutionX;
+						double v = (derivatedIndex + sndRnd) / _properties.ResolutionY;
 
 						var ray = _camera.GetRay(u, v);
-						vector.AddFrom(ShootRay(ray, properties.MaxDepth));
+						vector.AddFrom(ShootRay(ray, _properties.MaxDepth));
 						_progress.Count(); ;
 					}
 
-					vector = vector.Divide(properties.SamplesPerPixel);
+					vector = vector.Divide(_properties.SamplesPerPixel);
 					Vector color = new Vector();
 					SavePixel(derivatedIndex, column, color);
 				}
 			});
-			return _printer.Save(_pixels, properties, ref _progress);
+			return _printer.Save(_pixels, _properties, ref _progress);
+		}
+
+		private void SavePixel(int row, int column, Vector pixelRGB)
+		{
+			int posX = column;
+			int posY = _properties.ResolutionY - row - 1;
+
+			if (posY < _properties.ResolutionY)
+			{
+				_pixels[posY].Add(pixelRGB);
+			}
+			else
+			{
+				throw new Exception("Pixel Overflow Error");
+			}
 		}
 	}
 }
