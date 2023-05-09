@@ -49,8 +49,9 @@ namespace Domain
 			}
 		}
 		public String RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
-		public int DefaultFov;
+		public int DefaultFov = 30;
 		public Vector DefaultLookFrom { get; set; }
+		public Vector DefaultLookAt { get; set; }
 
 		private static void RunUsernameConditions(string username)
 		{
