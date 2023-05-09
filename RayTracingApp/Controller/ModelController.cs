@@ -74,9 +74,28 @@ namespace Controller
 			return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
 		}
 
-        public void UpdateModelName(Model newModel, string username, string newName)
-        {
-            newModel.Name = newName;
-        }
-    }
+		public void UpdateModelName(Model model, string currentClient, string newName)
+		{
+			try
+			{
+				Model newModel = new Model()
+				{
+					Name = newName,
+					Owner = model.Owner,
+					Figure = model.Figure,
+					Material = model.Material,
+				};
+
+				RunModelChecker(newModel, currentClient);
+
+				model.Name = newName;
+			}
+			catch (InvalidModelInputException ex)
+			{
+				throw new InvalidModelInputException(ex.Message);
+			}
+
+		}
+
+	}
 }
