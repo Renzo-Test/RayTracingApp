@@ -62,6 +62,7 @@
     <Compile Include="EngineTest\HitRecordTest.cs" />
     <Compile Include="EngineTest\PrinterTest.cs" />
     <Compile Include="EngineTest\CameraTest.cs" />
+    <Compile Include="EngineTest\RendererTest.cs" />
     <Compile Include="EngineTest\VectorTest.cs" />
     <Compile Include="MemoryRepositoryTest\SceneRepositoryTest.cs" />
     <Compile Include="MemoryRepositoryTest\FigureRepositoryTest.cs" />
