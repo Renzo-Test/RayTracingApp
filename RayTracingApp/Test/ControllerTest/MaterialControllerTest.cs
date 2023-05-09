@@ -198,7 +198,7 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
-		public void ChangeFigureName_OkTest()
+		public void ChangeMaterial_OkTest()
 		{
 			Client currentClient = new Client()
 			{
@@ -208,12 +208,12 @@ namespace Test.ControllerTest
 
 			Material newMaterial = new Material()
 			{
-				Name = "sphere",
+				Name = "materialName",
 			};
 
 			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, "newName");
 			
-			Assert.AreEqual(newMaterial.Name, "newNameSphere");
+			Assert.AreEqual(newMaterial.Name, "newName");
 		}
 	}
 }

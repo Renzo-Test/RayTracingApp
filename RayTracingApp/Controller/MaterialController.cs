@@ -5,6 +5,7 @@ using MemoryRepository.MaterialRepository;
 using Domain;
 using Domain.Exceptions;
 using System.Collections.Generic;
+using System;
 
 namespace Controller
 {
@@ -84,5 +85,10 @@ namespace Controller
 			return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 
 		}
-	}
+
+        public void UpdateMaterialName(Material newMaterial, string currentUser, string newName)
+        {
+			newMaterial.Name = newName;
+        }
+    }
 }
