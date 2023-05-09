@@ -85,6 +85,14 @@ namespace Test.ModelsTest
 		}
 
 		[TestMethod]
+		public void DefaultFovValue_OkTest()
+		{
+			_client = new Client();
+
+			Assert.AreEqual(30, _client.DefaultFov);
+		}
+
+		[TestMethod]
 		public void CanGetRegisterDate_OkTest()
 		{
 			_client = new Client();
