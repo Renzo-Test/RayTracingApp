@@ -129,7 +129,7 @@ namespace Test.ModelsTest
 		{
 			_client = new Client();
 
-			Assert.AreEqual(0, _client.DefaultLookAt.Y);
+			Assert.AreEqual(2, _client.DefaultLookAt.Y);
 		}
 
 		[TestMethod]
@@ -137,7 +137,7 @@ namespace Test.ModelsTest
 		{
 			_client = new Client();
 
-			Assert.AreEqual(0, _client.DefaultLookAt.Z);
+			Assert.AreEqual(5, _client.DefaultLookAt.Z);
 		}
 
 		[TestMethod]
