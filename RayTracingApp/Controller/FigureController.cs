@@ -99,9 +99,26 @@ namespace Controller
 			}
 		}
 
-        public void UpdateFigureName(Figure newFigure, string currentClient, string newName)
-        {
-			newFigure.Name = newName;
-        }
-    }
+		public void UpdateFigureName(Figure sphere, string currentClient, string newName)
+		{
+			try
+			{
+				Figure newFigure = new Sphere()
+				{
+					Name = newName,
+					Owner = sphere.Owner,
+					Radius = 10
+				};
+
+				RunFigureChecker(newFigure, currentClient);
+
+				sphere.Name = newName;
+			}
+			catch (InvalidFigureInputException ex)
+			{
+				throw new InvalidFigureInputException(ex.Message);
+			}
+		}
+
+	}
 }
