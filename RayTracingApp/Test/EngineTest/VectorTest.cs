@@ -78,8 +78,9 @@ namespace Test.EngineTest
 			{
 				X = 1,
 			};
+			Color vectorColor = vector.Color();
 
-			Assert.AreEqual(255, vector.Red());
+			Assert.AreEqual(255, vectorColor.Red);
 		}
 
 		[TestMethod]
@@ -89,8 +90,9 @@ namespace Test.EngineTest
 			{
 				Y = 1,
 			};
+			Color vectorColor = vector.Color();
 
-			Assert.AreEqual(255, vector.Green());
+			Assert.AreEqual(255, vectorColor.Green);
 		}
 
 		[TestMethod]
@@ -100,7 +102,9 @@ namespace Test.EngineTest
 			{
 				Z = 1,
 			};
-			Assert.AreEqual(255, vector.Blue());
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Blue);
 		}
 
 		[TestMethod]
@@ -110,8 +114,9 @@ namespace Test.EngineTest
 			{
 				X = 0.2,
 			};
+			Color vectorColor = vector.Color();
 
-			Assert.AreEqual(51, vector.Red());
+			Assert.AreEqual(51, vectorColor.Red);
 		}
 
 		[TestMethod]
@@ -121,7 +126,9 @@ namespace Test.EngineTest
 			{
 				Y = 0.2,
 			};
-			Assert.AreEqual(51, vector.Green());
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(51, vectorColor.Green);
 		}
 
 		[TestMethod]
@@ -131,7 +138,9 @@ namespace Test.EngineTest
 			{
 				Z = 0.2,
 			};
-			Assert.AreEqual(51, vector.Blue());
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(51, vectorColor.Blue);
 		}
 
 		[TestMethod]
@@ -141,7 +150,9 @@ namespace Test.EngineTest
 			{
 				X = 0.25,
 			};
-			Assert.AreEqual(64, vector.Red());
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(64, vectorColor.Red);
 		}
 
 		[TestMethod]
@@ -151,7 +162,9 @@ namespace Test.EngineTest
 			{
 				Y = 0.25,
 			};
-			Assert.AreEqual(64, vector.Green());
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(64, vectorColor.Green);
 		}
 
 		[TestMethod]
@@ -161,7 +174,9 @@ namespace Test.EngineTest
 			{
 				Z = 0.25,
 			};
-			Assert.AreEqual(64, vector.Blue());
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(64, vectorColor.Blue);
 		}
 
 		[TestMethod]
@@ -171,8 +186,9 @@ namespace Test.EngineTest
 			{
 				X = -1,
 			};
+			Color vectorColor = vector.Color();
 
-			Assert.AreEqual(255, vector.Red());
+			Assert.AreEqual(255, vectorColor.Red);
 		}
 
 		[TestMethod]
@@ -182,7 +198,9 @@ namespace Test.EngineTest
 			{
 				Y = -1,
 			};
-			Assert.AreEqual(255, vector.Green());
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Green);
 		}
 
 		[TestMethod]
@@ -192,7 +210,9 @@ namespace Test.EngineTest
 			{
 				Z = -1,
 			};
-			Assert.AreEqual(255, vector.Blue());
+			Color vectorColor = vector.Color();
+
+			Assert.AreEqual(255, vectorColor.Blue);
 		}
 
 		[TestMethod]
