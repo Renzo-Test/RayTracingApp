@@ -70,9 +70,9 @@ namespace Engine
 					}
 
 					vector = vector.Divide(Properties.SamplesPerPixel);
-					Vector color = new Vector();
-					SavePixel(derivatedIndex, column, color);
+					SavePixel(derivatedIndex, column, vector);
 				}
+				_progress.WriteCurrentPercentage();
 			});
 			return _printer.Save(_pixels, Properties, ref _progress);
 		}
@@ -166,11 +166,11 @@ namespace Engine
 		{
 			Sphere sphere = (Sphere)posisionatedModel.Model.Figure;
 			Vector position = posisionatedModel.Position;
-			var vectorOriginCenter = ray.Origin.Substract(position);
-			var a = ray.Direction.Dot(ray.Direction);
-			var b = vectorOriginCenter.Dot(ray.Direction) * 2;
-			var c = vectorOriginCenter.Dot(vectorOriginCenter) - (sphere.Radius * sphere.Radius);
-			var discriminant = (b * b) - (4 * a * c);
+			Vector vectorOriginCenter = ray.Origin.Substract(position);
+			double a = ray.Direction.Dot(ray.Direction);
+			double b = vectorOriginCenter.Dot(ray.Direction) * 2;
+			double c = vectorOriginCenter.Dot(vectorOriginCenter) - (sphere.Radius * sphere.Radius);
+			double discriminant = (b * b) - (4 * a * c);
 			
 
 			if (discriminant < 0)

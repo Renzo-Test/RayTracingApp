@@ -77,17 +77,17 @@ namespace RayTracingApp
 			};
 			PosisionatedModel pm2 = new PosisionatedModel()
 			{
-				Model = model1,
+				Model = model2,
 				Position = new Vector() { X = -1, Y = 0.5, Z = -2 },
 			};
 			PosisionatedModel pm3 = new PosisionatedModel()
 			{
-				Model = model1,
-				Position = new Vector() { X = -1, Y = -2, Z = -10 },
+				Model = model3,
+				Position = new Vector() { X = -1, Y = 2, Z = -10 },
 			};
 			PosisionatedModel pmTerrain = new PosisionatedModel()
 			{
-				Model = model1,
+				Model = modelTerrain,
 				Position = new Vector() { X = 0, Y = -2000, Z = -1 },
 			};
 
@@ -101,7 +101,7 @@ namespace RayTracingApp
 
 			Scene scene = new Scene()
 			{
-				CameraPosition = new Vector() { X = 4, Y = 2, Z = 0 },
+				CameraPosition = new Vector() { X = 4, Y = 2, Z = 8 },
 				ObjectivePosition = new Vector() { X = 0, Y = 0.5, Z = -2 },
 				Fov = 40,
 				PosisionatedModels = listPM

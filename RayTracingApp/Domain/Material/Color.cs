@@ -62,7 +62,7 @@ namespace Domain
 
 		private double ColorToAxis(int color)
 		{
-			return (double)(color / 255);
+			return (double)color / 255;
 		}
 
 		private static bool IsInvalid(int value)

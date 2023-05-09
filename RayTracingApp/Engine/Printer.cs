@@ -2,6 +2,7 @@
 using Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -28,6 +29,8 @@ namespace Engine
 				}
 			}
 
+			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+			File.WriteAllText($"{path}/prueba.ppm", image.ToString());
 			return image.ToString();
 		}
 

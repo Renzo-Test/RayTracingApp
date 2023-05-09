@@ -57,6 +57,8 @@ namespace Domain
 
 		public Vector Divide(double divisor)
 		{
+			if (divisor == 0) return new Vector();
+
 			return new Vector()
 			{
 				X = this.X / divisor,
