@@ -48,6 +48,23 @@ namespace Domain
 			}
 		}
 
+		public Vector ColorToVector()
+		{
+			Vector colorVector = new Vector()
+			{
+				X = ColorToAxis(Red),
+				Y = ColorToAxis(Green),
+				Z = ColorToAxis(Blue),
+			};
+
+			return colorVector;
+		}
+
+		private double ColorToAxis(int color)
+		{
+			return (double)(color / 255);
+		}
+
 		private static bool IsInvalid(int value)
 		{
 			return value < 0 || value > 255;

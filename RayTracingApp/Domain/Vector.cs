@@ -20,19 +20,21 @@ namespace Domain
 			return vectorColor;
 		}
 
-		private int AxisToColor(double axis)
-		{
-			return (int)Math.Abs(Math.Round(axis * 255));
-		}
-
 		public Vector ColorToVector(Color color)
 		{
-			return new Vector()
+			Vector colorVector = new Vector()
 			{
 				X = ColorToAxis(color.Red),
 				Y = ColorToAxis(color.Green),
 				Z = ColorToAxis(color.Blue),
 			};
+
+			return colorVector;
+		}
+
+		private int AxisToColor(double axis)
+		{
+			return (int)Math.Abs(Math.Round(axis * 255));
 		}
 
 		private double ColorToAxis(int color)

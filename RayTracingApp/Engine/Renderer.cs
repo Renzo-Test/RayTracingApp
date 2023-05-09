@@ -28,7 +28,7 @@ namespace Engine
 			_progress = new Progress();
 			_pixels = new List<List<Vector>>();
 			_printer = new Printer();
-
+				
 			Vector LookFrom = _scene.CameraPosition;
 			Vector LookAt = _scene.ObjetivePosition;
 			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
@@ -172,6 +172,7 @@ namespace Engine
 			var b = vectorOriginCenter.Dot(ray.Direction) * 2;
 			var c = vectorOriginCenter.Dot(vectorOriginCenter) - (sphere.Radius * sphere.Radius);
 			var discriminant = (b * b) - (4 * a * c);
+			
 
 			if (discriminant < 0)
 			{
@@ -182,7 +183,7 @@ namespace Engine
 				double t = ((-1 * b) - Math.Sqrt(discriminant)) / (2 * a);
 				Vector intersectionPoint = ray.PointAt(t);
 				Vector Normal = intersectionPoint.Substract(position).Divide(sphere.Radius);
-
+				
 				if (t < tMax && t > tMin)
 				{
 					return new HitRecord()
@@ -190,7 +191,7 @@ namespace Engine
 						T = t,
 						Intersection = intersectionPoint,
 						Normal = Normal,
-						Attenuation = posisionatedModel.Model.Material.Color,
+						Attenuation = posisionatedModel.Model.Material.Color.ColorToVector(),
 					};
 				}
 				else

@@ -1,4 +1,5 @@
 ﻿
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,8 @@ namespace Engine
 				{
 					for (var i = 0; i < properties.ResolutionX; i++)
 					{
-						Vector color = Pixels[j][i];
-						image.Append($"{color.Red()} {color.Green()} {color.Blue()}\n");
+						Color color = Pixels[j][i].Color();
+						image.Append($"{color.Red} {color.Green} {color.Blue}\n");
 						progress.Count();
 					}
 				}
