@@ -31,6 +31,7 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblPosition = new System.Windows.Forms.Label();
             this.picIconX = new System.Windows.Forms.PictureBox();
+            this.txtPosition = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picIconX)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,12 +53,12 @@
             this.lblPosition.ForeColor = System.Drawing.Color.White;
             this.lblPosition.Location = new System.Drawing.Point(9, 33);
             this.lblPosition.Name = "lblPosition";
-            this.lblPosition.Size = new System.Drawing.Size(65, 21);
+            this.lblPosition.Size = new System.Drawing.Size(0, 21);
             this.lblPosition.TabIndex = 2;
-            this.lblPosition.Text = "(0, 2, 5)";
             // 
             // picIconX
             // 
+            this.picIconX.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picIconX.Image = global::GUI.Properties.Resources.sX;
             this.picIconX.Location = new System.Drawing.Point(87, 38);
             this.picIconX.Name = "picIconX";
@@ -67,11 +68,25 @@
             this.picIconX.TabStop = false;
             this.picIconX.Click += new System.EventHandler(this.picIconX_Click);
             // 
+            // txtPosition
+            // 
+            this.txtPosition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.txtPosition.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPosition.ForeColor = System.Drawing.Color.White;
+            this.txtPosition.Location = new System.Drawing.Point(15, 38);
+            this.txtPosition.Name = "txtPosition";
+            this.txtPosition.Size = new System.Drawing.Size(53, 19);
+            this.txtPosition.TabIndex = 4;
+            this.txtPosition.Text = "x,y,z";
+            this.txtPosition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPosition_KeyPress);
+            // 
             // UsedModelItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.txtPosition);
             this.Controls.Add(this.picIconX);
             this.Controls.Add(this.lblPosition);
             this.Controls.Add(this.lblName);
@@ -88,5 +103,6 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblPosition;
         private System.Windows.Forms.PictureBox picIconX;
+        private System.Windows.Forms.TextBox txtPosition;
     }
 }

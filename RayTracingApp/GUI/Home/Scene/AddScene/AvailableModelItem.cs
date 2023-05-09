@@ -13,10 +13,19 @@ namespace GUI
 {
     public partial class AvailableModelItem : UserControl
     {
-        public AvailableModelItem(Model model)
+        private List<PosisionatedModel> _posisionatedModels;
+        private Model _model;
+        private ScenePage _scenePage;
+
+        public AvailableModelItem(ScenePage scenePage, Model model, List<PosisionatedModel> posisionatedModels)
         {
+            _posisionatedModels = posisionatedModels;
+            _model = model;
+            _scenePage = scenePage;
+
             InitializeComponent();
             lblModelName.Text = model.Name;
+
         }
 
         private void AvailableModelItem_Load(object sender, EventArgs e)
@@ -24,9 +33,16 @@ namespace GUI
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void picAddButton_Click(object sender, EventArgs e)
         {
+            PosisionatedModel posisionatedModel = new PosisionatedModel()
+            {
+                Model = _model,
+                Position = new Vector() { X = 0, Y = 0, Z = 0 },
+            };
 
+            _posisionatedModels.Add(posisionatedModel);
+            _scenePage.PopulateUsedItems();
         }
     }
 }

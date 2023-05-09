@@ -1,10 +1,12 @@
 ﻿using Controller;
 using Domain;
+using Engine;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,7 @@ namespace GUI
         private MainController _mainController;
         private ModelController _modelController;
         private Client _currentClient;
+        private List<PosisionatedModel> _posisionatedModels;
 
         public ScenePage(SceneHome sceneHome, MainController mainController, Client currentClient)
         {
@@ -29,6 +32,7 @@ namespace GUI
             _mainController = mainController;
             _modelController = mainController.ModelController;
             _currentClient = currentClient;
+            _posisionatedModels = new List<PosisionatedModel>();
 
             InitializeComponent();
         }
@@ -46,7 +50,7 @@ namespace GUI
 
             foreach (Model model in models)
             {
-                AvailableModelItem item = new AvailableModelItem(model);
+                AvailableModelItem item = new AvailableModelItem(this, model, _posisionatedModels);
                 flyModels.Controls.Add(item);
             }
 
@@ -56,10 +60,10 @@ namespace GUI
         {
             flyUsedModels.Controls.Clear();
 
-            for (int i = 0; i < 3; i++)
+            foreach (PosisionatedModel model in _posisionatedModels)
             {
                 flyUsedModels.BackColor = System.Drawing.Color.FromArgb(45, 45, 65);
-                UsedModelItem item = new UsedModelItem();
+                UsedModelItem item = new UsedModelItem(this, model, _posisionatedModels);
                 flyUsedModels.Controls.Add(item);
             }   
 
@@ -108,6 +112,51 @@ namespace GUI
 
         private void picRender_Click(object sender, EventArgs e)
         {
+            int fov = int.Parse(txtFov.Text);
+
+            string[] txtLookFromValues = txtLookFrom.Text.Trim().Split(',');
+
+            Vector lookFrom = new Vector()
+            {
+                X = Double.Parse(txtLookFromValues[0]),
+                Y = Double.Parse(txtLookFromValues[1]),
+                Z = Double.Parse(txtLookFromValues[2])
+            };
+
+            string[] txtLookAtValues = txtLookAt.Text.Trim().Split(',');
+
+            Vector lookAt = new Vector()
+            {
+                X = Double.Parse(txtLookAtValues[0]),
+                Y = Double.Parse(txtLookAtValues[1]),
+                Z = Double.Parse(txtLookAtValues[2])
+            };
+
+            Scene scene = new Scene()
+            {
+                Owner =  _currentClient.Username,
+                Name = "testScene",
+                Fov = fov,
+                CameraPosition = lookFrom,
+                ObjectivePosition = lookAt,
+                PosisionatedModels = _posisionatedModels
+            };
+
+            RenderProperties rprops = new RenderProperties();
+            
+            Renderer r = new Renderer()
+            {
+                Properties = rprops,
+                Scene = scene,
+            };
+
+            Scanner scanner = new Scanner();
+
+            string image = r.Render();
+            
+            Bitmap img = scanner.ScanImage(image);
+
+            picScene.Image = img;
 
         }
     }
