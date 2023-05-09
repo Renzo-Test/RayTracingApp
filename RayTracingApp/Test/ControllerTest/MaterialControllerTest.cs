@@ -196,5 +196,42 @@ namespace Test.ControllerTest
 
 			_materialController.GetMaterial("newFigure", currentClient.Username);
 		}
+
+		[TestMethod]
+		public void ChangeMaterial_OkTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			Material newMaterial = new Material()
+			{
+				Name = "materialName",
+			};
+
+			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, "newName");
+			
+			Assert.AreEqual(newMaterial.Name, "newName");
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(InvalidMaterialInputException))]
+		public void ChangeMaterialName_FailTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			Material newMaterial = new Material()
+			{
+				Name = "materialName",
+			};
+
+			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, " newNameMaterial ");
+		}
 	}
 }
