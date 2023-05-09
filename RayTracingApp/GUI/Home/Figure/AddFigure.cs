@@ -106,22 +106,22 @@ namespace GUI
 
         private void txtInputName_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtInputName, NamelaceHolder);
+            InputUtils.RemovePlaceHolder(ref txtInputName, NamelaceHolder);
         }
 
         private void txtInputName_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtInputName, NamelaceHolder);
+            InputUtils.SetPlaceHolder(ref txtInputName, NamelaceHolder);
         }
 
         private void txtInputRadius_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtInputRadius, RadiusPlaceHolder);
+            InputUtils.RemovePlaceHolder(ref txtInputRadius, RadiusPlaceHolder);
         }
 
         private void txtInputRadius_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtInputRadius, RadiusPlaceHolder);
+            InputUtils.SetPlaceHolder(ref txtInputRadius, RadiusPlaceHolder);
         }
 
         private void lblTitle_Click(object sender, EventArgs e)

@@ -38,6 +38,7 @@
             // 
             // picIconX
             // 
+            this.picIconX.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picIconX.Image = global::GUI.Properties.Resources.mX;
             this.picIconX.Location = new System.Drawing.Point(414, 43);
             this.picIconX.Name = "picIconX";
@@ -45,6 +46,7 @@
             this.picIconX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picIconX.TabIndex = 0;
             this.picIconX.TabStop = false;
+            this.picIconX.Click += new System.EventHandler(this.picIconX_Click);
             // 
             // lblSceneName
             // 

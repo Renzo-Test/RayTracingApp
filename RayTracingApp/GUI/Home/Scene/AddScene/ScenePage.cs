@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Domain;
+using Domain.Exceptions;
 using Engine;
 using System;
 using System.Collections.Generic;
@@ -16,25 +17,41 @@ namespace GUI
 {
     public partial class ScenePage : UserControl
     {
+        private const string FovNumericErrorMessage = "Fov values must be numeric only";
+        private const string VectorNumericErrorMessage = "Vector values must be numeric only";
+
         private const string LookFromPlaceholder = "x, y, z";
         private const string LookAtPlaceholder = "x, y, z";
         private const string FovPlaceholder = "Fov";
-
         private SceneHome _sceneHome;
+
         private MainController _mainController;
         private ModelController _modelController;
+        private SceneController _sceneController;
+
+        private Scene _scene;
         private Client _currentClient;
         private List<PosisionatedModel> _posisionatedModels;
 
         public ScenePage(SceneHome sceneHome, MainController mainController, Client currentClient)
         {
             _sceneHome = sceneHome;
+
             _mainController = mainController;
             _modelController = mainController.ModelController;
+            _sceneController = mainController.SceneController;
+
             _currentClient = currentClient;
             _posisionatedModels = new List<PosisionatedModel>();
-
+            
             InitializeComponent();
+            
+            _scene = new Scene()
+            {
+                Owner = _currentClient.Username,
+                Name = txtSceneName.Text,
+            };
+
         }
         public void PopulateAvailableItems()
         {
@@ -69,8 +86,128 @@ namespace GUI
 
         }
 
+        private void picRender_Click(object sender, EventArgs e)
+        {
+            Render();
+        }
+
+        private void Render()
+        {
+            int fov;
+            Vector lookFrom;
+            Vector lookAt;
+
+            try
+            {
+                (fov, lookFrom, lookAt) = GetCameraAtributes();
+            }
+            catch (InvalidSceneInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            SetSceneAtributes(fov, lookFrom, lookAt);
+
+            RenderProperties properties = new RenderProperties();
+
+            Renderer renderer = new Renderer()
+            {
+                Properties = properties,
+                Scene = _scene,
+            };
+
+            string image = renderer.Render();
+
+            Scanner scanner = new Scanner();
+            Bitmap img = scanner.ScanImage(image);
+
+            picScene.Image = img;
+        }
+
+        private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt)
+        {
+            _scene.Fov = fov;
+            _scene.CameraPosition = lookFrom;
+            _scene.ObjectivePosition = lookAt;
+            _scene.PosisionatedModels = _posisionatedModels;
+        }
+
+        private (int, Vector, Vector) GetCameraAtributes()
+        {
+            int fov = GetFov();
+
+            var (txtLookFromValues, txtLookAtValues) = GetStringVectorValues();
+
+            double[] vectorLookFromValues = ParseDoubleValues(txtLookFromValues);
+            double[] vectorLookAtValues = ParseDoubleValues(txtLookAtValues);
+
+            Vector lookFrom = CreateCameraVector(vectorLookFromValues);
+            Vector lookAt = CreateCameraVector(vectorLookAtValues);
+
+            return (fov, lookFrom, lookAt);
+        }
+
+        private (string[], string[]) GetStringVectorValues()
+        {
+            try
+            {
+                string[] txtLookFromValues = StringUtils.DestructureVectorFromat(txtLookFrom.Text);
+                string[] txtLookAtValues = StringUtils.DestructureVectorFromat(txtLookAt.Text);
+
+                return (txtLookFromValues, txtLookAtValues);
+            }
+            catch (InvalidSceneInputException ex)
+            {
+                throw new InvalidSceneInputException(ex.Message);
+            }
+        }
+
+        private int GetFov()
+        {
+            try
+            {
+                return int.Parse(txtFov.Text);
+            }
+            catch (FormatException)
+            {
+                throw new InvalidSceneInputException(FovNumericErrorMessage);
+            }
+
+        }
+
+        private static Vector CreateCameraVector(double[] vectorLookFromValues)
+        {
+            return new Vector()
+            {
+                X = vectorLookFromValues[0],
+                Y = vectorLookFromValues[1],
+                Z = vectorLookFromValues[2]
+            };
+        }
+
+        private double[] ParseDoubleValues(string[] values)
+        {
+            double[] result = new double[values.Length];
+
+            foreach (string value in values)
+            {
+                try
+                {
+                    result[value.Length] = double.Parse(value);
+                }
+                catch (FormatException)
+                {
+                    throw new InvalidSceneInputException(VectorNumericErrorMessage);
+                }
+            }
+            
+            return result;
+        }
+
         private void picIconBack_Click(object sender, EventArgs e)
         {
+            _sceneController.AddScene(_scene, _currentClient.Username);
             _sceneHome.GoToSceneList();
         }
 
@@ -82,82 +219,33 @@ namespace GUI
 
         private void txtLookFrom_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtLookFrom, LookFromPlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtLookFrom, LookFromPlaceholder);
         }
 
         private void txtLookFrom_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtLookFrom, LookFromPlaceholder);
+            InputUtils.SetPlaceHolder(ref txtLookFrom, LookFromPlaceholder);
         }
 
         private void txtLookAt_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtLookAt, LookAtPlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtLookAt, LookAtPlaceholder);
         }
 
         private void txtLookAt_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtLookAt, LookAtPlaceholder);
+            InputUtils.SetPlaceHolder(ref txtLookAt, LookAtPlaceholder);
         }
 
         private void txtFov_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtFov, FovPlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtFov, FovPlaceholder);
         }
 
         private void txtFov_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtFov, FovPlaceholder);
+            InputUtils.SetPlaceHolder(ref txtFov, FovPlaceholder);
         }
 
-        private void picRender_Click(object sender, EventArgs e)
-        {
-            int fov = int.Parse(txtFov.Text);
-
-            string[] txtLookFromValues = txtLookFrom.Text.Trim().Split(',');
-
-            Vector lookFrom = new Vector()
-            {
-                X = Double.Parse(txtLookFromValues[0]),
-                Y = Double.Parse(txtLookFromValues[1]),
-                Z = Double.Parse(txtLookFromValues[2])
-            };
-
-            string[] txtLookAtValues = txtLookAt.Text.Trim().Split(',');
-
-            Vector lookAt = new Vector()
-            {
-                X = Double.Parse(txtLookAtValues[0]),
-                Y = Double.Parse(txtLookAtValues[1]),
-                Z = Double.Parse(txtLookAtValues[2])
-            };
-
-            Scene scene = new Scene()
-            {
-                Owner =  _currentClient.Username,
-                Name = "testScene",
-                Fov = fov,
-                CameraPosition = lookFrom,
-                ObjectivePosition = lookAt,
-                PosisionatedModels = _posisionatedModels
-            };
-
-            RenderProperties rprops = new RenderProperties();
-            
-            Renderer r = new Renderer()
-            {
-                Properties = rprops,
-                Scene = scene,
-            };
-
-            Scanner scanner = new Scanner();
-
-            string image = r.Render();
-            
-            Bitmap img = scanner.ScanImage(image);
-
-            picScene.Image = img;
-
-        }
     }
 }

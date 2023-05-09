@@ -63,24 +63,24 @@ namespace GUI
 
         private void txtUsernameSignIn_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtUsernameSignIn, UsernamePlaceHolder);
+            InputUtils.RemovePlaceHolder(ref txtUsernameSignIn, UsernamePlaceHolder);
         }
 
         private void txtUsernameSignIn_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtUsernameSignIn, UsernamePlaceHolder);
+            InputUtils.SetPlaceHolder(ref txtUsernameSignIn, UsernamePlaceHolder);
         }
 
         private void txtPasswordSignIn_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtPasswordSignIn, PasswordPlaceHolder);
-            Utils.HidePassword(ref txtPasswordSignIn);
+            InputUtils.RemovePlaceHolder(ref txtPasswordSignIn, PasswordPlaceHolder);
+            InputUtils.HidePassword(ref txtPasswordSignIn);
         }
 
         private void txtPasswordSignIn_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtPasswordSignIn, PasswordPlaceHolder);
-            Utils.ShowPassword(ref txtPasswordSignIn);
+            InputUtils.SetPlaceHolder(ref txtPasswordSignIn, PasswordPlaceHolder);
+            InputUtils.ShowPassword(ref txtPasswordSignIn);
 
         }
     }

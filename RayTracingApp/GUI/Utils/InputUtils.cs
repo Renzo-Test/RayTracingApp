@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public static class Utils
+    public static class InputUtils
     {
         private const string PasswordPlaceHolder = "Password";
         private const char PasswordCharacter = '*';

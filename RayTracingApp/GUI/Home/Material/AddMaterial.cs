@@ -145,42 +145,42 @@ namespace GUI
 
         private void txtInputName_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtInputName, NamePlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtInputName, NamePlaceholder);
         }
 
         private void txtInputName_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtInputName, NamePlaceholder);
+            InputUtils.SetPlaceHolder(ref txtInputName, NamePlaceholder);
         }
 
         private void txtInputRed_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtInputRed, RedPlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtInputRed, RedPlaceholder);
         }
 
         private void txtInputRed_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtInputRed, RedPlaceholder);
+            InputUtils.SetPlaceHolder(ref txtInputRed, RedPlaceholder);
         }
 
         private void txtInputGreen_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtInputGreen, GreenPlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtInputGreen, GreenPlaceholder);
         }
 
         private void txtInputGreen_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtInputGreen, GreenPlaceholder);
+            InputUtils.SetPlaceHolder(ref txtInputGreen, GreenPlaceholder);
         }
 
         private void txtInputBlue_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtInputBlue, BluePlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtInputBlue, BluePlaceholder);
         }
 
         private void txtInputBlue_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtInputBlue, BluePlaceholder);
+            InputUtils.SetPlaceHolder(ref txtInputBlue, BluePlaceholder);
         }
 
         private void txtInputRed_TextChanged(object sender, EventArgs e)

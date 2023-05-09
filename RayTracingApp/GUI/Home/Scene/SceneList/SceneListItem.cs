@@ -18,18 +18,19 @@ namespace GUI
         private SceneList _sceneList;
         private Scene _scene;
 
-        public SceneListItem()
-        {
-            InitializeComponent();
-        }
-
         public SceneListItem(SceneList sceneList, SceneController sceneController, Scene scene)
         {
             _sceneList = sceneList;
             _sceneController = sceneController;
             _scene = scene;
+
+            InitializeComponent();
         }
 
-
+        private void picIconX_Click(object sender, EventArgs e)
+        {
+            _sceneController.RemoveScene(_scene.Name, _scene.Owner);
+            _sceneList.PopulateItems();
+        }
     }
 }
