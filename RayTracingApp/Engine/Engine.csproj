@@ -42,24 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Camera.cs" />
+    <Compile Include="Renderer.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="HitRecord.cs" />
     <Compile Include="Ray.cs" />
     <Compile Include="Progress.cs" />
-    <Compile Include="Renderer.cs" />
     <Compile Include="RenderProperties\Exceptions\InputLowerThanZero.cs" />
     <Compile Include="RenderProperties\Exceptions\InvalidRenderPropertiesException.cs" />
     <Compile Include="RenderProperties\RenderProperties.cs" />
     <Compile Include="Scanner.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{26fd191f-901d-4224-a0f4-c93819eda0de}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
