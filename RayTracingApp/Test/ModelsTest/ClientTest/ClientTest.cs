@@ -51,6 +51,23 @@ namespace Test.ModelsTest
 		}
 
 		[TestMethod]
+		public void SetDefaultLookFrom_OkTest()
+		{
+			Vector defaultVector = new Vector()
+			{
+				X = 2,
+				Y = 3,
+				Z = 4,
+			};
+			_client = new Client()
+			{
+				DefaultLookFrom = defaultVector
+			};
+
+			Assert.AreEqual(defaultVector, _client.DefaultLookFrom)
+		}
+
+		[TestMethod]
 		public void CanGetRegisterDate_OkTest()
 		{
 			_client = new Client();
