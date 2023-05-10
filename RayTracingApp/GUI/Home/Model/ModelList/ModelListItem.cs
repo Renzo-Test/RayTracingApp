@@ -2,6 +2,7 @@
 using Controller.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using Engine;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,7 +47,16 @@ namespace GUI
             string FigureName = model.Figure.Name;
             string MaterialName = model.Material.Name;
             Color materialColor = model.Material.Color;
+
+			Renderer renderer = new Renderer();
+			renderer.RenderModelPreview(model);
+			string preview = model.Preview;
             
+            Scanner scanner = new Scanner();
+            Bitmap image = scanner.ScanImage(preview);
+
+            picIconSphere.Image = image;
+
             txtModelName.Text = model.Name;
             lblFigureName.Text = $"Figure: {FigureName}";
             lblMaterialName.Text = $"Material: {MaterialName}";
