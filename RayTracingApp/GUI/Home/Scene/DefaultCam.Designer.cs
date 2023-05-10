@@ -225,7 +225,7 @@
 			this.lblLookAt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
 			this.lblLookAt.Font = new System.Drawing.Font("Century Gothic", 13.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblLookAt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-			this.lblLookAt.Location = new System.Drawing.Point(387, 320);
+			this.lblLookAt.Location = new System.Drawing.Point(378, 320);
 			this.lblLookAt.Name = "lblLookAt";
 			this.lblLookAt.Size = new System.Drawing.Size(70, 22);
 			this.lblLookAt.TabIndex = 25;
