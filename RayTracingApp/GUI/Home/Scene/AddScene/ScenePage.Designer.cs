@@ -161,6 +161,7 @@
 			this.txtLookFrom.Size = new System.Drawing.Size(158, 24);
 			this.txtLookFrom.TabIndex = 31;
 			this.txtLookFrom.Text = "x, y, z";
+			this.txtLookFrom.TextChanged += new System.EventHandler(this.txtLookFrom_TextChanged);
 			this.txtLookFrom.Enter += new System.EventHandler(this.txtLookFrom_Enter);
 			this.txtLookFrom.Leave += new System.EventHandler(this.txtLookFrom_Leave);
 			// 

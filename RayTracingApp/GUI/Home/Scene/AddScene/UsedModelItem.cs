@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,8 @@ namespace GUI
 {
     public partial class UsedModelItem : UserControl
     {
-        private List<PosisionatedModel> _posisionatedModels;
+		private const string InvalidFormatMessageError = "Vector input must be three integer values splited by coma format only: x,y,z";
+		private List<PosisionatedModel> _posisionatedModels;
         private PosisionatedModel _posisionatedModel;
 
         private ScenePage _scenePage;
@@ -51,14 +53,20 @@ namespace GUI
 
         public void UpdatePosisionatedModel()
         {
-
-            string[] positionValues = txtPosition.Text.Trim().Split(',');
-            _posisionatedModel.Position = new Vector()
+            try
             {
-                X = Double.Parse(positionValues[0]),
-                Y = Double.Parse(positionValues[1]),
-                Z = Double.Parse(positionValues[2])
-            };
+                string[] positionValues = StringUtils.DestructureVectorFromat(txtPosition.Text);
+                _posisionatedModel.Position = new Vector()
+                {
+                    X = double.Parse(positionValues[0]),
+                    Y = double.Parse(positionValues[1]),
+                    Z = double.Parse(positionValues[2])
+                };
+            }
+            catch(InvalidSceneInputException ex)
+            {
+				MessageBox.Show(ex.Message);
+			}
 
             _scenePage.PopulateUsedItems();
         }

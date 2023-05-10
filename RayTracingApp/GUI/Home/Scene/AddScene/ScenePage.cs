@@ -282,5 +282,10 @@ namespace GUI
         {
             InputUtils.SetPlaceHolder(ref txtFov, FovPlaceholder);
         }
+
+		private void txtLookFrom_TextChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
