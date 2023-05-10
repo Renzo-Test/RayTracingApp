@@ -1,6 +1,7 @@
 ﻿using Domain;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -75,6 +76,17 @@ namespace Engine
 				_progress.WriteCurrentPercentage();
 			});
 			return _printer.Save(_pixels, Properties, ref _progress);
+		}
+
+		public string RenderModelPreview()
+		{
+			Vector LookFrom = Scene.CameraPosition;
+			Vector LookAt = Scene.ObjectivePosition;
+			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
+			int FieldOfView = Scene.Fov;
+			double AspectRatio = Properties.AspectRatio;
+			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
+
 		}
 
 		private void SavePixel(int row, int column, Vector pixelRGB)
