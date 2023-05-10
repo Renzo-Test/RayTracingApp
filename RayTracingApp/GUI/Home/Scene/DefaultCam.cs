@@ -19,9 +19,6 @@ namespace GUI
         const string LookAtPlaceholder = "Look At";
         const string LookFromPlaceholder = "Look From";
 
-        private const int MinFov = 1;
-        private const int MaxFov = 160;
-
         private SceneHome _sceneHome;
         private MainController _mainController;
         private Client _currentClient;
@@ -55,9 +52,13 @@ namespace GUI
                 return;
             }
 
-            if (!InRangeFov(fov))
+            try
             {
-                MessageBox.Show($"Scene's fov must be between {MinFov} and {MaxFov}");
+                _currentClient.DefaultFov = fov;
+            }
+            catch(NotInExpectedRangeClientException ex)
+            {
+                MessageBox.Show(ex.Message);
                 return;
             }
 
@@ -66,14 +67,8 @@ namespace GUI
             _sceneHome.GoToSceneList();
         }
 
-        private static bool InRangeFov(int fov)
-        {
-            return Enumerable.Range(MinFov, MaxFov).Contains(fov);
-        }
-
         private void SetClientDefaultSceneValues(int fov, Vector lookFrom, Vector lookAt)
         {
-            _currentClient.DefaultFov = fov;
             _currentClient.DefaultLookAt = lookAt;
             _currentClient.DefaultLookFrom = lookFrom;
         }
