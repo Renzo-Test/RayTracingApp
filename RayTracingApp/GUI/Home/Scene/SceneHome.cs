@@ -17,18 +17,27 @@ namespace GUI
         private UserControl _addScenePanel;
         private UserControl _listScenePanel;
         private UserControl _defaultCamPanel;
+
+        private MainController _mainController;
+        
+        private Client _currentClient;
+
         public SceneHome(MainController mainController, Client currentClient)
         {
+            _currentClient = currentClient;
+            _mainController = mainController;
+            
             InitializeComponent();
-            _addScenePanel = new ScenePage(this, mainController, currentClient);
+
             _listScenePanel = new SceneList(this, mainController.SceneController, currentClient);
             _defaultCamPanel = new DefaultCam(this, mainController, currentClient);
             flySceneHome.Controls.Add(_listScenePanel);
         }
 
-        public void GoToAddScene()
+        public void GoToAddScene(Scene scene)
         {
             flySceneHome.Controls.Clear();
+            _addScenePanel = new ScenePage(scene, this, _mainController, _currentClient);
             flySceneHome.Controls.Add(_addScenePanel);
         }
 
@@ -37,6 +46,7 @@ namespace GUI
             flySceneHome.Controls.Clear();
             flySceneHome.Controls.Add(_listScenePanel);
         }
+
         public void GoToDefaultCam()
         {
             flySceneHome.Controls.Clear();

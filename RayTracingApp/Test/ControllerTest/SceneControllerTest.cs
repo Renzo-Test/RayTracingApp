@@ -298,7 +298,7 @@ namespace Test.ControllerTest
 			};
 			Scene blankScene = _sceneController.CreateBlankScene(client);
 
-			Assert.AreEqual(blankScene.Name, "Blank Scene 1");
+			Assert.AreEqual(blankScene.Name, "Blank Scene 8");
 		}
 
 		[TestMethod]
@@ -322,7 +322,7 @@ namespace Test.ControllerTest
 			};
 			Scene blankScene2 = _sceneController.CreateBlankScene(client2);
 
-			Assert.AreEqual(blankScene2.Name, "Blank Scene 2");
+			Assert.AreEqual(blankScene2.Name, "Blank Scene 10");
 		}
 	}
 }

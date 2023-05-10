@@ -128,23 +128,23 @@ namespace GUI
 
         private void picDropDownFigures_Click(object sender, EventArgs e)
         {
-            Utils.ShowComboBox(ref cmbFigures);
+            InputUtils.ShowComboBox(ref cmbFigures);
 
         }
 
         private void picDropDownMaterial_Click(object sender, EventArgs e)
         {
-            Utils.ShowComboBox(ref cmbMaterials);
+            InputUtils.ShowComboBox(ref cmbMaterials);
         }
 
         private void txtInputName_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtInputName, NamePlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtInputName, NamePlaceholder);
         }
 
         private void txtInputName_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtInputName, NamePlaceholder);
+            InputUtils.SetPlaceHolder(ref txtInputName, NamePlaceholder);
         }
 
 

@@ -38,6 +38,7 @@
             // 
             // picIconX
             // 
+            this.picIconX.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picIconX.Image = global::GUI.Properties.Resources.mX;
             this.picIconX.Location = new System.Drawing.Point(414, 43);
             this.picIconX.Name = "picIconX";
@@ -45,6 +46,7 @@
             this.picIconX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picIconX.TabIndex = 0;
             this.picIconX.TabStop = false;
+            this.picIconX.Click += new System.EventHandler(this.picIconX_Click);
             // 
             // lblSceneName
             // 
@@ -89,6 +91,7 @@
             this.Controls.Add(this.picIconX);
             this.Name = "SceneListItem";
             this.Size = new System.Drawing.Size(470, 110);
+            this.Click += new System.EventHandler(this.SceneListItem_Click);
             ((System.ComponentModel.ISupportInitialize)(this.picIconX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconScene)).EndInit();
             this.ResumeLayout(false);

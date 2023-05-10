@@ -17,19 +17,31 @@ namespace GUI
         private SceneController _sceneController;
         private SceneList _sceneList;
         private Scene _scene;
+        private SceneHome _sceneHome;
 
-        public SceneListItem()
-        {
-            InitializeComponent();
-        }
-
-        public SceneListItem(SceneList sceneList, SceneController sceneController, Scene scene)
+        public SceneListItem(SceneHome sceneHome, SceneList sceneList, SceneController sceneController, Scene scene)
         {
             _sceneList = sceneList;
             _sceneController = sceneController;
             _scene = scene;
+            _sceneHome = sceneHome;
+
+            InitializeComponent();
+
+            lblSceneName.Text = scene.Name;
         }
 
+        private void picIconX_Click(object sender, EventArgs e)
+        {
+            _sceneController.RemoveScene(_scene.Name, _scene.Owner);
+            _sceneList.PopulateItems();
+        }
+
+        private void SceneListItem_Click(object sender, EventArgs e)
+        {
+            _sceneHome.GoToAddScene(_scene);
+
+        }
 
     }
 }

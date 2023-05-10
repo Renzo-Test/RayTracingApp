@@ -33,34 +33,34 @@ namespace GUI
 
         private void txtInputLookAt_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtInputLookAt, LookAtPlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtInputLookAt, LookAtPlaceholder);
         }
 
         private void txtInputLookAt_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtInputLookAt, LookAtPlaceholder);
+            InputUtils.SetPlaceHolder(ref txtInputLookAt, LookAtPlaceholder);
 
         }
 
         private void txtInputLookFrom_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtInputLookFrom, LookFromPlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtInputLookFrom, LookFromPlaceholder);
         }
 
         private void txtInputLookFrom_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtInputLookFrom, LookFromPlaceholder);
+            InputUtils.SetPlaceHolder(ref txtInputLookFrom, LookFromPlaceholder);
 
         }
 
         private void txtInputFov_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtInputFov, FovPlaceholder);
+            InputUtils.RemovePlaceHolder(ref txtInputFov, FovPlaceholder);
         }
 
         private void txtInputFov_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtInputFov, FovPlaceholder);
+            InputUtils.SetPlaceHolder(ref txtInputFov, FovPlaceholder);
         }
 
         private void picRectangleFieldCancel_Click(object sender, EventArgs e)
