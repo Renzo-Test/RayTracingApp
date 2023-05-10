@@ -138,22 +138,31 @@ namespace GUI
 
             Scanner scanner = new Scanner();
             Bitmap img = scanner.ScanImage(image);
-            picScene.Image = img;
+            SetRenderedImage(img);
 
-            ReInitialazeAll();
+            ReInitialazeUI();
         }
 
-        private void ReInitialazeAll()
+        private void SetRenderedImage(Bitmap img)
         {
-            
-            if (this.InvokeRequired)
+            picScene.Image = img;
+        }
+
+        private void ReInitialazeUI()
+        {
+            if (!RunningOnUiThread())
             {
-                BeginInvoke(new Action(ReInitialazeAll));
+                BeginInvoke(new Action(ReInitialazeUI));
 
                 return;
             }
 
             pbrRender.Visible = false;
+        }
+
+        private bool RunningOnUiThread()
+        {
+            return !this.InvokeRequired;
         }
 
         private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt)
@@ -169,16 +178,6 @@ namespace GUI
             {
                 throw new InvalidSceneInputException(ex.Message);
             }
-        }
-
-        private static Vector CreateCameraVector(double[] vectorLookFromValues)
-        {
-            return new Vector()
-            {
-                X = vectorLookFromValues[0],
-                Y = vectorLookFromValues[1],
-                Z = vectorLookFromValues[2]
-            };
         }
 
         private void picIconBack_Click(object sender, EventArgs e)

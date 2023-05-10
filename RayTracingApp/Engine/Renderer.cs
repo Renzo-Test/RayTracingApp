@@ -75,8 +75,10 @@ namespace Engine
 					vector = vector.Divide(Properties.SamplesPerPixel);
 					SavePixel(derivatedIndex, column, vector);
 				}
+
 				_progress.UpdateProgressBar();
 				_progress.WriteCurrentPercentage();
+			
 			});
 			return _printer.Save(_pixels, Properties, ref _progress);
 		}

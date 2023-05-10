@@ -297,10 +297,11 @@
             // 
             // pbrRender
             // 
-            this.pbrRender.Location = new System.Drawing.Point(253, 560);
+            this.pbrRender.Location = new System.Drawing.Point(253, 553);
             this.pbrRender.Name = "pbrRender";
-            this.pbrRender.Size = new System.Drawing.Size(388, 23);
+            this.pbrRender.Size = new System.Drawing.Size(388, 18);
             this.pbrRender.TabIndex = 39;
+            this.pbrRender.Visible = false;
             // 
             // ScenePage
             // 
