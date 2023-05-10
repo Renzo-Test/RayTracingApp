@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Color = Domain.Color;
 
 namespace GUI
 {
@@ -19,18 +20,23 @@ namespace GUI
 
         public AvailableModelItem(ScenePage scenePage, Model model, List<PosisionatedModel> posisionatedModels)
         {
+            IntitializeAttributes(scenePage, model, posisionatedModels);
+            InitializeComponent();
+            InitializePanelAttributes(model);
+        }
+
+        private void IntitializeAttributes(ScenePage scenePage, Model model, List<PosisionatedModel> posisionatedModels)
+        {
             _posisionatedModels = posisionatedModels;
             _model = model;
             _scenePage = scenePage;
-
-            InitializeComponent();
-            lblModelName.Text = model.Name;
-
         }
 
-        private void AvailableModelItem_Load(object sender, EventArgs e)
+        private void InitializePanelAttributes(Model model)
         {
-
+            lblModelName.Text = model.Name;
+            Color modelColor = model.Material.Color;
+            picModelColor.BackColor = System.Drawing.Color.FromArgb(modelColor.Red, modelColor.Green, modelColor.Blue);
         }
 
         private void picAddButton_Click(object sender, EventArgs e)
