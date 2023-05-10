@@ -124,6 +124,18 @@ namespace Test.ControllerTest
 			Assert.AreEqual("newName", scene.Name);
 		}
 
+		[TestMethod]
+		[ExpectedException (typeof(InvalidSceneInputException))]
+		public void UpdateSceneName_startSpace_OkTest()
+		{
+			Scene scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			{
+				Name = "sceneName",
+			};
+
+			_sceneController.UpdateSceneName(scene, _owner, " newName");
+		}
+
 
 		[TestMethod]
 		public void UpdateLastModificationDate_OkTest()
