@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace Engine
 {
 	public class Progress
 	{
+		public ProgressBar ProgressBar { get; set; }
 		public long LinesCount { get; set; }
 		public long ExpectedLines { get; set; }
 
@@ -21,5 +23,14 @@ namespace Engine
 		{
 			return (LinesCount * 100) / ExpectedLines;
 		}
-	}
+
+        public void UpdateProgressBar()
+        {
+			ProgressBar.BeginInvoke(
+			 new Action(() =>
+			 {
+				 ProgressBar.Value = (int)Calculate();
+			}));
+		}
+    }
 }

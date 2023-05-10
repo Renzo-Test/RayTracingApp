@@ -296,9 +296,12 @@ namespace Test.ControllerTest
 				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
 				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
 			};
-			Scene blankScene = _sceneController.CreateBlankScene(client);
+			Scene resetCounter = _sceneController.CreateBlankScene(client);
+			resetCounter.ResetCreatedCounter();
 
-			Assert.AreEqual(blankScene.Name, "Blank Scene 8");
+
+			Scene blankScene = _sceneController.CreateBlankScene(client);
+			Assert.AreEqual("Blank Scene 1", blankScene.Name);
 		}
 
 		[TestMethod]
@@ -311,8 +314,6 @@ namespace Test.ControllerTest
 				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
 				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
 			};
-			Scene blankScene1 = _sceneController.CreateBlankScene(client1);
-
 			Client client2 = new Client()
 			{
 				Username = "OwnerName",
@@ -320,9 +321,14 @@ namespace Test.ControllerTest
 				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
 				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
 			};
+
+			Scene resetCounter = _sceneController.CreateBlankScene(client1);
+			resetCounter.ResetCreatedCounter();
+
+			Scene blankScene1 = _sceneController.CreateBlankScene(client1);
 			Scene blankScene2 = _sceneController.CreateBlankScene(client2);
 
-			Assert.AreEqual(blankScene2.Name, "Blank Scene 10");
+			Assert.AreEqual("Blank Scene 2", blankScene2.Name);
 		}
 	}
 }
