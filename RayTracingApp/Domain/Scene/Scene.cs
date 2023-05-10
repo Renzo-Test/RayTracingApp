@@ -21,6 +21,20 @@ namespace Domain
 		public Vector CameraPosition = new Vector();
 		public Vector ObjectivePosition = new Vector();
 		public List<PosisionatedModel> PosisionatedModels;
+		private static int _createdSceneCounter = 0;
+		private int _sceneNumber;
+
+		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt) 
+		{
+			_sceneNumber = _createdSceneCounter++;
+			_owner = owner;
+			_name = $"Blank Scene {_createdSceneCounter}";
+			_fov = fov;
+			CameraPosition = lookFrom;
+			ObjectivePosition = lookAt;
+			PosisionatedModels = new List<PosisionatedModel>();
+		}
+
 		public string Owner
 		{
 			get => _owner;
