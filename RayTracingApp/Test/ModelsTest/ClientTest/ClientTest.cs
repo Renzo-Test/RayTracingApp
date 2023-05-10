@@ -170,5 +170,15 @@ namespace Test.ModelsTest
 				DefaultFov = 200
 			};
 		}
+
+		[TestMethod]
+		[ExpectedException(typeof(NotInExpectedRangeClientException))]
+		public void SetDefaultFov_0_FailTest()
+		{
+			_client = new Client()
+			{
+				DefaultFov = 0
+			};
+		}
 	}
 }
