@@ -156,5 +156,23 @@ namespace Test.EngineTest
 				ProgressBar = prgRenderer
 			};
         }
-    }
+
+		[TestMethod]
+		public void CanUpdateProgressBar_OkTest()
+		{
+			ProgressBar prgRenderer = new ProgressBar();
+
+			_progress = new Progress()
+			{
+				ProgressBar = prgRenderer,
+				LinesCount = 100,
+				ExpectedLines = 100
+			};
+
+			_progress.UpdateProgressBar();
+
+			Assert.AreEqual(prgRenderer.Value, _progress.Calculate());
+		}
+
+	}
 }
