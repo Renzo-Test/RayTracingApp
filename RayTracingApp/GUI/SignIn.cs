@@ -28,7 +28,9 @@ namespace GUI
             _clientController = clientController;
             _mainForm = mainForm;
             InitializeComponent();
-        }
+			txtPasswordSignIn.KeyPress += new KeyPressEventHandler(CheckEnter);
+            txtUsernameSignIn.KeyPress += new KeyPressEventHandler(CheckEnter);
+		}
 
         private void SignInUser()
         {
@@ -50,6 +52,7 @@ namespace GUI
         {
             _mainForm.GoToSignUp();
         }
+
 
         private void lblSignIn_Click(object sender, EventArgs e)
         {
@@ -83,5 +86,15 @@ namespace GUI
             InputUtils.ShowPassword(ref txtPasswordSignIn);
 
         }
-    }
+
+		private void CheckEnter(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == Convert.ToChar(Keys.Enter))
+			{
+                SignInUser();
+
+				e.Handled = true;
+			}
+		}
+	}
 }
