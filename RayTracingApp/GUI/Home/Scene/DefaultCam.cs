@@ -87,5 +87,5 @@ namespace GUI
         {
             _sceneHome.GoToSceneList();
         }
-    }
+	}
 }
