@@ -29,13 +29,13 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void CreateScene_OkTest()
 		{
-			Scene newScene = new Scene();
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo);
 		}
 
 		[TestMethod]
 		public void SetOwner_OkTest()
 		{
-			_scene = new Scene()
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Owner = "ownerName"
 			};
@@ -45,7 +45,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetName_OkTest()
 		{
-			_scene = new Scene()
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "modelName"
 			};
@@ -55,7 +55,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetRegisterTime_OkTest()
 		{
-			_scene = new Scene()
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				RegisterTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"),
 			};
@@ -67,7 +67,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void CanGetRegisterTime_OkTest()
 		{
-			_scene = new Scene();
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
 			String today = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
 			Assert.AreEqual(today, _scene.RegisterTime);
 		}
@@ -75,7 +75,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void CanGetLastModificationDate_OkTest()
 		{
-			_scene = new Scene();
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
 			String expected = "unmodified";
 			Assert.AreEqual(expected, _scene.LastModificationDate);
 		}
@@ -83,7 +83,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void CanGetLastRenderDate_OkTest()
 		{
-			_scene = new Scene();
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
 			String expected = "unrendered";
 			Assert.AreEqual(expected, _scene.LastRenderDate);
 		}
@@ -91,7 +91,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetFov_OkTest()
 		{
-			_scene = new Scene()
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Fov = 100,
 			};
@@ -108,7 +108,7 @@ namespace Test.ModelsTest
 				Z = 30,
 			};
 
-			_scene = new Scene()
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				CameraPosition = newCoordinate,
 			};
@@ -125,7 +125,7 @@ namespace Test.ModelsTest
 				Z = 0,
 			};
 
-			_scene = new Scene();
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
 
 			foreach (PropertyInfo property in newCoordinate.GetType().GetProperties())
 			{
@@ -143,7 +143,7 @@ namespace Test.ModelsTest
 				Z = 30,
 			};
 
-			_scene = new Scene()
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				ObjectivePosition = newCoordinate,
 			};
@@ -160,7 +160,7 @@ namespace Test.ModelsTest
 				Z = 5,
 			};
 
-			_scene = new Scene();
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
 
 			foreach (PropertyInfo property in newCoordinate.GetType().GetProperties())
 			{
@@ -212,7 +212,7 @@ namespace Test.ModelsTest
 				}
 			};
 
-			_scene = new Scene()
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				PosisionatedModels = posisionatedModels,
 			};

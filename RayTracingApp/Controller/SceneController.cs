@@ -12,7 +12,6 @@ namespace Controller
 	public class SceneController
 	{
 		public IRepositoryScene Repository;
-		private ClientController _clientController;
 
 		public SceneController()
 		{
