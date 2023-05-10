@@ -88,6 +88,43 @@ namespace Engine
 			int FieldOfView = previewScene.Fov;
 			double AspectRatio = Properties.AspectRatio;
 			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
+
+			for (int i = 0; i < Properties.ResolutionY; i++)
+			{
+				_pixels.Add(new List<Vector>());
+			}
+
+			int row = Properties.ResolutionY - 1;
+			Parallel.For(0, row + 1, index =>
+			{
+				int derivatedIndex = row - index;
+				for (int column = 0; column < Properties.ResolutionX; column++)
+				{
+					Vector vector = new Vector()
+					{
+						X = 0,
+						Y = 0,
+						Z = 0
+					};
+
+					for (int sample = 0; sample < Properties.SamplesPerPixel; sample++)
+					{
+						double fstRnd = random.Value.NextDouble();
+						double sndRnd = random.Value.NextDouble();
+
+						double u = (column + fstRnd) / Properties.ResolutionX;
+						double v = (derivatedIndex + sndRnd) / Properties.ResolutionY;
+
+						var ray = _camera.GetRay(u, v);
+						vector.AddFrom(ShootRay(ray, Properties.MaxDepth));
+					}
+
+					vector = vector.Divide(Properties.SamplesPerPixel);
+					SavePixel(derivatedIndex, column, vector);
+				}
+			});
+
+			return _printer.Save(_pixels, Properties, ref _progress);
 		}
 
 		private Scene CreatePreviewScene(Model model)
