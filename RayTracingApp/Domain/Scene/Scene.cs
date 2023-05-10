@@ -17,9 +17,9 @@ namespace Domain
 		public string _registerTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
 		private string _lastModificationDate = "unmodified";
 		private string _lastRenderDate = "unrendered";
-		private int _fov = 30;
-		public Vector CameraPosition = new Vector() { X = 0, Y = 2, Z = 0 };
-		public Vector ObjectivePosition = new Vector() { X = 0, Y = 2, Z = 5 };
+		private int _fov;
+		public Vector CameraPosition = new Vector();
+		public Vector ObjectivePosition = new Vector();
 		public List<PosisionatedModel> PosisionatedModels;
 		public string Owner
 		{
