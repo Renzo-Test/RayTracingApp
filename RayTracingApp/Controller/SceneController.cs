@@ -34,7 +34,18 @@ namespace Controller
 
 		public void UpdateSceneName(Scene scene, string currentClient, string newName)
 		{
-			scene.Name = "newName";
+
+			try
+			{
+				scene.Name = newName;
+				SceneChecker(scene, currentClient);
+
+				scene.Name = newName;
+			}
+			catch (InvalidFigureInputException ex)
+			{
+				throw new InvalidFigureInputException(ex.Message);
+			}
 		}
 
 		public void UpdateLastModificationDate(Scene scene)
