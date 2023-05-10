@@ -19,6 +19,8 @@ namespace GUI
         private const string NamePlaceholder = "Name";
         private const string NoMaterialSelectedErrorMessage = "No Material was Selected";
         private const string NoFigureSelectedErrorMessage = "No Figure was Selected";
+        private const string FigureListPlaceholder = "Figures";
+        private const string MaterialListPlaceholder = "Materials";
 
         private ModelHome _modelHome;
 
@@ -119,11 +121,29 @@ namespace GUI
         private void picRectangleFieldSave_Click(object sender, EventArgs e)
         {
             SaveModel();
+            RefreshPlaceholders();
+        }
+
+        private void lblSave_Click(object sender, EventArgs e)
+        {
+            SaveModel();
+            RefreshPlaceholders();
+        }
+
+        private void RefreshPlaceholders()
+        {
+            lblFiguresList.Text = FigureListPlaceholder;
+            lblMaterialsList.Text = MaterialListPlaceholder;
         }
 
         private void picRectangleFieldCancel_Click(object sender, EventArgs e)
         {
             _modelHome.GoToModelList();
+            RefreshPlaceholders();
+        }
+        private void lblCancel_Click(object sender, EventArgs e)
+        {
+            RefreshPlaceholders();
         }
 
         private void picDropDownFigures_Click(object sender, EventArgs e)
@@ -157,5 +177,6 @@ namespace GUI
         {
             lblMaterialsList.Text = cmbMaterials.Text;
         }
+
     }
 }
