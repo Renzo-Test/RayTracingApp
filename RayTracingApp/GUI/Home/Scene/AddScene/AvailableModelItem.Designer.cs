@@ -91,7 +91,6 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AvailableModelItem";
             this.Size = new System.Drawing.Size(212, 65);
-            this.Load += new System.EventHandler(this.AvailableModelItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picAddButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picModelColor)).EndInit();
