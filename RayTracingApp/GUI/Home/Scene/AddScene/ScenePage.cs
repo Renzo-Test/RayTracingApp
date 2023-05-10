@@ -175,7 +175,15 @@ namespace GUI
                 return;
             }
 
-            SetSceneAtributes(fov, lookFrom, lookAt);
+            try
+            {
+                SetSceneAtributes(fov, lookFrom, lookAt);
+            }
+            catch (InvalidSceneInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
             _sceneHome.GoToSceneList();
         }
