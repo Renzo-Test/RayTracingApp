@@ -49,7 +49,20 @@ namespace Domain
 			}
 		}
 		public String RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
-		public int DefaultFov = 30;
+		private int _defaultFov = 30;
+		public int DefaultFov
+		{
+			get => _defaultFov;
+			set
+			{
+				if (!Enumerable.Range(1, 160).Contains(value))
+				{
+					throw new NotInExpectedRangeClientException($"Scene's fov must be between {1} and {160}");
+				}
+				_defaultFov = value;
+			}
+		}
+
 		public Vector DefaultLookFrom { get; set; } = new Vector() { X = 0, Y = 2, Z = 0};
 		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5};
 

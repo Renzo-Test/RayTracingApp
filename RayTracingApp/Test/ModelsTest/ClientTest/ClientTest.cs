@@ -162,6 +162,7 @@ namespace Test.ModelsTest
 			Assert.AreEqual("RodriguezSecret123", _client.Password);
 		}
 
+		[TestMethod]
 		[ExpectedException(typeof(NotInExpectedRangeClientException))]
 		public void SetDefaultFov_200_FailTest() {
 			_client = new Client()
