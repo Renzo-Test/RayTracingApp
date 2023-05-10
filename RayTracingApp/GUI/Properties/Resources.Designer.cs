@@ -263,6 +263,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sceneCompleteImage {
+            get {
+                object obj = ResourceManager.GetObject("sceneCompleteImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sceneIcon {
             get {
                 object obj = ResourceManager.GetObject("sceneIcon", resourceCulture);

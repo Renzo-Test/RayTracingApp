@@ -311,7 +311,7 @@
             // picScene
             // 
             this.picScene.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
-            this.picScene.Image = global::GUI.Properties.Resources.darkBgScene;
+            this.picScene.Image = global::GUI.Properties.Resources.sceneCompleteImage;
             this.picScene.Location = new System.Drawing.Point(254, 260);
             this.picScene.Margin = new System.Windows.Forms.Padding(0);
             this.picScene.Name = "picScene";
