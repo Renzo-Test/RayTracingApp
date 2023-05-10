@@ -28,7 +28,7 @@ namespace Domain
 		{
 			_sceneNumber = _createdSceneCounter++;
 			_owner = owner;
-			_name = $"Blank Scene {_createdSceneCounter}";
+			_name = $"Blank Scene {_sceneNumber}";
 			_fov = fov;
 			CameraPosition = lookFrom;
 			ObjectivePosition = lookAt;
@@ -111,6 +111,11 @@ namespace Domain
 			{
 				throw new InvalidFovException($"Scene's fov must be between {MinFov} and {MaxFov}");
 			}
+		}
+
+		internal static void ResetCreatedCounter()
+		{
+			_createdSceneCounter = 0;
 		}
 	}
 }

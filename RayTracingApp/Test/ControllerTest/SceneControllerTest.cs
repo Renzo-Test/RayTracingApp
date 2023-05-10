@@ -289,6 +289,10 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void CreateBlankScene_OkTest()
 		{
+			Client resetCount = new Client()
+			{
+				
+			};
 			Client client = new Client()
 			{
 				Username = "OwnerName",
