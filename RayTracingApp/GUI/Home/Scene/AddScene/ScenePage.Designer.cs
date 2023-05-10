@@ -42,6 +42,9 @@
             this.lblLookAt = new System.Windows.Forms.Label();
             this.lblFov = new System.Windows.Forms.Label();
             this.lblRender = new System.Windows.Forms.Label();
+            this.pbrRender = new System.Windows.Forms.ProgressBar();
+            this.picIconProperties = new System.Windows.Forms.PictureBox();
+            this.picButtonProperties = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picRender = new System.Windows.Forms.PictureBox();
             this.picFieldLookFrom = new System.Windows.Forms.PictureBox();
@@ -49,7 +52,8 @@
             this.picFieldFov = new System.Windows.Forms.PictureBox();
             this.picScene = new System.Windows.Forms.PictureBox();
             this.picIconBack = new System.Windows.Forms.PictureBox();
-            this.pbrRender = new System.Windows.Forms.ProgressBar();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picButtonProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldLookFrom)).BeginInit();
@@ -75,7 +79,7 @@
             this.lblAvailableModels.AutoSize = true;
             this.lblAvailableModels.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAvailableModels.ForeColor = System.Drawing.Color.White;
-            this.lblAvailableModels.Location = new System.Drawing.Point(11, 220);
+            this.lblAvailableModels.Location = new System.Drawing.Point(12, 209);
             this.lblAvailableModels.Name = "lblAvailableModels";
             this.lblAvailableModels.Size = new System.Drawing.Size(100, 30);
             this.lblAvailableModels.TabIndex = 3;
@@ -86,7 +90,7 @@
             this.lblScene.AutoSize = true;
             this.lblScene.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScene.ForeColor = System.Drawing.Color.White;
-            this.lblScene.Location = new System.Drawing.Point(248, 220);
+            this.lblScene.Location = new System.Drawing.Point(249, 209);
             this.lblScene.Name = "lblScene";
             this.lblScene.Size = new System.Drawing.Size(88, 30);
             this.lblScene.TabIndex = 4;
@@ -97,7 +101,7 @@
             this.lblPosisionatedModels.AutoSize = true;
             this.lblPosisionatedModels.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPosisionatedModels.ForeColor = System.Drawing.Color.White;
-            this.lblPosisionatedModels.Location = new System.Drawing.Point(654, 218);
+            this.lblPosisionatedModels.Location = new System.Drawing.Point(655, 207);
             this.lblPosisionatedModels.Name = "lblPosisionatedModels";
             this.lblPosisionatedModels.Size = new System.Drawing.Size(170, 30);
             this.lblPosisionatedModels.TabIndex = 5;
@@ -107,7 +111,7 @@
             // 
             this.flyModels.AutoScroll = true;
             this.flyModels.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
-            this.flyModels.Location = new System.Drawing.Point(10, 271);
+            this.flyModels.Location = new System.Drawing.Point(11, 260);
             this.flyModels.Margin = new System.Windows.Forms.Padding(0);
             this.flyModels.Name = "flyModels";
             this.flyModels.Size = new System.Drawing.Size(230, 270);
@@ -117,7 +121,7 @@
             // 
             this.flyUsedModels.AutoScroll = true;
             this.flyUsedModels.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
-            this.flyUsedModels.Location = new System.Drawing.Point(654, 271);
+            this.flyUsedModels.Location = new System.Drawing.Point(655, 260);
             this.flyUsedModels.Margin = new System.Windows.Forms.Padding(0);
             this.flyUsedModels.Name = "flyUsedModels";
             this.flyUsedModels.Size = new System.Drawing.Size(170, 270);
@@ -129,7 +133,7 @@
             this.txtFov.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtFov.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFov.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtFov.Location = new System.Drawing.Point(558, 132);
+            this.txtFov.Location = new System.Drawing.Point(526, 137);
             this.txtFov.Name = "txtFov";
             this.txtFov.Size = new System.Drawing.Size(158, 24);
             this.txtFov.TabIndex = 27;
@@ -141,7 +145,7 @@
             this.txtLookAt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLookAt.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLookAt.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtLookAt.Location = new System.Drawing.Point(331, 132);
+            this.txtLookAt.Location = new System.Drawing.Point(285, 137);
             this.txtLookAt.Name = "txtLookAt";
             this.txtLookAt.Size = new System.Drawing.Size(158, 24);
             this.txtLookAt.TabIndex = 29;
@@ -153,7 +157,7 @@
             this.txtLookFrom.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLookFrom.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLookFrom.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtLookFrom.Location = new System.Drawing.Point(105, 132);
+            this.txtLookFrom.Location = new System.Drawing.Point(44, 137);
             this.txtLookFrom.Name = "txtLookFrom";
             this.txtLookFrom.Size = new System.Drawing.Size(158, 24);
             this.txtLookFrom.TabIndex = 31;
@@ -176,7 +180,7 @@
             this.lblLookFrom.AutoSize = true;
             this.lblLookFrom.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLookFrom.ForeColor = System.Drawing.Color.White;
-            this.lblLookFrom.Location = new System.Drawing.Point(87, 82);
+            this.lblLookFrom.Location = new System.Drawing.Point(26, 87);
             this.lblLookFrom.Name = "lblLookFrom";
             this.lblLookFrom.Size = new System.Drawing.Size(116, 24);
             this.lblLookFrom.TabIndex = 33;
@@ -187,7 +191,7 @@
             this.lblLookAt.AutoSize = true;
             this.lblLookAt.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLookAt.ForeColor = System.Drawing.Color.White;
-            this.lblLookAt.Location = new System.Drawing.Point(310, 82);
+            this.lblLookAt.Location = new System.Drawing.Point(264, 87);
             this.lblLookAt.Name = "lblLookAt";
             this.lblLookAt.Size = new System.Drawing.Size(87, 24);
             this.lblLookAt.TabIndex = 34;
@@ -198,7 +202,7 @@
             this.lblFov.AutoSize = true;
             this.lblFov.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFov.ForeColor = System.Drawing.Color.White;
-            this.lblFov.Location = new System.Drawing.Point(536, 82);
+            this.lblFov.Location = new System.Drawing.Point(504, 87);
             this.lblFov.Name = "lblFov";
             this.lblFov.Size = new System.Drawing.Size(47, 24);
             this.lblFov.TabIndex = 35;
@@ -211,18 +215,51 @@
             this.lblRender.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblRender.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRender.ForeColor = System.Drawing.Color.White;
-            this.lblRender.Location = new System.Drawing.Point(540, 217);
+            this.lblRender.Location = new System.Drawing.Point(541, 206);
             this.lblRender.Name = "lblRender";
             this.lblRender.Size = new System.Drawing.Size(75, 23);
             this.lblRender.TabIndex = 37;
             this.lblRender.Text = "Render";
+            // 
+            // pbrRender
+            // 
+            this.pbrRender.Location = new System.Drawing.Point(254, 542);
+            this.pbrRender.Name = "pbrRender";
+            this.pbrRender.Size = new System.Drawing.Size(388, 18);
+            this.pbrRender.TabIndex = 39;
+            this.pbrRender.Visible = false;
+            // 
+            // picIconProperties
+            // 
+            this.picIconProperties.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.picIconProperties.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picIconProperties.Image = global::GUI.Properties.Resources.settings;
+            this.picIconProperties.Location = new System.Drawing.Point(753, 137);
+            this.picIconProperties.Name = "picIconProperties";
+            this.picIconProperties.Size = new System.Drawing.Size(24, 24);
+            this.picIconProperties.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picIconProperties.TabIndex = 42;
+            this.picIconProperties.TabStop = false;
+            this.picIconProperties.Click += new System.EventHandler(this.picIconProperties_Click);
+            // 
+            // picButtonProperties
+            // 
+            this.picButtonProperties.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picButtonProperties.Image = global::GUI.Properties.Resources.circleButton;
+            this.picButtonProperties.Location = new System.Drawing.Point(744, 129);
+            this.picButtonProperties.Name = "picButtonProperties";
+            this.picButtonProperties.Size = new System.Drawing.Size(42, 42);
+            this.picButtonProperties.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picButtonProperties.TabIndex = 40;
+            this.picButtonProperties.TabStop = false;
+            this.picButtonProperties.Click += new System.EventHandler(this.picButtonProperties_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::GUI.Properties.Resources.thunder;
-            this.pictureBox1.Location = new System.Drawing.Point(510, 217);
+            this.pictureBox1.Location = new System.Drawing.Point(511, 206);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 24);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -233,7 +270,7 @@
             // 
             this.picRender.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRender.Image = global::GUI.Properties.Resources.homeButtonsBackground;
-            this.picRender.Location = new System.Drawing.Point(481, 209);
+            this.picRender.Location = new System.Drawing.Point(482, 198);
             this.picRender.Name = "picRender";
             this.picRender.Size = new System.Drawing.Size(160, 41);
             this.picRender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -244,7 +281,7 @@
             // picFieldLookFrom
             // 
             this.picFieldLookFrom.Image = global::GUI.Properties.Resources.fieldRectangle;
-            this.picFieldLookFrom.Location = new System.Drawing.Point(88, 124);
+            this.picFieldLookFrom.Location = new System.Drawing.Point(27, 129);
             this.picFieldLookFrom.Name = "picFieldLookFrom";
             this.picFieldLookFrom.Size = new System.Drawing.Size(200, 39);
             this.picFieldLookFrom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -254,7 +291,7 @@
             // picFieldLookAt
             // 
             this.picFieldLookAt.Image = global::GUI.Properties.Resources.fieldRectangle;
-            this.picFieldLookAt.Location = new System.Drawing.Point(314, 124);
+            this.picFieldLookAt.Location = new System.Drawing.Point(268, 129);
             this.picFieldLookAt.Name = "picFieldLookAt";
             this.picFieldLookAt.Size = new System.Drawing.Size(200, 39);
             this.picFieldLookAt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -264,7 +301,7 @@
             // picFieldFov
             // 
             this.picFieldFov.Image = global::GUI.Properties.Resources.fieldRectangle;
-            this.picFieldFov.Location = new System.Drawing.Point(540, 124);
+            this.picFieldFov.Location = new System.Drawing.Point(508, 129);
             this.picFieldFov.Name = "picFieldFov";
             this.picFieldFov.Size = new System.Drawing.Size(200, 39);
             this.picFieldFov.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -275,7 +312,7 @@
             // 
             this.picScene.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
             this.picScene.Image = global::GUI.Properties.Resources.darkBgScene;
-            this.picScene.Location = new System.Drawing.Point(253, 271);
+            this.picScene.Location = new System.Drawing.Point(254, 260);
             this.picScene.Margin = new System.Windows.Forms.Padding(0);
             this.picScene.Name = "picScene";
             this.picScene.Size = new System.Drawing.Size(388, 270);
@@ -295,19 +332,13 @@
             this.picIconBack.TabStop = false;
             this.picIconBack.Click += new System.EventHandler(this.picIconBack_Click);
             // 
-            // pbrRender
-            // 
-            this.pbrRender.Location = new System.Drawing.Point(253, 553);
-            this.pbrRender.Name = "pbrRender";
-            this.pbrRender.Size = new System.Drawing.Size(388, 18);
-            this.pbrRender.TabIndex = 39;
-            this.pbrRender.Visible = false;
-            // 
             // ScenePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.picIconProperties);
+            this.Controls.Add(this.picButtonProperties);
             this.Controls.Add(this.pbrRender);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblRender);
@@ -334,6 +365,8 @@
             this.Name = "ScenePage";
             this.Size = new System.Drawing.Size(834, 604);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ScenePage_Paint);
+            ((System.ComponentModel.ISupportInitialize)(this.picIconProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picButtonProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRender)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldLookFrom)).EndInit();
@@ -369,5 +402,7 @@
         private System.Windows.Forms.Label lblRender;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar pbrRender;
+        private System.Windows.Forms.PictureBox picIconProperties;
+        private System.Windows.Forms.PictureBox picButtonProperties;
     }
 }

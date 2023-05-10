@@ -246,5 +246,15 @@ namespace GUI
                 e.Handled = true;
             }
         }
+
+        private void picIconProperties_Click(object sender, EventArgs e)
+        {
+            _sceneHome.GoToDefaultRenderSettings();
+        }
+
+        private void picButtonProperties_Click(object sender, EventArgs e)
+        {
+            _sceneHome.GoToDefaultRenderSettings();
+        }
     }
 }
