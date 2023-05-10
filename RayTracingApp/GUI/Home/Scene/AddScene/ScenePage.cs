@@ -18,9 +18,6 @@ namespace GUI
 {
     public partial class ScenePage : UserControl
     {
-        private const string FovNumericErrorMessage = "Fov values must be numeric only";
-        private const string VectorNumericErrorMessage = "Vector values must be numeric only";
-
         private SceneHome _sceneHome;
 
         private MainController _mainController;
@@ -249,12 +246,12 @@ namespace GUI
 
         private void picIconProperties_Click(object sender, EventArgs e)
         {
-            _sceneHome.GoToDefaultRenderSettings();
+            _sceneHome.GoToDefaultRenderSettings(_scene);
         }
 
         private void picButtonProperties_Click(object sender, EventArgs e)
         {
-            _sceneHome.GoToDefaultRenderSettings();
+            _sceneHome.GoToDefaultRenderSettings(_scene);
         }
     }
 }

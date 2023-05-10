@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,24 @@ namespace GUI
 {
     public partial class DefaultRenderSettings : UserControl
     {
-        public DefaultRenderSettings()
+        private SceneHome _sceneHome;
+        private Scene _scene;
+
+        public DefaultRenderSettings(SceneHome sceneHome, Scene scene)
         {
+            _scene = scene;
+            _sceneHome = sceneHome;
             InitializeComponent();
         }
 
         private void picRectangleFieldCancel_Click(object sender, EventArgs e)
         {
+            _sceneHome.GoToAddScene(_scene);
+        }
 
+        private void lblCancel_Click(object sender, EventArgs e)
+        {
+            _sceneHome.GoToAddScene(_scene);
         }
     }
 }

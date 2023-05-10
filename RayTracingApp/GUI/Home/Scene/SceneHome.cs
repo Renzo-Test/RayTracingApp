@@ -30,7 +30,6 @@ namespace GUI
             
             InitializeComponent();
 
-            _defaultRenderSettings = new DefaultRenderSettings();
             _listScenePanel = new SceneList(this, mainController.SceneController, currentClient);
             _defaultCamPanel = new DefaultCam(this, mainController, currentClient);
             flySceneHome.Controls.Add(_listScenePanel);
@@ -55,9 +54,10 @@ namespace GUI
             flySceneHome.Controls.Add(_defaultCamPanel);
         }
 
-        public void GoToDefaultRenderSettings()
+        public void GoToDefaultRenderSettings(Scene scene)
         {
             flySceneHome.Controls.Clear();
+            _defaultRenderSettings = new DefaultRenderSettings(this, scene);
             flySceneHome.Controls.Add(_defaultRenderSettings);
         }
     }

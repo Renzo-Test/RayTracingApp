@@ -186,6 +186,7 @@
             this.lblCancel.Size = new System.Drawing.Size(78, 23);
             this.lblCancel.TabIndex = 37;
             this.lblCancel.Text = "Cancel";
+            this.lblCancel.Click += new System.EventHandler(this.lblCancel_Click);
             // 
             // picRectangleFieldCancel
             // 
