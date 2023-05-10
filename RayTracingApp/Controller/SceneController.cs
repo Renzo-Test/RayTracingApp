@@ -12,6 +12,7 @@ namespace Controller
 	public class SceneController
 	{
 		public IRepositoryScene Repository;
+		private ClientController _clientController;
 
 		public SceneController()
 		{
@@ -64,9 +65,16 @@ namespace Controller
 			return ownerModels.Except(usedModels).ToList();
 		}
 
-		public Scene CreateBlankScene(string name)
+		public Scene CreateBlankScene(Client currentClient, string sceneName)
 		{
-			Scene scene = new Scene() { Name = name };
+			Scene scene = new Scene() 
+			{ 
+				Name = sceneName,
+				Owner = currentClient.Username,
+				Fov = currentClient.DefaultFov,
+				CameraPosition = currentClient.DefaultLookFrom,
+				ObjectivePosition = currentClient.DefaultLookAt
+			};
 			return scene;
 		}
 
