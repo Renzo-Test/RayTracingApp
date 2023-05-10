@@ -2,6 +2,7 @@
 using Domain;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Domain.Exceptions;
 
 namespace Test.ModelsTest
 {
@@ -159,6 +160,17 @@ namespace Test.ModelsTest
 
 			Assert.AreEqual("Rodriguez", _client.Username);
 			Assert.AreEqual("RodriguezSecret123", _client.Password);
+		}
+
+		[ExpectedException(typeof(NotInExpectedRangeClientException))]
+		public void SetDefaultFov_200_FailTest() {
+			_client = new Client()
+			{
+				Username = "Rodriguez",
+				Password = "RodriguezSecret123",
+			};
+
+			_client.DefaultFov = 200;
 		}
 	}
 }
