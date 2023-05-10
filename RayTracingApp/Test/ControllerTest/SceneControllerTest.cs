@@ -126,7 +126,7 @@ namespace Test.ControllerTest
 
 		[TestMethod]
 		[ExpectedException (typeof(InvalidSceneInputException))]
-		public void UpdateSceneName_startSpace_OkTest()
+		public void UpdateSceneName_startSpace_FailTest()
 		{
 			Scene scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
@@ -134,6 +134,18 @@ namespace Test.ControllerTest
 			};
 
 			_sceneController.UpdateSceneName(scene, _owner, " newName");
+		}
+
+		[TestMethod]
+		public void UpdateSceneName_KeepPreviousNameIfInvalid_OkTest()
+		{
+			Scene scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			{
+				Name = "sceneName",
+			};
+
+			_sceneController.UpdateSceneName(scene, _owner, " invalidName ");
+			Assert.AreEqual("sceneName", scene.Name);
 		}
 
 
