@@ -63,7 +63,7 @@
             this.lblLastModified.AutoSize = true;
             this.lblLastModified.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastModified.ForeColor = System.Drawing.Color.White;
-            this.lblLastModified.Location = new System.Drawing.Point(506, 32);
+            this.lblLastModified.Location = new System.Drawing.Point(477, 31);
             this.lblLastModified.Name = "lblLastModified";
             this.lblLastModified.Size = new System.Drawing.Size(309, 22);
             this.lblLastModified.TabIndex = 2;
@@ -133,8 +133,6 @@
             this.txtFov.Size = new System.Drawing.Size(158, 24);
             this.txtFov.TabIndex = 27;
             this.txtFov.Text = "Fov";
-            this.txtFov.Enter += new System.EventHandler(this.txtFov_Enter);
-            this.txtFov.Leave += new System.EventHandler(this.txtFov_Leave);
             // 
             // txtLookAt
             // 
@@ -147,8 +145,6 @@
             this.txtLookAt.Size = new System.Drawing.Size(158, 24);
             this.txtLookAt.TabIndex = 29;
             this.txtLookAt.Text = "x, y, z";
-            this.txtLookAt.Enter += new System.EventHandler(this.txtLookAt_Enter);
-            this.txtLookAt.Leave += new System.EventHandler(this.txtLookAt_Leave);
             // 
             // txtLookFrom
             // 
@@ -161,8 +157,6 @@
             this.txtLookFrom.Size = new System.Drawing.Size(158, 24);
             this.txtLookFrom.TabIndex = 31;
             this.txtLookFrom.Text = "x, y, z";
-            this.txtLookFrom.Enter += new System.EventHandler(this.txtLookFrom_Enter);
-            this.txtLookFrom.Leave += new System.EventHandler(this.txtLookFrom_Leave);
             // 
             // txtSceneName
             // 
@@ -172,7 +166,7 @@
             this.txtSceneName.ForeColor = System.Drawing.Color.White;
             this.txtSceneName.Location = new System.Drawing.Point(91, 23);
             this.txtSceneName.Name = "txtSceneName";
-            this.txtSceneName.Size = new System.Drawing.Size(409, 34);
+            this.txtSceneName.Size = new System.Drawing.Size(380, 34);
             this.txtSceneName.TabIndex = 32;
             this.txtSceneName.Text = "Scene 1";
             // 

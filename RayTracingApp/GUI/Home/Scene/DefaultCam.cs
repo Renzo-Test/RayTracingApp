@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Domain;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,9 @@ namespace GUI
         const string LookAtPlaceholder = "Look At";
         const string LookFromPlaceholder = "Look From";
 
+        private const int MinFov = 1;
+        private const int MaxFov = 160;
+
         private SceneHome _sceneHome;
         private MainController _mainController;
         private Client _currentClient;
@@ -29,38 +33,49 @@ namespace GUI
             _sceneHome = sceneHome;
             _mainController = mainController;
             _currentClient = currentClient;
+
+            txtInputFov.Text = $"{currentClient.DefaultFov}";
+            txtInputLookAt.Text = StringUtils.ConstructVectorFormat(currentClient.DefaultLookAt);
+            txtInputLookFrom.Text = StringUtils.ConstructVectorFormat(currentClient.DefaultLookFrom);
+        }
+        
+        private void picRectangleFieldSave_Click(object sender, EventArgs e)
+        {
+            int fov;
+            Vector lookFrom;
+            Vector lookAt;
+
+            try
+            {
+                (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtInputFov, txtInputLookAt, txtInputLookFrom);
+            }
+            catch (InvalidSceneInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            if (!InRangeFov(fov))
+            {
+                MessageBox.Show($"Scene's fov must be between {MinFov} and {MaxFov}");
+                return;
+            }
+
+            SetClientDefaultSceneValues(fov, lookFrom, lookAt);
+
+            _sceneHome.GoToSceneList();
         }
 
-        private void txtInputLookAt_Enter(object sender, EventArgs e)
+        private static bool InRangeFov(int fov)
         {
-            InputUtils.RemovePlaceHolder(ref txtInputLookAt, LookAtPlaceholder);
+            return Enumerable.Range(MinFov, MaxFov).Contains(fov);
         }
 
-        private void txtInputLookAt_Leave(object sender, EventArgs e)
+        private void SetClientDefaultSceneValues(int fov, Vector lookFrom, Vector lookAt)
         {
-            InputUtils.SetPlaceHolder(ref txtInputLookAt, LookAtPlaceholder);
-
-        }
-
-        private void txtInputLookFrom_Enter(object sender, EventArgs e)
-        {
-            InputUtils.RemovePlaceHolder(ref txtInputLookFrom, LookFromPlaceholder);
-        }
-
-        private void txtInputLookFrom_Leave(object sender, EventArgs e)
-        {
-            InputUtils.SetPlaceHolder(ref txtInputLookFrom, LookFromPlaceholder);
-
-        }
-
-        private void txtInputFov_Enter(object sender, EventArgs e)
-        {
-            InputUtils.RemovePlaceHolder(ref txtInputFov, FovPlaceholder);
-        }
-
-        private void txtInputFov_Leave(object sender, EventArgs e)
-        {
-            InputUtils.SetPlaceHolder(ref txtInputFov, FovPlaceholder);
+            _currentClient.DefaultFov = fov;
+            _currentClient.DefaultLookAt = lookAt;
+            _currentClient.DefaultLookFrom = lookFrom;
         }
 
         private void picRectangleFieldCancel_Click(object sender, EventArgs e)

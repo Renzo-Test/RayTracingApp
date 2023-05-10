@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+
+[assembly : InternalsVisibleTo("Test")]
 
 namespace Domain
 {
@@ -26,9 +29,9 @@ namespace Domain
 
 		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt) 
 		{
-			_sceneNumber = _createdSceneCounter++;
+			_sceneNumber = ++_createdSceneCounter;
+			_name = $"Blank Scene {_sceneNumber}";
 			_owner = owner;
-			_name = $"Blank Scene {_createdSceneCounter}";
 			_fov = fov;
 			CameraPosition = lookFrom;
 			ObjectivePosition = lookAt;
@@ -111,6 +114,11 @@ namespace Domain
 			{
 				throw new InvalidFovException($"Scene's fov must be between {MinFov} and {MaxFov}");
 			}
+		}
+
+		internal void ResetCreatedCounter()
+		{
+			_createdSceneCounter = 0;
 		}
 	}
 }

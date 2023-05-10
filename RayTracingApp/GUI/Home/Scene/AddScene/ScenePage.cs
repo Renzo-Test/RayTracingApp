@@ -20,10 +20,6 @@ namespace GUI
         private const string FovNumericErrorMessage = "Fov values must be numeric only";
         private const string VectorNumericErrorMessage = "Vector values must be numeric only";
 
-        private const string LookFromPlaceholder = "x, y, z";
-        private const string LookAtPlaceholder = "x, y, z";
-        private const string FovPlaceholder = "Fov";
-
         private SceneHome _sceneHome;
 
         private MainController _mainController;
@@ -33,8 +29,10 @@ namespace GUI
         private Scene _scene;
         private Client _currentClient;
         private List<PosisionatedModel> _posisionatedModels;
+        private PosisionatedModel _model;
 
-        public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
+
+		public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
         {
             _sceneHome = sceneHome;
 
@@ -44,11 +42,13 @@ namespace GUI
 
             _currentClient = currentClient;
             _posisionatedModels = scene.PosisionatedModels;
-            
-            InitializeComponent();
+
+
+			InitializeComponent();
 
             _scene = scene;
             SetSceneTextAtributes();
+            txtSceneName.KeyPress += new KeyPressEventHandler(CheckNameChange);
 
         }
 
@@ -92,13 +92,13 @@ namespace GUI
 
         private void Render()
         {
-            int fov;
+			int fov;
             Vector lookFrom;
             Vector lookAt;
 
             try
             {
-                (fov, lookFrom, lookAt) = GetCameraAtributes();
+                (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
             }
             catch (InvalidSceneInputException ex)
             {
@@ -106,10 +106,17 @@ namespace GUI
                 return;
             }
 
-            SetSceneAtributes(fov, lookFrom, lookAt);
+            try
+            {
+                SetSceneAtributes(fov, lookFrom, lookAt);
+            }
+            catch (InvalidSceneInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
-            RenderProperties properties = new RenderProperties();
-
+			RenderProperties properties = new RenderProperties();
             Renderer renderer = new Renderer()
             {
                 Properties = properties,
@@ -123,58 +130,22 @@ namespace GUI
 
             picScene.Image = img;
 
-            _sceneController.UpdateLastRenderDate(_scene);
+			_sceneController.UpdateLastRenderDate(_scene);
         }
 
         private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt)
         {
-            _scene.Fov = fov;
-            _scene.CameraPosition = lookFrom;
-            _scene.ObjectivePosition = lookAt;
-            _scene.PosisionatedModels = _posisionatedModels;
-        }
-
-        private (int, Vector, Vector) GetCameraAtributes()
-        {
-            int fov = GetFov();
-
-            var (txtLookFromValues, txtLookAtValues) = GetStringVectorValues();
-
-            double[] vectorLookFromValues = ParseDoubleValues(txtLookFromValues);
-            double[] vectorLookAtValues = ParseDoubleValues(txtLookAtValues);
-
-            Vector lookFrom = CreateCameraVector(vectorLookFromValues);
-            Vector lookAt = CreateCameraVector(vectorLookAtValues);
-
-            return (fov, lookFrom, lookAt);
-        }
-
-        private (string[], string[]) GetStringVectorValues()
-        {
             try
             {
-                string[] txtLookFromValues = StringUtils.DestructureVectorFromat(txtLookFrom.Text);
-                string[] txtLookAtValues = StringUtils.DestructureVectorFromat(txtLookAt.Text);
-
-                return (txtLookFromValues, txtLookAtValues);
+                _scene.Fov = fov;
+                _scene.CameraPosition = lookFrom;
+                _scene.ObjectivePosition = lookAt;
+                _scene.PosisionatedModels = _posisionatedModels;
             }
-            catch (InvalidSceneInputException ex)
+            catch(InvalidSceneInputException ex)
             {
                 throw new InvalidSceneInputException(ex.Message);
             }
-        }
-
-        private int GetFov()
-        {
-            try
-            {
-                return int.Parse(txtFov.Text);
-            }
-            catch (FormatException)
-            {
-                throw new InvalidSceneInputException(FovNumericErrorMessage);
-            }
-
         }
 
         private static Vector CreateCameraVector(double[] vectorLookFromValues)
@@ -187,25 +158,6 @@ namespace GUI
             };
         }
 
-        private double[] ParseDoubleValues(string[] values)
-        {
-            double[] result = new double[values.Length];
-
-            for (int i = 0; i < values.Length; i++)
-            {
-                try
-                {
-                    result[i] = double.Parse(values[i]);
-                }
-                catch (FormatException)
-                {
-                    throw new InvalidSceneInputException(VectorNumericErrorMessage);
-                }
-            }
-            
-            return result;
-        }
-
         private void picIconBack_Click(object sender, EventArgs e)
         {
             _sceneController.UpdateLastModificationDate(_scene);
@@ -216,7 +168,7 @@ namespace GUI
 
             try
             {
-                (fov, lookFrom, lookAt) = GetCameraAtributes();
+                (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
             }
             catch (InvalidSceneInputException ex)
             {
@@ -224,7 +176,15 @@ namespace GUI
                 return;
             }
 
-            SetSceneAtributes(fov, lookFrom, lookAt);
+            try
+            {
+                SetSceneAtributes(fov, lookFrom, lookAt);
+            }
+            catch (InvalidSceneInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
             _sceneHome.GoToSceneList();
         }
@@ -235,17 +195,11 @@ namespace GUI
             PopulateUsedItems();
         }
 
-            Scene scene = _sceneController.CreateBlankScene(_currentClient);
-            
-            RenderProperties rprops = new RenderProperties();
-            
-            Renderer r = new Renderer()
-            {
-                Properties = rprops,
-                Scene = scene,
-            };
         private void SetSceneTextAtributes()
         {
+
+            txtSceneName.Text = _scene.Name;
+
             Vector lookFrom = _scene.CameraPosition;
             Vector lookAt = _scene.ObjectivePosition;
 
@@ -256,39 +210,19 @@ namespace GUI
 
             txtFov.Text = $"{fov}";
             
-            lblLastModified.Text = "LastModified: " + _scene.LastModificationDate;
+            lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
 
         }
-
-        private void txtLookFrom_Enter(object sender, EventArgs e)
+        private void CheckNameChange(object sender, KeyPressEventArgs e)
         {
-            InputUtils.RemovePlaceHolder(ref txtLookFrom, LookFromPlaceholder);
-        }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                _scene.Name = txtSceneName.Text;
+                
+                ActiveControl = txtLookFrom;
 
-        private void txtLookFrom_Leave(object sender, EventArgs e)
-        {
-            InputUtils.SetPlaceHolder(ref txtLookFrom, LookFromPlaceholder);
+                e.Handled = true;
+            }
         }
-
-        private void txtLookAt_Enter(object sender, EventArgs e)
-        {
-            InputUtils.RemovePlaceHolder(ref txtLookAt, LookAtPlaceholder);
-        }
-
-        private void txtLookAt_Leave(object sender, EventArgs e)
-        {
-            InputUtils.SetPlaceHolder(ref txtLookAt, LookAtPlaceholder);
-        }
-
-        private void txtFov_Enter(object sender, EventArgs e)
-        {
-            InputUtils.RemovePlaceHolder(ref txtFov, FovPlaceholder);
-        }
-
-        private void txtFov_Leave(object sender, EventArgs e)
-        {
-            InputUtils.SetPlaceHolder(ref txtFov, FovPlaceholder);
-        }
-
     }
 }

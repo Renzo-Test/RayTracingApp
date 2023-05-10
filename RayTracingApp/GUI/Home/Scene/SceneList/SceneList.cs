@@ -44,6 +44,15 @@ namespace GUI
 
         }
 
+        private void GoToNewScene()
+        {
+            Scene scene = _sceneController.CreateBlankScene(_currentClient);
+            scene.PosisionatedModels = new List<PosisionatedModel>();
+
+            _sceneController.AddScene(scene, _currentClient.Username);
+            _sceneHome.GoToAddScene(scene);
+        }
+
         private void SceneList_Paint(object sender, PaintEventArgs e)
         {
             PopulateItems();
@@ -62,15 +71,6 @@ namespace GUI
         private void picIconPlus_Click(object sender, EventArgs e)
         {
             GoToNewScene();
-        }
-
-        private void GoToNewScene()
-        {
-            Scene scene = _sceneController.CreateBlankScene(_currentClient);
-            scene.PosisionatedModels = new List<PosisionatedModel>();
-
-            _sceneController.AddScene(scene, _currentClient.Username);
-            _sceneHome.GoToAddScene(scene);
         }
 
         private void picCamDefaultValues_Click(object sender, EventArgs e)
