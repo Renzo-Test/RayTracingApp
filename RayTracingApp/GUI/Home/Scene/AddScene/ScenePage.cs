@@ -23,6 +23,7 @@ namespace GUI
         private SceneHome _sceneHome;
         private MainController _mainController;
         private ModelController _modelController;
+        private SceneController _sceneController;
         private Client _currentClient;
         private List<PosisionatedModel> _posisionatedModels;
 
@@ -132,16 +133,8 @@ namespace GUI
                 Z = Double.Parse(txtLookAtValues[2])
             };
 
-            Scene scene = new Scene()
-            {
-                Owner =  _currentClient.Username,
-                Name = "testScene",
-                Fov = fov,
-                CameraPosition = lookFrom,
-                ObjectivePosition = lookAt,
-                PosisionatedModels = _posisionatedModels
-            };
-
+            Scene scene = _sceneController.CreateBlankScene(_currentClient);
+            
             RenderProperties rprops = new RenderProperties();
             
             Renderer r = new Renderer()
