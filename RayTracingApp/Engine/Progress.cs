@@ -23,5 +23,14 @@ namespace Engine
 		{
 			return (LinesCount * 100) / ExpectedLines;
 		}
-	}
+
+        public void UpdateProgressBar()
+        {
+			ProgressBar.BeginInvoke(
+			 new Action(() =>
+			 {
+				 ProgressBar.Value = (int)Calculate();
+			}));
+		}
+    }
 }
