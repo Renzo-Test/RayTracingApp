@@ -279,11 +279,18 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
-		public void CreateBlankScene_SceneName_OkTest()
+		public void CreateBlankScene_OkTest()
 		{
-			Scene blankScene = _sceneController.CreateBlankScene("SceneName");
+			Client client = new Client()
+			{
+				Username = "OwnerName",
+				DefaultFov = 70,
+				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
+				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
+			};
+			Scene blankScene = _sceneController.CreateBlankScene(client);
 
-			Assert.AreEqual(blankScene.Name, "SceneName");
+			Assert.AreEqual(blankScene.Name, "Blank Scene 1");
 		}
 
 		[TestMethod]
