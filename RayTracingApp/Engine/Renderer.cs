@@ -80,25 +80,26 @@ namespace Engine
 
 		public string RenderModelPreview(Model model)
 		{
+			RenderProperties properties = PreviewRenderProperties();
 			Scene previewScene = CreatePreviewScene(model);
 
 			Vector LookFrom = previewScene.CameraPosition;
 			Vector LookAt = previewScene.ObjectivePosition;
 			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
 			int FieldOfView = previewScene.Fov;
-			double AspectRatio = Properties.AspectRatio;
+			double AspectRatio = properties.AspectRatio;
 			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
 
-			for (int i = 0; i < Properties.ResolutionY; i++)
+			for (int i = 0; i < properties.ResolutionY; i++)
 			{
 				_pixels.Add(new List<Vector>());
 			}
 
-			int row = Properties.ResolutionY - 1;
+			int row = properties.ResolutionY - 1;
 			Parallel.For(0, row + 1, index =>
 			{
 				int derivatedIndex = row - index;
-				for (int column = 0; column < Properties.ResolutionX; column++)
+				for (int column = 0; column < properties.ResolutionX; column++)
 				{
 					Vector vector = new Vector()
 					{
@@ -107,24 +108,24 @@ namespace Engine
 						Z = 0
 					};
 
-					for (int sample = 0; sample < Properties.SamplesPerPixel; sample++)
+					for (int sample = 0; sample < properties.SamplesPerPixel; sample++)
 					{
 						double fstRnd = random.Value.NextDouble();
 						double sndRnd = random.Value.NextDouble();
 
-						double u = (column + fstRnd) / Properties.ResolutionX;
-						double v = (derivatedIndex + sndRnd) / Properties.ResolutionY;
+						double u = (column + fstRnd) / properties.ResolutionX;
+						double v = (derivatedIndex + sndRnd) / properties.ResolutionY;
 
 						var ray = _camera.GetRay(u, v);
-						vector.AddFrom(ShootRay(ray, Properties.MaxDepth));
+						vector.AddFrom(ShootRay(ray, properties.MaxDepth));
 					}
 
-					vector = vector.Divide(Properties.SamplesPerPixel);
+					vector = vector.Divide(properties.SamplesPerPixel);
 					SavePixel(derivatedIndex, column, vector);
 				}
 			});
 
-			return _printer.Save(_pixels, Properties, ref _progress);
+			return _printer.Save(_pixels, properties, ref _progress);
 		}
 
 		private Scene CreatePreviewScene(Model model)
