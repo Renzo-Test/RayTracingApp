@@ -4,6 +4,7 @@ using Domain;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Controller;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -12,6 +13,19 @@ namespace Test.MemoryRepositoryTest
 	public class SceneRepositoryTest
 	{
 		private SceneRepository _sceneRepository;
+		private string _owner;
+		private int _fov;
+		private Vector _lookFrom;
+		private Vector _looktTo;
+
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_owner = "ownerName";
+			_fov = 70;
+			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
+			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
+		}
 
 		[TestMethod]
 		public void CreateSceneRepository_OkTest()
