@@ -49,6 +49,7 @@
             this.picFieldFov = new System.Windows.Forms.PictureBox();
             this.picScene = new System.Windows.Forms.PictureBox();
             this.picIconBack = new System.Windows.Forms.PictureBox();
+            this.pbrRender = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldLookFrom)).BeginInit();
@@ -294,11 +295,19 @@
             this.picIconBack.TabStop = false;
             this.picIconBack.Click += new System.EventHandler(this.picIconBack_Click);
             // 
+            // pbrRender
+            // 
+            this.pbrRender.Location = new System.Drawing.Point(253, 560);
+            this.pbrRender.Name = "pbrRender";
+            this.pbrRender.Size = new System.Drawing.Size(388, 23);
+            this.pbrRender.TabIndex = 39;
+            // 
             // ScenePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.pbrRender);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblRender);
             this.Controls.Add(this.picRender);
@@ -358,5 +367,6 @@
         private System.Windows.Forms.PictureBox picRender;
         private System.Windows.Forms.Label lblRender;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ProgressBar pbrRender;
     }
 }

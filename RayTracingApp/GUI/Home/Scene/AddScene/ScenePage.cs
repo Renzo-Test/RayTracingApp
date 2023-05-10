@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -92,7 +93,7 @@ namespace GUI
 
         private void Render()
         {
-			int fov;
+            int fov;
             Vector lookFrom;
             Vector lookAt;
 
@@ -116,21 +117,43 @@ namespace GUI
                 return;
             }
 
-			RenderProperties properties = new RenderProperties();
+            pbrRender.Visible = true;
+
+            Thread RenderingThread = new Thread(new ThreadStart(RenderImage));
+            RenderingThread.Start();
+
+            _sceneController.UpdateLastRenderDate(_scene);
+        }
+
+        private void RenderImage()
+        {
+            RenderProperties properties = new RenderProperties();
             Renderer renderer = new Renderer()
             {
                 Properties = properties,
                 Scene = _scene,
             };
 
-            string image = renderer.Render();
+            string image = renderer.Render(pbrRender);
 
             Scanner scanner = new Scanner();
             Bitmap img = scanner.ScanImage(image);
-
             picScene.Image = img;
 
-			_sceneController.UpdateLastRenderDate(_scene);
+            ReInitialazeAll();
+        }
+
+        private void ReInitialazeAll()
+        {
+            
+            if (this.InvokeRequired)
+            {
+                BeginInvoke(new Action(ReInitialazeAll));
+
+                return;
+            }
+
+            pbrRender.Visible = false;
         }
 
         private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt)
