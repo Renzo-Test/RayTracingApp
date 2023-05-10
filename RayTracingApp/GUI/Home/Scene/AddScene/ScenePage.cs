@@ -109,7 +109,15 @@ namespace GUI
                 return;
             }
 
-            SetSceneAtributes(fov, lookFrom, lookAt);
+            try
+            {
+                SetSceneAtributes(fov, lookFrom, lookAt);
+            }
+            catch (InvalidSceneInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
 			RenderProperties properties = new RenderProperties();
             Renderer renderer = new Renderer()
@@ -130,10 +138,17 @@ namespace GUI
 
         private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt)
         {
-            _scene.Fov = fov;
-            _scene.CameraPosition = lookFrom;
-            _scene.ObjectivePosition = lookAt;
-            _scene.PosisionatedModels = _posisionatedModels;
+            try
+            {
+                _scene.Fov = fov;
+                _scene.CameraPosition = lookFrom;
+                _scene.ObjectivePosition = lookAt;
+                _scene.PosisionatedModels = _posisionatedModels;
+            }
+            catch(InvalidSceneInputException ex)
+            {
+                throw new InvalidSceneInputException(ex.Message);
+            }
         }
 
         private (int, Vector, Vector) GetCameraAtributes()
