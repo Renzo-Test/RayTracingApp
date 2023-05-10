@@ -148,7 +148,7 @@
             this.txtMaxDepth.Name = "txtMaxDepth";
             this.txtMaxDepth.Size = new System.Drawing.Size(278, 24);
             this.txtMaxDepth.TabIndex = 40;
-            this.txtMaxDepth.Text = "Max Depth";
+            this.txtMaxDepth.Text = "30";
             // 
             // picDarkRectangleFieldMaxDepth
             // 
@@ -224,7 +224,7 @@
             this.txtSamplesPerPixel.Name = "txtSamplesPerPixel";
             this.txtSamplesPerPixel.Size = new System.Drawing.Size(278, 24);
             this.txtSamplesPerPixel.TabIndex = 34;
-            this.txtSamplesPerPixel.Text = "Samples Per Pixel";
+            this.txtSamplesPerPixel.Text = "100";
             // 
             // picDarkRectangleFieldSamplesPerPixel
             // 
