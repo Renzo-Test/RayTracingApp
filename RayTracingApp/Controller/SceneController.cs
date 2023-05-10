@@ -32,6 +32,11 @@ namespace Controller
 			}
 		}
 
+		public void UpdateSceneName(Scene scene, string currentClient, string newName)
+		{
+			scene.Name = "newName";
+		}
+
 		public void UpdateLastModificationDate(Scene scene)
 		{
 			scene.LastModificationDate = TodayDate();
