@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Test.EngineTest
 {
@@ -144,5 +145,16 @@ namespace Test.EngineTest
 				}
 			}
 		}
-	}
+
+		[TestMethod]
+		public void CanSetProgressBar_OkTest()
+        {
+			ProgressBar prgRenderer = new ProgressBar();
+
+			_progress = new Progress()
+			{
+				ProgressBar = prgRenderer
+			};
+        }
+    }
 }
