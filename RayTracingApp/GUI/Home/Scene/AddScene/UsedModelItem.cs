@@ -49,6 +49,7 @@ namespace GUI
         {
             _posisionatedModels.Remove(_posisionatedModel);
             _scenePage.PopulateUsedItems();
+            _scenePage.ShowWarning();
         }
 
         public void UpdatePosisionatedModel()
@@ -87,7 +88,8 @@ namespace GUI
 				txtPosition.Enabled = true;
 				picXIcon.Visible = false;
 				UpdatePosisionatedModel();
-			}
+                _scenePage.ShowWarning();
+            }
 		}
 
 		private void picXIcon_Click(object sender, EventArgs e)

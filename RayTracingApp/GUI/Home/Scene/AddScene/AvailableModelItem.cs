@@ -49,6 +49,7 @@ namespace GUI
 
             _posisionatedModels.Add(posisionatedModel);
             _scenePage.PopulateUsedItems();
+            _scenePage.ShowWarning();
         }
     }
 }

@@ -419,5 +419,11 @@
   <ItemGroup>
     <None Include="Resources\sceneCompleteImage.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackWarning.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

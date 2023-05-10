@@ -43,6 +43,8 @@
             this.lblFov = new System.Windows.Forms.Label();
             this.lblRender = new System.Windows.Forms.Label();
             this.pbrRender = new System.Windows.Forms.ProgressBar();
+            this.lblImageOutdated = new System.Windows.Forms.Label();
+            this.picIconWarning = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picRender = new System.Windows.Forms.PictureBox();
             this.picFieldLookFrom = new System.Windows.Forms.PictureBox();
@@ -50,6 +52,7 @@
             this.picFieldFov = new System.Windows.Forms.PictureBox();
             this.picScene = new System.Windows.Forms.PictureBox();
             this.picIconBack = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconWarning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldLookFrom)).BeginInit();
@@ -225,6 +228,29 @@
             this.pbrRender.TabIndex = 39;
             this.pbrRender.Visible = false;
             // 
+            // lblImageOutdated
+            // 
+            this.lblImageOutdated.AutoSize = true;
+            this.lblImageOutdated.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImageOutdated.ForeColor = System.Drawing.Color.White;
+            this.lblImageOutdated.Location = new System.Drawing.Point(366, 551);
+            this.lblImageOutdated.Name = "lblImageOutdated";
+            this.lblImageOutdated.Size = new System.Drawing.Size(185, 24);
+            this.lblImageOutdated.TabIndex = 41;
+            this.lblImageOutdated.Text = "Image Outdated";
+            this.lblImageOutdated.Visible = false;
+            // 
+            // picIconWarning
+            // 
+            this.picIconWarning.Image = global::GUI.Properties.Resources.blackWarning;
+            this.picIconWarning.Location = new System.Drawing.Point(336, 551);
+            this.picIconWarning.Name = "picIconWarning";
+            this.picIconWarning.Size = new System.Drawing.Size(24, 24);
+            this.picIconWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picIconWarning.TabIndex = 42;
+            this.picIconWarning.TabStop = false;
+            this.picIconWarning.Visible = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
@@ -308,6 +334,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.picIconWarning);
+            this.Controls.Add(this.lblImageOutdated);
             this.Controls.Add(this.pbrRender);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblRender);
@@ -334,6 +362,7 @@
             this.Name = "ScenePage";
             this.Size = new System.Drawing.Size(834, 604);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ScenePage_Paint);
+            ((System.ComponentModel.ISupportInitialize)(this.picIconWarning)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRender)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldLookFrom)).EndInit();
@@ -369,5 +398,7 @@
         private System.Windows.Forms.Label lblRender;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar pbrRender;
+        private System.Windows.Forms.Label lblImageOutdated;
+        private System.Windows.Forms.PictureBox picIconWarning;
     }
 }

@@ -27,8 +27,7 @@ namespace GUI
         private Scene _scene;
         private Client _currentClient;
         private List<PosisionatedModel> _posisionatedModels;
-        private PosisionatedModel _model;
-
+        
         RenderProperties _renderProperties;
 
         public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient, RenderProperties renderProperties)
@@ -84,6 +83,12 @@ namespace GUI
 
         }
 
+        public void ShowWarning()
+        {
+            lblImageOutdated.Visible = true;
+            picIconWarning.Visible = true;
+        }
+
         private void picRender_Click(object sender, EventArgs e)
         {
             Render();
@@ -116,6 +121,8 @@ namespace GUI
             }
 
             pbrRender.Visible = true;
+            lblImageOutdated.Visible = false;
+            picIconWarning.Visible = false;
 
             Thread RenderingThread = new Thread(new ThreadStart(RenderImage));
             RenderingThread.Start();

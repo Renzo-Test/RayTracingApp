@@ -73,6 +73,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blackWarning {
+            get {
+                object obj = ResourceManager.GetObject("blackWarning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blankScene {
             get {
                 object obj = ResourceManager.GetObject("blankScene", resourceCulture);
@@ -386,6 +396,16 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap userIcon1 {
             get {
                 object obj = ResourceManager.GetObject("userIcon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap warning {
+            get {
+                object obj = ResourceManager.GetObject("warning", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
