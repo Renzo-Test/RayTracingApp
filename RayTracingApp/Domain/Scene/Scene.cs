@@ -29,9 +29,9 @@ namespace Domain
 
 		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt) 
 		{
-			_sceneNumber = _createdSceneCounter++;
-			_owner = owner;
+			_sceneNumber = ++_createdSceneCounter;
 			_name = $"Blank Scene {_sceneNumber}";
+			_owner = owner;
 			_fov = fov;
 			CameraPosition = lookFrom;
 			ObjectivePosition = lookAt;
@@ -116,7 +116,7 @@ namespace Domain
 			}
 		}
 
-		internal static void ResetCreatedCounter()
+		internal void ResetCreatedCounter()
 		{
 			_createdSceneCounter = 0;
 		}
