@@ -71,21 +71,17 @@ namespace Controller
 
 		public void UpdateFigureName(Figure sphere, string currentClient, string newName)
 		{
+			string previousName = sphere.Name;
 			try
 			{
-				Figure newFigure = new Sphere()
-				{
-					Name = newName,
-					Owner = sphere.Owner,
-					Radius = 10
-				};
-
-				RunFigureChecker(newFigure, currentClient);
+				sphere.Name = newName;
+				RunFigureChecker(sphere, currentClient);
 
 				sphere.Name = newName;
 			}
 			catch (InvalidFigureInputException ex)
 			{
+				sphere.Name = previousName;
 				throw new InvalidFigureInputException(ex.Message);
 			}
 		}
