@@ -113,6 +113,19 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
+		public void UpdateSceneName_OkTest()
+		{
+			Scene scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			{
+				Name = "sceneName",
+			};
+
+			_sceneController.UpdateSceneName(scene, _owner, "newName");
+			Assert.AreEqual("newName", scene.Name);
+		}
+
+
+		[TestMethod]
 		public void UpdateLastModificationDate_OkTest()
 		{
 			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
