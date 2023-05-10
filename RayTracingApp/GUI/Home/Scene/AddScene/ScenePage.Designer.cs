@@ -133,8 +133,6 @@
 			this.txtFov.Size = new System.Drawing.Size(158, 24);
 			this.txtFov.TabIndex = 27;
 			this.txtFov.Text = "Fov";
-			this.txtFov.Enter += new System.EventHandler(this.txtFov_Enter);
-			this.txtFov.Leave += new System.EventHandler(this.txtFov_Leave);
 			// 
 			// txtLookAt
 			// 
@@ -147,8 +145,6 @@
 			this.txtLookAt.Size = new System.Drawing.Size(158, 24);
 			this.txtLookAt.TabIndex = 29;
 			this.txtLookAt.Text = "x, y, z";
-			this.txtLookAt.Enter += new System.EventHandler(this.txtLookAt_Enter);
-			this.txtLookAt.Leave += new System.EventHandler(this.txtLookAt_Leave);
 			// 
 			// txtLookFrom
 			// 
@@ -161,9 +157,6 @@
 			this.txtLookFrom.Size = new System.Drawing.Size(158, 24);
 			this.txtLookFrom.TabIndex = 31;
 			this.txtLookFrom.Text = "x, y, z";
-			this.txtLookFrom.TextChanged += new System.EventHandler(this.txtLookFrom_TextChanged);
-			this.txtLookFrom.Enter += new System.EventHandler(this.txtLookFrom_Enter);
-			this.txtLookFrom.Leave += new System.EventHandler(this.txtLookFrom_Leave);
 			// 
 			// txtSceneName
 			// 

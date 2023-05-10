@@ -20,10 +20,6 @@ namespace GUI
         private const string FovNumericErrorMessage = "Fov values must be numeric only";
         private const string VectorNumericErrorMessage = "Vector values must be numeric only";
 
-        private const string LookFromPlaceholder = "x, y, z";
-        private const string LookAtPlaceholder = "x, y, z";
-        private const string FovPlaceholder = "Fov";
-
         private SceneHome _sceneHome;
 
         private MainController _mainController;
@@ -268,39 +264,5 @@ namespace GUI
 
         }
 
-        private void txtLookFrom_Enter(object sender, EventArgs e)
-        {
-            InputUtils.RemovePlaceHolder(ref txtLookFrom, LookFromPlaceholder);
-        }
-
-        private void txtLookFrom_Leave(object sender, EventArgs e)
-        {
-            InputUtils.SetPlaceHolder(ref txtLookFrom, LookFromPlaceholder);
-        }
-
-        private void txtLookAt_Enter(object sender, EventArgs e)
-        {
-            InputUtils.RemovePlaceHolder(ref txtLookAt, LookAtPlaceholder);
-        }
-
-        private void txtLookAt_Leave(object sender, EventArgs e)
-        {
-            InputUtils.SetPlaceHolder(ref txtLookAt, LookAtPlaceholder);
-        }
-
-        private void txtFov_Enter(object sender, EventArgs e)
-        {
-            InputUtils.RemovePlaceHolder(ref txtFov, FovPlaceholder);
-        }
-
-        private void txtFov_Leave(object sender, EventArgs e)
-        {
-            InputUtils.SetPlaceHolder(ref txtFov, FovPlaceholder);
-        }
-
-		private void txtLookFrom_TextChanged(object sender, EventArgs e)
-		{
-
-		}
 	}
 }
