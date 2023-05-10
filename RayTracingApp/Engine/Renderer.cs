@@ -148,7 +148,16 @@ namespace Engine
 			return previewScene;
 		}
 
+		private RenderProperties PreviewRenderProperties()
+		{
+			RenderProperties properties = new RenderProperties()
+			{
+				ResolutionX = 250,
+				SamplesPerPixel = 50,
+			};
 
+			return properties;
+		}
 
 		private void SavePixel(int row, int column, Vector pixelRGB)
 		{
