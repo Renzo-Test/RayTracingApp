@@ -88,5 +88,6 @@ namespace Controller
 		{
 			return DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
 		}
-	}
+
+    }
 }

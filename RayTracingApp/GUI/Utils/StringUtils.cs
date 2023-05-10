@@ -1,4 +1,5 @@
-﻿using Domain.Exceptions;
+﻿using Domain;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,18 @@ namespace GUI
             if(ret.Length != 3)
             {
                 throw new InvalidSceneInputException(InvalidFormatMessageError);
-
             }
 
             return ret;
+        }
+
+        public static string ConstructVectorFormat(Vector input)
+        {
+            double x = input.X;
+            double y = input.Y;
+            double z = input.Z;
+
+            return $"{x},{y},{z}";
         }
     }
 }

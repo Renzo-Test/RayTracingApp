@@ -91,6 +91,7 @@
             this.Controls.Add(this.picIconX);
             this.Name = "SceneListItem";
             this.Size = new System.Drawing.Size(470, 110);
+            this.Click += new System.EventHandler(this.SceneListItem_Click);
             ((System.ComponentModel.ISupportInitialize)(this.picIconX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconScene)).EndInit();
             this.ResumeLayout(false);

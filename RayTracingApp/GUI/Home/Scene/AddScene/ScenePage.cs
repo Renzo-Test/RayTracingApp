@@ -23,6 +23,7 @@ namespace GUI
         private const string LookFromPlaceholder = "x, y, z";
         private const string LookAtPlaceholder = "x, y, z";
         private const string FovPlaceholder = "Fov";
+
         private SceneHome _sceneHome;
 
         private MainController _mainController;
@@ -33,7 +34,7 @@ namespace GUI
         private Client _currentClient;
         private List<PosisionatedModel> _posisionatedModels;
 
-        public ScenePage(SceneHome sceneHome, MainController mainController, Client currentClient)
+        public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
         {
             _sceneHome = sceneHome;
 
@@ -42,17 +43,15 @@ namespace GUI
             _sceneController = mainController.SceneController;
 
             _currentClient = currentClient;
-            _posisionatedModels = new List<PosisionatedModel>();
+            _posisionatedModels = scene.PosisionatedModels;
             
             InitializeComponent();
-            
-            _scene = new Scene()
-            {
-                Owner = _currentClient.Username,
-                Name = txtSceneName.Text,
-            };
+
+            _scene = scene;
+            SetSceneTextAtributes();
 
         }
+
         public void PopulateAvailableItems()
         {
 
@@ -123,6 +122,8 @@ namespace GUI
             Bitmap img = scanner.ScanImage(image);
 
             picScene.Image = img;
+
+            _sceneController.UpdateLastRenderDate(_scene);
         }
 
         private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt)
@@ -190,11 +191,11 @@ namespace GUI
         {
             double[] result = new double[values.Length];
 
-            foreach (string value in values)
+            for (int i = 0; i < values.Length; i++)
             {
                 try
                 {
-                    result[value.Length] = double.Parse(value);
+                    result[i] = double.Parse(values[i]);
                 }
                 catch (FormatException)
                 {
@@ -207,7 +208,24 @@ namespace GUI
 
         private void picIconBack_Click(object sender, EventArgs e)
         {
-            _sceneController.AddScene(_scene, _currentClient.Username);
+            _sceneController.UpdateLastModificationDate(_scene);
+            
+            int fov;
+            Vector lookFrom;
+            Vector lookAt;
+
+            try
+            {
+                (fov, lookFrom, lookAt) = GetCameraAtributes();
+            }
+            catch (InvalidSceneInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            SetSceneAtributes(fov, lookFrom, lookAt);
+
             _sceneHome.GoToSceneList();
         }
 
@@ -215,6 +233,22 @@ namespace GUI
         {
             PopulateAvailableItems();
             PopulateUsedItems();
+        }
+
+        private void SetSceneTextAtributes()
+        {
+            Vector lookFrom = _scene.CameraPosition;
+            Vector lookAt = _scene.ObjectivePosition;
+
+            int fov = _scene.Fov;
+            
+            txtLookFrom.Text = StringUtils.ConstructVectorFormat(lookFrom);
+            txtLookAt.Text = StringUtils.ConstructVectorFormat(lookAt);
+
+            txtFov.Text = $"{fov}";
+            
+            lblLastModified.Text = "LastModified: " + _scene.LastModificationDate;
+
         }
 
         private void txtLookFrom_Enter(object sender, EventArgs e)
