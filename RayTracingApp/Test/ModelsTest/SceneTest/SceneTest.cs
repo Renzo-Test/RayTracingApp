@@ -12,6 +12,19 @@ namespace Test.ModelsTest
 	public class SceneTest
 	{
 		private Scene _scene;
+		private string _owner;
+		private int _fov;
+		private Vector _lookFrom;
+		private Vector _looktTo;
+
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_owner = "ownerName";
+			_fov = 70;
+			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
+			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
+		}
 
 		[TestMethod]
 		public void CreateScene_OkTest()
