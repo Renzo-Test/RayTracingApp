@@ -32,9 +32,11 @@
             this.lblAddScene = new System.Windows.Forms.Label();
             this.picIconPlus = new System.Windows.Forms.PictureBox();
             this.picAddScene = new System.Windows.Forms.PictureBox();
+            this.picButtonProperties = new System.Windows.Forms.PictureBox();
             this.picCamDefaultValues = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAddScene)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picButtonProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCamDefaultValues)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,18 +86,30 @@
             this.picAddScene.TabStop = false;
             this.picAddScene.Click += new System.EventHandler(this.picAddScene_Click);
             // 
+            // picButtonProperties
+            // 
+            this.picButtonProperties.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picButtonProperties.Image = global::GUI.Properties.Resources.circleButton;
+            this.picButtonProperties.Location = new System.Drawing.Point(763, 19);
+            this.picButtonProperties.Name = "picButtonProperties";
+            this.picButtonProperties.Size = new System.Drawing.Size(42, 42);
+            this.picButtonProperties.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picButtonProperties.TabIndex = 6;
+            this.picButtonProperties.TabStop = false;
+            this.picButtonProperties.Click += new System.EventHandler(this.picButtonProperties_Click);
+            // 
             // picCamDefaultValues
             // 
-            this.picCamDefaultValues.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.picCamDefaultValues.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
             this.picCamDefaultValues.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picCamDefaultValues.Image = global::GUI.Properties.Resources.cam;
-            this.picCamDefaultValues.Location = new System.Drawing.Point(782, 19);
+            this.picCamDefaultValues.Location = new System.Drawing.Point(772, 27);
             this.picCamDefaultValues.Name = "picCamDefaultValues";
-            this.picCamDefaultValues.Size = new System.Drawing.Size(32, 32);
-            this.picCamDefaultValues.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picCamDefaultValues.TabIndex = 5;
+            this.picCamDefaultValues.Size = new System.Drawing.Size(24, 24);
+            this.picCamDefaultValues.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picCamDefaultValues.TabIndex = 7;
             this.picCamDefaultValues.TabStop = false;
-            this.picCamDefaultValues.Click += new System.EventHandler(this.picCamDefaultValues_Click);
+            this.picCamDefaultValues.Click += new System.EventHandler(this.picCamDefaultValues_Click_1);
             // 
             // SceneList
             // 
@@ -103,6 +117,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
             this.Controls.Add(this.picCamDefaultValues);
+            this.Controls.Add(this.picButtonProperties);
             this.Controls.Add(this.picIconPlus);
             this.Controls.Add(this.lblAddScene);
             this.Controls.Add(this.picAddScene);
@@ -113,6 +128,7 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.SceneList_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAddScene)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picButtonProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCamDefaultValues)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -125,6 +141,7 @@
         private System.Windows.Forms.PictureBox picAddScene;
         private System.Windows.Forms.Label lblAddScene;
         private System.Windows.Forms.PictureBox picIconPlus;
+        private System.Windows.Forms.PictureBox picButtonProperties;
         private System.Windows.Forms.PictureBox picCamDefaultValues;
     }
 }

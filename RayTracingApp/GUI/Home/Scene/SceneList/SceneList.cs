@@ -73,10 +73,15 @@ namespace GUI
             GoToNewScene();
         }
 
-        private void picCamDefaultValues_Click(object sender, EventArgs e)
+        private void picCamDefaultValues_Click_1(object sender, EventArgs e)
+        {
+            _sceneHome.GoToDefaultCam();
+
+        }
+
+        private void picButtonProperties_Click(object sender, EventArgs e)
         {
             _sceneHome.GoToDefaultCam();
         }
-
     }
 }
