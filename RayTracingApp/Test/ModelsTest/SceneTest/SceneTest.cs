@@ -118,18 +118,18 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void InitializeCameraPosition_DefaultValue_OkTest()
 		{
-			Vector newCoordinate = new Vector()
+			Vector lookFrom = new Vector()
 			{
 				X = 0,
 				Y = 2,
 				Z = 0,
 			};
 
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			_scene = new Scene(_owner, _fov, lookFrom, _looktTo);
 
-			foreach (PropertyInfo property in newCoordinate.GetType().GetProperties())
+			foreach (PropertyInfo property in lookFrom.GetType().GetProperties())
 			{
-				Assert.AreEqual(property.GetValue(newCoordinate), property.GetValue(_scene.CameraPosition));
+				Assert.AreEqual(property.GetValue(lookFrom), property.GetValue(_scene.CameraPosition));
 			}
 		}
 
@@ -153,18 +153,18 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void InitializeObjectivePosition_DefaultValue_OkTest()
 		{
-			Vector newCoordinate = new Vector()
+			Vector lookAt = new Vector()
 			{
 				X = 0,
 				Y = 2,
 				Z = 5,
 			};
 
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			_scene = new Scene(_owner, _fov, _lookFrom, lookAt);
 
-			foreach (PropertyInfo property in newCoordinate.GetType().GetProperties())
+			foreach (PropertyInfo property in lookAt.GetType().GetProperties())
 			{
-				Assert.AreEqual(property.GetValue(newCoordinate), property.GetValue(_scene.ObjectivePosition));
+				Assert.AreEqual(property.GetValue(lookAt), property.GetValue(_scene.ObjectivePosition));
 			}
 		}
 
