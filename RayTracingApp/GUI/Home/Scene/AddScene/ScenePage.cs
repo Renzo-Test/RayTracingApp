@@ -33,8 +33,10 @@ namespace GUI
         private Scene _scene;
         private Client _currentClient;
         private List<PosisionatedModel> _posisionatedModels;
+        private PosisionatedModel _model;
 
-        public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
+
+		public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
         {
             _sceneHome = sceneHome;
 
@@ -44,8 +46,9 @@ namespace GUI
 
             _currentClient = currentClient;
             _posisionatedModels = scene.PosisionatedModels;
-            
-            InitializeComponent();
+
+
+			InitializeComponent();
 
             _scene = scene;
             SetSceneTextAtributes();
@@ -92,7 +95,7 @@ namespace GUI
 
         private void Render()
         {
-            int fov;
+			int fov;
             Vector lookFrom;
             Vector lookAt;
 
@@ -108,8 +111,7 @@ namespace GUI
 
             SetSceneAtributes(fov, lookFrom, lookAt);
 
-            RenderProperties properties = new RenderProperties();
-
+			RenderProperties properties = new RenderProperties();
             Renderer renderer = new Renderer()
             {
                 Properties = properties,
@@ -123,7 +125,7 @@ namespace GUI
 
             picScene.Image = img;
 
-            _sceneController.UpdateLastRenderDate(_scene);
+			_sceneController.UpdateLastRenderDate(_scene);
         }
 
         private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt)
@@ -280,6 +282,5 @@ namespace GUI
         {
             InputUtils.SetPlaceHolder(ref txtFov, FovPlaceholder);
         }
-
-    }
+	}
 }
