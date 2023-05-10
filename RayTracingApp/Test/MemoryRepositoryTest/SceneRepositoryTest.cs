@@ -38,7 +38,7 @@ namespace Test.MemoryRepositoryTest
 		{
 			_sceneRepository = new SceneRepository();
 
-			Scene _scene = new Scene()
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 				Owner = "OwnerName",
@@ -55,7 +55,7 @@ namespace Test.MemoryRepositoryTest
 		{
 			_sceneRepository = new SceneRepository();
 
-			Scene _scene = new Scene()
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 				Owner = "OwnerName",
@@ -70,13 +70,13 @@ namespace Test.MemoryRepositoryTest
 		{
 			_sceneRepository = new SceneRepository();
 
-			Scene _scene = new Scene()
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 				Owner = "OwnerName",
 			};
 
-			Scene _scene2 = new Scene()
+			Scene _scene2 = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test2",
 				Owner = "OwnerName",
@@ -100,13 +100,13 @@ namespace Test.MemoryRepositoryTest
 		{
 			_sceneRepository = new SceneRepository();
 
-			Scene _scene = new Scene()
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 				Owner = "OwnerName",
 			};
 
-			Scene _scene2 = new Scene()
+			Scene _scene2 = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test2",
 				Owner = "OwnerName2",
@@ -138,7 +138,7 @@ namespace Test.MemoryRepositoryTest
 		{
 			_sceneRepository = new SceneRepository();
 
-			Scene _scene = new Scene()
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 				Owner = "OwnerName",
