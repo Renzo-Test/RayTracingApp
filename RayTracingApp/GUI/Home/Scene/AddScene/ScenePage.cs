@@ -29,8 +29,9 @@ namespace GUI
         private List<PosisionatedModel> _posisionatedModels;
         private PosisionatedModel _model;
 
+        RenderProperties _renderProperties;
 
-		public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
+        public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient, RenderProperties renderProperties)
         {
             _sceneHome = sceneHome;
 
@@ -40,9 +41,9 @@ namespace GUI
 
             _currentClient = currentClient;
             _posisionatedModels = scene.PosisionatedModels;
+            _renderProperties = renderProperties;
 
-
-			InitializeComponent();
+            InitializeComponent();
 
             _scene = scene;
             SetSceneTextAtributes();
@@ -124,10 +125,9 @@ namespace GUI
 
         private void RenderImage()
         {
-            RenderProperties properties = new RenderProperties();
             Renderer renderer = new Renderer()
             {
-                Properties = properties,
+                Properties = _renderProperties,
                 Scene = _scene,
             };
 
@@ -244,14 +244,5 @@ namespace GUI
             }
         }
 
-        private void picIconProperties_Click(object sender, EventArgs e)
-        {
-            _sceneHome.GoToDefaultRenderSettings(_scene);
-        }
-
-        private void picButtonProperties_Click(object sender, EventArgs e)
-        {
-            _sceneHome.GoToDefaultRenderSettings(_scene);
-        }
     }
 }

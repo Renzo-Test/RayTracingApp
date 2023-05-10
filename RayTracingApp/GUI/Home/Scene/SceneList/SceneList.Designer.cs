@@ -34,10 +34,14 @@
             this.picAddScene = new System.Windows.Forms.PictureBox();
             this.picButtonProperties = new System.Windows.Forms.PictureBox();
             this.picCamDefaultValues = new System.Windows.Forms.PictureBox();
+            this.picIconProperties = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picIconPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAddScene)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picButtonProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCamDefaultValues)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // flySceneList
@@ -111,11 +115,38 @@
             this.picCamDefaultValues.TabStop = false;
             this.picCamDefaultValues.Click += new System.EventHandler(this.picCamDefaultValues_Click_1);
             // 
+            // picIconProperties
+            // 
+            this.picIconProperties.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+            this.picIconProperties.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picIconProperties.Image = global::GUI.Properties.Resources.settings;
+            this.picIconProperties.Location = new System.Drawing.Point(711, 27);
+            this.picIconProperties.Name = "picIconProperties";
+            this.picIconProperties.Size = new System.Drawing.Size(24, 24);
+            this.picIconProperties.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picIconProperties.TabIndex = 44;
+            this.picIconProperties.TabStop = false;
+            this.picIconProperties.Click += new System.EventHandler(this.picIconProperties_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::GUI.Properties.Resources.circleButton;
+            this.pictureBox1.Location = new System.Drawing.Point(702, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 43;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // SceneList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.picIconProperties);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.picCamDefaultValues);
             this.Controls.Add(this.picButtonProperties);
             this.Controls.Add(this.picIconPlus);
@@ -130,6 +161,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picAddScene)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picButtonProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCamDefaultValues)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIconProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +176,7 @@
         private System.Windows.Forms.PictureBox picIconPlus;
         private System.Windows.Forms.PictureBox picButtonProperties;
         private System.Windows.Forms.PictureBox picCamDefaultValues;
+        private System.Windows.Forms.PictureBox picIconProperties;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

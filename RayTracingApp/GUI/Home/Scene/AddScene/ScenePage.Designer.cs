@@ -43,8 +43,6 @@
             this.lblFov = new System.Windows.Forms.Label();
             this.lblRender = new System.Windows.Forms.Label();
             this.pbrRender = new System.Windows.Forms.ProgressBar();
-            this.picIconProperties = new System.Windows.Forms.PictureBox();
-            this.picButtonProperties = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picRender = new System.Windows.Forms.PictureBox();
             this.picFieldLookFrom = new System.Windows.Forms.PictureBox();
@@ -52,8 +50,6 @@
             this.picFieldFov = new System.Windows.Forms.PictureBox();
             this.picScene = new System.Windows.Forms.PictureBox();
             this.picIconBack = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picIconProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picButtonProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldLookFrom)).BeginInit();
@@ -229,31 +225,6 @@
             this.pbrRender.TabIndex = 39;
             this.pbrRender.Visible = false;
             // 
-            // picIconProperties
-            // 
-            this.picIconProperties.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
-            this.picIconProperties.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picIconProperties.Image = global::GUI.Properties.Resources.settings;
-            this.picIconProperties.Location = new System.Drawing.Point(753, 137);
-            this.picIconProperties.Name = "picIconProperties";
-            this.picIconProperties.Size = new System.Drawing.Size(24, 24);
-            this.picIconProperties.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picIconProperties.TabIndex = 42;
-            this.picIconProperties.TabStop = false;
-            this.picIconProperties.Click += new System.EventHandler(this.picIconProperties_Click);
-            // 
-            // picButtonProperties
-            // 
-            this.picButtonProperties.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picButtonProperties.Image = global::GUI.Properties.Resources.circleButton;
-            this.picButtonProperties.Location = new System.Drawing.Point(744, 129);
-            this.picButtonProperties.Name = "picButtonProperties";
-            this.picButtonProperties.Size = new System.Drawing.Size(42, 42);
-            this.picButtonProperties.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picButtonProperties.TabIndex = 40;
-            this.picButtonProperties.TabStop = false;
-            this.picButtonProperties.Click += new System.EventHandler(this.picButtonProperties_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
@@ -337,8 +308,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
-            this.Controls.Add(this.picIconProperties);
-            this.Controls.Add(this.picButtonProperties);
             this.Controls.Add(this.pbrRender);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblRender);
@@ -365,8 +334,6 @@
             this.Name = "ScenePage";
             this.Size = new System.Drawing.Size(834, 604);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ScenePage_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.picIconProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picButtonProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRender)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFieldLookFrom)).EndInit();
@@ -402,7 +369,5 @@
         private System.Windows.Forms.Label lblRender;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar pbrRender;
-        private System.Windows.Forms.PictureBox picIconProperties;
-        private System.Windows.Forms.PictureBox picButtonProperties;
     }
 }

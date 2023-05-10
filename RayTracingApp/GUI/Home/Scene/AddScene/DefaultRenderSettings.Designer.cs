@@ -30,7 +30,7 @@
         {
             this.picCard = new System.Windows.Forms.PictureBox();
             this.lblX = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtResY = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbMaxDepth = new System.Windows.Forms.Label();
             this.lblSamplesPerPixel = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@
             this.picRectangleFieldSave = new System.Windows.Forms.PictureBox();
             this.txtSamplesPerPixel = new System.Windows.Forms.TextBox();
             this.picDarkRectangleFieldSamplesPerPixel = new System.Windows.Forms.PictureBox();
-            this.txtInputFov = new System.Windows.Forms.TextBox();
+            this.txtResX = new System.Windows.Forms.TextBox();
             this.picDarkRectangleFieldFov = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -79,17 +79,17 @@
             this.lblX.TabIndex = 46;
             this.lblX.Text = "X";
             // 
-            // textBox1
+            // txtResY
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox1.Location = new System.Drawing.Point(441, 188);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(85, 24);
-            this.textBox1.TabIndex = 45;
-            this.textBox1.Text = "250";
+            this.txtResY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.txtResY.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtResY.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtResY.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtResY.Location = new System.Drawing.Point(441, 188);
+            this.txtResY.Name = "txtResY";
+            this.txtResY.Size = new System.Drawing.Size(85, 24);
+            this.txtResY.TabIndex = 45;
+            this.txtResY.Text = "250";
             // 
             // pictureBox1
             // 
@@ -212,6 +212,7 @@
             this.picRectangleFieldSave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picRectangleFieldSave.TabIndex = 35;
             this.picRectangleFieldSave.TabStop = false;
+            this.picRectangleFieldSave.Click += new System.EventHandler(this.picRectangleFieldSave_Click);
             // 
             // txtSamplesPerPixel
             // 
@@ -236,17 +237,17 @@
             this.picDarkRectangleFieldSamplesPerPixel.TabIndex = 33;
             this.picDarkRectangleFieldSamplesPerPixel.TabStop = false;
             // 
-            // txtInputFov
+            // txtResX
             // 
-            this.txtInputFov.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.txtInputFov.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtInputFov.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInputFov.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtInputFov.Location = new System.Drawing.Point(292, 188);
-            this.txtInputFov.Name = "txtInputFov";
-            this.txtInputFov.Size = new System.Drawing.Size(85, 24);
-            this.txtInputFov.TabIndex = 32;
-            this.txtInputFov.Text = "375";
+            this.txtResX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.txtResX.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtResX.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtResX.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtResX.Location = new System.Drawing.Point(292, 188);
+            this.txtResX.Name = "txtResX";
+            this.txtResX.Size = new System.Drawing.Size(85, 24);
+            this.txtResX.TabIndex = 32;
+            this.txtResX.Text = "375";
             // 
             // picDarkRectangleFieldFov
             // 
@@ -287,7 +288,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
             this.Controls.Add(this.lblX);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtResY);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lbMaxDepth);
             this.Controls.Add(this.lblSamplesPerPixel);
@@ -300,7 +301,7 @@
             this.Controls.Add(this.picRectangleFieldSave);
             this.Controls.Add(this.txtSamplesPerPixel);
             this.Controls.Add(this.picDarkRectangleFieldSamplesPerPixel);
-            this.Controls.Add(this.txtInputFov);
+            this.Controls.Add(this.txtResX);
             this.Controls.Add(this.picDarkRectangleFieldFov);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pictureBox2);
@@ -327,7 +328,7 @@
 
         private System.Windows.Forms.PictureBox picCard;
         private System.Windows.Forms.Label lblX;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtResY;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbMaxDepth;
         private System.Windows.Forms.Label lblSamplesPerPixel;
@@ -340,7 +341,7 @@
         private System.Windows.Forms.PictureBox picRectangleFieldSave;
         private System.Windows.Forms.TextBox txtSamplesPerPixel;
         private System.Windows.Forms.PictureBox picDarkRectangleFieldSamplesPerPixel;
-        private System.Windows.Forms.TextBox txtInputFov;
+        private System.Windows.Forms.TextBox txtResX;
         private System.Windows.Forms.PictureBox picDarkRectangleFieldFov;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.PictureBox pictureBox2;
