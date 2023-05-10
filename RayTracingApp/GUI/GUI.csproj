@@ -82,6 +82,7 @@
     <Compile Include="Home\Scene\AddScene\UsedModelItem.Designer.cs">
       <DependentUpon>UsedModelItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\SceneUtils.cs" />
     <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="Utils\InputUtils.cs" />
     <Compile Include="MainForm.cs">

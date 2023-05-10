@@ -97,7 +97,7 @@ namespace GUI
 
             try
             {
-                (fov, lookFrom, lookAt) = GetCameraAtributes();
+                (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
             }
             catch (InvalidSceneInputException ex)
             {
@@ -147,49 +147,6 @@ namespace GUI
             }
         }
 
-        private (int, Vector, Vector) GetCameraAtributes()
-        {
-            int fov = GetFov();
-
-            var (txtLookFromValues, txtLookAtValues) = GetStringVectorValues();
-
-            double[] vectorLookFromValues = ParseDoubleValues(txtLookFromValues);
-            double[] vectorLookAtValues = ParseDoubleValues(txtLookAtValues);
-
-            Vector lookFrom = CreateCameraVector(vectorLookFromValues);
-            Vector lookAt = CreateCameraVector(vectorLookAtValues);
-
-            return (fov, lookFrom, lookAt);
-        }
-
-        private (string[], string[]) GetStringVectorValues()
-        {
-            try
-            {
-                string[] txtLookFromValues = StringUtils.DestructureVectorFromat(txtLookFrom.Text);
-                string[] txtLookAtValues = StringUtils.DestructureVectorFromat(txtLookAt.Text);
-
-                return (txtLookFromValues, txtLookAtValues);
-            }
-            catch (InvalidSceneInputException ex)
-            {
-                throw new InvalidSceneInputException(ex.Message);
-            }
-        }
-
-        private int GetFov()
-        {
-            try
-            {
-                return int.Parse(txtFov.Text);
-            }
-            catch (FormatException)
-            {
-                throw new InvalidSceneInputException(FovNumericErrorMessage);
-            }
-
-        }
-
         private static Vector CreateCameraVector(double[] vectorLookFromValues)
         {
             return new Vector()
@@ -198,25 +155,6 @@ namespace GUI
                 Y = vectorLookFromValues[1],
                 Z = vectorLookFromValues[2]
             };
-        }
-
-        private double[] ParseDoubleValues(string[] values)
-        {
-            double[] result = new double[values.Length];
-
-            for (int i = 0; i < values.Length; i++)
-            {
-                try
-                {
-                    result[i] = double.Parse(values[i]);
-                }
-                catch (FormatException)
-                {
-                    throw new InvalidSceneInputException(VectorNumericErrorMessage);
-                }
-            }
-            
-            return result;
         }
 
         private void picIconBack_Click(object sender, EventArgs e)
@@ -229,7 +167,7 @@ namespace GUI
 
             try
             {
-                (fov, lookFrom, lookAt) = GetCameraAtributes();
+                (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
             }
             catch (InvalidSceneInputException ex)
             {

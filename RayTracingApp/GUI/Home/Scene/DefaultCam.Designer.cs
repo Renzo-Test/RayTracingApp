@@ -86,8 +86,6 @@
             this.txtInputLookFrom.Size = new System.Drawing.Size(278, 24);
             this.txtInputLookFrom.TabIndex = 16;
             this.txtInputLookFrom.Text = "Look From";
-            this.txtInputLookFrom.Enter += new System.EventHandler(this.txtInputLookFrom_Enter);
-            this.txtInputLookFrom.Leave += new System.EventHandler(this.txtInputLookFrom_Leave);
             // 
             // txtInputFov
             // 
@@ -100,8 +98,6 @@
             this.txtInputFov.Size = new System.Drawing.Size(276, 24);
             this.txtInputFov.TabIndex = 14;
             this.txtInputFov.Text = "Fov";
-            this.txtInputFov.Enter += new System.EventHandler(this.txtInputFov_Enter);
-            this.txtInputFov.Leave += new System.EventHandler(this.txtInputFov_Leave);
             // 
             // lblTitle
             // 
@@ -139,6 +135,7 @@
             this.picRectangleFieldSave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picRectangleFieldSave.TabIndex = 17;
             this.picRectangleFieldSave.TabStop = false;
+            this.picRectangleFieldSave.Click += new System.EventHandler(this.picRectangleFieldSave_Click);
             // 
             // picDarkRectangleFieldLookFrom
             // 
@@ -183,8 +180,6 @@
             this.txtInputLookAt.Size = new System.Drawing.Size(278, 24);
             this.txtInputLookAt.TabIndex = 22;
             this.txtInputLookAt.Text = "Look At";
-            this.txtInputLookAt.Enter += new System.EventHandler(this.txtInputLookAt_Enter);
-            this.txtInputLookAt.Leave += new System.EventHandler(this.txtInputLookAt_Leave);
             // 
             // picDarkRectangleFieldLookAt
             // 
