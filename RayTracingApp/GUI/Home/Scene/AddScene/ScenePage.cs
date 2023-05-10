@@ -206,7 +206,7 @@ namespace GUI
 
             txtFov.Text = $"{fov}";
             
-            lblLastModified.Text = "LastModified: " + _scene.LastModificationDate;
+            lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
 
         }
 
