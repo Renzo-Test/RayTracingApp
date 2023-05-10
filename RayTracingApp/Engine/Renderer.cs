@@ -66,11 +66,12 @@ namespace Engine
 
 						var ray = _camera.GetRay(u, v);
 						vector.AddFrom(ShootRay(ray, Properties.MaxDepth));
-						_progress.Count(); ;
+						_progress.Count();
 					}
 
 					vector = vector.Divide(Properties.SamplesPerPixel);
 					SavePixel(derivatedIndex, column, vector);
+					_progress.UpdateProgressBar();
 				}
 				_progress.WriteCurrentPercentage();
 			});

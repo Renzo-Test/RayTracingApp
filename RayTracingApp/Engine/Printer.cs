@@ -25,6 +25,7 @@ namespace Engine
 						Color color = Pixels[j][i].Color();
 						image.Append($"{color.Red} {color.Green} {color.Blue}\n");
 						progress.Count();
+						progress.UpdateProgressBar();
 					}
 				}
 			}
