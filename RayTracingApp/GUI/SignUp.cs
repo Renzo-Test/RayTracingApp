@@ -30,7 +30,10 @@ namespace GUI
             _clientController = clientController;
             _mainForm = mainForm;
             InitializeComponent();
-        }
+			txtPassword.KeyPress += new KeyPressEventHandler(CheckEnter);
+			txtUsername.KeyPress += new KeyPressEventHandler(CheckEnter);
+            txtConfirmPassword.KeyPress += new KeyPressEventHandler(CheckEnter);
+		}
 
         private void SignUpUser()
         {
@@ -110,5 +113,14 @@ namespace GUI
             InputUtils.ShowPassword(ref txtConfirmPassword);
         }
 
-    }
+		private void CheckEnter(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == Convert.ToChar(Keys.Enter))
+			{
+				SignUpUser();
+
+				e.Handled = true;
+			}
+		}
+	}
 }
