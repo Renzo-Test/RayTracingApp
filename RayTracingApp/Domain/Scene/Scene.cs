@@ -27,6 +27,8 @@ namespace Domain
 		private static int _createdSceneCounter = 0;
 		private int _sceneNumber;
 
+		public Scene() { }
+
 		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt) 
 		{
 			_sceneNumber = ++_createdSceneCounter;

@@ -78,16 +78,40 @@ namespace Engine
 			return _printer.Save(_pixels, Properties, ref _progress);
 		}
 
-		public string RenderModelPreview()
+		public string RenderModelPreview(Model model)
 		{
-			Vector LookFrom = Scene.CameraPosition;
-			Vector LookAt = Scene.ObjectivePosition;
+			Scene previewScene = CreatePreviewScene(model);
+
+			Vector LookFrom = previewScene.CameraPosition;
+			Vector LookAt = previewScene.ObjectivePosition;
 			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
-			int FieldOfView = Scene.Fov;
+			int FieldOfView = previewScene.Fov;
 			double AspectRatio = Properties.AspectRatio;
 			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
-
 		}
+
+		private Scene CreatePreviewScene(Model model)
+		{
+			Sphere figure = (Sphere)model.Figure;
+			figure.Radius = 0.5;
+
+			PosisionatedModel posisionatedModel = new PosisionatedModel()
+			{
+				Model = model,
+				Position = new Vector { X = 0, Y = 0, Z = 0 }
+			};
+
+			Scene previewScene = new Scene()
+			{
+				CameraPosition = new Vector { X = -2, Y = 0, Z = 0 },
+				ObjectivePosition = new Vector { X = 0, Y = 0, Z = 0 },
+			};
+			previewScene.PosisionatedModels.Add(posisionatedModel);
+
+			return previewScene;
+		}
+
+
 
 		private void SavePixel(int row, int column, Vector pixelRGB)
 		{
