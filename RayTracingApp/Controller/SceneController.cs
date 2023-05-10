@@ -64,9 +64,14 @@ namespace Controller
 			return ownerModels.Except(usedModels).ToList();
 		}
 
-		public Scene CreateBlankScene(string name)
+		public Scene CreateBlankScene(Client currentClient)
 		{
-			Scene scene = new Scene() { Name = name };
+			string owner = currentClient.Username;
+			int fov = currentClient.DefaultFov;
+			Vector lookFrom = currentClient.DefaultLookFrom;
+			Vector lookAt = currentClient.DefaultLookAt;
+
+			Scene scene = new Scene(owner, fov, lookFrom, lookAt);
 			return scene;
 		}
 

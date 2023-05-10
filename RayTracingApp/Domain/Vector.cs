@@ -124,5 +124,10 @@ namespace Domain
 		{
 			return Divide(Length());
 		}
+
+		public override string ToString()
+		{
+			return $"({X},{Y},{Z})";
+		}
 	}
 }

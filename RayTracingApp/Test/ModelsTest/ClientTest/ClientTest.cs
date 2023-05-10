@@ -37,6 +37,109 @@ namespace Test.ModelsTest
 			Assert.AreEqual("GomezSecret123", _client.Password);
 		}
 
+
+		[TestMethod]
+		public void SetDefaultFov_OkTest()
+		{
+
+			_client = new Client()
+			{
+				DefaultFov = 55
+			};
+
+			Assert.AreEqual(55, _client.DefaultFov);
+		}
+
+		[TestMethod]
+		public void SetDefaultLookFrom_OkTest()
+		{
+			Vector defaultVector = new Vector()
+			{
+				X = 2,
+				Y = 3,
+				Z = 4,
+			};
+			_client = new Client()
+			{
+				DefaultLookFrom = defaultVector
+			};
+
+			Assert.AreEqual(defaultVector, _client.DefaultLookFrom);
+		}
+
+		[TestMethod]
+		public void SetDefaultLookAt_OkTest()
+		{
+			Vector defaultVector = new Vector()
+			{
+				X = 1,
+				Y = 2,
+				Z = 3,
+			};
+			_client = new Client()
+			{
+				DefaultLookAt = defaultVector
+			};
+
+			Assert.AreEqual(defaultVector, _client.DefaultLookAt);
+		}
+
+		[TestMethod]
+		public void DefaultFovValue_OkTest()
+		{
+			_client = new Client();
+
+			Assert.AreEqual(30, _client.DefaultFov);
+		}
+
+		[TestMethod]
+		public void DefaultLookFromX_OkTest()
+		{
+			_client = new Client();
+
+			Assert.AreEqual(0, _client.DefaultLookFrom.X);
+		}
+
+		[TestMethod]
+		public void DefaultLookFromY_OkTest()
+		{
+			_client = new Client();
+
+			Assert.AreEqual(2, _client.DefaultLookFrom.Y);
+		}
+
+		[TestMethod]
+		public void DefaultLookFromZ_OkTest()
+		{
+			_client = new Client();
+
+			Assert.AreEqual(0, _client.DefaultLookFrom.Z);
+		}
+
+		[TestMethod]
+		public void DefaultLookAtX_OkTest()
+		{
+			_client = new Client();
+
+			Assert.AreEqual(0, _client.DefaultLookAt.X);
+		}
+
+		[TestMethod]
+		public void DefaultLookAtY_OkTest()
+		{
+			_client = new Client();
+
+			Assert.AreEqual(2, _client.DefaultLookAt.Y);
+		}
+
+		[TestMethod]
+		public void DefaultLookAtZ_OkTest()
+		{
+			_client = new Client();
+
+			Assert.AreEqual(5, _client.DefaultLookAt.Z);
+		}
+
 		[TestMethod]
 		public void CanGetRegisterDate_OkTest()
 		{

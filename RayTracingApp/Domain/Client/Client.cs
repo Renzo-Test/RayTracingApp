@@ -12,8 +12,8 @@ namespace Domain
 		private const string NotContainsCapitalMessage = "Password must contain at least one capital letter";
 		private const string NotInExpectedRangeUsernameMessage = "Username's length must be greater than 2 and smaller than 21";
 		private const string NotInExpectedRangePasswordMessage = "Password's length must be greater than 4 and smaller than 26";
+
 		private string _username;
-		private string _password;
 		public String Username
 		{
 			get => _username;
@@ -30,6 +30,8 @@ namespace Domain
 				}
 			}
 		}
+
+		private string _password;
 		public String Password
 		{
 			get => _password;
@@ -47,6 +49,9 @@ namespace Domain
 			}
 		}
 		public String RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
+		public int DefaultFov = 30;
+		public Vector DefaultLookFrom { get; set; } = new Vector() { X = 0, Y = 2, Z = 0};
+		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5};
 
 		private static void RunUsernameConditions(string username)
 		{

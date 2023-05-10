@@ -13,11 +13,19 @@ namespace Test.ControllerTest
 	public class SceneControllerTest
 	{
 		private SceneController _sceneController;
+		private string _owner;
+		private int _fov;
+		private Vector _lookFrom;
+		private Vector _looktTo;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
 			_sceneController = new SceneController();
+			_owner = "ownerName";
+			_fov = 70;
+			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
+			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
 		}
 
 		[TestMethod]
@@ -29,7 +37,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void AddScene_OkTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 			};
@@ -43,7 +51,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_EmptyName_FailTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = ""
 			};
@@ -53,7 +61,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_StartWithSpace_FailTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = " sceneName"
 			};
@@ -63,7 +71,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_EndWithSpace_FailTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName "
 			};
@@ -73,7 +81,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_AlreadyExistingSceneName_FailTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName"
 			};
@@ -86,7 +94,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_LessThanMinFov_FailTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName",
 				Fov = 0
@@ -97,7 +105,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_BiggerThanMaxFov_FailTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName",
 				Fov = 161
@@ -107,7 +115,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void UpdateLastModificationDate_OkTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName"
 			};
@@ -119,7 +127,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void UpdateLastRenderDate_OkTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName"
 			};
@@ -131,11 +139,11 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void ListScenes_OkTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "scene"
 			};
-			Scene anotherScene = new Scene()
+			Scene anotherScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "anotherScene"
 			};
@@ -151,7 +159,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void RemoveScene_OkTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "scene"
 			};
@@ -165,11 +173,11 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void RemoveScene_TwoClients_OkTest()
 		{
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "scene"
 			};
-			Scene anotherScene = new Scene()
+			Scene anotherScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "anotherScene"
 			};
@@ -194,7 +202,7 @@ namespace Test.ControllerTest
 			List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
 			sceneModels.Add(posisionatedModel);
 
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "scene",
 				PosisionatedModels = sceneModels
@@ -224,7 +232,7 @@ namespace Test.ControllerTest
 			PosisionatedModel posisionatedModel = new PosisionatedModel();
 			posisionatedModel.Model = availableModel;
 
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "scene",
 				PosisionatedModels = new List<PosisionatedModel>()
@@ -258,7 +266,7 @@ namespace Test.ControllerTest
 			List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
 			sceneModels.Add(posisionatedModel);
 
-			Scene newScene = new Scene()
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "scene",
 				PosisionatedModels = sceneModels
@@ -279,19 +287,42 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
-		public void CreateBlankScene_SceneName_OkTest()
+		public void CreateBlankScene_OkTest()
 		{
-			Scene blankScene = _sceneController.CreateBlankScene("SceneName");
+			Client client = new Client()
+			{
+				Username = "OwnerName",
+				DefaultFov = 70,
+				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
+				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
+			};
+			Scene blankScene = _sceneController.CreateBlankScene(client);
 
-			Assert.AreEqual(blankScene.Name, "SceneName");
+			Assert.AreEqual(blankScene.Name, "Blank Scene 8");
 		}
 
 		[TestMethod]
-		public void CreateBlankScene_AnotherSceneName_OkTest()
+		public void CreateBlankScene_TwoScenes_OkTest()
 		{
-			Scene blankScene = _sceneController.CreateBlankScene("AnotherSceneName");
+			Client client1 = new Client()
+			{
+				Username = "OwnerName",
+				DefaultFov = 70,
+				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
+				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
+			};
+			Scene blankScene1 = _sceneController.CreateBlankScene(client1);
 
-			Assert.AreEqual(blankScene.Name, "AnotherSceneName");
+			Client client2 = new Client()
+			{
+				Username = "OwnerName",
+				DefaultFov = 70,
+				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
+				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
+			};
+			Scene blankScene2 = _sceneController.CreateBlankScene(client2);
+
+			Assert.AreEqual(blankScene2.Name, "Blank Scene 10");
 		}
 	}
 }
