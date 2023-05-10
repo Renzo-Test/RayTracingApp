@@ -48,6 +48,7 @@ namespace GUI
 
             _scene = scene;
             SetSceneTextAtributes();
+            txtSceneName.KeyPress += new KeyPressEventHandler(CheckNameChange);
 
         }
 
@@ -196,6 +197,9 @@ namespace GUI
 
         private void SetSceneTextAtributes()
         {
+
+            txtSceneName.Text = _scene.Name;
+
             Vector lookFrom = _scene.CameraPosition;
             Vector lookAt = _scene.ObjectivePosition;
 
@@ -209,6 +213,16 @@ namespace GUI
             lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
 
         }
+        private void CheckNameChange(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                _scene.Name = txtSceneName.Text;
+                
+                ActiveControl = txtLookFrom;
 
-	}
+                e.Handled = true;
+            }
+        }
+    }
 }
