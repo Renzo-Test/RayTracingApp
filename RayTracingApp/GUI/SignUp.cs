@@ -78,36 +78,36 @@ namespace GUI
 
         private void txtUsername_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtUsername, UsernamePlaceHolder);
+            InputUtils.RemovePlaceHolder(ref txtUsername, UsernamePlaceHolder);
         }
 
         private void txtUsername_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtUsername, UsernamePlaceHolder);
+            InputUtils.SetPlaceHolder(ref txtUsername, UsernamePlaceHolder);
         }
 
         private void txtPassword_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtPassword, PasswordPlaceHolder);
-            Utils.HidePassword(ref txtPassword);
+            InputUtils.RemovePlaceHolder(ref txtPassword, PasswordPlaceHolder);
+            InputUtils.HidePassword(ref txtPassword);
         }
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtPassword, PasswordPlaceHolder);
-            Utils.ShowPassword(ref txtPassword);
+            InputUtils.SetPlaceHolder(ref txtPassword, PasswordPlaceHolder);
+            InputUtils.ShowPassword(ref txtPassword);
         }
 
         private void txtConfirmPassword_Enter(object sender, EventArgs e)
         {
-            Utils.RemovePlaceHolder(ref txtConfirmPassword, ConfirmPasswordPlaceholder);
-            Utils.HidePassword(ref txtConfirmPassword);
+            InputUtils.RemovePlaceHolder(ref txtConfirmPassword, ConfirmPasswordPlaceholder);
+            InputUtils.HidePassword(ref txtConfirmPassword);
         }
 
         private void txtConfirmPassword_Leave(object sender, EventArgs e)
         {
-            Utils.SetPlaceHolder(ref txtConfirmPassword, ConfirmPasswordPlaceholder);
-            Utils.ShowPassword(ref txtConfirmPassword);
+            InputUtils.SetPlaceHolder(ref txtConfirmPassword, ConfirmPasswordPlaceholder);
+            InputUtils.ShowPassword(ref txtConfirmPassword);
         }
 
     }

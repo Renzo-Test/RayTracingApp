@@ -38,7 +38,7 @@ namespace GUI
 
             foreach (Scene scene in scenes)
             {
-                SceneListItem item = new SceneListItem(this, _sceneController, scene);
+                SceneListItem item = new SceneListItem(_sceneHome, this, _sceneController, scene);
                 flySceneList.Controls.Add(item);
             }
 
@@ -51,22 +51,32 @@ namespace GUI
 
         private void picAddScene_Click(object sender, EventArgs e)
         {
-            _sceneHome.GoToAddScene();
+            GoToNewScene();
         }
 
         private void lblAddScene_Click(object sender, EventArgs e)
         {
-            _sceneHome.GoToAddScene();
+            GoToNewScene();
         }
 
         private void picIconPlus_Click(object sender, EventArgs e)
         {
-            _sceneHome.GoToAddScene();
+            GoToNewScene();
+        }
+
+        private void GoToNewScene()
+        {
+            Scene scene = _sceneController.CreateBlankScene(_currentClient);
+            scene.PosisionatedModels = new List<PosisionatedModel>();
+
+            _sceneController.AddScene(scene, _currentClient.Username);
+            _sceneHome.GoToAddScene(scene);
         }
 
         private void picCamDefaultValues_Click(object sender, EventArgs e)
         {
             _sceneHome.GoToDefaultCam();
         }
+
     }
 }
