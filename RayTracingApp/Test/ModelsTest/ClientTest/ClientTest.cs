@@ -167,11 +167,8 @@ namespace Test.ModelsTest
 		public void SetDefaultFov_200_FailTest() {
 			_client = new Client()
 			{
-				Username = "Rodriguez",
-				Password = "RodriguezSecret123",
+				DefaultFov = 200
 			};
-
-			_client.DefaultFov = 200;
 		}
 	}
 }
