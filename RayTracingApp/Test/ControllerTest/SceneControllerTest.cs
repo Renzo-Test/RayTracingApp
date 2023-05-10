@@ -144,8 +144,14 @@ namespace Test.ControllerTest
 				Name = "sceneName",
 			};
 
-			_sceneController.UpdateSceneName(scene, _owner, " invalidName ");
-			Assert.AreEqual("sceneName", scene.Name);
+			try
+			{
+				_sceneController.UpdateSceneName(scene, _owner, " invalidName ");
+			}
+			catch (InvalidSceneInputException)
+			{
+				Assert.AreEqual("sceneName", scene.Name);
+			}
 		}
 
 

@@ -34,7 +34,7 @@ namespace Controller
 
 		public void UpdateSceneName(Scene scene, string currentClient, string newName)
 		{
-
+			string previousName = scene.Name;
 			try
 			{
 				scene.Name = newName;
@@ -44,6 +44,7 @@ namespace Controller
 			}
 			catch (InvalidFigureInputException ex)
 			{
+				scene.Name = previousName;
 				throw new InvalidFigureInputException(ex.Message);
 			}
 		}
