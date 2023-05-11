@@ -26,8 +26,10 @@ namespace Engine
 
 		private static readonly ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 
-		public string Render(ProgressBar progressBar)
+		public string Render(Scene scene, RenderProperties properties, ProgressBar progressBar)
 		{
+			Scene = scene;
+			Properties = properties;
 			InitializateRender(progressBar);
 
 			int row = Properties.ResolutionY - 1;
@@ -53,7 +55,18 @@ namespace Engine
 				_progress.WriteCurrentPercentage();
 
 			});
+
 			return _printer.Save(_pixels, Properties, ref _progress);
+		}
+
+		public string RenderModelPreview(Model model)
+		{
+			RenderProperties properties = PreviewRenderProperties();
+			Scene previewScene = CreatePreviewScene(model);
+
+			string preview = Render(previewScene, properties, null);
+			model.Preview = preview;
+			return preview;
 		}
 
 		private void InitializateRender(ProgressBar progressBar)
@@ -101,61 +114,6 @@ namespace Engine
 			int FieldOfView = scene.Fov;
 			double AspectRatio = properties.AspectRatio;
 			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
-		}
-
-		public string RenderModelPreview(Model model)
-		{
-			_progress = new Progress();
-			Printer printer = new Printer();
-			RenderProperties properties = PreviewRenderProperties();
-			Scene previewScene = CreatePreviewScene(model);
-
-			Vector LookFrom = previewScene.CameraPosition;
-			Vector LookAt = previewScene.ObjectivePosition;
-			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
-			int FieldOfView = previewScene.Fov;
-			double AspectRatio = properties.AspectRatio;
-			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
-
-			List<List<Vector>> previewPixels = new List<List<Vector>>(); 
-			for (int i = 0; i < properties.ResolutionY; i++)
-			{
-				previewPixels.Add(new List<Vector>());
-			}
-
-			int row = properties.ResolutionY - 1;
-			Parallel.For(0, row + 1, index =>
-			{
-				int derivatedIndex = row - index;
-				for (int column = 0; column < properties.ResolutionX; column++)
-				{
-					Vector vector = new Vector()
-					{
-						X = 0,
-						Y = 0,
-						Z = 0
-					};
-
-					for (int sample = 0; sample < properties.SamplesPerPixel; sample++)
-					{
-						double fstRnd = random.Value.NextDouble();
-						double sndRnd = random.Value.NextDouble();
-
-						double u = (column + fstRnd) / properties.ResolutionX;
-						double v = (derivatedIndex + sndRnd) / properties.ResolutionY;
-
-						var ray = _camera.GetRay(u, v);
-						vector.AddFrom(ShootRay(ray, properties.MaxDepth, previewScene.PosisionatedModels));
-					}
-
-					vector = vector.Divide(properties.SamplesPerPixel);
-					SavePixel(derivatedIndex, column, vector, properties.ResolutionY, previewPixels);
-				}
-			});
-
-			string preview = printer.Save(previewPixels, properties, ref _progress);
-			model.Preview = preview;
-			return preview;
 		}
 
 		private Scene CreatePreviewScene(Model model)

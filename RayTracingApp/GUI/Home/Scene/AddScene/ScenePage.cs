@@ -146,13 +146,9 @@ namespace GUI
 
         private void RenderImage()
         {
-            Renderer renderer = new Renderer()
-            {
-                Properties = _renderProperties,
-                Scene = _scene,
-            };
+            Renderer renderer = new Renderer();
 
-            string image = renderer.Render(pbrRender);
+            string image = renderer.Render(_scene, _renderProperties, pbrRender);
 
             Scanner scanner = new Scanner();
             Bitmap img = scanner.ScanImage(image);
