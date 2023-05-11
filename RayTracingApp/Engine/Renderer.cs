@@ -33,25 +33,20 @@ namespace Engine
 			InitializateRender(progressBar);
 
 			int row = Properties.ResolutionY - 1;
-			Parallel.For(0, row + 1, index =>
+            Parallel.For(0, row + 1, index =>
 			{
 				int derivatedIndex = row - index;
 				for (int column = 0; column < Properties.ResolutionX; column++)
-				{
-					Vector vector = new Vector()
-					{
-						X = 0,
-						Y = 0,
-						Z = 0
-					};
+                {
+                    Vector vector = InitializeEmptyVector();
 
-					Antialiasing(derivatedIndex, column, ref vector);
+                    Antialiasing(derivatedIndex, column, ref vector);
 
-					vector = vector.Divide(Properties.SamplesPerPixel);
-					SavePixel(derivatedIndex, column, vector);
-				}
+                    vector = vector.Divide(Properties.SamplesPerPixel);
+                    SavePixel(derivatedIndex, column, vector);
+                }
 
-				_progress.UpdateProgressBar();
+                _progress.UpdateProgressBar();
 				_progress.WriteCurrentPercentage();
 
 			});
@@ -59,7 +54,17 @@ namespace Engine
 			return _printer.Save(_pixels, Properties, ref _progress);
 		}
 
-		public string RenderModelPreview(Model model)
+        private static Vector InitializeEmptyVector()
+        {
+            return new Vector()
+            {
+                X = 0,
+                Y = 0,
+                Z = 0
+            };
+        }
+
+        public string RenderModelPreview(Model model)
 		{
 			RenderProperties properties = PreviewRenderProperties();
 			Scene previewScene = CreatePreviewScene(model);
