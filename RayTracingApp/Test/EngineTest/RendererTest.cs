@@ -3,10 +3,12 @@ using Engine;
 using Engine.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.EngineTest
 {
 	[TestClass]
+	[ExcludeFromCodeCoverage]
 	public class RendererTest
 	{
 		[TestMethod]
