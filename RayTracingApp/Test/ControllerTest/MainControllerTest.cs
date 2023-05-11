@@ -57,10 +57,10 @@ namespace Test.ControllerTest
 		public void SetSceneController_OkTest()
 		{
 			MainController controller = new MainController();
-			ModelController modelController = new ModelController();
-			controller.ModelController = modelController;
+			SceneController sceneController = new SceneController();
+			controller.SceneController = sceneController;
 
-			Assert.AreEqual(modelController, controller.ModelController);
+			Assert.AreEqual(sceneController, controller.SceneController);
 		}
 	}
 }
