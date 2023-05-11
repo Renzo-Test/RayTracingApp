@@ -53,7 +53,7 @@ namespace GUI
 
                 ResetPlaceholders();
             }
-            catch (Exception ex)
+            catch (InvalidFigureInputException ex)
             {
                 MessageBox.Show(ex.Message);
             }
