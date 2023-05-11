@@ -3,6 +3,7 @@ using Engine;
 using System;
 using System.Collections.Generic;
 using Domain;
+using System.Windows.Forms;
 
 namespace Test.EngineTest
 {
@@ -11,13 +12,14 @@ namespace Test.EngineTest
     {
         private List<List<Vector>> pixels;
         private Printer printer;
+        private ProgressBar progressBar;
 
-        [TestInitialize]
+		[TestInitialize]
         public void TestInitialize()
         {
             pixels = new List<List<Vector>>();
             printer = new Printer();
-        }
+		}
 
 		[TestMethod]
         public void CreatePrinter_OkTest()
@@ -46,7 +48,6 @@ namespace Test.EngineTest
 			{
 				ResolutionX = 1,
 				ResolutionY = 1,
-
 			};
             Vector color = new Vector()
             {
@@ -56,7 +57,6 @@ namespace Test.EngineTest
             };
             pixels.Add(new List<Vector> { color });
             Progress progress = new Progress();
-
 			string expected = $"P3\n1 1\n255\n51 51 51\n";
 			Assert.AreEqual(expected, printer.Save(pixels, properties, ref progress));
 		}
