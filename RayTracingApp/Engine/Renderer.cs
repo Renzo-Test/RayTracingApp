@@ -39,7 +39,7 @@ namespace Engine
 
 			_progress.ExpectedLines = (Properties.ResolutionY * Properties.ResolutionX * Properties.SamplesPerPixel) + Properties.ResolutionY;
 
-			InitializatePixels(_pixels);
+			InitializatePixels(ref _pixels);
 
 			int row = Properties.ResolutionY - 1;
 			Parallel.For(0, row + 1, index =>
@@ -54,18 +54,8 @@ namespace Engine
 						Z = 0
 					};
 
-					for (int sample = 0; sample < Properties.SamplesPerPixel; sample++)
-					{
-						double fstRnd = random.Value.NextDouble();
-						double sndRnd = random.Value.NextDouble();
+					Antialiasing(derivatedIndex, column, ref vector);
 
-						double u = (column + fstRnd) / Properties.ResolutionX;
-						double v = (derivatedIndex + sndRnd) / Properties.ResolutionY;
-
-						var ray = _camera.GetRay(u, v);
-						vector.AddFrom(ShootRay(ray, Properties.MaxDepth, Scene.PosisionatedModels));
-						_progress.Count(); ;
-					}
 					vector = vector.Divide(Properties.SamplesPerPixel);
 					SavePixel(derivatedIndex, column, vector, Properties.ResolutionY, _pixels);
 				}
@@ -77,7 +67,23 @@ namespace Engine
 			return _printer.Save(_pixels, Properties, ref _progress);
 		}
 
-		private void InitializatePixels(List<List<Vector>> pixels)
+		private void Antialiasing(int derivatedIndex, int column, ref Vector vector)
+		{
+			for (int sample = 0; sample < Properties.SamplesPerPixel; sample++)
+			{
+				double fstRnd = random.Value.NextDouble();
+				double sndRnd = random.Value.NextDouble();
+
+				double u = (column + fstRnd) / Properties.ResolutionX;
+				double v = (derivatedIndex + sndRnd) / Properties.ResolutionY;
+
+				var ray = _camera.GetRay(u, v);
+				vector.AddFrom(ShootRay(ray, Properties.MaxDepth, Scene.PosisionatedModels));
+				_progress.Count(); ;
+			}
+		}
+
+		private void InitializatePixels(ref List<List<Vector>> pixels)
 		{
 			pixels = new List<List<Vector>>();
 			for (int i = 0; i < Properties.ResolutionY; i++)
