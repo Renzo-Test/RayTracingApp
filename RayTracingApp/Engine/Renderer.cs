@@ -81,6 +81,25 @@ namespace Engine
 			InitializatePixels(ref _pixels);
 		}
 
+		private void InitializateCamera(Scene scene, RenderProperties properties)
+		{
+			Vector LookFrom = scene.CameraPosition;
+			Vector LookAt = scene.ObjectivePosition;
+			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
+			int FieldOfView = scene.Fov;
+			double AspectRatio = properties.AspectRatio;
+			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
+		}
+
+		private void InitializatePixels(ref List<List<Vector>> pixels)
+		{
+			pixels = new List<List<Vector>>();
+			for (int i = 0; i < Properties.ResolutionY; i++)
+			{
+				pixels.Add(new List<Vector>());
+			}
+		}
+
 		private void Antialiasing(int derivatedIndex, int column, ref Vector vector)
 		{
 			for (int sample = 0; sample < Properties.SamplesPerPixel; sample++)
@@ -94,96 +113,6 @@ namespace Engine
 				var ray = _camera.GetRay(u, v);
 				vector.AddFrom(ShootRay(ray, Properties.MaxDepth));
 				_progress.Count(); ;
-			}
-		}
-
-		private void InitializatePixels(ref List<List<Vector>> pixels)
-		{
-			pixels = new List<List<Vector>>();
-			for (int i = 0; i < Properties.ResolutionY; i++)
-			{
-				pixels.Add(new List<Vector>());
-			}
-		}
-
-		private void InitializateCamera(Scene scene, RenderProperties properties)
-		{
-			Vector LookFrom = scene.CameraPosition;
-			Vector LookAt = scene.ObjectivePosition;
-			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
-			int FieldOfView = scene.Fov;
-			double AspectRatio = properties.AspectRatio;
-			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
-		}
-
-		private Scene CreatePreviewScene(Model model)
-		{
-			Sphere figurePreview = new Sphere()
-			{
-				Radius = 1
-			};
-			Model modelToPreview = new Model()
-			{
-				Figure = figurePreview,
-				Material = model.Material,
-			};
-			PosisionatedModel posisionatedModel = new PosisionatedModel()
-			{
-				Model = modelToPreview,
-				Position = new Vector() { Y = 1}
-			};
-
-			Sphere terrain = new Sphere()
-			{
-				Radius = 2000
-			};
-			Domain.Color terrainColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
-			Model modelTerrain = new Model()
-			{
-				Figure = terrain,
-				Material = new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial }
-			};
-			PosisionatedModel terrainPosisionated = new PosisionatedModel()
-			{
-				Model = modelTerrain,
-				Position = new Vector() { Y = -2000},
-			};
-			Scene previewScene = new Scene()
-			{
-				CameraPosition = new Vector { X = -5, Y = 4, Z = 0 },
-				ObjectivePosition = new Vector() { Y = 1},
-				Fov = 30
-			};
-			previewScene.PosisionatedModels.Add(posisionatedModel);
-			previewScene.PosisionatedModels.Add(terrainPosisionated);
-
-			return previewScene;
-		}
-
-		private RenderProperties PreviewRenderProperties()
-		{
-			RenderProperties properties = new RenderProperties()
-			{
-				AspectRatio = 1,
-				ResolutionX = 100,
-				SamplesPerPixel = 20,
-			};
-
-			return properties;
-		}
-
-		private void SavePixel(int row, int column, Vector pixelRGB)
-		{
-			int posX = column;
-			int posY = Properties.ResolutionY - row - 1;
-
-			if (posY < Properties.ResolutionY)
-			{
-				_pixels[posY].Add(pixelRGB);
-			}
-			else
-			{
-				throw new Exception("Pixel Overflow Error");
 			}
 		}
 
@@ -266,7 +195,7 @@ namespace Engine
 			double b = vectorOriginCenter.Dot(ray.Direction) * 2;
 			double c = vectorOriginCenter.Dot(vectorOriginCenter) - (sphere.Radius * sphere.Radius);
 			double discriminant = (b * b) - (4 * a * c);
-			
+
 
 			if (discriminant < 0)
 			{
@@ -277,7 +206,7 @@ namespace Engine
 				double t = ((-1 * b) - Math.Sqrt(discriminant)) / (2 * a);
 				Vector intersectionPoint = ray.PointAt(t);
 				Vector Normal = intersectionPoint.Substract(position).Divide(sphere.Radius);
-				
+
 				if (t < tMax && t > tMin)
 				{
 					return new HitRecord()
@@ -316,6 +245,77 @@ namespace Engine
 			} while (vector.SquaredLength() >= 1);
 
 			return vector;
+		}
+
+		private void SavePixel(int row, int column, Vector pixelRGB)
+		{
+			int posX = column;
+			int posY = Properties.ResolutionY - row - 1;
+
+			if (posY < Properties.ResolutionY)
+			{
+				_pixels[posY].Add(pixelRGB);
+			}
+			else
+			{
+				throw new Exception("Pixel Overflow Error");
+			}
+		}
+
+		private RenderProperties PreviewRenderProperties()
+		{
+			RenderProperties properties = new RenderProperties()
+			{
+				AspectRatio = 1,
+				ResolutionX = 100,
+				SamplesPerPixel = 20,
+			};
+
+			return properties;
+		}
+
+		private Scene CreatePreviewScene(Model model)
+		{
+			Sphere figurePreview = new Sphere()
+			{
+				Radius = 1
+			};
+			Model modelToPreview = new Model()
+			{
+				Figure = figurePreview,
+				Material = model.Material,
+			};
+			PosisionatedModel posisionatedModel = new PosisionatedModel()
+			{
+				Model = modelToPreview,
+				Position = new Vector() { Y = 1}
+			};
+
+			Sphere terrain = new Sphere()
+			{
+				Radius = 2000
+			};
+			Domain.Color terrainColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
+			Model modelTerrain = new Model()
+			{
+				Figure = terrain,
+				Material = new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial }
+			};
+			PosisionatedModel terrainPosisionated = new PosisionatedModel()
+			{
+				Model = modelTerrain,
+				Position = new Vector() { Y = -2000},
+			};
+			Scene previewScene = new Scene()
+			{
+				CameraPosition = new Vector { X = -5, Y = 4, Z = 0 },
+				ObjectivePosition = new Vector() { Y = 1},
+				Fov = 30
+			};
+			previewScene.PosisionatedModels.Add(posisionatedModel);
+			previewScene.PosisionatedModels.Add(terrainPosisionated);
+
+			return previewScene;
 		}
 	}
 }
