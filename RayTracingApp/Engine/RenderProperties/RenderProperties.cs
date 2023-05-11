@@ -87,7 +87,7 @@ namespace Engine
 		{
 			if (value <= 0)
 			{
-				throw new InvalidRenderPropertiesInputException(ValueLowerThanZero);
+				throw new InputLowerThanZero(ValueLowerThanZero);
 			}
 		}
 	}
