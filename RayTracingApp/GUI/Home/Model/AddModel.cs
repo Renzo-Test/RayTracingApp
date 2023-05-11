@@ -28,8 +28,11 @@ namespace GUI
         
         private Client _currentClient;
 
+        public bool createPreview;
+
         public AddModel(ModelHome modelHome, MainController mainController, Client currentClient)
         {
+            createPreview = false;
             _modelHome = modelHome;
             _currentClient = currentClient;
 
@@ -132,12 +135,31 @@ namespace GUI
 
         }
 
-        private void picDropDownMaterial_Click(object sender, EventArgs e)
+		private void lblFiguresList_Click(object sender, EventArgs e)
+		{
+			InputUtils.ShowComboBox(ref cmbFigures);
+		}
+
+		private void picDarkRectangleFigureList_Click(object sender, EventArgs e)
+		{
+			InputUtils.ShowComboBox(ref cmbFigures);
+		}
+
+		private void picDropDownMaterial_Click(object sender, EventArgs e)
         {
             InputUtils.ShowComboBox(ref cmbMaterials);
         }
+		private void picDarkRectangleMaterialList_Click(object sender, EventArgs e)
+		{
+			InputUtils.ShowComboBox(ref cmbMaterials);
+		}
 
-        private void txtInputName_Enter(object sender, EventArgs e)
+		private void lblMaterialsList_Click(object sender, EventArgs e)
+		{
+			InputUtils.ShowComboBox(ref cmbMaterials);
+		}
+
+		private void txtInputName_Enter(object sender, EventArgs e)
         {
             InputUtils.RemovePlaceHolder(ref txtInputName, NamePlaceholder);
         }
@@ -157,5 +179,10 @@ namespace GUI
         {
             lblMaterialsList.Text = cmbMaterials.Text;
         }
-    }
+
+		private void rbtnCreatePreview_CheckedChanged(object sender, EventArgs e)
+		{
+            createPreview = !createPreview;
+		}
+	}
 }

@@ -47,7 +47,7 @@ namespace GUI
             string FigureName = model.Figure.Name;
             string MaterialName = model.Material.Name;
             Color materialColor = model.Material.Color;
-
+            
 			Renderer renderer = new Renderer();
 			renderer.RenderModelPreview(model);
 			string preview = model.Preview;
