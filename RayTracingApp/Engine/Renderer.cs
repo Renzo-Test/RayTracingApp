@@ -92,7 +92,7 @@ namespace Engine
 				double v = (derivatedIndex + sndRnd) / Properties.ResolutionY;
 
 				var ray = _camera.GetRay(u, v);
-				vector.AddFrom(ShootRay(ray, Properties.MaxDepth, Scene.PosisionatedModels));
+				vector.AddFrom(ShootRay(ray, Properties.MaxDepth));
 				_progress.Count(); ;
 			}
 		}
@@ -187,12 +187,12 @@ namespace Engine
 			}
 		}
 
-		private Vector ShootRay(Ray ray, int depth, List<PosisionatedModel> posisionatedModels)
+		private Vector ShootRay(Ray ray, int depth)
 		{
 			HitRecord hitRecord = null;
 			double tMax = 3.4 * Math.Pow(10, 38);
 
-			foreach (PosisionatedModel posisionatedModel in posisionatedModels)
+			foreach (PosisionatedModel posisionatedModel in Scene.PosisionatedModels)
 			{
 				HitRecord hit = IsSphereHit(posisionatedModel, ray, 0.001, tMax);
 				if (hit is object)
@@ -215,7 +215,7 @@ namespace Engine
 						Direction = newVector
 					};
 
-					Vector color = ShootRay(newRay, depth - 1, posisionatedModels);
+					Vector color = ShootRay(newRay, depth - 1);
 					Vector attenuation = hitRecord.Attenuation;
 
 					return new Vector()
