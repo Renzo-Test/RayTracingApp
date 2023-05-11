@@ -28,7 +28,7 @@ namespace Test.ControllerTest
 		{
 			MainController controller = new MainController();
 			FigureController figureController = new FigureController();
-			controller.ClientController = figureController;
+			controller.FigureController = figureController;
 
 			Assert.AreEqual(figureController, controller.FigureController);
 		}
