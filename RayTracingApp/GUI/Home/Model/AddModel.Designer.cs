@@ -301,7 +301,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleMaterialList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

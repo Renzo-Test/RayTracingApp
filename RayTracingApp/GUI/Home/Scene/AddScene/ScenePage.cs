@@ -68,6 +68,11 @@ namespace GUI
                 flyModels.Controls.Add(item);
             }
 
+            if(_scene.Preview is object)
+            {
+				picScene.Image = _scene.Preview;
+			}
+
         }
 
         public void PopulateUsedItems()
@@ -149,6 +154,7 @@ namespace GUI
 
         private void SetRenderedImage(Bitmap img)
         {
+            _scene.Preview = img;
             picScene.Image = img;
         }
 
@@ -252,12 +258,10 @@ namespace GUI
                     MessageBox.Show(ex.Message);
                     return;
                 }
-
                 ActiveControl = txtLookFrom;
 
                 e.Handled = true;
             }
         }
-
     }
 }

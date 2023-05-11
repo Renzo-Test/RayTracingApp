@@ -12,6 +12,8 @@ namespace Domain
 		private String _name;
 		private Figure _figure;
 		private Material _material;
+		public string Preview { get; set; }
+		public bool showPreview { get; set; }
 		public String Owner
 		{
 			get => _owner;

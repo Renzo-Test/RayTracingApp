@@ -2,12 +2,14 @@
 using Controller.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using Engine;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -46,7 +48,19 @@ namespace GUI
             string FigureName = model.Figure.Name;
             string MaterialName = model.Material.Name;
             Color materialColor = model.Material.Color;
-            
+
+            if (model.showPreview)
+            {
+                Renderer renderer = new Renderer();
+                renderer.RenderModelPreview(model);
+                string preview = model.Preview;
+
+                Scanner scanner = new Scanner();
+                Bitmap image = scanner.ScanImage(preview);
+
+                picIconSphere.Image = image;
+                picMaterialColor.Visible = false;
+            }
             txtModelName.Text = model.Name;
             lblFigureName.Text = $"Figure: {FigureName}";
             lblMaterialName.Text = $"Material: {MaterialName}";

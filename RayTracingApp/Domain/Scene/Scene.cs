@@ -1,6 +1,7 @@
 ﻿using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -26,6 +27,12 @@ namespace Domain
 		public List<PosisionatedModel> PosisionatedModels;
 		private static int _createdSceneCounter = 0;
 		private int _sceneNumber;
+		public Bitmap Preview;
+
+		public Scene() 
+		{
+			PosisionatedModels = new List<PosisionatedModel>();
+		}
 
 		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt) 
 		{
@@ -38,7 +45,7 @@ namespace Domain
 			PosisionatedModels = new List<PosisionatedModel>();
 		}
 
-		public string Owner
+        public string Owner
 		{
 			get => _owner;
 			set => _owner = value;

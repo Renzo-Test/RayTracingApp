@@ -69,19 +69,24 @@ namespace Controller
 			return getFigure;
 		}
 
-		public void UpdateFigureName(Figure sphere, string currentClient, string newName)
+		public void UpdateFigureName(Figure figure, string currentClient, string newName)
 		{
-			string previousName = sphere.Name;
 			try
 			{
-				sphere.Name = newName;
-				RunFigureChecker(sphere, currentClient);
+				Sphere updateSphere = (Sphere)figure;
+				Sphere newFigure = new Sphere()
+				{
+					Name = newName,
+					Owner = updateSphere.Owner,
+					Radius = updateSphere.Radius
+				};
 
-				sphere.Name = newName;
+				RunFigureChecker(newFigure, currentClient);
+
+				figure.Name = newName;
 			}
 			catch (InvalidFigureInputException ex)
 			{
-				sphere.Name = previousName;
 				throw new InvalidFigureInputException(ex.Message);
 			}
 		}

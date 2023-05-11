@@ -115,7 +115,8 @@ namespace GUI
                 Material = _materialController.GetMaterial(_currentClient.Username, cmbMaterials.Text),
                 Figure = _figureController.GetFigure(_currentClient.Username, cmbFigures.Text),
                 Name = txtInputName.Text,
-            };
+                showPreview = rbtnCreatePreview.Checked,
+		};
         }
 
         private void picRectangleFieldSave_Click(object sender, EventArgs e)
@@ -152,12 +153,31 @@ namespace GUI
 
         }
 
-        private void picDropDownMaterial_Click(object sender, EventArgs e)
+		private void lblFiguresList_Click(object sender, EventArgs e)
+		{
+			InputUtils.ShowComboBox(ref cmbFigures);
+		}
+
+		private void picDarkRectangleFigureList_Click(object sender, EventArgs e)
+		{
+			InputUtils.ShowComboBox(ref cmbFigures);
+		}
+
+		private void picDropDownMaterial_Click(object sender, EventArgs e)
         {
             InputUtils.ShowComboBox(ref cmbMaterials);
         }
+		private void picDarkRectangleMaterialList_Click(object sender, EventArgs e)
+		{
+			InputUtils.ShowComboBox(ref cmbMaterials);
+		}
 
-        private void txtInputName_Enter(object sender, EventArgs e)
+		private void lblMaterialsList_Click(object sender, EventArgs e)
+		{
+			InputUtils.ShowComboBox(ref cmbMaterials);
+		}
+
+		private void txtInputName_Enter(object sender, EventArgs e)
         {
             InputUtils.RemovePlaceHolder(ref txtInputName, NamePlaceholder);
         }
@@ -177,6 +197,5 @@ namespace GUI
         {
             lblMaterialsList.Text = cmbMaterials.Text;
         }
-
     }
 }
