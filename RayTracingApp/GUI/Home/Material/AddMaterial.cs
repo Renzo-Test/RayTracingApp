@@ -215,6 +215,5 @@ namespace GUI
             ReplaceFontColor();
         }
 
-
     }
 }

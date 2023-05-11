@@ -6,8 +6,8 @@ namespace Engine
 	public class Progress
 	{
 		public ProgressBar ProgressBar { get; set; }
-		public long LinesCount { get; set; }
-		public long ExpectedLines { get; set; }
+		public long LinesCount { get; set; } = 0;
+		public long ExpectedLines { get; set; } = 0;
 
 		public void Count()
 		{
@@ -26,16 +26,19 @@ namespace Engine
 
         public void UpdateProgressBar()
         {
-			ProgressBar.BeginInvoke(
-			new Action(() =>
+			if (ProgressBar is object)
 			{
-				int progress = (int)Calculate();
-				
-				if(progress <= 100)
-                {
-					ProgressBar.Value = progress;
-                }
-			}));
+				ProgressBar.BeginInvoke(
+				new Action(() =>
+				{
+					int progress = (int)Calculate();
+
+					if (progress <= 100)
+					{
+						ProgressBar.Value = progress;
+					}
+				}));
+			}
 		}
     }
 }

@@ -14,15 +14,18 @@ namespace MemoryRepository
         {
             _models = new List<Model>();
         }
+
         public void AddModel(Model newModel)
         {
             _models.Add(newModel);
         }
+
         public List<Model> GetModelsByClient(string username)
         {
             List<Model> foundModels = _models.FindAll(model => model.Owner.Equals(username));
             return foundModels;
         }
+
         public void RemoveModel(Model model)
         {
             if (!_models.Remove(model))

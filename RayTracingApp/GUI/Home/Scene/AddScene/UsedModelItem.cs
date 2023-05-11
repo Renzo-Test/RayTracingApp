@@ -16,22 +16,31 @@ namespace GUI
 {
     public partial class UsedModelItem : UserControl
     {
-		private const string InvalidFormatMessageError = "Vector input must be three integer values splited by coma format only: x,y,z";
 		private List<PosisionatedModel> _posisionatedModels;
         private PosisionatedModel _posisionatedModel;
 
         private ScenePage _scenePage;
+
 		private bool isEditing = false;
 
 		public UsedModelItem(ScenePage scenePage, PosisionatedModel posisionatedModel, List<PosisionatedModel> posisionatedModels)
         {
-            _posisionatedModels = posisionatedModels;
-            _posisionatedModel = posisionatedModel;
+            SetModels(posisionatedModel, posisionatedModels);
 
             _scenePage = scenePage;
-            
+
             InitializeComponent();
-            
+            InitializePanelAttributes(posisionatedModel);
+        }
+
+        private void SetModels(PosisionatedModel posisionatedModel, List<PosisionatedModel> posisionatedModels)
+        {
+            _posisionatedModels = posisionatedModels;
+            _posisionatedModel = posisionatedModel;
+        }
+
+        private void InitializePanelAttributes(PosisionatedModel posisionatedModel)
+        {
             txtPosition.Text = GetPosisionatedModelString(posisionatedModel);
             lblName.Text = posisionatedModel.Model.Name;
         }
@@ -57,14 +66,9 @@ namespace GUI
             try
             {
                 string[] positionValues = StringUtils.DestructureVectorFromat(txtPosition.Text);
-                _posisionatedModel.Position = new Vector()
-                {
-                    X = double.Parse(positionValues[0]),
-                    Y = double.Parse(positionValues[1]),
-                    Z = double.Parse(positionValues[2])
-                };
+                SetPosisionatedModel(positionValues);
             }
-            catch(InvalidSceneInputException ex)
+            catch (InvalidSceneInputException ex)
             {
 				MessageBox.Show(ex.Message);
 			}
@@ -72,7 +76,17 @@ namespace GUI
             _scenePage.PopulateUsedItems();
         }
 
-		private void picIconPencilTick_Click(object sender, EventArgs e)
+        private void SetPosisionatedModel(string[] positionValues)
+        {
+            _posisionatedModel.Position = new Vector()
+            {
+                X = double.Parse(positionValues[0]),
+                Y = double.Parse(positionValues[1]),
+                Z = double.Parse(positionValues[2])
+            };
+        }
+
+        private void picIconPencilTick_Click(object sender, EventArgs e)
 		{
 			isEditing = !isEditing;
 

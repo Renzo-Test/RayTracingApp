@@ -14,42 +14,57 @@ namespace Domain
 		private const string EmptyNameMessage = "Scene's name must not be empty";
 		private const string SpaceCharacterConstant = " ";
 		private const string StartOrEndWithSpaceMessage = "Scene's name must not start or end with blank space";
+
 		private const int MinFov = 1;
 		private const int MaxFov = 160;
-		private string _owner;
-		private string _name;
-		public string _registerTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
-		private string _lastModificationDate = "unmodified";
-		private string _lastRenderDate = "unrendered";
-		private int _fov;
+
 		public Vector CameraPosition = new Vector();
 		public Vector ObjectivePosition = new Vector();
 		public List<PosisionatedModel> PosisionatedModels;
-		private static int _createdSceneCounter = 0;
-		private int _sceneNumber;
 		public Bitmap Preview;
 
-		public Scene() 
+		private string _registerTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+		private string _owner;
+		private string _name;
+		private string _lastModificationDate = "unmodified";
+		private string _lastRenderDate = "unrendered";
+		private int _fov;
+		private int _sceneNumber;
+
+		private static int _createdSceneCounter = 0;
+
+		public Scene()
 		{
 			PosisionatedModels = new List<PosisionatedModel>();
 		}
 
-		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt) 
-		{
-			_sceneNumber = ++_createdSceneCounter;
-			_name = $"Blank Scene {_sceneNumber}";
-			_owner = owner;
-			_fov = fov;
-			CameraPosition = lookFrom;
-			ObjectivePosition = lookAt;
-			PosisionatedModels = new List<PosisionatedModel>();
-		}
+		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt)
+        {
+            _sceneNumber = ++_createdSceneCounter;
+            SetSceneParameters(owner);
+            SetRenderingParameters(fov, lookFrom, lookAt);
+        }
+
+        private void SetRenderingParameters(int fov, Vector lookFrom, Vector lookAt)
+        {
+            _fov = fov;
+            CameraPosition = lookFrom;
+            ObjectivePosition = lookAt;
+            PosisionatedModels = new List<PosisionatedModel>();
+        }
+
+        private void SetSceneParameters(string owner)
+        {
+            _name = $"Blank Scene {_sceneNumber}";
+            _owner = owner;
+        }
 
         public string Owner
 		{
 			get => _owner;
 			set => _owner = value;
 		}
+		
 		public string Name
 		{
 			get => _name;
@@ -67,21 +82,25 @@ namespace Domain
 				}
 			}
 		}
+
 		public string RegisterTime
 		{
 			get => _registerTime;
 			set => _registerTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
 		}
+		
 		public string LastModificationDate
 		{
 			get => _lastModificationDate;
 			set => _lastModificationDate = value;
 		}
+		
 		public string LastRenderDate
 		{
 			get => _lastRenderDate;
 			set => _lastRenderDate = value;
 		}
+		
 		public int Fov
 		{
 			get => _fov;

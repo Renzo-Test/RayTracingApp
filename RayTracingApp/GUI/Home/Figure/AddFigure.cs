@@ -140,29 +140,5 @@ namespace GUI
             InputUtils.SetPlaceHolder(ref txtInputRadius, RadiusPlaceHolder);
         }
 
-        private void lblTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void picDarkRectangleFieldName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtInputRadius_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void picDarkRectangleFieldRadius_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtInputName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

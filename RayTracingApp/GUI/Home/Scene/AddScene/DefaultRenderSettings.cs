@@ -16,7 +16,6 @@ namespace GUI
     public partial class DefaultRenderSettings : UserControl
     {
         private SceneHome _sceneHome;
-        private Scene _scene;
         public RenderProperties RenderProperties;
 
         public DefaultRenderSettings(SceneHome sceneHome)
@@ -38,40 +37,57 @@ namespace GUI
         }
 
         private void picRectangleFieldSave_Click(object sender, EventArgs e)
-        {
-            int resolutionX;
-            int resolutionY;
-            int samplesPerPixel;
-            int maxDepth;
+		{
+			Save();
+		}
 
-            try
+		private void lblSave_Click(object sender, EventArgs e)
+		{
+			Save();
+		}
+
+		private void Save()
+		{
+			int resolutionX;
+			int resolutionY;
+			int samplesPerPixel;
+			int maxDepth;
+
+			try
             {
-                resolutionX = int.Parse(txtResX.Text);
-                resolutionY = int.Parse(txtResY.Text);
-                samplesPerPixel = int.Parse(txtSamplesPerPixel.Text);
-                maxDepth = int.Parse(txtMaxDepth.Text);
+                ParseProperties();
             }
             catch (FormatException)
-            {
-                MessageBox.Show("Only integer values accepted");
-                return;
-            }
+			{
+				MessageBox.Show("Only integer values accepted");
+				return;
+			}
 
-            try
+			try
             {
-                RenderProperties.ResolutionX = resolutionX;
-                RenderProperties.ResolutionY = resolutionY;
-                RenderProperties.SamplesPerPixel = samplesPerPixel;
-                RenderProperties.MaxDepth = maxDepth;
-
+                SetRenderProperties(resolutionX, resolutionY, samplesPerPixel, maxDepth);
                 _sceneHome.GoToSceneList();
             }
             catch (InvalidRenderPropertiesInputException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+			{
+				MessageBox.Show(ex.Message);
+			}
 
+            void ParseProperties()
+            {
+                maxDepth = int.Parse(txtMaxDepth.Text);
+                resolutionX = int.Parse(txtResX.Text);
+                resolutionY = int.Parse(txtResY.Text);
+                samplesPerPixel = int.Parse(txtSamplesPerPixel.Text);
+            }
         }
 
+        private void SetRenderProperties(int resolutionX, int resolutionY, int samplesPerPixel, int maxDepth)
+        {
+            RenderProperties.ResolutionX = resolutionX;
+            RenderProperties.ResolutionY = resolutionY;
+            RenderProperties.SamplesPerPixel = samplesPerPixel;
+            RenderProperties.MaxDepth = maxDepth;
+        }
     }
 }

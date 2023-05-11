@@ -211,5 +211,5 @@ namespace GUI
         {
             lblMaterialsList.Text = cmbMaterials.Text;
         }
-    }
+	}
 }

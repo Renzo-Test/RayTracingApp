@@ -22,14 +22,24 @@ namespace GUI
         public SceneListItem(SceneHome sceneHome, SceneList sceneList, SceneController sceneController, Scene scene)
         {
             _sceneList = sceneList;
-            _sceneController = sceneController;
-            _scene = scene;
             _sceneHome = sceneHome;
 
-            InitializeComponent();
+            _sceneController = sceneController;
+            _scene = scene;
 
+            InitializeComponent();
+            InitializePanelAttributes();
+            InitializePreview();
+        }
+
+        private void InitializePanelAttributes()
+        {
             lblSceneName.Text = _scene.Name;
-            if(_scene.Preview is object)
+        }
+
+        private void InitializePreview()
+        {
+            if (_scene.Preview is object)
             {
                 picIconScene.Image = _scene.Preview;
             }
@@ -44,8 +54,21 @@ namespace GUI
         private void SceneListItem_Click(object sender, EventArgs e)
         {
             _sceneHome.GoToAddScene(_scene);
-
         }
 
-    }
+		private void picIconScene_Click(object sender, EventArgs e)
+		{
+			_sceneHome.GoToAddScene(_scene);
+		}
+
+		private void lblSceneName_Click(object sender, EventArgs e)
+		{
+			_sceneHome.GoToAddScene(_scene);
+		}
+
+		private void lblLastModified_Click(object sender, EventArgs e)
+		{
+			_sceneHome.GoToAddScene(_scene);
+		}
+	}
 }

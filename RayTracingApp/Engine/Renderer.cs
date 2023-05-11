@@ -16,8 +16,8 @@ namespace Engine
 {
 	public class Renderer
 	{
-		public RenderProperties Properties;
 		public Scene Scene;
+		public RenderProperties Properties;
 
 		private Printer _printer;
 		private List<List<Vector>> _pixels;
@@ -26,198 +26,107 @@ namespace Engine
 
 		private static readonly ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 
-		public string Render(ProgressBar progressBar)
+		public string Render(Scene scene, RenderProperties properties, ProgressBar progressBar)
 		{
-			_progress = new Progress() 
-			{ 
-				ProgressBar = progressBar,
-			};
-			_pixels = new List<List<Vector>>();
-			_printer = new Printer();
-				
-			Vector LookFrom = Scene.CameraPosition;
-			Vector LookAt = Scene.ObjectivePosition;
-			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
-			int FieldOfView = Scene.Fov;
-			double AspectRatio = Properties.AspectRatio;
-			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
-
-			_progress.ExpectedLines = (Properties.ResolutionY * Properties.ResolutionX * Properties.SamplesPerPixel) + Properties.ResolutionY;
-
-
-			for (int i = 0; i < Properties.ResolutionY; i++)
-			{
-				_pixels.Add(new List<Vector>());
-			}
+			Scene = scene;
+			Properties = properties;
+			InitializateRender(progressBar);
 
 			int row = Properties.ResolutionY - 1;
-			Parallel.For(0, row + 1, index =>
+            Parallel.For(0, row + 1, index =>
 			{
 				int derivatedIndex = row - index;
 				for (int column = 0; column < Properties.ResolutionX; column++)
-				{
-					Vector vector = new Vector()
-					{
-						X = 0,
-						Y = 0,
-						Z = 0
-					};
+                {
+                    Vector vector = InitializeEmptyVector();
 
-					for (int sample = 0; sample < Properties.SamplesPerPixel; sample++)
-					{
-						double fstRnd = random.Value.NextDouble();
-						double sndRnd = random.Value.NextDouble();
+                    Antialiasing(derivatedIndex, column, ref vector);
 
-						double u = (column + fstRnd) / Properties.ResolutionX;
-						double v = (derivatedIndex + sndRnd) / Properties.ResolutionY;
+                    vector = vector.Divide(Properties.SamplesPerPixel);
+                    SavePixel(derivatedIndex, column, vector);
+                }
 
-						var ray = _camera.GetRay(u, v);
-						vector.AddFrom(ShootRay(ray, Properties.MaxDepth, Scene.PosisionatedModels));
-						_progress.Count(); ;
-					}
-					vector = vector.Divide(Properties.SamplesPerPixel);
-					SavePixel(derivatedIndex, column, vector, Properties.ResolutionY, _pixels);
-				}
-
-				_progress.UpdateProgressBar();
+                _progress.UpdateProgressBar();
 				_progress.WriteCurrentPercentage();
-			
+
 			});
+
 			return _printer.Save(_pixels, Properties, ref _progress);
 		}
 
-		public string RenderModelPreview(Model model)
+        private static Vector InitializeEmptyVector()
+        {
+            return new Vector()
+            {
+                X = 0,
+                Y = 0,
+                Z = 0
+            };
+        }
+
+        public string RenderModelPreview(Model model)
 		{
-			_progress = new Progress();
-			Printer printer = new Printer();
 			RenderProperties properties = PreviewRenderProperties();
 			Scene previewScene = CreatePreviewScene(model);
 
-			Vector LookFrom = previewScene.CameraPosition;
-			Vector LookAt = previewScene.ObjectivePosition;
-			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
-			int FieldOfView = previewScene.Fov;
-			double AspectRatio = properties.AspectRatio;
-			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
-
-			List<List<Vector>> previewPixels = new List<List<Vector>>(); 
-			for (int i = 0; i < properties.ResolutionY; i++)
-			{
-				previewPixels.Add(new List<Vector>());
-			}
-
-			int row = properties.ResolutionY - 1;
-			Parallel.For(0, row + 1, index =>
-			{
-				int derivatedIndex = row - index;
-				for (int column = 0; column < properties.ResolutionX; column++)
-				{
-					Vector vector = new Vector()
-					{
-						X = 0,
-						Y = 0,
-						Z = 0
-					};
-
-					for (int sample = 0; sample < properties.SamplesPerPixel; sample++)
-					{
-						double fstRnd = random.Value.NextDouble();
-						double sndRnd = random.Value.NextDouble();
-
-						double u = (column + fstRnd) / properties.ResolutionX;
-						double v = (derivatedIndex + sndRnd) / properties.ResolutionY;
-
-						var ray = _camera.GetRay(u, v);
-						vector.AddFrom(ShootRay(ray, properties.MaxDepth, previewScene.PosisionatedModels));
-					}
-
-					vector = vector.Divide(properties.SamplesPerPixel);
-					SavePixel(derivatedIndex, column, vector, properties.ResolutionY, previewPixels);
-				}
-			});
-
-			string preview = printer.Save(previewPixels, properties, ref _progress);
+			string preview = Render(previewScene, properties, null);
 			model.Preview = preview;
 			return preview;
 		}
 
-		private Scene CreatePreviewScene(Model model)
+		private void InitializateRender(ProgressBar progressBar)
 		{
-			Sphere figurePreview = new Sphere()
+			_progress = new Progress()
 			{
-				Radius = 1
+				ProgressBar = progressBar,
 			};
-			Model modelToPreview = new Model()
-			{
-				Figure = figurePreview,
-				Material = model.Material,
-			};
-			PosisionatedModel posisionatedModel = new PosisionatedModel()
-			{
-				Model = modelToPreview,
-				Position = new Vector() { Y = 1}
-			};
-
-			Sphere terrain = new Sphere()
-			{
-				Radius = 2000
-			};
-			Domain.Color terrainColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
-			Model modelTerrain = new Model()
-			{
-				Figure = terrain,
-				Material = new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial }
-			};
-			PosisionatedModel terrainPosisionated = new PosisionatedModel()
-			{
-				Model = modelTerrain,
-				Position = new Vector() { Y = -2000},
-			};
-			Scene previewScene = new Scene()
-			{
-				CameraPosition = new Vector { X = -5, Y = 4, Z = 0 },
-				ObjectivePosition = new Vector() { Y = 1},
-				Fov = 30
-			};
-			previewScene.PosisionatedModels.Add(posisionatedModel);
-			previewScene.PosisionatedModels.Add(terrainPosisionated);
-
-			return previewScene;
+			_progress.ExpectedLines = (Properties.ResolutionY * Properties.ResolutionX * Properties.SamplesPerPixel) + Properties.ResolutionY;
+			_printer = new Printer();
+			InitializateCamera(Scene, Properties);
+			InitializatePixels(ref _pixels);
 		}
 
-		private RenderProperties PreviewRenderProperties()
+		private void InitializateCamera(Scene scene, RenderProperties properties)
 		{
-			RenderProperties properties = new RenderProperties()
-			{
-				AspectRatio = 1,
-				ResolutionX = 100,
-				SamplesPerPixel = 20,
-			};
-
-			return properties;
+			Vector LookFrom = scene.CameraPosition;
+			Vector LookAt = scene.ObjectivePosition;
+			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
+			int FieldOfView = scene.Fov;
+			double AspectRatio = properties.AspectRatio;
+			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
 		}
 
-		private void SavePixel(int row, int column, Vector pixelRGB, int resolutionY, List<List<Vector>> pixels)
+		private void InitializatePixels(ref List<List<Vector>> pixels)
 		{
-			int posX = column;
-			int posY = resolutionY - row - 1;
-
-			if (posY < resolutionY)
+			pixels = new List<List<Vector>>();
+			for (int i = 0; i < Properties.ResolutionY; i++)
 			{
-				pixels[posY].Add(pixelRGB);
-			}
-			else
-			{
-				throw new Exception("Pixel Overflow Error");
+				pixels.Add(new List<Vector>());
 			}
 		}
 
-		private Vector ShootRay(Ray ray, int depth, List<PosisionatedModel> posisionatedModels)
+		private void Antialiasing(int derivatedIndex, int column, ref Vector vector)
+		{
+			for (int sample = 0; sample < Properties.SamplesPerPixel; sample++)
+			{
+				double fstRnd = random.Value.NextDouble();
+				double sndRnd = random.Value.NextDouble();
+
+				double u = (column + fstRnd) / Properties.ResolutionX;
+				double v = (derivatedIndex + sndRnd) / Properties.ResolutionY;
+
+				var ray = _camera.GetRay(u, v);
+				vector.AddFrom(ShootRay(ray, Properties.MaxDepth));
+				_progress.Count(); ;
+			}
+		}
+
+		private Vector ShootRay(Ray ray, int depth)
 		{
 			HitRecord hitRecord = null;
 			double tMax = 3.4 * Math.Pow(10, 38);
 
-			foreach (PosisionatedModel posisionatedModel in posisionatedModels)
+			foreach (PosisionatedModel posisionatedModel in Scene.PosisionatedModels)
 			{
 				HitRecord hit = IsSphereHit(posisionatedModel, ray, 0.001, tMax);
 				if (hit is object)
@@ -240,7 +149,7 @@ namespace Engine
 						Direction = newVector
 					};
 
-					Vector color = ShootRay(newRay, depth - 1, posisionatedModels);
+					Vector color = ShootRay(newRay, depth - 1);
 					Vector attenuation = hitRecord.Attenuation;
 
 					return new Vector()
@@ -291,7 +200,7 @@ namespace Engine
 			double b = vectorOriginCenter.Dot(ray.Direction) * 2;
 			double c = vectorOriginCenter.Dot(vectorOriginCenter) - (sphere.Radius * sphere.Radius);
 			double discriminant = (b * b) - (4 * a * c);
-			
+
 
 			if (discriminant < 0)
 			{
@@ -302,7 +211,7 @@ namespace Engine
 				double t = ((-1 * b) - Math.Sqrt(discriminant)) / (2 * a);
 				Vector intersectionPoint = ray.PointAt(t);
 				Vector Normal = intersectionPoint.Substract(position).Divide(sphere.Radius);
-				
+
 				if (t < tMax && t > tMin)
 				{
 					return new HitRecord()
@@ -341,6 +250,83 @@ namespace Engine
 			} while (vector.SquaredLength() >= 1);
 
 			return vector;
+		}
+
+		private void SavePixel(int row, int column, Vector pixelRGB)
+		{
+			int posX = column;
+			int posY = Properties.ResolutionY - row - 1;
+
+			if (posY < Properties.ResolutionY)
+			{
+				_pixels[posY].Add(pixelRGB);
+			}
+			else
+			{
+				throw new Exception("Pixel Overflow Error");
+			}
+		}
+
+		private RenderProperties PreviewRenderProperties()
+		{
+			RenderProperties properties = new RenderProperties()
+			{
+				AspectRatio = 1,
+				ResolutionX = 100,
+				SamplesPerPixel = 20,
+			};
+
+			return properties;
+		}
+
+		private Scene CreatePreviewScene(Model model)
+		{
+			Sphere figurePreview = InitializateSphere(1);
+			Model modelToPreview = InitializateModel(figurePreview, model.Material);
+			PosisionatedModel posisionatedModel = InitializatePosisionatedModel(modelToPreview, 1);
+
+
+			Sphere terrain = InitializateSphere(2000);
+			Domain.Color terrainColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
+			Model modelTerrain = InitializateModel(terrain, new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial });
+			PosisionatedModel terrainPosisionated = InitializatePosisionatedModel(modelTerrain, -2000);
+
+			Scene previewScene = new Scene()
+			{
+				CameraPosition = new Vector { X = -5, Y = 4, Z = 0 },
+				ObjectivePosition = new Vector() { Y = 1 },
+				Fov = 30
+			};
+			previewScene.PosisionatedModels.Add(posisionatedModel);
+			previewScene.PosisionatedModels.Add(terrainPosisionated);
+
+			return previewScene;
+		}
+
+		private static PosisionatedModel InitializatePosisionatedModel(Model model, double y)
+		{
+			return new PosisionatedModel()
+			{
+				Model = model,
+				Position = new Vector() { Y = y }
+			};
+		}
+
+		private static Model InitializateModel(Figure figure, Material material)
+		{
+			return new Model()
+			{
+				Figure = figure,
+				Material = material,
+			};
+		}
+
+		private static Sphere InitializateSphere(double radius)
+		{
+			return new Sphere()
+			{
+				Radius = radius
+			};
 		}
 	}
 }
