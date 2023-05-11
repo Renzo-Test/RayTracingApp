@@ -32,5 +32,15 @@ namespace Test.ControllerTest
 
 			Assert.AreEqual(figureController, controller.FigureController);
 		}
+
+		[TestMethod]
+		public void SetMaterialController_OkTest()
+		{
+			MainController controller = new MainController();
+			MaterialController materialController = new MaterialController();
+			controller.MaterialController = materialController;
+
+			Assert.AreEqual(materialController, controller.MaterialController);
+		}
 	}
 }
