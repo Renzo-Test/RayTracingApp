@@ -27,7 +27,6 @@ namespace GUI
             _currentClient = currentClient;
 
             InitializeComponent();
-
         }
 
         public void PopulateItems()

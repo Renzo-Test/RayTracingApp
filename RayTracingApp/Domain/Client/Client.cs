@@ -17,6 +17,7 @@ namespace Domain
 		private const int MaxFov = 160;
 
 		private string _username;
+		
 		public String Username
 		{
 			get => _username;
@@ -35,6 +36,7 @@ namespace Domain
 		}
 
 		private string _password;
+		
 		public String Password
 		{
 			get => _password;
@@ -55,6 +57,7 @@ namespace Domain
 		public String RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
 
 		private int _defaultFov = 30;
+		
 		public int DefaultFov
 		{
 			get => _defaultFov;
@@ -73,7 +76,9 @@ namespace Domain
 			return Enumerable.Range(MinFov, MaxFov).Contains(fov);
 		}
 
+		
 		public Vector DefaultLookFrom { get; set; } = new Vector() { X = 0, Y = 2, Z = 0};
+		
 		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5};
 
 		private static void RunUsernameConditions(string username)
@@ -88,6 +93,7 @@ namespace Domain
 			ContainsNumber(password);
 			ContainsCapital(password);
 		}
+		
 		private static void LengthInRangeUsername(string username)
 		{
 			if (!(username.Length >= 3 && username.Length <= 20))

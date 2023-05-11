@@ -9,9 +9,9 @@ namespace Engine
         {
             StringReader imgReader = new StringReader(ppmImage);
 
-            string ppmVersion = GetVersion(imgReader);
+            _ = GetVersion(imgReader);
             var (width, height) = GetDimensions(imgReader);
-            int maxPixelValue  = GetMaxPixelValue(imgReader);
+            _  = GetMaxPixelValue(imgReader);
 
             Bitmap image = new Bitmap(width, height);
 

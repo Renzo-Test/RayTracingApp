@@ -116,7 +116,7 @@ namespace GUI
                 Figure = _figureController.GetFigure(_currentClient.Username, cmbFigures.Text),
                 Name = txtInputName.Text,
                 showPreview = rbtnCreatePreview.Checked,
-		};
+		    };
         }
 
         private void picRectangleFieldSave_Click(object sender, EventArgs e)

@@ -20,7 +20,6 @@ namespace GUI
     {
         private SceneHome _sceneHome;
 
-        private MainController _mainController;
         private ModelController _modelController;
         private SceneController _sceneController;
 
@@ -32,22 +31,26 @@ namespace GUI
 
         public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient, RenderProperties renderProperties)
         {
+
+            InitializeControllers(mainController);
+            SetAtributes(scene, currentClient, renderProperties, sceneHome);
+            InitializeComponent();
+            SetSceneTextAtributes();
+        }
+
+        private void SetAtributes(Scene scene, Client currentClient, RenderProperties renderProperties, SceneHome sceneHome)
+        {
+            _scene = scene;
             _sceneHome = sceneHome;
-
-            _mainController = mainController;
-            _modelController = mainController.ModelController;
-            _sceneController = mainController.SceneController;
-
             _currentClient = currentClient;
             _posisionatedModels = scene.PosisionatedModels;
             _renderProperties = renderProperties;
+        }
 
-            InitializeComponent();
-
-            _scene = scene;
-            SetSceneTextAtributes();
-            txtSceneName.KeyPress += new KeyPressEventHandler(CheckNameChange);
-
+        private void InitializeControllers(MainController mainController)
+        {
+            _modelController = mainController.ModelController;
+            _sceneController = mainController.SceneController;
         }
 
         public void PopulateAvailableItems()
@@ -94,20 +97,6 @@ namespace GUI
             picIconWarning.Visible = true;
         }
 
-        private void picRender_Click(object sender, EventArgs e)
-        {
-            Render();
-        }
-		private void lblRender_Click(object sender, EventArgs e)
-		{
-			Render();
-		}
-
-		private void pictureBox1_Click(object sender, EventArgs e)
-		{
-			Render();
-		}
-
 		private void Render()
         {
             int fov;
@@ -134,14 +123,19 @@ namespace GUI
                 return;
             }
 
-            pbrRender.Visible = true;
-            lblImageOutdated.Visible = false;
-            picIconWarning.Visible = false;
+            UpdateRenderingUI();
 
             Thread RenderingThread = new Thread(new ThreadStart(RenderImage));
             RenderingThread.Start();
 
             _sceneController.UpdateLastRenderDate(_scene);
+        }
+
+        private void UpdateRenderingUI()
+        {
+            pbrRender.Visible = true;
+            lblImageOutdated.Visible = false;
+            picIconWarning.Visible = false;
         }
 
         private void RenderImage()
@@ -184,15 +178,20 @@ namespace GUI
         {
             try
             {
-                _scene.Fov = fov;
-                _scene.CameraPosition = lookFrom;
-                _scene.ObjectivePosition = lookAt;
-                _scene.PosisionatedModels = _posisionatedModels;
+                setAtributesToRender(fov, lookFrom, lookAt);
             }
-            catch(InvalidSceneInputException ex)
+            catch (InvalidSceneInputException ex)
             {
                 throw new InvalidSceneInputException(ex.Message);
             }
+        }
+
+        private void setAtributesToRender(int fov, Vector lookFrom, Vector lookAt)
+        {
+            _scene.Fov = fov;
+            _scene.CameraPosition = lookFrom;
+            _scene.ObjectivePosition = lookAt;
+            _scene.PosisionatedModels = _posisionatedModels;
         }
 
         private void picIconBack_Click(object sender, EventArgs e)
@@ -248,25 +247,52 @@ namespace GUI
             txtFov.Text = $"{fov}";
             
             lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
+            txtSceneName.KeyPress += new KeyPressEventHandler(CheckNameChange);
 
         }
+
         private void CheckNameChange(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            if (EnterWasPressed(e))
             {
                 try
                 {
                     _sceneController.UpdateSceneName(_scene, _currentClient.Username, txtSceneName.Text);
                 }
-                catch(InvalidSceneInputException ex)
+                catch (InvalidSceneInputException ex)
                 {
                     MessageBox.Show(ex.Message);
                     return;
                 }
-                ActiveControl = txtLookFrom;
 
+                LooseFocus();
                 e.Handled = true;
             }
         }
-	}
+
+        private void LooseFocus()
+        {
+            ActiveControl = txtLookFrom;
+        }
+
+        private static bool EnterWasPressed(KeyPressEventArgs e)
+        {
+            return e.KeyChar == Convert.ToChar(Keys.Enter);
+        }
+
+        private void picRender_Click(object sender, EventArgs e)
+        {
+            Render();
+        }
+        private void lblRender_Click(object sender, EventArgs e)
+        {
+            Render();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Render();
+        }
+
+    }
 }
