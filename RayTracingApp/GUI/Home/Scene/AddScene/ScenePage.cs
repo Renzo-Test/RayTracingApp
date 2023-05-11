@@ -98,7 +98,6 @@ namespace GUI
         {
             Render();
         }
-
 		private void lblRender_Click(object sender, EventArgs e)
 		{
 			Render();
