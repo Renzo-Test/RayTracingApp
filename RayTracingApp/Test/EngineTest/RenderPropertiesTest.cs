@@ -131,5 +131,13 @@ namespace Test.EngineTest
 		{
 			Assert.AreEqual(50, _properties.MaxDepth);
 		}
+
+		[TestMethod]
+		public void GetPreCalculatedYResolution_OkTest()
+		{
+			int resY = _properties.PreCalculateYResolution(300);
+
+			Assert.AreEqual(200, resY);
+		}
 	}
 }
