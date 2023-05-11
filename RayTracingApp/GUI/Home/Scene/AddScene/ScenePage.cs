@@ -70,6 +70,11 @@ namespace GUI
                 flyModels.Controls.Add(item);
             }
 
+            if(_scene.Preview is object)
+            {
+				picScene.Image = _scene.Preview;
+			}
+
         }
 
         public void PopulateUsedItems()
@@ -127,6 +132,8 @@ namespace GUI
 
             Scanner scanner = new Scanner();
             Bitmap img = scanner.ScanImage(image);
+
+            _scene.Preview = img;
 
             picScene.Image = img;
 

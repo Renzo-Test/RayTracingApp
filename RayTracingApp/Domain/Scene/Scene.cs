@@ -1,6 +1,7 @@
 ﻿using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -26,6 +27,7 @@ namespace Domain
 		public List<PosisionatedModel> PosisionatedModels;
 		private static int _createdSceneCounter = 0;
 		private int _sceneNumber;
+		public Bitmap Preview;
 
 		public Scene() 
 		{
@@ -42,10 +44,6 @@ namespace Domain
 			ObjectivePosition = lookAt;
 			PosisionatedModels = new List<PosisionatedModel>();
 		}
-
-        public Scene()
-        {
-        }
 
         public string Owner
 		{

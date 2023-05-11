@@ -28,7 +28,11 @@ namespace GUI
 
             InitializeComponent();
 
-            lblSceneName.Text = scene.Name;
+            lblSceneName.Text = _scene.Name;
+            if(_scene.Preview is object)
+            {
+                picIconScene.Image = _scene.Preview;
+            }
         }
 
         private void picIconX_Click(object sender, EventArgs e)
