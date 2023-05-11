@@ -33,18 +33,13 @@ namespace Engine
 				ProgressBar = progressBar,
 			};
 
-			_pixels = new List<List<Vector>>();
 			_printer = new Printer();
 
 			InitializateCamera(Scene, Properties);
 
 			_progress.ExpectedLines = (Properties.ResolutionY * Properties.ResolutionX * Properties.SamplesPerPixel) + Properties.ResolutionY;
 
-
-			for (int i = 0; i < Properties.ResolutionY; i++)
-			{
-				_pixels.Add(new List<Vector>());
-			}
+			InitializatePixels(_pixels);
 
 			int row = Properties.ResolutionY - 1;
 			Parallel.For(0, row + 1, index =>
@@ -80,6 +75,15 @@ namespace Engine
 
 			});
 			return _printer.Save(_pixels, Properties, ref _progress);
+		}
+
+		private void InitializatePixels(List<List<Vector>> pixels)
+		{
+			pixels = new List<List<Vector>>();
+			for (int i = 0; i < Properties.ResolutionY; i++)
+			{
+				pixels.Add(new List<Vector>());
+			}
 		}
 
 		private void InitializateCamera(Scene scene, RenderProperties properties)
