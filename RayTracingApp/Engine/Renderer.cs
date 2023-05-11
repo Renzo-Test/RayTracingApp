@@ -48,7 +48,7 @@ namespace Engine
 					Antialiasing(derivatedIndex, column, ref vector);
 
 					vector = vector.Divide(Properties.SamplesPerPixel);
-					SavePixel(derivatedIndex, column, vector, Properties.ResolutionY, _pixels);
+					SavePixel(derivatedIndex, column, vector);
 				}
 
 				_progress.UpdateProgressBar();
@@ -172,14 +172,14 @@ namespace Engine
 			return properties;
 		}
 
-		private void SavePixel(int row, int column, Vector pixelRGB, int resolutionY, List<List<Vector>> pixels)
+		private void SavePixel(int row, int column, Vector pixelRGB)
 		{
 			int posX = column;
-			int posY = resolutionY - row - 1;
+			int posY = Properties.ResolutionY - row - 1;
 
-			if (posY < resolutionY)
+			if (posY < Properties.ResolutionY)
 			{
-				pixels[posY].Add(pixelRGB);
+				_pixels[posY].Add(pixelRGB);
 			}
 			else
 			{
