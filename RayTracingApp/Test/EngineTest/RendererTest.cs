@@ -25,9 +25,9 @@ namespace Test.EngineTest
 			};
 			string render = renderer.Render(scene, properties, null);
 
-			int propertiesChars = 11;
-			int pixelsChars = 12 * (properties.ResolutionX * properties.ResolutionY);
-			Assert.AreEqual(propertiesChars + pixelsChars, render.Length);
+			int propertiesLines = 3;
+			int pixelsLines = (properties.ResolutionX * properties.ResolutionY) + 1;
+			Assert.AreEqual(propertiesLines + pixelsLines, CountLines(render));
 		}
 
 		[TestMethod]
@@ -44,6 +44,50 @@ namespace Test.EngineTest
 			int propertiesChars = 15;
 			int pixelsChars = 12 * (properties.ResolutionX * properties.ResolutionY);
 			Assert.AreEqual(propertiesChars + pixelsChars, render.Length);
+		}
+
+		[TestMethod]
+		public void RenderModelPreview_OkTest()
+		{
+			Renderer renderer = new Renderer();
+			Domain.Color modelColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
+			Model modelToPreview = new Model()
+			{
+				Figure = new Sphere { Radius = 5 },
+				Material = new Material() { Color = modelColor, Type = MaterialEnum.LambertianMaterial },
+			};
+
+			string render = renderer.RenderModelPreview(modelToPreview);
+
+			int propertiesLines = 3;
+			int pixelsLines = (100 * 100) + 1;
+			Assert.AreEqual(propertiesLines + pixelsLines, CountLines(render));
+		}
+
+		private static int CountLines(string str)
+		{
+			int lines = 1;
+			int index = 0;
+			while (true)
+			{
+				index = str.IndexOf('\n', index);
+				if (index < 0)
+					break;
+				lines++;
+				index++;
+			}
+			return lines;
+		}
+		static void Main()
+		{
+			string str = "Mumbai Indians\nDelhi Capitals\nRajsthan Royals";
+
+			int lines = 0;
+
+			Console.WriteLine("Lines:");
+			Console.WriteLine(str);
+			lines = CountLines(str);
+			Console.WriteLine("Total lines in a string: " + lines);
 		}
 	}
 }

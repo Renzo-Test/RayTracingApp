@@ -16,8 +16,8 @@ namespace Engine
 {
 	public class Renderer
 	{
-		public Scene Scene;
-		public RenderProperties Properties;
+		private Scene _scene;
+		private RenderProperties _properties;
 
 		private Printer _printer;
 		private List<List<Vector>> _pixels;
@@ -28,15 +28,15 @@ namespace Engine
 
 		public string Render(Scene scene, RenderProperties properties, ProgressBar progressBar)
 		{
-			Scene = scene;
-			Properties = properties;
+			_scene = scene;
+			_properties = properties;
 			InitializateRender(progressBar);
 
-			int row = Properties.ResolutionY - 1;
+			int row = _properties.ResolutionY - 1;
 			Parallel.For(0, row + 1, index =>
 			{
 				int derivatedIndex = row - index;
-				for (int column = 0; column < Properties.ResolutionX; column++)
+				for (int column = 0; column < _properties.ResolutionX; column++)
 				{
 					Vector vector = new Vector()
 					{
@@ -47,7 +47,7 @@ namespace Engine
 
 					Antialiasing(derivatedIndex, column, ref vector);
 
-					vector = vector.Divide(Properties.SamplesPerPixel);
+					vector = vector.Divide(_properties.SamplesPerPixel);
 					SavePixel(derivatedIndex, column, vector);
 				}
 
@@ -56,7 +56,7 @@ namespace Engine
 
 			});
 
-			return _printer.Save(_pixels, Properties, ref _progress);
+			return _printer.Save(_pixels, _properties, ref _progress);
 		}
 
 		public string RenderModelPreview(Model model)
@@ -75,9 +75,9 @@ namespace Engine
 			{
 				ProgressBar = progressBar,
 			};
-			_progress.ExpectedLines = (Properties.ResolutionY * Properties.ResolutionX * Properties.SamplesPerPixel) + Properties.ResolutionY;
+			_progress.ExpectedLines = (_properties.ResolutionY * _properties.ResolutionX * _properties.SamplesPerPixel) + _properties.ResolutionY;
 			_printer = new Printer();
-			InitializateCamera(Scene, Properties);
+			InitializateCamera(_scene, _properties);
 			InitializatePixels(ref _pixels);
 		}
 
@@ -94,7 +94,7 @@ namespace Engine
 		private void InitializatePixels(ref List<List<Vector>> pixels)
 		{
 			pixels = new List<List<Vector>>();
-			for (int i = 0; i < Properties.ResolutionY; i++)
+			for (int i = 0; i < _properties.ResolutionY; i++)
 			{
 				pixels.Add(new List<Vector>());
 			}
@@ -102,16 +102,16 @@ namespace Engine
 
 		private void Antialiasing(int derivatedIndex, int column, ref Vector vector)
 		{
-			for (int sample = 0; sample < Properties.SamplesPerPixel; sample++)
+			for (int sample = 0; sample < _properties.SamplesPerPixel; sample++)
 			{
 				double fstRnd = random.Value.NextDouble();
 				double sndRnd = random.Value.NextDouble();
 
-				double u = (column + fstRnd) / Properties.ResolutionX;
-				double v = (derivatedIndex + sndRnd) / Properties.ResolutionY;
+				double u = (column + fstRnd) / _properties.ResolutionX;
+				double v = (derivatedIndex + sndRnd) / _properties.ResolutionY;
 
 				var ray = _camera.GetRay(u, v);
-				vector.AddFrom(ShootRay(ray, Properties.MaxDepth));
+				vector.AddFrom(ShootRay(ray, _properties.MaxDepth));
 				_progress.Count(); ;
 			}
 		}
@@ -121,7 +121,7 @@ namespace Engine
 			HitRecord hitRecord = null;
 			double tMax = 3.4 * Math.Pow(10, 38);
 
-			foreach (PosisionatedModel posisionatedModel in Scene.PosisionatedModels)
+			foreach (PosisionatedModel posisionatedModel in _scene.PosisionatedModels)
 			{
 				HitRecord hit = IsSphereHit(posisionatedModel, ray, 0.001, tMax);
 				if (hit is object)
@@ -250,9 +250,9 @@ namespace Engine
 		private void SavePixel(int row, int column, Vector pixelRGB)
 		{
 			int posX = column;
-			int posY = Properties.ResolutionY - row - 1;
+			int posY = _properties.ResolutionY - row - 1;
 
-			if (posY < Properties.ResolutionY)
+			if (posY < _properties.ResolutionY)
 			{
 				_pixels[posY].Add(pixelRGB);
 			}
