@@ -28,18 +28,7 @@ namespace Engine
 
 		public string Render(ProgressBar progressBar)
 		{
-			_progress = new Progress()
-			{
-				ProgressBar = progressBar,
-			};
-
-			_printer = new Printer();
-
-			InitializateCamera(Scene, Properties);
-
-			_progress.ExpectedLines = (Properties.ResolutionY * Properties.ResolutionX * Properties.SamplesPerPixel) + Properties.ResolutionY;
-
-			InitializatePixels(ref _pixels);
+			InitializateRender(progressBar);
 
 			int row = Properties.ResolutionY - 1;
 			Parallel.For(0, row + 1, index =>
@@ -65,6 +54,18 @@ namespace Engine
 
 			});
 			return _printer.Save(_pixels, Properties, ref _progress);
+		}
+
+		private void InitializateRender(ProgressBar progressBar)
+		{
+			_progress = new Progress()
+			{
+				ProgressBar = progressBar,
+			};
+			_progress.ExpectedLines = (Properties.ResolutionY * Properties.ResolutionX * Properties.SamplesPerPixel) + Properties.ResolutionY;
+			_printer = new Printer();
+			InitializateCamera(Scene, Properties);
+			InitializatePixels(ref _pixels);
 		}
 
 		private void Antialiasing(int derivatedIndex, int column, ref Vector vector)
