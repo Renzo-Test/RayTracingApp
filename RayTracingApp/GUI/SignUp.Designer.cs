@@ -95,7 +95,7 @@
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(136, 20);
             this.txtConfirmPassword.TabIndex = 2;
-            this.txtConfirmPassword.Text = "Confirm Password";
+            this.txtConfirmPassword.Text = "Password";
             this.txtConfirmPassword.Enter += new System.EventHandler(this.txtConfirmPassword_Enter);
             this.txtConfirmPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtConfirmPassword_KeyUp);
             this.txtConfirmPassword.Leave += new System.EventHandler(this.txtConfirmPassword_Leave);
