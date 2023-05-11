@@ -89,5 +89,35 @@ namespace GUI
             RenderProperties.SamplesPerPixel = samplesPerPixel;
             RenderProperties.MaxDepth = maxDepth;
         }
+
+        private void txtResX_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                int resX = int.Parse(txtResX.Text);
+                int newYResolution = RenderProperties.PreCalculateYResolution(resX);
+
+                txtResY.Text = $"{newYResolution}";
+            }
+            catch (FormatException)
+            {
+                return;
+            }
+        }
+
+        private void txtResY_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                int resY = int.Parse(txtResY.Text);
+                int newXResolution = RenderProperties.PreCalculateXResolution(resY);
+
+                txtResY.Text = $"{newXResolution}";
+            }
+            catch (FormatException)
+            {
+                return;
+            }
+        }
     }
 }

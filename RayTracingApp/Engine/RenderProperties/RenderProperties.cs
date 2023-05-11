@@ -7,6 +7,7 @@ namespace Engine
 		private const string ValueLowerThanZero = "This value must be greater than zero";
 
 		private int _resolutionX = 300;
+
 		public int ResolutionX
 		{
 			get => _resolutionX;
