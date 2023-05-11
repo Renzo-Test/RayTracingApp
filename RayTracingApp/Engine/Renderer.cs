@@ -16,8 +16,8 @@ namespace Engine
 {
 	public class Renderer
 	{
-		public RenderProperties Properties;
 		public Scene Scene;
+		public RenderProperties Properties;
 
 		private Printer _printer;
 		private List<List<Vector>> _pixels;
@@ -28,19 +28,15 @@ namespace Engine
 
 		public string Render(ProgressBar progressBar)
 		{
-			_progress = new Progress() 
-			{ 
+			_progress = new Progress()
+			{
 				ProgressBar = progressBar,
 			};
+
 			_pixels = new List<List<Vector>>();
 			_printer = new Printer();
-				
-			Vector LookFrom = Scene.CameraPosition;
-			Vector LookAt = Scene.ObjectivePosition;
-			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
-			int FieldOfView = Scene.Fov;
-			double AspectRatio = Properties.AspectRatio;
-			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
+
+			InitializateCamera(Scene, Properties);
 
 			_progress.ExpectedLines = (Properties.ResolutionY * Properties.ResolutionX * Properties.SamplesPerPixel) + Properties.ResolutionY;
 
@@ -81,9 +77,19 @@ namespace Engine
 
 				_progress.UpdateProgressBar();
 				_progress.WriteCurrentPercentage();
-			
+
 			});
 			return _printer.Save(_pixels, Properties, ref _progress);
+		}
+
+		private void InitializateCamera(Scene scene, RenderProperties properties)
+		{
+			Vector LookFrom = scene.CameraPosition;
+			Vector LookAt = scene.ObjectivePosition;
+			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
+			int FieldOfView = scene.Fov;
+			double AspectRatio = properties.AspectRatio;
+			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
 		}
 
 		public string RenderModelPreview(Model model)
