@@ -244,10 +244,6 @@ namespace Engine
 			{
 				_pixels[posY].Add(pixelRGB);
 			}
-			else
-			{
-				throw new Exception("Pixel Overflow Error");
-			}
 		}
 
 		private RenderProperties PreviewRenderProperties()
