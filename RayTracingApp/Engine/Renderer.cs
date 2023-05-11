@@ -1,12 +1,15 @@
 ﻿using Domain;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Xml.Schema;
 
 namespace Engine
 {
@@ -65,26 +68,137 @@ namespace Engine
 						double v = (derivatedIndex + sndRnd) / Properties.ResolutionY;
 
 						var ray = _camera.GetRay(u, v);
-						vector.AddFrom(ShootRay(ray, Properties.MaxDepth));
+						vector.AddFrom(ShootRay(ray, Properties.MaxDepth, Scene.PosisionatedModels));
 						_progress.Count(); ;
 					}
 
 					vector = vector.Divide(Properties.SamplesPerPixel);
-					SavePixel(derivatedIndex, column, vector);
+					SavePixel(derivatedIndex, column, vector, Properties.ResolutionY, _pixels);
 				}
 				_progress.WriteCurrentPercentage();
 			});
 			return _printer.Save(_pixels, Properties, ref _progress);
 		}
 
-		private void SavePixel(int row, int column, Vector pixelRGB)
+		public string RenderModelPreview(Model model)
+		{
+			_progress = new Progress();
+			Printer printer = new Printer();
+			RenderProperties properties = PreviewRenderProperties();
+			Scene previewScene = CreatePreviewScene(model);
+
+			Vector LookFrom = previewScene.CameraPosition;
+			Vector LookAt = previewScene.ObjectivePosition;
+			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
+			int FieldOfView = previewScene.Fov;
+			double AspectRatio = properties.AspectRatio;
+			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
+
+			List<List<Vector>> previewPixels = new List<List<Vector>>(); 
+			for (int i = 0; i < properties.ResolutionY; i++)
+			{
+				previewPixels.Add(new List<Vector>());
+			}
+
+			int row = properties.ResolutionY - 1;
+			Parallel.For(0, row + 1, index =>
+			{
+				int derivatedIndex = row - index;
+				for (int column = 0; column < properties.ResolutionX; column++)
+				{
+					Vector vector = new Vector()
+					{
+						X = 0,
+						Y = 0,
+						Z = 0
+					};
+
+					for (int sample = 0; sample < properties.SamplesPerPixel; sample++)
+					{
+						double fstRnd = random.Value.NextDouble();
+						double sndRnd = random.Value.NextDouble();
+
+						double u = (column + fstRnd) / properties.ResolutionX;
+						double v = (derivatedIndex + sndRnd) / properties.ResolutionY;
+
+						var ray = _camera.GetRay(u, v);
+						vector.AddFrom(ShootRay(ray, properties.MaxDepth, previewScene.PosisionatedModels));
+					}
+
+					vector = vector.Divide(properties.SamplesPerPixel);
+					SavePixel(derivatedIndex, column, vector, properties.ResolutionY, previewPixels);
+				}
+			});
+
+			string preview = printer.Save(previewPixels, properties, ref _progress);
+			model.Preview = preview;
+			return preview;
+		}
+
+		private Scene CreatePreviewScene(Model model)
+		{
+			Sphere figurePreview = new Sphere()
+			{
+				Radius = 1
+			};
+			Model modelToPreview = new Model()
+			{
+				Figure = figurePreview,
+				Material = model.Material,
+			};
+			PosisionatedModel posisionatedModel = new PosisionatedModel()
+			{
+				Model = modelToPreview,
+				Position = new Vector() { Y = 1}
+			};
+
+			Sphere terrain = new Sphere()
+			{
+				Radius = 2000
+			};
+			Domain.Color terrainColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
+			Model modelTerrain = new Model()
+			{
+				Figure = terrain,
+				Material = new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial }
+			};
+			PosisionatedModel terrainPosisionated = new PosisionatedModel()
+			{
+				Model = modelTerrain,
+				Position = new Vector() { Y = -2000},
+			};
+			Scene previewScene = new Scene()
+			{
+				CameraPosition = new Vector { X = -5, Y = 4, Z = 0 },
+				ObjectivePosition = new Vector() { Y = 1},
+				Fov = 30
+			};
+			previewScene.PosisionatedModels.Add(posisionatedModel);
+			previewScene.PosisionatedModels.Add(terrainPosisionated);
+
+			return previewScene;
+		}
+
+		private RenderProperties PreviewRenderProperties()
+		{
+			RenderProperties properties = new RenderProperties()
+			{
+				AspectRatio = 1,
+				ResolutionX = 100,
+				SamplesPerPixel = 20,
+			};
+
+			return properties;
+		}
+
+		private void SavePixel(int row, int column, Vector pixelRGB, int resolutionY, List<List<Vector>> pixels)
 		{
 			int posX = column;
-			int posY = Properties.ResolutionY - row - 1;
+			int posY = resolutionY - row - 1;
 
-			if (posY < Properties.ResolutionY)
+			if (posY < resolutionY)
 			{
-				_pixels[posY].Add(pixelRGB);
+				pixels[posY].Add(pixelRGB);
 			}
 			else
 			{
@@ -92,12 +206,12 @@ namespace Engine
 			}
 		}
 
-		private Vector ShootRay(Ray ray, int depth)
+		private Vector ShootRay(Ray ray, int depth, List<PosisionatedModel> posisionatedModels)
 		{
 			HitRecord hitRecord = null;
 			double tMax = 3.4 * Math.Pow(10, 38);
 
-			foreach (PosisionatedModel posisionatedModel in Scene.PosisionatedModels)
+			foreach (PosisionatedModel posisionatedModel in posisionatedModels)
 			{
 				HitRecord hit = IsSphereHit(posisionatedModel, ray, 0.001, tMax);
 				if (hit is object)
@@ -120,7 +234,7 @@ namespace Engine
 						Direction = newVector
 					};
 
-					Vector color = ShootRay(newRay, depth - 1);
+					Vector color = ShootRay(newRay, depth - 1, posisionatedModels);
 					Vector attenuation = hitRecord.Attenuation;
 
 					return new Vector()

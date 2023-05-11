@@ -29,7 +29,6 @@ namespace GUI
         }
         public void PopulateItems()
         {
-
             List<Model> models = _modelController.ListModels(_currentClient.Username);
 
             flyModelList.Controls.Clear();
@@ -39,7 +38,6 @@ namespace GUI
                 ModelListItem item = new ModelListItem(this, _modelController, model);
                 flyModelList.Controls.Add(item);
             }
-
         }
 
         private void picAddModel_Click(object sender, EventArgs e)
