@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Engine;
+using Engine.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -64,6 +65,24 @@ namespace Test.EngineTest
 			Assert.AreEqual(propertiesLines + pixelsLines, CountLines(render));
 		}
 
+		[TestMethod]
+		[ExpectedException(typeof(InvalidRenderPropertiesInputException))]
+		public void RenderMaxDepth0_OkTest()
+		{
+			Renderer renderer = new Renderer();
+			Scene scene = new Scene();
+			RenderProperties properties = new RenderProperties()
+			{
+				ResolutionX = 300,
+				MaxDepth = -1,
+			};
+			string render = renderer.Render(scene, properties, null);
+
+			int propertiesChars = 15;
+			int pixelsChars = 12 * (properties.ResolutionX * properties.ResolutionY);
+			Assert.AreEqual(propertiesChars + pixelsChars, render.Length);
+		}
+
 		private static int CountLines(string str)
 		{
 			int lines = 1;
@@ -78,16 +97,6 @@ namespace Test.EngineTest
 			}
 			return lines;
 		}
-		static void Main()
-		{
-			string str = "Mumbai Indians\nDelhi Capitals\nRajsthan Royals";
 
-			int lines = 0;
-
-			Console.WriteLine("Lines:");
-			Console.WriteLine(str);
-			lines = CountLines(str);
-			Console.WriteLine("Total lines in a string: " + lines);
-		}
 	}
 }

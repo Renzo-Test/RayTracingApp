@@ -56,7 +56,7 @@
     <Compile Include="ControllerTest\MaterialControllerTest.cs" />
     <Compile Include="ControllerTest\ModelControllerTest.cs" />
     <Compile Include="ControllerTest\SceneControllerTest.cs" />
-    <Compile Include="ControllerTest\UnitTest1.cs" />
+    <Compile Include="ControllerTest\MainControllerTest.cs" />
     <Compile Include="EngineTest\ScannerTest.cs" />
     <Compile Include="EngineTest\ProgressTest.cs" />
     <Compile Include="EngineTest\RayTest.cs" />

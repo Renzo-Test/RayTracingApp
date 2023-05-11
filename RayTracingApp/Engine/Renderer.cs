@@ -133,37 +133,25 @@ namespace Engine
 
 			if (hitRecord is object)
 			{
-				if (depth > 0)
+
+				Vector newVectorPoint = hitRecord.Intersection.Add(hitRecord.Normal).Add(GetRandomInUnitSphere());
+				Vector newVector = newVectorPoint.Substract(hitRecord.Intersection);
+
+				Ray newRay = new Ray()
 				{
-					Vector newVectorPoint = hitRecord.Intersection.Add(hitRecord.Normal).Add(GetRandomInUnitSphere());
-					Vector newVector = newVectorPoint.Substract(hitRecord.Intersection);
+					Origin = hitRecord.Intersection,
+					Direction = newVector
+				};
 
-					Ray newRay = new Ray()
-					{
-						Origin = hitRecord.Intersection,
-						Direction = newVector
-					};
+				Vector color = ShootRay(newRay, depth - 1);
+				Vector attenuation = hitRecord.Attenuation;
 
-					Vector color = ShootRay(newRay, depth - 1);
-					Vector attenuation = hitRecord.Attenuation;
-
-					return new Vector()
-					{
-						X = color.X * attenuation.X,
-						Y = color.Y * attenuation.Y,
-						Z = color.Z * attenuation.Z
-					};
-				}
-				else
+				return new Vector()
 				{
-					Vector vector = new Vector()
-					{
-						X = 0,
-						Y = 0,
-						Z = 0
-					};
-					return vector;
-				}
+					X = color.X * attenuation.X,
+					Y = color.Y * attenuation.Y,
+					Z = color.Z * attenuation.Z
+				};
 
 			}
 			else
