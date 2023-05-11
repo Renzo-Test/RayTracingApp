@@ -22,5 +22,15 @@ namespace Test.ControllerTest
 
 			Assert.AreEqual(clientController, controller.ClientController);
 		}
+
+		[TestMethod]
+		public void SetFigureController_OkTest()
+		{
+			MainController controller = new MainController();
+			FigureController figureController = new FigureController();
+			controller.ClientController = figureController;
+
+			Assert.AreEqual(figureController, controller.FigureController);
+		}
 	}
 }
