@@ -44,8 +44,21 @@ namespace GUI
         private void SceneListItem_Click(object sender, EventArgs e)
         {
             _sceneHome.GoToAddScene(_scene);
-
         }
 
-    }
+		private void picIconScene_Click(object sender, EventArgs e)
+		{
+			_sceneHome.GoToAddScene(_scene);
+		}
+
+		private void lblSceneName_Click(object sender, EventArgs e)
+		{
+			_sceneHome.GoToAddScene(_scene);
+		}
+
+		private void lblLastModified_Click(object sender, EventArgs e)
+		{
+			_sceneHome.GoToAddScene(_scene);
+		}
+	}
 }

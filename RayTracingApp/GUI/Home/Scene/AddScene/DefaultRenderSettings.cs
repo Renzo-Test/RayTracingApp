@@ -38,40 +38,48 @@ namespace GUI
         }
 
         private void picRectangleFieldSave_Click(object sender, EventArgs e)
-        {
-            int resolutionX;
-            int resolutionY;
-            int samplesPerPixel;
-            int maxDepth;
+		{
+			Save();
+		}
 
-            try
-            {
-                resolutionX = int.Parse(txtResX.Text);
-                resolutionY = int.Parse(txtResY.Text);
-                samplesPerPixel = int.Parse(txtSamplesPerPixel.Text);
-                maxDepth = int.Parse(txtMaxDepth.Text);
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Only integer values accepted");
-                return;
-            }
+		private void lblSave_Click(object sender, EventArgs e)
+		{
+			Save();
+		}
 
-            try
-            {
-                RenderProperties.ResolutionX = resolutionX;
-                RenderProperties.ResolutionY = resolutionY;
-                RenderProperties.SamplesPerPixel = samplesPerPixel;
-                RenderProperties.MaxDepth = maxDepth;
+		private void Save()
+		{
+			int resolutionX;
+			int resolutionY;
+			int samplesPerPixel;
+			int maxDepth;
 
-                _sceneHome.GoToSceneList();
-            }
-            catch (InvalidRenderPropertiesInputException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+			try
+			{
+				resolutionX = int.Parse(txtResX.Text);
+				resolutionY = int.Parse(txtResY.Text);
+				samplesPerPixel = int.Parse(txtSamplesPerPixel.Text);
+				maxDepth = int.Parse(txtMaxDepth.Text);
+			}
+			catch (FormatException)
+			{
+				MessageBox.Show("Only integer values accepted");
+				return;
+			}
 
-        }
+			try
+			{
+				RenderProperties.ResolutionX = resolutionX;
+				RenderProperties.ResolutionY = resolutionY;
+				RenderProperties.SamplesPerPixel = samplesPerPixel;
+				RenderProperties.MaxDepth = maxDepth;
 
-    }
+				_sceneHome.GoToSceneList();
+			}
+			catch (InvalidRenderPropertiesInputException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+	}
 }

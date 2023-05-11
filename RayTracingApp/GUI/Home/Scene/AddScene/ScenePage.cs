@@ -98,8 +98,17 @@ namespace GUI
         {
             Render();
         }
+		private void lblRender_Click(object sender, EventArgs e)
+		{
+			Render();
+		}
 
-        private void Render()
+		private void pictureBox1_Click(object sender, EventArgs e)
+		{
+			Render();
+		}
+
+		private void Render()
         {
             int fov;
             Vector lookFrom;
@@ -263,5 +272,5 @@ namespace GUI
                 e.Handled = true;
             }
         }
-    }
+	}
 }
