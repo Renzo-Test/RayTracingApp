@@ -73,6 +73,5 @@ namespace GUI
             _figureHome.GoToAddFigure();
         }
 
-
     }
 }
