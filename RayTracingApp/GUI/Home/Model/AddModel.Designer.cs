@@ -85,6 +85,7 @@
 			// 
 			this.lblSave.AutoSize = true;
 			this.lblSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+			this.lblSave.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblSave.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblSave.ForeColor = System.Drawing.Color.White;
 			this.lblSave.Location = new System.Drawing.Point(510, 442);
@@ -98,6 +99,7 @@
 			// 
 			this.lblCancel.AutoSize = true;
 			this.lblCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(158)))), ((int)(((byte)(140)))));
+			this.lblCancel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblCancel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblCancel.ForeColor = System.Drawing.Color.White;
 			this.lblCancel.Location = new System.Drawing.Point(270, 442);
@@ -185,6 +187,7 @@
 			// 
 			this.lblFiguresList.AutoSize = true;
 			this.lblFiguresList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+			this.lblFiguresList.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblFiguresList.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblFiguresList.ForeColor = System.Drawing.SystemColors.WindowFrame;
 			this.lblFiguresList.Location = new System.Drawing.Point(270, 246);
@@ -197,6 +200,7 @@
 			// picDarkRectangleFigureList
 			// 
 			this.picDarkRectangleFigureList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+			this.picDarkRectangleFigureList.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.picDarkRectangleFigureList.Image = global::GUI.Properties.Resources.darkFieldRectangle;
 			this.picDarkRectangleFigureList.Location = new System.Drawing.Point(256, 235);
 			this.picDarkRectangleFigureList.Name = "picDarkRectangleFigureList";
@@ -236,6 +240,7 @@
 			// 
 			this.lblMaterialsList.AutoSize = true;
 			this.lblMaterialsList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+			this.lblMaterialsList.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.lblMaterialsList.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblMaterialsList.ForeColor = System.Drawing.SystemColors.WindowFrame;
 			this.lblMaterialsList.Location = new System.Drawing.Point(270, 315);
@@ -248,6 +253,7 @@
 			// picDarkRectangleMaterialList
 			// 
 			this.picDarkRectangleMaterialList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+			this.picDarkRectangleMaterialList.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.picDarkRectangleMaterialList.Image = global::GUI.Properties.Resources.darkFieldRectangle;
 			this.picDarkRectangleMaterialList.Location = new System.Drawing.Point(256, 303);
 			this.picDarkRectangleMaterialList.Name = "picDarkRectangleMaterialList";

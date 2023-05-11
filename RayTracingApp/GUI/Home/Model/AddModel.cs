@@ -144,8 +144,9 @@ namespace GUI
         }
         private void lblCancel_Click(object sender, EventArgs e)
         {
-            RefreshPlaceholders();
-        }
+			_modelHome.GoToModelList();
+			RefreshPlaceholders();
+		}
 
         private void picDropDownFigures_Click(object sender, EventArgs e)
         {
