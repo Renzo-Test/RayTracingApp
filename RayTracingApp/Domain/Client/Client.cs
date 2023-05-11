@@ -13,6 +13,9 @@ namespace Domain
 		private const string NotInExpectedRangeUsernameMessage = "Username's length must be greater than 2 and smaller than 21";
 		private const string NotInExpectedRangePasswordMessage = "Password's length must be greater than 4 and smaller than 26";
 
+		private const int MinFov = 1;
+		private const int MaxFov = 160;
+
 		private string _username;
 		public String Username
 		{
@@ -48,8 +51,28 @@ namespace Domain
 				}
 			}
 		}
+		
 		public String RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
-		public int DefaultFov = 30;
+
+		private int _defaultFov = 30;
+		public int DefaultFov
+		{
+			get => _defaultFov;
+			set
+			{
+				if (!InRangeFov(value))
+				{
+					throw new NotInExpectedRangeClientException($"Scene's fov must be between {MinFov} and {MaxFov}");
+				}
+				_defaultFov = value;
+			}
+		}
+
+		private static bool InRangeFov(int fov)
+		{
+			return Enumerable.Range(MinFov, MaxFov).Contains(fov);
+		}
+
 		public Vector DefaultLookFrom { get; set; } = new Vector() { X = 0, Y = 2, Z = 0};
 		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5};
 
