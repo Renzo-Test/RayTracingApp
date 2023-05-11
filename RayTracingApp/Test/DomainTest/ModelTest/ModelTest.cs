@@ -64,5 +64,27 @@ namespace Test.ModelsTest
 			};
 			Assert.AreEqual(newMaterial, newModel.Material);
 		}
+
+		[TestMethod]
+		public void SetPreview_OkTst()
+		{
+			Model newModel = new Model()
+			{
+				Preview = "modelPreview"
+			};
+
+			Assert.AreEqual("modelPreview", newModel.Preview);
+		}
+
+		[TestMethod]
+		public void SetShowPreview_OkTst()
+		{
+			Model newModel = new Model()
+			{
+				showPreview = false
+			};
+
+			Assert.AreEqual(false, newModel.showPreview);
+		}
 	}
 }

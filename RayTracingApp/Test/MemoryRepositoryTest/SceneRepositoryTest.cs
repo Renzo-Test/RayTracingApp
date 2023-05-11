@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Controller;
+using MemoryRepository.Exceptions;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -145,6 +146,24 @@ namespace Test.MemoryRepositoryTest
 			};
 
 			_sceneRepository.AddScene(_scene);
+
+			_sceneRepository.RemoveScene(_scene);
+
+			List<Scene> iterableOwner1 = _sceneRepository.GetScenesByClient("OwnerName");
+			CollectionAssert.DoesNotContain(iterableOwner1, _scene);
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(NotFoundSceneException))]
+		public void DeleteScene_NonExistingScene_OkTest()
+		{
+			_sceneRepository = new SceneRepository();
+
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+			};
 
 			_sceneRepository.RemoveScene(_scene);
 
