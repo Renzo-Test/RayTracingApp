@@ -271,7 +271,6 @@
 			this.rbtnCreatePreview.TabIndex = 30;
 			this.rbtnCreatePreview.Text = "Create Preview on Save";
 			this.rbtnCreatePreview.UseVisualStyleBackColor = false;
-			this.rbtnCreatePreview.CheckedChanged += new System.EventHandler(this.rbtnCreatePreview_CheckedChanged);
 			// 
 			// AddModel
 			// 

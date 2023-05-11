@@ -28,11 +28,8 @@ namespace GUI
         
         private Client _currentClient;
 
-        public bool createPreview;
-
         public AddModel(ModelHome modelHome, MainController mainController, Client currentClient)
         {
-            createPreview = false;
             _modelHome = modelHome;
             _currentClient = currentClient;
 
@@ -116,7 +113,8 @@ namespace GUI
                 Material = _materialController.GetMaterial(_currentClient.Username, cmbMaterials.Text),
                 Figure = _figureController.GetFigure(_currentClient.Username, cmbFigures.Text),
                 Name = txtInputName.Text,
-            };
+                showPreview = rbtnCreatePreview.Checked,
+		};
         }
 
         private void picRectangleFieldSave_Click(object sender, EventArgs e)
@@ -179,10 +177,5 @@ namespace GUI
         {
             lblMaterialsList.Text = cmbMaterials.Text;
         }
-
-		private void rbtnCreatePreview_CheckedChanged(object sender, EventArgs e)
-		{
-            createPreview = !createPreview;
-		}
 	}
 }
