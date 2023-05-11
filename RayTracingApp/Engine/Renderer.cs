@@ -277,20 +277,15 @@ namespace Engine
 		private Scene CreatePreviewScene(Model model)
 		{
 			Sphere figurePreview = InitializateSphere(1);
-			Sphere terrain = InitializateSphere(2000);
 			Model modelToPreview = InitializateModel(figurePreview, model.Material);
-			Model modelTerrain = InitializateModel(terrain, new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial })
-			PosisionatedModel posisionatedModel = new PosisionatedModel()
-			{
-				Model = modelToPreview,
-				Position = new Vector() { Y = 1 }
-			};
+			PosisionatedModel posisionatedModel = InitializatePosisionatedModel(modelToPreview, 1);
+
+
+			Sphere terrain = InitializateSphere(2000);
 			Domain.Color terrainColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
-			PosisionatedModel terrainPosisionated = new PosisionatedModel()
-			{
-				Model = modelTerrain,
-				Position = new Vector() { Y = -2000 },
-			};
+			Model modelTerrain = InitializateModel(terrain, new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial });
+			PosisionatedModel terrainPosisionated = InitializatePosisionatedModel(modelTerrain, -2000);
+
 			Scene previewScene = new Scene()
 			{
 				CameraPosition = new Vector { X = -5, Y = 4, Z = 0 },
@@ -301,6 +296,15 @@ namespace Engine
 			previewScene.PosisionatedModels.Add(terrainPosisionated);
 
 			return previewScene;
+		}
+
+		private static PosisionatedModel InitializatePosisionatedModel(Model model, double y)
+		{
+			return new PosisionatedModel()
+			{
+				Model = model,
+				Position = new Vector() { Y = y }
+			};
 		}
 
 		private static Model InitializateModel(Figure figure, Material material)
