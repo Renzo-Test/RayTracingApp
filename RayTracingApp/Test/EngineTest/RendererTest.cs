@@ -37,11 +37,11 @@ namespace Test.EngineTest
 			Scene scene = new Scene();
 			RenderProperties properties = new RenderProperties()
 			{
-				ResolutionX = 100,
+				ResolutionX = 300,
 			};
 			string render = renderer.Render(scene, properties, null);
 
-			int propertiesChars = 11;
+			int propertiesChars = 15;
 			int pixelsChars = 12 * (properties.ResolutionX * properties.ResolutionY);
 			Assert.AreEqual(propertiesChars + pixelsChars, render.Length);
 		}
