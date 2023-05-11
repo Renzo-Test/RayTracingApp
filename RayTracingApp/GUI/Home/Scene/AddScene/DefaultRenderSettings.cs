@@ -16,7 +16,6 @@ namespace GUI
     public partial class DefaultRenderSettings : UserControl
     {
         private SceneHome _sceneHome;
-        private Scene _scene;
         public RenderProperties RenderProperties;
 
         public DefaultRenderSettings(SceneHome sceneHome)
@@ -55,31 +54,40 @@ namespace GUI
 			int maxDepth;
 
 			try
-			{
-				resolutionX = int.Parse(txtResX.Text);
-				resolutionY = int.Parse(txtResY.Text);
-				samplesPerPixel = int.Parse(txtSamplesPerPixel.Text);
-				maxDepth = int.Parse(txtMaxDepth.Text);
-			}
-			catch (FormatException)
+            {
+                ParseProperties();
+            }
+            catch (FormatException)
 			{
 				MessageBox.Show("Only integer values accepted");
 				return;
 			}
 
 			try
-			{
-				RenderProperties.ResolutionX = resolutionX;
-				RenderProperties.ResolutionY = resolutionY;
-				RenderProperties.SamplesPerPixel = samplesPerPixel;
-				RenderProperties.MaxDepth = maxDepth;
-
-				_sceneHome.GoToSceneList();
-			}
-			catch (InvalidRenderPropertiesInputException ex)
+            {
+                SetRenderProperties(resolutionX, resolutionY, samplesPerPixel, maxDepth);
+                _sceneHome.GoToSceneList();
+            }
+            catch (InvalidRenderPropertiesInputException ex)
 			{
 				MessageBox.Show(ex.Message);
 			}
-		}
-	}
+
+            void ParseProperties()
+            {
+                maxDepth = int.Parse(txtMaxDepth.Text);
+                resolutionX = int.Parse(txtResX.Text);
+                resolutionY = int.Parse(txtResY.Text);
+                samplesPerPixel = int.Parse(txtSamplesPerPixel.Text);
+            }
+        }
+
+        private void SetRenderProperties(int resolutionX, int resolutionY, int samplesPerPixel, int maxDepth)
+        {
+            RenderProperties.ResolutionX = resolutionX;
+            RenderProperties.ResolutionY = resolutionY;
+            RenderProperties.SamplesPerPixel = samplesPerPixel;
+            RenderProperties.MaxDepth = maxDepth;
+        }
+    }
 }

@@ -8,12 +8,16 @@ namespace Domain
 		private const string SpaceCharacterConstant = " ";
 		private const string NotAlphanumericMessage = "Model's name must not start or end with blank space";
 		private const string EmptyNameMessage = "Model's name must not be empty";
+
 		private String _owner;
 		private String _name;
 		private Figure _figure;
 		private Material _material;
+		
 		public string Preview { get; set; }
+		
 		public bool showPreview { get; set; }
+		
 		public String Owner
 		{
 			get => _owner;

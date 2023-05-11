@@ -61,6 +61,7 @@ namespace GUI
                 picIconSphere.Image = image;
                 picMaterialColor.Visible = false;
             }
+
             txtModelName.Text = model.Name;
             lblFigureName.Text = $"Figure: {FigureName}";
             lblMaterialName.Text = $"Material: {MaterialName}";
