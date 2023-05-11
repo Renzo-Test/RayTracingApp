@@ -18,7 +18,7 @@ namespace GUI
     {
         private const string UsernamePlaceHolder = "Username";
         private const string PasswordPlaceHolder = "Password";
-        private const string ConfirmPasswordPlaceholder = "Confirm Password";
+        private const string ConfirmPasswordPlaceholder = "Password";
         private const string PasswordConfirmationErrorMessage = "Password and password confirmation do not match";
         
         private MainForm _mainForm;
@@ -51,6 +51,8 @@ namespace GUI
             {
                 _clientController.SignUp(username, password);
                 _mainForm.GoToSignIn();
+
+                ResetPlaceholders();
             }
             catch (InvalidCredentialsException ex)
             {
@@ -114,6 +116,7 @@ namespace GUI
         private void lblSignIn_Click(object sender, EventArgs e)
         {
             _mainForm.GoToSignIn();
+            ResetPlaceholders();
         }
 
         private void lblSignUp_Click(object sender, EventArgs e)
@@ -125,6 +128,13 @@ namespace GUI
         {
             SignUpUser();
 
+        }
+
+        private void ResetPlaceholders()
+        {
+            InputUtils.ResetPlaceholder(ref txtUsername, UsernamePlaceHolder);
+            InputUtils.ResetPasswordPlaceholder(ref txtPassword, PasswordPlaceHolder);
+            InputUtils.ResetPasswordPlaceholder(ref txtConfirmPassword, ConfirmPasswordPlaceholder);
         }
 
         private void txtUsername_Enter(object sender, EventArgs e)

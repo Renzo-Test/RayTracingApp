@@ -57,6 +57,8 @@ namespace GUI
                 
                 _materialController.AddMaterial(newMaterial, _currentClient.Username);
                 _materialHome.GoToMaterialList();
+
+                ResetPlaceholders();
             }
             catch (InvalidMaterialInputException ex)
             {
@@ -133,13 +135,28 @@ namespace GUI
             AddNewMaterial();
         }
 
+        private void ResetPlaceholders()
+        {
+            InputUtils.ResetPlaceholder(ref txtInputName, NamePlaceholder);
+            InputUtils.ResetPlaceholder(ref txtInputRed, RedPlaceholder);
+            InputUtils.ResetPlaceholder(ref txtInputGreen, GreenPlaceholder);
+            InputUtils.ResetPlaceholder(ref txtInputBlue, BluePlaceholder);
+
+        }
+
         private void picRectangleFieldCancel_Click(object sender, EventArgs e)
         {
-            _materialHome.GoToMaterialList();
+            Cancel();
         }
 
         private void lblCancel_Click(object sender, EventArgs e)
         {
+            Cancel();
+        }
+
+        private void Cancel()
+        {
+            ResetPlaceholders();
             _materialHome.GoToMaterialList();
         }
 

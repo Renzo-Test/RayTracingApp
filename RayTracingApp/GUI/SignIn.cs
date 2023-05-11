@@ -41,6 +41,8 @@ namespace GUI
             {
                 Client currentClient = _clientController.SignIn(username, password);
                 _mainForm.GoToHome(currentClient);
+
+                ResetPlaceholders();
             }
             catch (InvalidCredentialsException ex)
             {
@@ -51,6 +53,7 @@ namespace GUI
         private void lblSignUpRef_Click(object sender, EventArgs e)
         {
             _mainForm.GoToSignUp();
+            ResetPlaceholders();
         }
 
 
@@ -63,6 +66,13 @@ namespace GUI
         {
             SignInUser();
         }
+
+        private void ResetPlaceholders()
+        {
+            InputUtils.ResetPlaceholder(ref txtUsernameSignIn, UsernamePlaceHolder);
+            InputUtils.ResetPasswordPlaceholder(ref txtPasswordSignIn, PasswordPlaceHolder);
+        }
+
 
         private void txtUsernameSignIn_Enter(object sender, EventArgs e)
         {

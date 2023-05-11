@@ -54,6 +54,23 @@ namespace GUI
             }
         }
 
+        public static void ResetPlaceholder(ref TextBox txtField, string placeHolder)
+        {
+            txtField.Text = placeHolder;
+            txtField.ForeColor = System.Drawing.Color.DimGray;
+        }
 
+        public static void ResetPasswordPlaceholder(ref TextBox txtField, string placeHolder)
+        {
+            txtField.Text = placeHolder;
+            ShowPassword(ref txtField);
+            txtField.ForeColor = System.Drawing.Color.DimGray;
+        }
+
+        public static void ResetPlaceholder(ref Label lblField, string placeHolder)
+        {
+            lblField.Text = placeHolder;
+            lblField.ForeColor = System.Drawing.Color.DimGray;
+        }
     }
 }

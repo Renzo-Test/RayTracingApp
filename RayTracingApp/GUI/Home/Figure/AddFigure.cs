@@ -15,7 +15,7 @@ namespace GUI
 {
     public partial class AddFigure : UserControl
     {
-        private const string NamelaceHolder = "Name";
+        private const string NamePlaceHolder = "Name";
         private const string RadiusPlaceHolder = "Radius";
         private const string RadiusInputErrorMessage = "Input for radius must be a number";
 
@@ -50,11 +50,15 @@ namespace GUI
                 Figure newFigure = CreateFigure(radius);
                 _figureController.AddFigure(newFigure, _currentClient.Username);
                 _figureHome.GoToFigureList();
+
+                ResetPlaceholders();
             }
-            catch (Exception ex)
+            catch (InvalidFigureInputException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+
         }
 
         private Figure CreateFigure(double radius)
@@ -79,19 +83,31 @@ namespace GUI
 
         }
 
+        private void Cancel()
+        {
+            ResetPlaceholders();
+            _figureHome.GoToFigureList();
+        }
+
+        private void ResetPlaceholders()
+        {
+            InputUtils.ResetPlaceholder(ref txtInputName, NamePlaceHolder);
+            InputUtils.ResetPlaceholder(ref txtInputRadius, RadiusPlaceHolder);
+        }
+
         private void picRectangleFieldCancel_Click(object sender, EventArgs e)
         {
-            _figureHome.GoToFigureList();
+            Cancel();
         }
 
         private void lblCancel_Click(object sender, EventArgs e)
         {
-            _figureHome.GoToFigureList();
+            Cancel();
         }
 
         private void lblCancel_TextChanged(object sender, EventArgs e)
         {
-            _figureHome.GoToFigureList();
+            Cancel();
         }
 
         private void picRectangleFieldSave_Click(object sender, EventArgs e)
@@ -106,12 +122,12 @@ namespace GUI
 
         private void txtInputName_Enter(object sender, EventArgs e)
         {
-            InputUtils.RemovePlaceHolder(ref txtInputName, NamelaceHolder);
+            InputUtils.RemovePlaceHolder(ref txtInputName, NamePlaceHolder);
         }
 
         private void txtInputName_Leave(object sender, EventArgs e)
         {
-            InputUtils.SetPlaceHolder(ref txtInputName, NamelaceHolder);
+            InputUtils.SetPlaceHolder(ref txtInputName, NamePlaceHolder);
         }
 
         private void txtInputRadius_Enter(object sender, EventArgs e)

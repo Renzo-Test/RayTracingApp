@@ -17,17 +17,18 @@ namespace GUI
     public partial class AddModel : UserControl
     {
         private const string NamePlaceholder = "Name";
-        private const string NoMaterialSelectedErrorMessage = "No Material was Selected";
-        private const string NoFigureSelectedErrorMessage = "No Figure was Selected";
         private const string FigureListPlaceholder = "Figures";
         private const string MaterialListPlaceholder = "Materials";
+
+        private const string NoMaterialSelectedErrorMessage = "No Material was Selected";
+        private const string NoFigureSelectedErrorMessage = "No Figure was Selected";
 
         private ModelHome _modelHome;
 
         private MaterialController _materialController;
         private FigureController _figureController;
         private ModelController _modelController;
-        
+
         private Client _currentClient;
 
         public AddModel(ModelHome modelHome, MainController mainController, Client currentClient)
@@ -55,7 +56,7 @@ namespace GUI
         {
             List<Figure> figures = _figureController.ListFigures(_currentClient.Username);
             List<Material> materials = _materialController.ListMaterials(_currentClient.Username);
-            
+
             ClearComboBoxes();
 
             AddItems(figures, materials);
@@ -101,6 +102,8 @@ namespace GUI
 
                 _modelController.AddModel(newModel, _currentClient.Username);
                 _modelHome.GoToModelList();
+                
+                ResetPlaceholders();
             }
             catch (InvalidModelInputException ex)
             {
@@ -116,37 +119,47 @@ namespace GUI
                 Figure = _figureController.GetFigure(_currentClient.Username, cmbFigures.Text),
                 Name = txtInputName.Text,
                 showPreview = rbtnCreatePreview.Checked,
-		    };
+            };
         }
 
-        private void picRectangleFieldSave_Click(object sender, EventArgs e)
+
+
+        private void Save()
         {
             SaveModel();
-            RefreshPlaceholders();
         }
 
-        private void lblSave_Click(object sender, EventArgs e)
+        private void Cancel()
         {
-            SaveModel();
-            RefreshPlaceholders();
+            _modelHome.GoToModelList();
+            ResetPlaceholders();
         }
 
-        private void RefreshPlaceholders()
+        private void ResetPlaceholders()
         {
-            lblFiguresList.Text = FigureListPlaceholder;
-            lblMaterialsList.Text = MaterialListPlaceholder;
+            InputUtils.ResetPlaceholder(ref txtInputName, NamePlaceholder);
+            InputUtils.ResetPlaceholder(ref lblMaterialsList, MaterialListPlaceholder);
+            InputUtils.ResetPlaceholder(ref lblFiguresList, FigureListPlaceholder);
         }
 
         private void picRectangleFieldCancel_Click(object sender, EventArgs e)
         {
-            _modelHome.GoToModelList();
-            RefreshPlaceholders();
+            Cancel();
         }
         private void lblCancel_Click(object sender, EventArgs e)
         {
-			_modelHome.GoToModelList();
-			RefreshPlaceholders();
-		}
+            Cancel();
+        }
+
+        private void picRectangleFieldSave_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void lblSave_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
 
         private void picDropDownFigures_Click(object sender, EventArgs e)
         {
