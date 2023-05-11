@@ -12,5 +12,15 @@ namespace Test.ControllerTest
 		{
 			MainController controller = new MainController();
 		}
+
+		[TestMethod]
+		public void SetClientController_OkTest()
+		{
+			MainController controller = new MainController();
+			ClientController clientController = new ClientController();
+			controller.ClientController = clientController;
+
+			Assert.AreEqual(clientController, controller.ClientController);
+		}
 	}
 }
