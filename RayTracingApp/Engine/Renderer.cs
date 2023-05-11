@@ -276,46 +276,48 @@ namespace Engine
 
 		private Scene CreatePreviewScene(Model model)
 		{
-			Sphere figurePreview = new Sphere()
-			{
-				Radius = 1
-			};
-			Model modelToPreview = new Model()
-			{
-				Figure = figurePreview,
-				Material = model.Material,
-			};
+			Sphere figurePreview = InitializateSphere(1);
+			Sphere terrain = InitializateSphere(2000);
+			Model modelToPreview = InitializateModel(figurePreview, model.Material);
+			Model modelTerrain = InitializateModel(terrain, new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial })
 			PosisionatedModel posisionatedModel = new PosisionatedModel()
 			{
 				Model = modelToPreview,
-				Position = new Vector() { Y = 1}
-			};
-
-			Sphere terrain = new Sphere()
-			{
-				Radius = 2000
+				Position = new Vector() { Y = 1 }
 			};
 			Domain.Color terrainColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
-			Model modelTerrain = new Model()
-			{
-				Figure = terrain,
-				Material = new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial }
-			};
 			PosisionatedModel terrainPosisionated = new PosisionatedModel()
 			{
 				Model = modelTerrain,
-				Position = new Vector() { Y = -2000},
+				Position = new Vector() { Y = -2000 },
 			};
 			Scene previewScene = new Scene()
 			{
 				CameraPosition = new Vector { X = -5, Y = 4, Z = 0 },
-				ObjectivePosition = new Vector() { Y = 1},
+				ObjectivePosition = new Vector() { Y = 1 },
 				Fov = 30
 			};
 			previewScene.PosisionatedModels.Add(posisionatedModel);
 			previewScene.PosisionatedModels.Add(terrainPosisionated);
 
 			return previewScene;
+		}
+
+		private static Model InitializateModel(Figure figure, Material material)
+		{
+			return new Model()
+			{
+				Figure = figure,
+				Material = material,
+			};
+		}
+
+		private static Sphere InitializateSphere(double radius)
+		{
+			return new Sphere()
+			{
+				Radius = radius
+			};
 		}
 	}
 }
