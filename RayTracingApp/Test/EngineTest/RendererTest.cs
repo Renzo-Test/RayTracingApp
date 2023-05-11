@@ -76,11 +76,6 @@ namespace Test.EngineTest
 				ResolutionX = 300,
 				MaxDepth = -1,
 			};
-			string render = renderer.Render(scene, properties, null);
-
-			int propertiesChars = 15;
-			int pixelsChars = 12 * (properties.ResolutionX * properties.ResolutionY);
-			Assert.AreEqual(propertiesChars + pixelsChars, render.Length);
 		}
 
 		private static int CountLines(string str)

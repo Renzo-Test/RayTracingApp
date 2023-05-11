@@ -52,5 +52,15 @@ namespace Test.ControllerTest
 
 			Assert.AreEqual(modelController, controller.ModelController);
 		}
+
+		[TestMethod]
+		public void SetSceneController_OkTest()
+		{
+			MainController controller = new MainController();
+			ModelController modelController = new ModelController();
+			controller.ModelController = modelController;
+
+			Assert.AreEqual(modelController, controller.ModelController);
+		}
 	}
 }
