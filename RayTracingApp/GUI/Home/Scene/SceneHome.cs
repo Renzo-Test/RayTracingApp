@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Domain;
+using Engine;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +15,15 @@ namespace GUI
 {
     public partial class SceneHome : UserControl
     {
-        private UserControl _addScenePanel;
-        private UserControl _listScenePanel;
-        private UserControl _defaultCamPanel;
+        private ScenePage _addScenePanel;
+        private SceneList _listScenePanel;
+        private DefaultCam _defaultCamPanel;
+        private DefaultRenderSettings _defaultRenderSettings;
 
         private MainController _mainController;
         
+        private RenderProperties _renderProperties;
+
         private Client _currentClient;
 
         public SceneHome(MainController mainController, Client currentClient)
@@ -29,6 +33,8 @@ namespace GUI
             
             InitializeComponent();
 
+            _defaultRenderSettings = new DefaultRenderSettings(this);
+            _renderProperties = _defaultRenderSettings.RenderProperties;
             _listScenePanel = new SceneList(this, mainController.SceneController, currentClient);
             _defaultCamPanel = new DefaultCam(this, mainController, currentClient);
             flySceneHome.Controls.Add(_listScenePanel);
@@ -37,7 +43,7 @@ namespace GUI
         public void GoToAddScene(Scene scene)
         {
             flySceneHome.Controls.Clear();
-            _addScenePanel = new ScenePage(scene, this, _mainController, _currentClient);
+            _addScenePanel = new ScenePage(scene, this, _mainController, _currentClient, _renderProperties);
             flySceneHome.Controls.Add(_addScenePanel);
         }
 
@@ -51,6 +57,12 @@ namespace GUI
         {
             flySceneHome.Controls.Clear();
             flySceneHome.Controls.Add(_defaultCamPanel);
+        }
+
+        public void GoToDefaultRenderSettings()
+        {
+            flySceneHome.Controls.Clear();
+            flySceneHome.Controls.Add(_defaultRenderSettings);
         }
     }
 }

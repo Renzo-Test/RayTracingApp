@@ -27,9 +27,14 @@ namespace Engine
         public void UpdateProgressBar()
         {
 			ProgressBar.BeginInvoke(
-			 new Action(() =>
-			 {
-				 ProgressBar.Value = (int)Calculate();
+			new Action(() =>
+			{
+				int progress = (int)Calculate();
+				
+				if(progress <= 100)
+                {
+					ProgressBar.Value = progress;
+                }
 			}));
 		}
     }

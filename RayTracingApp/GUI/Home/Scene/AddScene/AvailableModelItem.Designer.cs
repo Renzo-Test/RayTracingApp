@@ -31,8 +31,10 @@
             this.lblModelName = new System.Windows.Forms.Label();
             this.picAddButton = new System.Windows.Forms.PictureBox();
             this.picIconSphere = new System.Windows.Forms.PictureBox();
+            this.picModelColor = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picAddButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picModelColor)).BeginInit();
             this.SuspendLayout();
             // 
             // lblModelName
@@ -69,20 +71,29 @@
             this.picIconSphere.TabIndex = 0;
             this.picIconSphere.TabStop = false;
             // 
+            // picModelColor
+            // 
+            this.picModelColor.Location = new System.Drawing.Point(28, 8);
+            this.picModelColor.Name = "picModelColor";
+            this.picModelColor.Size = new System.Drawing.Size(20, 20);
+            this.picModelColor.TabIndex = 3;
+            this.picModelColor.TabStop = false;
+            // 
             // AvailableModelItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.picModelColor);
             this.Controls.Add(this.picAddButton);
             this.Controls.Add(this.lblModelName);
             this.Controls.Add(this.picIconSphere);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AvailableModelItem";
             this.Size = new System.Drawing.Size(212, 65);
-            this.Load += new System.EventHandler(this.AvailableModelItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picAddButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picIconSphere)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picModelColor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +104,6 @@
         private System.Windows.Forms.PictureBox picIconSphere;
         private System.Windows.Forms.Label lblModelName;
         private System.Windows.Forms.PictureBox picAddButton;
+        private System.Windows.Forms.PictureBox picModelColor;
     }
 }

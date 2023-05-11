@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Home\Scene\AddScene\DefaultRenderSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\DefaultRenderSettings.Designer.cs">
+      <DependentUpon>DefaultRenderSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Home\Scene\DefaultCam.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Scene\AddScene\AvailableModelItem.resx">
       <DependentUpon>AvailableModelItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\AddScene\DefaultRenderSettings.resx">
+      <DependentUpon>DefaultRenderSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Scene\AddScene\ScenePage.resx">
       <DependentUpon>ScenePage.cs</DependentUpon>
@@ -400,6 +409,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circleButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sceneCompleteImage.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackWarning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

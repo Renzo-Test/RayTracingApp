@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
@@ -25,9 +26,12 @@ namespace Engine
 
 		private static readonly ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 
-		public string Render()
+		public string Render(ProgressBar progressBar)
 		{
-			_progress = new Progress();
+			_progress = new Progress() 
+			{ 
+				ProgressBar = progressBar,
+			};
 			_pixels = new List<List<Vector>>();
 			_printer = new Printer();
 				
@@ -71,11 +75,13 @@ namespace Engine
 						vector.AddFrom(ShootRay(ray, Properties.MaxDepth, Scene.PosisionatedModels));
 						_progress.Count(); ;
 					}
-
 					vector = vector.Divide(Properties.SamplesPerPixel);
 					SavePixel(derivatedIndex, column, vector, Properties.ResolutionY, _pixels);
 				}
+
+				_progress.UpdateProgressBar();
 				_progress.WriteCurrentPercentage();
+			
 			});
 			return _printer.Save(_pixels, Properties, ref _progress);
 		}

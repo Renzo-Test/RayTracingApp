@@ -20,7 +20,7 @@ namespace GUI
         private const string PasswordPlaceHolder = "Password";
         private const string ConfirmPasswordPlaceholder = "Confirm Password";
         private const string PasswordConfirmationErrorMessage = "Password and password confirmation do not match";
-
+        
         private MainForm _mainForm;
 
         private ClientController _clientController;
@@ -56,6 +56,54 @@ namespace GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void txtUsername_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                Client toCheckClient = new Client()
+                {
+                    Username = txtUsername.Text,
+                };
+                lblWarning.Visible = false;
+            }
+            catch (InvalidCredentialsException ex)
+            {
+                lblWarning.Visible = true;
+                lblWarning.Text = ex.Message;
+            }
+        }
+        private void txtPassword_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                Client toCheckClient = new Client()
+                {
+                    Password = txtPassword.Text,
+                };
+                lblWarning.Visible = false;
+            }
+            catch (InvalidCredentialsException ex)
+            {
+                lblWarning.Visible = true;
+                lblWarning.Text = ex.Message;
+            }
+        }
+
+        private void txtConfirmPassword_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            if (!txtConfirmPassword.Text.Equals(txtPassword.Text))
+            {
+                lblWarning.Visible = true;
+                lblWarning.Text = PasswordConfirmationErrorMessage;
+            }
+            else
+            {
+                lblWarning.Visible = false;
+            }
+            
         }
 
         private static bool PasswordMatch(string password, string passwordConfirmation)
@@ -122,5 +170,7 @@ namespace GUI
 				e.Handled = true;
 			}
 		}
-	}
+
+
+    }
 }

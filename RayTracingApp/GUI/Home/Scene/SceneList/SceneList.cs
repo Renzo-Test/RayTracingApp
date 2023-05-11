@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Domain;
+using Engine;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,7 +49,7 @@ namespace GUI
         {
             Scene scene = _sceneController.CreateBlankScene(_currentClient);
             scene.PosisionatedModels = new List<PosisionatedModel>();
-
+            
             _sceneController.AddScene(scene, _currentClient.Username);
             _sceneHome.GoToAddScene(scene);
         }
@@ -73,10 +74,25 @@ namespace GUI
             GoToNewScene();
         }
 
-        private void picCamDefaultValues_Click(object sender, EventArgs e)
+        private void picCamDefaultValues_Click_1(object sender, EventArgs e)
+        {
+            _sceneHome.GoToDefaultCam();
+
+        }
+
+        private void picButtonProperties_Click(object sender, EventArgs e)
         {
             _sceneHome.GoToDefaultCam();
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            _sceneHome.GoToDefaultRenderSettings();
+        }
+
+        private void picIconProperties_Click(object sender, EventArgs e)
+        {
+            _sceneHome.GoToDefaultRenderSettings();
+        }
     }
 }

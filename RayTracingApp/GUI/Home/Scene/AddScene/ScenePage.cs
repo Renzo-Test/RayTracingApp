@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,9 +18,6 @@ namespace GUI
 {
     public partial class ScenePage : UserControl
     {
-        private const string FovNumericErrorMessage = "Fov values must be numeric only";
-        private const string VectorNumericErrorMessage = "Vector values must be numeric only";
-
         private SceneHome _sceneHome;
 
         private MainController _mainController;
@@ -29,10 +27,10 @@ namespace GUI
         private Scene _scene;
         private Client _currentClient;
         private List<PosisionatedModel> _posisionatedModels;
-        private PosisionatedModel _model;
+        
+        RenderProperties _renderProperties;
 
-
-		public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
+        public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient, RenderProperties renderProperties)
         {
             _sceneHome = sceneHome;
 
@@ -42,9 +40,9 @@ namespace GUI
 
             _currentClient = currentClient;
             _posisionatedModels = scene.PosisionatedModels;
+            _renderProperties = renderProperties;
 
-
-			InitializeComponent();
+            InitializeComponent();
 
             _scene = scene;
             SetSceneTextAtributes();
@@ -90,6 +88,12 @@ namespace GUI
 
         }
 
+        public void ShowWarning()
+        {
+            lblImageOutdated.Visible = true;
+            picIconWarning.Visible = true;
+        }
+
         private void picRender_Click(object sender, EventArgs e)
         {
             Render();
@@ -97,7 +101,7 @@ namespace GUI
 
         private void Render()
         {
-			int fov;
+            int fov;
             Vector lookFrom;
             Vector lookAt;
 
@@ -121,23 +125,54 @@ namespace GUI
                 return;
             }
 
-			RenderProperties properties = new RenderProperties();
+            pbrRender.Visible = true;
+            lblImageOutdated.Visible = false;
+            picIconWarning.Visible = false;
+
+            Thread RenderingThread = new Thread(new ThreadStart(RenderImage));
+            RenderingThread.Start();
+
+            _sceneController.UpdateLastRenderDate(_scene);
+        }
+
+        private void RenderImage()
+        {
             Renderer renderer = new Renderer()
             {
-                Properties = properties,
+                Properties = _renderProperties,
                 Scene = _scene,
             };
 
-            string image = renderer.Render();
+            string image = renderer.Render(pbrRender);
 
             Scanner scanner = new Scanner();
             Bitmap img = scanner.ScanImage(image);
+            SetRenderedImage(img);
 
+            ReInitialazeUI();
+        }
+
+        private void SetRenderedImage(Bitmap img)
+        {
             _scene.Preview = img;
-
             picScene.Image = img;
+        }
 
-			_sceneController.UpdateLastRenderDate(_scene);
+        private void ReInitialazeUI()
+        {
+            if (!RunningOnUiThread())
+            {
+                BeginInvoke(new Action(ReInitialazeUI));
+
+                return;
+            }
+
+            pbrRender.Visible = false;
+        }
+
+        private bool RunningOnUiThread()
+        {
+            return !this.InvokeRequired;
         }
 
         private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt)
@@ -153,16 +188,6 @@ namespace GUI
             {
                 throw new InvalidSceneInputException(ex.Message);
             }
-        }
-
-        private static Vector CreateCameraVector(double[] vectorLookFromValues)
-        {
-            return new Vector()
-            {
-                X = vectorLookFromValues[0],
-                Y = vectorLookFromValues[1],
-                Z = vectorLookFromValues[2]
-            };
         }
 
         private void picIconBack_Click(object sender, EventArgs e)
@@ -233,12 +258,10 @@ namespace GUI
                     MessageBox.Show(ex.Message);
                     return;
                 }
-
-
                 ActiveControl = txtLookFrom;
 
                 e.Handled = true;
             }
         }
-	}
+    }
 }

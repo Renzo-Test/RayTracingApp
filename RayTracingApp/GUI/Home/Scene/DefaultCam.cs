@@ -15,6 +15,8 @@ namespace GUI
 {
     public partial class DefaultCam : UserControl
     {
+        private const int MinFov = 1;
+        private const int MaxFov = 160;
         const string FovPlaceholder = "Fov";
         const string LookAtPlaceholder = "Look At";
         const string LookFromPlaceholder = "Look From";
@@ -82,5 +84,5 @@ namespace GUI
         {
             _sceneHome.GoToSceneList();
         }
-    }
+	}
 }
