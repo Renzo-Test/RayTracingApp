@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8F51CFA-D617-4971-87A8-7D1CDE18867E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GUI</RootNamespace>
+    <AssemblyName>GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Home\Scene\AddScene\DefaultRenderSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\DefaultRenderSettings.Designer.cs">
+      <DependentUpon>DefaultRenderSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\DefaultCam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\DefaultCam.Designer.cs">
+      <DependentUpon>DefaultCam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\SceneList\SceneList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\SceneList\SceneList.Designer.cs">
+      <DependentUpon>SceneList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\SceneList\SceneListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\SceneList\SceneListItem.Designer.cs">
+      <DependentUpon>SceneListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\ScenePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\ScenePage.Designer.cs">
+      <DependentUpon>ScenePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\AvailableModelItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\AvailableModelItem.Designer.cs">
+      <DependentUpon>AvailableModelItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\UsedModelItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\AddScene\UsedModelItem.Designer.cs">
+      <DependentUpon>UsedModelItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\SceneUtils.cs" />
+    <Compile Include="Utils\StringUtils.cs" />
+    <Compile Include="Utils\InputUtils.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignUp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SignUp.Designer.cs">
+      <DependentUpon>SignUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SignIn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SignIn.Designer.cs">
+      <DependentUpon>SignIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Figure\FigureHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Figure\FigureHome.Designer.cs">
+      <DependentUpon>FigureHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Material\MaterialHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Material\MaterialHome.Designer.cs">
+      <DependentUpon>MaterialHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Model\ModelHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Model\ModelHome.Designer.cs">
+      <DependentUpon>ModelHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Scene\SceneHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Scene\SceneHome.Designer.cs">
+      <DependentUpon>SceneHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Figure\AddFigure.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Figure\AddFigure.Designer.cs">
+      <DependentUpon>AddFigure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Figure\FigureList\FigureList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Figure\FigureList\FigureList.Designer.cs">
+      <DependentUpon>FigureList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Material\AddMaterial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Material\AddMaterial.Designer.cs">
+      <DependentUpon>AddMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Material\MaterialList\MaterialList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Material\MaterialList\MaterialList.Designer.cs">
+      <DependentUpon>MaterialList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Figure\FigureList\FigureListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Figure\FigureList\FigureListItem.Designer.cs">
+      <DependentUpon>FigureListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Material\MaterialList\MaterialListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Material\MaterialList\MaterialListItem.Designer.cs">
+      <DependentUpon>MaterialListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Model\AddModel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Model\AddModel.Designer.cs">
+      <DependentUpon>AddModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Model\ModelList\ModelList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Model\ModelList\ModelList.Designer.cs">
+      <DependentUpon>ModelList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Model\ModelList\ModelListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\Model\ModelList\ModelListItem.Designer.cs">
+      <DependentUpon>ModelListItem.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Home\Figure\AddFigure.resx">
+      <DependentUpon>AddFigure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Figure\FigureHome.resx">
+      <DependentUpon>FigureHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Figure\FigureList\FigureList.resx">
+      <DependentUpon>FigureList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Figure\FigureList\FigureListItem.resx">
+      <DependentUpon>FigureListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Material\AddMaterial.resx">
+      <DependentUpon>AddMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Material\MaterialList\MaterialList.resx">
+      <DependentUpon>MaterialList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Material\MaterialList\MaterialListItem.resx">
+      <DependentUpon>MaterialListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Model\AddModel.resx">
+      <DependentUpon>AddModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Model\ModelList\ModelList.resx">
+      <DependentUpon>ModelList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Model\ModelList\ModelListItem.resx">
+      <DependentUpon>ModelListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\AddScene\AvailableModelItem.resx">
+      <DependentUpon>AvailableModelItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\AddScene\DefaultRenderSettings.resx">
+      <DependentUpon>DefaultRenderSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\AddScene\ScenePage.resx">
+      <DependentUpon>ScenePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\AddScene\UsedModelItem.resx">
+      <DependentUpon>UsedModelItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\DefaultCam.resx">
+      <DependentUpon>DefaultCam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\SceneList\SceneList.resx">
+      <DependentUpon>SceneList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Scene\SceneList\SceneListItem.resx">
+      <DependentUpon>SceneListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Material\MaterialHome.resx">
+      <DependentUpon>MaterialHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Model\ModelHome.resx">
+      <DependentUpon>ModelHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Home\Scene\SceneHome.resx">
+      <DependentUpon>SceneHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignIn.resx">
+      <DependentUpon>SignIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignUp.resx">
+      <DependentUpon>SignUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sphereBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fieldRectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\padlockIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sphereIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\materialIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\modelIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sceneIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\signoutIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\card1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\darkFieldRectangle1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\homeButtonsBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smallDarkFieldRectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xSmallDarkFieldRectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xSmallGrayDarkFieldRectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{8AFD5675-EF7D-4C0C-9936-8EBF95410A98}</Project>
+      <Name>Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Engine\Engine.csproj">
+      <Project>{B423631E-FFB8-41F2-9658-9D7B3CD0E47E}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MemoryRepository\MemoryRepository.csproj">
+      <Project>{5E7FE5D8-E9A5-4B2C-AA81-E63CC8E6669F}</Project>
+      <Name>MemoryRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userIcon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lSphereIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\caret-abajo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leftArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blankScene.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mBlankScene.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\388x270Scene.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\darkBgScene.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thunder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whiteX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circleButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sceneCompleteImage.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackWarning.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

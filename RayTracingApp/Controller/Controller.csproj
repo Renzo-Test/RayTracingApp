@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>8afd5675-ef7d-4c0c-9936-8ebf95410a98</ProjectGuid>
+    <ProjectGuid>{8AFD5675-EF7D-4C0C-9936-8EBF95410A98}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Controller</RootNamespace>
@@ -31,24 +31,48 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="MainController.cs" />
+    <Compile Include="MaterialExceptions\InvalidMaterialRemoveException.cs" />
+    <Compile Include="SceneController.cs" />
+    <Compile Include="FigureExceptions\FigureUsedByModelException.cs" />
+    <Compile Include="FigureExceptions\InvalidFigureRemoveException.cs" />
+    <Compile Include="MaterialExceptions\MaterialUsedByModelException.cs" />
+    <Compile Include="ModelController.cs" />
+    <Compile Include="FigureExceptions\AlreadyExistingFigureException.cs" />
+    <Compile Include="MaterialController.cs" />
+    <Compile Include="ClientController.cs" />
+    <Compile Include="ClientExceptions\AlreadyExistingClientException.cs" />
+    <Compile Include="ClientExceptions\NotCorrectPasswordException.cs" />
+    <Compile Include="FigureController.cs" />
+    <Compile Include="MaterialExceptions\AlreadyExsitingMaterialException.cs" />
+    <Compile Include="ModelExceptions\AlreadyExistingModelException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SceneException\AlreadyExistingSceneException.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IRepository\IRepository.csproj">
+      <Project>{d74d687a-51aa-4f86-9a2e-bdc3bf517078}</Project>
+      <Name>IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MemoryRepository\MemoryRepository.csproj">
+      <Project>{5E7FE5D8-E9A5-4B2C-AA81-E63CC8E6669F}</Project>
+      <Name>MemoryRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>
