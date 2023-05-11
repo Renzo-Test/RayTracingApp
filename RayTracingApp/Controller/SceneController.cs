@@ -34,18 +34,21 @@ namespace Controller
 
 		public void UpdateSceneName(Scene scene, string currentClient, string newName)
 		{
-			string previousName = scene.Name;
 			try
 			{
-				scene.Name = newName;
-				SceneChecker(scene, currentClient);
+				Scene newScene = new Scene()
+				{
+					Name = newName,
+					Owner = scene.Owner
+				};
+
+				SceneChecker(newScene, currentClient);
 
 				scene.Name = newName;
 			}
-			catch (InvalidFigureInputException ex)
+			catch (InvalidSceneInputException ex)
 			{
-				scene.Name = previousName;
-				throw new InvalidFigureInputException(ex.Message);
+				throw new InvalidSceneInputException(ex.Message);
 			}
 		}
 
@@ -110,6 +113,5 @@ namespace Controller
 		{
 			return DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
 		}
-
     }
 }

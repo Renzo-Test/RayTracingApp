@@ -38,7 +38,11 @@ namespace Domain
 			PosisionatedModels = new List<PosisionatedModel>();
 		}
 
-		public string Owner
+        public Scene()
+        {
+        }
+
+        public string Owner
 		{
 			get => _owner;
 			set => _owner = value;

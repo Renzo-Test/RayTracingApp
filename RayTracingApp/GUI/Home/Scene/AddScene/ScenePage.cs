@@ -217,8 +217,17 @@ namespace GUI
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                _scene.Name = txtSceneName.Text;
-                
+                try
+                {
+                    _sceneController.UpdateSceneName(_scene, _currentClient.Username, txtSceneName.Text);
+                }
+                catch(InvalidSceneInputException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+
+
                 ActiveControl = txtLookFrom;
 
                 e.Handled = true;
