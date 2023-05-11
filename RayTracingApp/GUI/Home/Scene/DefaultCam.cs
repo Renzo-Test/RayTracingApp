@@ -40,36 +40,15 @@ namespace GUI
         
         private void picRectangleFieldSave_Click(object sender, EventArgs e)
         {
-            int fov;
-            Vector lookFrom;
-            Vector lookAt;
+			Save();
+		}
 
-            try
-            {
-                (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtInputFov, txtInputLookAt, txtInputLookFrom);
-            }
-            catch (InvalidSceneInputException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
+		private void lblSave_Click(object sender, EventArgs e)
+		{
+			Save();
+		}
 
-            try
-            {
-                _currentClient.DefaultFov = fov;
-            }
-            catch(NotInExpectedRangeClientException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-
-            SetClientDefaultSceneValues(fov, lookFrom, lookAt);
-
-            _sceneHome.GoToSceneList();
-        }
-
-        private void SetClientDefaultSceneValues(int fov, Vector lookFrom, Vector lookAt)
+		private void SetClientDefaultSceneValues(int fov, Vector lookFrom, Vector lookAt)
         {
             _currentClient.DefaultLookAt = lookAt;
             _currentClient.DefaultLookFrom = lookFrom;
@@ -84,5 +63,38 @@ namespace GUI
         {
             _sceneHome.GoToSceneList();
         }
+
+
+
+		private void Save()
+		{
+			int fov;
+			Vector lookFrom;
+			Vector lookAt;
+
+			try
+			{
+				(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtInputFov, txtInputLookAt, txtInputLookFrom);
+			}
+			catch (InvalidSceneInputException ex)
+			{
+				MessageBox.Show(ex.Message);
+				return;
+			}
+
+			try
+			{
+				_currentClient.DefaultFov = fov;
+			}
+			catch (NotInExpectedRangeClientException ex)
+			{
+				MessageBox.Show(ex.Message);
+				return;
+			}
+
+			SetClientDefaultSceneValues(fov, lookFrom, lookAt);
+
+			_sceneHome.GoToSceneList();
+		}
 	}
 }
