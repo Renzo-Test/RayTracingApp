@@ -42,5 +42,15 @@ namespace Test.ControllerTest
 
 			Assert.AreEqual(materialController, controller.MaterialController);
 		}
+
+		[TestMethod]
+		public void SetModelController_OkTest()
+		{
+			MainController controller = new MainController();
+			ModelController modelController = new ModelController();
+			controller.ModelController = modelController;
+
+			Assert.AreEqual(modelController, controller.ModelController);
+		}
 	}
 }
