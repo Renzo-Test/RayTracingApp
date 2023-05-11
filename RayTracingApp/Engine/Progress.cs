@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 
 namespace Engine
@@ -24,6 +25,7 @@ namespace Engine
 			return (LinesCount * 100) / ExpectedLines;
 		}
 
+		[ExcludeFromCodeCoverage]
         public void UpdateProgressBar()
         {
 			if (ProgressBar is object)

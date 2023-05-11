@@ -84,11 +84,22 @@ namespace Engine
 			}
 		}
 
+		public int PreCalculateYResolution(int resX)
+		{
+			return (int)(resX / AspectRatio);
+		}
+		
+		public int PreCalculateXResolution(int resY)
+		{
+			return (int)(resY * AspectRatio);
+
+		}
+		
 		private void IsLowerThanZero(int value)
 		{
 			if (value <= 0)
 			{
-				throw new InvalidRenderPropertiesInputException(ValueLowerThanZero);
+				throw new InputLowerThanZero(ValueLowerThanZero);
 			}
 		}
 	}
