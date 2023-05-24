@@ -10,6 +10,8 @@ namespace Domain
 		private const string SpaceCharacterConstant = " ";
 		private string _owner;
 		private string _name;
+
+		public int Id { get; set; }
 		public String Owner
 		{
 			get => _owner;

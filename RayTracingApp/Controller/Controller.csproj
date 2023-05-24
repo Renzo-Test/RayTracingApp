@@ -60,6 +60,10 @@
     <Compile Include="SceneException\AlreadyExistingSceneException.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBRepository\DBRepository.csproj">
+      <Project>{024F737B-EE41-4389-B9CA-8460FA47FBC7}</Project>
+      <Name>DBRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRepository\IRepository.csproj">
       <Project>{d74d687a-51aa-4f86-9a2e-bdc3bf517078}</Project>
       <Name>IRepository</Name>
