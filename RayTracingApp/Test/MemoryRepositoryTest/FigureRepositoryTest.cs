@@ -49,7 +49,9 @@ namespace Test.MemoryRepositoryTest
 			};
 			_figureRepository.AddFigure(newFigure);
 
-			Assert.AreEqual(newFigure, _figureRepository.GetFiguresByClient("OwnerName")[0]);
+			Assert.AreEqual(newFigure.Name, _figureRepository.GetFiguresByClient("OwnerName")[0].Name);
+			Assert.AreEqual(newFigure.Owner, _figureRepository.GetFiguresByClient("OwnerName")[0].Owner);
+
 		}
 
 		[TestMethod]
