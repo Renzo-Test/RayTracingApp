@@ -68,6 +68,10 @@
       <Project>{d74d687a-51aa-4f86-9a2e-bdc3bf517078}</Project>
       <Name>IRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MemoryRepository\MemoryRepository.csproj">
+      <Project>{5E7FE5D8-E9A5-4B2C-AA81-E63CC8E6669F}</Project>
+      <Name>MemoryRepository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

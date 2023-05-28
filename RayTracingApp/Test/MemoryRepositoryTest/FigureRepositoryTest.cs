@@ -125,9 +125,6 @@ namespace Test.MemoryRepositoryTest
 			};
 
 			_figureRepository.RemoveFigure(newFigure);
-			List<Figure> figures = _figureRepository.GetFiguresByClient("OwnerName");
-
-			Assert.IsFalse(figures.Any());
 		}
 	}
 }

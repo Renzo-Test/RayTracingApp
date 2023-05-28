@@ -1,5 +1,6 @@
 ﻿using Domain;
 using IRepository;
+using MemoryRepository.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace DBRepository
 {
     public class FigureRepository : IRepositoryFigure
     {
+        private const string NotFoundFigureMessage = "Figure was not found";
+
         public string DBName { get; set; } = "RayTracingAppDB";
 
         public void AddFigure(Figure figure)
@@ -34,6 +37,12 @@ namespace DBRepository
             using (var context = new AppContext(DBName))
             {
                 Figure deleteFigure = context.Figures.FirstOrDefault(f => f.Id == figure.Id);
+
+                if(deleteFigure is null)
+                {
+                    throw new NotFoundFigureException(NotFoundFigureMessage);
+                }
+
                 context.Figures.Remove(deleteFigure);
                 context.SaveChanges();
             }
