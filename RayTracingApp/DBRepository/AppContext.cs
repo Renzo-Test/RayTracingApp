@@ -12,5 +12,9 @@ namespace DBRepository
     {
         public DbSet<Figure> Figures { get; set; }
         public AppContext(string dbName) : base(dbName) { }
+
+        public void ClearDBTable(string table) {
+            Database.ExecuteSqlCommand($"TRUNCATE TABLE [{table}]");
+        }
     }
 }
