@@ -1,4 +1,4 @@
-﻿using MemoryRepository;
+﻿using DBRepository;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
@@ -17,7 +17,10 @@ namespace Test.MemoryRepositoryTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_figureRepository = new FigureRepository();
+			_figureRepository = new FigureRepository()
+			{
+				DBName = "RayTracingAppTestDB"
+			};
 		}
 
 		[TestMethod]

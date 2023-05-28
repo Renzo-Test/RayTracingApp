@@ -11,6 +11,6 @@ namespace DBRepository
     public class AppContext : DbContext
     {
         public DbSet<Figure> Figures { get; set; }
-        public AppContext() : base("RayTracingAppDB") { }
+        public AppContext(string dbName) : base(dbName) { }
     }
 }
