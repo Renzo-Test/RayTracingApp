@@ -5,6 +5,7 @@ using Domain;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -23,7 +24,16 @@ namespace Test.MemoryRepositoryTest
 			};
 		}
 
-		[TestMethod]
+		[TestCleanup]
+		public void TestCleanUp()
+        {
+			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Figures");
+			}
+		}
+
+		[TestMethod]	
 		public void CreateFigureRepository_OkTest()
 		{
 			_figureRepository = new FigureRepository();
@@ -82,8 +92,8 @@ namespace Test.MemoryRepositoryTest
 
 			List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
 
-			CollectionAssert.Contains(iterable, newFigure);
-
+			Assert.AreEqual(newFigure.Name, iterable[0].Name);
+			Assert.AreEqual(newFigure.Owner, iterable[0].Owner);
 		}
 
 		[TestMethod]
