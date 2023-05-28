@@ -12,10 +12,13 @@ namespace Controller
 	public class FigureController
 	{
 		public IRepositoryFigure Repository;
-
-		public FigureController()
+        public string DBName { get; set; }
+        public FigureController()
 		{
-			Repository = new FigureRepository();
+			Repository = new FigureRepository()
+            {
+				DBName = DBName,
+            };
 		}
 
 		public List<Figure> ListFigures(string username)
