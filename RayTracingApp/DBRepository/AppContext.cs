@@ -12,6 +12,7 @@ namespace DBRepository
     {
         public DbSet<Figure> Figures { get; set; }
         public DbSet<Material> Materials { get; set; }
+        public DbSet<Client> Clients { get; set; }
         public AppContext(string dbName) : base(dbName) { }
 
         public void ClearDBTable(string table) {

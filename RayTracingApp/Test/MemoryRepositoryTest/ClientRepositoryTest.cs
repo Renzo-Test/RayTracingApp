@@ -1,4 +1,4 @@
-﻿using MemoryRepository;
+﻿using DBRepository;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
@@ -15,7 +15,19 @@ namespace Test.MemoryRepositoryTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_clientRepository = new ClientRepository();
+			_clientRepository = new ClientRepository()
+			{
+				DBName = "RayTracingAppTestDB"
+			};
+		}
+
+		[TestCleanup]
+		public void TestCleanUp()
+		{
+			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Clients");
+			}
 		}
 
 		[TestMethod]
