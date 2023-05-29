@@ -11,13 +11,13 @@ namespace Controller
 {
 	public class FigureController
 	{
-		public IRepositoryFigure Repository;
-        public string DBName { get; set; }
-        public FigureController()
+        private const string DefaultDatabase = "RayTracingAppDB";
+        public IRepositoryFigure Repository;
+        public FigureController(string dbName = DefaultDatabase)
 		{
 			Repository = new FigureRepository()
             {
-				DBName = DBName,
+				DBName = dbName,
             };
 		}
 

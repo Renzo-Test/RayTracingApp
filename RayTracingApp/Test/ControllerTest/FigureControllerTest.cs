@@ -14,18 +14,28 @@ namespace Test.ControllerTest
 	[ExcludeFromCodeCoverage]
 	public class FigureControllerTest
 	{
-		private FigureController _figureController;
+        private const string TestDatabase = "RayTracingAppTestDB";
+        private FigureController _figureController;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_figureController = new FigureController();
+			_figureController = new FigureController(TestDatabase);
+		}
+
+		[TestCleanup]
+		public void TestCleanUp()
+		{
+			using (var context = new DBRepository.AppContext(TestDatabase))
+			{
+				context.ClearDBTable("Figures");
+			}
 		}
 
 		[TestMethod]
 		public void CreateFigureController_OkTest()
 		{
-			_figureController = new FigureController();
+			_figureController = new FigureController(TestDatabase);
 		}
 
 		[TestMethod]
