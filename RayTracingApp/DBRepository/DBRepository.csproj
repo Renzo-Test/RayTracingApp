@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AppContext.cs" />
     <Compile Include="FigureRepository.cs" />
+    <Compile Include="MaterialRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

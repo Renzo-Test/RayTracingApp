@@ -31,7 +31,6 @@ namespace DBRepository
                 context.Materials.Add(newMaterial);
                 context.SaveChanges();
             }
-
         }
 
         public void RemoveMaterial(Material material)
