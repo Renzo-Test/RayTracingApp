@@ -137,7 +137,8 @@ namespace Test.ControllerTest
 			_figureController.AddFigure(newFigure, currentClient.Username);
 			List<Figure> iterable = _figureController.Repository.GetFiguresByClient(currentClient.Username);
 
-			CollectionAssert.Contains(iterable, newFigure);
+			Assert.AreEqual(iterable[0].Name, newFigure.Name);
+			Assert.AreEqual(iterable[0].Owner, newFigure.Owner);
 		}
 
 		[TestMethod]
