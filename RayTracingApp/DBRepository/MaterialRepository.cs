@@ -18,7 +18,10 @@ namespace DBRepository
 
         public List<Material> GetMaterialsByClient(string username)
         {
-            return new List<Material>();
+            using (var context = new AppContext(DBName))
+            {
+                return context.Materials.Where(material => material.Owner.Equals(username)).ToList();
+            }
         }
 
         public void AddMaterial(Material newMaterial)
