@@ -49,5 +49,15 @@ namespace DBRepository
                 context.SaveChanges();
             }
         }
+
+        public void UpdateMaterialName(Material material, string newName)
+        {
+            using (var context = new AppContext(DBName))
+            {
+                Material updateMaterial = context.Materials.FirstOrDefault(m => m.Id == material.Id);
+                updateMaterial.Name = newName;
+                context.SaveChanges();
+            }
+        }
     }
 }
