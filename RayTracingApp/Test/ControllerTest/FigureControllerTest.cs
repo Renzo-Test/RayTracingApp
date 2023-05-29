@@ -195,7 +195,8 @@ namespace Test.ControllerTest
 			_figureController.AddFigure(newFigure, currentClient.Username);
 			List<Figure> expected = _figureController.Repository.GetFiguresByClient(currentClient.Username);
 
-			Assert.AreEqual(expected[0], _figureController.ListFigures(currentClient.Username)[0]);
+			Assert.AreEqual(expected[0].Name, _figureController.ListFigures(currentClient.Username)[0].Name);
+			Assert.AreEqual(expected[0].Owner, _figureController.ListFigures(currentClient.Username)[0].Owner);
 		}
 
 		[TestMethod]
