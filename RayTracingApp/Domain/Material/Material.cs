@@ -12,8 +12,9 @@ namespace Domain
 
 		private Color _color;
 		private MaterialEnum _type;
-		
-		public string Owner
+
+        public int Id { get; set; }
+        public string Owner
 		{
 			get => _owner;
 			set => _owner = value;
