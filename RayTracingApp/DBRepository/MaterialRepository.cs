@@ -36,6 +36,18 @@ namespace DBRepository
 
         public void RemoveMaterial(Material material)
         {
+            using (var context = new AppContext(DBName))
+            {
+                Material deleteMaterial = context.Materials.FirstOrDefault(m => m.Id == material.Id);
+
+                if (deleteMaterial is null)
+                {
+                    throw new NotFoundMaterialException(NotFoundMaterialMessage);
+                }
+
+                context.Materials.Remove(deleteMaterial);
+                context.SaveChanges();
+            }
         }
     }
 }
