@@ -347,9 +347,13 @@ namespace Test.ControllerTest
 				Radius = 10,
 			};
 
+			_figureController.AddFigure(newFigure, currentClient.Username);
+
 			_figureController.UpdateFigureName(newFigure, currentClient.Username, "newNameSphere");
 
-			Assert.AreEqual(newFigure.Name, "newNameSphere");
+			Figure updatedFigure = _figureController.ListFigures(currentClient.Username)[0];
+
+			Assert.AreEqual(updatedFigure.Name, "newNameSphere");
 		}
 
 		[TestMethod]

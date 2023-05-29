@@ -47,5 +47,15 @@ namespace DBRepository
                 context.SaveChanges();
             }
         }
+
+        public void UpdateFigureName(Figure figure, string newName)
+        {
+            using (var context = new AppContext(DBName))
+            {
+                Figure updateFigure = context.Figures.FirstOrDefault(f => f.Id == figure.Id);
+                updateFigure.Name = newName;
+                context.SaveChanges();
+            }
+        }
     }
 }

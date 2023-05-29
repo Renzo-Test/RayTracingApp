@@ -86,7 +86,7 @@ namespace Controller
 
 				RunFigureChecker(newFigure, currentClient);
 
-				figure.Name = newName;
+				Repository.UpdateFigureName(figure, newName);
 			}
 			catch (InvalidFigureInputException ex)
 			{
