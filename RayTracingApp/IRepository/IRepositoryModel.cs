@@ -8,5 +8,6 @@ namespace IRepository
 		List<Model> GetModelsByClient(string username);
 		void AddModel(Model model);
 		void RemoveModel(Model model);
+		void UpdateModelName(Model model, string newName);
 	}
 }

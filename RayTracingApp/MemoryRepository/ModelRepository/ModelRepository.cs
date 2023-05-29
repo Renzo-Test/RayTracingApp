@@ -38,5 +38,10 @@ namespace MemoryRepository
             }
 
         }
+
+		public void UpdateModelName(Model model, string newName)
+		{
+			throw new System.NotImplementedException();
+		}
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Controller.Exceptions;
 using IRepository;
-using MemoryRepository;
+using DBRepository;
 using MemoryRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
@@ -11,10 +11,14 @@ namespace Controller
 {
 	public class ModelController
 	{
+		private const string DefaultDatabase = "RayTracingAppDB";
 		public IRepositoryModel Repository;
-		public ModelController()
+		public ModelController(string dbName = DefaultDatabase)
 		{
-			Repository = new ModelRepository();
+			Repository = new ModelRepository()
+			{
+				DBName = dbName,
+			};
 		}
 
 		public List<Model> ListModels(string username)
@@ -88,7 +92,7 @@ namespace Controller
 
 				RunModelChecker(newModel, currentClient);
 
-				model.Name = newName;
+				Repository.UpdateModelName(model, newName);
 			}
 			catch (InvalidModelInputException ex)
 			{

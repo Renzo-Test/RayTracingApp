@@ -17,6 +17,11 @@ namespace DBRepository
         {
 			using (var context = new AppContext(DBName))
 			{
+				Material material = context.Materials.FirstOrDefault(m => m.Id.Equals(newModel.Material.Id));
+				newModel.Material = material;
+				Figure figure= context.Figures.FirstOrDefault(f => f.Id.Equals(newModel.Figure.Id));
+				newModel.Figure = figure;
+
 				context.Models.Add(newModel);
 				context.SaveChanges();
 			}
@@ -27,8 +32,8 @@ namespace DBRepository
 			using (var context = new AppContext(DBName))
 			{
 				return context.Models.Where(model => model.Owner.Equals(username))
-                    .Include("Materials")
-                    .Include("Figures")
+                    .Include(model => model.Material)
+                    .Include(model => model.Figure)
                     .ToList();
 			}
 		}

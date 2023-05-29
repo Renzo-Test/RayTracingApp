@@ -10,13 +10,16 @@ namespace DBRepository
 {
     public class AppContext : DbContext
     {
-        public DbSet<Figure> Figures { get; set; }
+		private const string DefaultDatabase = "RayTracingAppDB";
+		public DbSet<Figure> Figures { get; set; }
         public DbSet<Material> Materials { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Model> Models { get; set; }
-        public AppContext(string dbName) : base(dbName) { }
 
-        public void ClearDBTable(string table) {
+        public AppContext(string dbName) : base(dbName)  { }
+		public AppContext() : base(DefaultDatabase) { }
+
+		public void ClearDBTable(string table) {
             Database.ExecuteSqlCommand($"TRUNCATE TABLE [{table}]");
         }
     }

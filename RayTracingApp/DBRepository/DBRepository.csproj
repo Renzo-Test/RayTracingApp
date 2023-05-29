@@ -55,6 +55,15 @@
     <Compile Include="ClientRepository.cs" />
     <Compile Include="FigureRepository.cs" />
     <Compile Include="MaterialRepository.cs" />
+    <Compile Include="Migrations\202305291653225_InitialCreate.cs" />
+    <Compile Include="Migrations\202305291653225_InitialCreate.designer.cs">
+      <DependentUpon>202305291653225_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305291921438_AddedModels.cs" />
+    <Compile Include="Migrations\202305291921438_AddedModels.designer.cs">
+      <DependentUpon>202305291921438_AddedModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +84,14 @@
       <Project>{5E7FE5D8-E9A5-4B2C-AA81-E63CC8E6669F}</Project>
       <Name>MemoryRepository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202305291653225_InitialCreate.resx">
+      <DependentUpon>202305291653225_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305291921438_AddedModels.resx">
+      <DependentUpon>202305291921438_AddedModels.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
