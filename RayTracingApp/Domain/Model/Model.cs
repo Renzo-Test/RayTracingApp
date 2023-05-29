@@ -17,6 +17,8 @@ namespace Domain
 		public string Preview { get; set; }
 		
 		public bool showPreview { get; set; }
+
+		public int Id { get; set; }
 		
 		public String Owner
 		{

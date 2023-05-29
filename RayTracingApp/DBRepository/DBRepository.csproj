@@ -55,6 +55,7 @@
     <Compile Include="ClientRepository.cs" />
     <Compile Include="FigureRepository.cs" />
     <Compile Include="MaterialRepository.cs" />
+    <Compile Include="ModelRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
