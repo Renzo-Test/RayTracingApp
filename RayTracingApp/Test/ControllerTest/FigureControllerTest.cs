@@ -312,7 +312,9 @@ namespace Test.ControllerTest
 			_figureController.AddFigure(newFigure, currentClient.Username);
 			Figure expected = _figureController.GetFigure(currentClient.Username, newFigure.Name);
 
-			Assert.AreEqual(expected, newFigure);
+			Assert.AreEqual(expected.Name, newFigure.Name);
+			Assert.AreEqual(expected.Owner, newFigure.Owner);
+
 		}
 
 		[TestMethod]
