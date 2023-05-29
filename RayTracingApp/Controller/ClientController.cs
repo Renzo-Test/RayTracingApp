@@ -1,6 +1,6 @@
 ﻿using Controller.Exceptions;
 using IRepository;
-using MemoryRepository;
+using DBRepository;
 using MemoryRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
@@ -10,10 +10,16 @@ namespace Controller
 	public class ClientController
 	{
 		private const string WrongPasswordMessage = "Wrong email or password";
+
+		private const string DefaultDatabase = "RayTracingAppDB";
+
 		public IRepositoryClient Repository;
-		public ClientController()
+		public ClientController(string dbName = DefaultDatabase)
 		{
-			Repository = new ClientRepository();
+			Repository = new ClientRepository()
+			{
+				DBName = dbName,
+			};
 		}
 
 		public void SignUp(string username, string password)
