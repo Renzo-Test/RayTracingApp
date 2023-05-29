@@ -48,5 +48,15 @@ namespace DBRepository
 				context.SaveChanges();
 			}
 		}
-    }
+
+		public void UpdateModelName(Model model, string newName)
+		{
+			using (var context = new AppContext(DBName))
+			{
+				Model updateModel = context.Models.FirstOrDefault(m => m.Id == model.Id);
+				updateModel.Name = newName;
+				context.SaveChanges();
+			}
+		}
+	}
 }
