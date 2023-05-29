@@ -36,5 +36,10 @@ namespace MemoryRepository.MaterialRepository
                 _materials.Remove(material);
             }
         }
+
+        public void UpdateMaterialName(Material material, string newName)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

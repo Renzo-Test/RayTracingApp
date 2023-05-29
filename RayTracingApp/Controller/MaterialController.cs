@@ -103,7 +103,7 @@ namespace Controller
 
 				RunMaterialChecker(newMaterial, currentClient);
 
-				material.Name = newName;
+				Repository.UpdateMaterialName(material, newName);
 			}
 			catch (InvalidMaterialInputException ex)
 			{

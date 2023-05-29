@@ -8,5 +8,6 @@ namespace IRepository
 		List<Material> GetMaterialsByClient(string username);
 		void AddMaterial(Material material);
 		void RemoveMaterial(Material material);
+		void UpdateMaterialName(Material material, string newName);
 	}
 }
