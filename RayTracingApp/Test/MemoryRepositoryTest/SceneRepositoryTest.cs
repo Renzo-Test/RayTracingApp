@@ -1,4 +1,4 @@
-﻿using MemoryRepository;
+﻿using DBRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using System.Collections.Generic;
@@ -22,7 +22,11 @@ namespace Test.MemoryRepositoryTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_owner = "ownerName";
+            _sceneRepository = new SceneRepository()
+            {
+                DBName = "RayTracingAppTestDB"
+            };
+            _owner = "ownerName";
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
@@ -37,8 +41,6 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void GetScenesByClient_OwnerName_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",

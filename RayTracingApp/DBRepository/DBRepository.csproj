@@ -52,6 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContext.cs" />
+    <Compile Include="Migrations\202305302017494_AddScene.cs" />
+    <Compile Include="Migrations\202305302017494_AddScene.designer.cs">
+      <DependentUpon>202305302017494_AddScene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
     <Compile Include="FigureRepository.cs" />
     <Compile Include="MaterialRepository.cs" />
@@ -91,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305291921438_AddedModels.resx">
       <DependentUpon>202305291921438_AddedModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305302017494_AddScene.resx">
+      <DependentUpon>202305302017494_AddScene.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
