@@ -364,10 +364,6 @@
       <Project>{B423631E-FFB8-41F2-9658-9D7B3CD0E47E}</Project>
       <Name>Engine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MemoryRepository\MemoryRepository.csproj">
-      <Project>{5E7FE5D8-E9A5-4B2C-AA81-E63CC8E6669F}</Project>
-      <Name>MemoryRepository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>
       <Name>Models</Name>
