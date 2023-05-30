@@ -73,17 +73,6 @@ namespace Controller
 			Repository.RemoveScene(removeScene);
 		}
 
-		public List<Model> GetAvailableModels(Scene scene, List<Model> ownerModels)
-		{
-			List<Model> usedModels = new List<Model>();
-			foreach (PosisionatedModel posModel in scene.PosisionatedModels)
-			{
-				usedModels.Add(posModel.Model);
-			}
-
-			return ownerModels.Except(usedModels).ToList();
-		}
-
 		public Scene CreateBlankScene(Client currentClient)
 		{
 			string owner = currentClient.Username;
