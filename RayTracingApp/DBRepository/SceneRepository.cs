@@ -24,7 +24,10 @@ namespace DBRepository
 
         public List<Scene> GetScenesByClient(string username)
         {
-            throw new NotImplementedException();
+            using (var context = new AppContext(DBName))
+            {
+                return context.Scenes.Where(scene => scene.Owner.Equals(username)).ToList();
+            }
         }
 
         public void RemoveScene(Scene scene)
