@@ -24,13 +24,16 @@ namespace Test.ControllerTest
 		{
 			_materialController = new MaterialController(TestDatabase);
 			_modelController = new ModelController(TestDatabase);
+
 		}
+
 
 		[TestCleanup]
 		public void TestCleanup()
 		{
 			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
 			{
+				context.ClearDBTable("Models");
 				context.ClearDBTable("Materials");
 			}
 		}
@@ -203,7 +206,6 @@ namespace Test.ControllerTest
 		{
 			Material material = new Material()
 			{
-				Owner = "ownerName",
 				Name = "materialName",
 				Color = new Color
 				{
@@ -215,13 +217,14 @@ namespace Test.ControllerTest
 
 			Model model = new Model()
 			{
+				Name = "Test",
 				Material = material,
-				Owner = "ownerName"
+				Figure = new Sphere(),
 			};
-			_modelController.Repository.AddModel(model);
-			_materialController.AddMaterial(material, material.Owner);
+			_materialController.AddMaterial(material, "Owner");
+			_modelController.AddModel(model, "Owner");
 
-			_materialController.RemoveMaterial("materialName", "ownerName", _modelController.ListModels("ownerName"));
+			_materialController.RemoveMaterial("materialName", "Owner", _modelController.ListModels("Owner"));
 		}
 
 		[TestMethod]

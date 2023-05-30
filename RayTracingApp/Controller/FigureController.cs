@@ -57,20 +57,7 @@ namespace Controller
 				string FigureUsedByModelMessage = $"Figure with name {figureName} is used by a model";
 				throw new FigureUsedByModelException(FigureUsedByModelMessage);
 			}
-			try
-			{
-				Repository.RemoveFigure(deleteFigure);
-			}
-
-			catch (SqlException ex)
-			{
-				if (ex.ErrorCode == 547)
-				{
-					string FigureUsedByModelMessage = $"Figure with name {figureName} is used by a model";
-					throw new FigureUsedByModelException(FigureUsedByModelMessage);
-
-				}
-			}
+			Repository.RemoveFigure(deleteFigure);
 		}
 
 		public Figure GetFigure(string username, string name)
