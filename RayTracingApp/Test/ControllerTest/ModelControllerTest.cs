@@ -205,7 +205,7 @@ namespace Test.ControllerTest
 			_modelController.AddModel(newModel, currentClient.Username);
 			Model expected = _modelController.GetModel(currentClient.Username, newModel.Name);
 
-			Assert.AreEqual(expected, newModel);
+			Assert.AreEqual(expected.Id, newModel.Id);
 		}
 
 		[TestMethod]
