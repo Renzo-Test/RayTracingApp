@@ -12,6 +12,7 @@ namespace Test.ControllerTest
 	[ExcludeFromCodeCoverage]
 	public class SceneControllerTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
 		private SceneController _sceneController;
 		private string _owner;
 		private int _fov;
@@ -26,6 +27,16 @@ namespace Test.ControllerTest
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
+		}
+
+		[TestCleanup]
+		public void TestCleanUp()
+		{
+			using (var context = new DBRepository.AppContext(TestDatabase))
+			{
+				//context.ClearDBTable("Scenes");
+				context.ClearDBTable("Models");
+			}
 		}
 
 		[TestMethod]
@@ -270,7 +281,9 @@ namespace Test.ControllerTest
 		{
 			Model availableModel = new Model()
 			{
-				Name = "modelName"
+				Name = "modelName",
+				Material = new Material(),
+				Figure = new Sphere()
 			};
 			PosisionatedModel posisionatedModel = new PosisionatedModel();
 			posisionatedModel.Model = availableModel;
@@ -283,17 +296,21 @@ namespace Test.ControllerTest
 
 			Model otherAvailableModel = new Model()
 			{
-				Name = "unusedModel"
+				Name = "unusedModel",
+				Material = new Material(),
+				Figure = new Sphere()
 			};
 
-			ModelController modelController = new ModelController();
-			modelController.AddModel(otherAvailableModel, "ownerName");
+			ModelController modelController = new ModelController(TestDatabase);
+
 			modelController.AddModel(availableModel, "ownerName");
+			modelController.AddModel(otherAvailableModel, "ownerName");
 			_sceneController.AddScene(newScene, "ownerName");
+
 			List<Model> ownerModels = modelController.ListModels("ownerName");
 
-			CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
-			CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), otherAvailableModel);
+			Assert.AreEqual(_sceneController.GetAvailableModels(newScene, ownerModels)[0].Id, availableModel.Id);
+			Assert.AreEqual(_sceneController.GetAvailableModels(newScene, ownerModels)[1].Id, otherAvailableModel.Id);
 		}
 
 		[TestMethod]
