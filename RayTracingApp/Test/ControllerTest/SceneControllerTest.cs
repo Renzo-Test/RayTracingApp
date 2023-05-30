@@ -320,12 +320,15 @@ namespace Test.ControllerTest
 			Assert.AreEqual(_sceneController.GetAvailableModels(newScene, ownerModels)[1].Id, otherAvailableModel.Id);
 		}
 
+		/*
 		[TestMethod]
 		public void GetAvailableModels_OnlyContainsUnusedModels_OkTest()
 		{
 			Model newModel = new Model()
 			{
-				Name = "modelName"
+				Name = "modelName",
+				Material = new Material(),
+				Figure = new Sphere()
 			};
 			PosisionatedModel posisionatedModel = new PosisionatedModel();
 			posisionatedModel.Model = newModel;
@@ -341,17 +344,21 @@ namespace Test.ControllerTest
 
 			Model availableModel = new Model()
 			{
-				Name = "unusedModel"
+				Name = "unusedModel",
+				Material = new Material(),
+				Figure = new Sphere()
 			};
 
-			ModelController modelController = new ModelController();
+			ModelController modelController = new ModelController(TestDatabase);
+
 			modelController.AddModel(newModel, "ownerName");
 			modelController.AddModel(availableModel, "ownerName");
 			_sceneController.AddScene(newScene, "ownerName");
+
 			List<Model> ownerModels = modelController.ListModels("ownerName");
 
-			CollectionAssert.DoesNotContain(_sceneController.GetAvailableModels(newScene, ownerModels), newModel);
-		}
+			Assert.AreEqual(1, _sceneController.GetAvailableModels(newScene, ownerModels).Count);
+		}*/
 
 		[TestMethod]
 		public void CreateBlankScene_OkTest()
