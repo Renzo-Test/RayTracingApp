@@ -18,7 +18,8 @@ namespace Domain
 		private const int MinFov = 1;
 		private const int MaxFov = 160;
 
-		public Vector CameraPosition = new Vector();
+        public int Id { get; set; }
+        public Vector CameraPosition = new Vector();
 		public Vector ObjectivePosition = new Vector();
 		public List<PosisionatedModel> PosisionatedModels;
 		public Bitmap Preview;

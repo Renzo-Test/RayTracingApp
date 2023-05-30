@@ -32,7 +32,18 @@ namespace DBRepository
 
         public void RemoveScene(Scene scene)
         {
-            throw new NotImplementedException();
+            using (var context = new AppContext(DBName))
+            { 
+                Scene deleteScene = context.Scenes.FirstOrDefault(s => s.Id == scene.Id);
+
+                if (deleteScene is null)
+                {
+                    throw new NotFoundSceneException(NotFoundSceneMessage);
+                }
+
+                context.Scenes.Remove(deleteScene);
+                context.SaveChanges();
+            }
         }
     }
 }
