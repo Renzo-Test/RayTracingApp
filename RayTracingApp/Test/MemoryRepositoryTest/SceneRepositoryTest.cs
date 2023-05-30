@@ -22,15 +22,23 @@ namespace Test.MemoryRepositoryTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-            _sceneRepository = new SceneRepository()
-            {
-                DBName = "RayTracingAppTestDB"
-            };
-            _owner = "ownerName";
+			_sceneRepository = new SceneRepository()
+			{
+				DBName = "RayTracingAppTestDB"
+			};
+			_owner = "ownerName";
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
 		}
+		[TestCleanup]
+		public void TestCleanup()
+		{
+            using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+            {
+                context.ClearDBTable("Scenes");
+            }
+        }
 
 		[TestMethod]
 		public void CreateSceneRepository_OkTest()
@@ -50,14 +58,12 @@ namespace Test.MemoryRepositoryTest
 			_sceneRepository.AddScene(_scene);
 
 			List<Scene> iterable = _sceneRepository.GetScenesByClient("OwnerName");
-			CollectionAssert.Contains(iterable, _scene);
+			Assert.AreEqual(iterable[0].Id, _scene.Id);
 		}
 
 		[TestMethod]
 		public void AddScene_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
@@ -71,8 +77,6 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void AddSTwoScenes_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
@@ -101,8 +105,6 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void AddDifferentClientScenes_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
@@ -130,7 +132,6 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void GetScenesByClient_NoClient_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
 			List<Scene> scenes = _sceneRepository.GetScenesByClient("OwnerName");
 
 			Assert.IsFalse(scenes.Any());
@@ -139,8 +140,6 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void DeleteScene_ExistingScene_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
@@ -159,8 +158,6 @@ namespace Test.MemoryRepositoryTest
 		[ExpectedException(typeof(NotFoundSceneException))]
 		public void DeleteScene_NonExistingScene_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
