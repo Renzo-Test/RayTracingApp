@@ -45,5 +45,14 @@ namespace DBRepository
                 context.SaveChanges();
             }
         }
+        public void UpdateSceneName(Scene scene, string newName)
+        {
+            using (var context = new AppContext(DBName))
+            {
+                Scene updateScene = context.Scenes.FirstOrDefault(s => s.Id == scene.Id);
+                updateScene.Name = newName;
+                context.SaveChanges();
+            }
+        }
     }
 }

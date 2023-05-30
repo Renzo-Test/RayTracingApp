@@ -8,5 +8,7 @@ namespace IRepository
 		List<Scene> GetScenesByClient(string username);
 		void AddScene(Scene scene);
 		void RemoveScene(Scene scene);
-	}
+		void UpdateSceneName(Scene scene, string newName);
+
+    }
 }

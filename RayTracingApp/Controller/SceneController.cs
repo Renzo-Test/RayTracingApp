@@ -49,7 +49,7 @@ namespace Controller
 
 				SceneChecker(newScene, currentClient);
 
-				scene.Name = newName;
+				Repository.UpdateSceneName(scene, newName);
 			}
 			catch (InvalidSceneInputException ex)
 			{
