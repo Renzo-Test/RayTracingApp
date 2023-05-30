@@ -15,6 +15,7 @@ namespace DBRepository
         public DbSet<Material> Materials { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Model> Models { get; set; }
+        public DbSet<Scene> Scenes { get; set; }
 
         public AppContext(string dbName) : base(dbName)  { }
 		public AppContext() : base(DefaultDatabase) { }
