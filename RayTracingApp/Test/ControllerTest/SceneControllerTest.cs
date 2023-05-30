@@ -22,7 +22,7 @@ namespace Test.ControllerTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_sceneController = new SceneController();
+			_sceneController = new SceneController(TestDatabase);
 			_owner = "ownerName";
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
@@ -34,7 +34,7 @@ namespace Test.ControllerTest
 		{
 			using (var context = new DBRepository.AppContext(TestDatabase))
 			{
-				//context.ClearDBTable("Scenes");
+				context.ClearDBTable("Scenes");
 				context.ClearDBTable("Models");
 			}
 		}
@@ -55,7 +55,7 @@ namespace Test.ControllerTest
 
 			_sceneController.AddScene(newScene, "ownerName");
 
-			CollectionAssert.Contains(_sceneController.Repository.GetScenesByClient("ownerName"), newScene);
+			Assert.AreEqual(_sceneController.Repository.GetScenesByClient("ownerName")[0].Id, newScene.Id);
 		}
 
 		[TestMethod]

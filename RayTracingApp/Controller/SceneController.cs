@@ -1,6 +1,6 @@
 ﻿using Controller.Exceptions;
 using IRepository;
-using MemoryRepository;
+using DBRepository;
 using Domain;
 using Domain.Exceptions;
 using System;
@@ -11,14 +11,18 @@ namespace Controller
 {
 	public class SceneController
 	{
-		public IRepositoryScene Repository;
+        private const string DefaultDatabase = "RayTracingAppDB";
+        public IRepositoryScene Repository;
 
-		public SceneController()
-		{
-			Repository = new SceneRepository();
-		}
+        public SceneController(string dbName = DefaultDatabase)
+        {
+            Repository = new SceneRepository()
+            {
+                DBName = dbName,
+            };
+        }
 
-		public void AddScene(Scene newScene, string username)
+        public void AddScene(Scene newScene, string username)
 		{
 			try
 			{
