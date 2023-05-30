@@ -93,14 +93,9 @@ namespace Test.MemoryRepositoryTest
 			_sceneRepository.AddScene(_scene2);
 
 			List<Scene> iterable = _sceneRepository.GetScenesByClient("OwnerName");
-			List<Scene> subSet = new List<Scene>()
-			{
-				_scene,
-				_scene2
-			};
-
-			CollectionAssert.IsSubsetOf(subSet, iterable);
-		}
+			Assert.AreEqual(iterable[0].Id, _scene.Id);
+            Assert.AreEqual(iterable[1].Id, _scene2.Id);
+        }
 
 		[TestMethod]
 		public void AddDifferentClientScenes_OkTest()
