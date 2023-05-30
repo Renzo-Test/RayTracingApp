@@ -206,8 +206,8 @@ namespace Test.ControllerTest
 			_sceneController.AddScene(anotherScene, "ownerName");
 
 			List<Scene> ownerScenes = _sceneController.ListScenes("ownerName");
-			CollectionAssert.Contains(ownerScenes, newScene);
-			CollectionAssert.Contains(ownerScenes, anotherScene);
+			Assert.AreEqual(ownerScenes[0].Id, newScene.Id);
+			Assert.AreEqual(ownerScenes[1].Id, anotherScene.Id);
 		}
 
 		[TestMethod]
