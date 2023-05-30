@@ -1,4 +1,4 @@
-﻿using MemoryRepository;
+﻿using DBRepository;
 using MemoryRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
@@ -12,11 +12,25 @@ namespace Test.MemoryRepositoryTest
 	public class ModelRepositoryTest
 	{
 		private ModelRepository _modelRepository;
+
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_modelRepository = new ModelRepository();
+			_modelRepository = new ModelRepository()
+			{
+				DBName = "RayTracingAppTestDB"
+			};
 		}
+
+		[TestCleanup]
+		public void TestCleanUp()
+		{
+			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Models");
+			}
+		}
+
 		[TestMethod]
 		public void CreateModelRepositoryOk_Test()
 		{
@@ -51,8 +65,10 @@ namespace Test.MemoryRepositoryTest
 				Figure = newFigure
 			};
 			_modelRepository.AddModel(NewModel);
-			Assert.AreEqual(NewModel, _modelRepository.GetModelsByClient(NewModel.Owner)[0]);
+
+			Assert.AreEqual(NewModel.Id, _modelRepository.GetModelsByClient(NewModel.Owner)[0].Id);
 		}
+
 		[TestMethod]
 		public void AddModel_OkTest()
 		{
