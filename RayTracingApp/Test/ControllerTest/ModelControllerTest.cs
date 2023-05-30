@@ -15,21 +15,11 @@ namespace Test.ControllerTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";
 		private ModelController _modelController;
-		private ClientController _clientController;
 
 		[TestInitialize]
 		public void Testinitialize()
 		{
 			_modelController = new ModelController(TestDatabase);
-			_clientController = new ClientController(TestDatabase);
-
-			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
-			{
-				context.ClearDBTable("Clients");
-			};
-
-			_clientController.SignUp("Owner", "Pass1");
-			_clientController.SignUp("OtherOwner", "Pass2");
 		}
 
 		[TestCleanup]
