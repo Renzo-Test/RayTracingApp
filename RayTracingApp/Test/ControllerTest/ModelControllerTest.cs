@@ -237,9 +237,11 @@ namespace Test.ControllerTest
 				Material = new Material()
 			};
 
+			_modelController.AddModel(newModel, currentClient.Username);
 			_modelController.UpdateModelName(newModel, currentClient.Username, "newName");
 
-			Assert.AreEqual(newModel.Name, "newName");
+			Model expected = _modelController.GetModel(currentClient.Username, "newName");
+			Assert.AreEqual(expected.Name, "newName");
 		}
 
 		[TestMethod]
