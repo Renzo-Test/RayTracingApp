@@ -20,7 +20,7 @@ namespace DBRepository
 		public AppContext() : base(DefaultDatabase) { }
 
 		public void ClearDBTable(string table) {
-            Database.ExecuteSqlCommand($"TRUNCATE TABLE [{table}]");
+            Database.ExecuteSqlCommand($"DELETE [{table}]");
         }
     }
 }

@@ -17,11 +17,13 @@ namespace Test.ControllerTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";
 		private MaterialController _materialController;
+		private ModelController _modelController;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
 			_materialController = new MaterialController(TestDatabase);
+			_modelController = new ModelController(TestDatabase);
 		}
 
 		[TestCleanup]
@@ -216,11 +218,10 @@ namespace Test.ControllerTest
 				Material = material,
 				Owner = "ownerName"
 			};
-			ModelController modelController = new ModelController();
-			modelController.Repository.AddModel(model);
+			_modelController.Repository.AddModel(model);
 			_materialController.AddMaterial(material, material.Owner);
 
-			_materialController.RemoveMaterial("materialName", "ownerName", modelController.ListModels("ownerName"));
+			_materialController.RemoveMaterial("materialName", "ownerName", _modelController.ListModels("ownerName"));
 		}
 
 		[TestMethod]

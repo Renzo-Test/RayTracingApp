@@ -16,11 +16,13 @@ namespace Test.ControllerTest
 	{
         private const string TestDatabase = "RayTracingAppTestDB";
         private FigureController _figureController;
+		private ModelController _modelController;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
 			_figureController = new FigureController(TestDatabase);
+			_modelController = new ModelController(TestDatabase);
 		}
 
 		[TestCleanup]
@@ -263,11 +265,10 @@ namespace Test.ControllerTest
 				Figure = figure,
 				Owner = "ownerName"
 			};
-			ModelController modelController = new ModelController();
-			modelController.Repository.AddModel(model);
+			_modelController.Repository.AddModel(model);
 			_figureController.AddFigure(figure, figure.Owner);
 
-			_figureController.RemoveFigure("figureName", "ownerName", modelController.ListModels("ownerName"));
+			_figureController.RemoveFigure("figureName", "ownerName", _modelController.ListModels("ownerName"));
 		}
 
 		[TestMethod]
