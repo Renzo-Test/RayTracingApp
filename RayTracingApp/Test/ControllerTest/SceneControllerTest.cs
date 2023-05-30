@@ -248,7 +248,9 @@ namespace Test.ControllerTest
 		{
 			Model newModel = new Model()
 			{
-				Name = "modelName"
+				Name = "modelName",
+				Material = new Material(),
+				Figure = new Sphere()
 			};
 			PosisionatedModel posisionatedModel = new PosisionatedModel();
 			posisionatedModel.Model = newModel;
@@ -264,16 +266,21 @@ namespace Test.ControllerTest
 
 			Model availableModel = new Model()
 			{
-				Name = "unusedModel"
+				Name = "unusedModel",
+				Material = new Material(),
+				Figure = new Sphere()
 			};
 
-			ModelController modelController = new ModelController();
+			ModelController modelController = new ModelController(TestDatabase);
+
 			modelController.AddModel(newModel, "ownerName");
 			modelController.AddModel(availableModel, "ownerName");
 			_sceneController.AddScene(newScene, "ownerName");
+			
 			List<Model> ownerModels = modelController.ListModels("ownerName");
 
-			CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
+			Assert.AreEqual(_sceneController.GetAvailableModels(newScene, ownerModels)[0].Id, newModel.Id);
+			Assert.AreEqual(_sceneController.GetAvailableModels(newScene, ownerModels)[1].Id, availableModel.Id);
 		}
 
 		[TestMethod]
