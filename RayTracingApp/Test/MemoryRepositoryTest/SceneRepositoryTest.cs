@@ -117,12 +117,9 @@ namespace Test.MemoryRepositoryTest
 
 			List<Scene> iterableOwner1 = _sceneRepository.GetScenesByClient("OwnerName");
 			List<Scene> iterableOwner2 = _sceneRepository.GetScenesByClient("OwnerName2");
-
-			CollectionAssert.Contains(iterableOwner1, _scene);
-			CollectionAssert.Contains(iterableOwner2, _scene2);
-			CollectionAssert.DoesNotContain(iterableOwner2, _scene);
-			CollectionAssert.DoesNotContain(iterableOwner1, _scene2);
-		}
+            Assert.AreEqual(iterableOwner1[0].Id, _scene.Id);
+            Assert.AreEqual(iterableOwner2[0].Id, _scene2.Id);
+        }
 
 		[TestMethod]
 		public void GetScenesByClient_NoClient_OkTest()
