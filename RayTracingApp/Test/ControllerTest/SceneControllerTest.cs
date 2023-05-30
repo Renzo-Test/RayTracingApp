@@ -240,7 +240,7 @@ namespace Test.ControllerTest
 			_sceneController.AddScene(anotherScene, "secondOwner");
 
 			_sceneController.RemoveScene("scene", "firstOwner");
-			CollectionAssert.Contains(_sceneController.ListScenes("secondOwner"), anotherScene);
+			Assert.AreEqual(_sceneController.ListScenes("secondOwner")[0].Id, anotherScene.Id);
 		}
 
 		[TestMethod]
