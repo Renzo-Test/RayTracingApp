@@ -1,5 +1,5 @@
 ﻿using DBRepository;
-using MemoryRepository.Exceptions;
+using DBRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using System.Collections.Generic;

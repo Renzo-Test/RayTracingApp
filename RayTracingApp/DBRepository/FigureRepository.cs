@@ -1,6 +1,6 @@
 ﻿using Domain;
 using IRepository;
-using MemoryRepository.Exceptions;
+using DBRepository.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

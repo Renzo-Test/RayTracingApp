@@ -1,7 +1,7 @@
 ﻿using Controller.Exceptions;
 using IRepository;
 using DBRepository;
-using MemoryRepository.Exceptions;
+using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
 

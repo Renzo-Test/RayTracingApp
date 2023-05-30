@@ -1,4 +1,4 @@
-﻿using MemoryRepository.Exceptions;
+﻿using DBRepository.Exceptions;
 using DBRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;

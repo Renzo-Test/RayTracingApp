@@ -1,7 +1,7 @@
 ﻿using IRepository;
 using Domain;
 using System.Collections.Generic;
-using MemoryRepository.Exceptions;
+using DBRepository.Exceptions;
 using System.Linq;
 using System.Data.Entity;
 
