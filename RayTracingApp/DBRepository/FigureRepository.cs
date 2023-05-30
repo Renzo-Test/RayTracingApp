@@ -3,6 +3,7 @@ using IRepository;
 using MemoryRepository.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +39,7 @@ namespace DBRepository
             {
                 Figure deleteFigure = context.Figures.FirstOrDefault(f => f.Id == figure.Id);
 
-                if(deleteFigure is null)
+                if (deleteFigure is null)
                 {
                     throw new NotFoundFigureException(NotFoundFigureMessage);
                 }

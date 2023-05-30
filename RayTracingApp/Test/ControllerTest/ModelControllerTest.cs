@@ -23,8 +23,13 @@ namespace Test.ControllerTest
 			_modelController = new ModelController(TestDatabase);
 			_clientController = new ClientController(TestDatabase);
 
-			//_clientController.SignUp("Owner", "Pass1");
-			//_clientController.SignUp("OtherOwner", "Pass2");
+			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Clients");
+			};
+
+			_clientController.SignUp("Owner", "Pass1");
+			_clientController.SignUp("OtherOwner", "Pass2");
 		}
 
 		[TestCleanup]

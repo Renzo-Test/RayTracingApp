@@ -30,6 +30,7 @@ namespace Test.ControllerTest
 		{
 			using (var context = new DBRepository.AppContext(TestDatabase))
 			{
+				context.ClearDBTable("Models");
 				context.ClearDBTable("Figures");
 			}
 		}
@@ -255,20 +256,20 @@ namespace Test.ControllerTest
 		{
 			Figure figure = new Sphere()
 			{
-				Owner = "ownerName",
 				Name = "figureName",
 				Radius = 10,
 			};
 
 			Model model = new Model()
 			{
+				Name = "Test",
 				Figure = figure,
-				Owner = "ownerName"
+				Material = new Material(),
 			};
-			_modelController.Repository.AddModel(model);
-			_figureController.AddFigure(figure, figure.Owner);
+			_figureController.AddFigure(figure, "Owner");
+			_modelController.AddModel(model, "Owner");
 
-			_figureController.RemoveFigure("figureName", "ownerName", _modelController.ListModels("ownerName"));
+			_figureController.RemoveFigure("figureName", "Owner", _modelController.ListModels("Owner"));
 		}
 
 		[TestMethod]
