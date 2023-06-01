@@ -28,5 +28,14 @@ namespace Test.EngineTest
             exporter.Export(testPath, testImage);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ExporterException))]
+        public void CanExport_JPGExporter_FailTest()
+        {
+            IExporter exporter = new JPGExporter();
+            Image testImage = new Bitmap(800, 600);
+
+            exporter.Export("", testImage);
+        }
     }
 }
