@@ -5,6 +5,7 @@ using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 
 namespace Test.ControllerTest
 {
@@ -287,5 +288,18 @@ namespace Test.ControllerTest
 
 			Assert.AreEqual("Blank Scene 2", blankScene2.Name);
 		}
+
+		[TestMethod]
+		public void UpdatePreview_OkTest()
+		{
+			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			Bitmap img = new Bitmap(600, 300);
+
+			_sceneController.AddScene(newScene, _owner);
+			_sceneController.UpdatePreview(img);
+
+			Assert.AreEqual(newScene.GetPreview().ToString(), img.ToString());
+		}
+
 	}
 }
