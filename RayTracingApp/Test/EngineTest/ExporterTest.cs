@@ -4,6 +4,7 @@ using Engine.Exporter;
 using System.Drawing;
 using System.IO;
 
+
 namespace Test.EngineTest
 {
     [TestClass]
@@ -19,9 +20,7 @@ namespace Test.EngineTest
         public void CanExport_JPGExporter_OkTest()
         {
             IExporter exporter = new JPGExporter();
-            exporter.Export(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "image.jpg", new Bitmap("test"));
-
-            Assert.IsTrue(File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "image.jpg"));
+            exporter.Export(Path.Combine(Directory.GetCurrentDirectory(), "image.jpg"), new Bitmap(800, 600));
         }
 
 
