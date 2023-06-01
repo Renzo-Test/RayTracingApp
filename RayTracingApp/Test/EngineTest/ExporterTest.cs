@@ -3,6 +3,7 @@ using System;
 using Engine.Exporter;
 using System.Drawing;
 using System.IO;
+using Engine.Exceptions;
 
 
 namespace Test.EngineTest
@@ -20,9 +21,12 @@ namespace Test.EngineTest
         public void CanExport_JPGExporter_OkTest()
         {
             IExporter exporter = new JPGExporter();
-            exporter.Export(Path.Combine(Directory.GetCurrentDirectory(), "image.jpg"), new Bitmap(800, 600));
-        }
+            
+            string testPath = Path.Combine(Directory.GetCurrentDirectory(), "image.jpg");
+            Image testImage = new Bitmap(800, 600);
 
+            exporter.Export(testPath, testImage);
+        }
 
     }
 }

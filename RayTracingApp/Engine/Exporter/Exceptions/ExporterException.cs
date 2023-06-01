@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Exceptions
 {
-	internal class ExporterException : Exception
+	public class ExporterException : Exception
 	{
 		public ExporterException(string message) : base(message) { }
 	}

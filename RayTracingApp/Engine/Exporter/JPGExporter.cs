@@ -12,6 +12,8 @@ namespace Engine.Exporter
 {
     public class JPGExporter : IExporter
     {
+        private const string InvalidPathErrorMessage = "Invalid Path";
+
         public void Export(string path, Image img)
         {
             try
@@ -20,7 +22,7 @@ namespace Engine.Exporter
             }
             catch (Exception)
             {
-                throw new ExporterException("Invalid Path");
+                throw new ExporterException(InvalidPathErrorMessage);
             }
         }
     }
