@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exporter\IExporter.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Printer.cs" />
