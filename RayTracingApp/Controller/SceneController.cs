@@ -7,6 +7,7 @@ using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 
 namespace Controller
 {
@@ -89,6 +90,10 @@ namespace Controller
 			return scene;
 		}
 
+		public void UpdatePreview(Scene scene, Bitmap img)
+        {
+			Repository.UpdateScenePreview(scene, img);
+        }
 		private void SceneChecker(Scene scene, string username)
 		{
 			if (SceneNameExist(scene, username))

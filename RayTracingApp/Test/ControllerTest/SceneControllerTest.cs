@@ -292,13 +292,15 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void UpdatePreview_OkTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
 			Bitmap img = new Bitmap(600, 300);
+			_sceneController.AddScene(_scene, _owner);
 
-			_sceneController.AddScene(newScene, _owner);
-			_sceneController.UpdatePreview(img);
+			_sceneController.UpdatePreview(_scene, img);
 
-			Assert.AreEqual(newScene.GetPreview().ToString(), img.ToString());
+			Scene updatedScene = _sceneController.ListScenes(_owner)[0];
+
+			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
 		}
 
 	}
