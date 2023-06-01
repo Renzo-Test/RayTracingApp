@@ -30,9 +30,6 @@ namespace Domain
 		private string _lastModificationDate = "unmodified";
 		private string _lastRenderDate = "unrendered";
 		private int _fov;
-		private int _sceneNumber;
-
-		private static int _createdSceneCounter = 0;
 
 		public Scene()
 		{
@@ -41,7 +38,6 @@ namespace Domain
 
 		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt)
         {
-            _sceneNumber = ++_createdSceneCounter;
             SetSceneParameters(owner);
             SetRenderingParameters(fov, lookFrom, lookAt);
         }
@@ -141,11 +137,6 @@ namespace Domain
 			{
 				throw new InvalidFovException($"Scene's fov must be between {MinFov} and {MaxFov}");
 			}
-		}
-
-		internal void ResetCreatedCounter()
-		{
-			_createdSceneCounter = 0;
 		}
 	}
 }
