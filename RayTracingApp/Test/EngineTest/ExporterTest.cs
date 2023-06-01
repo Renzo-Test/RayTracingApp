@@ -82,5 +82,15 @@ namespace Test.EngineTest
             exporter.Export(testPath, testImage);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ExporterException))]
+        public void CanExport_PPMExporter_FailTest()
+        {
+            IExporter exporter = new PPMExporter();
+            Image testImage = new Bitmap(800, 600);
+
+            exporter.Export("", testImage);
+        }
+
     }
 }
