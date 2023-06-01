@@ -26,15 +26,12 @@ namespace Domain
 		public List<PosisionatedModel> PosisionatedModels;
 		public byte[] Preview { get; set; }
 
-		private string _registerTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+		private string _registerTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 		private string _owner;
 		private string _name;
 		private string _lastModificationDate = "unmodified";
 		private string _lastRenderDate = "unrendered";
 		private int _fov;
-		private int _sceneNumber;
-
-		private static int _createdSceneCounter = 0;
 
 		public Scene()
 		{
@@ -43,7 +40,6 @@ namespace Domain
 
 		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt)
         {
-            _sceneNumber = ++_createdSceneCounter;
             SetSceneParameters(owner);
             SetRenderingParameters(fov, lookFrom, lookAt);
         }
@@ -58,7 +54,7 @@ namespace Domain
 
         private void SetSceneParameters(string owner)
         {
-            _name = $"Blank Scene {_sceneNumber}";
+            _name = $"{_registerTime}";
             _owner = owner;
         }
 
@@ -165,11 +161,6 @@ namespace Domain
 			{
 				throw new InvalidFovException($"Scene's fov must be between {MinFov} and {MaxFov}");
 			}
-		}
-
-		internal void ResetCreatedCounter()
-		{
-			_createdSceneCounter = 0;
 		}
 	}
 }

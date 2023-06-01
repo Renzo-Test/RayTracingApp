@@ -132,8 +132,10 @@ namespace Test.ControllerTest
 				Name = "sceneName",
 			};
 
+			_sceneController.AddScene(scene, _owner);
 			_sceneController.UpdateSceneName(scene, _owner, "newName");
-			Assert.AreEqual("newName", scene.Name);
+
+			Assert.AreEqual("newName", _sceneController.ListScenes(_owner)[0].Name);
 		}
 
 		[TestMethod]
@@ -254,39 +256,9 @@ namespace Test.ControllerTest
 				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
 				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
 			};
-			Scene resetCounter = _sceneController.CreateBlankScene(client);
-			resetCounter.ResetCreatedCounter();
-
 
 			Scene blankScene = _sceneController.CreateBlankScene(client);
-			Assert.AreEqual("Blank Scene 1", blankScene.Name);
-		}
-
-		[TestMethod]
-		public void CreateBlankScene_TwoScenes_OkTest()
-		{
-			Client client1 = new Client()
-			{
-				Username = "OwnerName",
-				DefaultFov = 70,
-				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
-				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
-			};
-			Client client2 = new Client()
-			{
-				Username = "OwnerName",
-				DefaultFov = 70,
-				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
-				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
-			};
-
-			Scene resetCounter = _sceneController.CreateBlankScene(client1);
-			resetCounter.ResetCreatedCounter();
-
-			Scene blankScene1 = _sceneController.CreateBlankScene(client1);
-			Scene blankScene2 = _sceneController.CreateBlankScene(client2);
-
-			Assert.AreEqual("Blank Scene 2", blankScene2.Name);
+			Assert.AreEqual(blankScene.RegisterTime, blankScene.Name);
 		}
 
 		[TestMethod]
