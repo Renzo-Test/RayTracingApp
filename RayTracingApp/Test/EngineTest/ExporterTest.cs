@@ -65,6 +65,11 @@ namespace Test.EngineTest
             exporter.Export("", testImage);
         }
 
+        [TestMethod]
+        public void CanCreatePPMExporter_OkTest()
+        {
+            IExporter exporter = new PPMExporter();
+        }
 
     }
 }
