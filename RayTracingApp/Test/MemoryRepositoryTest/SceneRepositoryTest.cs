@@ -168,10 +168,13 @@ namespace Test.MemoryRepositoryTest
 		{
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
 			Bitmap img = new Bitmap(600, 300);
+			_sceneRepository.AddScene(_scene);
 
-			_scene.UpdateScenePreview(img);
 
-			Assert.AreEqual(img, _scene.GetPreview());
+			_sceneRepository.UpdateScenePreview(_scene, img);
+
+			Scene updatedScene = _sceneRepository.GetScenesByClient(_owner)[0];
+			Assert.AreEqual(img, updatedScene.GetPreview());
 		}
 	}
 }
