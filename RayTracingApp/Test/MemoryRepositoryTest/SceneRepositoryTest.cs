@@ -7,6 +7,7 @@ using System.Linq;
 using Controller;
 using DBRepository.Exceptions;
 using System.Drawing;
+using System;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -170,11 +171,11 @@ namespace Test.MemoryRepositoryTest
 			Bitmap img = new Bitmap(600, 300);
 			_sceneRepository.AddScene(_scene);
 
-
 			_sceneRepository.UpdateScenePreview(_scene, img);
 
 			Scene updatedScene = _sceneRepository.GetScenesByClient(_owner)[0];
-			Assert.AreEqual(img, updatedScene.GetPreview());
+
+			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
 		}
 	}
 }
