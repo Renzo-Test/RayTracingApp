@@ -24,7 +24,7 @@ namespace Domain
 		public List<PosisionatedModel> PosisionatedModels;
 		public Bitmap Preview;
 
-		private string _registerTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+		private string _registerTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 		private string _owner;
 		private string _name;
 		private string _lastModificationDate = "unmodified";
@@ -56,7 +56,7 @@ namespace Domain
 
         private void SetSceneParameters(string owner)
         {
-            _name = $"Blank Scene {_sceneNumber}";
+            _name = $"{_registerTime}";
             _owner = owner;
         }
 
