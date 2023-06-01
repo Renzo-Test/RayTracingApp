@@ -43,5 +43,16 @@ namespace Test.EngineTest
         {
             IExporter exporter = new PNGExporter();
         }
+
+        [TestMethod]
+        public void CanExport_PNGExporter_OkTest()
+        {
+            IExporter exporter = new PNGExporter();
+
+            string testPath = Path.Combine(Directory.GetCurrentDirectory(), "image.jpg");
+            Image testImage = new Bitmap(800, 600);
+
+            exporter.Export(testPath, testImage);
+        }
     }
 }
