@@ -131,8 +131,10 @@ namespace Test.ControllerTest
 				Name = "sceneName",
 			};
 
+			_sceneController.AddScene(scene, _owner);
 			_sceneController.UpdateSceneName(scene, _owner, "newName");
-			Assert.AreEqual("newName", scene.Name);
+
+			Assert.AreEqual("newName", _sceneController.ListScenes(_owner)[0].Name);
 		}
 
 		[TestMethod]
