@@ -22,7 +22,7 @@ namespace Domain
         public Vector CameraPosition = new Vector();
 		public Vector ObjectivePosition = new Vector();
 		public List<PosisionatedModel> PosisionatedModels;
-		public Bitmap Preview;
+		public byte[] Preview;
 
 		private string _registerTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
 		private string _owner;
