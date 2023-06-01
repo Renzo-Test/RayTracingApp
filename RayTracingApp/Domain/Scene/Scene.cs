@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -127,6 +128,20 @@ namespace Domain
 				return Image.FromStream(stream);
             }
         }
+
+		public void SetPreview(Image img)
+        {
+			Preview = ImageToByteArray(img);
+        }
+
+		public byte[] ImageToByteArray(Image img)
+        {
+			using (var stream = new MemoryStream())
+			{
+				img.Save(stream, ImageFormat.Bmp);
+				return stream.ToArray();
+			}
+		}
 
 		private static void RunNameIsEmptyChecker(string value)
 		{
