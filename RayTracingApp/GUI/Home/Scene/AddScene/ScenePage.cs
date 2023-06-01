@@ -153,7 +153,7 @@ namespace GUI
 
         private void SetRenderedImage(Bitmap img)
         {
-            _scene.SetPreview(img);
+            _sceneController.UpdatePreview(_scene, img);
             picScene.Image = img;
         }
 
