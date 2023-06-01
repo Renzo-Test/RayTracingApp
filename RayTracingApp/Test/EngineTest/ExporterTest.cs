@@ -71,5 +71,16 @@ namespace Test.EngineTest
             IExporter exporter = new PPMExporter();
         }
 
+        [TestMethod]
+        public void CanExport_PPMExporter_OkTest()
+        {
+            IExporter exporter = new PPMExporter();
+
+            string testPath = Path.Combine(Directory.GetCurrentDirectory(), "image.jpg");
+            Image testImage = new Bitmap(800, 600);
+
+            exporter.Export(testPath, testImage);
+        }
+
     }
 }
