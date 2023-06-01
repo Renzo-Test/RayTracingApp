@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +61,10 @@
     <Compile Include="Migrations\202305302017494_AddScene.cs" />
     <Compile Include="Migrations\202305302017494_AddScene.designer.cs">
       <DependentUpon>202305302017494_AddScene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306011912572_IncludedPreview.cs" />
+    <Compile Include="Migrations\202306011912572_IncludedPreview.designer.cs">
+      <DependentUpon>202306011912572_IncludedPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
@@ -100,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305302017494_AddScene.resx">
       <DependentUpon>202305302017494_AddScene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306011912572_IncludedPreview.resx">
+      <DependentUpon>202306011912572_IncludedPreview.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

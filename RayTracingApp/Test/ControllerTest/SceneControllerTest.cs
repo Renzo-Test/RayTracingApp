@@ -5,6 +5,7 @@ using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 
 namespace Test.ControllerTest
 {
@@ -259,5 +260,20 @@ namespace Test.ControllerTest
 			Scene blankScene = _sceneController.CreateBlankScene(client);
 			Assert.AreEqual(blankScene.RegisterTime, blankScene.Name);
 		}
+
+		[TestMethod]
+		public void UpdatePreview_OkTest()
+		{
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			Bitmap img = new Bitmap(600, 300);
+			_sceneController.AddScene(_scene, _owner);
+
+			_sceneController.UpdatePreview(_scene, img);
+
+			Scene updatedScene = _sceneController.ListScenes(_owner)[0];
+
+			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
+		}
+
 	}
 }

@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -22,7 +24,7 @@ namespace Domain
         public Vector CameraPosition = new Vector();
 		public Vector ObjectivePosition = new Vector();
 		public List<PosisionatedModel> PosisionatedModels;
-		public Bitmap Preview;
+		public byte[] Preview { get; set; }
 
 		private string _registerTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 		private string _owner;
@@ -112,6 +114,28 @@ namespace Domain
 				{
 					throw new InvalidSceneInputException(ex.Message);
 				}
+			}
+		}
+
+		public Image GetPreview()
+        {
+			using(var stream = new MemoryStream(Preview))
+            {
+				return Image.FromStream(stream);
+            }
+        }
+
+		public void SetPreview(Image img)
+        {
+			Preview = ImageToByteArray(img);
+        }
+
+		public byte[] ImageToByteArray(Image img)
+        {
+			using (var stream = new MemoryStream())
+			{
+				img.Save(stream, ImageFormat.Bmp);
+				return stream.ToArray();
 			}
 		}
 

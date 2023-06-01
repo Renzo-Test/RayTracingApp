@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Drawing;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace Test.ModelsTest
 {
@@ -226,12 +229,41 @@ namespace Test.ModelsTest
 				}
 			}
 
+
+
 		}
 
+		[TestMethod]
+		public void GetPreview_OkTest()
+        {
+            MemoryStream ms = new MemoryStream();
 
+            Bitmap img = new Bitmap(600, 300);
+            byte[] imgByteArr = GetImageAsByteArray(ms, img);
 
+            _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+            {
+                Preview = imgByteArr
+            };
 
+            Assert.AreEqual(_scene.GetPreview().ToString(), img.ToString());
+        }
 
+        private static byte[] GetImageAsByteArray(MemoryStream ms, Bitmap img)
+        {
+            img.Save(ms, ImageFormat.Bmp);
+            return ms.ToArray();
+        }
+
+		[TestMethod]
+		public void SetPreview_OkTest()
+		{
+			Bitmap img = new Bitmap(600, 300);
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			_scene.SetPreview(img);
+
+			Assert.AreEqual(_scene.GetPreview().ToString(), img.ToString());
+		}
 
 	}
 }

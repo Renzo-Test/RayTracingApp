@@ -6,6 +6,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Controller;
 using DBRepository.Exceptions;
+using System.Drawing;
+using System;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -160,6 +162,20 @@ namespace Test.MemoryRepositoryTest
 
 			List<Scene> iterableOwner1 = _sceneRepository.GetScenesByClient("OwnerName");
 			CollectionAssert.DoesNotContain(iterableOwner1, _scene);
+		}
+
+		[TestMethod]
+		public void UpdatePreview_OkTest()
+		{
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			Bitmap img = new Bitmap(600, 300);
+			_sceneRepository.AddScene(_scene);
+
+			_sceneRepository.UpdateScenePreview(_scene, img);
+
+			Scene updatedScene = _sceneRepository.GetScenesByClient(_owner)[0];
+
+			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
 		}
 	}
 }
