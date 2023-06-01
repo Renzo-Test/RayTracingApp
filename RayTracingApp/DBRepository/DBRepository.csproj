@@ -66,6 +66,10 @@
     <Compile Include="Migrations\202306011912572_IncludedPreview.designer.cs">
       <DependentUpon>202306011912572_IncludedPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306012038337_PosisionatedModelsMigration.cs" />
+    <Compile Include="Migrations\202306012038337_PosisionatedModelsMigration.designer.cs">
+      <DependentUpon>202306012038337_PosisionatedModelsMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
     <Compile Include="FigureRepository.cs" />
@@ -108,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306011912572_IncludedPreview.resx">
       <DependentUpon>202306011912572_IncludedPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306012038337_PosisionatedModelsMigration.resx">
+      <DependentUpon>202306012038337_PosisionatedModelsMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
