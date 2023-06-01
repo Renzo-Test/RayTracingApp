@@ -37,5 +37,11 @@ namespace Test.EngineTest
 
             exporter.Export("", testImage);
         }
+
+        [TestMethod]
+        public void CanCreatePNGExporter_OkTest()
+        {
+            IExporter exporter = new PNGExporter();
+        }
     }
 }
