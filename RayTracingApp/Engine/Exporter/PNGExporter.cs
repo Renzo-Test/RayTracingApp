@@ -12,9 +12,18 @@ namespace Engine.Exporter
 {
     public class PNGExporter : IExporter
     {
+        private const string InvalidPathErrorMessage = "Invalid Path";
+
         public void Export(string path, Image img)
         {
-            throw new NotImplementedException();
+            try
+            {
+                img.Save(path, ImageFormat.Png);
+            }
+            catch (Exception)
+            {
+                throw new ExporterException(InvalidPathErrorMessage);
+            }
         }
     }
 }
