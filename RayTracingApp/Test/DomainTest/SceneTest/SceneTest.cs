@@ -235,21 +235,24 @@ namespace Test.ModelsTest
 
 		[TestMethod]
 		public void GetPreview_OkTest()
-		{
-			MemoryStream ms = new MemoryStream();
-			
-			Bitmap img = new Bitmap(600, 300);
-			img.Save(ms, ImageFormat.Bmp);
-			
-			byte[] imgByteArr = ms.ToArray();
+        {
+            MemoryStream ms = new MemoryStream();
 
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
-			{
-				Preview = imgByteArr
-			};
+            Bitmap img = new Bitmap(600, 300);
+            byte[] imgByteArr = GetImageAsByteArray(ms, img);
 
-			Assert.AreEqual(_scene.GetPreview().ToString(), img.ToString());
-		}
+            _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+            {
+                Preview = imgByteArr
+            };
 
-	}
+            Assert.AreEqual(_scene.GetPreview().ToString(), img.ToString());
+        }
+
+        private static byte[] GetImageAsByteArray(MemoryStream ms, Bitmap img)
+        {
+            img.Save(ms, ImageFormat.Bmp);
+            return ms.ToArray();
+        }
+    }
 }
