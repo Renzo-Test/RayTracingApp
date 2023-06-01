@@ -73,7 +73,7 @@ namespace GUI
 
             if(_scene.Preview is object)
             {
-				picScene.Image = _scene.Preview;
+				picScene.Image = _scene.GetPreview();
 			}
 
         }
@@ -153,7 +153,7 @@ namespace GUI
 
         private void SetRenderedImage(Bitmap img)
         {
-            _scene.Preview = img;
+            _scene.SetPreview(img);
             picScene.Image = img;
         }
 
