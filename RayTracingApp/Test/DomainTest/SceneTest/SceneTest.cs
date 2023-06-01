@@ -254,5 +254,16 @@ namespace Test.ModelsTest
             img.Save(ms, ImageFormat.Bmp);
             return ms.ToArray();
         }
-    }
+
+		[TestMethod]
+		public void SetPreview_OkTest()
+		{
+			Bitmap img = new Bitmap(600, 300);
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			_scene.SetPreview(img);
+
+			Assert.AreEqual(_scene.GetPreview().ToString(), img.ToString());
+		}
+
+	}
 }
