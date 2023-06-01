@@ -248,7 +248,7 @@ namespace Test.ModelsTest
 				Preview = imgByteArr
 			};
 
-			Assert.AreEqual(_scene.GetPreview(), img);
+			Assert.AreEqual(_scene.GetPreview().ToString(), img.ToString());
 		}
 
 	}

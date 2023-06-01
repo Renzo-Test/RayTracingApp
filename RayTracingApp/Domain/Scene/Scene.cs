@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -118,6 +119,14 @@ namespace Domain
 				}
 			}
 		}
+
+		public Image GetPreview()
+        {
+			using(var stream = new MemoryStream(Preview))
+            {
+				return Image.FromStream(stream);
+            }
+        }
 
 		private static void RunNameIsEmptyChecker(string value)
 		{
