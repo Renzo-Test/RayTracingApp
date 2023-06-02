@@ -18,6 +18,7 @@ namespace GUI
 {
     public partial class ScenePage : UserControl
     {
+        private const string UnrenderedImageErrorMessage = "Can not export unrendered image";
         private SceneHome _sceneHome;
 
         private ModelController _modelController;
@@ -294,5 +295,24 @@ namespace GUI
             Render();
         }
 
+        private void picBackgroundExport_Click(object sender, EventArgs e)
+        {
+            ExportImage();
+        }
+
+        private void picIconExport_Click(object sender, EventArgs e)
+        {
+            ExportImage();
+        }
+
+        private void ExportImage()
+        {
+            if (_scene.Preview is null)
+            {
+                MessageBox.Show(UnrenderedImageErrorMessage);
+                return;
+            }
+            _sceneHome.GoToExportPage(_scene.Preview, _scene.Name);
+        }
     }
 }
