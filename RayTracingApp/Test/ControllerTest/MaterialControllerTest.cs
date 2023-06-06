@@ -63,7 +63,27 @@ namespace Test.ControllerTest
 			Assert.AreEqual(_materialController.Repository.GetMaterialsByClient("user")[0].Name, _newMaterial.Name);
 		}
 
-		[TestMethod]
+        [TestMethod]
+        public void AddMaterial_ValidMetallic_OkTest()
+        {
+            Material _newMaterial = new Metallic()
+            {
+                Name = "materialName",
+                Color = new Color
+                {
+                    Red = 1,
+                    Green = 1,
+                    Blue = 1,
+                },
+				Blur = 0.1
+            };
+
+            _materialController.AddMaterial(_newMaterial, "user");
+
+            Assert.AreEqual(_materialController.Repository.GetMaterialsByClient("user")[0].Name, _newMaterial.Name);
+        }
+
+        [TestMethod]
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_DuplicatedLambertian_FailTest()
 		{
