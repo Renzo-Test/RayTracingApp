@@ -90,7 +90,7 @@ namespace Controller
 
 		}
 
-		public void UpdateLambertianMaterialName(Material material, string currentClient, string newName)
+		public void UpdateMaterialName(Material material, string currentClient, string newName)
 		{
 			try
 			{

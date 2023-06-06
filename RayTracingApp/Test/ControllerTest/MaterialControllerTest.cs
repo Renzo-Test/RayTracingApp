@@ -361,7 +361,7 @@ namespace Test.ControllerTest
 
 			_materialController.AddMaterial(newMaterial, currentClient.Username);
 
-			_materialController.UpdateLambertianMaterialName(newMaterial, currentClient.Username, "newName");
+			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, "newName");
 
 			Material updatedMaterial = _materialController.ListMaterials(currentClient.Username)[0];
 
@@ -383,7 +383,7 @@ namespace Test.ControllerTest
 				Name = "materialName",
 			};
 
-			_materialController.UpdateLambertianMaterialName(newMaterial, currentClient.Username, " newNameMaterial ");
+			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, " newNameMaterial ");
 		}
     }
 }
