@@ -102,7 +102,27 @@ namespace Test.ControllerTest
 			_materialController.AddMaterial(_newMaterial, "user");
 		}
 
-		[TestMethod]
+        [TestMethod]
+        [ExpectedException(typeof(InvalidMaterialInputException))]
+        public void AddMaterial_DuplicatedMetallic_FailTest()
+        {
+            Material _newMaterial = new Metallic()
+            {
+                Name = "materialName",
+                Color = new Color
+                {
+                    Red = 1,
+                    Green = 1,
+                    Blue = 1,
+                },
+				Blur= 0.1
+            };
+
+            _materialController.AddMaterial(_newMaterial, "user");
+            _materialController.AddMaterial(_newMaterial, "user");
+        }
+
+        [TestMethod]
 		public void AddMaterial_TwoValidLambertians_OkTest()
 		{
 			Material _firstMaterial = new Lambertian()
