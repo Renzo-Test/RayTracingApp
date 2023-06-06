@@ -64,5 +64,11 @@ namespace Test.ModelsTest
 			Assert.AreEqual(emptyEnum, _material.Type);
 		}
 
+		[TestMethod]
+		public void CanCreateMetallicMaterial_OkTest() 
+		{
+			Material newMaterial = new Metallic();
+		}
+
 	}
 }

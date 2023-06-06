@@ -69,6 +69,7 @@ namespace Domain
 
 	public enum MaterialEnum
 	{
-		LambertianMaterial
+		Lambertian,
+		Metallic
 	}
 }
