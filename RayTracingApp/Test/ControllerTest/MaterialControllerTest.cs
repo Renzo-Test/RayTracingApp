@@ -45,7 +45,7 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
-		public void AddMaterial_ValidMaterial_OkTest()
+		public void AddMaterial_ValidLambertian_OkTest()
 		{
 			Material _newMaterial = new Lambertian()
 			{
@@ -65,7 +65,7 @@ namespace Test.ControllerTest
 
 		[TestMethod]
 		[ExpectedException(typeof(InvalidMaterialInputException))]
-		public void AddMaterial_DuplicatedMaterial_FailTest()
+		public void AddMaterial_DuplicatedLambertian_FailTest()
 		{
 			Material _newMaterial = new Lambertian()
 			{
@@ -83,7 +83,7 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
-		public void AddMaterial_TwoValidMaterials_OkTest()
+		public void AddMaterial_TwoValidLambertians_OkTest()
 		{
 			Material _firstMaterial = new Lambertian()
 			{
@@ -267,7 +267,7 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
-		public void ChangeMaterial_OkTest()
+		public void ChangeLambertianName_OkTest()
 		{
 			Client currentClient = new Client()
 			{
@@ -297,7 +297,7 @@ namespace Test.ControllerTest
 
 		[TestMethod]
 		[ExpectedException(typeof(InvalidMaterialInputException))]
-		public void ChangeMaterialName_FailTest()
+		public void ChangeLambertianName_FailTest()
 		{
 			Client currentClient = new Client()
 			{
