@@ -348,7 +348,7 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			Material newMaterial = new Lambertian()
+			Lambertian newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -361,7 +361,7 @@ namespace Test.ControllerTest
 
 			_materialController.AddMaterial(newMaterial, currentClient.Username);
 
-			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, "newName");
+			_materialController.UpdateLambertianMaterialName(newMaterial, currentClient.Username, "newName");
 
 			Material updatedMaterial = _materialController.ListMaterials(currentClient.Username)[0];
 
@@ -378,12 +378,12 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			Material newMaterial = new Lambertian()
+			Lambertian newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 			};
 
-			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, " newNameMaterial ");
+			_materialController.UpdateLambertianMaterialName(newMaterial, currentClient.Username, " newNameMaterial ");
 		}
 	}
 }

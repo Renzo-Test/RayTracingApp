@@ -90,7 +90,7 @@ namespace Controller
 
 		}
 
-		public void UpdateMaterialName(Material material, string currentClient, string newName)
+		public void UpdateLambertianMaterialName(Lambertian material, string currentClient, string newName)
 		{
 			try
 			{
@@ -111,5 +111,27 @@ namespace Controller
 			}
 		}
 
-	}
+        public void UpdateMetallicMaterialName(Metallic material, string currentClient, string newName)
+        {
+            try
+            {
+                Material newMaterial = new Metallic()
+                {
+                    Name = newName,
+                    Owner = material.Owner,
+                    Color = material.Color,
+					Blur = material.Blur,
+                };
+
+                RunMaterialChecker(newMaterial, currentClient);
+
+                Repository.UpdateMaterialName(material, newName);
+            }
+            catch (InvalidMaterialInputException ex)
+            {
+                throw new InvalidMaterialInputException(ex.Message);
+            }
+        }
+
+    }
 }
