@@ -2,7 +2,7 @@
 
 namespace Domain
 {
-	public class Material
+	public abstract class Material
 	{
 		private const string EmptyNameMessage = "Material's name must not be empty";
 		private const string NotAlphanumericMessage = "Material's name must not start or end with blank space";
