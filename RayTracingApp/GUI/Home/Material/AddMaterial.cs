@@ -67,7 +67,7 @@ namespace GUI
         }
         private static Material CreateMaterial(Color newColor, string Name)
         {
-            return new Material()
+            return new Lambertian()
             {
                 Name = Name,
                 Color = newColor

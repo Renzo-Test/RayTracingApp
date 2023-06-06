@@ -8,7 +8,9 @@ namespace Domain
 {
     public class Metallic : Material
     {
-        public int Blur { get; set; }
+        private double _blur;
+        public double Blur { get { return _blur; } set { _blur = value; } }
         public Metallic() : base(MaterialEnum.Metallic) { }
+
     }
 }

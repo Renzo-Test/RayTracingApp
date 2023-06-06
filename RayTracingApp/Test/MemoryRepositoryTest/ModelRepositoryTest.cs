@@ -51,7 +51,7 @@ namespace Test.MemoryRepositoryTest
 				Blue = 222,
 			};
 
-			Material NewMaterial = new Material()
+			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
 				Owner = "OwnerName",
@@ -84,7 +84,7 @@ namespace Test.MemoryRepositoryTest
 				Blue = 222,
 			};
 
-			Material NewMaterial = new Material()
+			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
 				Owner = "OwnerName",
@@ -115,7 +115,7 @@ namespace Test.MemoryRepositoryTest
 				Blue = 222,
 			};
 
-			Material NewMaterial = new Material()
+			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
 				Owner = "OwnerName",
@@ -150,7 +150,7 @@ namespace Test.MemoryRepositoryTest
 				Blue = 222,
 			};
 
-			Material NewMaterial = new Material()
+			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
 				Owner = "OwnerName",

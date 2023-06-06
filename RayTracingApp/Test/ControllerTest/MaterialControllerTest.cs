@@ -47,7 +47,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void AddMaterial_ValidMaterial_OkTest()
 		{
-			Material _newMaterial = new Material()
+			Material _newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -67,7 +67,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_DuplicatedMaterial_FailTest()
 		{
-			Material _newMaterial = new Material()
+			Material _newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -85,7 +85,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void AddMaterial_TwoValidMaterials_OkTest()
 		{
-			Material _firstMaterial = new Material()
+			Material _firstMaterial = new Lambertian()
 			{
 				Name = "materialOne",
 				Color = new Color
@@ -96,7 +96,7 @@ namespace Test.ControllerTest
 				}
 			};
 
-			Material _secondMaterial = new Material()
+			Material _secondMaterial = new Lambertian()
 			{
 				Name = "materialTwo",
 				Color = new Color
@@ -117,7 +117,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_SpacedMaterialName_FailTest()
 		{
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = " spacedName ",
 			};
@@ -128,7 +128,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_EmptyMaterialName_FailTest()
 		{
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "",
 			};
@@ -137,7 +137,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void ListMaterials_OkTest()
 		{
-			Material firstMaterial = new Material()
+			Material firstMaterial = new Lambertian()
 			{
 				Name = "materialOne",
 				Color = new Color
@@ -149,7 +149,7 @@ namespace Test.ControllerTest
 			};
 			_materialController.AddMaterial(firstMaterial, "username");
 
-			Material secondMaterial = new Material()
+			Material secondMaterial = new Lambertian()
 			{
 				Name = "materialTwo",
 				Color = new Color
@@ -167,7 +167,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void RemoveMaterials_OkTest()
 		{
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -204,7 +204,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(MaterialUsedByModelException))]
 		public void RemoveMaterial_MaterialUsedByModel_FailTest()
 		{
-			Material material = new Material()
+			Material material = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -236,7 +236,7 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "sphere",
 				Color = new Color
@@ -275,7 +275,7 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -305,7 +305,7 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 			};

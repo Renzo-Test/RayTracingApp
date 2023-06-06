@@ -44,7 +44,7 @@ namespace Test.ControllerTest
 			{
 				Name = "Test",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 			_modelController.AddModel(targetModel, "Owner");
 
@@ -52,7 +52,7 @@ namespace Test.ControllerTest
 			{
 				Name = "Test",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 			_modelController.AddModel(anotherModel, "OtherOwner");
 			
@@ -75,7 +75,7 @@ namespace Test.ControllerTest
 			{
 				Name = "Test",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 			_modelController.AddModel(_newModel, "OwnerName");
 
@@ -91,7 +91,7 @@ namespace Test.ControllerTest
 			{
 				Name = "Test",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 			_modelController.AddModel(_newModel, "user");
 			_modelController.AddModel(_newModel, "user");
@@ -104,13 +104,13 @@ namespace Test.ControllerTest
 			{
 				Name = "Test one",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 			Model _sndNewModel = new Model()
 			{
 				Name = "Test two",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 			_modelController.AddModel(_fstNewModel, "user");
 			_modelController.AddModel(_sndNewModel, "user");
@@ -144,7 +144,7 @@ namespace Test.ControllerTest
 			{
 				Name = "modelOne",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 			_modelController.AddModel(firstModel, "username");
 
@@ -152,7 +152,7 @@ namespace Test.ControllerTest
 			{
 				Name = "modelTwo",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 			_modelController.AddModel(secondModel, "username");
 			Assert.AreEqual(2, _modelController.ListModels("username").Count);
@@ -165,7 +165,7 @@ namespace Test.ControllerTest
 			{
 				Name = "modelName",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 			_modelController.AddModel(newModel, "username");
 			_modelController.RemoveModel(newModel.Name, "username");
@@ -194,7 +194,7 @@ namespace Test.ControllerTest
 			{
 				Name = "Test",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 
 			_modelController.AddModel(newModel, currentClient.Username);
@@ -229,7 +229,7 @@ namespace Test.ControllerTest
 			{
 				Name = "Test",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 
 			_modelController.AddModel(newModel, currentClient.Username);
@@ -253,7 +253,7 @@ namespace Test.ControllerTest
 			{
 				Name = "Test",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 
 			_modelController.UpdateModelName(newModel, currentClient.Username, " newName ");

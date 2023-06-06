@@ -264,7 +264,7 @@ namespace Test.ControllerTest
 			{
 				Name = "Test",
 				Figure = figure,
-				Material = new Material(),
+				Material = new Lambertian(),
 			};
 			_figureController.AddFigure(figure, "Owner");
 			_modelController.AddModel(model, "Owner");

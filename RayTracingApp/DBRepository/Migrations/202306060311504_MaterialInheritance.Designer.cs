@@ -13,7 +13,7 @@ namespace DBRepository.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202306060257132_MaterialInheritance"; }
+            get { return "202306060311504_MaterialInheritance"; }
         }
         
         string IMigrationMetadata.Source

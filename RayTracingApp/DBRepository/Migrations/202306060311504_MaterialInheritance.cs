@@ -7,7 +7,7 @@
     {
         public override void Up()
         {
-            AddColumn("dbo.Materials", "Blur", c => c.Int());
+            AddColumn("dbo.Materials", "Blur", c => c.Double());
             AddColumn("dbo.Materials", "Discriminator", c => c.String(nullable: false, maxLength: 128));
         }
         

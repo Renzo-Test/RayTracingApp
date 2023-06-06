@@ -94,7 +94,7 @@ namespace Controller
 		{
 			try
 			{
-				Material newMaterial = new Material()
+				Material newMaterial = new Lambertian()
 				{
 					Name = newName,
 					Owner = material.Owner,

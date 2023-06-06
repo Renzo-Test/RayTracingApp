@@ -272,7 +272,7 @@ namespace Engine
 
 			Sphere terrain = InitializateSphere(2000);
 			Domain.Color terrainColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
-			Model modelTerrain = InitializateModel(terrain, new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial });
+			Model modelTerrain = InitializateModel(terrain, new Lambertian() { Color = terrainColor});
 			PosisionatedModel terrainPosisionated = InitializatePosisionatedModel(modelTerrain, -2000);
 
 			Scene previewScene = new Scene()
