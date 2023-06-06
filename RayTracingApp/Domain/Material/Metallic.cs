@@ -18,7 +18,7 @@ namespace Domain
             {
                 try
                 {
-                    isValidBlur(value);
+                    RunBlurIsValidChecker(value);
                     _blur = value;
                 }
                 catch(InvalidMaterialInputException ex)
@@ -28,7 +28,7 @@ namespace Domain
             }
         }
         public Metallic() : base(MaterialEnum.Metallic) { }
-        private static void isValidBlur(double value) 
+        private static void RunBlurIsValidChecker(double value) 
         {
             if (value < 0.0) 
             {
