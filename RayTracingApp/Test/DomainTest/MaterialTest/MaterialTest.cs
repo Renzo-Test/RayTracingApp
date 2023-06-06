@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using System.Diagnostics.CodeAnalysis;
+using Domain.Exceptions;
 
 namespace Test.ModelsTest
 {
@@ -79,5 +80,14 @@ namespace Test.ModelsTest
             };
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(InvalidMaterialInputException))]
+        public void SetBlur_InvalidBlur_OkTest()
+        {
+            _material = new Metallic() 
+            {
+                Blur = -0.1
+            };
+        }
     }
 }
