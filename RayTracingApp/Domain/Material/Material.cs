@@ -14,6 +14,11 @@ namespace Domain
 		private MaterialEnum _type;
 
         public int Id { get; set; }
+
+        protected Material(MaterialEnum type)
+        {
+            Type = type;
+        }
         public string Owner
 		{
 			get => _owner;
