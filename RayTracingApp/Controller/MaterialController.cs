@@ -90,7 +90,7 @@ namespace Controller
 
 		}
 
-		public void UpdateLambertianMaterialName(Lambertian material, string currentClient, string newName)
+		public void UpdateLambertianMaterialName(Material material, string currentClient, string newName)
 		{
 			try
 			{
@@ -110,28 +110,5 @@ namespace Controller
 				throw new InvalidMaterialInputException(ex.Message);
 			}
 		}
-
-        public void UpdateMetallicMaterialName(Metallic material, string currentClient, string newName)
-        {
-            try
-            {
-                Material newMaterial = new Metallic()
-                {
-                    Name = newName,
-                    Owner = material.Owner,
-                    Color = material.Color,
-					Blur = material.Blur,
-                };
-
-                RunMaterialChecker(newMaterial, currentClient);
-
-                Repository.UpdateMaterialName(material, newName);
-            }
-            catch (InvalidMaterialInputException ex)
-            {
-                throw new InvalidMaterialInputException(ex.Message);
-            }
-        }
-
     }
 }

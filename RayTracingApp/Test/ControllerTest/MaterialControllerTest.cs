@@ -348,7 +348,7 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			Lambertian newMaterial = new Lambertian()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -378,41 +378,12 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			Lambertian newMaterial = new Lambertian()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 			};
 
 			_materialController.UpdateLambertianMaterialName(newMaterial, currentClient.Username, " newNameMaterial ");
 		}
-
-        [TestMethod]
-        public void ChangeMetallicName_OkTest()
-        {
-            Client currentClient = new Client()
-            {
-                Username = "Username123",
-                Password = "Password123"
-            };
-
-            Metallic newMaterial = new Metallic()
-            {
-                Name = "materialName",
-                Color = new Color
-                {
-                    Red = 1,
-                    Green = 1,
-                    Blue = 1,
-                }
-            };
-
-            _materialController.AddMaterial(newMaterial, currentClient.Username);
-
-            _materialController.UpdateMetallicMaterialName(newMaterial, currentClient.Username, "newName");
-
-            Material updatedMaterial = _materialController.ListMaterials(currentClient.Username)[0];
-
-            Assert.AreEqual(updatedMaterial.Name, "newName");
-        }
     }
 }
