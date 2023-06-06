@@ -73,7 +73,7 @@ namespace Test.ModelsTest
         [TestMethod]
         public void SetBlur_ValidBlur_OkTest()
         {
-            Materian newMaterial = new Metallic();
+            Material newMaterial = new Metallic();
             newMaterial.Blur = 0.1;
         }
 
