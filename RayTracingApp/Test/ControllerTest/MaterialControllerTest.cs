@@ -153,7 +153,40 @@ namespace Test.ControllerTest
 			Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
 		}
 
-		[TestMethod]
+        [TestMethod]
+        public void AddMaterial_TwoValidMetallics_OkTest()
+        {
+            Material _firstMaterial = new Metallic()
+            {
+                Name = "materialOne",
+                Color = new Color
+                {
+                    Red = 1,
+                    Green = 1,
+                    Blue = 1,
+                },
+				Blur = 0.1
+            };
+
+            Material _secondMaterial = new Metallic()
+            {
+                Name = "materialTwo",
+                Color = new Color
+                {
+                    Red = 1,
+                    Green = 1,
+                    Blue = 1,
+                },
+				Blur = 0.1
+            };
+
+            _materialController.AddMaterial(_firstMaterial, "user");
+            _materialController.AddMaterial(_secondMaterial, "user");
+
+            Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
+        }
+
+        [TestMethod]
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_SpacedMaterialName_FailTest()
 		{
