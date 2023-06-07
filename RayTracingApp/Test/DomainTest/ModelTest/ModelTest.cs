@@ -1,6 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Test.ModelsTest
 {
@@ -66,17 +69,6 @@ namespace Test.ModelsTest
 		}
 
 		[TestMethod]
-		public void SetPreview_OkTst()
-		{
-			Model newModel = new Model()
-			{
-				Preview = "modelPreview"
-			};
-
-			Assert.AreEqual("modelPreview", newModel.Preview);
-		}
-
-		[TestMethod]
 		public void SetShowPreview_OkTst()
 		{
 			Model newModel = new Model()
@@ -85,6 +77,43 @@ namespace Test.ModelsTest
 			};
 
 			Assert.AreEqual(false, newModel.showPreview);
+		}
+
+		[TestMethod]
+		public void GetPreview_OkTest()
+		{
+			MemoryStream ms = new MemoryStream();
+
+			Bitmap img = new Bitmap(600, 300);
+			byte[] imgByteArr = GetImageAsByteArray(ms, img);
+
+			Model newModel = new Model()
+			{
+				showPreview = true,
+				Preview = imgByteArr
+			};
+
+			Assert.AreEqual(newModel.GetPreview().ToString(), img.ToString());
+		}
+
+		private static byte[] GetImageAsByteArray(MemoryStream ms, Bitmap img)
+		{
+			img.Save(ms, ImageFormat.Bmp);
+			return ms.ToArray();
+		}
+
+		[TestMethod]
+		public void SetPreview_OkTest()
+		{
+			Bitmap img = new Bitmap(600, 300);
+
+			Model newModel = new Model()
+			{
+				showPreview = true,
+			};
+			newModel.SetPreview(img);
+
+			Assert.AreEqual(newModel.GetPreview().ToString(), img.ToString());
 		}
 	}
 }

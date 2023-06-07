@@ -64,5 +64,12 @@ namespace GUI
             flySceneHome.Controls.Clear();
             flySceneHome.Controls.Add(_defaultRenderSettings);
         }
+
+        public void GoToExportPage(Image img, string imgName)
+        {
+            flySceneHome.Controls.Clear();
+            ExportPage exportPage = new ExportPage(this, img, imgName);
+            flySceneHome.Controls.Add(exportPage);
+        }
     }
 }

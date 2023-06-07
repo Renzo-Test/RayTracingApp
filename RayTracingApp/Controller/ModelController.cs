@@ -6,6 +6,7 @@ using Domain;
 using Domain.Exceptions;
 using System.Collections.Generic;
 using System;
+using System.Drawing;
 
 namespace Controller
 {
@@ -100,6 +101,11 @@ namespace Controller
 			}
 
 		}
+
+		public void UpdatePreview(Model model, Image preview)
+        {
+			Repository.UpdatePreview(model, preview);
+        }
 
 	}
 }

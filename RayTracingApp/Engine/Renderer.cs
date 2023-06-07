@@ -64,14 +64,16 @@ namespace Engine
             };
         }
 
-    public string RenderModelPreview(Model model)
+		public (string, Image) RenderModelPreview(Model model)
 		{
 			RenderProperties properties = PreviewRenderProperties();
 			Scene previewScene = CreatePreviewScene(model);
 
 			string preview = Render(previewScene, properties, null);
-			model.Preview = preview;
-			return preview;
+			Scanner scanner = new Scanner();
+			Bitmap img = scanner.ScanImage(preview);
+
+			return (preview, img);
 		}
 
 		private void InitializateRender(ProgressBar progressBar)

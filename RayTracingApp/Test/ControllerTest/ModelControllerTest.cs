@@ -6,6 +6,7 @@ using Domain.Exceptions;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Drawing;
 
 namespace Test.ControllerTest
 {
@@ -258,5 +259,32 @@ namespace Test.ControllerTest
 
 			_modelController.UpdateModelName(newModel, currentClient.Username, " newName ");
 		}
+
+		[TestMethod]
+		public void UpdatePreview_OkTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			Model newModel = new Model()
+			{
+				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Material()
+			};
+
+			Bitmap img = new Bitmap(600, 300);
+			_modelController.AddModel(newModel, currentClient.Username);
+
+			_modelController.UpdatePreview(newModel, img);
+
+			Model updatedScene = _modelController.ListModels(currentClient.Username)[0];
+
+			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
+		}
+
 	}
 }

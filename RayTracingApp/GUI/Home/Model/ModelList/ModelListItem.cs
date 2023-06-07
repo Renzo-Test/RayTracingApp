@@ -30,8 +30,8 @@ namespace GUI
         public ModelListItem(ModelList modelList, ModelController modelController, Model model)
         {
             InitializeComponent();
-            InitializePanelAtributes(model);
             InitializeControllers(modelList, modelController, model);
+            InitializePanelAtributes(model);
         }
 
         private void InitializeControllers(ModelList modelList, ModelController modelController, Model model)
@@ -51,15 +51,22 @@ namespace GUI
 
             if (model.showPreview)
             {
-                Renderer renderer = new Renderer();
-                renderer.RenderModelPreview(model);
-                string preview = model.Preview;
 
-                Scanner scanner = new Scanner();
-                Bitmap image = scanner.ScanImage(preview);
+                if (model.Preview is object)
+                {
+                    picIconSphere.Image = model.GetPreview();
+                    picMaterialColor.Visible = false;
+                }
+                else
+                {
+                    Renderer renderer = new Renderer();
+                    var (_, image) = renderer.RenderModelPreview(model);
 
-                picIconSphere.Image = image;
-                picMaterialColor.Visible = false;
+                    _modelController.UpdatePreview(model, image);
+                    picIconSphere.Image = image;
+                    picMaterialColor.Visible = false;
+                }
+                
             }
 
             txtModelName.Text = model.Name;

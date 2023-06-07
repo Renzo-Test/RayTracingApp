@@ -73,6 +73,9 @@
     <Compile Include="Migrations\202306060311504_MaterialInheritance.cs" />
     <Compile Include="Migrations\202306060311504_MaterialInheritance.designer.cs">
       <DependentUpon>202306060311504_MaterialInheritance.cs</DependentUpon>
+    <Compile Include="Migrations\202306071504006_preview_model.cs" />
+    <Compile Include="Migrations\202306071504006_preview_model.designer.cs">
+      <DependentUpon>202306071504006_preview_model.cs</DependentUpon>
     </Compile>
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
@@ -122,6 +125,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306060311504_MaterialInheritance.resx">
       <DependentUpon>202306060311504_MaterialInheritance.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306071504006_preview_model.resx">
+      <DependentUpon>202306071504006_preview_model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
