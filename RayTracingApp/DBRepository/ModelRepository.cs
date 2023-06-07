@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DBRepository.Exceptions;
 using System.Linq;
 using System.Data.Entity;
+using System.Drawing;
 
 namespace DBRepository
 {
@@ -63,5 +64,10 @@ namespace DBRepository
 				context.SaveChanges();
 			}
 		}
-	}
+
+        public void UpdatePreview(Model model, Bitmap preview)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

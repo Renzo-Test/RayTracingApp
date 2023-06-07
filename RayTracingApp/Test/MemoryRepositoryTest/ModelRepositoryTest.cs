@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -165,6 +166,24 @@ namespace Test.MemoryRepositoryTest
 			};
 			_modelRepository.RemoveModel(NewModel);
 			_modelRepository.GetModelsByClient("OwnerName");
+		}
+
+		[TestMethod]
+		public void UpdatePreview_OkTest()
+		{
+			Model NewModel = new Model()
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+			};
+			Bitmap img = new Bitmap(600, 300);
+			_modelRepository.AddModel(NewModel);
+
+			_modelRepository.UpdatePreview(NewModel, img);
+
+			Model updatedModel = _modelRepository.GetModelsByClient("OwnerName")[0];
+
+			Assert.AreEqual(img.ToString(), updatedModel.GetPreview().ToString());
 		}
 	}
 }
