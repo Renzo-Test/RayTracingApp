@@ -70,7 +70,10 @@ namespace Engine
 			Scene previewScene = CreatePreviewScene(model);
 
 			string preview = Render(previewScene, properties, null);
-			model.Preview = preview;
+			Scanner scanner = new Scanner();
+			Bitmap img = scanner.ScanImage(preview);
+
+			model.SetPreview(img);
 			return preview;
 		}
 

@@ -1,5 +1,6 @@
 ﻿using Domain.Exceptions;
 using System;
+using System.Drawing;
 
 namespace Domain
 {
@@ -14,7 +15,7 @@ namespace Domain
 		private Figure _figure;
 		private Material _material;
 		
-		public string Preview { get; set; }
+		public byte[] Preview { get; set; }
 		
 		public bool showPreview { get; set; }
 
@@ -53,6 +54,14 @@ namespace Domain
 			set => _material = value;
 		}
 
+		public Image GetPreview()
+		{
+			return null;
+		}
+
+		public void SetPreview(Image img)
+		{
+		}
 		private static void RunNameIsSpacedChecker(string value)
 		{
 			if (value.StartsWith(SpaceCharacterConstant) || value.EndsWith(SpaceCharacterConstant))
