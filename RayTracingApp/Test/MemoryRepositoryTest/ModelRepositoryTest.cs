@@ -1,9 +1,11 @@
-﻿using MemoryRepository;
-using MemoryRepository.Exceptions;
+﻿using DBRepository;
+using DBRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
+using Color = Domain.Color;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -12,11 +14,25 @@ namespace Test.MemoryRepositoryTest
 	public class ModelRepositoryTest
 	{
 		private ModelRepository _modelRepository;
+
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_modelRepository = new ModelRepository();
+			_modelRepository = new ModelRepository()
+			{
+				DBName = "RayTracingAppTestDB"
+			};
 		}
+
+		[TestCleanup]
+		public void TestCleanUp()
+		{
+			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Models");
+			}
+		}
+
 		[TestMethod]
 		public void CreateModelRepositoryOk_Test()
 		{
@@ -51,8 +67,10 @@ namespace Test.MemoryRepositoryTest
 				Figure = newFigure
 			};
 			_modelRepository.AddModel(NewModel);
-			Assert.AreEqual(NewModel, _modelRepository.GetModelsByClient(NewModel.Owner)[0]);
+
+			Assert.AreEqual(NewModel.Id, _modelRepository.GetModelsByClient(NewModel.Owner)[0].Id);
 		}
+
 		[TestMethod]
 		public void AddModel_OkTest()
 		{
@@ -150,5 +168,45 @@ namespace Test.MemoryRepositoryTest
 			_modelRepository.RemoveModel(NewModel);
 			_modelRepository.GetModelsByClient("OwnerName");
 		}
+
+		[TestMethod]
+		public void UpdatePreview_OkTest()
+		{
+			Figure newFigure = new Sphere()
+			{
+				Owner = "OwnerName",
+				Name = "Name",
+			};
+			Color NewColor = new Color()
+			{
+				Red = 222,
+				Green = 222,
+				Blue = 222,
+			};
+
+			Material NewMaterial = new Material()
+			{
+				Name = "Test",
+				Owner = "OwnerName",
+				Color = NewColor,
+			};
+			Model NewModel = new Model()
+			{
+				Owner = "OwnerName",
+				Name = "Test",
+				Material = NewMaterial,
+				Figure = newFigure
+			};
+
+			Bitmap img = new Bitmap(600, 300);
+			_modelRepository.AddModel(NewModel);
+
+			_modelRepository.UpdatePreview(NewModel, img);
+
+			Model updatedModel = _modelRepository.GetModelsByClient("OwnerName")[0];
+
+			Assert.AreEqual(img.ToString(), updatedModel.GetPreview().ToString());
+		}
+
 	}
 }

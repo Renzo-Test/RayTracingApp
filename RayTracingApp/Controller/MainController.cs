@@ -21,9 +21,6 @@ namespace Controller
             FigureController = new FigureController();
             MaterialController = new MaterialController();
             ClientController = new ClientController();
-
-            /*TEST ENVIRONMENT ONLY*/
-            ClientController.SignUp("admin", "Admin1");
         }
     }
 }

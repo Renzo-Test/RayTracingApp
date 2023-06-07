@@ -17,6 +17,8 @@ namespace Domain
 		private const int MaxFov = 160;
 
 		private string _username;
+
+		public int Id { get; set; }
 		
 		public String Username
 		{

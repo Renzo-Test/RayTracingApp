@@ -1,24 +1,30 @@
 ﻿using Controller.Exceptions;
 using IRepository;
-using MemoryRepository;
+using DBRepository;
+using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 
 namespace Controller
 {
 	public class SceneController
 	{
-		public IRepositoryScene Repository;
+        private const string DefaultDatabase = "RayTracingAppDB";
+        public IRepositoryScene Repository;
 
-		public SceneController()
-		{
-			Repository = new SceneRepository();
-		}
+        public SceneController(string dbName = DefaultDatabase)
+        {
+            Repository = new SceneRepository()
+            {
+                DBName = dbName,
+            };
+        }
 
-		public void AddScene(Scene newScene, string username)
+        public void AddScene(Scene newScene, string username)
 		{
 			try
 			{
@@ -44,7 +50,7 @@ namespace Controller
 
 				SceneChecker(newScene, currentClient);
 
-				scene.Name = newName;
+				Repository.UpdateSceneName(scene, newName);
 			}
 			catch (InvalidSceneInputException ex)
 			{
@@ -73,17 +79,6 @@ namespace Controller
 			Repository.RemoveScene(removeScene);
 		}
 
-		public List<Model> GetAvailableModels(Scene scene, List<Model> ownerModels)
-		{
-			List<Model> usedModels = new List<Model>();
-			foreach (PosisionatedModel posModel in scene.PosisionatedModels)
-			{
-				usedModels.Add(posModel.Model);
-			}
-
-			return ownerModels.Except(usedModels).ToList();
-		}
-
 		public Scene CreateBlankScene(Client currentClient)
 		{
 			string owner = currentClient.Username;
@@ -95,6 +90,10 @@ namespace Controller
 			return scene;
 		}
 
+		public void UpdatePreview(Scene scene, Bitmap img)
+        {
+			Repository.UpdateScenePreview(scene, img);
+        }
 		private void SceneChecker(Scene scene, string username)
 		{
 			if (SceneNameExist(scene, username))

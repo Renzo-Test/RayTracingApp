@@ -1,7 +1,7 @@
 ﻿using Controller.Exceptions;
 using IRepository;
-using MemoryRepository.Exceptions;
-using MemoryRepository.MaterialRepository;
+using DBRepository.Exceptions;
+using DBRepository;
 using Domain;
 using Domain.Exceptions;
 using System.Collections.Generic;
@@ -11,11 +11,15 @@ namespace Controller
 {
 	public class MaterialController
 	{
+		private const string DefaultDatabase = "RayTracingAppDB";
 		public IRepositoryMaterial Repository;
 
-		public MaterialController()
+		public MaterialController(string dbName = DefaultDatabase)
 		{
-			Repository = new MaterialRepository();
+			Repository = new MaterialRepository()
+            {
+				DBName = dbName,
+            };
 		}
 		public List<Material> ListMaterials(string username)
 		{
@@ -99,7 +103,7 @@ namespace Controller
 
 				RunMaterialChecker(newMaterial, currentClient);
 
-				material.Name = newName;
+				Repository.UpdateMaterialName(material, newName);
 			}
 			catch (InvalidMaterialInputException ex)
 			{

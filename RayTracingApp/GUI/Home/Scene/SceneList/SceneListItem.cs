@@ -41,7 +41,7 @@ namespace GUI
         {
             if (_scene.Preview is object)
             {
-                picIconScene.Image = _scene.Preview;
+                picIconScene.Image = _scene.GetPreview();
             }
         }
 

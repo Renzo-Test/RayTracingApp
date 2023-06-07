@@ -1,11 +1,12 @@
 ﻿using Controller;
-using MemoryRepository.Exceptions;
+using DBRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Domain.Exceptions;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Drawing;
 
 namespace Test.ControllerTest
 {
@@ -13,38 +14,52 @@ namespace Test.ControllerTest
 	[ExcludeFromCodeCoverage]
 	public class ModelControllerTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
 		private ModelController _modelController;
 
 		[TestInitialize]
 		public void Testinitialize()
 		{
-			_modelController = new ModelController();
+			_modelController = new ModelController(TestDatabase);
+		}
+
+		[TestCleanup]
+		public void TestCleanup()
+		{
+			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Models");
+			}
 		}
 
 		[TestMethod]
 		public void CreateModelController_OkTest()
 		{
-			_modelController = new ModelController();
+			_modelController = new ModelController(TestDatabase);
 		}
 
 		[TestMethod]
 		public void ListModels_ValidUsername_OkTest()
 		{
-			_modelController = new ModelController();
 			Model targetModel = new Model()
 			{
-				Owner = "targetOwner"
+				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
-			_modelController.Repository.AddModel(targetModel);
+			_modelController.AddModel(targetModel, "Owner");
 
 			Model anotherModel = new Model()
 			{
-				Owner = "otherOwner"
+				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
-			_modelController.Repository.AddModel(anotherModel);
-
-			CollectionAssert.Contains(_modelController.ListModels("targetOwner"), targetModel);
-			CollectionAssert.DoesNotContain(_modelController.ListModels("targetOwner"), anotherModel);
+			_modelController.AddModel(anotherModel, "OtherOwner");
+			
+			List<Model> expected = _modelController.ListModels("Owner");
+			Assert.AreEqual(expected[0].Id, targetModel.Id);
+			Assert.AreEqual(1, expected.Count());
 		}
 
 		[TestMethod]
@@ -60,9 +75,13 @@ namespace Test.ControllerTest
 			Model _newModel = new Model()
 			{
 				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
 			_modelController.AddModel(_newModel, "OwnerName");
-			CollectionAssert.Contains(_modelController.Repository.GetModelsByClient("OwnerName"), _newModel);
+
+			List<Model> expected = _modelController.Repository.GetModelsByClient("OwnerName");
+			Assert.AreEqual(expected[0].Id, _newModel.Id);
 		}
 
 		[TestMethod]
@@ -72,6 +91,8 @@ namespace Test.ControllerTest
 			Model _newModel = new Model()
 			{
 				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
 			_modelController.AddModel(_newModel, "user");
 			_modelController.AddModel(_newModel, "user");
@@ -83,10 +104,14 @@ namespace Test.ControllerTest
 			Model _fstNewModel = new Model()
 			{
 				Name = "Test one",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
 			Model _sndNewModel = new Model()
 			{
-				Name = "Test two"
+				Name = "Test two",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
 			_modelController.AddModel(_fstNewModel, "user");
 			_modelController.AddModel(_sndNewModel, "user");
@@ -119,12 +144,16 @@ namespace Test.ControllerTest
 			Model firstModel = new Model()
 			{
 				Name = "modelOne",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
 			_modelController.AddModel(firstModel, "username");
 
 			Model secondModel = new Model()
 			{
 				Name = "modelTwo",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
 			_modelController.AddModel(secondModel, "username");
 			Assert.AreEqual(2, _modelController.ListModels("username").Count);
@@ -136,6 +165,8 @@ namespace Test.ControllerTest
 			Model newModel = new Model()
 			{
 				Name = "modelName",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
 			_modelController.AddModel(newModel, "username");
 			_modelController.RemoveModel(newModel.Name, "username");
@@ -163,12 +194,14 @@ namespace Test.ControllerTest
 			Model newModel = new Model()
 			{
 				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
 
 			_modelController.AddModel(newModel, currentClient.Username);
 			Model expected = _modelController.GetModel(currentClient.Username, newModel.Name);
 
-			Assert.AreEqual(expected, newModel);
+			Assert.AreEqual(expected.Id, newModel.Id);
 		}
 
 		[TestMethod]
@@ -196,11 +229,15 @@ namespace Test.ControllerTest
 			Model newModel = new Model()
 			{
 				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
 
+			_modelController.AddModel(newModel, currentClient.Username);
 			_modelController.UpdateModelName(newModel, currentClient.Username, "newName");
 
-			Assert.AreEqual(newModel.Name, "newName");
+			Model expected = _modelController.GetModel(currentClient.Username, "newName");
+			Assert.AreEqual(expected.Name, "newName");
 		}
 
 		[TestMethod]
@@ -216,9 +253,38 @@ namespace Test.ControllerTest
 			Model newModel = new Model()
 			{
 				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Material()
 			};
 
 			_modelController.UpdateModelName(newModel, currentClient.Username, " newName ");
 		}
+
+		[TestMethod]
+		public void UpdatePreview_OkTest()
+		{
+			Client currentClient = new Client()
+			{
+				Username = "Username123",
+				Password = "Password123"
+			};
+
+			Model newModel = new Model()
+			{
+				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Material()
+			};
+
+			Bitmap img = new Bitmap(600, 300);
+			_modelController.AddModel(newModel, currentClient.Username);
+
+			_modelController.UpdatePreview(newModel, img);
+
+			Model updatedScene = _modelController.ListModels(currentClient.Username)[0];
+
+			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
+		}
+
 	}
 }

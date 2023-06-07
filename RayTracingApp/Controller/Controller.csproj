@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,13 +61,13 @@
     <Compile Include="SceneException\AlreadyExistingSceneException.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBRepository\DBRepository.csproj">
+      <Project>{024F737B-EE41-4389-B9CA-8460FA47FBC7}</Project>
+      <Name>DBRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRepository\IRepository.csproj">
       <Project>{d74d687a-51aa-4f86-9a2e-bdc3bf517078}</Project>
       <Name>IRepository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MemoryRepository\MemoryRepository.csproj">
-      <Project>{5E7FE5D8-E9A5-4B2C-AA81-E63CC8E6669F}</Project>
-      <Name>MemoryRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>

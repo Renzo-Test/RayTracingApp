@@ -1,5 +1,6 @@
 ﻿using Domain;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace IRepository
 {
@@ -8,5 +9,7 @@ namespace IRepository
 		List<Model> GetModelsByClient(string username);
 		void AddModel(Model model);
 		void RemoveModel(Model model);
+		void UpdateModelName(Model model, string newName);
+		void UpdatePreview(Model model, Image preview);
 	}
 }

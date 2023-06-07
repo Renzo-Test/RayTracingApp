@@ -1,21 +1,25 @@
 ﻿using Controller.Exceptions;
 using IRepository;
-using MemoryRepository;
-using MemoryRepository.Exceptions;
+using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
 using System.Collections.Generic;
 using System;
+using DBRepository;
+using System.Data.SqlClient;
 
 namespace Controller
 {
 	public class FigureController
 	{
-		public IRepositoryFigure Repository;
-
-		public FigureController()
+        private const string DefaultDatabase = "RayTracingAppDB";
+        public IRepositoryFigure Repository;
+        public FigureController(string dbName = DefaultDatabase)
 		{
-			Repository = new FigureRepository();
+			Repository = new FigureRepository()
+            {
+				DBName = dbName,
+            };
 		}
 
 		public List<Figure> ListFigures(string username)
@@ -53,7 +57,6 @@ namespace Controller
 				string FigureUsedByModelMessage = $"Figure with name {figureName} is used by a model";
 				throw new FigureUsedByModelException(FigureUsedByModelMessage);
 			}
-
 			Repository.RemoveFigure(deleteFigure);
 		}
 
@@ -83,7 +86,7 @@ namespace Controller
 
 				RunFigureChecker(newFigure, currentClient);
 
-				figure.Name = newName;
+				Repository.UpdateFigureName(figure, newName);
 			}
 			catch (InvalidFigureInputException ex)
 			{

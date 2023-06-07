@@ -10,18 +10,28 @@ namespace Test.ControllerTest
 	[ExcludeFromCodeCoverage]
 	public class ClientControllerTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
 		private ClientController _controller;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_controller = new ClientController();
+			_controller = new ClientController(TestDatabase);
+		}
+
+		[TestCleanup]
+		public void TestCleanUp()
+		{
+			using (var context = new DBRepository.AppContext(TestDatabase))
+			{
+				context.ClearDBTable("Clients");
+			}
 		}
 
 		[TestMethod]
 		public void CanCreateClientSignController_OkTest()
 		{
-			_controller = new ClientController();
+			_controller = new ClientController(TestDatabase);
 		}
 
 		[TestMethod]

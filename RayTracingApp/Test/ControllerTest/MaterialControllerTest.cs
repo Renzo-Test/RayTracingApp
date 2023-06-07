@@ -1,12 +1,13 @@
 ﻿using Controller;
 using Controller.Exceptions;
-using MemoryRepository.Exceptions;
+using DBRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Domain.Exceptions;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using DBRepository;
 
 namespace Test.ControllerTest
 {
@@ -14,12 +15,27 @@ namespace Test.ControllerTest
 	[ExcludeFromCodeCoverage]
 	public class MaterialControllerTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
 		private MaterialController _materialController;
+		private ModelController _modelController;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_materialController = new MaterialController();
+			_materialController = new MaterialController(TestDatabase);
+			_modelController = new ModelController(TestDatabase);
+
+		}
+
+
+		[TestCleanup]
+		public void TestCleanup()
+		{
+			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Models");
+				context.ClearDBTable("Materials");
+			}
 		}
 
 		[TestMethod]
@@ -34,11 +50,17 @@ namespace Test.ControllerTest
 			Material _newMaterial = new Material()
 			{
 				Name = "materialName",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				}
 			};
 
 			_materialController.AddMaterial(_newMaterial, "user");
 
-			CollectionAssert.Contains(_materialController.Repository.GetMaterialsByClient("user"), _newMaterial);
+			Assert.AreEqual(_materialController.Repository.GetMaterialsByClient("user")[0].Name, _newMaterial.Name);
 		}
 
 		[TestMethod]
@@ -48,6 +70,12 @@ namespace Test.ControllerTest
 			Material _newMaterial = new Material()
 			{
 				Name = "materialName",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				}
 			};
 
 			_materialController.AddMaterial(_newMaterial, "user");
@@ -60,11 +88,23 @@ namespace Test.ControllerTest
 			Material _firstMaterial = new Material()
 			{
 				Name = "materialOne",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				}
 			};
 
 			Material _secondMaterial = new Material()
 			{
 				Name = "materialTwo",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				}
 			};
 
 			_materialController.AddMaterial(_firstMaterial, "user");
@@ -100,12 +140,24 @@ namespace Test.ControllerTest
 			Material firstMaterial = new Material()
 			{
 				Name = "materialOne",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				}
 			};
 			_materialController.AddMaterial(firstMaterial, "username");
 
 			Material secondMaterial = new Material()
 			{
 				Name = "materialTwo",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				}
 			};
 			_materialController.AddMaterial(secondMaterial, "username");
 
@@ -118,6 +170,12 @@ namespace Test.ControllerTest
 			Material newMaterial = new Material()
 			{
 				Name = "materialName",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				}
 			};
 
 			List<Model> models = new List<Model>();
@@ -148,20 +206,25 @@ namespace Test.ControllerTest
 		{
 			Material material = new Material()
 			{
-				Owner = "ownerName",
 				Name = "materialName",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				}
 			};
 
 			Model model = new Model()
 			{
+				Name = "Test",
 				Material = material,
-				Owner = "ownerName"
+				Figure = new Sphere(),
 			};
-			ModelController modelController = new ModelController();
-			modelController.Repository.AddModel(model);
-			_materialController.AddMaterial(material, material.Owner);
+			_materialController.AddMaterial(material, "Owner");
+			_modelController.AddModel(model, "Owner");
 
-			_materialController.RemoveMaterial("materialName", "ownerName", modelController.ListModels("ownerName"));
+			_materialController.RemoveMaterial("materialName", "Owner", _modelController.ListModels("Owner"));
 		}
 
 		[TestMethod]
@@ -176,12 +239,18 @@ namespace Test.ControllerTest
 			Material newMaterial = new Material()
 			{
 				Name = "sphere",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				}
 			};
 
 			_materialController.AddMaterial(newMaterial, currentClient.Username);
 			Material expected = _materialController.GetMaterial(currentClient.Username, newMaterial.Name);
 
-			Assert.AreEqual(expected, newMaterial);
+			Assert.AreEqual(expected.Name, newMaterial.Name);
 		}
 
 		[TestMethod]
@@ -209,11 +278,21 @@ namespace Test.ControllerTest
 			Material newMaterial = new Material()
 			{
 				Name = "materialName",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				}
 			};
 
+			_materialController.AddMaterial(newMaterial, currentClient.Username);
+
 			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, "newName");
-			
-			Assert.AreEqual(newMaterial.Name, "newName");
+
+			Material updatedMaterial = _materialController.ListMaterials(currentClient.Username)[0];
+
+			Assert.AreEqual(updatedMaterial.Name, "newName");
 		}
 
 		[TestMethod]

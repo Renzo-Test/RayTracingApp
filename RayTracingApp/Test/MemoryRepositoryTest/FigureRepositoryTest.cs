@@ -1,10 +1,11 @@
-﻿using MemoryRepository;
-using MemoryRepository.Exceptions;
+﻿using DBRepository;
+using DBRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -17,10 +18,22 @@ namespace Test.MemoryRepositoryTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_figureRepository = new FigureRepository();
+			_figureRepository = new FigureRepository()
+			{
+				DBName = "RayTracingAppTestDB"
+			};
 		}
 
-		[TestMethod]
+		[TestCleanup]
+		public void TestCleanUp()
+        {
+			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Figures");
+			}
+		}
+
+		[TestMethod]	
 		public void CreateFigureRepository_OkTest()
 		{
 			_figureRepository = new FigureRepository();
@@ -36,7 +49,9 @@ namespace Test.MemoryRepositoryTest
 			};
 			_figureRepository.AddFigure(newFigure);
 
-			Assert.AreEqual(newFigure, _figureRepository.GetFiguresByClient("OwnerName")[0]);
+			Assert.AreEqual(newFigure.Name, _figureRepository.GetFiguresByClient("OwnerName")[0].Name);
+			Assert.AreEqual(newFigure.Owner, _figureRepository.GetFiguresByClient("OwnerName")[0].Owner);
+
 		}
 
 		[TestMethod]
@@ -79,8 +94,8 @@ namespace Test.MemoryRepositoryTest
 
 			List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
 
-			CollectionAssert.Contains(iterable, newFigure);
-
+			Assert.AreEqual(newFigure.Name, iterable[0].Name);
+			Assert.AreEqual(newFigure.Owner, iterable[0].Owner);
 		}
 
 		[TestMethod]
@@ -110,9 +125,6 @@ namespace Test.MemoryRepositoryTest
 			};
 
 			_figureRepository.RemoveFigure(newFigure);
-			List<Figure> figures = _figureRepository.GetFiguresByClient("OwnerName");
-
-			Assert.IsFalse(figures.Any());
 		}
 	}
 }

@@ -5,6 +5,7 @@ using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 
 namespace Test.ControllerTest
 {
@@ -12,6 +13,7 @@ namespace Test.ControllerTest
 	[ExcludeFromCodeCoverage]
 	public class SceneControllerTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
 		private SceneController _sceneController;
 		private string _owner;
 		private int _fov;
@@ -21,11 +23,21 @@ namespace Test.ControllerTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_sceneController = new SceneController();
+			_sceneController = new SceneController(TestDatabase);
 			_owner = "ownerName";
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
+		}
+
+		[TestCleanup]
+		public void TestCleanUp()
+		{
+			using (var context = new DBRepository.AppContext(TestDatabase))
+			{
+				context.ClearDBTable("Scenes");
+				context.ClearDBTable("Models");
+			}
 		}
 
 		[TestMethod]
@@ -44,7 +56,7 @@ namespace Test.ControllerTest
 
 			_sceneController.AddScene(newScene, "ownerName");
 
-			CollectionAssert.Contains(_sceneController.Repository.GetScenesByClient("ownerName"), newScene);
+			Assert.AreEqual(_sceneController.Repository.GetScenesByClient("ownerName")[0].Id, newScene.Id);
 		}
 
 		[TestMethod]
@@ -120,8 +132,10 @@ namespace Test.ControllerTest
 				Name = "sceneName",
 			};
 
+			_sceneController.AddScene(scene, _owner);
 			_sceneController.UpdateSceneName(scene, _owner, "newName");
-			Assert.AreEqual("newName", scene.Name);
+
+			Assert.AreEqual("newName", _sceneController.ListScenes(_owner)[0].Name);
 		}
 
 		[TestMethod]
@@ -195,8 +209,8 @@ namespace Test.ControllerTest
 			_sceneController.AddScene(anotherScene, "ownerName");
 
 			List<Scene> ownerScenes = _sceneController.ListScenes("ownerName");
-			CollectionAssert.Contains(ownerScenes, newScene);
-			CollectionAssert.Contains(ownerScenes, anotherScene);
+			Assert.AreEqual(ownerScenes[0].Id, newScene.Id);
+			Assert.AreEqual(ownerScenes[1].Id, anotherScene.Id);
 		}
 
 		[TestMethod]
@@ -229,104 +243,7 @@ namespace Test.ControllerTest
 			_sceneController.AddScene(anotherScene, "secondOwner");
 
 			_sceneController.RemoveScene("scene", "firstOwner");
-			CollectionAssert.Contains(_sceneController.ListScenes("secondOwner"), anotherScene);
-		}
-
-		[TestMethod]
-		public void GetAvailableModels_OkTest()
-		{
-			Model newModel = new Model()
-			{
-				Name = "modelName"
-			};
-			PosisionatedModel posisionatedModel = new PosisionatedModel();
-			posisionatedModel.Model = newModel;
-
-			List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
-			sceneModels.Add(posisionatedModel);
-
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
-			{
-				Name = "scene",
-				PosisionatedModels = sceneModels
-			};
-
-			Model availableModel = new Model()
-			{
-				Name = "unusedModel"
-			};
-
-			ModelController modelController = new ModelController();
-			modelController.AddModel(newModel, "ownerName");
-			modelController.AddModel(availableModel, "ownerName");
-			_sceneController.AddScene(newScene, "ownerName");
-			List<Model> ownerModels = modelController.ListModels("ownerName");
-
-			CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
-		}
-
-		[TestMethod]
-		public void GetAvailableModels_ContainsAllUnusedModels_OkTest()
-		{
-			Model availableModel = new Model()
-			{
-				Name = "modelName"
-			};
-			PosisionatedModel posisionatedModel = new PosisionatedModel();
-			posisionatedModel.Model = availableModel;
-
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
-			{
-				Name = "scene",
-				PosisionatedModels = new List<PosisionatedModel>()
-			};
-
-			Model otherAvailableModel = new Model()
-			{
-				Name = "unusedModel"
-			};
-
-			ModelController modelController = new ModelController();
-			modelController.AddModel(otherAvailableModel, "ownerName");
-			modelController.AddModel(availableModel, "ownerName");
-			_sceneController.AddScene(newScene, "ownerName");
-			List<Model> ownerModels = modelController.ListModels("ownerName");
-
-			CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), availableModel);
-			CollectionAssert.Contains(_sceneController.GetAvailableModels(newScene, ownerModels), otherAvailableModel);
-		}
-
-		[TestMethod]
-		public void GetAvailableModels_OnlyContainsUnusedModels_OkTest()
-		{
-			Model newModel = new Model()
-			{
-				Name = "modelName"
-			};
-			PosisionatedModel posisionatedModel = new PosisionatedModel();
-			posisionatedModel.Model = newModel;
-
-			List<PosisionatedModel> sceneModels = new List<PosisionatedModel>();
-			sceneModels.Add(posisionatedModel);
-
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
-			{
-				Name = "scene",
-				PosisionatedModels = sceneModels
-			};
-
-			Model availableModel = new Model()
-			{
-				Name = "unusedModel"
-			};
-
-			ModelController modelController = new ModelController();
-			modelController.AddModel(newModel, "ownerName");
-			modelController.AddModel(availableModel, "ownerName");
-			_sceneController.AddScene(newScene, "ownerName");
-			List<Model> ownerModels = modelController.ListModels("ownerName");
-
-			CollectionAssert.DoesNotContain(_sceneController.GetAvailableModels(newScene, ownerModels), newModel);
+			Assert.AreEqual(_sceneController.ListScenes("secondOwner")[0].Id, anotherScene.Id);
 		}
 
 		[TestMethod]
@@ -339,39 +256,24 @@ namespace Test.ControllerTest
 				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
 				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
 			};
-			Scene resetCounter = _sceneController.CreateBlankScene(client);
-			resetCounter.ResetCreatedCounter();
-
 
 			Scene blankScene = _sceneController.CreateBlankScene(client);
-			Assert.AreEqual("Blank Scene 1", blankScene.Name);
+			Assert.AreEqual(blankScene.RegisterTime, blankScene.Name);
 		}
 
 		[TestMethod]
-		public void CreateBlankScene_TwoScenes_OkTest()
+		public void UpdatePreview_OkTest()
 		{
-			Client client1 = new Client()
-			{
-				Username = "OwnerName",
-				DefaultFov = 70,
-				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
-				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
-			};
-			Client client2 = new Client()
-			{
-				Username = "OwnerName",
-				DefaultFov = 70,
-				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
-				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
-			};
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			Bitmap img = new Bitmap(600, 300);
+			_sceneController.AddScene(_scene, _owner);
 
-			Scene resetCounter = _sceneController.CreateBlankScene(client1);
-			resetCounter.ResetCreatedCounter();
+			_sceneController.UpdatePreview(_scene, img);
 
-			Scene blankScene1 = _sceneController.CreateBlankScene(client1);
-			Scene blankScene2 = _sceneController.CreateBlankScene(client2);
+			Scene updatedScene = _sceneController.ListScenes(_owner)[0];
 
-			Assert.AreEqual("Blank Scene 2", blankScene2.Name);
+			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
 		}
+
 	}
 }

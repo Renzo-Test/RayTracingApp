@@ -1,5 +1,5 @@
-﻿using MemoryRepository.Exceptions;
-using MemoryRepository.MaterialRepository;
+﻿using DBRepository.Exceptions;
+using DBRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using System.Collections.Generic;
@@ -17,7 +17,19 @@ namespace Test.MemoryRepositoryTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_materialRepository = new MaterialRepository();
+			_materialRepository = new MaterialRepository()
+			{
+				DBName = "RayTracingAppTestDB"
+			};
+		}
+
+		[TestCleanup]
+		public void TestCleanup()
+		{
+			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Materials");
+			}
 		}
 
 		[TestMethod]
@@ -39,7 +51,8 @@ namespace Test.MemoryRepositoryTest
 
 			_materialRepository.AddMaterial(NewMaterial);
 
-			Assert.AreEqual(NewMaterial, _materialRepository.GetMaterialsByClient("OwnerName")[0]);
+			Assert.AreEqual(NewMaterial.Name, _materialRepository.GetMaterialsByClient("OwnerName")[0].Name);
+			Assert.AreEqual(NewMaterial.Owner, _materialRepository.GetMaterialsByClient("OwnerName")[0].Owner);
 		}
 
 		[TestMethod]

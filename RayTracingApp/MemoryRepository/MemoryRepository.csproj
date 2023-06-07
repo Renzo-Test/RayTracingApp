@@ -42,15 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\NotFoundSceneException.cs" />
-    <Compile Include="SceneRepository\SceneRepository.cs" />
     <Compile Include="Exceptions\NotFoundModelException.cs" />
     <Compile Include="Exceptions\NotFoundMaterialException.cs" />
     <Compile Include="Exceptions\NotFoundFigureException.cs" />
-    <Compile Include="FigureRepository\FigureRepository.cs" />
-    <Compile Include="ClientRepository\ClientRepository.cs" />
     <Compile Include="Exceptions\NotFoundClientException.cs" />
-    <Compile Include="MaterialRepository\MaterialRepository.cs" />
-    <Compile Include="ModelRepository\ModelRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

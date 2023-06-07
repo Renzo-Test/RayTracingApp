@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{024F737B-EE41-4389-B9CA-8460FA47FBC7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DBRepository</RootNamespace>
+    <AssemblyName>DBRepository</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppContext.cs" />
+    <Compile Include="Exceptions\NotFoundClientException.cs" />
+    <Compile Include="Exceptions\NotFoundFigureException.cs" />
+    <Compile Include="Exceptions\NotFoundMaterialException.cs" />
+    <Compile Include="Exceptions\NotFoundModelException.cs" />
+    <Compile Include="Exceptions\NotFoundSceneException.cs" />
+    <Compile Include="Migrations\202305302017494_AddScene.cs" />
+    <Compile Include="Migrations\202305302017494_AddScene.designer.cs">
+      <DependentUpon>202305302017494_AddScene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306011912572_IncludedPreview.cs" />
+    <Compile Include="Migrations\202306011912572_IncludedPreview.designer.cs">
+      <DependentUpon>202306011912572_IncludedPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306012038337_PosisionatedModelsMigration.cs" />
+    <Compile Include="Migrations\202306012038337_PosisionatedModelsMigration.designer.cs">
+      <DependentUpon>202306012038337_PosisionatedModelsMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306071504006_preview_model.cs" />
+    <Compile Include="Migrations\202306071504006_preview_model.designer.cs">
+      <DependentUpon>202306071504006_preview_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SceneRepository.cs" />
+    <Compile Include="ClientRepository.cs" />
+    <Compile Include="FigureRepository.cs" />
+    <Compile Include="MaterialRepository.cs" />
+    <Compile Include="Migrations\202305291653225_InitialCreate.cs" />
+    <Compile Include="Migrations\202305291653225_InitialCreate.designer.cs">
+      <DependentUpon>202305291653225_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305291921438_AddedModels.cs" />
+    <Compile Include="Migrations\202305291921438_AddedModels.designer.cs">
+      <DependentUpon>202305291921438_AddedModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{26fd191f-901d-4224-a0f4-c93819eda0de}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRepository\IRepository.csproj">
+      <Project>{d74d687a-51aa-4f86-9a2e-bdc3bf517078}</Project>
+      <Name>IRepository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202305291653225_InitialCreate.resx">
+      <DependentUpon>202305291653225_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305291921438_AddedModels.resx">
+      <DependentUpon>202305291921438_AddedModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305302017494_AddScene.resx">
+      <DependentUpon>202305302017494_AddScene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306011912572_IncludedPreview.resx">
+      <DependentUpon>202306011912572_IncludedPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306012038337_PosisionatedModelsMigration.resx">
+      <DependentUpon>202306012038337_PosisionatedModelsMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306071504006_preview_model.resx">
+      <DependentUpon>202306071504006_preview_model.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

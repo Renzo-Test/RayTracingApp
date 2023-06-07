@@ -1,11 +1,13 @@
-﻿using MemoryRepository;
+﻿using DBRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Controller;
-using MemoryRepository.Exceptions;
+using DBRepository.Exceptions;
+using System.Drawing;
+using System;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -22,11 +24,23 @@ namespace Test.MemoryRepositoryTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
+			_sceneRepository = new SceneRepository()
+			{
+				DBName = "RayTracingAppTestDB"
+			};
 			_owner = "ownerName";
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
 		}
+		[TestCleanup]
+		public void TestCleanup()
+		{
+            using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+            {
+                context.ClearDBTable("Scenes");
+            }
+        }
 
 		[TestMethod]
 		public void CreateSceneRepository_OkTest()
@@ -37,8 +51,6 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void GetScenesByClient_OwnerName_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
@@ -48,14 +60,12 @@ namespace Test.MemoryRepositoryTest
 			_sceneRepository.AddScene(_scene);
 
 			List<Scene> iterable = _sceneRepository.GetScenesByClient("OwnerName");
-			CollectionAssert.Contains(iterable, _scene);
+			Assert.AreEqual(iterable[0].Id, _scene.Id);
 		}
 
 		[TestMethod]
 		public void AddScene_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
@@ -69,8 +79,6 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void AddSTwoScenes_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
@@ -87,20 +95,13 @@ namespace Test.MemoryRepositoryTest
 			_sceneRepository.AddScene(_scene2);
 
 			List<Scene> iterable = _sceneRepository.GetScenesByClient("OwnerName");
-			List<Scene> subSet = new List<Scene>()
-			{
-				_scene,
-				_scene2
-			};
-
-			CollectionAssert.IsSubsetOf(subSet, iterable);
-		}
+			Assert.AreEqual(iterable[0].Id, _scene.Id);
+            Assert.AreEqual(iterable[1].Id, _scene2.Id);
+        }
 
 		[TestMethod]
 		public void AddDifferentClientScenes_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
@@ -118,17 +119,13 @@ namespace Test.MemoryRepositoryTest
 
 			List<Scene> iterableOwner1 = _sceneRepository.GetScenesByClient("OwnerName");
 			List<Scene> iterableOwner2 = _sceneRepository.GetScenesByClient("OwnerName2");
-
-			CollectionAssert.Contains(iterableOwner1, _scene);
-			CollectionAssert.Contains(iterableOwner2, _scene2);
-			CollectionAssert.DoesNotContain(iterableOwner2, _scene);
-			CollectionAssert.DoesNotContain(iterableOwner1, _scene2);
-		}
+            Assert.AreEqual(iterableOwner1[0].Id, _scene.Id);
+            Assert.AreEqual(iterableOwner2[0].Id, _scene2.Id);
+        }
 
 		[TestMethod]
 		public void GetScenesByClient_NoClient_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
 			List<Scene> scenes = _sceneRepository.GetScenesByClient("OwnerName");
 
 			Assert.IsFalse(scenes.Any());
@@ -137,8 +134,6 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void DeleteScene_ExistingScene_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
@@ -157,8 +152,6 @@ namespace Test.MemoryRepositoryTest
 		[ExpectedException(typeof(NotFoundSceneException))]
 		public void DeleteScene_NonExistingScene_OkTest()
 		{
-			_sceneRepository = new SceneRepository();
-
 			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
@@ -169,6 +162,20 @@ namespace Test.MemoryRepositoryTest
 
 			List<Scene> iterableOwner1 = _sceneRepository.GetScenesByClient("OwnerName");
 			CollectionAssert.DoesNotContain(iterableOwner1, _scene);
+		}
+
+		[TestMethod]
+		public void UpdatePreview_OkTest()
+		{
+			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			Bitmap img = new Bitmap(600, 300);
+			_sceneRepository.AddScene(_scene);
+
+			_sceneRepository.UpdateScenePreview(_scene, img);
+
+			Scene updatedScene = _sceneRepository.GetScenesByClient(_owner)[0];
+
+			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
 		}
 	}
 }

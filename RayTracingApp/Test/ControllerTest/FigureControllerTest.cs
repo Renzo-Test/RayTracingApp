@@ -1,6 +1,6 @@
 ﻿using Controller;
 using Controller.Exceptions;
-using MemoryRepository.Exceptions;
+using DBRepository.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Domain.Exceptions;
@@ -14,18 +14,31 @@ namespace Test.ControllerTest
 	[ExcludeFromCodeCoverage]
 	public class FigureControllerTest
 	{
-		private FigureController _figureController;
+        private const string TestDatabase = "RayTracingAppTestDB";
+        private FigureController _figureController;
+		private ModelController _modelController;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_figureController = new FigureController();
+			_figureController = new FigureController(TestDatabase);
+			_modelController = new ModelController(TestDatabase);
+		}
+
+		[TestCleanup]
+		public void TestCleanUp()
+		{
+			using (var context = new DBRepository.AppContext(TestDatabase))
+			{
+				context.ClearDBTable("Models");
+				context.ClearDBTable("Figures");
+			}
 		}
 
 		[TestMethod]
 		public void CreateFigureController_OkTest()
 		{
-			_figureController = new FigureController();
+			_figureController = new FigureController(TestDatabase);
 		}
 
 		[TestMethod]
@@ -127,7 +140,8 @@ namespace Test.ControllerTest
 			_figureController.AddFigure(newFigure, currentClient.Username);
 			List<Figure> iterable = _figureController.Repository.GetFiguresByClient(currentClient.Username);
 
-			CollectionAssert.Contains(iterable, newFigure);
+			Assert.AreEqual(iterable[0].Name, newFigure.Name);
+			Assert.AreEqual(iterable[0].Owner, newFigure.Owner);
 		}
 
 		[TestMethod]
@@ -185,7 +199,8 @@ namespace Test.ControllerTest
 			_figureController.AddFigure(newFigure, currentClient.Username);
 			List<Figure> expected = _figureController.Repository.GetFiguresByClient(currentClient.Username);
 
-			Assert.AreEqual(expected[0], _figureController.ListFigures(currentClient.Username)[0]);
+			Assert.AreEqual(expected[0].Name, _figureController.ListFigures(currentClient.Username)[0].Name);
+			Assert.AreEqual(expected[0].Owner, _figureController.ListFigures(currentClient.Username)[0].Owner);
 		}
 
 		[TestMethod]
@@ -241,21 +256,20 @@ namespace Test.ControllerTest
 		{
 			Figure figure = new Sphere()
 			{
-				Owner = "ownerName",
 				Name = "figureName",
 				Radius = 10,
 			};
 
 			Model model = new Model()
 			{
+				Name = "Test",
 				Figure = figure,
-				Owner = "ownerName"
+				Material = new Material(),
 			};
-			ModelController modelController = new ModelController();
-			modelController.Repository.AddModel(model);
-			_figureController.AddFigure(figure, figure.Owner);
+			_figureController.AddFigure(figure, "Owner");
+			_modelController.AddModel(model, "Owner");
 
-			_figureController.RemoveFigure("figureName", "ownerName", modelController.ListModels("ownerName"));
+			_figureController.RemoveFigure("figureName", "Owner", _modelController.ListModels("Owner"));
 		}
 
 		[TestMethod]
@@ -302,7 +316,9 @@ namespace Test.ControllerTest
 			_figureController.AddFigure(newFigure, currentClient.Username);
 			Figure expected = _figureController.GetFigure(currentClient.Username, newFigure.Name);
 
-			Assert.AreEqual(expected, newFigure);
+			Assert.AreEqual(expected.Name, newFigure.Name);
+			Assert.AreEqual(expected.Owner, newFigure.Owner);
+
 		}
 
 		[TestMethod]
@@ -333,9 +349,13 @@ namespace Test.ControllerTest
 				Radius = 10,
 			};
 
+			_figureController.AddFigure(newFigure, currentClient.Username);
+
 			_figureController.UpdateFigureName(newFigure, currentClient.Username, "newNameSphere");
 
-			Assert.AreEqual(newFigure.Name, "newNameSphere");
+			Figure updatedFigure = _figureController.ListFigures(currentClient.Username)[0];
+
+			Assert.AreEqual(updatedFigure.Name, "newNameSphere");
 		}
 
 		[TestMethod]

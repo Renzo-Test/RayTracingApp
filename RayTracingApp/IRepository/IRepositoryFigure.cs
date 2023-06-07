@@ -8,6 +8,6 @@ namespace IRepository
 		List<Figure> GetFiguresByClient(string username);
 		void AddFigure(Figure figure);
 		void RemoveFigure(Figure figure);
-
+		void UpdateFigureName(Figure figure, string newName);
 	}
 }
