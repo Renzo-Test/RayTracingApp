@@ -100,7 +100,6 @@ namespace Controller
 					Owner = material.Owner,
 					Color = material.Color,
 				};
-
 				RunMaterialChecker(newMaterial, currentClient);
 
 				Repository.UpdateMaterialName(material, newName);
