@@ -2,7 +2,7 @@
 
 namespace Domain
 {
-	public class Material
+	public abstract class Material
 	{
 		private const string EmptyNameMessage = "Material's name must not be empty";
 		private const string NotAlphanumericMessage = "Material's name must not start or end with blank space";
@@ -14,6 +14,11 @@ namespace Domain
 		private MaterialEnum _type;
 
         public int Id { get; set; }
+
+        protected Material(MaterialEnum type)
+        {
+            Type = type;
+        }
         public string Owner
 		{
 			get => _owner;
@@ -69,6 +74,7 @@ namespace Domain
 
 	public enum MaterialEnum
 	{
-		LambertianMaterial
+		Lambertian,
+		Metallic
 	}
 }

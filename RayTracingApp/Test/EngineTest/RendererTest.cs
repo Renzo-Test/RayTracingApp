@@ -57,7 +57,7 @@ namespace Test.EngineTest
 			Model modelToPreview = new Model()
 			{
 				Figure = new Sphere { Radius = 5 },
-				Material = new Material() { Color = modelColor, Type = MaterialEnum.LambertianMaterial },
+				Material = new Lambertian() { Color = modelColor},
 			};
 
 			var (render, _) = renderer.RenderModelPreview(modelToPreview);

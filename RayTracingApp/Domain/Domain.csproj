@@ -49,6 +49,9 @@
     <Compile Include="Client\Exceptions\NotInExpectedRangeClientException.cs" />
     <Compile Include="Figure\Exceptions\NotAlphanumericFigureException.cs" />
     <Compile Include="Figure\Exceptions\NotInExpectedRangeFigureException.cs" />
+    <Compile Include="Material\Exceptions\InvalidBlurValueException.cs" />
+    <Compile Include="Material\Lambertian.cs" />
+    <Compile Include="Material\Metallic.cs" />
     <Compile Include="Material\Exceptions\EmptyNameMaterialException.cs" />
     <Compile Include="Material\Exceptions\InvalidMaterialInputException.cs" />
     <Compile Include="Material\Exceptions\NotAlphanumericMaterialException.cs" />

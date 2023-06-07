@@ -56,7 +56,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetMaterial_OkTest()
 		{
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName"
 			};

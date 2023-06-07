@@ -45,9 +45,9 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
-		public void AddMaterial_ValidMaterial_OkTest()
+		public void AddMaterial_ValidLambertian_OkTest()
 		{
-			Material _newMaterial = new Material()
+			Material _newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -63,11 +63,31 @@ namespace Test.ControllerTest
 			Assert.AreEqual(_materialController.Repository.GetMaterialsByClient("user")[0].Name, _newMaterial.Name);
 		}
 
-		[TestMethod]
+        [TestMethod]
+        public void AddMaterial_ValidMetallic_OkTest()
+        {
+            Material _newMaterial = new Metallic()
+            {
+                Name = "materialName",
+                Color = new Color
+                {
+                    Red = 1,
+                    Green = 1,
+                    Blue = 1,
+                },
+				Blur = 0.1
+            };
+
+            _materialController.AddMaterial(_newMaterial, "user");
+
+            Assert.AreEqual(_materialController.Repository.GetMaterialsByClient("user")[0].Name, _newMaterial.Name);
+        }
+
+        [TestMethod]
 		[ExpectedException(typeof(InvalidMaterialInputException))]
-		public void AddMaterial_DuplicatedMaterial_FailTest()
+		public void AddMaterial_DuplicatedLambertian_FailTest()
 		{
-			Material _newMaterial = new Material()
+			Material _newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -82,10 +102,30 @@ namespace Test.ControllerTest
 			_materialController.AddMaterial(_newMaterial, "user");
 		}
 
-		[TestMethod]
-		public void AddMaterial_TwoValidMaterials_OkTest()
+        [TestMethod]
+        [ExpectedException(typeof(InvalidMaterialInputException))]
+        public void AddMaterial_DuplicatedMetallic_FailTest()
+        {
+            Material _newMaterial = new Metallic()
+            {
+                Name = "materialName",
+                Color = new Color
+                {
+                    Red = 1,
+                    Green = 1,
+                    Blue = 1,
+                },
+				Blur= 0.1
+            };
+
+            _materialController.AddMaterial(_newMaterial, "user");
+            _materialController.AddMaterial(_newMaterial, "user");
+        }
+
+        [TestMethod]
+		public void AddMaterial_TwoValidLambertians_OkTest()
 		{
-			Material _firstMaterial = new Material()
+			Material _firstMaterial = new Lambertian()
 			{
 				Name = "materialOne",
 				Color = new Color
@@ -96,7 +136,7 @@ namespace Test.ControllerTest
 				}
 			};
 
-			Material _secondMaterial = new Material()
+			Material _secondMaterial = new Lambertian()
 			{
 				Name = "materialTwo",
 				Color = new Color
@@ -113,11 +153,44 @@ namespace Test.ControllerTest
 			Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
 		}
 
-		[TestMethod]
+        [TestMethod]
+        public void AddMaterial_TwoValidMetallics_OkTest()
+        {
+            Material _firstMaterial = new Metallic()
+            {
+                Name = "materialOne",
+                Color = new Color
+                {
+                    Red = 1,
+                    Green = 1,
+                    Blue = 1,
+                },
+				Blur = 0.1
+            };
+
+            Material _secondMaterial = new Metallic()
+            {
+                Name = "materialTwo",
+                Color = new Color
+                {
+                    Red = 1,
+                    Green = 1,
+                    Blue = 1,
+                },
+				Blur = 0.1
+            };
+
+            _materialController.AddMaterial(_firstMaterial, "user");
+            _materialController.AddMaterial(_secondMaterial, "user");
+
+            Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
+        }
+
+        [TestMethod]
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_SpacedMaterialName_FailTest()
 		{
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = " spacedName ",
 			};
@@ -128,7 +201,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_EmptyMaterialName_FailTest()
 		{
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "",
 			};
@@ -137,7 +210,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void ListMaterials_OkTest()
 		{
-			Material firstMaterial = new Material()
+			Material firstMaterial = new Lambertian()
 			{
 				Name = "materialOne",
 				Color = new Color
@@ -149,7 +222,7 @@ namespace Test.ControllerTest
 			};
 			_materialController.AddMaterial(firstMaterial, "username");
 
-			Material secondMaterial = new Material()
+			Material secondMaterial = new Lambertian()
 			{
 				Name = "materialTwo",
 				Color = new Color
@@ -167,7 +240,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void RemoveMaterials_OkTest()
 		{
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -204,7 +277,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(MaterialUsedByModelException))]
 		public void RemoveMaterial_MaterialUsedByModel_FailTest()
 		{
-			Material material = new Material()
+			Material material = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -236,7 +309,7 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "sphere",
 				Color = new Color
@@ -267,7 +340,7 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
-		public void ChangeMaterial_OkTest()
+		public void ChangeLambertianName_OkTest()
 		{
 			Client currentClient = new Client()
 			{
@@ -275,7 +348,7 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 				Color = new Color
@@ -297,7 +370,7 @@ namespace Test.ControllerTest
 
 		[TestMethod]
 		[ExpectedException(typeof(InvalidMaterialInputException))]
-		public void ChangeMaterialName_FailTest()
+		public void ChangeLambertianName_FailTest()
 		{
 			Client currentClient = new Client()
 			{
@@ -305,12 +378,12 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName",
 			};
 
 			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, " newNameMaterial ");
 		}
-	}
+    }
 }
