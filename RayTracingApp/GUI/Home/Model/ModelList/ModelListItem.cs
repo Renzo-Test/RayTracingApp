@@ -60,7 +60,7 @@ namespace GUI
                 else
                 {
                     Renderer renderer = new Renderer();
-                    Image image = renderer.RenderModelPreview(model);
+                    var (_, image) = renderer.RenderModelPreview(model);
 
                     _modelController.UpdatePreview(model, image);
                     picIconSphere.Image = image;

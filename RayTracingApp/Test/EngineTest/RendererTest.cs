@@ -60,7 +60,7 @@ namespace Test.EngineTest
 				Material = new Material() { Color = modelColor, Type = MaterialEnum.LambertianMaterial },
 			};
 
-			string render = renderer.RenderModelPreview(modelToPreview);
+			var (render, _) = renderer.RenderModelPreview(modelToPreview);
 
 			int propertiesLines = 3;
 			int pixelsLines = (100 * 100) + 1;
