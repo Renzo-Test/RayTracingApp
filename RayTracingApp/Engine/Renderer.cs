@@ -64,7 +64,7 @@ namespace Engine
             };
         }
 
-    public string RenderModelPreview(Model model)
+		public string RenderModelPreview(Model model)
 		{
 			RenderProperties properties = PreviewRenderProperties();
 			Scene previewScene = CreatePreviewScene(model);
