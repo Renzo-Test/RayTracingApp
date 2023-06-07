@@ -67,7 +67,12 @@ namespace DBRepository
 
         public void UpdatePreview(Model model, Bitmap preview)
         {
-            throw new System.NotImplementedException();
-        }
+			using (var context = new AppContext(DBName))
+			{
+				Model updateModel = context.Models.FirstOrDefault(m => m.Id == model.Id);
+				updateModel.SetPreview(preview);
+				context.SaveChanges();
+			}
+		}
     }
 }
