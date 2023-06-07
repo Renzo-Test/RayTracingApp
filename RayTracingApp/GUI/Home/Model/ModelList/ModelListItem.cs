@@ -53,10 +53,7 @@ namespace GUI
             {
                 Renderer renderer = new Renderer();
                 renderer.RenderModelPreview(model);
-                string preview = model.Preview;
-
-                Scanner scanner = new Scanner();
-                Bitmap image = scanner.ScanImage(preview);
+                Image image = model.GetPreview();
 
                 picIconSphere.Image = image;
                 picMaterialColor.Visible = false;

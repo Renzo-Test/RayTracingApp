@@ -69,17 +69,6 @@ namespace Test.ModelsTest
 		}
 
 		[TestMethod]
-		public void SetPreview_OkTst()
-		{
-			Model newModel = new Model()
-			{
-				Preview = "modelPreview"
-			};
-
-			Assert.AreEqual("modelPreview", newModel.Preview);
-		}
-
-		[TestMethod]
 		public void SetShowPreview_OkTst()
 		{
 			Model newModel = new Model()

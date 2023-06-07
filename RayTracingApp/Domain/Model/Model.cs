@@ -1,6 +1,7 @@
 ﻿using Domain.Exceptions;
 using System;
 using System.Drawing;
+using System.IO;
 
 namespace Domain
 {
@@ -56,7 +57,10 @@ namespace Domain
 
 		public Image GetPreview()
 		{
-			return null;
+			using (var stream = new MemoryStream(Preview))
+			{
+				return Image.FromStream(stream);
+			}
 		}
 
 		public void SetPreview(Image img)
