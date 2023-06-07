@@ -95,10 +95,25 @@ namespace Test.ModelsTest
 
 			Assert.AreEqual(newModel.GetPreview().ToString(), img.ToString());
 		}
+
 		private static byte[] GetImageAsByteArray(MemoryStream ms, Bitmap img)
 		{
 			img.Save(ms, ImageFormat.Bmp);
 			return ms.ToArray();
+		}
+
+		[TestMethod]
+		public void SetPreview_OkTest()
+		{
+			Bitmap img = new Bitmap(600, 300);
+
+			Model newModel = new Model()
+			{
+				showPreview = true,
+			};
+			newModel.SetPreview(img);
+
+			Assert.AreEqual(newModel.GetPreview().ToString(), img.ToString());
 		}
 	}
 }
