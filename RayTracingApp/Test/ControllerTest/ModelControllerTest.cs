@@ -6,6 +6,7 @@ using Domain.Exceptions;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Drawing;
 
 namespace Test.ControllerTest
 {
