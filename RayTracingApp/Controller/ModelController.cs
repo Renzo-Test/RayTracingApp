@@ -102,9 +102,9 @@ namespace Controller
 
 		}
 
-		public void UpdatePreview(Model mode, Bitmap preview)
+		public void UpdatePreview(Model model, Image preview)
         {
-			Repository.UpdatePreview(mode, preview);
+			Repository.UpdatePreview(model, preview);
         }
 
 	}

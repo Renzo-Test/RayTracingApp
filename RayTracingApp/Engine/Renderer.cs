@@ -64,7 +64,7 @@ namespace Engine
             };
         }
 
-		public string RenderModelPreview(Model model)
+		public Image RenderModelPreview(Model model)
 		{
 			RenderProperties properties = PreviewRenderProperties();
 			Scene previewScene = CreatePreviewScene(model);
@@ -73,8 +73,7 @@ namespace Engine
 			Scanner scanner = new Scanner();
 			Bitmap img = scanner.ScanImage(preview);
 
-			model.SetPreview(img);
-			return preview;
+			return img;
 		}
 
 		private void InitializateRender(ProgressBar progressBar)

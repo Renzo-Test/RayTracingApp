@@ -65,7 +65,7 @@ namespace DBRepository
 			}
 		}
 
-        public void UpdatePreview(Model model, Bitmap preview)
+        public void UpdatePreview(Model model, Image preview)
         {
 			using (var context = new AppContext(DBName))
 			{

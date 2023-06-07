@@ -10,6 +10,6 @@ namespace IRepository
 		void AddModel(Model model);
 		void RemoveModel(Model model);
 		void UpdateModelName(Model model, string newName);
-		void UpdatePreview(Model model, Bitmap preview);
+		void UpdatePreview(Model model, Image preview);
 	}
 }
