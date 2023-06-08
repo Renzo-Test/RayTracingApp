@@ -23,5 +23,12 @@ namespace Test.ModelsTest
                 Username = "Username123"
             };
         }
+
+        [TestMethod]
+        public void SetRenderDate_OkTest()
+        {
+            Log newLog = new Log();
+            newLog.RenderDate = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
+        }
     }
 }
