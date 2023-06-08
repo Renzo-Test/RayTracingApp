@@ -58,6 +58,15 @@ namespace Test.ModelsTest
             Assert.AreEqual("Test", _log.SceneName);
         }
 
+        [TestMethod]
+        public void SetRenderedElements_OkTest()
+        {
+            Log newLog = new Log();
+            newLog.RenderedElements = 5;
+
+            Assert.AreEqual(5, newLog.RenderedElements);
+        }
+
     }
 }
 
