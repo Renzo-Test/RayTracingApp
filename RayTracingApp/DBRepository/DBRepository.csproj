@@ -59,35 +59,15 @@
     <Compile Include="Exceptions\NotFoundMaterialException.cs" />
     <Compile Include="Exceptions\NotFoundModelException.cs" />
     <Compile Include="Exceptions\NotFoundSceneException.cs" />
-    <Compile Include="Migrations\202305302017494_AddScene.cs" />
-    <Compile Include="Migrations\202305302017494_AddScene.designer.cs">
-      <DependentUpon>202305302017494_AddScene.cs</DependentUpon>
+    <Compile Include="Migrations\202306082347374_InitialMigration.cs" />
+    <Compile Include="Migrations\202306082347374_InitialMigration.designer.cs">
+      <DependentUpon>202306082347374_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306011912572_IncludedPreview.cs" />
-    <Compile Include="Migrations\202306011912572_IncludedPreview.designer.cs">
-      <DependentUpon>202306011912572_IncludedPreview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306071504006_preview_model.cs" />
-    <Compile Include="Migrations\202306071504006_preview_model.designer.cs">
-      <DependentUpon>202306071504006_preview_model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306082308242_ResetMaterialsTable.cs" />
-    <Compile Include="Migrations\202306082308242_ResetMaterialsTable.designer.cs">
-      <DependentUpon>202306082308242_ResetMaterialsTable.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
     <Compile Include="FigureRepository.cs" />
     <Compile Include="MaterialRepository.cs" />
-    <Compile Include="Migrations\202305291653225_InitialCreate.cs" />
-    <Compile Include="Migrations\202305291653225_InitialCreate.designer.cs">
-      <DependentUpon>202305291653225_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305291921438_AddedModels.cs" />
-    <Compile Include="Migrations\202305291921438_AddedModels.designer.cs">
-      <DependentUpon>202305291921438_AddedModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -106,23 +86,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305291653225_InitialCreate.resx">
-      <DependentUpon>202305291653225_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305291921438_AddedModels.resx">
-      <DependentUpon>202305291921438_AddedModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305302017494_AddScene.resx">
-      <DependentUpon>202305302017494_AddScene.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306011912572_IncludedPreview.resx">
-      <DependentUpon>202306011912572_IncludedPreview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306071504006_preview_model.resx">
-      <DependentUpon>202306071504006_preview_model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306082308242_ResetMaterialsTable.resx">
-      <DependentUpon>202306082308242_ResetMaterialsTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306082347374_InitialMigration.resx">
+      <DependentUpon>202306082347374_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

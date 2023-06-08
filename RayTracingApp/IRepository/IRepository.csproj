@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepositoryLog.cs" />
     <Compile Include="IRepositoryScene.cs" />
     <Compile Include="IRepositoryModel.cs" />
     <Compile Include="IRepositoryMaterial.cs" />
