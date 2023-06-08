@@ -273,7 +273,7 @@ namespace Test.ControllerTest
 			{
 				Name = "Test",
 				Figure = new Sphere(),
-				Material = new Material()
+				Material = new Lambertian()
 			};
 
 			Bitmap img = new Bitmap(600, 300);

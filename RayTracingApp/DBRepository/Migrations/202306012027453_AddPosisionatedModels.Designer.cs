@@ -7,13 +7,13 @@ namespace DBRepository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class PosisionatedModelsMigration : IMigrationMetadata
+    public sealed partial class AddPosisionatedModels : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PosisionatedModelsMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddPosisionatedModels));
         
         string IMigrationMetadata.Id
         {
-            get { return "202306012038337_PosisionatedModelsMigration"; }
+            get { return "202306012027453_AddPosisionatedModels"; }
         }
         
         string IMigrationMetadata.Source

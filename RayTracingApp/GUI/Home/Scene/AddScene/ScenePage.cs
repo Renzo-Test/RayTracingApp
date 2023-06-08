@@ -312,7 +312,7 @@ namespace GUI
                 MessageBox.Show(UnrenderedImageErrorMessage);
                 return;
             }
-            _sceneHome.GoToExportPage(_scene.Preview, _scene.Name);
+            _sceneHome.GoToExportPage(_scene.GetPreview(), _scene.Name);
         }
     }
 }

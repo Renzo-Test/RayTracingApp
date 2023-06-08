@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DBRepository\DBRepository.csproj">
-      <Project>{024F737B-EE41-4389-B9CA-8460FA47FBC7}</Project>
+      <Project>{024f737b-ee41-4389-b9ca-8460fa47fbc7}</Project>
       <Name>DBRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\IRepository\IRepository.csproj">

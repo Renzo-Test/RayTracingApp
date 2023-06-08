@@ -12,7 +12,6 @@ namespace Test.EngineTest
     {
         private List<List<Vector>> pixels;
         private Printer printer;
-        private ProgressBar progressBar;
 
 		[TestInitialize]
         public void TestInitialize()

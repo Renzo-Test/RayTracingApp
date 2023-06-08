@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class PosisionatedModelsMigration : DbMigration
+    public partial class AddPosisionatedModels : DbMigration
     {
         public override void Up()
         {
