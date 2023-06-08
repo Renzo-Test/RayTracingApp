@@ -110,7 +110,7 @@ namespace Controller
 		}
 		private static string TodayDate()
 		{
-			return DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+			return DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy");
 		}
     }
 }
