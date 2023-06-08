@@ -21,7 +21,7 @@ namespace DBRepository
             }
         }
 
-        public List<Log> GetLogsByClient(string username)
+        public List<Log> GetLogsByUsername(string username)
         {
             using (var context = new AppContext(DBName))
             {

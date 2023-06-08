@@ -9,7 +9,7 @@ namespace IRepository
 {
     public interface IRepositoryLog
     {
-        List<Log> GetLogsByClient(string username);
+        List<Log> GetLogsByUsername(string username);
         void AddLog(Log model);
     }
 }
