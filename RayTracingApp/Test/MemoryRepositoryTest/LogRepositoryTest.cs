@@ -7,6 +7,7 @@ namespace Test.MemoryRepositoryTest
     [TestClass]
     public class LogRepositoryTest
     {
+        private LogRepository _logRepository;
         [TestCleanup]
         public void TestCleanUp()
         {
@@ -19,7 +20,7 @@ namespace Test.MemoryRepositoryTest
         [TestMethod]
         public void CanCreateLogRepository_OkTest()
         {
-            LogRepository newLogRepository = new LogRepository();
+            _logRepository = new LogRepository();
         }
     }
 }
