@@ -61,10 +61,12 @@ namespace Test.ModelsTest
         [TestMethod]
         public void SetRenderedElements_OkTest()
         {
-            Log newLog = new Log();
-            newLog.RenderedElements = 5;
+            _log = new Log()
+            {
+                RenderedElements = 5
+            };
 
-            Assert.AreEqual(5, newLog.RenderedElements);
+            Assert.AreEqual(5, _log.RenderedElements);
         }
 
     }
