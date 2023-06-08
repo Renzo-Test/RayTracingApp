@@ -7,11 +7,12 @@ namespace Test.ModelsTest
     [TestClass]
     public class LogTest
     {
+        private Log _log;
 
         [TestMethod]
         public void CanCreateLog_OkTest()
         {
-            Log newLog = new Log();
+            _log = new Log();
         }
     }
 }
