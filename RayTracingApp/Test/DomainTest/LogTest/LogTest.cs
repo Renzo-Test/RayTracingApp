@@ -39,10 +39,12 @@ namespace Test.ModelsTest
         [TestMethod]
         public void SetTimeSpan_OkTest()
         {
-            Log log = new Log();
-            log.TimeSpan = TimeSpan.FromSeconds(1);
+            _log = new Log()
+            {
+                TimeSpan = TimeSpan.FromSeconds(1)
+            };
 
-            Assert.AreEqual(TimeSpan.FromSeconds(1), log.TimeSpan);
+            Assert.AreEqual(TimeSpan.FromSeconds(1), _log.TimeSpan);
         }
 
     }
