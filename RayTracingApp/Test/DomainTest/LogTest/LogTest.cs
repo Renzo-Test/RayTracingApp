@@ -22,6 +22,7 @@ namespace Test.ModelsTest
             {
                 Username = "Username123"
             };
+            Assert.AreEqual("Username123", _log.Username);
         }
 
         [TestMethod]
@@ -31,7 +32,19 @@ namespace Test.ModelsTest
             {
                 RenderDate = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy")
             };
+            string expected = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
+            Assert.AreEqual(expected, _log.RenderDate);
         }
+
+        [TestMethod]
+        public void SetTimeSpan_OkTest()
+        {
+            Log log = new Log();
+            log.TimeSpan = TimeSpan.FromSeconds(1);
+
+            Assert.AreEqual(TimeSpan.FromSeconds(1), log.TimeSpan);
+        }
+
     }
 }
 
