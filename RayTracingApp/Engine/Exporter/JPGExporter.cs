@@ -18,11 +18,19 @@ namespace Engine.Exporter
         {
             try
             {
-                img.Save(path, ImageFormat.Jpeg);
+                SaveImage(img, path);
             }
             catch (Exception)
             {
                 throw new ExporterException(InvalidPathErrorMessage);
+            }
+        }
+
+        private static void SaveImage(Image imagen, string path)
+        {
+            using (var bitmap = new Bitmap(imagen))
+            {
+                bitmap.Save(path, ImageFormat.Png);
             }
         }
     }
