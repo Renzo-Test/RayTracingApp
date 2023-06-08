@@ -27,8 +27,11 @@ namespace Test.ModelsTest
         [TestMethod]
         public void SetRenderDate_OkTest()
         {
-            Log newLog = new Log();
-            newLog.RenderDate = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
+            _log = new Log()
+            {
+                RenderDate = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy")
+            };
         }
     }
 }
+
