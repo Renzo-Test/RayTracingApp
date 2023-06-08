@@ -46,6 +46,14 @@ namespace Test.ModelsTest
 
             Assert.AreEqual(TimeSpan.FromSeconds(1), _log.TimeSpan);
         }
+        
+        [TestMethod]
+        public void SetSceneName_OkTest()
+        {
+            Log newLog = new Log();
+            newLog.SceneName = "Test";
+            Assert.AreEqual("Test", log.SceneName);
+        }
 
     }
 }
