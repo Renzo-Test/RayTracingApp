@@ -66,13 +66,13 @@
     <Compile Include="Migrations\202306011912572_IncludedPreview.designer.cs">
       <DependentUpon>202306011912572_IncludedPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306060311504_MaterialInheritance.cs" />
-    <Compile Include="Migrations\202306060311504_MaterialInheritance.designer.cs">
-      <DependentUpon>202306060311504_MaterialInheritance.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202306071504006_preview_model.cs" />
     <Compile Include="Migrations\202306071504006_preview_model.designer.cs">
       <DependentUpon>202306071504006_preview_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306081722133_MetalicProperties.cs" />
+    <Compile Include="Migrations\202306081722133_MetalicProperties.designer.cs">
+      <DependentUpon>202306081722133_MetalicProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
@@ -117,11 +117,11 @@
     <EmbeddedResource Include="Migrations\202306011912572_IncludedPreview.resx">
       <DependentUpon>202306011912572_IncludedPreview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306060311504_MaterialInheritance.resx">
-      <DependentUpon>202306060311504_MaterialInheritance.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306071504006_preview_model.resx">
       <DependentUpon>202306071504006_preview_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306081722133_MetalicProperties.resx">
+      <DependentUpon>202306081722133_MetalicProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

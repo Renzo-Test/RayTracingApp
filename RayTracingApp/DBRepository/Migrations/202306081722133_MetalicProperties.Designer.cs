@@ -7,13 +7,13 @@ namespace DBRepository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class MaterialInheritance : IMigrationMetadata
+    public sealed partial class MetalicProperties : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MaterialInheritance));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MetalicProperties));
         
         string IMigrationMetadata.Id
         {
-            get { return "202306060311504_MaterialInheritance"; }
+            get { return "202306081722133_MetalicProperties"; }
         }
         
         string IMigrationMetadata.Source
