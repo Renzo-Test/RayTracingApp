@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using DBRepository;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -11,14 +12,14 @@ namespace Test.MemoryRepositoryTest
         {
             using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
             {
-                context.ClearDBTable("Figures");
+                context.ClearDBTable("Logs");
             }
         }
 
         [TestMethod]
         public void CanCreateLogRepository_OkTest()
         {
-            LogRepository newLogRepository = new LogRepository(new);
+            LogRepository newLogRepository = new LogRepository();
         }
     }
 }
