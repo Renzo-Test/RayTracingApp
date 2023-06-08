@@ -52,7 +52,7 @@ namespace Test.ModelsTest
         {
             Log newLog = new Log();
             newLog.SceneName = "Test";
-            Assert.AreEqual("Test", log.SceneName);
+            Assert.AreEqual("Test", newLog.SceneName);
         }
 
     }
