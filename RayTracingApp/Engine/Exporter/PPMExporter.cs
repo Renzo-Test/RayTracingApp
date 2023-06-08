@@ -18,7 +18,7 @@ namespace Engine.Exporter
         {
             try
             {
-                GuardarImagenEnFormatoPPM(img, path);
+                SaveImage(img, path);
             }
             catch (Exception)
             {
@@ -26,7 +26,7 @@ namespace Engine.Exporter
             }
         }
 
-        private static void GuardarImagenEnFormatoPPM(Image imagen, string path)
+        private static void SaveImage(Image imagen, string path)
         {
             using (var stream = new FileStream(path, FileMode.Create))
             {
