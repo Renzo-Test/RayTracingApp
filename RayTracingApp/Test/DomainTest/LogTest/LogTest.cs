@@ -14,5 +14,12 @@ namespace Test.ModelsTest
         {
             _log = new Log();
         }
+
+        [TestMethod]
+        public void SetUsername_OkTest()
+        {
+            Log newLog = new Log();
+            newLog.Username = "Username123";
+        }
     }
 }
