@@ -46,5 +46,15 @@ namespace Controller
             return totalTime / totalRenderLogs;
         }
 
+        public int GetTotalRenderTimeInMinutes()
+        {
+            int totalRenderTime = 0;
+            foreach (var log in Repository.GetAllLogs())
+            {
+                totalRenderTime += log.RenderTime;
+            }
+
+            return totalRenderTime / 60;
+        }
     }
 }
