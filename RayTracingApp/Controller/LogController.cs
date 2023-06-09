@@ -31,5 +31,20 @@ namespace Controller
             return Repository.GetAllLogs();
         }
 
+        public int GetAverageRenderTime()
+        {
+            int totalRenderLogs = Repository.GetAllLogs().Count();
+            if (totalRenderLogs == 0)
+                return 0;
+
+            int totalTime = 0;
+            foreach (var log in Repository.GetAllLogs())
+            {
+                totalTime += log.RenderTime;
+            }
+
+            return totalTime / totalRenderLogs;
+        }
+
     }
 }
