@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogController.cs" />
     <Compile Include="MainController.cs" />
     <Compile Include="MaterialExceptions\InvalidMaterialRemoveException.cs" />
     <Compile Include="SceneController.cs" />

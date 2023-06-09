@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Controller;
 
 namespace Test.ControllerTest
 {
@@ -18,8 +19,9 @@ namespace Test.ControllerTest
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void CanCreateLogController_OkTest()
         {
+            LogController logController = new LogController();
         }
     }
 }
