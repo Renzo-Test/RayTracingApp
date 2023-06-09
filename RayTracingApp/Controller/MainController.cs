@@ -13,6 +13,7 @@ namespace Controller
         public MaterialController MaterialController { get; set; }
         public ModelController ModelController { get; set; }
         public SceneController SceneController { get; set; }
+        public LogController LogController { get; set; }
 
         public MainController()
         {
@@ -21,6 +22,7 @@ namespace Controller
             FigureController = new FigureController();
             MaterialController = new MaterialController();
             ClientController = new ClientController();
+            LogController = new LogController();
         }
     }
 }

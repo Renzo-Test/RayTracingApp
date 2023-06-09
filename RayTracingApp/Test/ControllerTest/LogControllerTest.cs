@@ -8,6 +8,7 @@ namespace Test.ControllerTest
     public class LogControllerTest
     {
         private const string TestDatabase = "RayTracingAppTestDB";
+        private LogController _controller;
 
         [TestCleanup]
         public void TestCleanUp()
@@ -21,7 +22,7 @@ namespace Test.ControllerTest
         [TestMethod]
         public void CanCreateLogController_OkTest()
         {
-            LogController logController = new LogController();
+            _controller = new LogController();
         }
     }
 }
