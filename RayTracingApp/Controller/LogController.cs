@@ -56,5 +56,28 @@ namespace Controller
 
             return totalRenderTime / 60;
         }
+
+        public string GetUserWithMaxAccumulatedRenderTime(List<Log> logs)
+        {
+            var usersAccumulatedRenderTime = logs
+                .GroupBy(log => log.Username)
+                .Select(group => new
+                {
+                    Username = group.Key,
+                    AccumulatedRenderTime = group.Sum(log => log.RenderTime)
+                })
+                .OrderByDescending(group => group.AccumulatedRenderTime)
+                .FirstOrDefault();
+
+            if (usersAccumulatedRenderTime != null)
+            {
+                return usersAccumulatedRenderTime.Username;
+            }
+
+            return "No hay renderizados.";
+        }
+
     }
+
 }
+
