@@ -2,6 +2,7 @@
 using System;
 using DBRepository;
 using Domain;
+using System.Collections.Generic;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -71,6 +72,21 @@ namespace Test.MemoryRepositoryTest
         public void GetLogsByUsername_NotExistingUsername()
         {
             _logRepository.GetLogsByUsername("");
+        }
+
+        [TestMethod]
+        public void AddLog_OkTest()
+        {
+            Log newLog = new Log()
+            {
+                Username = "Username123"
+            };
+
+            _logRepository.AddLog(newLog);
+
+            List<Log> iterable = _logRepository.GetLogsByUsername("Username123");
+
+            Assert.AreEqual(newLog.Username, iterable[0].Username);
         }
     }
 }
