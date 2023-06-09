@@ -21,11 +21,11 @@ namespace DBRepository
             }
         }
 
-        public List<Log> GetLogsByUsername(string username)
+        public List<Log> GetAllLogs()
         {
             using (var context = new AppContext(DBName))
             {
-                return context.Logs.Where(log => log.Username.Equals(username)).ToList();
+                return context.Logs.ToList();
             }
         }
     }

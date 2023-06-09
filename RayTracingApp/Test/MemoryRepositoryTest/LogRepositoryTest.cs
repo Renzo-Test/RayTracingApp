@@ -36,7 +36,7 @@ namespace Test.MemoryRepositoryTest
         }
 
         [TestMethod]
-        public void GetLogsByUsername_OwnerName_OkTest()
+        public void GetAllLogs_OkTest()
         {
             Log newLog = new Log()
             {
@@ -46,11 +46,11 @@ namespace Test.MemoryRepositoryTest
             };
             _logRepository.AddLog(newLog);
 
-            Assert.AreEqual(newLog.Username, _logRepository.GetLogsByUsername("OwnerName")[0].Username);
+            Assert.AreEqual(newLog.Id, _logRepository.GetAllLogs()[0].Id);
         }
 
         [TestMethod]
-        public void GetLogsByUsername_TwoUsernames_OkTest()
+        public void GetAllLogs_TwoLogs_OkTest()
         {
             Log firstLog = new Log()
             {
@@ -64,14 +64,14 @@ namespace Test.MemoryRepositoryTest
             };
             _logRepository.AddLog(secondLog);
 
-            Assert.AreEqual("Log1", _logRepository.GetLogsByUsername("Log1")[0].Username);
-            Assert.AreEqual("Log2", _logRepository.GetLogsByUsername("Log2")[0].Username);
+            Assert.AreEqual(firstLog.Id, _logRepository.GetAllLogs()[0].Id);
+            Assert.AreEqual(secondLog.Id, _logRepository.GetAllLogs()[1].Id);
         }
 
         [TestMethod]
-        public void GetLogsByUsername_NotExistingUsername()
+        public void GetAllLogs_NotExistingLog()
         {
-            _logRepository.GetLogsByUsername("");
+            _logRepository.GetAllLogs();
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace Test.MemoryRepositoryTest
 
             _logRepository.AddLog(newLog);
 
-            List<Log> iterable = _logRepository.GetLogsByUsername("Username123");
+            List<Log> iterable = _logRepository.GetAllLogs();
 
             Assert.AreEqual(newLog.Username, iterable[0].Username);
         }
