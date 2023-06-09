@@ -66,5 +66,11 @@ namespace Test.MemoryRepositoryTest
             Assert.AreEqual("Log1", _logRepository.GetLogsByUsername("Log1")[0].Username);
             Assert.AreEqual("Log2", _logRepository.GetLogsByUsername("Log2")[0].Username);
         }
+
+        [TestMethod]
+        public void GetLogsByUsername_NotExistingUsername()
+        {
+            _logRepository.GetLogsByUsername("");
+        }
     }
 }
