@@ -124,6 +124,8 @@ namespace DBRepository
                 return context.PosisionatedModels.Where(pm => pm.SceneId.Equals(scene.Id))
                         .Include(pm => pm.Model)
                         .Include(pm => pm.Model.Figure)
+                        .Include(pm => pm.Model.Material)
+                        .Include(pm => pm.ModelScene)
                         .ToList();
             }
         }
