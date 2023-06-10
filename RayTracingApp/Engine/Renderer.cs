@@ -117,7 +117,7 @@ namespace Engine
 				double u = (column + fstRnd) / _properties.ResolutionX;
 				double v = (derivatedIndex + sndRnd) / _properties.ResolutionY;
 
-				var ray = _camera.GetRay(u, v);
+				var ray = _camera.GetRay(u, v, GetRandomInUnitSphere());
 				vector.AddFrom(ShootRay(ray, _properties.MaxDepth));
 				_progress.Count(); ;
 			}
