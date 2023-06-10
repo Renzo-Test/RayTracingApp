@@ -54,8 +54,8 @@
 			this.picScene = new System.Windows.Forms.PictureBox();
 			this.picIconBack = new System.Windows.Forms.PictureBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.txtLensAperture = new System.Windows.Forms.TextBox();
+			this.picFueldLensAperture = new System.Windows.Forms.PictureBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.rbtnCreatePreview = new System.Windows.Forms.CheckBox();
@@ -68,7 +68,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.picFieldFov)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.picScene)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.picIconBack)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.picFueldLensAperture)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -365,27 +365,27 @@
 			this.label1.TabIndex = 47;
 			this.label1.Text = "Lens Aperture";
 			// 
-			// textBox1
+			// txtLensAperture
 			// 
-			this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-			this.textBox1.Location = new System.Drawing.Point(272, 122);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(158, 24);
-			this.textBox1.TabIndex = 46;
-			this.textBox1.Text = "0.5";
+			this.txtLensAperture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.txtLensAperture.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.txtLensAperture.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtLensAperture.ForeColor = System.Drawing.SystemColors.WindowFrame;
+			this.txtLensAperture.Location = new System.Drawing.Point(272, 122);
+			this.txtLensAperture.Name = "txtLensAperture";
+			this.txtLensAperture.Size = new System.Drawing.Size(158, 24);
+			this.txtLensAperture.TabIndex = 46;
+			this.txtLensAperture.Text = "0.5";
 			// 
-			// pictureBox2
+			// picFueldLensAperture
 			// 
-			this.pictureBox2.Image = global::GUI.Properties.Resources.fieldRectangle;
-			this.pictureBox2.Location = new System.Drawing.Point(254, 114);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(200, 39);
-			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.pictureBox2.TabIndex = 45;
-			this.pictureBox2.TabStop = false;
+			this.picFueldLensAperture.Image = global::GUI.Properties.Resources.fieldRectangle;
+			this.picFueldLensAperture.Location = new System.Drawing.Point(254, 114);
+			this.picFueldLensAperture.Name = "picFueldLensAperture";
+			this.picFueldLensAperture.Size = new System.Drawing.Size(200, 39);
+			this.picFueldLensAperture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.picFueldLensAperture.TabIndex = 45;
+			this.picFueldLensAperture.TabStop = false;
 			// 
 			// label2
 			// 
@@ -434,8 +434,8 @@
 			this.Controls.Add(this.rbtnCreatePreview);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.textBox1);
-			this.Controls.Add(this.pictureBox2);
+			this.Controls.Add(this.txtLensAperture);
+			this.Controls.Add(this.picFueldLensAperture);
 			this.Controls.Add(this.picIconExport);
 			this.Controls.Add(this.picIconWarning);
 			this.Controls.Add(this.lblImageOutdated);
@@ -475,7 +475,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.picFieldFov)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.picScene)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.picIconBack)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picFueldLensAperture)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -509,8 +509,8 @@
         private System.Windows.Forms.PictureBox picIconWarning;
         private System.Windows.Forms.PictureBox picIconExport;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.TextBox txtLensAperture;
+		private System.Windows.Forms.PictureBox picFueldLensAperture;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.CheckBox rbtnCreatePreview;
