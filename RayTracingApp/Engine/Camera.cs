@@ -14,7 +14,7 @@ namespace Engine
         private Vector VectorVertical { get; set; }
         private Vector Origin { get; set; }
 
-        public Camera(Vector vectorLookFrom, Vector vectorLookAt, Vector vectorUp, int fieldOfView, double aspectRatio)
+        public Camera(Vector vectorLookFrom, Vector vectorLookAt, Vector vectorUp, int fieldOfView, double aspectRatio, double aperture, double focalDistance)
         {
             double Theta = fieldOfView * Math.PI / 180;
             double HeightHalf = Math.Tan(Theta / 2);
