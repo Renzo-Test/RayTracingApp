@@ -23,7 +23,6 @@ namespace Domain
         public int Id { get; set; }
         public Vector CameraPosition = new Vector();
         public Vector ObjectivePosition = new Vector();
-        public double LensAperture = 0.5;
         public List<PosisionatedModel> PosisionatedModels { get; set; }
         public byte[] Preview { get; set; }
 
@@ -33,6 +32,7 @@ namespace Domain
         private string _lastModificationDate = "unmodified";
         private string _lastRenderDate = "unrendered";
         private int _fov;
+        private double _lensAperture = 0.5;
 
         public Scene()
         {
@@ -118,7 +118,24 @@ namespace Domain
             }
         }
 
-        public Image GetPreview()
+        public double LensAperture
+        {
+            get => _lensAperture;
+            set
+            {
+				try
+                {
+					RunLensApertureIsValidChecker(value);
+					_lensAperture = value;
+				}
+				catch (InvalidSceneInputException ex)
+                {
+					throw new InvalidSceneInputException(ex.Message);
+				}
+			}
+        }
+
+		public Image GetPreview()
         {
             using (var stream = new MemoryStream(Preview))
             {
@@ -163,5 +180,13 @@ namespace Domain
                 throw new InvalidFovException($"Scene's fov must be between {MinFov} and {MaxFov}");
             }
         }
-    }
+
+		private void RunLensApertureIsValidChecker(double value)
+		{
+			if (!Enumerable.Range(MinLensAperture, MinLensAperture).Contains(value))
+			{
+				throw new InvalidFovException($"Lens aperture must be between {MinLensAperture} and {MinLensAperture}");
+			}
+		}
+	}
 }

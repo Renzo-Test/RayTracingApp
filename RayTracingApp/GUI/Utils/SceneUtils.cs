@@ -30,11 +30,11 @@ namespace GUI
             return (fov, lookFrom, lookAt);
         }
 
-		public static int GetLensAperture(TextBox txtLensAperture)
+		public static double GetLensAperture(TextBox txtLensAperture)
 		{
 			try
 			{
-				return int.Parse(txtLensAperture.Text);
+				return double.Parse(txtLensAperture.Text);
 			}
 			catch (FormatException)
 			{
