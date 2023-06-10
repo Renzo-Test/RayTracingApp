@@ -20,6 +20,9 @@ namespace Domain
         private const int MinFov = 1;
         private const int MaxFov = 160;
 
+        private const double MinLensAperture = 0.1;
+        private const double MaxLensAperture = 1.0;
+
         public int Id { get; set; }
         public Vector CameraPosition = new Vector();
         public Vector ObjectivePosition = new Vector();
@@ -183,9 +186,15 @@ namespace Domain
 
 		private void RunLensApertureIsValidChecker(double value)
 		{
-			if (!Enumerable.Range(MinLensAperture, MinLensAperture).Contains(value))
+			if (MinLensAperture > value || value > MaxLensAperture)
 			{
-				throw new InvalidFovException($"Lens aperture must be between {MinLensAperture} and {MinLensAperture}");
+				throw new InvalidFovException($"Lens aperture must be between {MinLensAperture} and {MaxLensAperture}");
+			}
+
+            double roundedValue = Math.Round(value, 1);
+            if (roundedValue != value)
+            {
+				throw new InvalidFovException($"Lens aperture must have only one decimal");
 			}
 		}
 	}
