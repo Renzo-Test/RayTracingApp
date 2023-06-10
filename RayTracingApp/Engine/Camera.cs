@@ -13,6 +13,8 @@ namespace Engine
         private Vector VectorHorizontal { get; set; }
         private Vector VectorVertical { get; set; }
         private Vector Origin { get; set; }
+        private Vector VectorU { get; set; }
+        private Vector VectorV { get; set; }
         private double LensRadius { get; set; }
 
         public Camera(Vector vectorLookFrom, Vector vectorLookAt, Vector vectorUp, int fieldOfView, double aspectRatio, double aperture, double focalDistance)
@@ -25,8 +27,8 @@ namespace Engine
             Origin = vectorLookFrom;
 
             Vector VectorW = vectorLookFrom.Substract(vectorLookAt).GetUnit();
-            Vector VectorU = vectorUp.Cross(VectorW).GetUnit();
-            Vector VectorV = VectorW.Cross(VectorU);
+            VectorU = vectorUp.Cross(VectorW).GetUnit();
+            VectorV = VectorW.Cross(VectorU);
             
             VectorLowerLeftCorner = Origin
                 .Substract(VectorU.Multiply(WidthHalf * focalDistance))
@@ -44,11 +46,14 @@ namespace Engine
             Vector horizontalPosition = VectorHorizontal.Multiply(u);
             Vector verticalPosition = VectorVertical.Multiply(v);
 
-            Vector pointPosition = VectorLowerLeftCorner.Add(horizontalPosition.Add(verticalPosition));
+            Vector pointPosition = VectorLowerLeftCorner
+                .Add(horizontalPosition.Add(verticalPosition))
+                .Substract(Origin)
+                .Substract(vectorOffSet);
 
             return new Ray()
             {
-                Origin = Origin,
+                Origin = Origin.Add(vectorOffSet),
                 Direction = pointPosition.Substract(this.Origin)
             };
         }
