@@ -21,8 +21,10 @@ namespace GUI
         private const string RedPlaceholder = "Red";
         private const string GreenPlaceholder = "Green";
         private const string BluePlaceholder = "Blue";
+        private const string BlurPlaceholder = "Blur";
         private const string ColorInputErrorMessage = "Color must be a number between 0 and 255";
-        
+        private const string BlurInputErrorMessage = "Blur must be a number";
+
         private MaterialController _materialController;
         private Client _currentClient;
 
@@ -54,7 +56,7 @@ namespace GUI
             {
                 string Name = txtInputName.Text;
                 Material newMaterial = CreateMaterial(newColor, Name);
-                
+
                 _materialController.AddMaterial(newMaterial, _currentClient.Username);
                 _materialHome.GoToMaterialList();
 
@@ -65,13 +67,38 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
-        private static Material CreateMaterial(Color newColor, string Name)
+        private Material CreateMaterial(Color newColor, string Name)
         {
-            return new Lambertian()
+            if (rbtnMetalicMaterial.Checked)
             {
-                Name = Name,
-                Color = newColor
-            };
+                return new Metallic()
+                {
+                    Name = Name,
+                    Color = newColor,
+                    Blur = GetParsedBlur()
+                };
+            }
+            else
+            {
+                return new Lambertian()
+                {
+                    Name = Name,
+                    Color = newColor
+                };
+            }
+               
+        }
+
+        private double GetParsedBlur()
+        {
+            try
+            {
+                return Double.Parse(txtBlur.Text);
+            }
+            catch (FormatException)
+            {
+                throw new InvalidMaterialInputException(BlurInputErrorMessage);
+            }
         }
 
         private Color CreateColor()
@@ -215,5 +242,48 @@ namespace GUI
             ReplaceFontColor();
         }
 
+        private void rbtnMetalicMaterial_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbtnMetalicMaterial.Checked)
+            {
+                txtBlur.Visible = true;
+                picBackBlur.Visible = true;
+            }
+            else
+            {
+                txtBlur.Visible = false;
+                picBackBlur.Visible = false;
+            }
+        }
+
+        private void lblColor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picDarkRectangleFieldRed_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picDarkRectangleFieldBlue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picDarkRectangleFieldGreen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBlur_Enter(object sender, EventArgs e)
+        {
+            InputUtils.RemovePlaceHolder(ref txtBlur, BlurPlaceholder);
+        }
+
+        private void txtBlur_Leave(object sender, EventArgs e)
+        {
+            InputUtils.SetPlaceHolder(ref txtBlur, BlurPlaceholder);
+        }
     }
 }
