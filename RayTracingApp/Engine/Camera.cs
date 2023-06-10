@@ -35,8 +35,12 @@ namespace Engine
             VectorHorizontal = VectorU.Multiply(2 * WidthHalf * focalDistance);
             VectorVertical = VectorV.Multiply(2 * HeightHalf * focalDistance);
         }
-        public Ray GetRay(double u, double v)
+        public Ray GetRay(double u, double v, Vector randomVector)
         {
+            randomVector = randomVector.Multiply(LensRadius);
+            Vector vectorOffSet = VectorU.
+                Multiply(randomVector.X).
+                Add(VectorV.Multiply(randomVector.Y));
             Vector horizontalPosition = VectorHorizontal.Multiply(u);
             Vector verticalPosition = VectorVertical.Multiply(v);
 
