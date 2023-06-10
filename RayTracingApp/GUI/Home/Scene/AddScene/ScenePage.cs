@@ -295,15 +295,19 @@ namespace GUI
             Render();
         }
 
-        private void picBackgroundExport_Click(object sender, EventArgs e)
-        {
-            ExportImage();
-        }
-
         private void picIconExport_Click(object sender, EventArgs e)
         {
             ExportImage();
         }
+		private void label2_Click(object sender, EventArgs e)
+		{
+			ExportImage();
+		}
+
+		private void pictureBox3_Click(object sender, EventArgs e)
+		{
+			ExportImage();
+		}
 
         private void ExportImage()
         {
@@ -314,5 +318,5 @@ namespace GUI
             }
             _sceneHome.GoToExportPage(_scene.GetPreview(), _scene.Name);
         }
-    }
+	}
 }
