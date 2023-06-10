@@ -94,6 +94,22 @@ namespace Controller
         {
 			Repository.UpdateScenePreview(scene, img);
         }
+
+		public void UpdateModels(Scene scene, PosisionatedModel posisionatedModel)
+        {
+			Repository.UpdateSceneModels(scene, posisionatedModel);
+        }
+
+		public void RemoveModel(Scene scene, PosisionatedModel posisionatedModel)
+		{
+			Repository.RemoveSceneModels(scene, posisionatedModel);
+		}
+
+		public List<PosisionatedModel> GetPosisionatedModels(Scene scene)
+        {
+			return Repository.GetPosisionatedModels(scene);
+        }
+
 		private void SceneChecker(Scene scene, string username)
 		{
 			if (SceneNameExist(scene, username))

@@ -44,7 +44,7 @@ namespace GUI
             _scene = scene;
             _sceneHome = sceneHome;
             _currentClient = currentClient;
-            _posisionatedModels = scene.PosisionatedModels;
+            _posisionatedModels = _sceneController.GetPosisionatedModels(_scene);
             _renderProperties = renderProperties;
         }
 
@@ -68,7 +68,7 @@ namespace GUI
 
             foreach (Model model in models)
             {
-                AvailableModelItem item = new AvailableModelItem(this, model, _posisionatedModels);
+                AvailableModelItem item = new AvailableModelItem(this, model, _posisionatedModels, _sceneController, _scene);
                 flyModels.Controls.Add(item);
             }
 
@@ -86,7 +86,7 @@ namespace GUI
             foreach (PosisionatedModel model in _posisionatedModels)
             {
                 flyUsedModels.BackColor = System.Drawing.Color.FromArgb(45, 45, 65);
-                UsedModelItem item = new UsedModelItem(this, model, _posisionatedModels);
+                UsedModelItem item = new UsedModelItem(_scene, this, model, _posisionatedModels, _sceneController);
                 flyUsedModels.Controls.Add(item);
             }   
 
