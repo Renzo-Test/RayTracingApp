@@ -95,7 +95,9 @@ namespace Engine
 			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
 			int FieldOfView = scene.Fov;
 			double AspectRatio = properties.AspectRatio;
-			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
+			double focalDistance = LookFrom.Substract(LookAt).Length();
+			double aperture = scene.Aperture;
+			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio, aperture, focalDistance);
 		}
 
 		private void InitializatePixels(ref List<List<Vector>> pixels)
@@ -117,7 +119,7 @@ namespace Engine
 				double u = (column + fstRnd) / _properties.ResolutionX;
 				double v = (derivatedIndex + sndRnd) / _properties.ResolutionY;
 
-				var ray = _camera.GetRay(u, v);
+				var ray = _camera.GetRay(u, v, GetRandomInUnitSphere());
 				vector.AddFrom(ShootRay(ray, _properties.MaxDepth));
 				_progress.Count(); ;
 			}
