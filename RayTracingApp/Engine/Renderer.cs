@@ -95,7 +95,8 @@ namespace Engine
 			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
 			int FieldOfView = scene.Fov;
 			double AspectRatio = properties.AspectRatio;
-			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
+			double focalDistance = LookFrom.Substract(LookAt).Length();
+			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio, ,focalDistance);
 		}
 
 		private void InitializatePixels(ref List<List<Vector>> pixels)
