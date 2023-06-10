@@ -103,10 +103,12 @@ namespace GUI
             int fov;
             Vector lookFrom;
             Vector lookAt;
+            double lensAperture;
 
             try
             {
                 (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
+                lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
             }
             catch (InvalidSceneInputException ex)
             {
@@ -116,7 +118,7 @@ namespace GUI
 
             try
             {
-                SetSceneAtributes(fov, lookFrom, lookAt);
+                SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
             }
             catch (InvalidSceneInputException ex)
             {
@@ -175,11 +177,11 @@ namespace GUI
             return !this.InvokeRequired;
         }
 
-        private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt)
+        private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
         {
             try
             {
-                setAtributesToRender(fov, lookFrom, lookAt);
+                setAtributesToRender(fov, lookFrom, lookAt, lensAperture);
             }
             catch (InvalidSceneInputException ex)
             {
@@ -187,13 +189,14 @@ namespace GUI
             }
         }
 
-        private void setAtributesToRender(int fov, Vector lookFrom, Vector lookAt)
+        private void setAtributesToRender(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
         {
             _scene.Fov = fov;
             _scene.CameraPosition = lookFrom;
             _scene.ObjectivePosition = lookAt;
             _scene.PosisionatedModels = _posisionatedModels;
-        }
+            _scene.LensAperture = lensAperture;
+		}
 
         private void picIconBack_Click(object sender, EventArgs e)
         {
@@ -202,11 +205,13 @@ namespace GUI
             int fov;
             Vector lookFrom;
             Vector lookAt;
+			double lensAperture;
 
-            try
-            {
-                (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
-            }
+			try
+			{
+				(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
+				lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
+			}
             catch (InvalidSceneInputException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -215,7 +220,7 @@ namespace GUI
 
             try
             {
-                SetSceneAtributes(fov, lookFrom, lookAt);
+                SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
             }
             catch (InvalidSceneInputException ex)
             {
