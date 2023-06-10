@@ -28,9 +28,12 @@ namespace Engine
             Vector VectorU = vectorUp.Cross(VectorW).GetUnit();
             Vector VectorV = VectorW.Cross(VectorU);
             
-            VectorLowerLeftCorner = Origin.Substract(VectorU.Multiply(WidthHalf)).Substract(VectorV.Multiply(HeightHalf)).Substract(VectorW);
-            VectorHorizontal = VectorU.Multiply(2 * WidthHalf);
-            VectorVertical = VectorV.Multiply(2 * HeightHalf);
+            VectorLowerLeftCorner = Origin
+                .Substract(VectorU.Multiply(WidthHalf * focalDistance))
+                .Substract(VectorV.Multiply(HeightHalf * focalDistance))
+                .Substract(VectorW.Multiply(focalDistance));
+            VectorHorizontal = VectorU.Multiply(2 * WidthHalf * focalDistance);
+            VectorVertical = VectorV.Multiply(2 * HeightHalf * focalDistance);
         }
         public Ray GetRay(double u, double v)
         {
