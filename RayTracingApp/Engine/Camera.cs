@@ -54,7 +54,7 @@ namespace Engine
             return new Ray()
             {
                 Origin = Origin.Add(vectorOffSet),
-                Direction = pointPosition.Substract(this.Origin)
+                Direction = pointPosition
             };
         }
     }
