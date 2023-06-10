@@ -13,6 +13,7 @@ namespace Engine
         private Vector VectorHorizontal { get; set; }
         private Vector VectorVertical { get; set; }
         private Vector Origin { get; set; }
+        private double LensRadius { get; set; }
 
         public Camera(Vector vectorLookFrom, Vector vectorLookAt, Vector vectorUp, int fieldOfView, double aspectRatio, double aperture, double focalDistance)
         {
