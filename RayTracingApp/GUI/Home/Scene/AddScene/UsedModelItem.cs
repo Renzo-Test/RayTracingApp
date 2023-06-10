@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Controller;
+using Domain;
 using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -18,16 +19,19 @@ namespace GUI
     {
 		private List<PosisionatedModel> _posisionatedModels;
         private PosisionatedModel _posisionatedModel;
-
+        private SceneController _sceneController; 
         private ScenePage _scenePage;
+        private Scene _scene;
 
 		private bool isEditing = false;
 
-		public UsedModelItem(ScenePage scenePage, PosisionatedModel posisionatedModel, List<PosisionatedModel> posisionatedModels)
+		public UsedModelItem(Scene scene, ScenePage scenePage, PosisionatedModel posisionatedModel, List<PosisionatedModel> posisionatedModels, SceneController sceneController)
         {
             SetModels(posisionatedModel, posisionatedModels);
 
+            _sceneController = sceneController; 
             _scenePage = scenePage;
+            _scene = scene;
 
             InitializeComponent();
             InitializePanelAttributes(posisionatedModel);
@@ -56,6 +60,7 @@ namespace GUI
 
         private void picIconX_Click(object sender, EventArgs e)
         {
+            _sceneController.RemoveModel(_scene, _posisionatedModel);
             _posisionatedModels.Remove(_posisionatedModel);
             _scenePage.PopulateUsedItems();
             _scenePage.ShowWarning();
@@ -78,12 +83,15 @@ namespace GUI
 
         private void SetPosisionatedModel(string[] positionValues)
         {
-            _posisionatedModel.Position = new Vector()
+            Vector newCoords = new Vector()
             {
                 X = double.Parse(positionValues[0]),
                 Y = double.Parse(positionValues[1]),
                 Z = double.Parse(positionValues[2])
             };
+
+            _posisionatedModel.Position = newCoords;
+            _sceneController.UpdateModelsCoordinate(_posisionatedModel, newCoords);
         }
 
         private void picIconPencilTick_Click(object sender, EventArgs e)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Data.Entity;
 
 namespace DBRepository
 {
@@ -18,6 +19,8 @@ namespace DBRepository
         {
             using (var context = new AppContext(DBName)) 
             {
+                List<PosisionatedModel> posModels = context.PosisionatedModels.Where(pm => pm.SceneId == scene.Id).ToList();
+                scene.PosisionatedModels = posModels;
                 context.Scenes.Add(scene);
                 context.SaveChanges();
             }
@@ -65,6 +68,63 @@ namespace DBRepository
                 Scene updateScene = context.Scenes.FirstOrDefault(s => s.Id == scene.Id);
                 updateScene.SetPreview(preview);
                 context.SaveChanges();
+            }
+        }
+
+        public void UpdateSceneModels(Scene scene, PosisionatedModel model)
+        {
+            using (var context = new AppContext(DBName))
+            {
+                Scene updateScene = context.Scenes.FirstOrDefault(s => s.Id == scene.Id);
+                model.ModelScene = updateScene;
+                model.SceneId = updateScene.Id;
+
+                Model DbModel = context.Models.FirstOrDefault(s => s.Id == model.Model.Id); 
+
+                Figure fig = context.Figures.FirstOrDefault(m => m.Id == model.Model.Figure.Id);
+                Material mat = context.Materials.FirstOrDefault(m => m.Id == model.Model.Material.Id);
+
+                DbModel.Figure = fig;
+                DbModel.Material = mat;
+
+                model.Model = DbModel;
+
+                updateScene.PosisionatedModels.Add(model);
+                context.SaveChanges();
+            }
+        }
+
+        public void UpdateModelsCoordinate(PosisionatedModel model, Vector coords)
+        {
+            using (var context = new AppContext(DBName))
+            {
+                PosisionatedModel updateModel = context.PosisionatedModels.Where(pm => pm.Id == model.Id).FirstOrDefault();
+                updateModel.Position = coords;
+
+                context.SaveChanges();
+            }
+        }
+
+        public void RemoveSceneModels(Scene scene, PosisionatedModel model)
+        {
+            using (var context = new AppContext(DBName))
+            {
+                Scene updateScene = context.Scenes.FirstOrDefault(s => s.Id == scene.Id);
+                PosisionatedModel deleteModel = context.PosisionatedModels.Where(pm => pm.SceneId == scene.Id).FirstOrDefault();
+                context.PosisionatedModels.Remove(deleteModel);
+
+                context.SaveChanges();
+            }
+        }
+
+        public List<PosisionatedModel> GetPosisionatedModels(Scene scene)
+        {
+            using (var context = new AppContext(DBName))
+            {
+                return context.PosisionatedModels.Where(pm => pm.SceneId.Equals(scene.Id))
+                        .Include(pm => pm.Model)
+                        .Include(pm => pm.Model.Figure)
+                        .ToList();
             }
         }
     }
