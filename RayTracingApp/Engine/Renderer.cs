@@ -96,7 +96,8 @@ namespace Engine
 			int FieldOfView = scene.Fov;
 			double AspectRatio = properties.AspectRatio;
 			double focalDistance = LookFrom.Substract(LookAt).Length();
-			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio, ,focalDistance);
+			double aperture = scene.Aperture;
+			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio, aperture, focalDistance);
 		}
 
 		private void InitializatePixels(ref List<List<Vector>> pixels)
