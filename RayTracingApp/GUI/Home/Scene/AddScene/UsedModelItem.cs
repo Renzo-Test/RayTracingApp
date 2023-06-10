@@ -83,12 +83,15 @@ namespace GUI
 
         private void SetPosisionatedModel(string[] positionValues)
         {
-            _posisionatedModel.Position = new Vector()
+            Vector newCoords = new Vector()
             {
                 X = double.Parse(positionValues[0]),
                 Y = double.Parse(positionValues[1]),
                 Z = double.Parse(positionValues[2])
             };
+
+            _posisionatedModel.Position = newCoords;
+            _sceneController.UpdateModelsCoordinate(_posisionatedModel, newCoords);
         }
 
         private void picIconPencilTick_Click(object sender, EventArgs e)

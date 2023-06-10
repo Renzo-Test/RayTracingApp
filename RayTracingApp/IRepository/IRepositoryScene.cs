@@ -12,6 +12,7 @@ namespace IRepository
 		void UpdateScenePreview(Scene scene, Bitmap preview);
 		void UpdateSceneModels(Scene scene, PosisionatedModel model);
 		void RemoveSceneModels(Scene scene, PosisionatedModel model);
+		void UpdateModelsCoordinate(PosisionatedModel model, Vector coords);
 		List<Scene> GetScenesByClient(string username);
 		List<PosisionatedModel> GetPosisionatedModels(Scene scene);
 	}

@@ -105,6 +105,11 @@ namespace Controller
 			Repository.RemoveSceneModels(scene, posisionatedModel);
 		}
 
+		public void UpdateModelsCoordinate(PosisionatedModel model, Vector coords)
+        {
+			Repository.UpdateModelsCoordinate(model, coords);
+		}
+
 		public List<PosisionatedModel> GetPosisionatedModels(Scene scene)
         {
 			return Repository.GetPosisionatedModels(scene);

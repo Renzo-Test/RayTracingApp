@@ -94,6 +94,17 @@ namespace DBRepository
             }
         }
 
+        public void UpdateModelsCoordinate(PosisionatedModel model, Vector coords)
+        {
+            using (var context = new AppContext(DBName))
+            {
+                PosisionatedModel updateModel = context.PosisionatedModels.Where(pm => pm.Id == model.Id).FirstOrDefault();
+                updateModel.Position = coords;
+
+                context.SaveChanges();
+            }
+        }
+
         public void RemoveSceneModels(Scene scene, PosisionatedModel model)
         {
             using (var context = new AppContext(DBName))
