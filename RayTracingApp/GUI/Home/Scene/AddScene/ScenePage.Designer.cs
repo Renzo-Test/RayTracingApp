@@ -58,6 +58,7 @@
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.rbtnCreatePreview = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.picIconExport)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.picIconWarning)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -141,7 +142,7 @@
 			this.txtFov.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.txtFov.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtFov.ForeColor = System.Drawing.SystemColors.WindowFrame;
-			this.txtFov.Location = new System.Drawing.Point(272, 198);
+			this.txtFov.Location = new System.Drawing.Point(272, 192);
 			this.txtFov.Name = "txtFov";
 			this.txtFov.Size = new System.Drawing.Size(158, 24);
 			this.txtFov.TabIndex = 27;
@@ -210,7 +211,7 @@
 			this.lblFov.AutoSize = true;
 			this.lblFov.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblFov.ForeColor = System.Drawing.Color.White;
-			this.lblFov.Location = new System.Drawing.Point(250, 163);
+			this.lblFov.Location = new System.Drawing.Point(250, 157);
 			this.lblFov.Name = "lblFov";
 			this.lblFov.Size = new System.Drawing.Size(47, 24);
 			this.lblFov.TabIndex = 35;
@@ -322,7 +323,7 @@
 			// picFieldFov
 			// 
 			this.picFieldFov.Image = global::GUI.Properties.Resources.fieldRectangle;
-			this.picFieldFov.Location = new System.Drawing.Point(254, 190);
+			this.picFieldFov.Location = new System.Drawing.Point(254, 184);
 			this.picFieldFov.Name = "picFieldFov";
 			this.picFieldFov.Size = new System.Drawing.Size(200, 39);
 			this.picFieldFov.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -358,7 +359,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.White;
-			this.label1.Location = new System.Drawing.Point(250, 93);
+			this.label1.Location = new System.Drawing.Point(250, 87);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(150, 24);
 			this.label1.TabIndex = 47;
@@ -370,16 +371,16 @@
 			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.textBox1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-			this.textBox1.Location = new System.Drawing.Point(272, 128);
+			this.textBox1.Location = new System.Drawing.Point(272, 122);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(158, 24);
 			this.textBox1.TabIndex = 46;
-			this.textBox1.Text = "Lens Aperture";
+			this.textBox1.Text = "0.5";
 			// 
 			// pictureBox2
 			// 
 			this.pictureBox2.Image = global::GUI.Properties.Resources.fieldRectangle;
-			this.pictureBox2.Location = new System.Drawing.Point(254, 120);
+			this.pictureBox2.Location = new System.Drawing.Point(254, 114);
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(200, 39);
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -412,11 +413,25 @@
 			this.pictureBox3.TabStop = false;
 			this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
 			// 
+			// rbtnCreatePreview
+			// 
+			this.rbtnCreatePreview.AutoSize = true;
+			this.rbtnCreatePreview.BackColor = System.Drawing.Color.Transparent;
+			this.rbtnCreatePreview.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rbtnCreatePreview.ForeColor = System.Drawing.SystemColors.Window;
+			this.rbtnCreatePreview.Location = new System.Drawing.Point(470, 120);
+			this.rbtnCreatePreview.Name = "rbtnCreatePreview";
+			this.rbtnCreatePreview.Size = new System.Drawing.Size(61, 26);
+			this.rbtnCreatePreview.TabIndex = 50;
+			this.rbtnCreatePreview.Text = "Blur";
+			this.rbtnCreatePreview.UseVisualStyleBackColor = false;
+			// 
 			// ScenePage
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+			this.Controls.Add(this.rbtnCreatePreview);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.textBox1);
@@ -498,5 +513,6 @@
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.PictureBox pictureBox3;
+		private System.Windows.Forms.CheckBox rbtnCreatePreview;
 	}
 }
