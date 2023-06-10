@@ -23,6 +23,7 @@ namespace Domain
         public int Id { get; set; }
         public Vector CameraPosition = new Vector();
         public Vector ObjectivePosition = new Vector();
+        public double Aperture = 0.5;
         public List<PosisionatedModel> PosisionatedModels { get; set; }
         public byte[] Preview { get; set; }
 
