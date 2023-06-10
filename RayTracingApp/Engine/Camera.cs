@@ -17,6 +17,7 @@ namespace Engine
 
         public Camera(Vector vectorLookFrom, Vector vectorLookAt, Vector vectorUp, int fieldOfView, double aspectRatio, double aperture, double focalDistance)
         {
+            LensRadius = aperture / 2;
             double Theta = fieldOfView * Math.PI / 180;
             double HeightHalf = Math.Tan(Theta / 2);
             double WidthHalf = aspectRatio * HeightHalf;
