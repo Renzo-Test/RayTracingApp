@@ -24,8 +24,8 @@ namespace Domain
         private const double MaxLensAperture = 1.0;
 
         public int Id { get; set; }
-        public Vector CameraPosition = new Vector();
-        public Vector ObjectivePosition = new Vector();
+        public Vector LookFrom = new Vector();
+        public Vector LookAt = new Vector();
         public List<PosisionatedModel> PosisionatedModels { get; set; }
         public byte[] Preview { get; set; }
 
