@@ -143,14 +143,7 @@ namespace Engine
 			if (hitRecord is object)
 			{
 
-				Vector newVectorPoint = hitRecord.Intersection.Add(hitRecord.Normal).Add(GetRandomInUnitSphere());
-				Vector newVector = newVectorPoint.Substract(hitRecord.Intersection);
 
-				Ray newRay = new Ray()
-				{
-					Origin = hitRecord.Intersection,
-					Direction = newVector
-				};
 
 				Vector color = ShootRay(newRay, depth - 1);
 				Vector attenuation = hitRecord.Attenuation;
@@ -219,6 +212,23 @@ namespace Engine
 					return null;
 				}
 			}
+		}
+
+		private Ray lambertianScatter(HitRecord hitRecord)
+		{
+			Vector newVectorPoint = hitRecord.Intersection
+				.Add(hitRecord.Normal)
+				.Add(GetRandomInUnitSphere());
+			Vector newVector = newVectorPoint
+				.Substract(hitRecord.Intersection);
+
+			Ray newRay = new Ray()
+			{
+				Origin = hitRecord.Intersection,
+				Direction = newVector
+			};
+
+			return newRay;
 		}
 
 		private Vector GetRandomInUnitSphere()
