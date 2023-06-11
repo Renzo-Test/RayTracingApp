@@ -281,8 +281,8 @@ namespace Engine
 
 			Scene previewScene = new Scene()
 			{
-				CameraPosition = new Vector { X = -5, Y = 4, Z = 0 },
-				ObjectivePosition = new Vector() { Y = 1 },
+				LookFrom = new Vector { X = -5, Y = 4, Z = 0 },
+				LookAt= new Vector() { Y = 1 },
 				Fov = 30
 			};
 			previewScene.PosisionatedModels.Add(posisionatedModel);
