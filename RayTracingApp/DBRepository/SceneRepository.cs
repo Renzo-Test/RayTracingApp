@@ -68,6 +68,8 @@ namespace DBRepository
                 updateScene.LookAt = scene.LookAt;
                 updateScene.LookFrom = scene.LookFrom;
                 updateScene.Fov = scene.Fov;
+                updateScene.LastModificationDate = scene.LastModificationDate;
+                updateScene.LastRenderDate = scene.LastRenderDate;
 				context.SaveChanges();
 			}
         }
