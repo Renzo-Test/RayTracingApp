@@ -58,7 +58,7 @@
 			this.picFueldLensAperture = new System.Windows.Forms.PictureBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
-			this.rbtnCreatePreview = new System.Windows.Forms.CheckBox();
+			this.rbtnBlur = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.picIconExport)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.picIconWarning)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -413,25 +413,28 @@
 			this.pictureBox3.TabStop = false;
 			this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
 			// 
-			// rbtnCreatePreview
+			// rbtnBlur
 			// 
-			this.rbtnCreatePreview.AutoSize = true;
-			this.rbtnCreatePreview.BackColor = System.Drawing.Color.Transparent;
-			this.rbtnCreatePreview.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.rbtnCreatePreview.ForeColor = System.Drawing.SystemColors.Window;
-			this.rbtnCreatePreview.Location = new System.Drawing.Point(470, 120);
-			this.rbtnCreatePreview.Name = "rbtnCreatePreview";
-			this.rbtnCreatePreview.Size = new System.Drawing.Size(61, 26);
-			this.rbtnCreatePreview.TabIndex = 50;
-			this.rbtnCreatePreview.Text = "Blur";
-			this.rbtnCreatePreview.UseVisualStyleBackColor = false;
+			this.rbtnBlur.AutoSize = true;
+			this.rbtnBlur.BackColor = System.Drawing.Color.Transparent;
+			this.rbtnBlur.Checked = true;
+			this.rbtnBlur.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.rbtnBlur.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.rbtnBlur.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rbtnBlur.ForeColor = System.Drawing.SystemColors.Window;
+			this.rbtnBlur.Location = new System.Drawing.Point(470, 120);
+			this.rbtnBlur.Name = "rbtnBlur";
+			this.rbtnBlur.Size = new System.Drawing.Size(61, 26);
+			this.rbtnBlur.TabIndex = 50;
+			this.rbtnBlur.Text = "Blur";
+			this.rbtnBlur.UseVisualStyleBackColor = false;
 			// 
 			// ScenePage
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
-			this.Controls.Add(this.rbtnCreatePreview);
+			this.Controls.Add(this.rbtnBlur);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.txtLensAperture);
@@ -513,6 +516,6 @@
 		private System.Windows.Forms.PictureBox picFueldLensAperture;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.PictureBox pictureBox3;
-		private System.Windows.Forms.CheckBox rbtnCreatePreview;
+		private System.Windows.Forms.CheckBox rbtnBlur;
 	}
 }
