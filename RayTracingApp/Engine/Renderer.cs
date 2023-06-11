@@ -90,8 +90,8 @@ namespace Engine
 
 		private void InitializateCamera(Scene scene, RenderProperties properties)
 		{
-			Vector LookFrom = scene.CameraPosition;
-			Vector LookAt = scene.ObjectivePosition;
+			Vector LookFrom = scene.LookFrom;
+			Vector LookAt = scene.LookAt;
 			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
 			int FieldOfView = scene.Fov;
 			double AspectRatio = properties.AspectRatio;
