@@ -75,6 +75,11 @@ namespace Controller
 			Repository.SaveDefaultCameraAtributes(client);
 		}
 
+		public void SaveDefaultRenderProperties(Client client, RenderProperties renderProperties)
+		{
+			Repository.SaveDefaultRenderProperties(client, renderProperties);
+		}
+
 		private void RunSignUpChecker(string username, string password)
 		{
 			if (ClientAlreadyExists(username))

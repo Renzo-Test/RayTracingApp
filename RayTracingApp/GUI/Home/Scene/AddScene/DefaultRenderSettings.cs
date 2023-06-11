@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using Controller;
+using Domain;
 using Domain.Exceptions;
 using Engine;
 using Engine.Exceptions;
@@ -18,11 +19,14 @@ namespace GUI
     {
         private SceneHome _sceneHome;
         private Client _currentClient;
+        private MainController _mainController;
         public RenderProperties RenderProperties;
 
-        public DefaultRenderSettings(SceneHome sceneHome, Client _currentClient)
+        public DefaultRenderSettings(SceneHome sceneHome, MainController mainController,Client currentClient)
         {
             _sceneHome = sceneHome;
+            _currentClient = currentClient;
+            _mainController = mainController;
             RenderProperties = new RenderProperties();
             InitializeComponent();
 
@@ -83,7 +87,7 @@ namespace GUI
                 samplesPerPixel = int.Parse(txtSamplesPerPixel.Text);
             }
 
-
+            _mainController.ClientController.SaveDefaultRenderProperties(_currentClient, RenderProperties);
         }
 
         private void SetRenderProperties(int resolutionX, int resolutionY, int samplesPerPixel, int maxDepth)

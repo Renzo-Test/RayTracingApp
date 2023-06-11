@@ -51,5 +51,15 @@ namespace DBRepository
 				context.SaveChanges();
 			}
 		}
+
+		public void SaveDefaultRenderProperties(Client client, RenderProperties renderProperties)
+		{
+			using (var context = new AppContext(DBName))
+			{
+				Client updateClient = context.Clients.FirstOrDefault(c => c.Username.Equals(client.Username));
+				updateClient.DefaultRenderProperties = renderProperties;
+				context.SaveChanges();
+			}
+		}
 	}
 }
