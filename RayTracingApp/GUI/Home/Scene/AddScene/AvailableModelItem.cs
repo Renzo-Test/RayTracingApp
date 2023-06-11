@@ -40,8 +40,17 @@ namespace GUI
         private void InitializePanelAttributes(Model model)
         {
             lblModelName.Text = model.Name;
-            Color modelColor = model.Material.Color;
-            picModelColor.BackColor = System.Drawing.Color.FromArgb(modelColor.Red, modelColor.Green, modelColor.Blue);
+
+            if (model.Preview is object)
+            {
+                picModelColor.Visible = false;
+                picIconSphere.Image = model.GetPreview();
+            }
+            else
+            {
+                Color modelColor = model.Material.Color;
+                picModelColor.BackColor = System.Drawing.Color.FromArgb(modelColor.Red, modelColor.Green, modelColor.Blue);
+            }
         }
 
         private void picAddButton_Click(object sender, EventArgs e)
