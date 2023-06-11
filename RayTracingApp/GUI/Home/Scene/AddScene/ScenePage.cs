@@ -200,8 +200,6 @@ namespace GUI
 
         private void picIconBack_Click(object sender, EventArgs e)
         {
-            _sceneController.UpdateLastModificationDate(_scene);
-            
             int fov;
             Vector lookFrom;
             Vector lookAt;
@@ -228,6 +226,8 @@ namespace GUI
                 return;
             }
 
+			_sceneController.UpdateLastModificationDate(_scene);
+			_sceneController.SaveSceneCameraAtributes(_scene);
             _sceneHome.GoToSceneList();
         }
 
@@ -246,11 +246,13 @@ namespace GUI
             Vector lookAt = _scene.ObjectivePosition;
 
             int fov = _scene.Fov;
+            double lensAperture = _scene.LensAperture;
             
             txtLookFrom.Text = StringUtils.ConstructVectorFormat(lookFrom);
             txtLookAt.Text = StringUtils.ConstructVectorFormat(lookAt);
 
             txtFov.Text = $"{fov}";
+            txtLensAperture.Text = $"{lensAperture}";
             
             lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
             txtSceneName.KeyPress += new KeyPressEventHandler(CheckNameChange);

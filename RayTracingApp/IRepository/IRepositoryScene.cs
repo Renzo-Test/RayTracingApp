@@ -9,6 +9,7 @@ namespace IRepository
 		void AddScene(Scene scene);
 		void RemoveScene(Scene scene);
 		void UpdateSceneName(Scene scene, string newName);
+		void SaveSceneCameraAtributes(Scene scene);
 		void UpdateScenePreview(Scene scene, Bitmap preview);
 		void UpdateSceneModels(Scene scene, PosisionatedModel model);
 		void RemoveSceneModels(Scene scene, PosisionatedModel model);

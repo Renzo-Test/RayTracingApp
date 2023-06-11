@@ -38,6 +38,11 @@ namespace Controller
 			}
 		}
 
+		public void SaveSceneCameraAtributes(Scene scene)
+		{
+			Repository.SaveSceneCameraAtributes(scene);
+		}
+
 		public void UpdateSceneName(Scene scene, string currentClient, string newName)
 		{
 			try
@@ -133,5 +138,5 @@ namespace Controller
 		{
 			return DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy");
 		}
-    }
+	}
 }

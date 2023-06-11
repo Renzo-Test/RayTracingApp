@@ -59,6 +59,16 @@ namespace DBRepository
             }
         }
 
+        public void SaveSceneCameraAtributes(Scene scene)
+        {
+            using (var context = new AppContext(DBName))
+            {
+				Scene updateScene = context.Scenes.FirstOrDefault(s => s.Id == scene.Id);
+				updateScene.LensAperture = scene.LensAperture;
+				context.SaveChanges();
+			}
+        }
+
         public void UpdateScenePreview(Scene scene, Bitmap preview)
         {
             using (var context = new AppContext(DBName))
