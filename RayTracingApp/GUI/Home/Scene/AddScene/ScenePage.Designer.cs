@@ -168,7 +168,7 @@
 			this.txtLookFrom.ForeColor = System.Drawing.SystemColors.WindowFrame;
 			this.txtLookFrom.Location = new System.Drawing.Point(42, 122);
 			this.txtLookFrom.Name = "txtLookFrom";
-			this.txtLookFrom.Size = new System.Drawing.Size(68, 24);
+			this.txtLookFrom.Size = new System.Drawing.Size(169, 24);
 			this.txtLookFrom.TabIndex = 31;
 			this.txtLookFrom.Text = "x, y, z";
 			// 
@@ -418,7 +418,7 @@
 			this.rbtnBlur.AutoSize = true;
 			this.rbtnBlur.BackColor = System.Drawing.Color.Transparent;
 			this.rbtnBlur.CausesValidation = false;
-			this.rbtnBlur.Cursor = System.Windows.Forms.Cursors.Arrow;
+			this.rbtnBlur.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.rbtnBlur.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.rbtnBlur.ForeColor = System.Drawing.SystemColors.Window;
 			this.rbtnBlur.Location = new System.Drawing.Point(470, 120);

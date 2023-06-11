@@ -90,8 +90,8 @@ namespace Engine
 
 		private void InitializateCamera(Scene scene, RenderProperties properties)
 		{
-			Vector LookFrom = scene.CameraPosition;
-			Vector LookAt = scene.ObjectivePosition;
+			Vector LookFrom = scene.LookFrom;
+			Vector LookAt = scene.LookAt;
 			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
 			int FieldOfView = scene.Fov;
 			double AspectRatio = properties.AspectRatio;
@@ -281,8 +281,8 @@ namespace Engine
 
 			Scene previewScene = new Scene()
 			{
-				CameraPosition = new Vector { X = -5, Y = 4, Z = 0 },
-				ObjectivePosition = new Vector() { Y = 1 },
+				LookFrom = new Vector { X = -5, Y = 4, Z = 0 },
+				LookAt= new Vector() { Y = 1 },
 				Fov = 30
 			};
 			previewScene.PosisionatedModels.Add(posisionatedModel);

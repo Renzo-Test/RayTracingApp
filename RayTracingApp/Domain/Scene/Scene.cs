@@ -24,8 +24,8 @@ namespace Domain
         private const double MaxLensAperture = 1.0;
 
         public int Id { get; set; }
-        public Vector CameraPosition = new Vector();
-        public Vector ObjectivePosition = new Vector();
+        public Vector LookFrom { get; set; } = new Vector();
+        public Vector LookAt { get; set; } = new Vector();
         public List<PosisionatedModel> PosisionatedModels { get; set; }
         public byte[] Preview { get; set; }
 
@@ -51,8 +51,8 @@ namespace Domain
         private void SetRenderingParameters(int fov, Vector lookFrom, Vector lookAt)
         {
             _fov = fov;
-            CameraPosition = lookFrom;
-            ObjectivePosition = lookAt;
+			LookFrom = lookFrom;
+			LookAt = lookAt;
             PosisionatedModels = new List<PosisionatedModel>();
         }
 
