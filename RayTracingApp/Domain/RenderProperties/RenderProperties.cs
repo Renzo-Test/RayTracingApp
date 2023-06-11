@@ -4,6 +4,8 @@ namespace Domain
 {
 	public class RenderProperties
 	{
+		public int Id { get; set; }
+
 		private const string ValueLowerThanZero = "This value must be greater than zero";
 
 		private int _resolutionX = 300;

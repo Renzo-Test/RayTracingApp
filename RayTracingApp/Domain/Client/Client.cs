@@ -83,6 +83,8 @@ namespace Domain
 		
 		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5};
 
+		public RenderProperties DefaultRenderProperties { get; set; }
+
 		private static void RunUsernameConditions(string username)
 		{
 			LengthInRangeUsername(username);

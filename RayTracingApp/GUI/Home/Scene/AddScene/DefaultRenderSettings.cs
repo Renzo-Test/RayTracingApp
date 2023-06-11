@@ -17,9 +17,10 @@ namespace GUI
     public partial class DefaultRenderSettings : UserControl
     {
         private SceneHome _sceneHome;
+        private Client _currentClient;
         public RenderProperties RenderProperties;
 
-        public DefaultRenderSettings(SceneHome sceneHome)
+        public DefaultRenderSettings(SceneHome sceneHome, Client _currentClient)
         {
             _sceneHome = sceneHome;
             RenderProperties = new RenderProperties();
@@ -81,6 +82,8 @@ namespace GUI
                 resolutionY = int.Parse(txtResY.Text);
                 samplesPerPixel = int.Parse(txtSamplesPerPixel.Text);
             }
+
+
         }
 
         private void SetRenderProperties(int resolutionX, int resolutionY, int samplesPerPixel, int maxDepth)
