@@ -214,7 +214,7 @@ namespace Engine
 			}
 		}
 
-		private Ray lambertianScatter(HitRecord hitRecord)
+		private Ray LambertianScatter(HitRecord hitRecord)
 		{
 			Vector newVectorPoint = hitRecord.Intersection
 				.Add(hitRecord.Normal)
@@ -229,6 +229,29 @@ namespace Engine
 			};
 
 			return newRay;
+		}
+
+		private Ray MetailcScatter(Ray rayIn, HitRecord hitRecord)
+		{
+			Ray rayScattered = new Ray()
+			{
+				Direction = new Vector() { X = 0, Y = 0, Z = 0 },
+				Origin = new Vector() { X = 0, Y = 0, Z = 0 }
+			};
+
+			Vector vectorReflected = Reflect(rayIn.Direction.GetUnit(), hitRecord.Normal);
+			rayScattered.Origin = hitRecord.Intersection;
+			rayScattered.Direction = vectorReflected.Add(
+				GetRandomInUnitSphere().Multiply(hitRecord.Roughness));
+
+			if (rayScattered.Direction.Dot(hitRecord.Normal) > 0)
+			{
+				return rayScattered;
+			}
+			else
+			{
+				return null;
+			}
 		}
 
 		private Vector GetRandomInUnitSphere()
