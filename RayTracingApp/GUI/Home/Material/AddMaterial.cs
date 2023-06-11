@@ -71,7 +71,7 @@ namespace GUI
         {
             if (rbtnMetalicMaterial.Checked)
             {
-                return new Metallic()
+                return new Metalic()
                 {
                     Name = Name,
                     Color = newColor,

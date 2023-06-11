@@ -142,15 +142,20 @@ namespace Engine
 
 			if (hitRecord is object)
 			{
+				Ray newRay = null;
 
-				Vector newVectorPoint = hitRecord.Intersection.Add(hitRecord.Normal).Add(GetRandomInUnitSphere());
-				Vector newVector = newVectorPoint.Substract(hitRecord.Intersection);
-
-				Ray newRay = new Ray()
+				if(hitRecord.Material.Type is MaterialEnum.Lambertian)
 				{
-					Origin = hitRecord.Intersection,
-					Direction = newVector
-				};
+					newRay = LambertianScatter(hitRecord);
+				}
+				else if(hitRecord.Material.Type is MaterialEnum.Metallic)
+				{
+					newRay = MetailcScatter(ray, hitRecord);
+					if(newRay is null)
+					{
+						return new Vector() { X = 0, Y = 0, Z = 0 };
+					}
+				}
 
 				Vector color = ShootRay(newRay, depth - 1);
 				Vector attenuation = hitRecord.Attenuation;
@@ -206,12 +211,22 @@ namespace Engine
 
 				if (t < tMax && t > tMin)
 				{
+					double roughness = 0;
+					
+					if (posisionatedModel.Model.Material.Type is MaterialEnum.Metallic)
+					{
+						Metalic metalic = (Metalic)posisionatedModel.Model.Material;
+						roughness = metalic.Blur;
+					}
+
 					return new HitRecord()
 					{
 						T = t,
 						Intersection = intersectionPoint,
 						Normal = Normal,
 						Attenuation = posisionatedModel.Model.Material.Color.ColorToVector(),
+						Material = posisionatedModel.Model.Material,
+						Roughness = roughness
 					};
 				}
 				else
@@ -219,6 +234,51 @@ namespace Engine
 					return null;
 				}
 			}
+		}
+
+		private Ray LambertianScatter(HitRecord hitRecord)
+		{
+			Vector newVectorPoint = hitRecord.Intersection
+				.Add(hitRecord.Normal)
+				.Add(GetRandomInUnitSphere());
+			Vector newVector = newVectorPoint
+				.Substract(hitRecord.Intersection);
+
+			Ray newRay = new Ray()
+			{
+				Origin = hitRecord.Intersection,
+				Direction = newVector
+			};
+
+			return newRay;
+		}
+
+		private Ray MetailcScatter(Ray rayIn, HitRecord hitRecord)
+		{
+			Ray rayScattered = new Ray()
+			{
+				Direction = new Vector() { X = 0, Y = 0, Z = 0 },
+				Origin = new Vector() { X = 0, Y = 0, Z = 0 }
+			};
+
+			Vector vectorReflected = Reflect(rayIn.Direction.GetUnit(), hitRecord.Normal);
+			rayScattered.Origin = hitRecord.Intersection;
+			rayScattered.Direction = vectorReflected.Add(
+				GetRandomInUnitSphere().Multiply(hitRecord.Roughness));
+
+			if (rayScattered.Direction.Dot(hitRecord.Normal) > 0)
+			{
+				return rayScattered;
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+		private Vector Reflect(Vector vector, Vector normal)
+		{
+			return vector.Substract(normal.Multiply(vector.Dot(normal) * 2));
 		}
 
 		private Vector GetRandomInUnitSphere()

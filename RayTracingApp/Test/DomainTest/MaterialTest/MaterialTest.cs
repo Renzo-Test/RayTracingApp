@@ -68,13 +68,13 @@ namespace Test.ModelsTest
         [TestMethod]
         public void CanCreateMetallicMaterial_OkTest()
         {
-            _material = new Metallic();
+            _material = new Metalic();
         }
 
         [TestMethod]
         public void SetBlur_ValidBlur_OkTest()
         {
-            _material = new Metallic()
+            _material = new Metalic()
             {
                 Blur = 0.1
             };
@@ -84,7 +84,7 @@ namespace Test.ModelsTest
         [ExpectedException(typeof(InvalidMaterialInputException))]
         public void SetBlur_InvalidBlur_OkTest()
         {
-            _material = new Metallic() 
+            _material = new Metalic() 
             {
                 Blur = -0.1
             };
