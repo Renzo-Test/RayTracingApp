@@ -70,6 +70,11 @@ namespace Controller
 			return currentClient is object;
 		}
 
+		public void SaveDefaultCameraAtributes(Client client)
+		{
+			Repository.SaveDefaultCameraAtributes(client);
+		}
+
 		private void RunSignUpChecker(string username, string password)
 		{
 			if (ClientAlreadyExists(username))
