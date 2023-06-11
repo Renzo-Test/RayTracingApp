@@ -65,6 +65,8 @@ namespace DBRepository
             {
 				Scene updateScene = context.Scenes.FirstOrDefault(s => s.Id == scene.Id);
 				updateScene.LensAperture = scene.LensAperture;
+                updateScene.LookAt = scene.LookAt;
+                updateScene.LookFrom = scene.LookFrom;
 				context.SaveChanges();
 			}
         }
