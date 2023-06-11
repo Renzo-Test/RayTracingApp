@@ -77,6 +77,7 @@ namespace GUI
 
 		private void SetClientDefaultSceneValues(int fov, Vector lookFrom, Vector lookAt)
         {
+			_currentClient.DefaultFov = fov;
             _currentClient.DefaultLookAt = lookAt;
             _currentClient.DefaultLookFrom = lookFrom;
         }
