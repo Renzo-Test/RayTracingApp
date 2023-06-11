@@ -27,8 +27,11 @@ namespace GUI
         private Scene _scene;
         private Client _currentClient;
         private List<PosisionatedModel> _posisionatedModels;
-        
+
+        private double blurOff = 0.1;
+
         RenderProperties _renderProperties;
+
 
         public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient, RenderProperties renderProperties)
         {
@@ -118,7 +121,14 @@ namespace GUI
 
             try
             {
-                SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
+                if (rbtnBlur.Checked)
+                {
+                    SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
+                }
+                else
+                {
+					SetSceneAtributes(fov, lookFrom, lookAt, blurOff);
+				}
             }
             catch (InvalidSceneInputException ex)
             {

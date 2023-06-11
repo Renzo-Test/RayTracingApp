@@ -417,9 +417,8 @@
 			// 
 			this.rbtnBlur.AutoSize = true;
 			this.rbtnBlur.BackColor = System.Drawing.Color.Transparent;
-			this.rbtnBlur.Checked = true;
-			this.rbtnBlur.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.rbtnBlur.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.rbtnBlur.CausesValidation = false;
+			this.rbtnBlur.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.rbtnBlur.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.rbtnBlur.ForeColor = System.Drawing.SystemColors.Window;
 			this.rbtnBlur.Location = new System.Drawing.Point(470, 120);
