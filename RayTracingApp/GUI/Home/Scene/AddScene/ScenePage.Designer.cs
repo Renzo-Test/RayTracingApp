@@ -168,7 +168,7 @@
 			this.txtLookFrom.ForeColor = System.Drawing.SystemColors.WindowFrame;
 			this.txtLookFrom.Location = new System.Drawing.Point(42, 122);
 			this.txtLookFrom.Name = "txtLookFrom";
-			this.txtLookFrom.Size = new System.Drawing.Size(68, 24);
+			this.txtLookFrom.Size = new System.Drawing.Size(169, 24);
 			this.txtLookFrom.TabIndex = 31;
 			this.txtLookFrom.Text = "x, y, z";
 			// 
