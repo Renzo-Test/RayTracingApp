@@ -51,8 +51,8 @@ namespace Domain
         private void SetRenderingParameters(int fov, Vector lookFrom, Vector lookAt)
         {
             _fov = fov;
-            CameraPosition = lookFrom;
-            ObjectivePosition = lookAt;
+			LookFrom = lookFrom;
+			LookAt = lookAt;
             PosisionatedModels = new List<PosisionatedModel>();
         }
 
