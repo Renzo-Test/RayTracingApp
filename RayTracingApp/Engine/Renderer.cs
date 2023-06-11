@@ -96,7 +96,7 @@ namespace Engine
 			int FieldOfView = scene.Fov;
 			double AspectRatio = properties.AspectRatio;
 			double focalDistance = LookFrom.Substract(LookAt).Length();
-			double aperture = scene.Aperture;
+			double aperture = scene.LensAperture;
 			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio, aperture, focalDistance);
 		}
 

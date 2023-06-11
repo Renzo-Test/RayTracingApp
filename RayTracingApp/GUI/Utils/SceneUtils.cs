@@ -12,6 +12,7 @@ namespace GUI
     public static class SceneUtils
     {
         private const string FovNumericErrorMessage = "Fov values must be numeric only";
+        private const string LensApertureNumericErrorMessage = "Lens aperture values must be numeric only";
         private const string VectorNumericErrorMessage = "Vector values must be numeric only";
 
         public static (int, Vector, Vector) GetCameraAtributes(TextBox txtFov, TextBox txtLookAt, TextBox txtLookFrom)
@@ -29,7 +30,19 @@ namespace GUI
             return (fov, lookFrom, lookAt);
         }
 
-        private static  (string[], string[]) GetStringVectorValues(TextBox txtLookFrom, TextBox txtLookAt)
+		public static double GetLensAperture(TextBox txtLensAperture)
+		{
+			try
+			{
+				return double.Parse(txtLensAperture.Text);
+			}
+			catch (FormatException)
+			{
+				throw new InvalidSceneInputException(LensApertureNumericErrorMessage);
+			}
+		}
+
+		private static  (string[], string[]) GetStringVectorValues(TextBox txtLookFrom, TextBox txtLookAt)
         {
             try
             {
@@ -54,10 +67,9 @@ namespace GUI
             {
                 throw new InvalidSceneInputException(FovNumericErrorMessage);
             }
-
         }
 
-        private static Vector CreateCameraVector(double[] vectorLookFromValues)
+		private static Vector CreateCameraVector(double[] vectorLookFromValues)
         {
             return new Vector()
             {

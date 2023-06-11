@@ -62,6 +62,10 @@
     <Compile Include="Migrations\202306100000008_posisionatedModels.designer.cs">
       <DependentUpon>202306100000008_posisionatedModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306102311076_lensAperture.cs" />
+    <Compile Include="Migrations\202306102311076_lensAperture.designer.cs">
+      <DependentUpon>202306102311076_lensAperture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
@@ -87,6 +91,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202306100000008_posisionatedModels.resx">
       <DependentUpon>202306100000008_posisionatedModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306102311076_lensAperture.resx">
+      <DependentUpon>202306102311076_lensAperture.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

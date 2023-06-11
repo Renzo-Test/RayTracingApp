@@ -27,8 +27,11 @@ namespace GUI
         private Scene _scene;
         private Client _currentClient;
         private List<PosisionatedModel> _posisionatedModels;
-        
+
+        private double blurOff = 0.1;
+
         RenderProperties _renderProperties;
+
 
         public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient, RenderProperties renderProperties)
         {
@@ -103,10 +106,12 @@ namespace GUI
             int fov;
             Vector lookFrom;
             Vector lookAt;
+            double lensAperture;
 
             try
             {
                 (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
+                lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
             }
             catch (InvalidSceneInputException ex)
             {
@@ -116,7 +121,14 @@ namespace GUI
 
             try
             {
-                SetSceneAtributes(fov, lookFrom, lookAt);
+                if (rbtnBlur.Checked)
+                {
+                    SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
+                }
+                else
+                {
+					SetSceneAtributes(fov, lookFrom, lookAt, blurOff);
+				}
             }
             catch (InvalidSceneInputException ex)
             {
@@ -175,11 +187,11 @@ namespace GUI
             return !this.InvokeRequired;
         }
 
-        private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt)
+        private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
         {
             try
             {
-                setAtributesToRender(fov, lookFrom, lookAt);
+                setAtributesToRender(fov, lookFrom, lookAt, lensAperture);
             }
             catch (InvalidSceneInputException ex)
             {
@@ -187,26 +199,27 @@ namespace GUI
             }
         }
 
-        private void setAtributesToRender(int fov, Vector lookFrom, Vector lookAt)
+        private void setAtributesToRender(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
         {
             _scene.Fov = fov;
             _scene.CameraPosition = lookFrom;
             _scene.ObjectivePosition = lookAt;
             _scene.PosisionatedModels = _posisionatedModels;
-        }
+            _scene.LensAperture = lensAperture;
+		}
 
         private void picIconBack_Click(object sender, EventArgs e)
         {
-            _sceneController.UpdateLastModificationDate(_scene);
-            
             int fov;
             Vector lookFrom;
             Vector lookAt;
+			double lensAperture;
 
-            try
-            {
-                (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
-            }
+			try
+			{
+				(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
+				lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
+			}
             catch (InvalidSceneInputException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -215,7 +228,7 @@ namespace GUI
 
             try
             {
-                SetSceneAtributes(fov, lookFrom, lookAt);
+                SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
             }
             catch (InvalidSceneInputException ex)
             {
@@ -223,6 +236,8 @@ namespace GUI
                 return;
             }
 
+			_sceneController.UpdateLastModificationDate(_scene);
+			_sceneController.SaveSceneCameraAtributes(_scene);
             _sceneHome.GoToSceneList();
         }
 
@@ -241,11 +256,13 @@ namespace GUI
             Vector lookAt = _scene.ObjectivePosition;
 
             int fov = _scene.Fov;
+            double lensAperture = _scene.LensAperture;
             
             txtLookFrom.Text = StringUtils.ConstructVectorFormat(lookFrom);
             txtLookAt.Text = StringUtils.ConstructVectorFormat(lookAt);
 
             txtFov.Text = $"{fov}";
+            txtLensAperture.Text = $"{lensAperture}";
             
             lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
             txtSceneName.KeyPress += new KeyPressEventHandler(CheckNameChange);
@@ -295,15 +312,19 @@ namespace GUI
             Render();
         }
 
-        private void picBackgroundExport_Click(object sender, EventArgs e)
-        {
-            ExportImage();
-        }
-
         private void picIconExport_Click(object sender, EventArgs e)
         {
             ExportImage();
         }
+		private void label2_Click(object sender, EventArgs e)
+		{
+			ExportImage();
+		}
+
+		private void pictureBox3_Click(object sender, EventArgs e)
+		{
+			ExportImage();
+		}
 
         private void ExportImage()
         {
@@ -314,5 +335,5 @@ namespace GUI
             }
             _sceneHome.GoToExportPage(_scene.GetPreview(), _scene.Name);
         }
-    }
+	}
 }
