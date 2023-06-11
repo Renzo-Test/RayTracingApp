@@ -67,6 +67,7 @@ namespace DBRepository
 				updateScene.LensAperture = scene.LensAperture;
                 updateScene.LookAt = scene.LookAt;
                 updateScene.LookFrom = scene.LookFrom;
+                updateScene.Fov = scene.Fov;
 				context.SaveChanges();
 			}
         }
