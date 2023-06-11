@@ -7,13 +7,13 @@ namespace DBRepository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class RenderProperties : IMigrationMetadata
+    public sealed partial class RemovedRenderProperties : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RenderProperties));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RemovedRenderProperties));
         
         string IMigrationMetadata.Id
         {
-            get { return "202306112218126_RenderProperties"; }
+            get { return "202306112339007_RemovedRenderProperties"; }
         }
         
         string IMigrationMetadata.Source
