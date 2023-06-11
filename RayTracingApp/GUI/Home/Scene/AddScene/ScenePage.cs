@@ -202,8 +202,8 @@ namespace GUI
         private void setAtributesToRender(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
         {
             _scene.Fov = fov;
-            _scene.CameraPosition = lookFrom;
-            _scene.ObjectivePosition = lookAt;
+            _scene.LookFrom = lookFrom;
+            _scene.LookAt = lookAt;
             _scene.PosisionatedModels = _posisionatedModels;
             _scene.LensAperture = lensAperture;
 		}
