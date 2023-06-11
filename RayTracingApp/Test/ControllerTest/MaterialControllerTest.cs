@@ -66,7 +66,7 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddMaterial_ValidMetallic_OkTest()
         {
-            Material _newMaterial = new Metallic()
+            Material _newMaterial = new Metalic()
             {
                 Name = "materialName",
                 Color = new Color
@@ -106,7 +106,7 @@ namespace Test.ControllerTest
         [ExpectedException(typeof(InvalidMaterialInputException))]
         public void AddMaterial_DuplicatedMetallic_FailTest()
         {
-            Material _newMaterial = new Metallic()
+            Material _newMaterial = new Metalic()
             {
                 Name = "materialName",
                 Color = new Color
@@ -156,7 +156,7 @@ namespace Test.ControllerTest
         [TestMethod]
         public void AddMaterial_TwoValidMetallics_OkTest()
         {
-            Material _firstMaterial = new Metallic()
+            Material _firstMaterial = new Metalic()
             {
                 Name = "materialOne",
                 Color = new Color
@@ -168,7 +168,7 @@ namespace Test.ControllerTest
 				Blur = 0.1
             };
 
-            Material _secondMaterial = new Metallic()
+            Material _secondMaterial = new Metalic()
             {
                 Name = "materialTwo",
                 Color = new Color

@@ -5,16 +5,12 @@ namespace Domain
 	public abstract class Material
 	{
 		private const string EmptyNameMessage = "Material's name must not be empty";
-		public const string NotValidBlurMessage = "Blur value must be greater or equal than 0.0";
 		private const string NotAlphanumericMessage = "Material's name must not start or end with blank space";
-
 		private const string SpaceCharacterConstant = " ";
 		private string _owner;
 		private string _name;
 
-
 		private Color _color;
-		private double _blur = 0;
 		private MaterialEnum _type;
 
         public int Id { get; set; }
@@ -52,24 +48,7 @@ namespace Domain
 			get => _color;
 			set => _color = value;
 		}
-
-		public double Blur
-		{
-			get { return _blur; }
-			set
-			{
-				try
-				{
-					RunBlurIsValidChecker(value);
-					_blur = value;
-				}
-				catch (InvalidMaterialInputException ex)
-				{
-					throw new InvalidMaterialInputException(ex.Message);
-				}
-			}
-		}
-
+		
 		public MaterialEnum Type
 		{
 			get => _type;
@@ -89,14 +68,6 @@ namespace Domain
 			if (value.StartsWith(SpaceCharacterConstant) || value.EndsWith(SpaceCharacterConstant))
 			{
 				throw new NotAlphanumericMaterialException(NotAlphanumericMessage);
-			}
-		}
-
-		private static void RunBlurIsValidChecker(double value)
-		{
-			if (value < 0.0)
-			{
-				throw new InvalidMaterialInputException(NotValidBlurMessage);
 			}
 		}
 	}

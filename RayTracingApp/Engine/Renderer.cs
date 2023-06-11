@@ -211,6 +211,14 @@ namespace Engine
 
 				if (t < tMax && t > tMin)
 				{
+					double roughness = 0;
+					
+					if (posisionatedModel.Model.Material.Type is MaterialEnum.Metallic)
+					{
+						Metalic metalic = (Metalic)posisionatedModel.Model.Material;
+						roughness = metalic.Blur;
+					}
+
 					return new HitRecord()
 					{
 						T = t,
@@ -218,7 +226,7 @@ namespace Engine
 						Normal = Normal,
 						Attenuation = posisionatedModel.Model.Material.Color.ColorToVector(),
 						Material = posisionatedModel.Model.Material,
-						Roughness = posisionatedModel.Model.Material.Blur,
+						Roughness = roughness
 					};
 				}
 				else
