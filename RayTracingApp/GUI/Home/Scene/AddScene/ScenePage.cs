@@ -252,8 +252,8 @@ namespace GUI
 
             txtSceneName.Text = _scene.Name;
 
-            Vector lookFrom = _scene.CameraPosition;
-            Vector lookAt = _scene.ObjectivePosition;
+            Vector lookFrom = _scene.LookFrom;
+            Vector lookAt = _scene.LookAt;
 
             int fov = _scene.Fov;
             double lensAperture = _scene.LensAperture;
