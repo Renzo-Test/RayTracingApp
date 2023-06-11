@@ -113,7 +113,7 @@ namespace GUI
                 int resY = int.Parse(txtResY.Text);
                 int newXResolution = RenderProperties.PreCalculateXResolution(resY);
 
-                txtResY.Text = $"{newXResolution}";
+                txtResX.Text = $"{newXResolution}";
             }
             catch (FormatException)
             {
