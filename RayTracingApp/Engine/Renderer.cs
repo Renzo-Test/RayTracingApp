@@ -142,8 +142,20 @@ namespace Engine
 
 			if (hitRecord is object)
 			{
+				Ray newRay = null;
 
-
+				if(hitRecord.Material.Type is MaterialEnum.Lambertian)
+				{
+					newRay = LambertianScatter(hitRecord);
+				}
+				else if(hitRecord.Material.Type is MaterialEnum.Metallic)
+				{
+					newRay = MetailcScatter(ray, hitRecord);
+					if(newRay is null)
+					{
+						return new Vector() { X = 0, Y = 0, Z = 0 };
+					}
+				}
 
 				Vector color = ShootRay(newRay, depth - 1);
 				Vector attenuation = hitRecord.Attenuation;
