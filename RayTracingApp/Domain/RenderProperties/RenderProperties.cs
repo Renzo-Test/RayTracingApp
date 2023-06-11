@@ -1,6 +1,6 @@
-﻿using Engine.Exceptions;
+﻿using Domain.Exceptions;
 
-namespace Engine
+namespace Domain
 {
 	public class RenderProperties
 	{

@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Exceptions;
 using Engine;
 using Engine.Exceptions;
 using System;
