@@ -254,6 +254,11 @@ namespace Engine
 			}
 		}
 
+		private Vector Reflect(Vector vector, Vector normal)
+		{
+			return vector.Substract(normal.Multiply(vector.Dot(normal) * 2));
+		}
+
 		private Vector GetRandomInUnitSphere()
 		{
 			Vector vector;
