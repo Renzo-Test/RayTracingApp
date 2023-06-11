@@ -63,7 +63,7 @@ namespace GUI
 			}
 
 			SetClientDefaultSceneValues(fov, lookFrom, lookAt);
-			
+			_mainController.ClientController.SaveDefaultCameraAtributes(_currentClient);
 
 			_sceneHome.GoToSceneList();
 		}
