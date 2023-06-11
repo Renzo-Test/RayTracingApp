@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Metallic : Material
+    public class Metalic : Material
     {
         private double _blur;
         public const string NotValidBlurMessage = "Blur value must be greater or equal than 0.0";
@@ -27,7 +27,7 @@ namespace Domain
                 }
             }
         }
-        public Metallic() : base(MaterialEnum.Metallic) { }
+        public Metalic() : base(MaterialEnum.Metallic) { }
         private static void RunBlurIsValidChecker(double value) 
         {
             if (value < 0.0) 
