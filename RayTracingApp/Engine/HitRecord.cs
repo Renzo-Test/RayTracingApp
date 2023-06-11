@@ -9,6 +9,6 @@ namespace Engine
 		public Vector Normal { get; set; }
 		public Vector Attenuation { get; set; }
 		public Material Material { get; set; }
-		public double roughness { get; set; } = 0;
+		public double Roughness { get; set; } = 0;
 	}
 }
