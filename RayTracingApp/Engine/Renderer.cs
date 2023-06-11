@@ -218,7 +218,7 @@ namespace Engine
 						Normal = Normal,
 						Attenuation = posisionatedModel.Model.Material.Color.ColorToVector(),
 						Material = posisionatedModel.Model.Material,
-						Roughness = posisionatedModel.Model.Material.Blur;
+						Roughness = posisionatedModel.Model.Material.Blur,
 					};
 				}
 				else
