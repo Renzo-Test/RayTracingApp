@@ -20,7 +20,7 @@ namespace Test.EngineTest
 			int fieldOfView = 10;
 			double aspectRatio = 10;
 
-			Camera camera = new Camera(newVector, newVector, newVector, fieldOfView, aspectRatio);
+			Camera camera = new Camera(newVector, newVector, newVector, fieldOfView, aspectRatio, 0, 0);
 		}
 
 		[TestMethod]
@@ -36,7 +36,8 @@ namespace Test.EngineTest
 			int fieldOfView = 10;
 			double aspectRatio = 10;
 
-			Camera camera = new Camera(newVector, newVector, newVector, fieldOfView, aspectRatio);
+
+			Camera camera = new Camera(newVector, newVector, newVector, fieldOfView, aspectRatio, 0, 0);
 
 			Vector horizontalPosition = newVector.Multiply(1);
 			Vector verticalPosition = newVector.Multiply(2);
@@ -49,7 +50,7 @@ namespace Test.EngineTest
 				Direction = pointPosition.Substract(newVector)
 			};
 
-			Ray cameraRay = camera.GetRay(1, 2);
+			Ray cameraRay = camera.GetRay(1, 2, null);
 
 			Assert.AreEqual(cameraRay.Origin.X, newRay.Origin.X);
 			Assert.AreEqual(newRay.Direction.Y, newRay.Direction.Y);
