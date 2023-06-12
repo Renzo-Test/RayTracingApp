@@ -40,7 +40,7 @@ namespace Controller
 			}
 		}
 
-		public void RemoveFigure(string figureName, string username, List<Model> models)
+		public void RemoveFigure(string figureName, Client client, List<Model> models)
 		{
 			Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
 
