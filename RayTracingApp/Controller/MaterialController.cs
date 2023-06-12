@@ -84,9 +84,9 @@ namespace Controller
 			}
 		}
 
-		private bool MaterialNameExist(Material material, string username)
+		private bool MaterialNameExist(Material material, Client client)
 		{
-			List<Material> clientMaterials = Repository.GetMaterialsByClient(username);
+			List<Material> clientMaterials = Repository.GetMaterialsByClient(client);
 
 			return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 		}
