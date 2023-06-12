@@ -34,6 +34,7 @@ namespace Controller
 				throw new InvalidCredentialsException(ex.Message);
 			}
 		}
+
 		public bool ClientAlreadyExists(string username)
 		{
 			try
@@ -58,7 +59,6 @@ namespace Controller
 			{
 				throw new InvalidCredentialsException(ex.Message);
 			}
-
 		}
 		public void SignOut(ref Client currentClient)
 		{
