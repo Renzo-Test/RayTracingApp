@@ -67,6 +67,8 @@
     <Compile Include="ControllerTest\ModelControllerTest.cs" />
     <Compile Include="ControllerTest\SceneControllerTest.cs" />
     <Compile Include="ControllerTest\MainControllerTest.cs" />
+    <Compile Include="ControllerTest\LogControllerTest.cs" />
+    <Compile Include="DomainTest\LogTest\LogTest.cs" />
     <Compile Include="EngineTest\ExporterTest.cs" />
     <Compile Include="EngineTest\ScannerTest.cs" />
     <Compile Include="EngineTest\ProgressTest.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="DomainTest\ModelTest\ModelTest.cs" />
     <Compile Include="DomainTest\SceneTest\PosisionatedModelTest.cs" />
     <Compile Include="DomainTest\SceneTest\SceneTest.cs" />
+    <Compile Include="MemoryRepositoryTest\LogRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MemoryRepositoryTest\ClientRepositoryTest.cs" />
   </ItemGroup>
