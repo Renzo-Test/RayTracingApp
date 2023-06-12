@@ -116,10 +116,6 @@
       <Project>{26FD191F-901D-4224-A0F4-C93819EDA0DE}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RayTracingApp\RayTracingApp.csproj">
-      <Project>{df2d8ac3-acd5-4ad8-a67b-7c7e3acc9f83}</Project>
-      <Name>RayTracingApp</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Exceptions;
 using Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;

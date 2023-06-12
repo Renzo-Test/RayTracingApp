@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
+using Domain;
+using Domain.Exceptions;
 
 namespace Test.EngineTest
 {
