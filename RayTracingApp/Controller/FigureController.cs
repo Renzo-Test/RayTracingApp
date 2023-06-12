@@ -59,9 +59,9 @@ namespace Controller
 			Repository.RemoveFigure(deleteFigure);
 		}
 
-		public Figure GetFigure(string username, string name)
+		public Figure GetFigure(Client client, string name)
 		{
-			Figure getFigure = ListFigures(username).Find(fig => fig.Name.Equals(name));
+			Figure getFigure = ListFigures(client).Find(fig => fig.Name.Equals(name));
 
 			if (getFigure is null)
 			{
