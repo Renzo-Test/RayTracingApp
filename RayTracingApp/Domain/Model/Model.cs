@@ -12,23 +12,23 @@ namespace Domain
 		private const string NotAlphanumericMessage = "Model's name must not start or end with blank space";
 		private const string EmptyNameMessage = "Model's name must not be empty";
 
-		private String _owner;
-		private String _name;
+		public int Id { get; set; }
+
+
+		private string _owner;
+		private string _name;
 		private Figure _figure;
 		private Material _material;
-		
 		public byte[] Preview { get; set; }
-		
 		public bool showPreview { get; set; }
 
-		public int Id { get; set; }
-		
-		public String Owner
+		public string Owner
 		{
 			get => _owner;
 			set => _owner = value;
 		}
-		public String Name
+
+		public string Name
 		{
 			get => _name;
 			set
@@ -45,11 +45,15 @@ namespace Domain
 				}
 			}
 		}
+
+
 		public Figure Figure
 		{
 			get => _figure;
 			set => _figure = value;
 		}
+
+
 		public Material Material
 		{
 			get => _material;
@@ -85,6 +89,7 @@ namespace Domain
 				throw new NotAlphanumericException(NotAlphanumericMessage);
 			}
 		}
+
 		private static void RunNameIsEmptyChecker(string value)
 		{
 			if (value.Equals(string.Empty))
