@@ -21,9 +21,9 @@ namespace Controller
 			};
 		}
 
-		public List<Material> ListMaterials(string username)
+		public List<Material> ListMaterials(Client client)
 		{
-			return Repository.GetMaterialsByClient(username);
+			return Repository.GetMaterialsByClient(client);
 		}
 
 		public Material GetMaterial(string username, string name)
