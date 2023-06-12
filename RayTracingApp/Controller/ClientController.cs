@@ -26,7 +26,7 @@ namespace Controller
 		{
 			try
 			{
-				RunSignUpChecker(client.Username);
+				RunSignUpChecker(client);
 				Repository.AddClient(client.Username, client.Password);
 			}
 			catch (InvalidCredentialsException ex)
