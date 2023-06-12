@@ -190,7 +190,7 @@ namespace Test.ControllerTest
 			};
 
 			_sceneController.UpdateLastRenderDate(newScene);
-			Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastRenderDate);
+			Assert.AreEqual(DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"), newScene.LastRenderDate);
 		}
 
 		[TestMethod]
