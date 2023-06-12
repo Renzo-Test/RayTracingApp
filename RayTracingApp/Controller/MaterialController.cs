@@ -91,7 +91,7 @@ namespace Controller
 			return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 		}
 
-		public void UpdateMaterialName(Material material, string currentClient, string newName)
+		public void UpdateMaterialName(Material material, Client currentClient, string newName)
 		{
 			try
 			{
