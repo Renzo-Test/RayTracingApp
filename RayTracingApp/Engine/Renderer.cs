@@ -72,11 +72,11 @@ namespace Engine
 
 		private void InitializateRender(ProgressBar progressBar)
 		{
-			_progress = new Progress()
+			_progress = new Progress
 			{
 				ProgressBar = progressBar,
+				ExpectedLines = (_properties.ResolutionY * _properties.ResolutionX * _properties.SamplesPerPixel) + _properties.ResolutionY
 			};
-			_progress.ExpectedLines = (_properties.ResolutionY * _properties.ResolutionX * _properties.SamplesPerPixel) + _properties.ResolutionY;
 			_printer = new Printer();
 			InitializateCamera(_scene, _properties);
 			InitializatePixels(ref _pixels);
