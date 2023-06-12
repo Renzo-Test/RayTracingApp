@@ -11,9 +11,9 @@ namespace Controller
 {
 	public class MaterialController
 	{
-		private const string DefaultDatabase = "RayTracingAppDB";
 		public IRepositoryMaterial Repository;
 
+		private const string DefaultDatabase = "RayTracingAppDB";
 		public MaterialController(string dbName = DefaultDatabase)
 		{
 			Repository = new MaterialRepository()
@@ -21,6 +21,7 @@ namespace Controller
 				DBName = dbName,
             };
 		}
+
 		public List<Material> ListMaterials(string username)
 		{
 			return Repository.GetMaterialsByClient(username);
@@ -83,11 +84,12 @@ namespace Controller
 				throw new AlreadyExsitingMaterialException(AlreadyExsitingMaterialMessage);
 			}
 		}
+
 		private bool MaterialNameExist(Material material, string username)
 		{
 			List<Material> clientMaterials = Repository.GetMaterialsByClient(username);
-			return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 
+			return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 		}
 
 		public void UpdateMaterialName(Material material, string currentClient, string newName)
