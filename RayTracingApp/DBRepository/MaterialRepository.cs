@@ -12,11 +12,11 @@ namespace DBRepository
 
 		public string DBName { get; set; } = "RayTracingAppDB";
 
-		public List<Material> GetMaterialsByClient(string username)
+		public List<Material> GetMaterialsByClient(Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Materials.Where(material => material.Owner.Equals(username)).ToList();
+				return context.Materials.Where(material => material.Owner.Equals(client.Username)).ToList();
 			}
 		}
 
