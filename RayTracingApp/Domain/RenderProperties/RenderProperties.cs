@@ -7,6 +7,11 @@ namespace Domain
 		private const string ValueLowerThanZero = "This value must be greater than zero";
 
 		private int _resolutionX = 300;
+		private int _resolutionY = 200;
+		private int _samplesPerPixel = 50;
+		private int _maxDepth = 50;
+
+		public double AspectRatio { get; set; } = 3.0 / 2.0;
 
 		public int ResolutionX
 		{
@@ -26,7 +31,6 @@ namespace Domain
 			}
 		}
 
-		private int _resolutionY = 200;
 		public int ResolutionY
 		{
 			get => _resolutionY;
@@ -46,9 +50,7 @@ namespace Domain
 
 		}
 
-		public double AspectRatio { get; set; } = 3.0 / 2.0;
 
-		private int _samplesPerPixel = 50;
 		public int SamplesPerPixel
 		{
 			get => _samplesPerPixel;
@@ -66,7 +68,6 @@ namespace Domain
 			}
 		}
 
-		private int _maxDepth = 50;
 		public int MaxDepth
 		{
 			get => _maxDepth;
