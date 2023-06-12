@@ -79,7 +79,7 @@ namespace Test.ModelsTest
 		public void CanGetLastModificationDate_OkTest()
 		{
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
-			String expected = "unmodified";
+			string expected = "unmodified";
 			Assert.AreEqual(expected, _scene.LastModificationDate);
 		}
 
