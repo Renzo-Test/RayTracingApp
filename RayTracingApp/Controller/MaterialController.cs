@@ -75,9 +75,9 @@ namespace Controller
 			Repository.RemoveMaterial(deleteMaterial);
 		}
 
-		private void RunMaterialChecker(Material material, string username)
+		private void RunMaterialChecker(Material material, Client client)
 		{
-			if (MaterialNameExist(material, username))
+			if (MaterialNameExist(material, client))
 			{
 				string AlreadyExsitingMaterialMessage = $"Material with name {material.Name} already exists";
 				throw new AlreadyExsitingMaterialException(AlreadyExsitingMaterialMessage);
