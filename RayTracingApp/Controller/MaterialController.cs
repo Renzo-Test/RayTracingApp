@@ -54,9 +54,9 @@ namespace Controller
 			}
 		}
 
-		public void RemoveMaterial(string materialName, string username, List<Model> models)
+		public void RemoveMaterial(string materialName, Client client, List<Model> models)
 		{
-			Material deleteMaterial = Repository.GetMaterialsByClient(username).Find(mat => mat.Name.Equals(materialName));
+			Material deleteMaterial = Repository.GetMaterialsByClient(client).Find(mat => mat.Name.Equals(materialName));
 
 			if (deleteMaterial is null)
 			{
