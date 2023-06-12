@@ -21,9 +21,9 @@ namespace Controller
 			};
 		}
 
-		public List<Figure> ListFigures(string username)
+		public List<Figure> ListFigures(Client client)
 		{
-			return Repository.GetFiguresByClient(username);
+			return Repository.GetFiguresByClient(client);
 		}
 
 		public void AddFigure(Figure figure, string username)

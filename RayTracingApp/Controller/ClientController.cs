@@ -22,14 +22,12 @@ namespace Controller
 			};
 		}
 
-		
-
-		public void SignUp(Client client)
+		public void SignUp(string username, string password)
 		{
 			try
 			{
-				RunSignUpChecker(client);
-				Repository.AddClient(client.Username, client.Password);
+				RunSignUpChecker(username);
+				Repository.AddClient(username, password);
 			}
 			catch (InvalidCredentialsException ex)
 			{
@@ -54,11 +52,11 @@ namespace Controller
 			currentClient = null;
 		}
 
-		public bool ClientAlreadyExists(Client client)
+		public bool ClientAlreadyExists(string username)
 		{
 			try
 			{
-				Repository.GetClient(client.Username);
+				Repository.GetClient(username);
 				return true;
 			}
 			catch (NotFoundClientException)
@@ -82,11 +80,11 @@ namespace Controller
 			Repository.SaveDefaultRenderProperties(client, renderProperties);
 		}
 
-		private void RunSignUpChecker(Client client)
+		private void RunSignUpChecker(string username)
 		{
-			if (ClientAlreadyExists(client))
+			if (ClientAlreadyExists(username))
 			{
-				string AlreadyExsitingClientMessage = $"Client with username {client.Username} already exists";
+				string AlreadyExsitingClientMessage = $"Client with username {username} already exists";
 				throw new AlreadyExistingClientException(AlreadyExsitingClientMessage);
 			}
 		}

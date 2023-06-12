@@ -29,15 +29,9 @@ namespace GUI
 			string username = txtUsernameSignIn.Text;
 			string password = txtPasswordSignIn.Text;
 
-			Client clientToSignIn = new Client()
-			{
-				Username = username,
-				Password = password,
-			};
-
 			try
 			{
-				Client currentClient = _clientController.SignIn(clientToSignIn);
+				Client currentClient = _clientController.SignIn(username, password);
 				_mainForm.GoToHome(currentClient);
 
 				ResetPlaceholders();
