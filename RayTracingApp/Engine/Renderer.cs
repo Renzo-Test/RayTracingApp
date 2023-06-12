@@ -298,9 +298,8 @@ namespace Engine
 			return vector;
 		}
 
-		private void SavePixel(int row, int column, Vector pixelRGB)
+		private void SavePixel(int row, Vector pixelRGB)
 		{
-			int posX = column;
 			int posY = _properties.ResolutionY - row - 1;
 
 			if (posY < _properties.ResolutionY)
