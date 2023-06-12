@@ -38,13 +38,13 @@ namespace Controller
 			return getMaterials;
 		}
 
-		public void AddMaterial(Material material, string username)
+		public void AddMaterial(Material material, Client client)
 		{
 			try
 			{
-				RunMaterialChecker(material, username);
+				RunMaterialChecker(material, client);
 
-				material.Owner = username;
+				material.Owner = client;
 				Repository.AddMaterial(material);
 			}
 			catch (InvalidMaterialInputException ex)
