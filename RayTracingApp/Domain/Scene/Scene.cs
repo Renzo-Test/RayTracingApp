@@ -24,10 +24,6 @@ namespace Domain
         private const double MaxLensAperture = 1.0;
 
         public int Id { get; set; }
-        public Vector LookFrom { get; set; } = new Vector();
-        public Vector LookAt { get; set; } = new Vector();
-        public List<PosisionatedModel> PosisionatedModels { get; set; }
-        public byte[] Preview { get; set; }
 
         private string _registerTime = DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy");
         private string _owner;
@@ -37,7 +33,12 @@ namespace Domain
         private int _fov;
         private double _lensAperture = 0.5;
 
-        public Scene()
+		public Vector LookFrom { get; set; } = new Vector();
+		public Vector LookAt { get; set; } = new Vector();
+		public List<PosisionatedModel> PosisionatedModels { get; set; }
+		public byte[] Preview { get; set; }
+
+		public Scene()
         {
             PosisionatedModels = new List<PosisionatedModel>();
         }
