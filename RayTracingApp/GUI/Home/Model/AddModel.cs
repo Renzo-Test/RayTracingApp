@@ -48,7 +48,7 @@ namespace GUI
 		private void PopulateComboBoxes()
 		{
 			List<Figure> figures = _figureController.ListFigures(_currentClient);
-			List<Material> materials = _materialController.ListMaterials(_currentClient.Username);
+			List<Material> materials = _materialController.ListMaterials(_currentClient);
 
 			ClearComboBoxes();
 
