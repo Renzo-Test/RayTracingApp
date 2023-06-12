@@ -71,7 +71,7 @@ namespace Controller
 			return getFigure;
 		}
 
-		public void UpdateFigureName(Figure figure, string currentClient, string newName)
+		public void UpdateFigureName(Figure figure, Client client, string newName)
 		{
 			try
 			{
@@ -83,7 +83,7 @@ namespace Controller
 					Radius = updateSphere.Radius
 				};
 
-				RunFigureChecker(newFigure, currentClient);
+				RunFigureChecker(newFigure, client);
 
 				Repository.UpdateFigureName(figure, newName);
 			}
