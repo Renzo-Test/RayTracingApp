@@ -40,7 +40,7 @@ namespace GUI
 			string MaterialName = model.Material.Name;
 			Color materialColor = model.Material.Color;
 
-			if (model.showPreview)
+			if (model.ShowPreview)
 			{
 
 				if (model.Preview is object)

@@ -111,7 +111,7 @@ namespace GUI
 				Material = _materialController.GetMaterial(_currentClient.Username, cmbMaterials.Text),
 				Figure = _figureController.GetFigure(_currentClient.Username, cmbFigures.Text),
 				Name = txtInputName.Text,
-				showPreview = rbtnCreatePreview.Checked,
+				ShowPreview = rbtnCreatePreview.Checked,
 			};
 		}
 

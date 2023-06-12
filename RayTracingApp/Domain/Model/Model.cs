@@ -19,7 +19,7 @@ namespace Domain
 		private Figure _figure;
 		private Material _material;
 		public byte[] Preview { get; set; }
-		public bool showPreview { get; set; }
+		public bool ShowPreview { get; set; }
 
 		public string Owner
 		{

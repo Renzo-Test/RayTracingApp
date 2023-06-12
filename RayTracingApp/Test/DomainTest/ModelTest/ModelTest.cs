@@ -73,10 +73,10 @@ namespace Test.ModelsTest
 		{
 			Model newModel = new Model()
 			{
-				showPreview = false
+				ShowPreview = false
 			};
 
-			Assert.AreEqual(false, newModel.showPreview);
+			Assert.AreEqual(false, newModel.ShowPreview);
 		}
 
 		[TestMethod]
@@ -89,7 +89,7 @@ namespace Test.ModelsTest
 
 			Model newModel = new Model()
 			{
-				showPreview = true,
+				ShowPreview = true,
 				Preview = imgByteArr
 			};
 
@@ -109,7 +109,7 @@ namespace Test.ModelsTest
 
 			Model newModel = new Model()
 			{
-				showPreview = true,
+				ShowPreview = true,
 			};
 			newModel.SetPreview(img);
 
