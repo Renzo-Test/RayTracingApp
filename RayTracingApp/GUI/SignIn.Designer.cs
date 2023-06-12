@@ -60,8 +60,8 @@
 			this.txtPasswordSignIn.Size = new System.Drawing.Size(136, 20);
 			this.txtPasswordSignIn.TabIndex = 1;
 			this.txtPasswordSignIn.Text = "Password";
-			this.txtPasswordSignIn.Enter += new System.EventHandler(this.txtPasswordSignIn_Enter);
-			this.txtPasswordSignIn.Leave += new System.EventHandler(this.txtPasswordSignIn_Leave);
+			this.txtPasswordSignIn.Enter += new System.EventHandler(this.TxtPasswordSignIn_Enter);
+			this.txtPasswordSignIn.Leave += new System.EventHandler(this.TxtPasswordSignIn_Leave);
 			// 
 			// lblSignIn
 			// 

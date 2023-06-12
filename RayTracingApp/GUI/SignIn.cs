@@ -76,13 +76,13 @@ namespace GUI
 			InputUtils.SetPlaceHolder(ref txtUsernameSignIn, UsernamePlaceHolder);
 		}
 
-		private void txtPasswordSignIn_Enter(object sender, EventArgs e)
+		private void TxtPasswordSignIn_Enter(object sender, EventArgs e)
 		{
 			InputUtils.RemovePlaceHolder(ref txtPasswordSignIn, PasswordPlaceHolder);
 			InputUtils.HidePassword(ref txtPasswordSignIn);
 		}
 
-		private void txtPasswordSignIn_Leave(object sender, EventArgs e)
+		private void TxtPasswordSignIn_Leave(object sender, EventArgs e)
 		{
 			InputUtils.SetPlaceHolder(ref txtPasswordSignIn, PasswordPlaceHolder);
 			InputUtils.ShowPassword(ref txtPasswordSignIn);
