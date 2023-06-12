@@ -16,11 +16,10 @@ namespace Domain
 		private const int MinFov = 1;
 		private const int MaxFov = 160;
 
-		private string _username;
-
 		public int Id { get; set; }
-		
-		public String Username
+
+		private string _username;
+		public string Username
 		{
 			get => _username;
 			set
@@ -38,8 +37,7 @@ namespace Domain
 		}
 
 		private string _password;
-		
-		public String Password
+		public string Password
 		{
 			get => _password;
 			set
@@ -55,11 +53,8 @@ namespace Domain
 				}
 			}
 		}
-		
-		public String RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
 
 		private int _defaultFov = 30;
-		
 		public int DefaultFov
 		{
 			get => _defaultFov;
@@ -73,17 +68,14 @@ namespace Domain
 			}
 		}
 
-		private static bool InRangeFov(int fov)
-		{
-			return Enumerable.Range(MinFov, MaxFov).Contains(fov);
-		}
-
+		public string RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
 		
 		public Vector DefaultLookFrom { get; set; } = new Vector() { X = 0, Y = 2, Z = 0};
 		
 		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5};
 
 		public RenderProperties DefaultRenderProperties { get; set; } = new RenderProperties();
+
 
 		private static void RunUsernameConditions(string username)
 		{
@@ -97,7 +89,7 @@ namespace Domain
 			ContainsNumber(password);
 			ContainsCapital(password);
 		}
-		
+
 		private static void LengthInRangeUsername(string username)
 		{
 			if (!(username.Length >= 3 && username.Length <= 20))
@@ -137,6 +129,10 @@ namespace Domain
 			{
 				throw new NotInExpectedRangeClientException(NotInExpectedRangePasswordMessage);
 			}
+		}
+		private static bool InRangeFov(int fov)
+		{
+			return Enumerable.Range(MinFov, MaxFov).Contains(fov);
 		}
 	}
 }
