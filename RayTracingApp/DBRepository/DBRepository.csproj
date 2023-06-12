@@ -79,6 +79,10 @@
     <Compile Include="Migrations\202306122008183_AddedLogs.designer.cs">
       <DependentUpon>202306122008183_AddedLogs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306122333544_Figure-ClientAsObject.cs" />
+    <Compile Include="Migrations\202306122333544_Figure-ClientAsObject.designer.cs">
+      <DependentUpon>202306122333544_Figure-ClientAsObject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
@@ -115,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306122008183_AddedLogs.resx">
       <DependentUpon>202306122008183_AddedLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306122333544_Figure-ClientAsObject.resx">
+      <DependentUpon>202306122333544_Figure-ClientAsObject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

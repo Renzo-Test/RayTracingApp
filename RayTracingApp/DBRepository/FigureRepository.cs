@@ -25,7 +25,7 @@ namespace DBRepository
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Figures.Where(figure => figure.Owner.Equals(client.Username)).ToList();
+				return context.Figures.Where(figure => figure.Owner.Id.Equals(client.Id)).ToList();
 			}
 		}
 
