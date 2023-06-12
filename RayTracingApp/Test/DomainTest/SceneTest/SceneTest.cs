@@ -71,7 +71,7 @@ namespace Test.ModelsTest
 		public void CanGetRegisterTime_OkTest()
 		{
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
-			String today = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
+			string today = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 			Assert.AreEqual(today, _scene.RegisterTime);
 		}
 
