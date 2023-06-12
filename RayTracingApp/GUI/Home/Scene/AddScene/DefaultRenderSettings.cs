@@ -30,7 +30,11 @@ namespace GUI
             RenderProperties = new RenderProperties();
             InitializeComponent();
 
-        }
+			txtResX.Text = currentClient.DefaultRenderProperties.ResolutionX.ToString();
+			txtResY.Text = currentClient.DefaultRenderProperties.ResolutionY.ToString();
+			txtSamplesPerPixel.Text = currentClient.DefaultRenderProperties.SamplesPerPixel.ToString();
+			txtMaxDepth.Text = currentClient.DefaultRenderProperties.MaxDepth.ToString();
+		}
 
         private void picRectangleFieldCancel_Click(object sender, EventArgs e)
         {
