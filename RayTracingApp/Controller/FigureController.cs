@@ -12,8 +12,9 @@ namespace Controller
 {
 	public class FigureController
 	{
-        private const string DefaultDatabase = "RayTracingAppDB";
         public IRepositoryFigure Repository;
+
+        private const string DefaultDatabase = "RayTracingAppDB";
         public FigureController(string dbName = DefaultDatabase)
 		{
 			Repository = new FigureRepository()
@@ -123,6 +124,5 @@ namespace Controller
 				throw new InvalidFigureInputException(ex.Message);
 			}
 		}
-
 	}
 }
