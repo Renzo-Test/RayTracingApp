@@ -109,7 +109,7 @@ namespace GUI
 			return new Model()
 			{
 				Material = _materialController.GetMaterial(_currentClient.Username, cmbMaterials.Text),
-				Figure = _figureController.GetFigure(_currentClient.Username, cmbFigures.Text),
+				Figure = _figureController.GetFigure(_currentClient, cmbFigures.Text),
 				Name = txtInputName.Text,
 				ShowPreview = rbtnCreatePreview.Checked,
 			};
