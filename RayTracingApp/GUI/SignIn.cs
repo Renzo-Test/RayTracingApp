@@ -54,7 +54,7 @@ namespace GUI
 			SignInUser();
 		}
 
-		private void picSignInButton_Click(object sender, EventArgs e)
+		private void PicSignInButton_Click(object sender, EventArgs e)
 		{
 			SignInUser();
 		}

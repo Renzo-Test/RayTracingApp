@@ -125,7 +125,7 @@
 			this.picSignInButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.picSignInButton.TabIndex = 8;
 			this.picSignInButton.TabStop = false;
-			this.picSignInButton.Click += new System.EventHandler(this.picSignInButton_Click);
+			this.picSignInButton.Click += new System.EventHandler(this.PicSignInButton_Click);
 			// 
 			// picIconLock
 			// 
