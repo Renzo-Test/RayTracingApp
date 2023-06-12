@@ -17,6 +17,7 @@ namespace DBRepository
 				Username = username,
 				Password = password
 			};
+
 			using (var context = new AppContext(DBName))
 			{
 				context.Clients.Add(newClient);
