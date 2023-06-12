@@ -51,6 +51,14 @@ namespace Controller
 
             return string.Empty;
         }
+        public int GetTotalRenderTimeInMinutes()
+        {
+            List<Log> logs = Repository.GetAllLogs();
+            int totalRenderTime = logs.Sum(log => log.RenderTime);
+
+            // Convertir de segundos a minutos
+            return totalRenderTime / 60;
+        }
 
     }
 

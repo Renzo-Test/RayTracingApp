@@ -54,5 +54,27 @@ namespace Test.ControllerTest
 
             Assert.AreEqual("User1", _logController.GetUserWithMaxAccumulatedRenderTime());
         }
+
+        [TestMethod]
+
+        public void GetTotalRenderTimeInMinutes_OkTest()
+        {
+            Log testLog1 = new Log()
+            {
+                Username = "User1",
+                RenderTime = 150,
+            };
+
+            Log testLog2 = new Log()
+            {
+                Username = "User2",
+                RenderTime = 100,
+            };
+
+            _logController.AddLog(testLog1);
+            _logController.AddLog(testLog2);
+
+            Assert.AreEqual(4, _logController.GetTotalRenderTimeInMinutes());
+        }
     }
 }
