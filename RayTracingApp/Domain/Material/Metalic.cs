@@ -9,9 +9,12 @@ namespace Domain
 {
     public class Metalic : Material
     {
-        private double _blur;
         public const string NotValidBlurMessage = "Blur value must be greater or equal than 0.0";
-        public double Blur
+
+		public Metalic() : base(MaterialEnum.Metallic) { }
+
+		private double _blur;
+		public double Blur
         {
             get { return _blur; }
             set
@@ -27,7 +30,7 @@ namespace Domain
                 }
             }
         }
-        public Metalic() : base(MaterialEnum.Metallic) { }
+
         private static void RunBlurIsValidChecker(double value) 
         {
             if (value < 0.0) 

@@ -7,11 +7,6 @@ namespace Domain
 		private const string EmptyNameMessage = "Material's name must not be empty";
 		private const string NotAlphanumericMessage = "Material's name must not start or end with blank space";
 		private const string SpaceCharacterConstant = " ";
-		private string _owner;
-		private string _name;
-
-		private Color _color;
-		private MaterialEnum _type;
 
         public int Id { get; set; }
 
@@ -19,12 +14,15 @@ namespace Domain
         {
             Type = type;
         }
-        public string Owner
+
+		private string _owner;
+		public string Owner
 		{
 			get => _owner;
 			set => _owner = value;
 		}
-		
+
+		private string _name;
 		public string Name
 		{
 			get => _name;
@@ -42,13 +40,16 @@ namespace Domain
 				}
 			}
 		}
-		
+
+		private Color _color;
+
 		public Color Color
 		{
 			get => _color;
 			set => _color = value;
 		}
-		
+
+		private MaterialEnum _type;
 		public MaterialEnum Type
 		{
 			get => _type;
