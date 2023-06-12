@@ -104,9 +104,9 @@ namespace Controller
 			FigurePropertiesAreValid(figure);
 		}
 
-		private bool FigureNameExist(string name, string ownerName)
+		private bool FigureNameExist(string name, Client client)
 		{
-			List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
+			List<Figure> clientFigures = Repository.GetFiguresByClient(client);
 			return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
 		}
 
