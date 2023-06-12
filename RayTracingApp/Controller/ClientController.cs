@@ -80,11 +80,11 @@ namespace Controller
 			Repository.SaveDefaultRenderProperties(client, renderProperties);
 		}
 
-		private void RunSignUpChecker(string username)
+		private void RunSignUpChecker(Client client)
 		{
-			if (ClientAlreadyExists(username))
+			if (ClientAlreadyExists(client))
 			{
-				string AlreadyExsitingClientMessage = $"Client with username {username} already exists";
+				string AlreadyExsitingClientMessage = $"Client with username {client.Username} already exists";
 				throw new AlreadyExistingClientException(AlreadyExsitingClientMessage);
 			}
 		}
