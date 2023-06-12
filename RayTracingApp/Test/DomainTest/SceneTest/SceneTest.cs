@@ -71,7 +71,7 @@ namespace Test.ModelsTest
 		public void CanGetRegisterTime_OkTest()
 		{
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
-			String today = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
+			string today = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 			Assert.AreEqual(today, _scene.RegisterTime);
 		}
 
@@ -79,7 +79,7 @@ namespace Test.ModelsTest
 		public void CanGetLastModificationDate_OkTest()
 		{
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
-			String expected = "unmodified";
+			string expected = "unmodified";
 			Assert.AreEqual(expected, _scene.LastModificationDate);
 		}
 
@@ -87,7 +87,7 @@ namespace Test.ModelsTest
 		public void CanGetLastRenderDate_OkTest()
 		{
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
-			String expected = "unrendered";
+			string expected = "unrendered";
 			Assert.AreEqual(expected, _scene.LastRenderDate);
 		}
 

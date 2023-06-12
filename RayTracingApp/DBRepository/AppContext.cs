@@ -6,7 +6,7 @@ namespace DBRepository
 	public class AppContext : DbContext
 	{
 		private const string DefaultDatabase = "RayTracingAppDB";
-    
+
 		public DbSet<Figure> Figures { get; set; }
 		public DbSet<Material> Materials { get; set; }
 		public DbSet<Client> Clients { get; set; }
