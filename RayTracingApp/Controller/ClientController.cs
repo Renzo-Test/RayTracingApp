@@ -26,7 +26,7 @@ namespace Controller
 		{
 			try
 			{
-				RunSignUpChecker(username, password);
+				RunSignUpChecker(username);
 				Repository.AddClient(username, password);
 			}
 			catch (InvalidCredentialsException ex)
@@ -80,7 +80,7 @@ namespace Controller
 			Repository.SaveDefaultRenderProperties(client, renderProperties);
 		}
 
-		private void RunSignUpChecker(string username, string password)
+		private void RunSignUpChecker(string username)
 		{
 			if (ClientAlreadyExists(username))
 			{
