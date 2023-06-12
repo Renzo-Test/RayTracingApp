@@ -25,7 +25,7 @@ namespace Domain
 
 		public int Id { get; set; }
 
-		private string _registerTime = DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy");
+		private string _registerTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 		private string _owner;
 		private string _name;
 		private string _lastModificationDate = "unmodified";
@@ -59,7 +59,7 @@ namespace Domain
 
 		private void SetSceneParameters(string owner)
 		{
-			_name = $"{_registerTime}";
+			_name = DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy"); ;
 			_owner = owner;
 		}
 

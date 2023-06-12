@@ -23,7 +23,7 @@ namespace Test.MemoryRepositoryTest
         [TestCleanup]
         public void TestCleanUp()
         {
-            using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+            using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
             {
                 context.ClearDBTable("Logs");
             }

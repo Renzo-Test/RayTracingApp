@@ -33,7 +33,7 @@ namespace Test.ControllerTest
 		[TestCleanup]
 		public void TestCleanUp()
 		{
-			using (var context = new DBRepository.AppContext(TestDatabase))
+			using (var context = new DBRepository.TestAppContext(TestDatabase))
 			{
 				context.ClearDBTable("Scenes");
 				context.ClearDBTable("Models");
@@ -178,7 +178,7 @@ namespace Test.ControllerTest
 			};
 
 			_sceneController.UpdateLastModificationDate(newScene);
-			Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastModificationDate);
+			Assert.AreEqual(DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"), newScene.LastModificationDate);
 		}
 
 		[TestMethod]
@@ -190,7 +190,7 @@ namespace Test.ControllerTest
 			};
 
 			_sceneController.UpdateLastRenderDate(newScene);
-			Assert.AreEqual(DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"), newScene.LastRenderDate);
+			Assert.AreEqual(DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"), newScene.LastRenderDate);
 		}
 
 		[TestMethod]
@@ -258,7 +258,7 @@ namespace Test.ControllerTest
 			};
 
 			Scene blankScene = _sceneController.CreateBlankScene(client);
-			Assert.AreEqual(blankScene.RegisterTime, blankScene.Name);
+			Assert.AreEqual(DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy"), blankScene.Name);
 		}
 
 		[TestMethod]

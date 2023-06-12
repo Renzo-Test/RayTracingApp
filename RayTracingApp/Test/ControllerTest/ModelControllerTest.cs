@@ -26,7 +26,7 @@ namespace Test.ControllerTest
 		[TestCleanup]
 		public void TestCleanup()
 		{
-			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
 			{
 				context.ClearDBTable("Models");
 			}
