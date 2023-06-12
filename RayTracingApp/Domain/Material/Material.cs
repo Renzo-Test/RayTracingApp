@@ -15,8 +15,8 @@ namespace Domain
 			Type = type;
 		}
 
-		private string _owner;
-		public string Owner
+		private Client _owner;
+		public Client Owner
 		{
 			get => _owner;
 			set => _owner = value;
