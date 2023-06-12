@@ -11,9 +11,9 @@ namespace Controller
 	{
 		private const string WrongPasswordMessage = "Wrong email or password";
 
-		private const string DefaultDatabase = "RayTracingAppDB";
-
 		public IRepositoryClient Repository;
+
+		private const string DefaultDatabase = "RayTracingAppDB";
 		public ClientController(string dbName = DefaultDatabase)
 		{
 			Repository = new ClientRepository()
@@ -35,19 +35,6 @@ namespace Controller
 			}
 		}
 
-		public bool ClientAlreadyExists(string username)
-		{
-			try
-			{
-				Repository.GetClient(username);
-				return true;
-			}
-			catch (NotFoundClientException)
-			{
-				return false;
-			};
-		}
-
 		public Client SignIn(string username, string password)
 		{
 			try
@@ -63,6 +50,19 @@ namespace Controller
 		public void SignOut(ref Client currentClient)
 		{
 			currentClient = null;
+		}
+
+		public bool ClientAlreadyExists(string username)
+		{
+			try
+			{
+				Repository.GetClient(username);
+				return true;
+			}
+			catch (NotFoundClientException)
+			{
+				return false;
+			};
 		}
 
 		public bool IsLoggedIn(Client currentClient)
