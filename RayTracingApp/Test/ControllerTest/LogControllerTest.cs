@@ -15,7 +15,7 @@ namespace Test.ControllerTest
         [TestCleanup]
         public void TestCleanUp()
         {
-            using (var context = new DBRepository.AppContext(TestDatabase))
+            using (var context = new DBRepository.TestAppContext(TestDatabase))
             {
                 context.ClearDBTable("Logs");
             }
