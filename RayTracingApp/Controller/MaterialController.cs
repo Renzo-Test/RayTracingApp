@@ -26,9 +26,9 @@ namespace Controller
 			return Repository.GetMaterialsByClient(client);
 		}
 
-		public Material GetMaterial(string username, string name)
+		public Material GetMaterial(Client client, string name)
 		{
-			Material getMaterials = ListMaterials(username).Find(mat => mat.Name.Equals(name));
+			Material getMaterials = ListMaterials(client).Find(mat => mat.Name.Equals(name));
 
 			if (getMaterials is null)
 			{
