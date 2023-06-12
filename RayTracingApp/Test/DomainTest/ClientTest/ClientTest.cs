@@ -145,7 +145,7 @@ namespace Test.ModelsTest
 		public void CanGetRegisterDate_OkTest()
 		{
 			_client = new Client();
-			String today = DateTime.Today.ToString("dd/MM/yyyy");
+			string today = DateTime.Today.ToString("dd/MM/yyyy");
 			Assert.AreEqual(today, _client.RegisterDate);
 		}
 
