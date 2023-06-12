@@ -87,7 +87,7 @@ namespace Test.ModelsTest
 		public void CanGetLastRenderDate_OkTest()
 		{
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
-			String expected = "unrendered";
+			string expected = "unrendered";
 			Assert.AreEqual(expected, _scene.LastRenderDate);
 		}
 
