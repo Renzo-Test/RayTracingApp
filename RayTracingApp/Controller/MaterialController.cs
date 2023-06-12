@@ -1,26 +1,26 @@
 ﻿using Controller.Exceptions;
-using IRepository;
-using DBRepository.Exceptions;
 using DBRepository;
+using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 using System.Collections.Generic;
-using System;
 
 namespace Controller
 {
 	public class MaterialController
 	{
-		private const string DefaultDatabase = "RayTracingAppDB";
 		public IRepositoryMaterial Repository;
 
+		private const string DefaultDatabase = "RayTracingAppDB";
 		public MaterialController(string dbName = DefaultDatabase)
 		{
 			Repository = new MaterialRepository()
-            {
+			{
 				DBName = dbName,
-            };
+			};
 		}
+
 		public List<Material> ListMaterials(string username)
 		{
 			return Repository.GetMaterialsByClient(username);
@@ -83,11 +83,12 @@ namespace Controller
 				throw new AlreadyExsitingMaterialException(AlreadyExsitingMaterialMessage);
 			}
 		}
+
 		private bool MaterialNameExist(Material material, string username)
 		{
 			List<Material> clientMaterials = Repository.GetMaterialsByClient(username);
-			return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 
+			return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 		}
 
 		public void UpdateMaterialName(Material material, string currentClient, string newName)
@@ -109,5 +110,5 @@ namespace Controller
 				throw new InvalidMaterialInputException(ex.Message);
 			}
 		}
-    }
+	}
 }

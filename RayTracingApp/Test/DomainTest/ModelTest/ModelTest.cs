@@ -1,9 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
+﻿using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace Test.ModelsTest
 {
@@ -73,10 +73,10 @@ namespace Test.ModelsTest
 		{
 			Model newModel = new Model()
 			{
-				showPreview = false
+				ShowPreview = false
 			};
 
-			Assert.AreEqual(false, newModel.showPreview);
+			Assert.AreEqual(false, newModel.ShowPreview);
 		}
 
 		[TestMethod]
@@ -89,7 +89,7 @@ namespace Test.ModelsTest
 
 			Model newModel = new Model()
 			{
-				showPreview = true,
+				ShowPreview = true,
 				Preview = imgByteArr
 			};
 
@@ -109,7 +109,7 @@ namespace Test.ModelsTest
 
 			Model newModel = new Model()
 			{
-				showPreview = true,
+				ShowPreview = true,
 			};
 			newModel.SetPreview(img);
 

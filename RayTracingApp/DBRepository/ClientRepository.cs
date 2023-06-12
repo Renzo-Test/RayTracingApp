@@ -1,7 +1,6 @@
-﻿using IRepository;
-using DBRepository.Exceptions;
+﻿using DBRepository.Exceptions;
 using Domain;
-using System.Collections.Generic;
+using IRepository;
 using System.Linq;
 
 namespace DBRepository
@@ -17,6 +16,7 @@ namespace DBRepository
 				Username = username,
 				Password = password
 			};
+
 			using (var context = new AppContext(DBName))
 			{
 				context.Clients.Add(newClient);

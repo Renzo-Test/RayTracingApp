@@ -1,9 +1,9 @@
 ﻿using Controller.Exceptions;
-using IRepository;
 using DBRepository;
 using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 
 namespace Controller
 {
@@ -11,9 +11,9 @@ namespace Controller
 	{
 		private const string WrongPasswordMessage = "Wrong email or password";
 
-		private const string DefaultDatabase = "RayTracingAppDB";
-
 		public IRepositoryClient Repository;
+
+		private const string DefaultDatabase = "RayTracingAppDB";
 		public ClientController(string dbName = DefaultDatabase)
 		{
 			Repository = new ClientRepository()
@@ -26,25 +26,13 @@ namespace Controller
 		{
 			try
 			{
-				RunSignUpChecker(username, password);
+				RunSignUpChecker(username);
 				Repository.AddClient(username, password);
 			}
 			catch (InvalidCredentialsException ex)
 			{
 				throw new InvalidCredentialsException(ex.Message);
 			}
-		}
-		public bool ClientAlreadyExists(string username)
-		{
-			try
-			{
-				Repository.GetClient(username);
-				return true;
-			}
-			catch (NotFoundClientException)
-			{
-				return false;
-			};
 		}
 
 		public Client SignIn(string username, string password)
@@ -58,11 +46,23 @@ namespace Controller
 			{
 				throw new InvalidCredentialsException(ex.Message);
 			}
-
 		}
 		public void SignOut(ref Client currentClient)
 		{
 			currentClient = null;
+		}
+
+		public bool ClientAlreadyExists(string username)
+		{
+			try
+			{
+				Repository.GetClient(username);
+				return true;
+			}
+			catch (NotFoundClientException)
+			{
+				return false;
+			};
 		}
 
 		public bool IsLoggedIn(Client currentClient)
@@ -80,7 +80,7 @@ namespace Controller
 			Repository.SaveDefaultRenderProperties(client, renderProperties);
 		}
 
-		private void RunSignUpChecker(string username, string password)
+		private void RunSignUpChecker(string username)
 		{
 			if (ClientAlreadyExists(username))
 			{

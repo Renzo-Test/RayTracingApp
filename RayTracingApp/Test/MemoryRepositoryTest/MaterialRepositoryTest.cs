@@ -1,7 +1,7 @@
-﻿using DBRepository.Exceptions;
-using DBRepository;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using DBRepository;
+using DBRepository.Exceptions;
 using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -103,8 +103,8 @@ namespace Test.MemoryRepositoryTest
 		}
 
 		[TestMethod]
-        [ExpectedException(typeof(NotFoundMaterialException))]
-        public void RemoveMaterial_NotExistingMaterial_OkTest()
+		[ExpectedException(typeof(NotFoundMaterialException))]
+		public void RemoveMaterial_NotExistingMaterial_OkTest()
 		{
 			Color NewColor = new Color()
 			{

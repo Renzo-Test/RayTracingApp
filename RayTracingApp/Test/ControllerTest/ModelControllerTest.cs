@@ -1,12 +1,12 @@
 ﻿using Controller;
 using DBRepository.Exceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Domain.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Drawing;
+using System.Linq;
 
 namespace Test.ControllerTest
 {
@@ -56,7 +56,7 @@ namespace Test.ControllerTest
 				Material = new Lambertian()
 			};
 			_modelController.AddModel(anotherModel, "OtherOwner");
-			
+
 			List<Model> expected = _modelController.ListModels("Owner");
 			Assert.AreEqual(expected[0].Id, targetModel.Id);
 			Assert.AreEqual(1, expected.Count());

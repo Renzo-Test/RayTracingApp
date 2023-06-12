@@ -60,8 +60,8 @@
 			this.txtPasswordSignIn.Size = new System.Drawing.Size(136, 20);
 			this.txtPasswordSignIn.TabIndex = 1;
 			this.txtPasswordSignIn.Text = "Password";
-			this.txtPasswordSignIn.Enter += new System.EventHandler(this.txtPasswordSignIn_Enter);
-			this.txtPasswordSignIn.Leave += new System.EventHandler(this.txtPasswordSignIn_Leave);
+			this.txtPasswordSignIn.Enter += new System.EventHandler(this.TxtPasswordSignIn_Enter);
+			this.txtPasswordSignIn.Leave += new System.EventHandler(this.TxtPasswordSignIn_Leave);
 			// 
 			// lblSignIn
 			// 
@@ -75,7 +75,7 @@
 			this.lblSignIn.Size = new System.Drawing.Size(87, 28);
 			this.lblSignIn.TabIndex = 9;
 			this.lblSignIn.Text = "Sign in";
-			this.lblSignIn.Click += new System.EventHandler(this.lblSignIn_Click);
+			this.lblSignIn.Click += new System.EventHandler(this.LblSignIn_Click);
 			// 
 			// lblAlreadyHaveAnAccount
 			// 
@@ -99,7 +99,7 @@
 			this.lblSignUpRef.Size = new System.Drawing.Size(53, 16);
 			this.lblSignUpRef.TabIndex = 11;
 			this.lblSignUpRef.Text = "Sign Up!";
-			this.lblSignUpRef.Click += new System.EventHandler(this.lblSignUpRef_Click);
+			this.lblSignUpRef.Click += new System.EventHandler(this.LblSignUpRef_Click);
 			// 
 			// txtUsernameSignIn
 			// 
@@ -112,8 +112,8 @@
 			this.txtUsernameSignIn.Size = new System.Drawing.Size(136, 20);
 			this.txtUsernameSignIn.TabIndex = 0;
 			this.txtUsernameSignIn.Text = "Username";
-			this.txtUsernameSignIn.Enter += new System.EventHandler(this.txtUsernameSignIn_Enter);
-			this.txtUsernameSignIn.Leave += new System.EventHandler(this.txtUsernameSignIn_Leave);
+			this.txtUsernameSignIn.Enter += new System.EventHandler(this.TxtUsernameSignIn_Enter);
+			this.txtUsernameSignIn.Leave += new System.EventHandler(this.TxtUsernameSignIn_Leave);
 			// 
 			// picSignInButton
 			// 
@@ -125,7 +125,7 @@
 			this.picSignInButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.picSignInButton.TabIndex = 8;
 			this.picSignInButton.TabStop = false;
-			this.picSignInButton.Click += new System.EventHandler(this.picSignInButton_Click);
+			this.picSignInButton.Click += new System.EventHandler(this.PicSignInButton_Click);
 			// 
 			// picIconLock
 			// 

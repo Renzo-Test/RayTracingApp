@@ -1,19 +1,19 @@
 ﻿using Controller.Exceptions;
-using IRepository;
 using DBRepository;
 using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 using System.Collections.Generic;
-using System;
 using System.Drawing;
 
 namespace Controller
 {
 	public class ModelController
 	{
-		private const string DefaultDatabase = "RayTracingAppDB";
 		public IRepositoryModel Repository;
+
+		private const string DefaultDatabase = "RayTracingAppDB";
 		public ModelController(string dbName = DefaultDatabase)
 		{
 			Repository = new ModelRepository()
@@ -26,6 +26,19 @@ namespace Controller
 		{
 			return Repository.GetModelsByClient(username);
 		}
+
+		public Model GetModel(string username, string name)
+		{
+			Model getModel = ListModels(username).Find(mod => mod.Name.Equals(name));
+
+			if (getModel is null)
+			{
+				throw new NotFoundModelException($"Model with name {name} was not found");
+			}
+
+			return getModel;
+		}
+
 		public void AddModel(Model model, string username)
 		{
 			try
@@ -52,18 +65,6 @@ namespace Controller
 			Repository.RemoveModel(deleteModel);
 		}
 
-		public Model GetModel(string username, string name)
-		{
-			Model getModel = ListModels(username).Find(mod => mod.Name.Equals(name));
-
-			if (getModel is null)
-			{
-				throw new NotFoundModelException($"Model with name {name} was not found");
-			}
-
-			return getModel;
-
-		}
 		private void RunModelChecker(Model model, string username)
 		{
 			if (ModelNameExist(model, username))
@@ -99,13 +100,11 @@ namespace Controller
 			{
 				throw new InvalidModelInputException(ex.Message);
 			}
-
 		}
 
 		public void UpdatePreview(Model model, Image preview)
-        {
+		{
 			Repository.UpdatePreview(model, preview);
-        }
-
+		}
 	}
 }

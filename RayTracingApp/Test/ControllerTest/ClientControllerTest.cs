@@ -1,7 +1,7 @@
 ﻿using Controller;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Domain.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest

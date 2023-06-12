@@ -1,7 +1,7 @@
 ﻿using Controller;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Domain.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -139,7 +139,7 @@ namespace Test.ControllerTest
 		}
 
 		[TestMethod]
-		[ExpectedException (typeof(InvalidSceneInputException))]
+		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void UpdateSceneName_startSpace_FailTest()
 		{
 			Scene scene = new Scene(_owner, _fov, _lookFrom, _looktTo)

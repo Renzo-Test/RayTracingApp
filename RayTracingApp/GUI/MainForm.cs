@@ -1,54 +1,46 @@
 ﻿using Controller;
 using Domain;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class MainForm : Form
-    {
-        private UserControl _signInPanel;
-        private UserControl _signUpPanel;
-        private UserControl _homePanel;
+	public partial class MainForm : Form
+	{
+		private UserControl _signInPanel;
+		private UserControl _signUpPanel;
+		private UserControl _homePanel;
 
-        private MainController _mainController;
+		private MainController _mainController;
 
-        public MainForm()
-        {
-            InitializeComponent();
-            _mainController = new MainController();
+		public MainForm()
+		{
+			InitializeComponent();
+			_mainController = new MainController();
 
-            _signInPanel = new SignIn(this, _mainController.ClientController);
-            _signUpPanel = new SignUp(this, _mainController.ClientController);
+			_signInPanel = new SignIn(this, _mainController.ClientController);
+			_signUpPanel = new SignUp(this, _mainController.ClientController);
 
-            flyMain.Controls.Add(_signInPanel);
-        }
+			flyMain.Controls.Add(_signInPanel);
+		}
 
-        public void GoToSignIn()
-        {
-            flyMain.Controls.Clear();
-            flyMain.Controls.Add(_signInPanel);
-        }
+		public void GoToSignIn()
+		{
+			flyMain.Controls.Clear();
+			flyMain.Controls.Add(_signInPanel);
+		}
 
-        public void GoToSignUp()
-        {
-            flyMain.Controls.Clear();
-            flyMain.Controls.Add(_signUpPanel);
-        }
+		public void GoToSignUp()
+		{
+			flyMain.Controls.Clear();
+			flyMain.Controls.Add(_signUpPanel);
+		}
 
-        public void GoToHome(Client currentClient)
-        {
-            _homePanel = new Home(this, _mainController, currentClient);
+		public void GoToHome(Client currentClient)
+		{
+			_homePanel = new Home(this, _mainController, currentClient);
 
-            flyMain.Controls.Clear();
-            flyMain.Controls.Add(_homePanel);
-        }
-    }
+			flyMain.Controls.Clear();
+			flyMain.Controls.Add(_homePanel);
+		}
+	}
 }

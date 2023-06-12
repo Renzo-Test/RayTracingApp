@@ -1,16 +1,10 @@
 ﻿using Domain;
-using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using System.Xml.Schema;
 
 namespace Engine
 {
@@ -38,15 +32,15 @@ namespace Engine
 				int derivatedIndex = row - index;
 				for (int column = 0; column < _properties.ResolutionX; column++)
 				{
-                    Vector vector = InitializeEmptyVector();
+					Vector vector = InitializeEmptyVector();
 
-                    Antialiasing(derivatedIndex, column, ref vector);
+					Antialiasing(derivatedIndex, column, ref vector);
 
 					vector = vector.Divide(_properties.SamplesPerPixel);
-					SavePixel(derivatedIndex, column, vector);
+					SavePixel(derivatedIndex, vector);
 				}
 
-                _progress.UpdateProgressBar();
+				_progress.UpdateProgressBar();
 				_progress.WriteCurrentPercentage();
 
 			});
@@ -54,15 +48,15 @@ namespace Engine
 			return _printer.Save(_pixels, _properties, ref _progress);
 		}
 
-        private static Vector InitializeEmptyVector()
-        {
-            return new Vector()
-            {
-                X = 0,
-                Y = 0,
-                Z = 0
-            };
-        }
+		private static Vector InitializeEmptyVector()
+		{
+			return new Vector()
+			{
+				X = 0,
+				Y = 0,
+				Z = 0
+			};
+		}
 
 		public (string, Image) RenderModelPreview(Model model)
 		{
@@ -78,11 +72,11 @@ namespace Engine
 
 		private void InitializateRender(ProgressBar progressBar)
 		{
-			_progress = new Progress()
+			_progress = new Progress
 			{
 				ProgressBar = progressBar,
+				ExpectedLines = (_properties.ResolutionY * _properties.ResolutionX * _properties.SamplesPerPixel) + _properties.ResolutionY
 			};
-			_progress.ExpectedLines = (_properties.ResolutionY * _properties.ResolutionX * _properties.SamplesPerPixel) + _properties.ResolutionY;
 			_printer = new Printer();
 			InitializateCamera(_scene, _properties);
 			InitializatePixels(ref _pixels);
@@ -144,14 +138,14 @@ namespace Engine
 			{
 				Ray newRay = null;
 
-				if(hitRecord.Material.Type is MaterialEnum.Lambertian)
+				if (hitRecord.Material.Type is MaterialEnum.Lambertian)
 				{
 					newRay = LambertianScatter(hitRecord);
 				}
-				else if(hitRecord.Material.Type is MaterialEnum.Metallic)
+				else if (hitRecord.Material.Type is MaterialEnum.Metallic)
 				{
 					newRay = MetailcScatter(ray, hitRecord);
-					if(newRay is null)
+					if (newRay is null)
 					{
 						return new Vector() { X = 0, Y = 0, Z = 0 };
 					}
@@ -212,7 +206,7 @@ namespace Engine
 				if (t < tMax && t > tMin)
 				{
 					double roughness = 0;
-					
+
 					if (posisionatedModel.Model.Material.Type is MaterialEnum.Metallic)
 					{
 						Metalic metalic = (Metalic)posisionatedModel.Model.Material;
@@ -304,9 +298,8 @@ namespace Engine
 			return vector;
 		}
 
-		private void SavePixel(int row, int column, Vector pixelRGB)
+		private void SavePixel(int row, Vector pixelRGB)
 		{
-			int posX = column;
 			int posY = _properties.ResolutionY - row - 1;
 
 			if (posY < _properties.ResolutionY)
@@ -336,13 +329,13 @@ namespace Engine
 
 			Sphere terrain = InitializateSphere(2000);
 			Domain.Color terrainColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
-			Model modelTerrain = InitializateModel(terrain, new Lambertian() { Color = terrainColor});
+			Model modelTerrain = InitializateModel(terrain, new Lambertian() { Color = terrainColor });
 			PosisionatedModel terrainPosisionated = InitializatePosisionatedModel(modelTerrain, -2000);
 
 			Scene previewScene = new Scene()
 			{
 				LookFrom = new Vector { X = -5, Y = 4, Z = 0 },
-				LookAt= new Vector() { Y = 1 },
+				LookAt = new Vector() { Y = 1 },
 				Fov = 30
 			};
 			previewScene.PosisionatedModels.Add(posisionatedModel);
