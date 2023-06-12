@@ -13,7 +13,7 @@ namespace DBRepository.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202306082347374_InitialMigration"; }
+            get { return "202306092207455_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

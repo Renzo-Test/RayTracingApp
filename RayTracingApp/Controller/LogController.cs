@@ -30,36 +30,11 @@ namespace Controller
         {
             return Repository.GetAllLogs();
         }
-
-        public int GetAverageRenderTime()
+        public string GetUserWithMaxAccumulatedRenderTime()
         {
-            int totalRenderLogs = Repository.GetAllLogs().Count();
-            if (totalRenderLogs == 0)
-                return 0;
+            List<Log> logs = Repository.GetAllLogs();
 
-            int totalTime = 0;
-            foreach (var log in Repository.GetAllLogs())
-            {
-                totalTime += log.RenderTime;
-            }
-
-            return totalTime / totalRenderLogs;
-        }
-
-        public int GetTotalRenderTimeInMinutes()
-        {
-            int totalRenderTime = 0;
-            foreach (var log in Repository.GetAllLogs())
-            {
-                totalRenderTime += log.RenderTime;
-            }
-
-            return totalRenderTime / 60;
-        }
-
-        public string GetUserWithMaxAccumulatedRenderTime(List<Log> logs)
-        {
-            var usersAccumulatedRenderTime = logs
+            var userMaxRenderTime = logs
                 .GroupBy(log => log.Username)
                 .Select(group => new
                 {
@@ -69,12 +44,12 @@ namespace Controller
                 .OrderByDescending(group => group.AccumulatedRenderTime)
                 .FirstOrDefault();
 
-            if (usersAccumulatedRenderTime != null)
+            if (userMaxRenderTime != null)
             {
-                return usersAccumulatedRenderTime.Username;
+                return userMaxRenderTime.Username;
             }
 
-            return "No hay renderizados.";
+            return string.Empty;
         }
 
     }

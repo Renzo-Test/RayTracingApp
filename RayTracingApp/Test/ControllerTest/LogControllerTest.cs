@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Controller;
+using Domain;
+using System.Collections.Generic;
 
 namespace Test.ControllerTest
 {
@@ -8,7 +10,7 @@ namespace Test.ControllerTest
     public class LogControllerTest
     {
         private const string TestDatabase = "RayTracingAppTestDB";
-        private LogController _controller;
+        private LogController _logController;
 
         [TestCleanup]
         public void TestCleanUp()
@@ -19,10 +21,38 @@ namespace Test.ControllerTest
             }
         }
 
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _logController = new LogController(TestDatabase);
+        }
+
         [TestMethod]
         public void CanCreateLogController_OkTest()
         {
-            _controller = new LogController();
+            _logController = new LogController();
+        }
+
+        [TestMethod]
+
+        public void GetUserWithMaxAccumulatedRenderTime_OkTest()
+        {
+            Log testLog1 = new Log()
+            {
+                Username = "User1",
+                RenderTime = 150,
+            };
+
+            Log testLog2 = new Log()
+            {
+                Username = "User2",
+                RenderTime = 100,
+            };
+
+            _logController.AddLog(testLog1);
+            _logController.AddLog(testLog2);
+
+            Assert.AreEqual("User1", _logController.GetUserWithMaxAccumulatedRenderTime());
         }
     }
 }

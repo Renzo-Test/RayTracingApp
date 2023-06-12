@@ -40,6 +40,7 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        RenderTime = c.Int(nullable: false),
                         Username = c.String(),
                         RenderDate = c.String(),
                         TimeSpan = c.Time(nullable: false, precision: 7),
