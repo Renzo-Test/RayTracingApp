@@ -12,20 +12,22 @@ namespace DBRepository
 
 		public string DBName { get; set; } = "RayTracingAppDB";
 
+		public void AddMaterial(Material material, Client client)
+		{
+			using (var context = new AppContext(DBName))
+			{
+				Client materialClient = context.Clients.FirstOrDefault(c => c.Id == client.Id);
+				material.Owner = materialClient;
+
+				context.Materials.Add(material);
+				context.SaveChanges();
+			}
+		}
 		public List<Material> GetMaterialsByClient(Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
 				return context.Materials.Where(material => material.Owner.Equals(client.Username)).ToList();
-			}
-		}
-
-		public void AddMaterial(Material newMaterial)
-		{
-			using (var context = new AppContext(DBName))
-			{
-				context.Materials.Add(newMaterial);
-				context.SaveChanges();
 			}
 		}
 
