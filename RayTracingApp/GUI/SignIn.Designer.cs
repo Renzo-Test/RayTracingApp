@@ -112,8 +112,8 @@
 			this.txtUsernameSignIn.Size = new System.Drawing.Size(136, 20);
 			this.txtUsernameSignIn.TabIndex = 0;
 			this.txtUsernameSignIn.Text = "Username";
-			this.txtUsernameSignIn.Enter += new System.EventHandler(this.txtUsernameSignIn_Enter);
-			this.txtUsernameSignIn.Leave += new System.EventHandler(this.txtUsernameSignIn_Leave);
+			this.txtUsernameSignIn.Enter += new System.EventHandler(this.TxtUsernameSignIn_Enter);
+			this.txtUsernameSignIn.Leave += new System.EventHandler(this.TxtUsernameSignIn_Leave);
 			// 
 			// picSignInButton
 			// 

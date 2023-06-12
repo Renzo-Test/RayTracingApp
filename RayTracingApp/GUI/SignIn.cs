@@ -66,12 +66,12 @@ namespace GUI
 		}
 
 
-		private void txtUsernameSignIn_Enter(object sender, EventArgs e)
+		private void TxtUsernameSignIn_Enter(object sender, EventArgs e)
 		{
 			InputUtils.RemovePlaceHolder(ref txtUsernameSignIn, UsernamePlaceHolder);
 		}
 
-		private void txtUsernameSignIn_Leave(object sender, EventArgs e)
+		private void TxtUsernameSignIn_Leave(object sender, EventArgs e)
 		{
 			InputUtils.SetPlaceHolder(ref txtUsernameSignIn, UsernamePlaceHolder);
 		}
