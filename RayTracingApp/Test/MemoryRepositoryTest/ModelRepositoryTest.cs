@@ -1,7 +1,7 @@
 ﻿using DBRepository;
 using DBRepository.Exceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
@@ -137,8 +137,8 @@ namespace Test.MemoryRepositoryTest
 		}
 
 		[TestMethod]
-        [ExpectedException(typeof(NotFoundModelException))]
-        public void RemoveModel_NotExistingModel_OkTest()
+		[ExpectedException(typeof(NotFoundModelException))]
+		public void RemoveModel_NotExistingModel_OkTest()
 		{
 			Figure newFigure = new Sphere()
 			{

@@ -89,13 +89,13 @@ namespace Domain
 		{
 			return (int)(resX / AspectRatio);
 		}
-		
+
 		public int PreCalculateXResolution(int resY)
 		{
 			return (int)(resY * AspectRatio);
 
 		}
-		
+
 		private void IsLowerThanZero(int value)
 		{
 			if (value <= 0)

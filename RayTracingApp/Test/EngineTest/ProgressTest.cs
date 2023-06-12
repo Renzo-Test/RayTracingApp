@@ -148,14 +148,14 @@ namespace Test.EngineTest
 
 		[TestMethod]
 		public void CanSetProgressBar_OkTest()
-        {
+		{
 			ProgressBar prgRenderer = new ProgressBar();
 
 			_progress = new Progress()
 			{
 				ProgressBar = prgRenderer
 			};
-        }
+		}
 
 	}
 }

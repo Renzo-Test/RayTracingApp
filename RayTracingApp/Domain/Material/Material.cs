@@ -8,12 +8,12 @@ namespace Domain
 		private const string NotAlphanumericMessage = "Material's name must not start or end with blank space";
 		private const string SpaceCharacterConstant = " ";
 
-        public int Id { get; set; }
+		public int Id { get; set; }
 
-        protected Material(MaterialEnum type)
-        {
-            Type = type;
-        }
+		protected Material(MaterialEnum type)
+		{
+			Type = type;
+		}
 
 		private string _owner;
 		public string Owner
@@ -55,7 +55,7 @@ namespace Domain
 			get => _type;
 			set => _type = value;
 		}
-		
+
 		private static void RunNameIsEmptyChecker(string value)
 		{
 			if (value.Equals(string.Empty))

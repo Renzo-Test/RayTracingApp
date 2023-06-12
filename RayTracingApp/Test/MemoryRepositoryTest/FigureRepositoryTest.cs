@@ -1,11 +1,10 @@
 ﻿using DBRepository;
 using DBRepository.Exceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -26,14 +25,14 @@ namespace Test.MemoryRepositoryTest
 
 		[TestCleanup]
 		public void TestCleanUp()
-        {
+		{
 			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
 			{
 				context.ClearDBTable("Figures");
 			}
 		}
 
-		[TestMethod]	
+		[TestMethod]
 		public void CreateFigureRepository_OkTest()
 		{
 			_figureRepository = new FigureRepository();
@@ -115,8 +114,8 @@ namespace Test.MemoryRepositoryTest
 		}
 
 		[TestMethod]
-        [ExpectedException(typeof(NotFoundFigureException))]
-        public void RemoveFigure_NotExistingFigure_OkTest()
+		[ExpectedException(typeof(NotFoundFigureException))]
+		public void RemoveFigure_NotExistingFigure_OkTest()
 		{
 			Figure newFigure = new Sphere()
 			{

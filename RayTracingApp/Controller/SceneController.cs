@@ -1,30 +1,28 @@
 ﻿using Controller.Exceptions;
-using IRepository;
 using DBRepository;
-using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Drawing;
 
 namespace Controller
 {
 	public class SceneController
 	{
-        public IRepositoryScene Repository;
+		public IRepositoryScene Repository;
 
-        private const string DefaultDatabase = "RayTracingAppDB";
-        public SceneController(string dbName = DefaultDatabase)
-        {
-            Repository = new SceneRepository()
-            {
-                DBName = dbName,
-            };
-        }
+		private const string DefaultDatabase = "RayTracingAppDB";
+		public SceneController(string dbName = DefaultDatabase)
+		{
+			Repository = new SceneRepository()
+			{
+				DBName = dbName,
+			};
+		}
 
-        public void AddScene(Scene newScene, string username)
+		public void AddScene(Scene newScene, string username)
 		{
 			try
 			{
@@ -97,14 +95,14 @@ namespace Controller
 		}
 
 		public void UpdatePreview(Scene scene, Bitmap img)
-        {
+		{
 			Repository.UpdateScenePreview(scene, img);
-        }
+		}
 
 		public void UpdateModels(Scene scene, PosisionatedModel posisionatedModel)
-        {
+		{
 			Repository.UpdateSceneModels(scene, posisionatedModel);
-        }
+		}
 
 		public void RemoveModel(Scene scene, PosisionatedModel posisionatedModel)
 		{
@@ -112,14 +110,14 @@ namespace Controller
 		}
 
 		public void UpdateModelsCoordinate(PosisionatedModel model, Vector coords)
-        {
+		{
 			Repository.UpdateModelsCoordinate(model, coords);
 		}
 
 		public List<PosisionatedModel> GetPosisionatedModels(Scene scene)
-        {
+		{
 			return Repository.GetPosisionatedModels(scene);
-        }
+		}
 
 		private void SceneChecker(Scene scene, string username)
 		{

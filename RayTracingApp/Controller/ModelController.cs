@@ -1,11 +1,10 @@
 ﻿using Controller.Exceptions;
-using IRepository;
 using DBRepository;
 using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 using System.Collections.Generic;
-using System;
 using System.Drawing;
 
 namespace Controller
@@ -104,8 +103,8 @@ namespace Controller
 		}
 
 		public void UpdatePreview(Model model, Image preview)
-        {
+		{
 			Repository.UpdatePreview(model, preview);
-        }
+		}
 	}
 }

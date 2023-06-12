@@ -1,61 +1,58 @@
-﻿using Domain;
+﻿using DBRepository.Exceptions;
+using Domain;
 using IRepository;
-using DBRepository.Exceptions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DBRepository
 {
-    public class MaterialRepository : IRepositoryMaterial
-    {
-        private const string NotFoundMaterialMessage = "Material was not found or already deleted";
+	public class MaterialRepository : IRepositoryMaterial
+	{
+		private const string NotFoundMaterialMessage = "Material was not found or already deleted";
 
-        public string DBName { get; set; } = "RayTracingAppDB";
+		public string DBName { get; set; } = "RayTracingAppDB";
 
-        public List<Material> GetMaterialsByClient(string username)
-        {
-            using (var context = new AppContext(DBName))
-            {
-                return context.Materials.Where(material => material.Owner.Equals(username)).ToList();
-            }
-        }
+		public List<Material> GetMaterialsByClient(string username)
+		{
+			using (var context = new AppContext(DBName))
+			{
+				return context.Materials.Where(material => material.Owner.Equals(username)).ToList();
+			}
+		}
 
-        public void AddMaterial(Material newMaterial)
-        {
-            using (var context = new AppContext(DBName))
-            {
-                context.Materials.Add(newMaterial);
-                context.SaveChanges();
-            }
-        }
+		public void AddMaterial(Material newMaterial)
+		{
+			using (var context = new AppContext(DBName))
+			{
+				context.Materials.Add(newMaterial);
+				context.SaveChanges();
+			}
+		}
 
-        public void RemoveMaterial(Material material)
-        {
-            using (var context = new AppContext(DBName))
-            {
-                Material deleteMaterial = context.Materials.FirstOrDefault(m => m.Id == material.Id);
+		public void RemoveMaterial(Material material)
+		{
+			using (var context = new AppContext(DBName))
+			{
+				Material deleteMaterial = context.Materials.FirstOrDefault(m => m.Id == material.Id);
 
-                if (deleteMaterial is null)
-                {
-                    throw new NotFoundMaterialException(NotFoundMaterialMessage);
-                }
+				if (deleteMaterial is null)
+				{
+					throw new NotFoundMaterialException(NotFoundMaterialMessage);
+				}
 
-                context.Materials.Remove(deleteMaterial);
-                context.SaveChanges();
-            }
-        }
+				context.Materials.Remove(deleteMaterial);
+				context.SaveChanges();
+			}
+		}
 
-        public void UpdateMaterialName(Material material, string newName)
-        {
-            using (var context = new AppContext(DBName))
-            {
-                Material updateMaterial = context.Materials.FirstOrDefault(m => m.Id == material.Id);
-                updateMaterial.Name = newName;
-                context.SaveChanges();
-            }
-        }
-    }
+		public void UpdateMaterialName(Material material, string newName)
+		{
+			using (var context = new AppContext(DBName))
+			{
+				Material updateMaterial = context.Materials.FirstOrDefault(m => m.Id == material.Id);
+				updateMaterial.Name = newName;
+				context.SaveChanges();
+			}
+		}
+	}
 }

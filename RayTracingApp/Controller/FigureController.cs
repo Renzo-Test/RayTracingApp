@@ -1,26 +1,24 @@
 ﻿using Controller.Exceptions;
-using IRepository;
+using DBRepository;
 using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 using System.Collections.Generic;
-using System;
-using DBRepository;
-using System.Data.SqlClient;
 
 namespace Controller
 {
 	public class FigureController
 	{
-        public IRepositoryFigure Repository;
+		public IRepositoryFigure Repository;
 
-        private const string DefaultDatabase = "RayTracingAppDB";
-        public FigureController(string dbName = DefaultDatabase)
+		private const string DefaultDatabase = "RayTracingAppDB";
+		public FigureController(string dbName = DefaultDatabase)
 		{
 			Repository = new FigureRepository()
-            {
+			{
 				DBName = dbName,
-            };
+			};
 		}
 
 		public List<Figure> ListFigures(string username)

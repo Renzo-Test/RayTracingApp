@@ -69,10 +69,10 @@ namespace Domain
 		}
 
 		public string RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
-		
-		public Vector DefaultLookFrom { get; set; } = new Vector() { X = 0, Y = 2, Z = 0};
-		
-		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5};
+
+		public Vector DefaultLookFrom { get; set; } = new Vector() { X = 0, Y = 2, Z = 0 };
+
+		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5 };
 
 		public RenderProperties DefaultRenderProperties { get; set; } = new RenderProperties();
 

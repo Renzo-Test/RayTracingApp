@@ -1,11 +1,10 @@
 ﻿using Controller.Exceptions;
-using IRepository;
-using DBRepository.Exceptions;
 using DBRepository;
+using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 using System.Collections.Generic;
-using System;
 
 namespace Controller
 {
@@ -17,9 +16,9 @@ namespace Controller
 		public MaterialController(string dbName = DefaultDatabase)
 		{
 			Repository = new MaterialRepository()
-            {
+			{
 				DBName = dbName,
-            };
+			};
 		}
 
 		public List<Material> ListMaterials(string username)
@@ -111,5 +110,5 @@ namespace Controller
 				throw new InvalidMaterialInputException(ex.Message);
 			}
 		}
-    }
+	}
 }

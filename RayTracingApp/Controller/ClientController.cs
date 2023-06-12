@@ -1,9 +1,9 @@
 ﻿using Controller.Exceptions;
-using IRepository;
 using DBRepository;
 using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 
 namespace Controller
 {
