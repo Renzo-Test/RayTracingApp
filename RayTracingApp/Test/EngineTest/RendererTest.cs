@@ -1,8 +1,7 @@
 ﻿using Domain;
+using Domain.Exceptions;
 using Engine;
-using Engine.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Test.EngineTest
@@ -57,7 +56,7 @@ namespace Test.EngineTest
 			Model modelToPreview = new Model()
 			{
 				Figure = new Sphere { Radius = 5 },
-				Material = new Lambertian() { Color = modelColor},
+				Material = new Lambertian() { Color = modelColor },
 			};
 
 			var (render, _) = renderer.RenderModelPreview(modelToPreview);
@@ -71,8 +70,6 @@ namespace Test.EngineTest
 		[ExpectedException(typeof(InvalidRenderPropertiesInputException))]
 		public void RenderMaxDepth0_OkTest()
 		{
-			Renderer renderer = new Renderer();
-			Scene scene = new Scene();
 			RenderProperties properties = new RenderProperties()
 			{
 				ResolutionX = 300,

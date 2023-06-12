@@ -26,8 +26,8 @@ namespace Engine
 		}
 
 		[ExcludeFromCodeCoverage]
-        public void UpdateProgressBar()
-        {
+		public void UpdateProgressBar()
+		{
 			if (ProgressBar is object)
 			{
 				ProgressBar.BeginInvoke(
@@ -42,5 +42,5 @@ namespace Engine
 				}));
 			}
 		}
-    }
+	}
 }

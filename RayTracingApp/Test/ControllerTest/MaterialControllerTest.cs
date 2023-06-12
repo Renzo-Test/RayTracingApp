@@ -1,13 +1,12 @@
 ﻿using Controller;
 using Controller.Exceptions;
 using DBRepository.Exceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Domain.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using DBRepository;
 
 namespace Test.ControllerTest
 {
@@ -63,27 +62,27 @@ namespace Test.ControllerTest
 			Assert.AreEqual(_materialController.Repository.GetMaterialsByClient("user")[0].Name, _newMaterial.Name);
 		}
 
-        [TestMethod]
-        public void AddMaterial_ValidMetallic_OkTest()
-        {
-            Material _newMaterial = new Metallic()
-            {
-                Name = "materialName",
-                Color = new Color
-                {
-                    Red = 1,
-                    Green = 1,
-                    Blue = 1,
-                },
+		[TestMethod]
+		public void AddMaterial_ValidMetallic_OkTest()
+		{
+			Material _newMaterial = new Metalic()
+			{
+				Name = "materialName",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				},
 				Blur = 0.1
-            };
+			};
 
-            _materialController.AddMaterial(_newMaterial, "user");
+			_materialController.AddMaterial(_newMaterial, "user");
 
-            Assert.AreEqual(_materialController.Repository.GetMaterialsByClient("user")[0].Name, _newMaterial.Name);
-        }
+			Assert.AreEqual(_materialController.Repository.GetMaterialsByClient("user")[0].Name, _newMaterial.Name);
+		}
 
-        [TestMethod]
+		[TestMethod]
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_DuplicatedLambertian_FailTest()
 		{
@@ -102,27 +101,27 @@ namespace Test.ControllerTest
 			_materialController.AddMaterial(_newMaterial, "user");
 		}
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidMaterialInputException))]
-        public void AddMaterial_DuplicatedMetallic_FailTest()
-        {
-            Material _newMaterial = new Metallic()
-            {
-                Name = "materialName",
-                Color = new Color
-                {
-                    Red = 1,
-                    Green = 1,
-                    Blue = 1,
-                },
-				Blur= 0.1
-            };
+		[TestMethod]
+		[ExpectedException(typeof(InvalidMaterialInputException))]
+		public void AddMaterial_DuplicatedMetallic_FailTest()
+		{
+			Material _newMaterial = new Metalic()
+			{
+				Name = "materialName",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				},
+				Blur = 0.1
+			};
 
-            _materialController.AddMaterial(_newMaterial, "user");
-            _materialController.AddMaterial(_newMaterial, "user");
-        }
+			_materialController.AddMaterial(_newMaterial, "user");
+			_materialController.AddMaterial(_newMaterial, "user");
+		}
 
-        [TestMethod]
+		[TestMethod]
 		public void AddMaterial_TwoValidLambertians_OkTest()
 		{
 			Material _firstMaterial = new Lambertian()
@@ -153,40 +152,40 @@ namespace Test.ControllerTest
 			Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
 		}
 
-        [TestMethod]
-        public void AddMaterial_TwoValidMetallics_OkTest()
-        {
-            Material _firstMaterial = new Metallic()
-            {
-                Name = "materialOne",
-                Color = new Color
-                {
-                    Red = 1,
-                    Green = 1,
-                    Blue = 1,
-                },
+		[TestMethod]
+		public void AddMaterial_TwoValidMetallics_OkTest()
+		{
+			Material _firstMaterial = new Metalic()
+			{
+				Name = "materialOne",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				},
 				Blur = 0.1
-            };
+			};
 
-            Material _secondMaterial = new Metallic()
-            {
-                Name = "materialTwo",
-                Color = new Color
-                {
-                    Red = 1,
-                    Green = 1,
-                    Blue = 1,
-                },
+			Material _secondMaterial = new Metalic()
+			{
+				Name = "materialTwo",
+				Color = new Color
+				{
+					Red = 1,
+					Green = 1,
+					Blue = 1,
+				},
 				Blur = 0.1
-            };
+			};
 
-            _materialController.AddMaterial(_firstMaterial, "user");
-            _materialController.AddMaterial(_secondMaterial, "user");
+			_materialController.AddMaterial(_firstMaterial, "user");
+			_materialController.AddMaterial(_secondMaterial, "user");
 
-            Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
-        }
+			Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
+		}
 
-        [TestMethod]
+		[TestMethod]
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_SpacedMaterialName_FailTest()
 		{
@@ -385,5 +384,5 @@ namespace Test.ControllerTest
 
 			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, " newNameMaterial ");
 		}
-    }
+	}
 }

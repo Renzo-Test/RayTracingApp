@@ -4,115 +4,109 @@ using Domain;
 using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class FigureListItem : UserControl
-    {
-        private FigureController _figureController;
-        private ModelController _modelController;
+	public partial class FigureListItem : UserControl
+	{
+		private FigureController _figureController;
+		private ModelController _modelController;
 
-        private FigureList _figureList;
-        private Sphere _sphere;
+		private FigureList _figureList;
+		private Sphere _sphere;
 
-        private string _currentClient;
-        private bool isEditing;
+		private string _currentClient;
+		private bool isEditing;
 
-        public FigureListItem(FigureList figureList, MainController mainController, Sphere sphere)
-        {
-            InitializeComponent();
-            InitializePanelAtributes(sphere);
-            InitializeControllerAtributes(figureList, mainController, sphere);
-        }
+		public FigureListItem(FigureList figureList, MainController mainController, Sphere sphere)
+		{
+			InitializeComponent();
+			InitializePanelAtributes(sphere);
+			InitializeControllerAtributes(figureList, mainController, sphere);
+		}
 
-        private void InitializeControllerAtributes(FigureList figureList, MainController mainController, Sphere sphere)
-        {
-            _figureList = figureList;
-            _modelController = mainController.ModelController;
-            _figureController = mainController.FigureController;
-            _currentClient = sphere.Owner;
-            _sphere = sphere;
-            
-            isEditing = false;
-        }
+		private void InitializeControllerAtributes(FigureList figureList, MainController mainController, Sphere sphere)
+		{
+			_figureList = figureList;
+			_modelController = mainController.ModelController;
+			_figureController = mainController.FigureController;
+			_currentClient = sphere.Owner;
+			_sphere = sphere;
 
-        private void InitializePanelAtributes(Sphere sphere)
-        {
-            txtFigureName.Text = sphere.Name;
-            lblRadius.Text = $"Radius: {sphere.Radius}";
-        }
+			isEditing = false;
+		}
 
-        private void picIconX_Click(object sender, EventArgs e)
-        {
-            RemoveFigure(txtFigureName.Text);
-        }
+		private void InitializePanelAtributes(Sphere sphere)
+		{
+			txtFigureName.Text = sphere.Name;
+			lblRadius.Text = $"Radius: {sphere.Radius}";
+		}
 
-        private void RemoveFigure(string figureName)
-        {
-            List<Model> models = _modelController.ListModels(_currentClient);
-            
-            try
-            {
-                _figureController.RemoveFigure(figureName, _currentClient, models);
-                _figureList.PopulateItems();
-            }
-            catch (FigureUsedByModelException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+		private void picIconX_Click(object sender, EventArgs e)
+		{
+			RemoveFigure(txtFigureName.Text);
+		}
 
-        private void picIconPencilTick_Click(object sender, EventArgs e)
-        {
-            isEditing = !isEditing;
+		private void RemoveFigure(string figureName)
+		{
+			List<Model> models = _modelController.ListModels(_currentClient);
 
-            if (isEditing)
-            {
-                picIconPencilTick.Image = GUI.Properties.Resources.tick;
-                txtFigureName.Enabled = true;
-                picXIcon.Visible = true;
-            }
-            else
-            {
-                picIconPencilTick.Image = GUI.Properties.Resources.pencil;
-                txtFigureName.Enabled = false;
-                picXIcon.Visible = false;
-                ChangeFigureName(txtFigureName.Text, _sphere);
-            }
+			try
+			{
+				_figureController.RemoveFigure(figureName, _currentClient, models);
+				_figureList.PopulateItems();
+			}
+			catch (FigureUsedByModelException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
 
-        }
+		private void picIconPencilTick_Click(object sender, EventArgs e)
+		{
+			isEditing = !isEditing;
 
-        private void ChangeFigureName(string newName, Sphere sphere)
-        {
-            try
-            {
-                _figureController.UpdateFigureName(sphere, _currentClient, newName);
-                _figureList.PopulateItems();
+			if (isEditing)
+			{
+				picIconPencilTick.Image = GUI.Properties.Resources.tick;
+				txtFigureName.Enabled = true;
+				picXIcon.Visible = true;
+			}
+			else
+			{
+				picIconPencilTick.Image = GUI.Properties.Resources.pencil;
+				txtFigureName.Enabled = false;
+				picXIcon.Visible = false;
+				ChangeFigureName(txtFigureName.Text, _sphere);
+			}
 
-            }
-            catch (InvalidFigureInputException ex)
-            {
-                _figureList.PopulateItems();
-                MessageBox.Show(ex.Message);
-            }
-        }
+		}
 
-        private void picXIcon_Click(object sender, EventArgs e)
-        {
-            isEditing = false;
-            picIconPencilTick.Image = GUI.Properties.Resources.pencil;
-            
-            txtFigureName.Enabled = false;
-            picXIcon.Visible = false;
+		private void ChangeFigureName(string newName, Sphere sphere)
+		{
+			try
+			{
+				_figureController.UpdateFigureName(sphere, _currentClient, newName);
+				_figureList.PopulateItems();
 
-            _figureList.PopulateItems();
-        }
-    }
+			}
+			catch (InvalidFigureInputException ex)
+			{
+				_figureList.PopulateItems();
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void picXIcon_Click(object sender, EventArgs e)
+		{
+			isEditing = false;
+			picIconPencilTick.Image = GUI.Properties.Resources.pencil;
+
+			txtFigureName.Enabled = false;
+			picXIcon.Visible = false;
+
+			_figureList.PopulateItems();
+		}
+	}
 }

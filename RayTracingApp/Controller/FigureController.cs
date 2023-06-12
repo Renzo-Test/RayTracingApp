@@ -1,25 +1,24 @@
 ﻿using Controller.Exceptions;
-using IRepository;
+using DBRepository;
 using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 using System.Collections.Generic;
-using System;
-using DBRepository;
-using System.Data.SqlClient;
 
 namespace Controller
 {
 	public class FigureController
 	{
-        private const string DefaultDatabase = "RayTracingAppDB";
-        public IRepositoryFigure Repository;
-        public FigureController(string dbName = DefaultDatabase)
+		public IRepositoryFigure Repository;
+
+		private const string DefaultDatabase = "RayTracingAppDB";
+		public FigureController(string dbName = DefaultDatabase)
 		{
 			Repository = new FigureRepository()
-            {
+			{
 				DBName = dbName,
-            };
+			};
 		}
 
 		public List<Figure> ListFigures(string username)
@@ -123,6 +122,5 @@ namespace Controller
 				throw new InvalidFigureInputException(ex.Message);
 			}
 		}
-
 	}
 }

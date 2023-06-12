@@ -11,156 +11,192 @@ using System.Runtime.CompilerServices;
 
 namespace Domain
 {
-    public class Scene
-    {
-        private const string EmptyNameMessage = "Scene's name must not be empty";
-        private const string SpaceCharacterConstant = " ";
-        private const string StartOrEndWithSpaceMessage = "Scene's name must not start or end with blank space";
+	public class Scene
+	{
+		private const string EmptyNameMessage = "Scene's name must not be empty";
+		private const string SpaceCharacterConstant = " ";
+		private const string StartOrEndWithSpaceMessage = "Scene's name must not start or end with blank space";
 
-        private const int MinFov = 1;
-        private const int MaxFov = 160;
+		private const int MinFov = 1;
+		private const int MaxFov = 160;
 
-        public int Id { get; set; }
-        public Vector CameraPosition = new Vector();
-        public Vector ObjectivePosition = new Vector();
-        public List<PosisionatedModel> PosisionatedModels { get; set; }
-        public byte[] Preview { get; set; }
+		private const double MinLensAperture = 0.1;
+		private const double MaxLensAperture = 1.0;
 
-        private string _registerTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
-        private string _owner;
-        private string _name;
-        private string _lastModificationDate = "unmodified";
-        private string _lastRenderDate = "unrendered";
-        private int _fov;
+		public int Id { get; set; }
 
-        public Scene()
-        {
-            PosisionatedModels = new List<PosisionatedModel>();
-        }
+		private string _registerTime = DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy");
+		private string _owner;
+		private string _name;
+		private string _lastModificationDate = "unmodified";
+		private string _lastRenderDate = "unrendered";
+		private int _fov;
+		private double _lensAperture = 0.5;
 
-        public Scene(string owner, int fov, Vector lookFrom, Vector lookAt)
-        {
-            SetSceneParameters(owner);
-            SetRenderingParameters(fov, lookFrom, lookAt);
-        }
+		public Vector LookFrom { get; set; } = new Vector();
+		public Vector LookAt { get; set; } = new Vector();
+		public List<PosisionatedModel> PosisionatedModels { get; set; }
+		public byte[] Preview { get; set; }
 
-        private void SetRenderingParameters(int fov, Vector lookFrom, Vector lookAt)
-        {
-            _fov = fov;
-            CameraPosition = lookFrom;
-            ObjectivePosition = lookAt;
-            PosisionatedModels = new List<PosisionatedModel>();
-        }
+		public Scene()
+		{
+			PosisionatedModels = new List<PosisionatedModel>();
+		}
 
-        private void SetSceneParameters(string owner)
-        {
-            _name = $"{_registerTime}";
-            _owner = owner;
-        }
+		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt)
+		{
+			SetSceneParameters(owner);
+			SetRenderingParameters(fov, lookFrom, lookAt);
+		}
 
-        public string Owner
-        {
-            get => _owner;
-            set => _owner = value;
-        }
+		private void SetRenderingParameters(int fov, Vector lookFrom, Vector lookAt)
+		{
+			_fov = fov;
+			LookFrom = lookFrom;
+			LookAt = lookAt;
+			PosisionatedModels = new List<PosisionatedModel>();
+		}
 
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                try
-                {
-                    RunNameIsEmptyChecker(value);
-                    RunNameIsSpacedChecker(value);
-                    _name = value;
-                }
-                catch (InvalidSceneInputException ex)
-                {
-                    throw new InvalidSceneInputException(ex.Message);
-                }
-            }
-        }
+		private void SetSceneParameters(string owner)
+		{
+			_name = $"{_registerTime}";
+			_owner = owner;
+		}
 
-        public string RegisterTime
-        {
-            get => _registerTime;
-            set => _registerTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
-        }
+		public string Owner
+		{
+			get => _owner;
+			set => _owner = value;
+		}
 
-        public string LastModificationDate
-        {
-            get => _lastModificationDate;
-            set => _lastModificationDate = value;
-        }
+		public string Name
+		{
+			get => _name;
+			set
+			{
+				try
+				{
+					RunNameIsEmptyChecker(value);
+					RunNameIsSpacedChecker(value);
+					_name = value;
+				}
+				catch (InvalidSceneInputException ex)
+				{
+					throw new InvalidSceneInputException(ex.Message);
+				}
+			}
+		}
 
-        public string LastRenderDate
-        {
-            get => _lastRenderDate;
-            set => _lastRenderDate = value;
-        }
+		public string RegisterTime
+		{
+			get => _registerTime;
+			set => _registerTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+		}
 
-        public int Fov
-        {
-            get => _fov;
-            set
-            {
-                try
-                {
-                    RunFovIsValidChecker(value);
-                    _fov = value;
-                }
-                catch (InvalidSceneInputException ex)
-                {
-                    throw new InvalidSceneInputException(ex.Message);
-                }
-            }
-        }
+		public string LastModificationDate
+		{
+			get => _lastModificationDate;
+			set => _lastModificationDate = value;
+		}
 
-        public Image GetPreview()
-        {
-            using (var stream = new MemoryStream(Preview))
-            {
-                return Image.FromStream(stream);
-            }
-        }
+		public string LastRenderDate
+		{
+			get => _lastRenderDate;
+			set => _lastRenderDate = value;
+		}
 
-        public void SetPreview(Image img)
-        {
-            Preview = ImageToByteArray(img);
-        }
+		public int Fov
+		{
+			get => _fov;
+			set
+			{
+				try
+				{
+					RunFovIsValidChecker(value);
+					_fov = value;
+				}
+				catch (InvalidSceneInputException ex)
+				{
+					throw new InvalidSceneInputException(ex.Message);
+				}
+			}
+		}
 
-        public byte[] ImageToByteArray(Image img)
-        {
-            using (var stream = new MemoryStream())
-            {
-                img.Save(stream, ImageFormat.Bmp);
-                return stream.ToArray();
-            }
-        }
+		public double LensAperture
+		{
+			get => _lensAperture;
+			set
+			{
+				try
+				{
+					RunLensApertureIsValidChecker(value);
+					_lensAperture = value;
+				}
+				catch (InvalidSceneInputException ex)
+				{
+					throw new InvalidSceneInputException(ex.Message);
+				}
+			}
+		}
 
-        private static void RunNameIsEmptyChecker(string value)
-        {
-            if (value.Equals(string.Empty))
-            {
-                throw new EmptyNameSceneException(EmptyNameMessage);
-            }
-        }
+		public Image GetPreview()
+		{
+			using (var stream = new MemoryStream(Preview))
+			{
+				return Image.FromStream(stream);
+			}
+		}
 
-        private static void RunNameIsSpacedChecker(string value)
-        {
-            if (value.StartsWith(SpaceCharacterConstant) || value.EndsWith(SpaceCharacterConstant))
-            {
-                throw new InvalidSpacePositionException(StartOrEndWithSpaceMessage);
-            }
-        }
+		public void SetPreview(Image img)
+		{
+			Preview = ImageToByteArray(img);
+		}
 
-        private static void RunFovIsValidChecker(int value)
-        {
-            if (!Enumerable.Range(MinFov, MaxFov).Contains(value))
-            {
-                throw new InvalidFovException($"Scene's fov must be between {MinFov} and {MaxFov}");
-            }
-        }
-    }
+		public byte[] ImageToByteArray(Image img)
+		{
+			using (var stream = new MemoryStream())
+			{
+				img.Save(stream, ImageFormat.Bmp);
+				return stream.ToArray();
+			}
+		}
+
+		private static void RunNameIsEmptyChecker(string value)
+		{
+			if (value.Equals(string.Empty))
+			{
+				throw new EmptyNameSceneException(EmptyNameMessage);
+			}
+		}
+
+		private static void RunNameIsSpacedChecker(string value)
+		{
+			if (value.StartsWith(SpaceCharacterConstant) || value.EndsWith(SpaceCharacterConstant))
+			{
+				throw new InvalidSpacePositionException(StartOrEndWithSpaceMessage);
+			}
+		}
+
+		private static void RunFovIsValidChecker(int value)
+		{
+			if (!Enumerable.Range(MinFov, MaxFov).Contains(value))
+			{
+				throw new InvalidFovException($"Scene's fov must be between {MinFov} and {MaxFov}");
+			}
+		}
+
+		private void RunLensApertureIsValidChecker(double value)
+		{
+			if (MinLensAperture > value || value > MaxLensAperture)
+			{
+				throw new InvalidFovException($"Lens aperture must be between {MinLensAperture} and {MaxLensAperture}");
+			}
+
+			double roundedValue = Math.Round(value, 1);
+			if (roundedValue != value)
+			{
+				throw new InvalidFovException($"Lens aperture must have only one decimal");
+			}
+		}
+	}
 }

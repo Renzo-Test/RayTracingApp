@@ -1,9 +1,9 @@
 ﻿using Controller;
 using Controller.Exceptions;
 using DBRepository.Exceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Domain.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -14,8 +14,8 @@ namespace Test.ControllerTest
 	[ExcludeFromCodeCoverage]
 	public class FigureControllerTest
 	{
-        private const string TestDatabase = "RayTracingAppTestDB";
-        private FigureController _figureController;
+		private const string TestDatabase = "RayTracingAppTestDB";
+		private FigureController _figureController;
 		private ModelController _modelController;
 
 		[TestInitialize]

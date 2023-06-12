@@ -29,9 +29,9 @@ namespace Domain
 		{
 			return new Vector()
 			{
-				X = this.X + vector.X,
-				Y = this.Y + vector.Y,
-				Z = this.Z + vector.Z
+				X = X + vector.X,
+				Y = Y + vector.Y,
+				Z = Z + vector.Z
 			};
 		}
 
@@ -39,9 +39,9 @@ namespace Domain
 		{
 			return new Vector()
 			{
-				X = this.X - vector.X,
-				Y = this.Y - vector.Y,
-				Z = this.Z - vector.Z
+				X = X - vector.X,
+				Y = Y - vector.Y,
+				Z = Z - vector.Z
 			};
 		}
 
@@ -49,9 +49,9 @@ namespace Domain
 		{
 			return new Vector()
 			{
-				X = this.X * multiplier,
-				Y = this.Y * multiplier,
-				Z = this.Z * multiplier
+				X = X * multiplier,
+				Y = Y * multiplier,
+				Z = Z * multiplier
 			};
 		}
 
@@ -61,38 +61,38 @@ namespace Domain
 
 			return new Vector()
 			{
-				X = this.X / divisor,
-				Y = this.Y / divisor,
-				Z = this.Z / divisor
+				X = X / divisor,
+				Y = Y / divisor,
+				Z = Z / divisor
 			};
 		}
 
 		public void AddFrom(Vector vector)
 		{
-			this.X += vector.X;
-			this.Y += vector.Y;
-			this.Z += vector.Z;
+			X += vector.X;
+			Y += vector.Y;
+			Z += vector.Z;
 		}
 
 		public void SubstractFrom(Vector vector)
 		{
-			this.X -= vector.X;
-			this.Y -= vector.Y;
-			this.Z -= vector.Z;
+			X -= vector.X;
+			Y -= vector.Y;
+			Z -= vector.Z;
 		}
 
 		public void ScaleUpBy(double multiplier)
 		{
-			this.X *= multiplier;
-			this.Y *= multiplier;
-			this.Z *= multiplier;
+			X *= multiplier;
+			Y *= multiplier;
+			Z *= multiplier;
 		}
 
 		public void ScaleDownBy(double divisor)
 		{
-			this.X /= divisor;
-			this.Y /= divisor;
-			this.Z /= divisor;
+			X /= divisor;
+			Y /= divisor;
+			Z /= divisor;
 		}
 
 		public double Dot(Vector vector)

@@ -1,8 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
+﻿using Domain;
 using Domain.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
-using Engine;
 
 namespace Test.ModelsTest
 {

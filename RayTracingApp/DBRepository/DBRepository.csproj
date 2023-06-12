@@ -59,9 +59,21 @@
     <Compile Include="Exceptions\NotFoundMaterialException.cs" />
     <Compile Include="Exceptions\NotFoundModelException.cs" />
     <Compile Include="Exceptions\NotFoundSceneException.cs" />
-    <Compile Include="Migrations\202306092207455_InitialMigration.cs" />
-    <Compile Include="Migrations\202306092207455_InitialMigration.designer.cs">
-      <DependentUpon>202306092207455_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202306100000008_posisionatedModels.cs" />
+    <Compile Include="Migrations\202306100000008_posisionatedModels.designer.cs">
+      <DependentUpon>202306100000008_posisionatedModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306102311076_lensAperture.cs" />
+    <Compile Include="Migrations\202306102311076_lensAperture.designer.cs">
+      <DependentUpon>202306102311076_lensAperture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306110054596_LookFrom-LookAt.cs" />
+    <Compile Include="Migrations\202306110054596_LookFrom-LookAt.designer.cs">
+      <DependentUpon>202306110054596_LookFrom-LookAt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306112339007_RemovedRenderProperties.cs" />
+    <Compile Include="Migrations\202306112339007_RemovedRenderProperties.designer.cs">
+      <DependentUpon>202306112339007_RemovedRenderProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SceneRepository.cs" />
@@ -86,9 +98,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202306092207455_InitialMigration.resx">
-      <DependentUpon>202306092207455_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306100000008_posisionatedModels.resx">
+      <DependentUpon>202306100000008_posisionatedModels.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306102311076_lensAperture.resx">
+      <DependentUpon>202306102311076_lensAperture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306110054596_LookFrom-LookAt.resx">
+      <DependentUpon>202306110054596_LookFrom-LookAt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306112339007_RemovedRenderProperties.resx">
+      <DependentUpon>202306112339007_RemovedRenderProperties.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\202306110054297_Scene-LookFrom\LookAt\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,7 +1,7 @@
-﻿using Engine;
-using Engine.Exceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
+using Domain;
+using Domain.Exceptions;
 
 namespace Test.EngineTest
 {

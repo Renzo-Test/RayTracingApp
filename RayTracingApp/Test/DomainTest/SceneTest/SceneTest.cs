@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
+﻿using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 using System.Drawing;
-using System.IO;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Reflection;
 
 namespace Test.ModelsTest
 {
@@ -113,9 +113,9 @@ namespace Test.ModelsTest
 
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
-				CameraPosition = newCoordinate,
+				LookFrom = newCoordinate,
 			};
-			Assert.AreEqual(newCoordinate, _scene.CameraPosition);
+			Assert.AreEqual(newCoordinate, _scene.LookFrom);
 		}
 
 		[TestMethod]
@@ -132,7 +132,7 @@ namespace Test.ModelsTest
 
 			foreach (PropertyInfo property in lookFrom.GetType().GetProperties())
 			{
-				Assert.AreEqual(property.GetValue(lookFrom), property.GetValue(_scene.CameraPosition));
+				Assert.AreEqual(property.GetValue(lookFrom), property.GetValue(_scene.LookFrom));
 			}
 		}
 
@@ -148,9 +148,9 @@ namespace Test.ModelsTest
 
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
-				ObjectivePosition = newCoordinate,
+				LookAt = newCoordinate,
 			};
-			Assert.AreEqual(newCoordinate, _scene.ObjectivePosition);
+			Assert.AreEqual(newCoordinate, _scene.LookAt);
 		}
 
 		[TestMethod]
@@ -167,7 +167,7 @@ namespace Test.ModelsTest
 
 			foreach (PropertyInfo property in lookAt.GetType().GetProperties())
 			{
-				Assert.AreEqual(property.GetValue(lookAt), property.GetValue(_scene.ObjectivePosition));
+				Assert.AreEqual(property.GetValue(lookAt), property.GetValue(_scene.LookAt));
 			}
 		}
 
@@ -235,25 +235,25 @@ namespace Test.ModelsTest
 
 		[TestMethod]
 		public void GetPreview_OkTest()
-        {
-            MemoryStream ms = new MemoryStream();
+		{
+			MemoryStream ms = new MemoryStream();
 
-            Bitmap img = new Bitmap(600, 300);
-            byte[] imgByteArr = GetImageAsByteArray(ms, img);
+			Bitmap img = new Bitmap(600, 300);
+			byte[] imgByteArr = GetImageAsByteArray(ms, img);
 
-            _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
-            {
-                Preview = imgByteArr
-            };
+			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			{
+				Preview = imgByteArr
+			};
 
-            Assert.AreEqual(_scene.GetPreview().ToString(), img.ToString());
-        }
+			Assert.AreEqual(_scene.GetPreview().ToString(), img.ToString());
+		}
 
-        private static byte[] GetImageAsByteArray(MemoryStream ms, Bitmap img)
-        {
-            img.Save(ms, ImageFormat.Bmp);
-            return ms.ToArray();
-        }
+		private static byte[] GetImageAsByteArray(MemoryStream ms, Bitmap img)
+		{
+			img.Save(ms, ImageFormat.Bmp);
+			return ms.ToArray();
+		}
 
 		[TestMethod]
 		public void SetPreview_OkTest()

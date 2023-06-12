@@ -1,30 +1,28 @@
 ﻿using Controller.Exceptions;
-using IRepository;
 using DBRepository;
-using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Drawing;
 
 namespace Controller
 {
 	public class SceneController
 	{
-        private const string DefaultDatabase = "RayTracingAppDB";
-        public IRepositoryScene Repository;
+		public IRepositoryScene Repository;
 
-        public SceneController(string dbName = DefaultDatabase)
-        {
-            Repository = new SceneRepository()
-            {
-                DBName = dbName,
-            };
-        }
+		private const string DefaultDatabase = "RayTracingAppDB";
+		public SceneController(string dbName = DefaultDatabase)
+		{
+			Repository = new SceneRepository()
+			{
+				DBName = dbName,
+			};
+		}
 
-        public void AddScene(Scene newScene, string username)
+		public void AddScene(Scene newScene, string username)
 		{
 			try
 			{
@@ -36,6 +34,11 @@ namespace Controller
 			{
 				throw new InvalidSceneInputException(ex.Message);
 			}
+		}
+
+		public void SaveSceneCameraAtributes(Scene scene)
+		{
+			Repository.SaveSceneCameraAtributes(scene);
 		}
 
 		public void UpdateSceneName(Scene scene, string currentClient, string newName)
@@ -67,6 +70,7 @@ namespace Controller
 		{
 			scene.LastRenderDate = TodayDate();
 		}
+
 		public List<Scene> ListScenes(string username)
 		{
 			return Repository.GetScenesByClient(username);
@@ -91,9 +95,30 @@ namespace Controller
 		}
 
 		public void UpdatePreview(Scene scene, Bitmap img)
-        {
+		{
 			Repository.UpdateScenePreview(scene, img);
-        }
+		}
+
+		public void UpdateModels(Scene scene, PosisionatedModel posisionatedModel)
+		{
+			Repository.UpdateSceneModels(scene, posisionatedModel);
+		}
+
+		public void RemoveModel(Scene scene, PosisionatedModel posisionatedModel)
+		{
+			Repository.RemoveSceneModels(scene, posisionatedModel);
+		}
+
+		public void UpdateModelsCoordinate(PosisionatedModel model, Vector coords)
+		{
+			Repository.UpdateModelsCoordinate(model, coords);
+		}
+
+		public List<PosisionatedModel> GetPosisionatedModels(Scene scene)
+		{
+			return Repository.GetPosisionatedModels(scene);
+		}
+
 		private void SceneChecker(Scene scene, string username)
 		{
 			if (SceneNameExist(scene, username))
@@ -108,9 +133,10 @@ namespace Controller
 			List<Scene> clientScenes = Repository.GetScenesByClient(username);
 			return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
 		}
+
 		private static string TodayDate()
 		{
-			return DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+			return DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 		}
-    }
+	}
 }

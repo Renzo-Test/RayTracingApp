@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Controller
+﻿namespace Controller
 {
     public class MainController
     {
@@ -17,11 +11,11 @@ namespace Controller
 
         public MainController()
         {
-            ModelController = new ModelController();
-            SceneController = new SceneController();
+            ClientController = new ClientController();
             FigureController = new FigureController();
             MaterialController = new MaterialController();
-            ClientController = new ClientController();
+            ModelController = new ModelController();
+			      SceneController = new SceneController();
             LogController = new LogController();
         }
     }

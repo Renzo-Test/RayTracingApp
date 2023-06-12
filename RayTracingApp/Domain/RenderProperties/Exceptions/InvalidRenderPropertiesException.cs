@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Engine.Exceptions
+namespace Domain.Exceptions
 {
 	public class InvalidRenderPropertiesInputException : Exception
 	{

@@ -1,4 +1,4 @@
-﻿namespace Engine.Exceptions
+﻿namespace Domain.Exceptions
 {
 	internal class InputLowerThanZero : InvalidRenderPropertiesInputException
 	{

@@ -52,13 +52,16 @@
     <Compile Include="Log\Log.cs" />
     <Compile Include="Material\Exceptions\InvalidBlurValueException.cs" />
     <Compile Include="Material\Lambertian.cs" />
-    <Compile Include="Material\Metallic.cs" />
+    <Compile Include="Material\Metalic.cs" />
     <Compile Include="Material\Exceptions\EmptyNameMaterialException.cs" />
     <Compile Include="Material\Exceptions\InvalidMaterialInputException.cs" />
     <Compile Include="Material\Exceptions\NotAlphanumericMaterialException.cs" />
     <Compile Include="Model\Exceptions\EmptyNameModelException.cs" />
     <Compile Include="Model\Exceptions\InvalidModelInputException.cs" />
     <Compile Include="Model\Exceptions\NotAlphanumericException.cs" />
+    <Compile Include="RenderProperties\Exceptions\InputLowerThanZero.cs" />
+    <Compile Include="RenderProperties\Exceptions\InvalidRenderPropertiesException.cs" />
+    <Compile Include="RenderProperties\RenderProperties.cs" />
     <Compile Include="Scene\Exceptions\EmptyNameSceneException.cs" />
     <Compile Include="Scene\Exceptions\InvalidFovException.cs" />
     <Compile Include="Scene\Exceptions\InvalidSceneInputException.cs" />

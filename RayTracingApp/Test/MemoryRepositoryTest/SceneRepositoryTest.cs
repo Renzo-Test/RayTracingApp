@@ -1,13 +1,11 @@
 ﻿using DBRepository;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DBRepository.Exceptions;
 using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using Controller;
-using DBRepository.Exceptions;
 using System.Drawing;
-using System;
+using System.Linq;
 
 namespace Test.MemoryRepositoryTest
 {
@@ -36,11 +34,11 @@ namespace Test.MemoryRepositoryTest
 		[TestCleanup]
 		public void TestCleanup()
 		{
-            using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
-            {
-                context.ClearDBTable("Scenes");
-            }
-        }
+			using (var context = new DBRepository.AppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Scenes");
+			}
+		}
 
 		[TestMethod]
 		public void CreateSceneRepository_OkTest()
@@ -96,8 +94,8 @@ namespace Test.MemoryRepositoryTest
 
 			List<Scene> iterable = _sceneRepository.GetScenesByClient("OwnerName");
 			Assert.AreEqual(iterable[0].Id, _scene.Id);
-            Assert.AreEqual(iterable[1].Id, _scene2.Id);
-        }
+			Assert.AreEqual(iterable[1].Id, _scene2.Id);
+		}
 
 		[TestMethod]
 		public void AddDifferentClientScenes_OkTest()
@@ -119,9 +117,9 @@ namespace Test.MemoryRepositoryTest
 
 			List<Scene> iterableOwner1 = _sceneRepository.GetScenesByClient("OwnerName");
 			List<Scene> iterableOwner2 = _sceneRepository.GetScenesByClient("OwnerName2");
-            Assert.AreEqual(iterableOwner1[0].Id, _scene.Id);
-            Assert.AreEqual(iterableOwner2[0].Id, _scene2.Id);
-        }
+			Assert.AreEqual(iterableOwner1[0].Id, _scene.Id);
+			Assert.AreEqual(iterableOwner2[0].Id, _scene2.Id);
+		}
 
 		[TestMethod]
 		public void GetScenesByClient_NoClient_OkTest()
