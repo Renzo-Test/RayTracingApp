@@ -5,10 +5,8 @@ namespace Domain
 	public class Color
 	{
 		private const string ColorErrorMessage = "Color's number must not be smaller than 0 or greater than 255";
-		private int _red = 0;
-		private int _green = 0;
-		private int _blue = 0;
 
+		private int _red = 0;
 		public int Red
 		{
 			get => _red;
@@ -22,6 +20,7 @@ namespace Domain
 			}
 		}
 
+		private int _green = 0;
 		public int Green
 		{
 			get => _green;
@@ -35,6 +34,7 @@ namespace Domain
 			}
 		}
 
+		private int _blue = 0;
 		public int Blue
 		{
 			get => _blue;
@@ -59,6 +59,7 @@ namespace Domain
 
 			return colorVector;
 		}
+
 
 		private double ColorToAxis(int color)
 		{
