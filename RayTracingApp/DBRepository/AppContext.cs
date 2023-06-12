@@ -18,7 +18,6 @@ namespace DBRepository
         public DbSet<Scene> Scenes { get; set; }
         public DbSet<PosisionatedModel> PosisionatedModels { get; set; }
 
-
         public AppContext(string dbName) : base(dbName)  { }
 		public AppContext() : base(DefaultDatabase) { }
 

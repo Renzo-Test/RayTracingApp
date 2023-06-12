@@ -39,5 +39,28 @@ namespace DBRepository
 				return foundClient;
 			}
 		}
+
+		public void SaveDefaultCameraAtributes(Client client)
+		{
+			using (var context = new AppContext(DBName))
+			{
+				Client updateClient = context.Clients.FirstOrDefault(c => c.Username.Equals(client.Username));
+				updateClient.DefaultFov = client.DefaultFov;
+				updateClient.DefaultLookFrom = client.DefaultLookFrom;
+				updateClient.DefaultLookAt = client.DefaultLookAt;
+				context.SaveChanges();
+			}
+		}
+
+		public void SaveDefaultRenderProperties(Client client, RenderProperties renderProperties)
+		{
+			client.DefaultRenderProperties = renderProperties;
+			using (var context = new AppContext(DBName))
+			{
+				Client updateClient = context.Clients.FirstOrDefault(c => c.Username.Equals(client.Username));
+				updateClient.DefaultRenderProperties = renderProperties;
+				context.SaveChanges();
+			}
+		}
 	}
 }

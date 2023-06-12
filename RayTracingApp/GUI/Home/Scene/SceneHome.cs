@@ -33,7 +33,7 @@ namespace GUI
             
             InitializeComponent();
 
-            _defaultRenderSettings = new DefaultRenderSettings(this);
+            _defaultRenderSettings = new DefaultRenderSettings(this, mainController, currentClient);
             _renderProperties = _defaultRenderSettings.RenderProperties;
             _listScenePanel = new SceneList(this, mainController.SceneController, currentClient);
             _defaultCamPanel = new DefaultCam(this, mainController, currentClient);

@@ -17,6 +17,7 @@ namespace GUI
     {
         private SceneHome _sceneHome;
         private Client _currentClient;
+		private MainController _mainController;
 
         public DefaultCam(SceneHome sceneHome, MainController mainController, Client currentClient)
         {
@@ -24,6 +25,7 @@ namespace GUI
 
             _sceneHome = sceneHome;
             _currentClient = currentClient;
+			_mainController = mainController;
             InitializePanelAttributes(currentClient);
         }
 
@@ -61,6 +63,7 @@ namespace GUI
 			}
 
 			SetClientDefaultSceneValues(fov, lookFrom, lookAt);
+			_mainController.ClientController.SaveDefaultCameraAtributes(_currentClient);
 
 			_sceneHome.GoToSceneList();
 		}
@@ -77,6 +80,7 @@ namespace GUI
 
 		private void SetClientDefaultSceneValues(int fov, Vector lookFrom, Vector lookAt)
         {
+			_currentClient.DefaultFov = fov;
             _currentClient.DefaultLookAt = lookAt;
             _currentClient.DefaultLookFrom = lookFrom;
         }

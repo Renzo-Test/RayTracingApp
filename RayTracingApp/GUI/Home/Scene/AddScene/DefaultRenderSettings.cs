@@ -1,4 +1,6 @@
-﻿using Domain;
+﻿using Controller;
+using Domain;
+using Domain.Exceptions;
 using Engine;
 using Engine.Exceptions;
 using System;
@@ -16,17 +18,30 @@ namespace GUI
     public partial class DefaultRenderSettings : UserControl
     {
         private SceneHome _sceneHome;
+        private Client _currentClient;
+        private MainController _mainController;
         public RenderProperties RenderProperties;
 
-        public DefaultRenderSettings(SceneHome sceneHome)
-        {
-            _sceneHome = sceneHome;
-            RenderProperties = new RenderProperties();
-            InitializeComponent();
+        public DefaultRenderSettings(SceneHome sceneHome, MainController mainController,Client currentClient)
+		{
+			_sceneHome = sceneHome;
+			_currentClient = currentClient;
+			_mainController = mainController;
+			RenderProperties = new RenderProperties();
+			InitializeComponent();
 
-        }
+			SetText(currentClient);
+		}
 
-        private void picRectangleFieldCancel_Click(object sender, EventArgs e)
+		private void SetText(Client currentClient)
+		{
+			txtResX.Text = currentClient.DefaultRenderProperties.ResolutionX.ToString();
+			txtResY.Text = currentClient.DefaultRenderProperties.ResolutionY.ToString();
+			txtSamplesPerPixel.Text = currentClient.DefaultRenderProperties.SamplesPerPixel.ToString();
+			txtMaxDepth.Text = currentClient.DefaultRenderProperties.MaxDepth.ToString();
+		}
+
+		private void picRectangleFieldCancel_Click(object sender, EventArgs e)
         {
             _sceneHome.GoToSceneList();
         }
@@ -80,6 +95,8 @@ namespace GUI
                 resolutionY = int.Parse(txtResY.Text);
                 samplesPerPixel = int.Parse(txtSamplesPerPixel.Text);
             }
+
+            _mainController.ClientController.SaveDefaultRenderProperties(_currentClient, RenderProperties);
         }
 
         private void SetRenderProperties(int resolutionX, int resolutionY, int samplesPerPixel, int maxDepth)
@@ -112,7 +129,7 @@ namespace GUI
                 int resY = int.Parse(txtResY.Text);
                 int newXResolution = RenderProperties.PreCalculateXResolution(resY);
 
-                txtResY.Text = $"{newXResolution}";
+                txtResX.Text = $"{newXResolution}";
             }
             catch (FormatException)
             {

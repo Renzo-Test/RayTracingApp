@@ -78,9 +78,9 @@
 			this.lblLastModified.ForeColor = System.Drawing.Color.White;
 			this.lblLastModified.Location = new System.Drawing.Point(117, 63);
 			this.lblLastModified.Name = "lblLastModified";
-			this.lblLastModified.Size = new System.Drawing.Size(264, 21);
+			this.lblLastModified.Size = new System.Drawing.Size(286, 21);
 			this.lblLastModified.TabIndex = 3;
-			this.lblLastModified.Text = "Last Modified: 14:32 - 01/01/2023 ";
+			this.lblLastModified.Text = "Last Modified: 24:59:59 - 01/01/2023 ";
 			this.lblLastModified.Click += new System.EventHandler(this.lblLastModified_Click);
 			// 
 			// SceneListItem

@@ -58,6 +58,9 @@
     <Compile Include="Model\Exceptions\EmptyNameModelException.cs" />
     <Compile Include="Model\Exceptions\InvalidModelInputException.cs" />
     <Compile Include="Model\Exceptions\NotAlphanumericException.cs" />
+    <Compile Include="RenderProperties\Exceptions\InputLowerThanZero.cs" />
+    <Compile Include="RenderProperties\Exceptions\InvalidRenderPropertiesException.cs" />
+    <Compile Include="RenderProperties\RenderProperties.cs" />
     <Compile Include="Scene\Exceptions\EmptyNameSceneException.cs" />
     <Compile Include="Scene\Exceptions\InvalidFovException.cs" />
     <Compile Include="Scene\Exceptions\InvalidSceneInputException.cs" />

@@ -35,6 +35,7 @@ namespace GUI
         private void InitializePanelAttributes()
         {
             lblSceneName.Text = _scene.Name;
+            lblLastModified.Text = $"Last modified: {_scene.LastModificationDate}";
         }
 
         private void InitializePreview()
