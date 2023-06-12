@@ -23,20 +23,25 @@ namespace GUI
         public RenderProperties RenderProperties;
 
         public DefaultRenderSettings(SceneHome sceneHome, MainController mainController,Client currentClient)
-        {
-            _sceneHome = sceneHome;
-            _currentClient = currentClient;
-            _mainController = mainController;
-            RenderProperties = new RenderProperties();
-            InitializeComponent();
+		{
+			_sceneHome = sceneHome;
+			_currentClient = currentClient;
+			_mainController = mainController;
+			RenderProperties = new RenderProperties();
+			InitializeComponent();
 
+			SetText(currentClient);
+		}
+
+		private void SetText(Client currentClient)
+		{
 			txtResX.Text = currentClient.DefaultRenderProperties.ResolutionX.ToString();
 			txtResY.Text = currentClient.DefaultRenderProperties.ResolutionY.ToString();
 			txtSamplesPerPixel.Text = currentClient.DefaultRenderProperties.SamplesPerPixel.ToString();
 			txtMaxDepth.Text = currentClient.DefaultRenderProperties.MaxDepth.ToString();
 		}
 
-        private void picRectangleFieldCancel_Click(object sender, EventArgs e)
+		private void picRectangleFieldCancel_Click(object sender, EventArgs e)
         {
             _sceneHome.GoToSceneList();
         }
