@@ -98,7 +98,7 @@ namespace GUI
 			RenderProperties.MaxDepth = maxDepth;
 		}
 
-		private void txtResX_KeyUp(object sender, KeyEventArgs e)
+		private void TxtResX_KeyUp(object sender, KeyEventArgs e)
 		{
 			try
 			{
@@ -113,7 +113,7 @@ namespace GUI
 			}
 		}
 
-		private void txtResY_KeyUp(object sender, KeyEventArgs e)
+		private void TxtResY_KeyUp(object sender, KeyEventArgs e)
 		{
 			try
 			{

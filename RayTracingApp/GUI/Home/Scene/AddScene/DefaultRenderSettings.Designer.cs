@@ -90,7 +90,7 @@
             this.txtResY.Size = new System.Drawing.Size(85, 24);
             this.txtResY.TabIndex = 45;
             this.txtResY.Text = "200";
-            this.txtResY.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtResY_KeyUp);
+            this.txtResY.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtResY_KeyUp);
             // 
             // pictureBox1
             // 
@@ -250,7 +250,7 @@
             this.txtResX.Size = new System.Drawing.Size(85, 24);
             this.txtResX.TabIndex = 32;
             this.txtResX.Text = "300";
-            this.txtResX.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtResX_KeyUp);
+            this.txtResX.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtResX_KeyUp);
             // 
             // picDarkRectangleFieldFov
             // 
