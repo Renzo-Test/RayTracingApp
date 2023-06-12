@@ -27,7 +27,7 @@ namespace DBRepository
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Materials.Where(material => material.Owner.Equals(client.Username)).ToList();
+				return context.Materials.Where(material => material.Owner.Id.Equals(client.Id)).ToList();
 			}
 		}
 
