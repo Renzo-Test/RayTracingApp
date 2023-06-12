@@ -32,7 +32,7 @@ namespace GUI
 			txtMaxDepth.Text = currentClient.DefaultRenderProperties.MaxDepth.ToString();
 		}
 
-		private void picRectangleFieldCancel_Click(object sender, EventArgs e)
+		private void PicRectangleFieldCancel_Click(object sender, EventArgs e)
 		{
 			_sceneHome.GoToSceneList();
 		}
@@ -42,7 +42,7 @@ namespace GUI
 			_sceneHome.GoToSceneList();
 		}
 
-		private void picRectangleFieldSave_Click(object sender, EventArgs e)
+		private void PicRectangleFieldSave_Click(object sender, EventArgs e)
 		{
 			Save();
 		}

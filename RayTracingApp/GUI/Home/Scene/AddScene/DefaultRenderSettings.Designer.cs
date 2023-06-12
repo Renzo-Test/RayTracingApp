@@ -201,7 +201,7 @@
             this.picRectangleFieldCancel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picRectangleFieldCancel.TabIndex = 36;
             this.picRectangleFieldCancel.TabStop = false;
-            this.picRectangleFieldCancel.Click += new System.EventHandler(this.picRectangleFieldCancel_Click);
+            this.picRectangleFieldCancel.Click += new System.EventHandler(this.PicRectangleFieldCancel_Click);
             // 
             // picRectangleFieldSave
             // 
@@ -214,7 +214,7 @@
             this.picRectangleFieldSave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picRectangleFieldSave.TabIndex = 35;
             this.picRectangleFieldSave.TabStop = false;
-            this.picRectangleFieldSave.Click += new System.EventHandler(this.picRectangleFieldSave_Click);
+            this.picRectangleFieldSave.Click += new System.EventHandler(this.PicRectangleFieldSave_Click);
             // 
             // txtSamplesPerPixel
             // 
