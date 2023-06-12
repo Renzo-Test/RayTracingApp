@@ -89,13 +89,13 @@ namespace Controller
 			}
 		}
 
-		private void RunSignInChecker(string username, string password)
+		private void RunSignInChecker(Client client)
 		{
 			try
 			{
-				string _clientPassword = Repository.GetClient(username).Password;
+				string _clientPassword = Repository.GetClient(client.Username).Password;
 
-				if (!_clientPassword.Equals(password))
+				if (!_clientPassword.Equals(client.Password))
 				{
 					throw new NotCorrectPasswordException(WrongPasswordMessage);
 				}
