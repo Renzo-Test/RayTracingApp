@@ -39,7 +39,7 @@ namespace Controller
 		{
 			try
 			{
-				RunSignInChecker(client.Username, client.Password);
+				RunSignInChecker(client);
 				return Repository.GetClient(client.Username);
 			}
 			catch (InvalidCredentialsException ex)
