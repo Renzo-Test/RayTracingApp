@@ -258,7 +258,7 @@ namespace Test.ControllerTest
 			};
 
 			Scene blankScene = _sceneController.CreateBlankScene(client);
-			Assert.AreEqual(blankScene.RegisterTime, blankScene.Name);
+			Assert.AreEqual(DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy"), blankScene.Name);
 		}
 
 		[TestMethod]
