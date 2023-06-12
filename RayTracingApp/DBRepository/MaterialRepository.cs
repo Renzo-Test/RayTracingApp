@@ -15,7 +15,6 @@ namespace DBRepository
 
         public string DBName { get; set; } = "RayTracingAppDB";
 
-
         public List<Material> GetMaterialsByClient(string username)
         {
             using (var context = new AppContext(DBName))
