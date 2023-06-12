@@ -60,6 +60,20 @@ namespace Controller
             return totalRenderTime / 60;
         }
 
+        public int GetAverageRenderTimeInSeconds()
+        {
+            List<Log> logs = Repository.GetAllLogs();
+            int totalRenderTime = logs.Sum(log => log.RenderTime);
+            int totalLogs = logs.Count;
+
+            if (totalLogs > 0)
+            {
+                return totalRenderTime / totalLogs;
+            }
+
+            return 0;
+        }
+
     }
 
 }

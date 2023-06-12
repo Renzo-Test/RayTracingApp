@@ -76,5 +76,27 @@ namespace Test.ControllerTest
 
             Assert.AreEqual(4, _logController.GetTotalRenderTimeInMinutes());
         }
+
+        [TestMethod]
+
+        public void GetAverageRenderTimeInSeconds_OkTest()
+        {
+            Log testLog1 = new Log()
+            {
+                Username = "User1",
+                RenderTime = 200,
+            };
+
+            Log testLog2 = new Log()
+            {
+                Username = "User2",
+                RenderTime = 100,
+            };
+
+            _logController.AddLog(testLog1);
+            _logController.AddLog(testLog2);
+
+            Assert.AreEqual(150, _logController.GetAverageRenderTimeInSeconds());
+        }
     }
 }
