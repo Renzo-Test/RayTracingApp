@@ -93,9 +93,9 @@ namespace Controller
 			}
 		}
 
-		private void RunFigureChecker(Figure figure, string ownerName)
+		private void RunFigureChecker(Figure figure, Client client)
 		{
-			if (FigureNameExist(figure.Name, ownerName))
+			if (FigureNameExist(figure.Name, client.Username))
 			{
 				string AlreadyExsitingFigureMessage = $"Figure with name {figure.Name} already exists";
 				throw new AlreadyExistingFigureException(AlreadyExsitingFigureMessage);
