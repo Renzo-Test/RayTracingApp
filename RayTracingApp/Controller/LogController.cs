@@ -8,8 +8,9 @@ namespace Controller
 {
 	public class LogController
 	{
-		private const string DefaultDatabase = "RayTracingAppDB";
 		public IRepositoryLog Repository;
+
+		private const string DefaultDatabase = "RayTracingAppDB";
 
 		public LogController(string dbName = DefaultDatabase)
 		{
@@ -18,14 +19,17 @@ namespace Controller
 				DBName = dbName,
 			};
 		}
+
 		public void AddLog(Log newLog)
 		{
 			Repository.AddLog(newLog);
 		}
+
 		public List<Log> ListLogs()
 		{
 			return Repository.GetAllLogs();
 		}
+
 		public string GetUserWithMaxAccumulatedRenderTime()
 		{
 			List<Log> logs = Repository.GetAllLogs();
@@ -40,19 +44,20 @@ namespace Controller
 				.OrderByDescending(group => group.AccumulatedRenderTime)
 				.FirstOrDefault();
 
-			if (userMaxRenderTime != null)
+			if (userMaxRenderTime is object)
 			{
 				return userMaxRenderTime.Username;
 			}
 
 			return string.Empty;
 		}
+
 		public int GetTotalRenderTimeInMinutes()
 		{
 			List<Log> logs = Repository.GetAllLogs();
 			int totalRenderTime = logs.Sum(log => log.RenderTime);
 
-			// Convertir de segundos a minutos
+			// Seconds to minutes
 			return totalRenderTime / 60;
 		}
 
@@ -69,8 +74,6 @@ namespace Controller
 
 			return 0;
 		}
-
 	}
-
 }
 
