@@ -16,11 +16,11 @@ namespace Controller
 
         public MainController()
         {
-            ModelController = new ModelController();
-            SceneController = new SceneController();
+            ClientController = new ClientController();
             FigureController = new FigureController();
             MaterialController = new MaterialController();
-            ClientController = new ClientController();
+            ModelController = new ModelController();
+            SceneController = new SceneController();
         }
     }
 }
