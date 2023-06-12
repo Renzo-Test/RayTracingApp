@@ -12,10 +12,13 @@ namespace DBRepository
 
 		public string DBName { get; set; } = "RayTracingAppDB";
 
-		public void AddFigure(Figure figure)
+		public void AddFigure(Figure figure, Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
+				Client figureClient = context.Clients.FirstOrDefault(c => c.Id == client.Id);
+				figure.Owner = figureClient;
+
 				context.Figures.Add(figure);
 				context.SaveChanges();
 			}

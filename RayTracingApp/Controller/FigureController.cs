@@ -31,8 +31,7 @@ namespace Controller
 			try
 			{
 				RunFigureChecker(figure, client);
-				figure.Owner = client;
-				Repository.AddFigure(figure);
+				Repository.AddFigure(figure, client);
 			}
 			catch (InvalidFigureInputException ex)
 			{
