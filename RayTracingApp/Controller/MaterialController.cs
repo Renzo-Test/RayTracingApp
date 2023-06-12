@@ -45,7 +45,7 @@ namespace Controller
 				RunMaterialChecker(material, client);
 
 				material.Owner = client;
-				Repository.AddMaterial(material);
+				Repository.AddMaterial(material, client);
 			}
 			catch (InvalidMaterialInputException ex)
 			{
