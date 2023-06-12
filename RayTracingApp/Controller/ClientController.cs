@@ -22,6 +22,8 @@ namespace Controller
 			};
 		}
 
+		
+
 		public void SignUp(Client client)
 		{
 			try
@@ -35,12 +37,12 @@ namespace Controller
 			}
 		}
 
-		public Client SignIn(Client client)
+		public Client SignIn(string username, string password)
 		{
 			try
 			{
-				RunSignInChecker(client);
-				return Repository.GetClient(client.Username);
+				RunSignInChecker(username, password);
+				return Repository.GetClient(username);
 			}
 			catch (InvalidCredentialsException ex)
 			{
@@ -89,13 +91,13 @@ namespace Controller
 			}
 		}
 
-		private void RunSignInChecker(Client client)
+		private void RunSignInChecker(string username, string password)
 		{
 			try
 			{
-				string _clientPassword = Repository.GetClient(client.Username).Password;
+				string _clientPassword = Repository.GetClient(username).Password;
 
-				if (!_clientPassword.Equals(client.Password))
+				if (!_clientPassword.Equals(password))
 				{
 					throw new NotCorrectPasswordException(WrongPasswordMessage);
 				}
