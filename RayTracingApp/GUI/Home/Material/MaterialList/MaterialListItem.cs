@@ -62,7 +62,7 @@ namespace GUI
 
 		private void RemoveMaterial(string name)
 		{
-			List<Model> models = _modelController.ListModels(_currentClient);
+			List<Model> models = _modelController.ListModels(_currentClient.Username);
 
 			try
 			{
