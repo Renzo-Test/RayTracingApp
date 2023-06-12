@@ -13,9 +13,9 @@ namespace Controller
 {
 	public class SceneController
 	{
-        private const string DefaultDatabase = "RayTracingAppDB";
         public IRepositoryScene Repository;
 
+        private const string DefaultDatabase = "RayTracingAppDB";
         public SceneController(string dbName = DefaultDatabase)
         {
             Repository = new SceneRepository()
@@ -72,6 +72,7 @@ namespace Controller
 		{
 			scene.LastRenderDate = TodayDate();
 		}
+
 		public List<Scene> ListScenes(string username)
 		{
 			return Repository.GetScenesByClient(username);
@@ -134,6 +135,7 @@ namespace Controller
 			List<Scene> clientScenes = Repository.GetScenesByClient(username);
 			return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
 		}
+
 		private static string TodayDate()
 		{
 			return DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
