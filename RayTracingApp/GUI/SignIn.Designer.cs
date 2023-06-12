@@ -75,7 +75,7 @@
 			this.lblSignIn.Size = new System.Drawing.Size(87, 28);
 			this.lblSignIn.TabIndex = 9;
 			this.lblSignIn.Text = "Sign in";
-			this.lblSignIn.Click += new System.EventHandler(this.lblSignIn_Click);
+			this.lblSignIn.Click += new System.EventHandler(this.LblSignIn_Click);
 			// 
 			// lblAlreadyHaveAnAccount
 			// 
@@ -99,7 +99,7 @@
 			this.lblSignUpRef.Size = new System.Drawing.Size(53, 16);
 			this.lblSignUpRef.TabIndex = 11;
 			this.lblSignUpRef.Text = "Sign Up!";
-			this.lblSignUpRef.Click += new System.EventHandler(this.lblSignUpRef_Click);
+			this.lblSignUpRef.Click += new System.EventHandler(this.LblSignUpRef_Click);
 			// 
 			// txtUsernameSignIn
 			// 

@@ -42,14 +42,14 @@ namespace GUI
 			}
 		}
 
-		private void lblSignUpRef_Click(object sender, EventArgs e)
+		private void LblSignUpRef_Click(object sender, EventArgs e)
 		{
 			_mainForm.GoToSignUp();
 			ResetPlaceholders();
 		}
 
 
-		private void lblSignIn_Click(object sender, EventArgs e)
+		private void LblSignIn_Click(object sender, EventArgs e)
 		{
 			SignInUser();
 		}
