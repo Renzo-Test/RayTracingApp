@@ -5,9 +5,9 @@ namespace Domain
 {
 	public class Sphere : Figure
 	{
-		public double Radius { get; set; }
-
 		private const string SmallerThanCeroRadiusMessage = "Sphere's radius must be greater than cero";
+
+		public double Radius { get; set; }
 
 		public override void FigurePropertiesAreValid()
 		{
