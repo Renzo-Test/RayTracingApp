@@ -52,11 +52,11 @@ namespace Controller
 			currentClient = null;
 		}
 
-		public bool ClientAlreadyExists(string username)
+		public bool ClientAlreadyExists(Client client)
 		{
 			try
 			{
-				Repository.GetClient(username);
+				Repository.GetClient(client.Username);
 				return true;
 			}
 			catch (NotFoundClientException)
