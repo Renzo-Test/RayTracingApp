@@ -113,9 +113,9 @@ namespace Test.ModelsTest
 
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
-				CameraPosition = newCoordinate,
+				LookFrom = newCoordinate,
 			};
-			Assert.AreEqual(newCoordinate, _scene.CameraPosition);
+			Assert.AreEqual(newCoordinate, _scene.LookFrom);
 		}
 
 		[TestMethod]
@@ -132,7 +132,7 @@ namespace Test.ModelsTest
 
 			foreach (PropertyInfo property in lookFrom.GetType().GetProperties())
 			{
-				Assert.AreEqual(property.GetValue(lookFrom), property.GetValue(_scene.CameraPosition));
+				Assert.AreEqual(property.GetValue(lookFrom), property.GetValue(_scene.LookFrom));
 			}
 		}
 
@@ -148,9 +148,9 @@ namespace Test.ModelsTest
 
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
-				ObjectivePosition = newCoordinate,
+				LookAt = newCoordinate,
 			};
-			Assert.AreEqual(newCoordinate, _scene.ObjectivePosition);
+			Assert.AreEqual(newCoordinate, _scene.LookAt);
 		}
 
 		[TestMethod]
@@ -167,7 +167,7 @@ namespace Test.ModelsTest
 
 			foreach (PropertyInfo property in lookAt.GetType().GetProperties())
 			{
-				Assert.AreEqual(property.GetValue(lookAt), property.GetValue(_scene.ObjectivePosition));
+				Assert.AreEqual(property.GetValue(lookAt), property.GetValue(_scene.LookAt));
 			}
 		}
 
