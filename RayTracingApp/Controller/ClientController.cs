@@ -35,12 +35,12 @@ namespace Controller
 			}
 		}
 
-		public Client SignIn(string username, string password)
+		public Client SignIn(Client client)
 		{
 			try
 			{
-				RunSignInChecker(username, password);
-				return Repository.GetClient(username);
+				RunSignInChecker(client.Username, client.Password);
+				return Repository.GetClient(client.Username);
 			}
 			catch (InvalidCredentialsException ex)
 			{
