@@ -75,6 +75,10 @@
     <Compile Include="Migrations\202306112339007_RemovedRenderProperties.designer.cs">
       <DependentUpon>202306112339007_RemovedRenderProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306122008183_AddedLogs.cs" />
+    <Compile Include="Migrations\202306122008183_AddedLogs.designer.cs">
+      <DependentUpon>202306122008183_AddedLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
@@ -109,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306112339007_RemovedRenderProperties.resx">
       <DependentUpon>202306112339007_RemovedRenderProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306122008183_AddedLogs.resx">
+      <DependentUpon>202306122008183_AddedLogs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
