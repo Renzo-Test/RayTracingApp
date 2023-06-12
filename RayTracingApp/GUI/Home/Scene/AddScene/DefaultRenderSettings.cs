@@ -37,7 +37,7 @@ namespace GUI
 			_sceneHome.GoToSceneList();
 		}
 
-		private void lblCancel_Click(object sender, EventArgs e)
+		private void LblCancel_Click(object sender, EventArgs e)
 		{
 			_sceneHome.GoToSceneList();
 		}
@@ -47,7 +47,7 @@ namespace GUI
 			Save();
 		}
 
-		private void lblSave_Click(object sender, EventArgs e)
+		private void LblSave_Click(object sender, EventArgs e)
 		{
 			Save();
 		}

@@ -174,7 +174,7 @@
             this.lblSave.Size = new System.Drawing.Size(56, 23);
             this.lblSave.TabIndex = 38;
             this.lblSave.Text = "Save";
-            this.lblSave.Click += new System.EventHandler(this.lblSave_Click);
+            this.lblSave.Click += new System.EventHandler(this.LblSave_Click);
             // 
             // lblCancel
             // 
@@ -188,7 +188,7 @@
             this.lblCancel.Size = new System.Drawing.Size(78, 23);
             this.lblCancel.TabIndex = 37;
             this.lblCancel.Text = "Cancel";
-            this.lblCancel.Click += new System.EventHandler(this.lblCancel_Click);
+            this.lblCancel.Click += new System.EventHandler(this.LblCancel_Click);
             // 
             // picRectangleFieldCancel
             // 

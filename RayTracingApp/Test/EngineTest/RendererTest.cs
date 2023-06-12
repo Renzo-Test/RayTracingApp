@@ -70,8 +70,6 @@ namespace Test.EngineTest
 		[ExpectedException(typeof(InvalidRenderPropertiesInputException))]
 		public void RenderMaxDepth0_OkTest()
 		{
-			Renderer renderer = new Renderer();
-			Scene scene = new Scene();
 			RenderProperties properties = new RenderProperties()
 			{
 				ResolutionX = 300,
