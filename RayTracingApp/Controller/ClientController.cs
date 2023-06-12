@@ -22,12 +22,12 @@ namespace Controller
 			};
 		}
 
-		public void SignUp(string username, string password)
+		public void SignUp(Client client)
 		{
 			try
 			{
-				RunSignUpChecker(username);
-				Repository.AddClient(username, password);
+				RunSignUpChecker(client.Username);
+				Repository.AddClient(client.Username, client.Password);
 			}
 			catch (InvalidCredentialsException ex)
 			{
