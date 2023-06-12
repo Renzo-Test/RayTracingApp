@@ -14,7 +14,9 @@ namespace DBRepository
     public class SceneRepository : IRepositoryScene
     {
         private const string NotFoundSceneMessage = "Scene was not found or already deleted";
+
         public string DBName { get; set; } = "RayTracingAppDB";
+
         public void AddScene(Scene scene)
         {
             using (var context = new AppContext(DBName)) 
@@ -49,6 +51,7 @@ namespace DBRepository
                 context.SaveChanges();
             }
         }
+
         public void UpdateSceneName(Scene scene, string newName)
         {
             using (var context = new AppContext(DBName))
