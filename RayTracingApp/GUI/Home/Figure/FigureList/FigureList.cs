@@ -27,7 +27,7 @@ namespace GUI
 		public void PopulateItems()
 		{
 
-			List<Figure> figures = _figureController.ListFigures(_currentClient.Username);
+			List<Figure> figures = _figureController.ListFigures(_currentClient);
 
 			flyFigureList.Controls.Clear();
 
