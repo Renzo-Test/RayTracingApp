@@ -37,7 +37,7 @@ namespace Engine
 					Antialiasing(derivatedIndex, column, ref vector);
 
 					vector = vector.Divide(_properties.SamplesPerPixel);
-					SavePixel(derivatedIndex, column, vector);
+					SavePixel(derivatedIndex, vector);
 				}
 
 				_progress.UpdateProgressBar();
