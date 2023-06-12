@@ -21,11 +21,11 @@ namespace DBRepository
 			}
 		}
 
-		public List<Figure> GetFiguresByClient(string username)
+		public List<Figure> GetFiguresByClient(Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Figures.Where(figure => figure.Owner.Equals(username)).ToList();
+				return context.Figures.Where(figure => figure.Owner.Equals(client.Username)).ToList();
 			}
 		}
 
