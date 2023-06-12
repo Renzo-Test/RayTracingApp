@@ -26,12 +26,12 @@ namespace Controller
 			return Repository.GetFiguresByClient(client);
 		}
 
-		public void AddFigure(Figure figure, string username)
+		public void AddFigure(Figure figure, Client client)
 		{
 			try
 			{
-				RunFigureChecker(figure, username);
-				figure.Owner = username;
+				RunFigureChecker(figure, client);
+				figure.Owner = client.Username;
 				Repository.AddFigure(figure);
 			}
 			catch (InvalidFigureInputException ex)
