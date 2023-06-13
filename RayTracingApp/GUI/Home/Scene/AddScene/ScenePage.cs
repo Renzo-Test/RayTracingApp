@@ -55,7 +55,7 @@ namespace GUI
 		public void PopulateAvailableItems()
 		{
 
-			List<Model> models = _modelController.ListModels(_currentClient.Username);
+			List<Model> models = _modelController.ListModels(_currentClient);
 
 			if (models.Any())
 			{
