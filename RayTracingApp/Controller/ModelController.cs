@@ -27,9 +27,9 @@ namespace Controller
 			return Repository.GetModelsByClient(client);
 		}
 
-		public Model GetModel(string username, string name)
+		public Model GetModel(Client client, string name)
 		{
-			Model getModel = ListModels(username).Find(mod => mod.Name.Equals(name));
+			Model getModel = ListModels(client).Find(mod => mod.Name.Equals(name));
 
 			if (getModel is null)
 			{
