@@ -35,7 +35,7 @@ namespace Controller
 			List<Log> logs = Repository.GetAllLogs();
 
 			var userMaxRenderTime = logs
-				.GroupBy(log => log.Username)
+				.GroupBy(log => log.Owner.Username)
 				.Select(group => new
 				{
 					Username = group.Key,
