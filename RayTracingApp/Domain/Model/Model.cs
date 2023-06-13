@@ -14,14 +14,14 @@ namespace Domain
 		public int Id { get; set; }
 
 
-		private string _owner;
+		private Client _owner;
 		private string _name;
 		private Figure _figure;
 		private Material _material;
 		public byte[] Preview { get; set; }
 		public bool ShowPreview { get; set; }
 
-		public string Owner
+		public Client Owner
 		{
 			get => _owner;
 			set => _owner = value;
