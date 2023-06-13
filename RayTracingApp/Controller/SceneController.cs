@@ -41,7 +41,7 @@ namespace Controller
 			Repository.SaveSceneCameraAtributes(scene);
 		}
 
-		public void UpdateSceneName(Scene scene, string currentClient, string newName)
+		public void UpdateSceneName(Scene scene, Client currentClient, string newName)
 		{
 			try
 			{
