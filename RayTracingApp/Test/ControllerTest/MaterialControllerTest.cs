@@ -95,9 +95,6 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_DuplicatedLambertian_FailTest()
 		{
-			_clientController.SignUp("Username123", "Password123");
-			Client currentClient = _clientController.SignIn("Username123", "Password123");
-
 			Material _newMaterial = new Lambertian()
 			{
 				Name = "materialName",
