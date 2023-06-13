@@ -53,9 +53,9 @@ namespace Controller
 			}
 		}
 
-		public void RemoveModel(string name, string username)
+		public void RemoveModel(string name, Client client)
 		{
-			Model deleteModel = Repository.GetModelsByClient(username).Find(mod => mod.Name.Equals(name));
+			Model deleteModel = Repository.GetModelsByClient(client).Find(mod => mod.Name.Equals(name));
 			if (deleteModel is null)
 			{
 				string NotFoundModelMessage = $"Model with name {name} was not found";
