@@ -76,9 +76,9 @@ namespace Controller
 			return Repository.GetScenesByClient(client);
 		}
 
-		public void RemoveScene(string name, string username)
+		public void RemoveScene(string name, Client client)
 		{
-			List<Scene> userScenes = ListScenes(username);
+			List<Scene> userScenes = ListScenes(client);
 			Scene removeScene = userScenes.Find(Scene => Scene.Name.Equals(name));
 			Repository.RemoveScene(removeScene);
 		}
