@@ -16,7 +16,7 @@ namespace Test.ModelsTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_owner = new Client() { Username = _owner };
+			_owner = new Client() { Username = "ownerName" };
 		}
 
 		[TestMethod]
