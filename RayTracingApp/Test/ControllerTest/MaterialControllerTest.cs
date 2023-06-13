@@ -57,7 +57,6 @@ namespace Test.ControllerTest
 		{
 			Material _newMaterial = new Lambertian()
 			{
-				Owner = _owner,
 				Name = "materialName",
 				Color = new Color
 				{
