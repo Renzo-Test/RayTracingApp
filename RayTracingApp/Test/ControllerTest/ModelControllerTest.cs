@@ -261,12 +261,6 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void UpdatePreview_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
-
 			Model newModel = new Model()
 			{
 				Name = "Test",
@@ -275,11 +269,11 @@ namespace Test.ControllerTest
 			};
 
 			Bitmap img = new Bitmap(600, 300);
-			_modelController.AddModel(newModel, currentClient);
+			_modelController.AddModel(newModel, _owner);
 
 			_modelController.UpdatePreview(newModel, img);
 
-			Model updatedScene = _modelController.ListModels(currentClient)[0];
+			Model updatedScene = _modelController.ListModels(_owner)[0];
 
 			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
 		}
