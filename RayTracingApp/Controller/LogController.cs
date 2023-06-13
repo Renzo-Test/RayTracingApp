@@ -20,9 +20,9 @@ namespace Controller
 			};
 		}
 
-		public void AddLog(Log newLog)
+		public void AddLog(Log newLog, Client client)
 		{
-			Repository.AddLog(newLog);
+			Repository.AddLog(newLog, client);
 		}
 
 		public List<Log> ListLogs()

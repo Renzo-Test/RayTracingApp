@@ -9,10 +9,13 @@ namespace DBRepository
 	{
 		public string DBName { get; set; } = "RayTracingAppDB";
 
-		public void AddLog(Log log)
+		public void AddLog(Log log, Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
+				Client logClient = context.Clients.FirstOrDefault(c => c.Id == client.Id);
+				log.Owner = logClient;
+
 				context.Logs.Add(log);
 				context.SaveChanges();
 			}
