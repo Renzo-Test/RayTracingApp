@@ -15,6 +15,7 @@ namespace Test.ControllerTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";
 		private SceneController _sceneController;
+		private ClientController _clientController;
 		private Client _owner;
 		private Client _otherOwner;
 		private int _fov;
@@ -25,8 +26,13 @@ namespace Test.ControllerTest
 		public void TestInitialize()
 		{
 			_sceneController = new SceneController(TestDatabase);
-			_owner = new Client() { Username = "ownerName" };
+			_clientController = new ClientController(TestDatabase);
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
+
 			_otherOwner = new Client() { Username = "otherName" };
+
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
@@ -39,6 +45,7 @@ namespace Test.ControllerTest
 			{
 				context.ClearDBTable("Scenes");
 				context.ClearDBTable("Models");
+				context.ClearDBTable("Clients");
 			}
 		}
 
