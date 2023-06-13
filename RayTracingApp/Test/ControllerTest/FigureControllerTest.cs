@@ -36,6 +36,7 @@ namespace Test.ControllerTest
 			{
 				context.ClearDBTable("Models");
 				context.ClearDBTable("Figures");
+				context.ClearDBTable("Clients");
 			}
 		}
 
@@ -185,11 +186,8 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void ListFigures_ValidClient_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
+			_clientController.SignUp("Username123", "Password123");
+			Client currentClient = _clientController.SignIn("Username123", "Password123");
 
 			Figure newFigure = new Sphere()
 			{
@@ -201,7 +199,7 @@ namespace Test.ControllerTest
 			List<Figure> expected = _figureController.Repository.GetFiguresByClient(currentClient);
 
 			Assert.AreEqual(expected[0].Name, _figureController.ListFigures(currentClient)[0].Name);
-			Assert.AreEqual(expected[0].Owner, _figureController.ListFigures(currentClient)[0].Owner);
+			Assert.AreEqual(expected[0].Owner.Id, _figureController.ListFigures(currentClient)[0].Owner.Id);
 		}
 
 		[TestMethod]
