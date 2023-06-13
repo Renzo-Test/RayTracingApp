@@ -13,6 +13,8 @@ namespace Test.MemoryRepositoryTest
 	public class MaterialRepositoryTest
 	{
 		private MaterialRepository _materialRepository;
+		private Client _owner;
+		private Client _otherOwner;
 
 		[TestInitialize]
 		public void TestInitialize()
@@ -21,6 +23,9 @@ namespace Test.MemoryRepositoryTest
 			{
 				DBName = "RayTracingAppTestDB"
 			};
+
+			_owner = new Client() { Username = "ownerName" };
+			_otherOwner = new Client() { Username = "otherName" };
 		}
 
 		[TestCleanup]
@@ -49,7 +54,7 @@ namespace Test.MemoryRepositoryTest
 				Color = NewColor,
 			};
 
-			_materialRepository.AddMaterial(NewMaterial);
+			_materialRepository.AddMaterial(NewMaterial, _owner);
 
 			Assert.AreEqual(NewMaterial.Name, _materialRepository.GetMaterialsByClient(_owner)[0].Name);
 			Assert.AreEqual(NewMaterial.Owner, _materialRepository.GetMaterialsByClient(_owner)[0].Owner);
@@ -72,7 +77,7 @@ namespace Test.MemoryRepositoryTest
 				Color = NewColor,
 			};
 
-			_materialRepository.AddMaterial(NewMaterial);
+			_materialRepository.AddMaterial(NewMaterial, _owner);
 
 		}
 
@@ -95,7 +100,7 @@ namespace Test.MemoryRepositoryTest
 			};
 
 
-			_materialRepository.AddMaterial(NewMaterial);
+			_materialRepository.AddMaterial(NewMaterial, _owner);
 			_materialRepository.RemoveMaterial(NewMaterial);
 			List<Material> materials = _materialRepository.GetMaterialsByClient(_owner);
 
