@@ -28,11 +28,11 @@ namespace DBRepository
 			}
 		}
 
-		public List<Scene> GetScenesByClient(string username)
+		public List<Scene> GetScenesByClient(Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Scenes.Where(scene => scene.Owner.Equals(username)).ToList();
+				return context.Scenes.Where(scene => scene.Owner.Id.Equals(client.Id)).ToList();
 			}
 		}
 
