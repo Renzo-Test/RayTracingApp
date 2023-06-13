@@ -97,6 +97,10 @@
     <Compile Include="Migrations\202306130027418_Scene-ClientAsObject.Designer.cs">
       <DependentUpon>202306130027418_Scene-ClientAsObject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306131524122_Log-ClientAsObejct.cs" />
+    <Compile Include="Migrations\202306131524122_Log-ClientAsObejct.designer.cs">
+      <DependentUpon>202306131524122_Log-ClientAsObejct.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestAppContext.cs" />
     <Compile Include="ControllerTest\ClientControllerTest.cs" />
     <Compile Include="ControllerTest\FigureControllerTest.cs" />
@@ -185,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306130027418_Scene-ClientAsObject.resx">
       <DependentUpon>202306130027418_Scene-ClientAsObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306131524122_Log-ClientAsObejct.resx">
+      <DependentUpon>202306131524122_Log-ClientAsObejct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
