@@ -25,7 +25,7 @@ namespace Test.EngineTest
 			{
 				ResolutionX = 3,
 			};
-			string render = renderer.Render(scene, properties, null);
+			string render = renderer.Render(scene, properties, null).RenderedImage;
 
 			int propertiesLines = 3;
 			int pixelsLines = (properties.ResolutionX * properties.ResolutionY) + 1;
