@@ -119,9 +119,9 @@ namespace Controller
 			return Repository.GetPosisionatedModels(scene);
 		}
 
-		private void SceneChecker(Scene scene, string username)
+		private void SceneChecker(Scene scene, Client client)
 		{
-			if (SceneNameExist(scene, username))
+			if (SceneNameExist(scene, client))
 			{
 				string AlreadyExistingSceneMessage = $"Scene with name {scene.Name} already exists";
 				throw new AlreadyExistingSceneException(AlreadyExistingSceneMessage);
