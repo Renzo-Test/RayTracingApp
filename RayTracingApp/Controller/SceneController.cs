@@ -22,12 +22,12 @@ namespace Controller
 			};
 		}
 
-		public void AddScene(Scene newScene, string username)
+		public void AddScene(Scene newScene, Client client)
 		{
 			try
 			{
-				SceneChecker(newScene, username);
-				newScene.Owner = username;
+				SceneChecker(newScene, client);
+				newScene.Owner = client;
 				Repository.AddScene(newScene);
 			}
 			catch (InvalidSceneInputException ex)
