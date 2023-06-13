@@ -26,13 +26,18 @@ namespace DBRepository
 				context.Scenes.Add(scene);
 				context.SaveChanges();
 			}
+
+			scene.Owner = client;
 		}
 
 		public List<Scene> GetScenesByClient(Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Scenes.Where(scene => scene.Owner.Id.Equals(client.Id)).ToList();
+				return context.Scenes.Where(scene => scene.Owner.Id.Equals(client.Id))
+					.Include(scene => scene.Owner)
+					.Include(scene => scene.PosisionatedModels)
+					.ToList();
 			}
 		}
 
