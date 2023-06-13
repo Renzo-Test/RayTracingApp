@@ -230,12 +230,6 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void ChangeModelName_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
-
 			Model newModel = new Model()
 			{
 				Name = "Test",
@@ -243,10 +237,10 @@ namespace Test.ControllerTest
 				Material = new Lambertian()
 			};
 
-			_modelController.AddModel(newModel, currentClient);
-			_modelController.UpdateModelName(newModel, currentClient, "newName");
+			_modelController.AddModel(newModel, _owner);
+			_modelController.UpdateModelName(newModel, _owner, "newName");
 
-			Model expected = _modelController.GetModel(currentClient, "newName");
+			Model expected = _modelController.GetModel(_owner, "newName");
 			Assert.AreEqual(expected.Name, "newName");
 		}
 
