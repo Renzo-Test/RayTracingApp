@@ -58,13 +58,15 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetNameAndOwner_OkTest()
 		{
+			Client client = new Client() { Username = "OwnerName" };
+
 			_figure = new Sphere()
 			{
 				Name = "FigureName",
-				Owner = "OwnerName"
+				Owner = client
 			};
 			Assert.AreEqual(_figure.Name, "FigureName");
-			Assert.AreEqual(_figure.Owner, "OwnerName");
+			Assert.AreEqual(_figure.Owner.Username, client.Username);
 		}
 	}
 }
