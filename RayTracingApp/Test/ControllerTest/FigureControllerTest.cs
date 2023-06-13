@@ -251,11 +251,14 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(FigureUsedByModelException))]
 		public void RemoveFigures_FigureUsedByModel_FailTest()
 		{
+			_clientController.SignUp("Username123", "Password123");
+			Client currentClient = _clientController.SignIn("Username123", "Password123");
+
 			Figure figure = new Sphere()
 			{
 				Name = "figureName",
 				Radius = 10,
-				Owner = _client,
+				Owner = currentClient,
 			};
 
 			Model model = new Model()
@@ -263,12 +266,12 @@ namespace Test.ControllerTest
 				Name = "Test",
 				Figure = figure,
 				Material = new Lambertian(),
-				Owner = _client
+				Owner = currentClient
 			};
-			_figureController.AddFigure(figure, _client);
-			_modelController.AddModel(model, _client);
+			_figureController.AddFigure(figure, currentClient);
+			_modelController.AddModel(model, currentClient);
 
-			_figureController.RemoveFigure("figureName", _client, _modelController.ListModels(_client));
+			_figureController.RemoveFigure("figureName", currentClient, _modelController.ListModels(currentClient));
 		}
 
 		[TestMethod]
