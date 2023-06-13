@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using DBRepository;
+using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
@@ -11,6 +12,14 @@ namespace Test.ModelsTest
 	[ExcludeFromCodeCoverage]
 	public class ModelsTest
 	{
+		private Client _owner;
+
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_owner = new Client() { Username = "ownerName" };
+		}
+
 		[TestMethod]
 		public void CreateModels_OkTest()
 		{
@@ -22,9 +31,9 @@ namespace Test.ModelsTest
 		{
 			Model newModel = new Model()
 			{
-				Owner = "ownerName"
+				Owner = _owner
 			};
-			Assert.AreEqual("ownerName", newModel.Owner);
+			Assert.AreEqual(_owner.Username, newModel.Owner.Username);
 		}
 
 		[TestMethod]
@@ -43,7 +52,7 @@ namespace Test.ModelsTest
 			Figure newFigure = new Sphere()
 			{
 				Name = "figureName",
-				Owner = "ownerName"
+				Owner = _owner
 			};
 
 			Model newModel = new Model()
