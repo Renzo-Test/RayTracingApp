@@ -35,6 +35,7 @@ namespace DBRepository
 			using (var context = new AppContext(DBName))
 			{
 				return context.Models.Where(model => model.Owner.Id.Equals(client.Id))
+					.Include(model => model.Owner)
 					.Include(model => model.Material)
 					.Include(model => model.Figure)
 					.ToList();
