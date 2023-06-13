@@ -16,6 +16,7 @@ namespace Test.ControllerTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";
 		private ModelController _modelController;
+		private ClientController _clientController;
 		private Client _owner;
 		private Client _otherOwner;
 
@@ -23,8 +24,12 @@ namespace Test.ControllerTest
 		public void Testinitialize()
 		{
 			_modelController = new ModelController(TestDatabase);
-			_owner = new Client() { Username = "ownerName" };
+			_clientController = new ClientController(TestDatabase);
+
 			_otherOwner = new Client() { Username = "otherName" };
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
 		}
 
 		[TestCleanup]
@@ -33,6 +38,7 @@ namespace Test.ControllerTest
 			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
 			{
 				context.ClearDBTable("Models");
+				context.ClearDBTable("Clients");
 			}
 		}
 
