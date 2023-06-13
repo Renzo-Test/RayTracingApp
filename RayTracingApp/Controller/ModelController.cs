@@ -80,7 +80,7 @@ namespace Controller
 			return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
 		}
 
-		public void UpdateModelName(Model model, string currentClient, string newName)
+		public void UpdateModelName(Model model, Client currentClient, string newName)
 		{
 			try
 			{
