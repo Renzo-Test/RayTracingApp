@@ -14,12 +14,15 @@ namespace DBRepository
 
 		public string DBName { get; set; } = "RayTracingAppDB";
 
-		public void AddScene(Scene scene)
+		public void AddScene(Scene scene, Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
+				Client sceneClient = context.Clients.FirstOrDefault(c => c.Id == client.Id);
+				scene.Owner = sceneClient;
 				List<PosisionatedModel> posModels = context.PosisionatedModels.Where(pm => pm.SceneId == scene.Id).ToList();
 				scene.PosisionatedModels = posModels;
+
 				context.Scenes.Add(scene);
 				context.SaveChanges();
 			}
