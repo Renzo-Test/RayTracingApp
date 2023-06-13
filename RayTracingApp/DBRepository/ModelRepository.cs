@@ -30,11 +30,11 @@ namespace DBRepository
 			}
 		}
 
-		public List<Model> GetModelsByClient(string username)
+		public List<Model> GetModelsByClient(Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Models.Where(model => model.Owner.Equals(username))
+				return context.Models.Where(model => model.Owner.Id.Equals(client.Id))
 					.Include(model => model.Material)
 					.Include(model => model.Figure)
 					.ToList();
