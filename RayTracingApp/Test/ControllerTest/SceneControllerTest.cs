@@ -31,7 +31,8 @@ namespace Test.ControllerTest
 			_clientController.SignUp("ownerName", "Password123");
 			_owner = _clientController.SignIn("ownerName", "Password123");
 
-			_otherOwner = new Client() { Username = "otherName" };
+			_clientController.SignUp("otherName", "Password123");
+			_otherOwner = _clientController.SignIn("otherName", "Password123");
 
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
