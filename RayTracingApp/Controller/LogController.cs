@@ -1,7 +1,9 @@
 ﻿using DBRepository;
 using Domain;
 using IRepository;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Controller
@@ -74,6 +76,42 @@ namespace Controller
 
 			return 0;
 		}
-	}
+
+        public string GetRenderTimeWindow(string sceneName, List<Log> logs)
+        {
+            Log previousLog = logs
+                .Where(log => log.SceneName == sceneName)
+                .OrderByDescending(log => log.RenderDate)
+                .FirstOrDefault();
+
+            if (previousLog != null)
+            {
+                DateTime previousRenderDate = DateTime.Parse(previousLog.RenderDate);
+                DateTime currentRenderDate = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+                TimeSpan timeWindow = currentRenderDate - previousRenderDate;
+
+                if (previousLog.SceneName.StartsWith("preview"))
+                {
+                    return "0 segundos";
+                }
+                if (timeWindow.TotalSeconds < 60)
+                {
+                    return $"{Math.Floor(timeWindow.TotalSeconds)} segundos";
+                }
+                if (timeWindow.TotalMinutes < 60)
+                {
+                    return $"{Math.Floor(timeWindow.TotalMinutes)} minutos";
+                }
+                if (timeWindow.TotalHours < 24)
+                {
+                    return $"{Math.Floor(timeWindow.TotalHours)} horas";
+                }
+                    return $"{Math.Floor(timeWindow.TotalDays)} días";
+            }
+
+            return "0 segundos";
+        }
+
+    }
 }
 
