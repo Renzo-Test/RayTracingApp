@@ -13,8 +13,6 @@
 			AddColumn("dbo.Clients", "DefaultRenderProperties_AspectRatio", c => c.Double(nullable: false));
 			AddColumn("dbo.Clients", "DefaultRenderProperties_SamplesPerPixel", c => c.Int(nullable: false));
 			AddColumn("dbo.Clients", "DefaultRenderProperties_MaxDepth", c => c.Int(nullable: false));
-			DropColumn("dbo.Clients", "DefaultRenderProperties_Id");
-			DropTable("dbo.RenderProperties");
 		}
 
 		public override void Down()
@@ -38,8 +36,6 @@
 			DropColumn("dbo.Clients", "DefaultRenderProperties_AspectRatio");
 			DropColumn("dbo.Clients", "DefaultRenderProperties_ResolutionY");
 			DropColumn("dbo.Clients", "DefaultRenderProperties_ResolutionX");
-			CreateIndex("dbo.Clients", "DefaultRenderProperties_Id");
-			AddForeignKey("dbo.Clients", "DefaultRenderProperties_Id", "dbo.RenderProperties", "Id");
 		}
 	}
 }
