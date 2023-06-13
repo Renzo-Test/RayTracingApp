@@ -14,9 +14,10 @@ namespace Test.ModelsTest
 	[ExcludeFromCodeCoverage]
 	public class SceneTest
 	{
-		private Scene _scene;
 		private Client _owner;
 		private Client _otherOwner;
+
+		private Scene _scene;
 		private int _fov;
 		private Vector _lookFrom;
 		private Vector _looktTo;
