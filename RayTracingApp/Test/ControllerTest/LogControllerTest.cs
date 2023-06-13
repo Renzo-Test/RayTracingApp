@@ -48,18 +48,16 @@ namespace Test.ControllerTest
 		{
 			Log testLog1 = new Log()
 			{
-				Owner = _owner,
 				RenderTime = 150,
 			};
 
 			Log testLog2 = new Log()
 			{
-				Owner = _otherOwner,
 				RenderTime = 100,
 			};
 
-			_logController.AddLog(testLog1);
-			_logController.AddLog(testLog2);
+			_logController.AddLog(testLog1, _owner);
+			_logController.AddLog(testLog2, _otherOwner);
 
 			Assert.AreEqual(_owner.Username, _logController.GetUserWithMaxAccumulatedRenderTime());
 		}
@@ -70,18 +68,16 @@ namespace Test.ControllerTest
 		{
 			Log testLog1 = new Log()
 			{
-				Owner = _owner,
 				RenderTime = 150,
 			};
 
 			Log testLog2 = new Log()
 			{
-				Owner = _otherOwner,
 				RenderTime = 100,
 			};
 
-			_logController.AddLog(testLog1);
-			_logController.AddLog(testLog2);
+			_logController.AddLog(testLog1, _owner);
+			_logController.AddLog(testLog2, _otherOwner);
 
 			Assert.AreEqual(4, _logController.GetTotalRenderTimeInMinutes());
 		}
@@ -92,18 +88,16 @@ namespace Test.ControllerTest
 		{
 			Log testLog1 = new Log()
 			{
-				Owner = _owner,
 				RenderTime = 200,
 			};
 
 			Log testLog2 = new Log()
 			{
-				Owner = _otherOwner,
 				RenderTime = 100,
 			};
 
-			_logController.AddLog(testLog1);
-			_logController.AddLog(testLog2);
+			_logController.AddLog(testLog1, _owner);
+			_logController.AddLog(testLog2, _owner);
 
 			Assert.AreEqual(150, _logController.GetAverageRenderTimeInSeconds());
 		}
