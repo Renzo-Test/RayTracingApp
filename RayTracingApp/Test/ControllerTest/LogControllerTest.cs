@@ -1,6 +1,7 @@
 ﻿using Controller;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Test.ControllerTest
 {
@@ -108,5 +109,87 @@ namespace Test.ControllerTest
 
 			Assert.AreEqual(150, _logController.GetAverageRenderTimeInSeconds());
 		}
-	}
+
+		[TestMethod]
+
+		public void GetRenderTimeWindow_Preview_OkTest()
+		{
+            Log testLog1 = new Log()
+            {
+				RenderDate = "2023-06-01 12:00:00",
+                RenderTime = 200,
+				TimeSpan = "0 seconds",
+				SceneName = "preview-Test"
+            };
+
+            _logController.AddLog(testLog1, _owner);
+            List<Log> logs = _logController.ListLogs();
+
+            Log testLog2 = new Log()
+            {
+                RenderDate = "2023-06-01 13:00:00",
+                RenderTime = 100,
+				SceneName = "Test",
+				TimeSpan = _logController.GetRenderTimeWindow("Test",logs, "2023-06-01 13:00:00")
+            };
+
+            _logController.AddLog(testLog2, _owner);
+
+            Assert.AreEqual("0 seconds", testLog2.TimeSpan);
+
+        }
+
+		[TestMethod]
+        public void GetRenderTimeWindow_Render_OkTest()
+        {
+            Log testLog1 = new Log()
+            {
+                RenderDate = "2023-06-01 12:00:00",
+                RenderTime = 200,
+                TimeSpan = "0 seconds",
+                SceneName = "Test"
+            };
+
+            _logController.AddLog(testLog1, _owner);
+            List<Log> logs = _logController.ListLogs();
+
+            Log testLog2 = new Log()
+            {
+                RenderDate = "2023-06-01 13:00:00",
+                RenderTime = 100,
+                SceneName = "Test",
+                TimeSpan = _logController.GetRenderTimeWindow("Test", logs, "2023-06-01 13:00:00")
+            };
+
+            Assert.AreEqual("1 hours", testLog2.TimeSpan);
+
+        }
+
+        [TestMethod]
+        public void GetRenderTimeWindow_SecondRender_OkTest()
+        {
+            Log testLog1 = new Log()
+            {
+                RenderDate = "2023-06-01 12:00:00",
+                RenderTime = 200,
+                TimeSpan = "0 seconds",
+                SceneName = "Test"
+            };
+
+            _logController.AddLog(testLog1, _owner);
+            List<Log> logs = _logController.ListLogs();
+
+            Log testLog2 = new Log()
+            {
+                RenderDate = "2023-06-02 13:00:00",
+                RenderTime = 100,
+                SceneName = "Test",
+                TimeSpan = _logController.GetRenderTimeWindow("Test", logs, "2023-06-02 13:00:00")
+            };
+
+            Assert.AreEqual("1 days", testLog2.TimeSpan);
+
+        }
+
+    }
 }
