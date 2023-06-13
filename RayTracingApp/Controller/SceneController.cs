@@ -28,7 +28,7 @@ namespace Controller
 			{
 				SceneChecker(newScene, client);
 				newScene.Owner = client;
-				Repository.AddScene(newScene);
+				Repository.AddScene(newScene, client);
 			}
 			catch (InvalidSceneInputException ex)
 			{
