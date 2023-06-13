@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RenderOutput.cs" />
     <Compile Include="Exporter\Exceptions\ExporterException.cs" />
     <Compile Include="Exporter\IExporter.cs" />
     <Compile Include="Exporter\PPMExporter.cs" />
