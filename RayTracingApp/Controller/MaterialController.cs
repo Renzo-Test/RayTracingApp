@@ -21,14 +21,14 @@ namespace Controller
 			};
 		}
 
-		public List<Material> ListMaterials(string username)
+		public List<Material> ListMaterials(Client client)
 		{
-			return Repository.GetMaterialsByClient(username);
+			return Repository.GetMaterialsByClient(client);
 		}
 
-		public Material GetMaterial(string username, string name)
+		public Material GetMaterial(Client client, string name)
 		{
-			Material getMaterials = ListMaterials(username).Find(mat => mat.Name.Equals(name));
+			Material getMaterials = ListMaterials(client).Find(mat => mat.Name.Equals(name));
 
 			if (getMaterials is null)
 			{
@@ -38,14 +38,14 @@ namespace Controller
 			return getMaterials;
 		}
 
-		public void AddMaterial(Material material, string username)
+		public void AddMaterial(Material material, Client client)
 		{
 			try
 			{
-				RunMaterialChecker(material, username);
+				RunMaterialChecker(material, client);
 
-				material.Owner = username;
-				Repository.AddMaterial(material);
+				material.Owner = client;
+				Repository.AddMaterial(material, client);
 			}
 			catch (InvalidMaterialInputException ex)
 			{
@@ -54,9 +54,9 @@ namespace Controller
 			}
 		}
 
-		public void RemoveMaterial(string materialName, string username, List<Model> models)
+		public void RemoveMaterial(string materialName, Client client, List<Model> models)
 		{
-			Material deleteMaterial = Repository.GetMaterialsByClient(username).Find(mat => mat.Name.Equals(materialName));
+			Material deleteMaterial = Repository.GetMaterialsByClient(client).Find(mat => mat.Name.Equals(materialName));
 
 			if (deleteMaterial is null)
 			{
@@ -75,23 +75,23 @@ namespace Controller
 			Repository.RemoveMaterial(deleteMaterial);
 		}
 
-		private void RunMaterialChecker(Material material, string username)
+		private void RunMaterialChecker(Material material, Client client)
 		{
-			if (MaterialNameExist(material, username))
+			if (MaterialNameExist(material, client))
 			{
 				string AlreadyExsitingMaterialMessage = $"Material with name {material.Name} already exists";
 				throw new AlreadyExsitingMaterialException(AlreadyExsitingMaterialMessage);
 			}
 		}
 
-		private bool MaterialNameExist(Material material, string username)
+		private bool MaterialNameExist(Material material, Client client)
 		{
-			List<Material> clientMaterials = Repository.GetMaterialsByClient(username);
+			List<Material> clientMaterials = Repository.GetMaterialsByClient(client);
 
 			return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 		}
 
-		public void UpdateMaterialName(Material material, string currentClient, string newName)
+		public void UpdateMaterialName(Material material, Client currentClient, string newName)
 		{
 			try
 			{

@@ -17,13 +17,21 @@ namespace Test.ControllerTest
 		private const string TestDatabase = "RayTracingAppTestDB";
 		private MaterialController _materialController;
 		private ModelController _modelController;
+		private ClientController _clientController;
+		private Client _owner;
+		private Client _otherOwner;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
 			_materialController = new MaterialController(TestDatabase);
 			_modelController = new ModelController(TestDatabase);
+			_clientController = new ClientController(TestDatabase);
 
+			_otherOwner = new Client() { Username = "otherName" };
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
 		}
 
 
@@ -34,6 +42,7 @@ namespace Test.ControllerTest
 			{
 				context.ClearDBTable("Models");
 				context.ClearDBTable("Materials");
+				context.ClearDBTable("Clients");
 			}
 		}
 
@@ -54,12 +63,12 @@ namespace Test.ControllerTest
 					Red = 1,
 					Green = 1,
 					Blue = 1,
-				}
+				},
 			};
 
-			_materialController.AddMaterial(_newMaterial, "user");
+			_materialController.AddMaterial(_newMaterial, _owner);
 
-			Assert.AreEqual(_materialController.Repository.GetMaterialsByClient("user")[0].Name, _newMaterial.Name);
+			Assert.AreEqual(_materialController.Repository.GetMaterialsByClient(_owner)[0].Name, _newMaterial.Name);
 		}
 
 		[TestMethod]
@@ -77,9 +86,9 @@ namespace Test.ControllerTest
 				Blur = 0.1
 			};
 
-			_materialController.AddMaterial(_newMaterial, "user");
+			_materialController.AddMaterial(_newMaterial, _owner);
 
-			Assert.AreEqual(_materialController.Repository.GetMaterialsByClient("user")[0].Name, _newMaterial.Name);
+			Assert.AreEqual(_materialController.Repository.GetMaterialsByClient(_owner)[0].Name, _newMaterial.Name);
 		}
 
 		[TestMethod]
@@ -97,8 +106,8 @@ namespace Test.ControllerTest
 				}
 			};
 
-			_materialController.AddMaterial(_newMaterial, "user");
-			_materialController.AddMaterial(_newMaterial, "user");
+			_materialController.AddMaterial(_newMaterial, _owner);
+			_materialController.AddMaterial(_newMaterial, _owner);
 		}
 
 		[TestMethod]
@@ -117,8 +126,8 @@ namespace Test.ControllerTest
 				Blur = 0.1
 			};
 
-			_materialController.AddMaterial(_newMaterial, "user");
-			_materialController.AddMaterial(_newMaterial, "user");
+			_materialController.AddMaterial(_newMaterial, _owner);
+			_materialController.AddMaterial(_newMaterial, _owner);
 		}
 
 		[TestMethod]
@@ -146,10 +155,10 @@ namespace Test.ControllerTest
 				}
 			};
 
-			_materialController.AddMaterial(_firstMaterial, "user");
-			_materialController.AddMaterial(_secondMaterial, "user");
+			_materialController.AddMaterial(_firstMaterial, _owner);
+			_materialController.AddMaterial(_secondMaterial, _owner);
 
-			Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
+			Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient(_owner).Count);
 		}
 
 		[TestMethod]
@@ -179,10 +188,10 @@ namespace Test.ControllerTest
 				Blur = 0.1
 			};
 
-			_materialController.AddMaterial(_firstMaterial, "user");
-			_materialController.AddMaterial(_secondMaterial, "user");
+			_materialController.AddMaterial(_firstMaterial, _owner);
+			_materialController.AddMaterial(_secondMaterial, _owner);
 
-			Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient("user").Count);
+			Assert.AreEqual(2, _materialController.Repository.GetMaterialsByClient(_owner).Count);
 		}
 
 		[TestMethod]
@@ -219,7 +228,7 @@ namespace Test.ControllerTest
 					Blue = 1,
 				}
 			};
-			_materialController.AddMaterial(firstMaterial, "username");
+			_materialController.AddMaterial(firstMaterial, _owner);
 
 			Material secondMaterial = new Lambertian()
 			{
@@ -231,9 +240,9 @@ namespace Test.ControllerTest
 					Blue = 1,
 				}
 			};
-			_materialController.AddMaterial(secondMaterial, "username");
+			_materialController.AddMaterial(secondMaterial, _owner);
 
-			Assert.AreEqual(2, _materialController.ListMaterials("username").Count);
+			Assert.AreEqual(2, _materialController.ListMaterials(_owner).Count);
 		}
 
 		[TestMethod]
@@ -252,10 +261,10 @@ namespace Test.ControllerTest
 
 			List<Model> models = new List<Model>();
 
-			_materialController.AddMaterial(newMaterial, "username");
-			_materialController.RemoveMaterial(newMaterial.Name, "username", models);
+			_materialController.AddMaterial(newMaterial, _owner);
+			_materialController.RemoveMaterial(newMaterial.Name, _owner, models);
 
-			List<Material> materials = _materialController.ListMaterials("username");
+			List<Material> materials = _materialController.ListMaterials(_owner);
 			Assert.IsFalse(materials.Any());
 		}
 
@@ -266,9 +275,9 @@ namespace Test.ControllerTest
 
 			List<Model> models = new List<Model>();
 
-			_materialController.RemoveMaterial("InvalidMaterialName", "username", models);
+			_materialController.RemoveMaterial("InvalidMaterialName", _owner, models);
 
-			List<Material> materials = _materialController.ListMaterials("username");
+			List<Material> materials = _materialController.ListMaterials(_owner);
 			Assert.IsFalse(materials.Any());
 		}
 
@@ -293,21 +302,15 @@ namespace Test.ControllerTest
 				Material = material,
 				Figure = new Sphere(),
 			};
-			_materialController.AddMaterial(material, "Owner");
-			_modelController.AddModel(model, "Owner");
+			_materialController.AddMaterial(material, _owner);
+			_modelController.AddModel(model, _owner);
 
-			_materialController.RemoveMaterial("materialName", "Owner", _modelController.ListModels("Owner"));
+			_materialController.RemoveMaterial("materialName", _owner, _modelController.ListModels(_owner));
 		}
 
 		[TestMethod]
 		public void GetMaterial_ExistingMaterial_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
-
 			Material newMaterial = new Lambertian()
 			{
 				Name = "sphere",
@@ -319,8 +322,8 @@ namespace Test.ControllerTest
 				}
 			};
 
-			_materialController.AddMaterial(newMaterial, currentClient.Username);
-			Material expected = _materialController.GetMaterial(currentClient.Username, newMaterial.Name);
+			_materialController.AddMaterial(newMaterial, _owner);
+			Material expected = _materialController.GetMaterial(_owner, newMaterial.Name);
 
 			Assert.AreEqual(expected.Name, newMaterial.Name);
 		}
@@ -335,18 +338,12 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			_materialController.GetMaterial("newFigure", currentClient.Username);
+			_materialController.GetMaterial(currentClient, "newFigure");
 		}
 
 		[TestMethod]
 		public void ChangeLambertianName_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
-
 			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName",
@@ -358,11 +355,11 @@ namespace Test.ControllerTest
 				}
 			};
 
-			_materialController.AddMaterial(newMaterial, currentClient.Username);
+			_materialController.AddMaterial(newMaterial, _owner);
 
-			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, "newName");
+			_materialController.UpdateMaterialName(newMaterial, _owner, "newName");
 
-			Material updatedMaterial = _materialController.ListMaterials(currentClient.Username)[0];
+			Material updatedMaterial = _materialController.ListMaterials(_owner)[0];
 
 			Assert.AreEqual(updatedMaterial.Name, "newName");
 		}
@@ -382,7 +379,7 @@ namespace Test.ControllerTest
 				Name = "materialName",
 			};
 
-			_materialController.UpdateMaterialName(newMaterial, currentClient.Username, " newNameMaterial ");
+			_materialController.UpdateMaterialName(newMaterial, currentClient, " newNameMaterial ");
 		}
 	}
 }

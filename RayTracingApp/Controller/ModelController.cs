@@ -22,14 +22,14 @@ namespace Controller
 			};
 		}
 
-		public List<Model> ListModels(string username)
+		public List<Model> ListModels(Client client)
 		{
-			return Repository.GetModelsByClient(username);
+			return Repository.GetModelsByClient(client);
 		}
 
-		public Model GetModel(string username, string name)
+		public Model GetModel(Client client, string name)
 		{
-			Model getModel = ListModels(username).Find(mod => mod.Name.Equals(name));
+			Model getModel = ListModels(client).Find(mod => mod.Name.Equals(name));
 
 			if (getModel is null)
 			{
@@ -39,13 +39,12 @@ namespace Controller
 			return getModel;
 		}
 
-		public void AddModel(Model model, string username)
+		public void AddModel(Model model, Client client)
 		{
 			try
 			{
-				RunModelChecker(model, username);
-				model.Owner = username;
-				Repository.AddModel(model);
+				RunModelChecker(model, client);
+				Repository.AddModel(model, client);
 			}
 			catch (InvalidModelInputException ex)
 			{
@@ -53,9 +52,9 @@ namespace Controller
 			}
 		}
 
-		public void RemoveModel(string name, string username)
+		public void RemoveModel(string name, Client client)
 		{
-			Model deleteModel = Repository.GetModelsByClient(username).Find(mod => mod.Name.Equals(name));
+			Model deleteModel = Repository.GetModelsByClient(client).Find(mod => mod.Name.Equals(name));
 			if (deleteModel is null)
 			{
 				string NotFoundModelMessage = $"Model with name {name} was not found";
@@ -65,22 +64,22 @@ namespace Controller
 			Repository.RemoveModel(deleteModel);
 		}
 
-		private void RunModelChecker(Model model, string username)
+		private void RunModelChecker(Model model, Client client)
 		{
-			if (ModelNameExist(model, username))
+			if (ModelNameExist(model, client))
 			{
 				string AlreadyExistingModelName = $"Model with name {model.Name} already exist";
 				throw new AlreadyExistingModelException(AlreadyExistingModelName);
 			}
 		}
 
-		private bool ModelNameExist(Model model, string username)
+		private bool ModelNameExist(Model model, Client client)
 		{
-			List<Model> clientModels = Repository.GetModelsByClient(username);
+			List<Model> clientModels = Repository.GetModelsByClient(client);
 			return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
 		}
 
-		public void UpdateModelName(Model model, string currentClient, string newName)
+		public void UpdateModelName(Model model, Client currentClient, string newName)
 		{
 			try
 			{

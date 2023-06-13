@@ -13,7 +13,7 @@ namespace GUI
 		/// </summary>
 		[STAThread]
 		static void Main()
-		{
+	{
 			Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);

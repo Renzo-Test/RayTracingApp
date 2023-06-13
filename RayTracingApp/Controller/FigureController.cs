@@ -21,18 +21,17 @@ namespace Controller
 			};
 		}
 
-		public List<Figure> ListFigures(string username)
+		public List<Figure> ListFigures(Client client)
 		{
-			return Repository.GetFiguresByClient(username);
+			return Repository.GetFiguresByClient(client);
 		}
 
-		public void AddFigure(Figure figure, string username)
+		public void AddFigure(Figure figure, Client client)
 		{
 			try
 			{
-				RunFigureChecker(figure, username);
-				figure.Owner = username;
-				Repository.AddFigure(figure);
+				RunFigureChecker(figure, client);
+				Repository.AddFigure(figure, client);
 			}
 			catch (InvalidFigureInputException ex)
 			{
@@ -40,9 +39,9 @@ namespace Controller
 			}
 		}
 
-		public void RemoveFigure(string figureName, string username, List<Model> models)
+		public void RemoveFigure(string figureName, Client client, List<Model> models)
 		{
-			Figure deleteFigure = Repository.GetFiguresByClient(username).Find(figure => figure.Name.Equals(figureName));
+			Figure deleteFigure = Repository.GetFiguresByClient(client).Find(figure => figure.Name.Equals(figureName));
 
 			if (deleteFigure is null)
 			{
@@ -59,9 +58,9 @@ namespace Controller
 			Repository.RemoveFigure(deleteFigure);
 		}
 
-		public Figure GetFigure(string username, string name)
+		public Figure GetFigure(Client client, string name)
 		{
-			Figure getFigure = ListFigures(username).Find(fig => fig.Name.Equals(name));
+			Figure getFigure = ListFigures(client).Find(fig => fig.Name.Equals(name));
 
 			if (getFigure is null)
 			{
@@ -71,7 +70,7 @@ namespace Controller
 			return getFigure;
 		}
 
-		public void UpdateFigureName(Figure figure, string currentClient, string newName)
+		public void UpdateFigureName(Figure figure, Client client, string newName)
 		{
 			try
 			{
@@ -83,7 +82,7 @@ namespace Controller
 					Radius = updateSphere.Radius
 				};
 
-				RunFigureChecker(newFigure, currentClient);
+				RunFigureChecker(newFigure, client);
 
 				Repository.UpdateFigureName(figure, newName);
 			}
@@ -93,9 +92,9 @@ namespace Controller
 			}
 		}
 
-		private void RunFigureChecker(Figure figure, string ownerName)
+		private void RunFigureChecker(Figure figure, Client client)
 		{
-			if (FigureNameExist(figure.Name, ownerName))
+			if (FigureNameExist(figure.Name, client))
 			{
 				string AlreadyExsitingFigureMessage = $"Figure with name {figure.Name} already exists";
 				throw new AlreadyExistingFigureException(AlreadyExsitingFigureMessage);
@@ -104,9 +103,9 @@ namespace Controller
 			FigurePropertiesAreValid(figure);
 		}
 
-		private bool FigureNameExist(string name, string ownerName)
+		private bool FigureNameExist(string name, Client client)
 		{
-			List<Figure> clientFigures = Repository.GetFiguresByClient(ownerName);
+			List<Figure> clientFigures = Repository.GetFiguresByClient(client);
 			return clientFigures.Find(figure => figure.Name.Equals(name)) is object;
 		}
 

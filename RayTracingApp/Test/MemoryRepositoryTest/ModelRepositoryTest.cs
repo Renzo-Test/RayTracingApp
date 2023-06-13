@@ -1,4 +1,5 @@
-﻿using DBRepository;
+﻿using Controller;
+using DBRepository;
 using DBRepository.Exceptions;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,23 +14,32 @@ namespace Test.MemoryRepositoryTest
 	[ExcludeFromCodeCoverage]
 	public class ModelRepositoryTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
+
 		private ModelRepository _modelRepository;
+		private ClientController _clientController;
+		private Client _owner;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
 			_modelRepository = new ModelRepository()
 			{
-				DBName = "RayTracingAppTestDB"
+				DBName = TestDatabase
 			};
+			_clientController = new ClientController(TestDatabase);
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
 		}
 
 		[TestCleanup]
 		public void TestCleanUp()
 		{
-			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
+			using (var context = new DBRepository.TestAppContext(TestDatabase))
 			{
 				context.ClearDBTable("Models");
+				context.ClearDBTable("Clients");
 			}
 		}
 
@@ -43,7 +53,7 @@ namespace Test.MemoryRepositoryTest
 		{
 			Figure newFigure = new Sphere()
 			{
-				Owner = "OwnerName",
+				Owner = _owner,
 				Name = "Name",
 			};
 			Color NewColor = new Color()
@@ -56,17 +66,17 @@ namespace Test.MemoryRepositoryTest
 			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 			Model NewModel = new Model()
 			{
-				Owner = "Username",
+				Owner = _owner,
 				Name = "Test",
 				Material = NewMaterial,
 				Figure = newFigure
 			};
-			_modelRepository.AddModel(NewModel);
+			_modelRepository.AddModel(NewModel, _owner);
 
 			Assert.AreEqual(NewModel.Id, _modelRepository.GetModelsByClient(NewModel.Owner)[0].Id);
 		}
@@ -76,7 +86,7 @@ namespace Test.MemoryRepositoryTest
 		{
 			Figure newFigure = new Sphere()
 			{
-				Owner = "OwnerName",
+				Owner = _owner,
 				Name = "Name",
 			};
 			Color NewColor = new Color()
@@ -89,17 +99,17 @@ namespace Test.MemoryRepositoryTest
 			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 			Model NewModel = new Model()
 			{
-				Owner = "Username",
+				Owner = _owner,
 				Name = "Test",
 				Material = NewMaterial,
 				Figure = newFigure
 			};
-			_modelRepository.AddModel(NewModel);
+			_modelRepository.AddModel(NewModel, _owner);
 		}
 
 		[TestMethod]
@@ -107,7 +117,7 @@ namespace Test.MemoryRepositoryTest
 		{
 			Figure newFigure = new Sphere()
 			{
-				Owner = "OwnerName",
+				Owner = _owner,
 				Name = "Name",
 			};
 			Color NewColor = new Color()
@@ -120,19 +130,19 @@ namespace Test.MemoryRepositoryTest
 			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 			Model NewModel = new Model()
 			{
-				Owner = "OwnerName",
+				Owner = _owner,
 				Name = "Test",
 				Material = NewMaterial,
 				Figure = newFigure
 			};
-			_modelRepository.AddModel(NewModel);
+			_modelRepository.AddModel(NewModel, _owner);
 			_modelRepository.RemoveModel(NewModel);
-			List<Model> iterable = _modelRepository.GetModelsByClient("OwnerName");
+			List<Model> iterable = _modelRepository.GetModelsByClient(_owner);
 			CollectionAssert.DoesNotContain(iterable, NewModel);
 		}
 
@@ -142,7 +152,7 @@ namespace Test.MemoryRepositoryTest
 		{
 			Figure newFigure = new Sphere()
 			{
-				Owner = "OwnerName",
+				Owner = _owner,
 				Name = "Name",
 			};
 			Color NewColor = new Color()
@@ -155,18 +165,18 @@ namespace Test.MemoryRepositoryTest
 			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 			Model NewModel = new Model()
 			{
-				Owner = "OwnerName",
+				Owner = _owner,
 				Name = "Test",
 				Material = NewMaterial,
 				Figure = newFigure
 			};
 			_modelRepository.RemoveModel(NewModel);
-			_modelRepository.GetModelsByClient("OwnerName");
+			_modelRepository.GetModelsByClient(_owner);
 		}
 
 		[TestMethod]
@@ -174,7 +184,7 @@ namespace Test.MemoryRepositoryTest
 		{
 			Figure newFigure = new Sphere()
 			{
-				Owner = "OwnerName",
+				Owner = _owner,
 				Name = "Name",
 			};
 			Color NewColor = new Color()
@@ -187,23 +197,23 @@ namespace Test.MemoryRepositoryTest
 			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 			Model NewModel = new Model()
 			{
-				Owner = "OwnerName",
+				Owner = _owner,
 				Name = "Test",
 				Material = NewMaterial,
 				Figure = newFigure
 			};
 
 			Bitmap img = new Bitmap(600, 300);
-			_modelRepository.AddModel(NewModel);
+			_modelRepository.AddModel(NewModel, _owner);
 
 			_modelRepository.UpdatePreview(NewModel, img);
 
-			Model updatedModel = _modelRepository.GetModelsByClient("OwnerName")[0];
+			Model updatedModel = _modelRepository.GetModelsByClient(_owner)[0];
 
 			Assert.AreEqual(img.ToString(), updatedModel.GetPreview().ToString());
 		}

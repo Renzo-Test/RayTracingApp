@@ -9,6 +9,29 @@ namespace Test.ControllerTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";
 		private LogController _logController;
+		private ClientController _clientController;
+		private Client _owner;
+		private Client _otherOwner;
+
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			using (var context = new DBRepository.TestAppContext(TestDatabase))
+			{
+				context.ClearDBTable("Logs");
+				context.ClearDBTable("Clients");
+			}
+
+			_logController = new LogController(TestDatabase);
+			_clientController = new ClientController(TestDatabase);
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
+
+			_clientController.SignUp("otherName", "Password123");
+			_otherOwner = _clientController.SignIn("otherName", "Password123");
+		}
+
 
 		[TestCleanup]
 		public void TestCleanUp()
@@ -16,13 +39,8 @@ namespace Test.ControllerTest
 			using (var context = new DBRepository.TestAppContext(TestDatabase))
 			{
 				context.ClearDBTable("Logs");
+				context.ClearDBTable("Clients");
 			}
-		}
-
-		[TestInitialize]
-		public void TestInitialize()
-		{
-			_logController = new LogController(TestDatabase);
 		}
 
 		[TestMethod]
@@ -37,20 +55,18 @@ namespace Test.ControllerTest
 		{
 			Log testLog1 = new Log()
 			{
-				Username = "User1",
 				RenderTime = 150,
 			};
 
 			Log testLog2 = new Log()
 			{
-				Username = "User2",
 				RenderTime = 100,
 			};
 
-			_logController.AddLog(testLog1);
-			_logController.AddLog(testLog2);
+			_logController.AddLog(testLog1, _owner);
+			_logController.AddLog(testLog2, _otherOwner);
 
-			Assert.AreEqual("User1", _logController.GetUserWithMaxAccumulatedRenderTime());
+			Assert.AreEqual(_owner.Username, _logController.GetUserWithMaxAccumulatedRenderTime().Username);
 		}
 
 		[TestMethod]
@@ -59,18 +75,16 @@ namespace Test.ControllerTest
 		{
 			Log testLog1 = new Log()
 			{
-				Username = "User1",
 				RenderTime = 150,
 			};
 
 			Log testLog2 = new Log()
 			{
-				Username = "User2",
 				RenderTime = 100,
 			};
 
-			_logController.AddLog(testLog1);
-			_logController.AddLog(testLog2);
+			_logController.AddLog(testLog1, _owner);
+			_logController.AddLog(testLog2, _otherOwner);
 
 			Assert.AreEqual(4, _logController.GetTotalRenderTimeInMinutes());
 		}
@@ -81,18 +95,16 @@ namespace Test.ControllerTest
 		{
 			Log testLog1 = new Log()
 			{
-				Username = "User1",
 				RenderTime = 200,
 			};
 
 			Log testLog2 = new Log()
 			{
-				Username = "User2",
 				RenderTime = 100,
 			};
 
-			_logController.AddLog(testLog1);
-			_logController.AddLog(testLog2);
+			_logController.AddLog(testLog1, _owner);
+			_logController.AddLog(testLog2, _owner);
 
 			Assert.AreEqual(150, _logController.GetAverageRenderTimeInSeconds());
 		}

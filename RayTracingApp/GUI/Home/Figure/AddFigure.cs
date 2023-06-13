@@ -41,7 +41,7 @@ namespace GUI
 			try
 			{
 				Figure newFigure = CreateFigure(radius);
-				_figureController.AddFigure(newFigure, _currentClient.Username);
+				_figureController.AddFigure(newFigure, _currentClient);
 				_figureHome.GoToFigureList();
 
 				ResetPlaceholders();

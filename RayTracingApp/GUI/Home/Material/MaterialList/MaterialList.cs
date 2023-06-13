@@ -27,7 +27,7 @@ namespace GUI
 		public void PopulateItems()
 		{
 
-			List<Material> materials = _materialController.ListMaterials(_currentClient.Username);
+			List<Material> materials = _materialController.ListMaterials(_currentClient);
 
 			flyMaterialList.Controls.Clear();
 

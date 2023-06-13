@@ -1,4 +1,5 @@
-﻿using DBRepository;
+﻿using Controller;
+using DBRepository;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -9,7 +10,12 @@ namespace Test.MemoryRepositoryTest
 	[TestClass]
 	public class LogRepositoryTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
+
 		private LogRepository _logRepository;
+		private ClientController _clientController;
+		private Client _owner;
+		private Client _otherOwner;
 
 		[TestInitialize]
 		public void TestInitialize()
@@ -18,6 +24,14 @@ namespace Test.MemoryRepositoryTest
 			{
 				DBName = "RayTracingAppTestDB"
 			};
+
+			_clientController = new ClientController(TestDatabase);
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
+
+			_clientController.SignUp("otherName", "Password123");
+			_otherOwner = _clientController.SignIn("otherName", "Password123");
 		}
 
 		[TestCleanup]
@@ -26,6 +40,7 @@ namespace Test.MemoryRepositoryTest
 			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
 			{
 				context.ClearDBTable("Logs");
+				context.ClearDBTable("Clients");
 			}
 		}
 
@@ -40,11 +55,10 @@ namespace Test.MemoryRepositoryTest
 		{
 			Log newLog = new Log()
 			{
-				Username = "OwnerName",
 				RenderDate = DateTime.Now.ToString(),
 
 			};
-			_logRepository.AddLog(newLog);
+			_logRepository.AddLog(newLog, _owner);
 
 			Assert.AreEqual(newLog.Id, _logRepository.GetAllLogs()[0].Id);
 		}
@@ -52,17 +66,11 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void GetAllLogs_TwoLogs_OkTest()
 		{
-			Log firstLog = new Log()
-			{
-				Username = "Log1"
-			};
-			_logRepository.AddLog(firstLog);
+			Log firstLog = new Log() { };
+			_logRepository.AddLog(firstLog, _owner);
 
-			Log secondLog = new Log()
-			{
-				Username = "Log2"
-			};
-			_logRepository.AddLog(secondLog);
+			Log secondLog = new Log() { };
+			_logRepository.AddLog(secondLog, _otherOwner);
 
 			Assert.AreEqual(firstLog.Id, _logRepository.GetAllLogs()[0].Id);
 			Assert.AreEqual(secondLog.Id, _logRepository.GetAllLogs()[1].Id);
@@ -77,16 +85,13 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void AddLog_OkTest()
 		{
-			Log newLog = new Log()
-			{
-				Username = "Username123"
-			};
+			Log newLog = new Log() { };
 
-			_logRepository.AddLog(newLog);
+			_logRepository.AddLog(newLog, _owner);
 
 			List<Log> iterable = _logRepository.GetAllLogs();
 
-			Assert.AreEqual(newLog.Username, iterable[0].Username);
+			Assert.AreEqual(newLog.Owner.Id, iterable[0].Owner.Id);
 		}
 	}
 }

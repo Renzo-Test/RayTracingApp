@@ -55,7 +55,7 @@ namespace GUI
 		public void PopulateAvailableItems()
 		{
 
-			List<Model> models = _modelController.ListModels(_currentClient.Username);
+			List<Model> models = _modelController.ListModels(_currentClient);
 
 			if (models.Any())
 			{
@@ -270,7 +270,7 @@ namespace GUI
 			{
 				try
 				{
-					_sceneController.UpdateSceneName(_scene, _currentClient.Username, txtSceneName.Text);
+					_sceneController.UpdateSceneName(_scene, _currentClient, txtSceneName.Text);
 				}
 				catch (InvalidSceneInputException ex)
 				{

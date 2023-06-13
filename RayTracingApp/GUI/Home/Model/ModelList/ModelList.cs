@@ -23,7 +23,7 @@ namespace GUI
 		}
 		public void PopulateItems()
 		{
-			List<Model> models = _modelController.ListModels(_currentClient.Username);
+			List<Model> models = _modelController.ListModels(_currentClient);
 
 			flyModelList.Controls.Clear();
 

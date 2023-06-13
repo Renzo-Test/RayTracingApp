@@ -39,10 +39,12 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetModel_OkTest()
 		{
+			Client owner = new Client() { Username = "ownerName" };
+
 			Model newModel = new Model()
 			{
 				Name = "figureName",
-				Owner = "ownerName"
+				Owner = owner
 			};
 
 			PosisionatedModel posisionatedModel = new PosisionatedModel()

@@ -6,6 +6,7 @@ namespace IRepository
 	public interface IRepositoryLog
 	{
 		List<Log> GetAllLogs();
-		void AddLog(Log model);
+		List<Log> GetLogsByClient(Client client);
+		void AddLog(Log model, Client client);
 	}
 }

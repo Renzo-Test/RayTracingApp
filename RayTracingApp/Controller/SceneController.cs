@@ -22,13 +22,12 @@ namespace Controller
 			};
 		}
 
-		public void AddScene(Scene newScene, string username)
+		public void AddScene(Scene newScene, Client client)
 		{
 			try
 			{
-				SceneChecker(newScene, username);
-				newScene.Owner = username;
-				Repository.AddScene(newScene);
+				SceneChecker(newScene, client);
+				Repository.AddScene(newScene, client);
 			}
 			catch (InvalidSceneInputException ex)
 			{
@@ -41,7 +40,7 @@ namespace Controller
 			Repository.SaveSceneCameraAtributes(scene);
 		}
 
-		public void UpdateSceneName(Scene scene, string currentClient, string newName)
+		public void UpdateSceneName(Scene scene, Client currentClient, string newName)
 		{
 			try
 			{
@@ -71,26 +70,25 @@ namespace Controller
 			scene.LastRenderDate = TodayDate();
 		}
 
-		public List<Scene> ListScenes(string username)
+		public List<Scene> ListScenes(Client client)
 		{
-			return Repository.GetScenesByClient(username);
+			return Repository.GetScenesByClient(client);
 		}
 
-		public void RemoveScene(string name, string username)
+		public void RemoveScene(string name, Client client)
 		{
-			List<Scene> userScenes = ListScenes(username);
+			List<Scene> userScenes = ListScenes(client);
 			Scene removeScene = userScenes.Find(Scene => Scene.Name.Equals(name));
 			Repository.RemoveScene(removeScene);
 		}
 
 		public Scene CreateBlankScene(Client currentClient)
 		{
-			string owner = currentClient.Username;
 			int fov = currentClient.DefaultFov;
 			Vector lookFrom = currentClient.DefaultLookFrom;
 			Vector lookAt = currentClient.DefaultLookAt;
 
-			Scene scene = new Scene(owner, fov, lookFrom, lookAt);
+			Scene scene = new Scene(fov, lookFrom, lookAt);
 			return scene;
 		}
 
@@ -119,18 +117,18 @@ namespace Controller
 			return Repository.GetPosisionatedModels(scene);
 		}
 
-		private void SceneChecker(Scene scene, string username)
+		private void SceneChecker(Scene scene, Client client)
 		{
-			if (SceneNameExist(scene, username))
+			if (SceneNameExist(scene, client))
 			{
 				string AlreadyExistingSceneMessage = $"Scene with name {scene.Name} already exists";
 				throw new AlreadyExistingSceneException(AlreadyExistingSceneMessage);
 			}
 		}
 
-		private bool SceneNameExist(Scene newScene, string username)
+		private bool SceneNameExist(Scene newScene, Client client)
 		{
-			List<Scene> clientScenes = Repository.GetScenesByClient(username);
+			List<Scene> clientScenes = Repository.GetScenesByClient(client);
 			return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
 		}
 

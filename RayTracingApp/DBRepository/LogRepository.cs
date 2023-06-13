@@ -1,6 +1,7 @@
 ﻿using Domain;
 using IRepository;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace DBRepository
@@ -9,10 +10,13 @@ namespace DBRepository
 	{
 		public string DBName { get; set; } = "RayTracingAppDB";
 
-		public void AddLog(Log log)
+		public void AddLog(Log log, Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
+				Client logClient = context.Clients.FirstOrDefault(c => c.Id == client.Id);
+				log.Owner = logClient;
+
 				context.Logs.Add(log);
 				context.SaveChanges();
 			}
@@ -22,7 +26,19 @@ namespace DBRepository
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Logs.ToList();
+				return context.Logs
+					.Include(log => log.Owner)
+					.ToList();
+			}
+		}
+
+		public List<Log> GetLogsByClient(Client client)
+		{
+			using (var context = new AppContext(DBName))
+			{
+				return context.Logs.Where(log => log.Owner.Id.Equals(client.Id))
+					.Include(log => log.Owner)
+					.ToList();
 			}
 		}
 	}

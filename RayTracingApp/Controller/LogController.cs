@@ -20,9 +20,9 @@ namespace Controller
 			};
 		}
 
-		public void AddLog(Log newLog)
+		public void AddLog(Log newLog, Client client)
 		{
-			Repository.AddLog(newLog);
+			Repository.AddLog(newLog, client);
 		}
 
 		public List<Log> ListLogs()
@@ -30,15 +30,15 @@ namespace Controller
 			return Repository.GetAllLogs();
 		}
 
-		public string GetUserWithMaxAccumulatedRenderTime()
+		public Client GetUserWithMaxAccumulatedRenderTime()
 		{
 			List<Log> logs = Repository.GetAllLogs();
 
 			var userMaxRenderTime = logs
-				.GroupBy(log => log.Username)
+				.GroupBy(log => log.Owner)
 				.Select(group => new
 				{
-					Username = group.Key,
+					Owner = group.Key,
 					AccumulatedRenderTime = group.Sum(log => log.RenderTime)
 				})
 				.OrderByDescending(group => group.AccumulatedRenderTime)
@@ -46,10 +46,10 @@ namespace Controller
 
 			if (userMaxRenderTime is object)
 			{
-				return userMaxRenderTime.Username;
+				return userMaxRenderTime.Owner;
 			}
 
-			return string.Empty;
+			return null;
 		}
 
 		public int GetTotalRenderTimeInMinutes()

@@ -2,6 +2,7 @@
 using Domain;
 using IRepository;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace DBRepository
@@ -12,20 +13,24 @@ namespace DBRepository
 
 		public string DBName { get; set; } = "RayTracingAppDB";
 
-		public List<Material> GetMaterialsByClient(string username)
+		public void AddMaterial(Material material, Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Materials.Where(material => material.Owner.Equals(username)).ToList();
+				Client materialClient = context.Clients.FirstOrDefault(c => c.Id == client.Id);
+				material.Owner = materialClient;
+
+				context.Materials.Add(material);
+				context.SaveChanges();
 			}
 		}
-
-		public void AddMaterial(Material newMaterial)
+		public List<Material> GetMaterialsByClient(Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
-				context.Materials.Add(newMaterial);
-				context.SaveChanges();
+				return context.Materials.Where(material => material.Owner.Id.Equals(client.Id))
+					.Include(material => material.Owner)
+					.ToList();
 			}
 		}
 

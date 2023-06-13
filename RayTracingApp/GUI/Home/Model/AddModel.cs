@@ -47,8 +47,8 @@ namespace GUI
 
 		private void PopulateComboBoxes()
 		{
-			List<Figure> figures = _figureController.ListFigures(_currentClient.Username);
-			List<Material> materials = _materialController.ListMaterials(_currentClient.Username);
+			List<Figure> figures = _figureController.ListFigures(_currentClient);
+			List<Material> materials = _materialController.ListMaterials(_currentClient);
 
 			ClearComboBoxes();
 
@@ -93,7 +93,7 @@ namespace GUI
 			{
 				Model newModel = CreateModel();
 
-				_modelController.AddModel(newModel, _currentClient.Username);
+				_modelController.AddModel(newModel, _currentClient);
 				_modelHome.GoToModelList();
 
 				ResetPlaceholders();
@@ -108,8 +108,8 @@ namespace GUI
 		{
 			return new Model()
 			{
-				Material = _materialController.GetMaterial(_currentClient.Username, cmbMaterials.Text),
-				Figure = _figureController.GetFigure(_currentClient.Username, cmbFigures.Text),
+				Material = _materialController.GetMaterial(_currentClient, cmbMaterials.Text),
+				Figure = _figureController.GetFigure(_currentClient, cmbFigures.Text),
 				Name = txtInputName.Text,
 				ShowPreview = rbtnCreatePreview.Checked,
 			};

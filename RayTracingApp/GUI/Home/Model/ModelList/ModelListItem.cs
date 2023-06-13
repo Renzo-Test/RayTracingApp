@@ -15,7 +15,7 @@ namespace GUI
 
 		private Model _model;
 
-		private string _currentClient;
+		private Client _currentClient;
 		private bool isEditing;
 
 		public ModelListItem(ModelList modelList, ModelController modelController, Model model)

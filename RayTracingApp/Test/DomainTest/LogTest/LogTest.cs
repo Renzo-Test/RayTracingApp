@@ -20,9 +20,12 @@ namespace Test.ModelsTest
 		{
 			_log = new Log()
 			{
-				Username = "Username123"
+				Owner = new Client()
+				{
+					Username = "Username123"
+				}
 			};
-			Assert.AreEqual("Username123", _log.Username);
+			Assert.AreEqual("Username123", _log.Owner.Username);
 		}
 
 		[TestMethod]

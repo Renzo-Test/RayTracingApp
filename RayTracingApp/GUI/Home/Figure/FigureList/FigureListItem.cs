@@ -16,7 +16,7 @@ namespace GUI
 		private FigureList _figureList;
 		private Sphere _sphere;
 
-		private string _currentClient;
+		private Client _currentClient;
 		private bool isEditing;
 
 		public FigureListItem(FigureList figureList, MainController mainController, Sphere sphere)

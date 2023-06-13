@@ -79,6 +79,26 @@
     <Compile Include="Migrations\202306122008183_AddedLogs.designer.cs">
       <DependentUpon>202306122008183_AddedLogs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306122333544_Figure-ClientAsObject.cs" />
+    <Compile Include="Migrations\202306122333544_Figure-ClientAsObject.designer.cs">
+      <DependentUpon>202306122333544_Figure-ClientAsObject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306122357248_Material-ClientAsObject.cs" />
+    <Compile Include="Migrations\202306122357248_Material-ClientAsObject.designer.cs">
+      <DependentUpon>202306122357248_Material-ClientAsObject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306130010088_Model-ClientAsObject.cs" />
+    <Compile Include="Migrations\202306130010088_Model-ClientAsObject.designer.cs">
+      <DependentUpon>202306130010088_Model-ClientAsObject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306130027418_Scene-ClientAsObject.cs" />
+    <Compile Include="Migrations\202306130027418_Scene-ClientAsObject.designer.cs">
+      <DependentUpon>202306130027418_Scene-ClientAsObject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306131523225_Log-ClientAsObejct.cs" />
+    <Compile Include="Migrations\202306131523225_Log-ClientAsObejct.designer.cs">
+      <DependentUpon>202306131523225_Log-ClientAsObejct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
@@ -115,6 +135,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306122008183_AddedLogs.resx">
       <DependentUpon>202306122008183_AddedLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306122333544_Figure-ClientAsObject.resx">
+      <DependentUpon>202306122333544_Figure-ClientAsObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306122357248_Material-ClientAsObject.resx">
+      <DependentUpon>202306122357248_Material-ClientAsObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306130010088_Model-ClientAsObject.resx">
+      <DependentUpon>202306130010088_Model-ClientAsObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306130027418_Scene-ClientAsObject.resx">
+      <DependentUpon>202306130027418_Scene-ClientAsObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306131523225_Log-ClientAsObejct.resx">
+      <DependentUpon>202306131523225_Log-ClientAsObejct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

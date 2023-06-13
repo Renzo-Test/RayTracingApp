@@ -14,25 +14,28 @@ namespace DBRepository
 
 		public string DBName { get; set; } = "RayTracingAppDB";
 
-		public void AddModel(Model newModel)
+		public void AddModel(Model model, Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
-				Material material = context.Materials.FirstOrDefault(m => m.Id.Equals(newModel.Material.Id));
-				newModel.Material = material;
-				Figure figure = context.Figures.FirstOrDefault(f => f.Id.Equals(newModel.Figure.Id));
-				newModel.Figure = figure;
+				Client modelClient = context.Clients.FirstOrDefault(c => c.Id == client.Id);
+				model.Owner = modelClient;
+				Material material = context.Materials.FirstOrDefault(m => m.Id.Equals(model.Material.Id));
+				model.Material = material;
+				Figure figure = context.Figures.FirstOrDefault(f => f.Id.Equals(model.Figure.Id));
+				model.Figure = figure;
 
-				context.Models.Add(newModel);
+				context.Models.Add(model);
 				context.SaveChanges();
 			}
 		}
 
-		public List<Model> GetModelsByClient(string username)
+		public List<Model> GetModelsByClient(Client client)
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Models.Where(model => model.Owner.Equals(username))
+				return context.Models.Where(model => model.Owner.Id.Equals(client.Id))
+					.Include(model => model.Owner)
 					.Include(model => model.Material)
 					.Include(model => model.Figure)
 					.ToList();

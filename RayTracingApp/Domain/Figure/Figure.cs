@@ -10,8 +10,8 @@ namespace Domain
 
 		public int Id { get; set; }
 
-		private string _owner;
-		public string Owner
+		private Client _owner;
+		public Client Owner
 		{
 			get => _owner;
 			set => _owner = value;

@@ -16,7 +16,7 @@ namespace GUI
 		private MaterialList _materialList;
 		private Material _material;
 
-		private string _currentClient;
+		private Client _currentClient;
 		private bool isEditing;
 
 		public MaterialListItem(MaterialList materialList, MainController mainController, Material material)

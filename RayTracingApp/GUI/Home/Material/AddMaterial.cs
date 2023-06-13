@@ -49,7 +49,7 @@ namespace GUI
 				string Name = txtInputName.Text;
 				Material newMaterial = CreateMaterial(newColor, Name);
 
-				_materialController.AddMaterial(newMaterial, _currentClient.Username);
+				_materialController.AddMaterial(newMaterial, _currentClient);
 				_materialHome.GoToMaterialList();
 
 				ResetPlaceholders();

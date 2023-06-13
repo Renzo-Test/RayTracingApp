@@ -25,7 +25,7 @@ namespace GUI
 		public void PopulateItems()
 		{
 
-			List<Scene> scenes = _sceneController.ListScenes(_currentClient.Username);
+			List<Scene> scenes = _sceneController.ListScenes(_currentClient);
 
 			flySceneList.Controls.Clear();
 
@@ -42,7 +42,7 @@ namespace GUI
 			Scene scene = _sceneController.CreateBlankScene(_currentClient);
 			scene.PosisionatedModels = new List<PosisionatedModel>();
 
-			_sceneController.AddScene(scene, _currentClient.Username);
+			_sceneController.AddScene(scene, _currentClient);
 			_sceneHome.GoToAddScene(scene);
 		}
 
