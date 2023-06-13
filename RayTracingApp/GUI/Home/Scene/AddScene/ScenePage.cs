@@ -270,7 +270,7 @@ namespace GUI
 			{
 				try
 				{
-					_sceneController.UpdateSceneName(_scene, _currentClient.Username, txtSceneName.Text);
+					_sceneController.UpdateSceneName(_scene, _currentClient, txtSceneName.Text);
 				}
 				catch (InvalidSceneInputException ex)
 				{
