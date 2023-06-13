@@ -81,7 +81,6 @@ namespace Test.MemoryRepositoryTest
 			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = _owner,
 				Color = NewColor,
 			};
 
