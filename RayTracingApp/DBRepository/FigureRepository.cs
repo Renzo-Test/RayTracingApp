@@ -2,6 +2,7 @@
 using Domain;
 using IRepository;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace DBRepository
@@ -28,7 +29,9 @@ namespace DBRepository
 		{
 			using (var context = new AppContext(DBName))
 			{
-				return context.Figures.Where(figure => figure.Owner.Id.Equals(client.Id)).ToList();
+				return context.Figures.Where(figure => figure.Owner.Id.Equals(client.Id))
+					.Include(figure => figure.Owner)
+					.ToList();
 			}
 		}
 
