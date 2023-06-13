@@ -19,6 +19,7 @@ namespace Test.MemoryRepositoryTest
 		private SceneRepository _sceneRepository;
 		private ClientController _clientController;
 		private Client _owner;
+		private Client _otherOwner;
 		private int _fov;
 		private Vector _lookFrom;
 		private Vector _looktTo;
@@ -34,6 +35,8 @@ namespace Test.MemoryRepositoryTest
 
 			_clientController.SignUp("ownerName", "Password123");
 			_owner = _clientController.SignIn("ownerName", "Password123");
+			_clientController.SignUp("otherName", "Password123");
+			_otherOwner = _clientController.SignIn("otherName", "Password123");
 
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
@@ -45,6 +48,7 @@ namespace Test.MemoryRepositoryTest
 			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
 			{
 				context.ClearDBTable("Scenes");
+				context.ClearDBTable("Clients");
 			}
 		}
 
@@ -114,20 +118,17 @@ namespace Test.MemoryRepositoryTest
 				Owner = _owner,
 			};
 
-			Client otherOwner = new Client() { Username = "OtherName" };
-
-
 			Scene _scene2 = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
 				Name = "Test2",
-				Owner = otherOwner,
+				Owner = _otherOwner,
 			};
 
 			_sceneRepository.AddScene(_scene, _owner);
-			_sceneRepository.AddScene(_scene2, otherOwner);
+			_sceneRepository.AddScene(_scene2, _otherOwner);
 
 			List<Scene> iterableOwner1 = _sceneRepository.GetScenesByClient(_owner);
-			List<Scene> iterableOwner2 = _sceneRepository.GetScenesByClient(otherOwner);
+			List<Scene> iterableOwner2 = _sceneRepository.GetScenesByClient(_otherOwner);
 			Assert.AreEqual(iterableOwner1[0].Id, _scene.Id);
 			Assert.AreEqual(iterableOwner2[0].Id, _scene2.Id);
 		}
