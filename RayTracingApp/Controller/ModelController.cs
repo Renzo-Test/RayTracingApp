@@ -22,9 +22,9 @@ namespace Controller
 			};
 		}
 
-		public List<Model> ListModels(string username)
+		public List<Model> ListModels(Client client)
 		{
-			return Repository.GetModelsByClient(username);
+			return Repository.GetModelsByClient(client);
 		}
 
 		public Model GetModel(string username, string name)
