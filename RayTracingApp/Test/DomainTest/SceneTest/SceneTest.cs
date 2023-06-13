@@ -15,7 +15,8 @@ namespace Test.ModelsTest
 	public class SceneTest
 	{
 		private Scene _scene;
-		private string _owner;
+		private Client _owner;
+		private Client _otherOwner;
 		private int _fov;
 		private Vector _lookFrom;
 		private Vector _looktTo;
@@ -23,7 +24,9 @@ namespace Test.ModelsTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_owner = "ownerName";
+			_owner = new Client() { Username = "ownerName" };
+			_otherOwner = new Client() { Username = "otherName" };
+
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
@@ -40,9 +43,9 @@ namespace Test.ModelsTest
 		{
 			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
 			{
-				Owner = "ownerName"
+				Owner = _owner
 			};
-			Assert.AreEqual("ownerName", _scene.Owner);
+			Assert.AreEqual(_owner.Username, _scene.Owner.Username);
 		}
 
 		[TestMethod]
@@ -192,13 +195,15 @@ namespace Test.ModelsTest
 			Model firstModel = new Model()
 			{
 				Name = "firstModelName",
-				Owner = "firstOwnerName"
+				Owner = _owner
 			};
+
+
 
 			Model secondModel = new Model()
 			{
 				Name = "secondModelName",
-				Owner = "secondOwnerName"
+				Owner = _otherOwner
 			};
 
 			List<PosisionatedModel> posisionatedModels = new List<PosisionatedModel>()
