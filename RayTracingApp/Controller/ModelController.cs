@@ -39,12 +39,12 @@ namespace Controller
 			return getModel;
 		}
 
-		public void AddModel(Model model, string username)
+		public void AddModel(Model model, Client client)
 		{
 			try
 			{
-				RunModelChecker(model, username);
-				model.Owner = username;
+				RunModelChecker(model, client);
+				model.Owner = client;
 				Repository.AddModel(model);
 			}
 			catch (InvalidModelInputException ex)
