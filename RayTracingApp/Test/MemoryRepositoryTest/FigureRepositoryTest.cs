@@ -32,7 +32,8 @@ namespace Test.MemoryRepositoryTest
 			_clientController.SignUp("ownerName", "Password123");
 			_owner = _clientController.SignIn("ownerName", "Password123");
 
-			_otherOwner = new Client() { Username = "otherName" };
+			_clientController.SignUp("otherName", "Password123");
+			_otherOwner = _clientController.SignIn("otherName", "Password123");
 		}
 
 		[TestCleanup]
