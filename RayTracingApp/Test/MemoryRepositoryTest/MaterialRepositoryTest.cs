@@ -65,7 +65,7 @@ namespace Test.MemoryRepositoryTest
 			_materialRepository.AddMaterial(NewMaterial, _owner);
 
 			Assert.AreEqual(NewMaterial.Name, _materialRepository.GetMaterialsByClient(_owner)[0].Name);
-			Assert.AreEqual(NewMaterial.Owner, _materialRepository.GetMaterialsByClient(_owner)[0].Owner);
+			Assert.AreEqual(NewMaterial.Owner.Id, _materialRepository.GetMaterialsByClient(_owner)[0].Owner.Id);
 		}
 
 		[TestMethod]
