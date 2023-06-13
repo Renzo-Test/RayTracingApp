@@ -300,11 +300,8 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void GetFigure_ExistingClient_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
+			_clientController.SignUp("Username123", "Password123");
+			Client currentClient = _clientController.SignIn("Username123", "Password123");
 
 			Figure newFigure = new Sphere()
 			{
@@ -317,7 +314,7 @@ namespace Test.ControllerTest
 			Figure expected = _figureController.GetFigure(currentClient, newFigure.Name);
 
 			Assert.AreEqual(expected.Name, newFigure.Name);
-			Assert.AreEqual(expected.Owner, newFigure.Owner);
+			Assert.AreEqual(expected.Owner.Id, newFigure.Owner.Id);
 
 		}
 
