@@ -150,7 +150,7 @@ namespace GUI
 		{
 			Renderer renderer = new Renderer();
 
-			string image = renderer.Render(_scene, _renderProperties, pbrRender);
+			string image = renderer.Render(_scene, _renderProperties, pbrRender).RenderedImage;
 
 			Scanner scanner = new Scanner();
 			Bitmap img = scanner.ScanImage(image);

@@ -1,6 +1,7 @@
 ﻿using Domain;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,8 +21,10 @@ namespace Engine
 
 		private static readonly ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 
-		public string Render(Scene scene, RenderProperties properties, ProgressBar progressBar)
+		public RenderOutput Render(Scene scene, RenderProperties properties, ProgressBar progressBar)
 		{
+			Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
+
 			_scene = scene;
 			_properties = properties;
 			InitializateRender(progressBar);
@@ -45,7 +48,12 @@ namespace Engine
 
 			});
 
-			return _printer.Save(_pixels, _properties, ref _progress);
+			string renderedImage = _printer.Save(_pixels, _properties, ref _progress);
+			watch.Stop();
+			long elapsedMs = watch.ElapsedMilliseconds;
+
+			RenderOutput output = new RenderOutput { RenderTime = elapsedMs, RenderedImage = renderedImage };
+			return output;
 		}
 
 		private static Vector InitializeEmptyVector()
@@ -63,7 +71,7 @@ namespace Engine
 			RenderProperties properties = PreviewRenderProperties();
 			Scene previewScene = CreatePreviewScene(model);
 
-			string preview = Render(previewScene, properties, null);
+			string preview = Render(previewScene, properties, null).RenderedImage;
 			Scanner scanner = new Scanner();
 			Bitmap img = scanner.ScanImage(preview);
 
