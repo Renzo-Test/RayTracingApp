@@ -1,4 +1,5 @@
-﻿using DBRepository;
+﻿using Controller;
+using DBRepository;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -9,7 +10,12 @@ namespace Test.MemoryRepositoryTest
 	[TestClass]
 	public class LogRepositoryTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
+
 		private LogRepository _logRepository;
+		private ClientController _clientController;
+		private Client _owner;
+		private Client _otherOwner;
 
 		[TestInitialize]
 		public void TestInitialize()
@@ -18,6 +24,14 @@ namespace Test.MemoryRepositoryTest
 			{
 				DBName = "RayTracingAppTestDB"
 			};
+
+			_clientController = new ClientController(TestDatabase);
+
+			_clientController.SignUp(_owner, "Password123");
+			_owner = _clientController.SignIn(_owner, "Password123");
+
+			_clientController.SignUp("otherName", "Password123");
+			_otherOwner = _clientController.SignIn("otherName", "Password123");
 		}
 
 		[TestCleanup]
@@ -40,7 +54,7 @@ namespace Test.MemoryRepositoryTest
 		{
 			Log newLog = new Log()
 			{
-				Username = "ownerName",
+				Owner = _owner,
 				RenderDate = DateTime.Now.ToString(),
 
 			};
@@ -54,13 +68,13 @@ namespace Test.MemoryRepositoryTest
 		{
 			Log firstLog = new Log()
 			{
-				Username = "Log1"
+				Owner = _owner
 			};
 			_logRepository.AddLog(firstLog);
 
 			Log secondLog = new Log()
 			{
-				Username = "Log2"
+				Owner = _otherOwner
 			};
 			_logRepository.AddLog(secondLog);
 
@@ -79,14 +93,14 @@ namespace Test.MemoryRepositoryTest
 		{
 			Log newLog = new Log()
 			{
-				Username = "Username123"
+				Owner = _owner
 			};
 
 			_logRepository.AddLog(newLog);
 
 			List<Log> iterable = _logRepository.GetAllLogs();
 
-			Assert.AreEqual(newLog.Username, iterable[0].Username);
+			Assert.AreEqual(newLog.Owner, iterable[0].Owner);
 		}
 	}
 }
