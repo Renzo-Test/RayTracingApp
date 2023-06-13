@@ -195,12 +195,6 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void GetModel_ExistingClient_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
-
 			Model newModel = new Model()
 			{
 				Name = "Test",
@@ -208,8 +202,8 @@ namespace Test.ControllerTest
 				Material = new Lambertian()
 			};
 
-			_modelController.AddModel(newModel, currentClient);
-			Model expected = _modelController.GetModel(currentClient, newModel.Name);
+			_modelController.AddModel(newModel, _owner);
+			Model expected = _modelController.GetModel(_owner, newModel.Name);
 
 			Assert.AreEqual(expected.Id, newModel.Id);
 		}
