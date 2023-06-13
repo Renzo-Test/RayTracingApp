@@ -40,7 +40,7 @@ namespace Test.MemoryRepositoryTest
 		{
 			Log newLog = new Log()
 			{
-				Username = _owner,
+				Username = "ownerName",
 				RenderDate = DateTime.Now.ToString(),
 
 			};
