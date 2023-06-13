@@ -26,7 +26,7 @@ namespace Domain
 		public int Id { get; set; }
 
 		private string _registerTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
-		private string _owner;
+		private Client _owner;
 		private string _name;
 		private string _lastModificationDate = "unmodified";
 		private string _lastRenderDate = "unrendered";
@@ -43,7 +43,7 @@ namespace Domain
 			PosisionatedModels = new List<PosisionatedModel>();
 		}
 
-		public Scene(string owner, int fov, Vector lookFrom, Vector lookAt)
+		public Scene(Client owner, int fov, Vector lookFrom, Vector lookAt)
 		{
 			SetSceneParameters(owner);
 			SetRenderingParameters(fov, lookFrom, lookAt);
@@ -57,13 +57,13 @@ namespace Domain
 			PosisionatedModels = new List<PosisionatedModel>();
 		}
 
-		private void SetSceneParameters(string owner)
+		private void SetSceneParameters(Client owner)
 		{
 			_name = DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy"); ;
 			_owner = owner;
 		}
 
-		public string Owner
+		public Client Owner
 		{
 			get => _owner;
 			set => _owner = value;
