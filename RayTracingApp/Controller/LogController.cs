@@ -44,12 +44,8 @@ namespace Controller
 				.OrderByDescending(group => group.AccumulatedRenderTime)
 				.FirstOrDefault();
 
-			if (userMaxRenderTime is object)
-			{
-				return userMaxRenderTime.Owner;
-			}
 
-			return null;
+			return userMaxRenderTime.Owner;
 		}
 
 		public int GetTotalRenderTimeInMinutes()
