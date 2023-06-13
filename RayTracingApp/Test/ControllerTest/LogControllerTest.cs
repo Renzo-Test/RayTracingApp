@@ -16,6 +16,12 @@ namespace Test.ControllerTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
+			using (var context = new DBRepository.TestAppContext(TestDatabase))
+			{
+				context.ClearDBTable("Logs");
+				context.ClearDBTable("Clients");
+			}
+
 			_logController = new LogController(TestDatabase);
 			_clientController = new ClientController(TestDatabase);
 
@@ -60,7 +66,7 @@ namespace Test.ControllerTest
 			_logController.AddLog(testLog1, _owner);
 			_logController.AddLog(testLog2, _otherOwner);
 
-			Assert.AreEqual(_owner.Username, _logController.GetUserWithMaxAccumulatedRenderTime());
+			Assert.AreEqual(_owner.Username, _logController.GetUserWithMaxAccumulatedRenderTime().Username);
 		}
 
 		[TestMethod]
