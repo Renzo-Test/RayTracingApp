@@ -9,6 +9,23 @@ namespace Test.ControllerTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";
 		private LogController _logController;
+		private ClientController _clientController;
+		private Client _owner;
+		private Client _otherOwner;
+
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_logController = new LogController(TestDatabase);
+			_clientController = new ClientController(TestDatabase);
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
+
+			_clientController.SignUp("otherName", "Password123");
+			_otherOwner = _clientController.SignIn("otherName", "Password123");
+		}
+
 
 		[TestCleanup]
 		public void TestCleanUp()
@@ -17,12 +34,6 @@ namespace Test.ControllerTest
 			{
 				context.ClearDBTable("Logs");
 			}
-		}
-
-		[TestInitialize]
-		public void TestInitialize()
-		{
-			_logController = new LogController(TestDatabase);
 		}
 
 		[TestMethod]
@@ -37,20 +48,20 @@ namespace Test.ControllerTest
 		{
 			Log testLog1 = new Log()
 			{
-				Username = "User1",
+				Owner = _owner,
 				RenderTime = 150,
 			};
 
 			Log testLog2 = new Log()
 			{
-				Username = "User2",
+				Owner = _otherOwner,
 				RenderTime = 100,
 			};
 
 			_logController.AddLog(testLog1);
 			_logController.AddLog(testLog2);
 
-			Assert.AreEqual("User1", _logController.GetUserWithMaxAccumulatedRenderTime());
+			Assert.AreEqual(_owner.Username, _logController.GetUserWithMaxAccumulatedRenderTime());
 		}
 
 		[TestMethod]
@@ -59,13 +70,13 @@ namespace Test.ControllerTest
 		{
 			Log testLog1 = new Log()
 			{
-				Username = "User1",
+				Owner = _owner,
 				RenderTime = 150,
 			};
 
 			Log testLog2 = new Log()
 			{
-				Username = "User2",
+				Owner = _otherOwner,
 				RenderTime = 100,
 			};
 
@@ -81,13 +92,13 @@ namespace Test.ControllerTest
 		{
 			Log testLog1 = new Log()
 			{
-				Username = "User1",
+				Owner = _owner,
 				RenderTime = 200,
 			};
 
 			Log testLog2 = new Log()
 			{
-				Username = "User2",
+				Owner = _otherOwner,
 				RenderTime = 100,
 			};
 
