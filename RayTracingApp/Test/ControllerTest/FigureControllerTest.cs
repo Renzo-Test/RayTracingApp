@@ -17,6 +17,7 @@ namespace Test.ControllerTest
 		private const string TestDatabase = "RayTracingAppTestDB";
 		private FigureController _figureController;
 		private ModelController _modelController;
+		private ClientController _clientController;
 		private Client _client;
 
 		[TestInitialize]
@@ -24,7 +25,8 @@ namespace Test.ControllerTest
 		{
 			_figureController = new FigureController(TestDatabase);
 			_modelController = new ModelController(TestDatabase);
-			_client = new Client() { Username = "Owner123" };
+			_clientController = new ClientController(TestDatabase);
+			_client = new Client() { Username = "Owner123", Password = "Owner123" };
 		}
 
 		[TestCleanup]
@@ -167,11 +169,8 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidFigureInputException))]
 		public void AddFigure_DuplicatedFigureName_FailTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
+			_clientController.SignUp("Username123", "Password123");
+			Client currentClient = _clientController.SignIn("Username123", "Password123");
 
 			Figure newFigure = new Sphere()
 			{
