@@ -45,7 +45,7 @@ namespace Controller
 			{
 				RunModelChecker(model, client);
 				model.Owner = client;
-				Repository.AddModel(model);
+				Repository.AddModel(model, client);
 			}
 			catch (InvalidModelInputException ex)
 			{
