@@ -71,7 +71,7 @@ namespace Engine
 			RenderProperties properties = PreviewRenderProperties();
 			Scene previewScene = CreatePreviewScene(model);
 
-			string preview = Render(previewScene, properties, null);
+			string preview = Render(previewScene, properties, null).RenderedImage;
 			Scanner scanner = new Scanner();
 			Bitmap img = scanner.ScanImage(preview);
 
