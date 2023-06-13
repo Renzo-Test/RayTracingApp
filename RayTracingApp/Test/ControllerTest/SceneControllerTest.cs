@@ -15,7 +15,8 @@ namespace Test.ControllerTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";
 		private SceneController _sceneController;
-		private string _owner;
+		private Client _owner;
+		private Client _otherOwner;
 		private int _fov;
 		private Vector _lookFrom;
 		private Vector _looktTo;
@@ -24,7 +25,8 @@ namespace Test.ControllerTest
 		public void TestInitialize()
 		{
 			_sceneController = new SceneController(TestDatabase);
-			_owner = "ownerName";
+			_owner = new Client() { Username = "ownerName" };
+			_otherOwner = new Client() { Username = "otherName" };
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
@@ -54,9 +56,9 @@ namespace Test.ControllerTest
 				Name = "Test",
 			};
 
-			_sceneController.AddScene(newScene, "ownerName");
+			_sceneController.AddScene(newScene, _owner);
 
-			Assert.AreEqual(_sceneController.Repository.GetScenesByClient("ownerName")[0].Id, newScene.Id);
+			Assert.AreEqual(_sceneController.Repository.GetScenesByClient(_owner)[0].Id, newScene.Id);
 		}
 
 		[TestMethod]
@@ -98,8 +100,8 @@ namespace Test.ControllerTest
 				Name = "sceneName"
 			};
 
-			_sceneController.AddScene(newScene, "owneraName");
-			_sceneController.AddScene(newScene, "owneraName");
+			_sceneController.AddScene(newScene, _owner);
+			_sceneController.AddScene(newScene, _owner);
 		}
 
 		[TestMethod]
@@ -205,10 +207,10 @@ namespace Test.ControllerTest
 				Name = "anotherScene"
 			};
 
-			_sceneController.AddScene(newScene, "ownerName");
-			_sceneController.AddScene(anotherScene, "ownerName");
+			_sceneController.AddScene(newScene, _owner);
+			_sceneController.AddScene(anotherScene, _owner);
 
-			List<Scene> ownerScenes = _sceneController.ListScenes("ownerName");
+			List<Scene> ownerScenes = _sceneController.ListScenes(_owner);
 			Assert.AreEqual(ownerScenes[0].Id, newScene.Id);
 			Assert.AreEqual(ownerScenes[1].Id, anotherScene.Id);
 		}
@@ -221,10 +223,10 @@ namespace Test.ControllerTest
 				Name = "scene"
 			};
 
-			_sceneController.AddScene(newScene, "ownerName");
+			_sceneController.AddScene(newScene, _owner);
 
-			_sceneController.RemoveScene("scene", "ownerName");
-			CollectionAssert.DoesNotContain(_sceneController.ListScenes("ownerName"), newScene);
+			_sceneController.RemoveScene("scene", _owner);
+			CollectionAssert.DoesNotContain(_sceneController.ListScenes(_owner), newScene);
 		}
 
 		[TestMethod]
@@ -239,11 +241,11 @@ namespace Test.ControllerTest
 				Name = "anotherScene"
 			};
 
-			_sceneController.AddScene(newScene, "firstOwner");
-			_sceneController.AddScene(anotherScene, "secondOwner");
+			_sceneController.AddScene(newScene, _owner);
+			_sceneController.AddScene(anotherScene, _otherOwner);
 
-			_sceneController.RemoveScene("scene", "firstOwner");
-			Assert.AreEqual(_sceneController.ListScenes("secondOwner")[0].Id, anotherScene.Id);
+			_sceneController.RemoveScene("scene", _owner);
+			Assert.AreEqual(_sceneController.ListScenes(_otherOwner)[0].Id, anotherScene.Id);
 		}
 
 		[TestMethod]
@@ -251,7 +253,7 @@ namespace Test.ControllerTest
 		{
 			Client client = new Client()
 			{
-				Username = _owner,
+				Username = "ownerName",
 				DefaultFov = 70,
 				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
 				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
