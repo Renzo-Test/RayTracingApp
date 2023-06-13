@@ -33,6 +33,7 @@ namespace Test.ControllerTest
 			using (var context = new DBRepository.TestAppContext(TestDatabase))
 			{
 				context.ClearDBTable("Logs");
+				context.ClearDBTable("Clients");
 			}
 		}
 
