@@ -1,4 +1,5 @@
-﻿using DBRepository;
+﻿using Controller;
+using DBRepository;
 using DBRepository.Exceptions;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +13,10 @@ namespace Test.MemoryRepositoryTest
 	[ExcludeFromCodeCoverage]
 	public class FigureRepositoryTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
+
 		private FigureRepository _figureRepository;
+		private ClientController _clientController;
 		private Client _owner;
 		private Client _otherOwner;
 
@@ -21,10 +25,13 @@ namespace Test.MemoryRepositoryTest
 		{
 			_figureRepository = new FigureRepository()
 			{
-				DBName = "RayTracingAppTestDB"
+				DBName = TestDatabase
 			};
+			_clientController = new ClientController(TestDatabase);
 
-			_owner = new Client() { Username = "ownerName" };
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
+
 			_otherOwner = new Client() { Username = "otherName" };
 		}
 
@@ -34,6 +41,7 @@ namespace Test.MemoryRepositoryTest
 			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
 			{
 				context.ClearDBTable("Figures");
+				context.ClearDBTable("Clients");
 			}
 		}
 
@@ -101,7 +109,7 @@ namespace Test.MemoryRepositoryTest
 			List<Figure> iterable = _figureRepository.GetFiguresByClient(_owner);
 
 			Assert.AreEqual(newFigure.Name, iterable[0].Name);
-			Assert.AreEqual(newFigure.Owner, iterable[0].Owner);
+			Assert.AreEqual(newFigure.Owner.Id, iterable[0].Owner.Id);
 		}
 
 		[TestMethod]
