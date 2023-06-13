@@ -353,12 +353,6 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void ChangeLambertianName_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
-
 			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName",
@@ -370,11 +364,11 @@ namespace Test.ControllerTest
 				}
 			};
 
-			_materialController.AddMaterial(newMaterial, currentClient);
+			_materialController.AddMaterial(newMaterial, _owner);
 
-			_materialController.UpdateMaterialName(newMaterial, currentClient, "newName");
+			_materialController.UpdateMaterialName(newMaterial, _owner, "newName");
 
-			Material updatedMaterial = _materialController.ListMaterials(currentClient)[0];
+			Material updatedMaterial = _materialController.ListMaterials(_owner)[0];
 
 			Assert.AreEqual(updatedMaterial.Name, "newName");
 		}
