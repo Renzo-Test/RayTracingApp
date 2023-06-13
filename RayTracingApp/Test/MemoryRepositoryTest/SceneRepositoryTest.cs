@@ -26,7 +26,7 @@ namespace Test.MemoryRepositoryTest
 			{
 				DBName = "RayTracingAppTestDB"
 			};
-			_owner = new Client() { Username = "OwnerName" };
+			_owner = new Client() { Username = _owner };
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };

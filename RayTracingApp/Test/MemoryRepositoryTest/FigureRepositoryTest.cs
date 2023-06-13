@@ -44,12 +44,12 @@ namespace Test.MemoryRepositoryTest
 			Figure newFigure = new Sphere()
 			{
 				Name = "Test",
-				Owner = "OwnerName"
+				Owner = _owner
 			};
 			_figureRepository.AddFigure(newFigure);
 
-			Assert.AreEqual(newFigure.Name, _figureRepository.GetFiguresByClient("OwnerName")[0].Name);
-			Assert.AreEqual(newFigure.Owner, _figureRepository.GetFiguresByClient("OwnerName")[0].Owner);
+			Assert.AreEqual(newFigure.Name, _figureRepository.GetFiguresByClient(_owner)[0].Name);
+			Assert.AreEqual(newFigure.Owner, _figureRepository.GetFiguresByClient(_owner)[0].Owner);
 
 		}
 
@@ -86,12 +86,12 @@ namespace Test.MemoryRepositoryTest
 			Figure newFigure = new Sphere()
 			{
 				Name = "Test",
-				Owner = "OwnerName"
+				Owner = _owner
 			};
 
 			_figureRepository.AddFigure(newFigure);
 
-			List<Figure> iterable = _figureRepository.GetFiguresByClient("OwnerName");
+			List<Figure> iterable = _figureRepository.GetFiguresByClient(_owner);
 
 			Assert.AreEqual(newFigure.Name, iterable[0].Name);
 			Assert.AreEqual(newFigure.Owner, iterable[0].Owner);
@@ -103,12 +103,12 @@ namespace Test.MemoryRepositoryTest
 			Figure newFigure = new Sphere()
 			{
 				Name = "Test",
-				Owner = "OwnerName"
+				Owner = _owner
 			};
 
 			_figureRepository.AddFigure(newFigure);
 			_figureRepository.RemoveFigure(newFigure);
-			List<Figure> figures = _figureRepository.GetFiguresByClient("OwnerName");
+			List<Figure> figures = _figureRepository.GetFiguresByClient(_owner);
 
 			Assert.IsFalse(figures.Any());
 		}
@@ -120,7 +120,7 @@ namespace Test.MemoryRepositoryTest
 			Figure newFigure = new Sphere()
 			{
 				Name = "Test",
-				Owner = "OwnerName"
+				Owner = _owner
 			};
 
 			_figureRepository.RemoveFigure(newFigure);

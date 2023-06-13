@@ -11,9 +11,15 @@ namespace Test.ModelsTest
 	public class MaterialTest
 	{
 		private Material _material;
+		private Client _owner;
+
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_owner = new Client() { Username = _owner };
+		}
 
 		[TestMethod]
-
 		public void CanCreateMaterial_OkTest()
 		{
 			_material = new Lambertian();
@@ -24,9 +30,9 @@ namespace Test.ModelsTest
 		{
 			_material = new Lambertian()
 			{
-				Owner = "Gomez",
+				Owner = _owner,
 			};
-			Assert.AreEqual("Gomez", _material.Owner);
+			Assert.AreEqual(_owner.Username, _material.Owner.Username);
 		}
 
 		[TestMethod]

@@ -78,9 +78,9 @@ namespace Test.ControllerTest
 				Figure = new Sphere(),
 				Material = new Lambertian()
 			};
-			_modelController.AddModel(_newModel, "OwnerName");
+			_modelController.AddModel(_newModel, _owner);
 
-			List<Model> expected = _modelController.Repository.GetModelsByClient("OwnerName");
+			List<Model> expected = _modelController.Repository.GetModelsByClient(_owner);
 			Assert.AreEqual(expected[0].Id, _newModel.Id);
 		}
 

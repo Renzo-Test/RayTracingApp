@@ -45,14 +45,14 @@ namespace Test.MemoryRepositoryTest
 			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 
 			_materialRepository.AddMaterial(NewMaterial);
 
-			Assert.AreEqual(NewMaterial.Name, _materialRepository.GetMaterialsByClient("OwnerName")[0].Name);
-			Assert.AreEqual(NewMaterial.Owner, _materialRepository.GetMaterialsByClient("OwnerName")[0].Owner);
+			Assert.AreEqual(NewMaterial.Name, _materialRepository.GetMaterialsByClient(_owner)[0].Name);
+			Assert.AreEqual(NewMaterial.Owner, _materialRepository.GetMaterialsByClient(_owner)[0].Owner);
 		}
 
 		[TestMethod]
@@ -68,7 +68,7 @@ namespace Test.MemoryRepositoryTest
 			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 
@@ -90,14 +90,14 @@ namespace Test.MemoryRepositoryTest
 			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 
 
 			_materialRepository.AddMaterial(NewMaterial);
 			_materialRepository.RemoveMaterial(NewMaterial);
-			List<Material> materials = _materialRepository.GetMaterialsByClient("OwnerName");
+			List<Material> materials = _materialRepository.GetMaterialsByClient(_owner);
 
 			Assert.IsFalse(materials.Any());
 		}
@@ -116,12 +116,12 @@ namespace Test.MemoryRepositoryTest
 			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 
 			_materialRepository.RemoveMaterial(NewMaterial);
-			List<Material> materials = _materialRepository.GetMaterialsByClient("OwnerName");
+			List<Material> materials = _materialRepository.GetMaterialsByClient(_owner);
 
 			Assert.IsFalse(materials.Any());
 		}

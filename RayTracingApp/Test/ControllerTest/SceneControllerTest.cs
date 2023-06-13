@@ -251,7 +251,7 @@ namespace Test.ControllerTest
 		{
 			Client client = new Client()
 			{
-				Username = "OwnerName",
+				Username = _owner,
 				DefaultFov = 70,
 				DefaultLookFrom = new Vector() { X = 0, Y = 1, Z = 0 },
 				DefaultLookAt = new Vector() { X = 1, Y = 0, Z = 1 },
