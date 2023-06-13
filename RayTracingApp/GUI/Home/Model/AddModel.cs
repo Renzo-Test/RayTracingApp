@@ -93,7 +93,7 @@ namespace GUI
 			{
 				Model newModel = CreateModel();
 
-				_modelController.AddModel(newModel, _currentClient.Username);
+				_modelController.AddModel(newModel, _currentClient);
 				_modelHome.GoToModelList();
 
 				ResetPlaceholders();
