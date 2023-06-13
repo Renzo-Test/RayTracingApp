@@ -21,7 +21,7 @@ namespace Domain
 		private const int MaxFov = 160;
 
 		private const double MinLensAperture = 0.1;
-		private const double MaxLensAperture = 1.0;
+		private const double MaxLensAperture = 3.0;
 
 		public int Id { get; set; }
 
