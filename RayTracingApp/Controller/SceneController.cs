@@ -71,9 +71,9 @@ namespace Controller
 			scene.LastRenderDate = TodayDate();
 		}
 
-		public List<Scene> ListScenes(string username)
+		public List<Scene> ListScenes(Client client)
 		{
-			return Repository.GetScenesByClient(username);
+			return Repository.GetScenesByClient(client);
 		}
 
 		public void RemoveScene(string name, string username)
