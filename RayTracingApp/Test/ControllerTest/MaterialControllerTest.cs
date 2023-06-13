@@ -314,12 +314,6 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void GetMaterial_ExistingMaterial_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
-
 			Material newMaterial = new Lambertian()
 			{
 				Name = "sphere",
@@ -331,8 +325,8 @@ namespace Test.ControllerTest
 				}
 			};
 
-			_materialController.AddMaterial(newMaterial, currentClient);
-			Material expected = _materialController.GetMaterial(currentClient, newMaterial.Name);
+			_materialController.AddMaterial(newMaterial, _owner);
+			Material expected = _materialController.GetMaterial(_owner, newMaterial.Name);
 
 			Assert.AreEqual(expected.Name, newMaterial.Name);
 		}
