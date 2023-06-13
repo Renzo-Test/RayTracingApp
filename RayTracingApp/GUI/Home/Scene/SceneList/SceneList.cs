@@ -25,7 +25,7 @@ namespace GUI
 		public void PopulateItems()
 		{
 
-			List<Scene> scenes = _sceneController.ListScenes(_currentClient.Username);
+			List<Scene> scenes = _sceneController.ListScenes(_currentClient);
 
 			flySceneList.Controls.Clear();
 
