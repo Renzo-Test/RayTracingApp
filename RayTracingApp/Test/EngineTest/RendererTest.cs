@@ -41,7 +41,7 @@ namespace Test.EngineTest
 			{
 				ResolutionX = 300,
 			};
-			string render = renderer.Render(scene, properties, null);
+			string render = renderer.Render(scene, properties, null).RenderedImage;
 
 			int propertiesChars = 15;
 			int pixelsChars = 12 * (properties.ResolutionX * properties.ResolutionY);
