@@ -40,6 +40,7 @@ namespace Test.MemoryRepositoryTest
 			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
 			{
 				context.ClearDBTable("Logs");
+				context.ClearDBTable("Clients");
 			}
 		}
 
@@ -90,7 +91,7 @@ namespace Test.MemoryRepositoryTest
 
 			List<Log> iterable = _logRepository.GetAllLogs();
 
-			Assert.AreEqual(newLog.Owner, iterable[0].Owner);
+			Assert.AreEqual(newLog.Owner.Id, iterable[0].Owner.Id);
 		}
 	}
 }
