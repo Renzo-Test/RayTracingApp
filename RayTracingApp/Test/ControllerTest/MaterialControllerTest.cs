@@ -17,6 +17,7 @@ namespace Test.ControllerTest
 		private const string TestDatabase = "RayTracingAppTestDB";
 		private MaterialController _materialController;
 		private ModelController _modelController;
+		private ClientController _clientController;
 		private Client _owner;
 		private Client _otherOwner;
 
@@ -25,8 +26,12 @@ namespace Test.ControllerTest
 		{
 			_materialController = new MaterialController(TestDatabase);
 			_modelController = new ModelController(TestDatabase);
-			_owner = new Client() { Username = "ownerName" };
+			_clientController = new ClientController(TestDatabase);
+
 			_otherOwner = new Client() { Username = "otherName" };
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
 		}
 
 
@@ -37,6 +42,7 @@ namespace Test.ControllerTest
 			{
 				context.ClearDBTable("Models");
 				context.ClearDBTable("Materials");
+				context.ClearDBTable("Clients");
 			}
 		}
 
@@ -51,13 +57,14 @@ namespace Test.ControllerTest
 		{
 			Material _newMaterial = new Lambertian()
 			{
+				Owner = _owner,
 				Name = "materialName",
 				Color = new Color
 				{
 					Red = 1,
 					Green = 1,
 					Blue = 1,
-				}
+				},
 			};
 
 			_materialController.AddMaterial(_newMaterial, _owner);
@@ -89,6 +96,9 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidMaterialInputException))]
 		public void AddMaterial_DuplicatedLambertian_FailTest()
 		{
+			_clientController.SignUp("Username123", "Password123");
+			Client currentClient = _clientController.SignIn("Username123", "Password123");
+
 			Material _newMaterial = new Lambertian()
 			{
 				Name = "materialName",
