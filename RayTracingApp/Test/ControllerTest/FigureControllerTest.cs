@@ -337,11 +337,8 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void ChangeFigureName_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
+			_clientController.SignUp("Username123", "Password123");
+			Client currentClient = _clientController.SignIn("Username123", "Password123");
 
 			Figure newFigure = new Sphere()
 			{
