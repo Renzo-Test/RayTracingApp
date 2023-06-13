@@ -32,26 +32,22 @@ namespace Controller
             return Repository.GetAllLogs();
         }
 
+
         public Client GetUserWithMaxAccumulatedRenderTime()
         {
-            List<Log> logs = Repository.GetAllLogs();
+          List<Log> logs = Repository.GetAllLogs();
 
-            var userMaxRenderTime = logs
-                .GroupBy(log => log.Owner)
-                .Select(group => new
-                {
-                    Owner = group.Key,
-                    AccumulatedRenderTime = group.Sum(log => log.RenderTime)
-                })
-                .OrderByDescending(group => group.AccumulatedRenderTime)
-                .FirstOrDefault();
-
-            if (userMaxRenderTime is object)
+          var userMaxRenderTime = logs
+            .GroupBy(log => log.Owner)
+            .Select(group => new
             {
-                return userMaxRenderTime.Owner;
-            }
+              Owner = group.Key,
+              AccumulatedRenderTime = group.Sum(log => log.RenderTime)
+            })
+            .OrderByDescending(group => group.AccumulatedRenderTime)
+            .FirstOrDefault();
 
-            return null;
+          return userMaxRenderTime.Owner;
         }
 
         public int GetTotalRenderTimeInMinutes()
@@ -110,8 +106,6 @@ namespace Controller
                 return $"{Math.Floor(timeDifference.TotalDays)} days";
             }
         }
-
-
     }
 }
 
