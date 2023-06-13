@@ -27,8 +27,8 @@ namespace Test.MemoryRepositoryTest
 
 			_clientController = new ClientController(TestDatabase);
 
-			_clientController.SignUp(_owner, "Password123");
-			_owner = _clientController.SignIn(_owner, "Password123");
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
 
 			_clientController.SignUp("otherName", "Password123");
 			_otherOwner = _clientController.SignIn("otherName", "Password123");
