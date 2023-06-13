@@ -59,7 +59,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void AddScene_OkTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 			};
@@ -73,7 +73,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_EmptyName_FailTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = ""
 			};
@@ -83,7 +83,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_StartWithSpace_FailTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = " sceneName"
 			};
@@ -93,7 +93,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_EndWithSpace_FailTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName "
 			};
@@ -103,7 +103,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_AlreadyExistingSceneName_FailTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName"
 			};
@@ -116,7 +116,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_LessThanMinFov_FailTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName",
 				Fov = 0
@@ -127,7 +127,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void AddScene_BiggerThanMaxFov_FailTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName",
 				Fov = 161
@@ -137,7 +137,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void UpdateSceneName_OkTest()
 		{
-			Scene scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName",
 			};
@@ -152,7 +152,7 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(InvalidSceneInputException))]
 		public void UpdateSceneName_startSpace_FailTest()
 		{
-			Scene scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName",
 			};
@@ -163,7 +163,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void UpdateSceneName_KeepPreviousNameIfInvalid_OkTest()
 		{
-			Scene scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName",
 			};
@@ -182,7 +182,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void UpdateLastModificationDate_OkTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName"
 			};
@@ -194,7 +194,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void UpdateLastRenderDate_OkTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "sceneName"
 			};
@@ -206,11 +206,11 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void ListScenes_OkTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "scene"
 			};
-			Scene anotherScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene anotherScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "anotherScene"
 			};
@@ -226,7 +226,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void RemoveScene_OkTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "scene"
 			};
@@ -240,11 +240,11 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void RemoveScene_TwoClients_OkTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "scene"
 			};
-			Scene anotherScene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene anotherScene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "anotherScene"
 			};
@@ -274,7 +274,7 @@ namespace Test.ControllerTest
 		[TestMethod]
 		public void UpdatePreview_OkTest()
 		{
-			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			Scene _scene = new Scene(_fov, _lookFrom, _looktTo);
 			Bitmap img = new Bitmap(600, 300);
 			_sceneController.AddScene(_scene, _owner);
 

@@ -61,7 +61,7 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void GetScenesByClient_OwnerName_OkTest()
 		{
-			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene _scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 				Owner = _owner,
@@ -76,7 +76,7 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void AddScene_OkTest()
 		{
-			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene _scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 				Owner = _owner,
@@ -89,16 +89,14 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void AddSTwoScenes_OkTest()
 		{
-			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene _scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
-				Owner = _owner,
 			};
 
-			Scene _scene2 = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene _scene2 = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "Test2",
-				Owner = _owner,
 			};
 
 			_sceneRepository.AddScene(_scene, _owner);
@@ -112,13 +110,13 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void AddDifferentClientScenes_OkTest()
 		{
-			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene _scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 				Owner = _owner,
 			};
 
-			Scene _scene2 = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene _scene2 = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "Test2",
 				Owner = _otherOwner,
@@ -144,7 +142,7 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void DeleteScene_ExistingScene_OkTest()
 		{
-			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene _scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 				Owner = _owner,
@@ -162,7 +160,7 @@ namespace Test.MemoryRepositoryTest
 		[ExpectedException(typeof(NotFoundSceneException))]
 		public void DeleteScene_NonExistingScene_OkTest()
 		{
-			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			Scene _scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "Test",
 				Owner = _owner,
@@ -177,7 +175,7 @@ namespace Test.MemoryRepositoryTest
 		[TestMethod]
 		public void UpdatePreview_OkTest()
 		{
-			Scene _scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			Scene _scene = new Scene(_fov, _lookFrom, _looktTo);
 			Bitmap img = new Bitmap(600, 300);
 			_sceneRepository.AddScene(_scene, _owner);
 

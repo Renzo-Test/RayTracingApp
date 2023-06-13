@@ -43,9 +43,9 @@ namespace Domain
 			PosisionatedModels = new List<PosisionatedModel>();
 		}
 
-		public Scene(Client owner, int fov, Vector lookFrom, Vector lookAt)
+		public Scene(int fov, Vector lookFrom, Vector lookAt)
 		{
-			SetSceneParameters(owner);
+			SetSceneParameters();
 			SetRenderingParameters(fov, lookFrom, lookAt);
 		}
 
@@ -57,10 +57,9 @@ namespace Domain
 			PosisionatedModels = new List<PosisionatedModel>();
 		}
 
-		private void SetSceneParameters(Client owner)
+		private void SetSceneParameters()
 		{
 			_name = DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy"); ;
-			_owner = owner;
 		}
 
 		public Client Owner

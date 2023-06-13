@@ -19,14 +19,13 @@ namespace DBRepository
 			using (var context = new AppContext(DBName))
 			{
 				Client sceneClient = context.Clients.FirstOrDefault(c => c.Id == client.Id);
+				scene.Owner = sceneClient;
 				List<PosisionatedModel> posModels = context.PosisionatedModels.Where(pm => pm.SceneId == scene.Id).ToList();
 				scene.PosisionatedModels = posModels;
 
 				context.Scenes.Add(scene);
 				context.SaveChanges();
 			}
-
-			scene.Owner = client;
 		}
 
 		public List<Scene> GetScenesByClient(Client client)

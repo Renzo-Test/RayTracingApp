@@ -88,7 +88,7 @@ namespace Controller
 			Vector lookFrom = currentClient.DefaultLookFrom;
 			Vector lookAt = currentClient.DefaultLookAt;
 
-			Scene scene = new Scene(currentClient, fov, lookFrom, lookAt);
+			Scene scene = new Scene(fov, lookFrom, lookAt);
 			return scene;
 		}
 
