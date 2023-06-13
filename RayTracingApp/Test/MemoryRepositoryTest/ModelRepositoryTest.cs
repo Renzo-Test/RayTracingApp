@@ -1,4 +1,5 @@
-﻿using DBRepository;
+﻿using Controller;
+using DBRepository;
 using DBRepository.Exceptions;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,7 +14,10 @@ namespace Test.MemoryRepositoryTest
 	[ExcludeFromCodeCoverage]
 	public class ModelRepositoryTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
+
 		private ModelRepository _modelRepository;
+		private ClientController _clientController;
 		private Client _owner;
 
 		[TestInitialize]
@@ -21,18 +25,21 @@ namespace Test.MemoryRepositoryTest
 		{
 			_modelRepository = new ModelRepository()
 			{
-				DBName = "RayTracingAppTestDB"
+				DBName = TestDatabase
 			};
+			_clientController = new ClientController(TestDatabase);
 
-			_owner = new Client() { Username = "OwnerName" };
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
 		}
 
 		[TestCleanup]
 		public void TestCleanUp()
 		{
-			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
+			using (var context = new DBRepository.TestAppContext(TestDatabase))
 			{
 				context.ClearDBTable("Models");
+				context.ClearDBTable("Clients");
 			}
 		}
 
