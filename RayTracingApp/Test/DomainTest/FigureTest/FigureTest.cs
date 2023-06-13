@@ -58,7 +58,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetNameAndOwner_OkTest()
 		{
-			Client client = new Client() { Username = _owner };
+			Client client = new Client() { Username = "ownerName" };
 
 			_figure = new Sphere()
 			{
