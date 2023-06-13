@@ -42,7 +42,7 @@ namespace GUI
 			Scene scene = _sceneController.CreateBlankScene(_currentClient);
 			scene.PosisionatedModels = new List<PosisionatedModel>();
 
-			_sceneController.AddScene(scene, _currentClient.Username);
+			_sceneController.AddScene(scene, _currentClient);
 			_sceneHome.GoToAddScene(scene);
 		}
 
