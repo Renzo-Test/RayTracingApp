@@ -99,6 +99,10 @@
     <Compile Include="Migrations\202306131523225_Log-ClientAsObejct.designer.cs">
       <DependentUpon>202306131523225_Log-ClientAsObejct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306132207184_changeLogTimeSpanType.cs" />
+    <Compile Include="Migrations\202306132207184_changeLogTimeSpanType.designer.cs">
+      <DependentUpon>202306132207184_changeLogTimeSpanType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
@@ -150,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306131523225_Log-ClientAsObejct.resx">
       <DependentUpon>202306131523225_Log-ClientAsObejct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306132207184_changeLogTimeSpanType.resx">
+      <DependentUpon>202306132207184_changeLogTimeSpanType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
