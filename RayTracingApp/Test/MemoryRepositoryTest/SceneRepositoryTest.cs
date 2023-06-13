@@ -1,4 +1,5 @@
-﻿using DBRepository;
+﻿using Controller;
+using DBRepository;
 using DBRepository.Exceptions;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,7 +14,10 @@ namespace Test.MemoryRepositoryTest
 	[ExcludeFromCodeCoverage]
 	public class SceneRepositoryTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
+
 		private SceneRepository _sceneRepository;
+		private ClientController _clientController;
 		private Client _owner;
 		private int _fov;
 		private Vector _lookFrom;
@@ -24,9 +28,13 @@ namespace Test.MemoryRepositoryTest
 		{
 			_sceneRepository = new SceneRepository()
 			{
-				DBName = "RayTracingAppTestDB"
+				DBName = TestDatabase
 			};
-			_owner = new Client() { Username = "ownerName" };
+			_clientController = new ClientController(TestDatabase);
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
+
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
