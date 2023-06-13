@@ -14,8 +14,6 @@ namespace GUI
 
 		private MainController _mainController;
 
-		private RenderProperties _renderProperties;
-
 		private Client _currentClient;
 
 		public SceneHome(MainController mainController, Client currentClient)
@@ -26,7 +24,6 @@ namespace GUI
 			InitializeComponent();
 
 			_defaultRenderSettings = new DefaultRenderSettings(this, mainController, currentClient);
-			_renderProperties = _defaultRenderSettings.RenderProperties;
 			_listScenePanel = new SceneList(this, mainController.SceneController, currentClient);
 			_defaultCamPanel = new DefaultCam(this, mainController, currentClient);
 			flySceneHome.Controls.Add(_listScenePanel);
@@ -35,7 +32,7 @@ namespace GUI
 		public void GoToAddScene(Scene scene)
 		{
 			flySceneHome.Controls.Clear();
-			_addScenePanel = new ScenePage(scene, this, _mainController, _currentClient, _renderProperties);
+			_addScenePanel = new ScenePage(scene, this, _mainController, _currentClient);
 			flySceneHome.Controls.Add(_addScenePanel);
 		}
 

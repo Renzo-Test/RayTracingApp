@@ -28,11 +28,12 @@ namespace GUI
 		RenderProperties _renderProperties;
 
 
-		public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient, RenderProperties renderProperties)
+		public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
 		{
+			_renderProperties = currentClient.DefaultRenderProperties;
 
 			InitializeControllers(mainController);
-			SetAtributes(scene, currentClient, renderProperties, sceneHome);
+			SetAtributes(scene, currentClient, _renderProperties, sceneHome);
 			InitializeComponent();
 			SetSceneTextAtributes();
 		}
