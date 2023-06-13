@@ -128,9 +128,9 @@ namespace Controller
 			}
 		}
 
-		private bool SceneNameExist(Scene newScene, string username)
+		private bool SceneNameExist(Scene newScene, Client client)
 		{
-			List<Scene> clientScenes = Repository.GetScenesByClient(username);
+			List<Scene> clientScenes = Repository.GetScenesByClient(client);
 			return clientScenes.Find(scene => scene.Name.Equals(newScene.Name)) is object;
 		}
 
