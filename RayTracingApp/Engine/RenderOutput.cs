@@ -9,7 +9,7 @@ namespace Engine
 {
 	public class RenderOutput
 	{
-		public Stopwatch RenderTime { get; set; }
+		public long RenderTime { get; set; }
 		public string RenderedImage{ get; set; }
 	}
 }
