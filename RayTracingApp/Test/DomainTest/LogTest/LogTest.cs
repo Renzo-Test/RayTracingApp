@@ -44,10 +44,10 @@ namespace Test.ModelsTest
 		{
 			_log = new Log()
 			{
-				TimeSpan = TimeSpan.FromSeconds(1)
+				TimeSpan = "1 segundos"
 			};
 
-			Assert.AreEqual(TimeSpan.FromSeconds(1), _log.TimeSpan);
+			Assert.AreEqual("1 segundos", _log.TimeSpan);
 		}
 
 		[TestMethod]
