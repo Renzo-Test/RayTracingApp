@@ -85,12 +85,11 @@ namespace Controller
 
 		public Scene CreateBlankScene(Client currentClient)
 		{
-			string owner = currentClient.Username;
 			int fov = currentClient.DefaultFov;
 			Vector lookFrom = currentClient.DefaultLookFrom;
 			Vector lookAt = currentClient.DefaultLookAt;
 
-			Scene scene = new Scene(owner, fov, lookFrom, lookAt);
+			Scene scene = new Scene(currentClient, fov, lookFrom, lookAt);
 			return scene;
 		}
 
