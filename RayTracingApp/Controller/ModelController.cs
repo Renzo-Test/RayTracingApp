@@ -76,7 +76,7 @@ namespace Controller
 
 		private bool ModelNameExist(Model model, Client client)
 		{
-			List<Model> clientModels = Repository.GetModelsByClient(username);
+			List<Model> clientModels = Repository.GetModelsByClient(client);
 			return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
 		}
 
