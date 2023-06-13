@@ -65,9 +65,9 @@ namespace Controller
 			Repository.RemoveModel(deleteModel);
 		}
 
-		private void RunModelChecker(Model model, string username)
+		private void RunModelChecker(Model model, Client client)
 		{
-			if (ModelNameExist(model, username))
+			if (ModelNameExist(model, client))
 			{
 				string AlreadyExistingModelName = $"Model with name {model.Name} already exist";
 				throw new AlreadyExistingModelException(AlreadyExistingModelName);
