@@ -87,6 +87,10 @@
     <Compile Include="Migrations\202306122357248_Material-ClientAsObject.designer.cs">
       <DependentUpon>202306122357248_Material-ClientAsObject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306130010088_Model-ClientAsObject.cs" />
+    <Compile Include="Migrations\202306130010088_Model-ClientAsObject.designer.cs">
+      <DependentUpon>202306130010088_Model-ClientAsObject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SceneRepository.cs" />
     <Compile Include="ClientRepository.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306122357248_Material-ClientAsObject.resx">
       <DependentUpon>202306122357248_Material-ClientAsObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306130010088_Model-ClientAsObject.resx">
+      <DependentUpon>202306130010088_Model-ClientAsObject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
