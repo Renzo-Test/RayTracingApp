@@ -5,6 +5,8 @@ using System;
 namespace Test.ModelsTest
 {
 	[TestClass]
+
+
 	public class LogTest
 	{
 		private Log _log;

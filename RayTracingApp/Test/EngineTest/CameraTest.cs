@@ -1,12 +1,12 @@
 ﻿using Domain;
 using Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.EngineTest
 {
 	[TestClass]
-
-
+	[ExcludeFromCodeCoverage]
 	public class CameraTest
 	{
 		[TestMethod]
