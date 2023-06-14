@@ -47,12 +47,11 @@ namespace GUI
 			PopulateUsedItems();
 		}
 
-		private void CheckOutdatedScene()
+		private void InitializeControllers(MainController mainController)
 		{
-			if (_scene.Preview is object && (_scene.LastModificationDate != "unmodified" && _scene.LastRenderDate != "unrendered") && DateTime.ParseExact(_scene.LastModificationDate, DateFormat, CultureInfo.GetCultureInfo(Culture)) > DateTime.ParseExact(_scene.LastRenderDate, DateFormat, CultureInfo.GetCultureInfo(Culture)))
-			{
-				ShowWarning();
-			}
+			_logController = mainController.LogController;
+			_modelController = mainController.ModelController;
+			_sceneController = mainController.SceneController;
 		}
 
 		private void SetAtributes(Scene scene, Client currentClient, RenderProperties renderProperties, SceneHome sceneHome)
@@ -64,12 +63,26 @@ namespace GUI
 			_renderProperties = renderProperties;
 		}
 
-		private void InitializeControllers(MainController mainController)
+		private void SetSceneTextAtributes()
 		{
-			_logController = mainController.LogController;
-			_modelController = mainController.ModelController;
-			_sceneController = mainController.SceneController;
+			txtSceneName.Text = _scene.Name;
+
+			Vector lookFrom = _scene.LookFrom;
+			Vector lookAt = _scene.LookAt;
+
+			int fov = _scene.Fov;
+			double lensAperture = _scene.LensAperture;
+
+			txtLookFrom.Text = StringUtils.ConstructVectorFormat(lookFrom);
+			txtLookAt.Text = StringUtils.ConstructVectorFormat(lookAt);
+
+			txtFov.Text = $"{fov}";
+			txtLensAperture.Text = $"{lensAperture}";
+
+			lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
 		}
+
+
 
 		public void PopulateAvailableItems()
 		{
@@ -107,6 +120,16 @@ namespace GUI
 				flyUsedModels.Controls.Add(item);
 			}
 
+		}
+
+		private void CheckOutdatedScene()
+		{
+			if (_scene.Preview is object
+				&& (_scene.LastModificationDate != "unmodified" && _scene.LastRenderDate != "unrendered")
+				&& DateTime.ParseExact(_scene.LastModificationDate, DateFormat, CultureInfo.GetCultureInfo(Culture)) > DateTime.ParseExact(_scene.LastRenderDate, DateFormat, CultureInfo.GetCultureInfo(Culture)))
+			{
+				ShowWarning();
+			}
 		}
 
 		public void ShowWarning()
@@ -376,25 +399,6 @@ namespace GUI
 		private bool RunningOnUiThread()
 		{
 			return !this.InvokeRequired;
-		}
-
-		private void SetSceneTextAtributes()
-		{
-			txtSceneName.Text = _scene.Name;
-
-			Vector lookFrom = _scene.LookFrom;
-			Vector lookAt = _scene.LookAt;
-
-			int fov = _scene.Fov;
-			double lensAperture = _scene.LensAperture;
-
-			txtLookFrom.Text = StringUtils.ConstructVectorFormat(lookFrom);
-			txtLookAt.Text = StringUtils.ConstructVectorFormat(lookAt);
-
-			txtFov.Text = $"{fov}";
-			txtLensAperture.Text = $"{lensAperture}";
-
-			lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
 		}
 
 		private void LooseFocus()
