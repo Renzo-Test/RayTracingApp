@@ -5,6 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Test.EngineTest
 {
 	[TestClass]
+
+
 	public class CameraTest
 	{
 		[TestMethod]
