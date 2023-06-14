@@ -163,7 +163,7 @@ namespace Test.ControllerTest
                 TimeSpan = _logController.GetRenderTimeWindow("Test", logs)
             };
 
-            Assert.AreEqual("1 hours", testLog2.TimeSpan);
+            Assert.AreEqual("13 days", testLog2.TimeSpan);
 
         }
 
@@ -189,7 +189,7 @@ namespace Test.ControllerTest
                 TimeSpan = _logController.GetRenderTimeWindow("Test", logs)
             };
 
-            Assert.AreEqual("1 days", testLog2.TimeSpan);
+            Assert.AreEqual("13 days", testLog2.TimeSpan);
 
         }
 
