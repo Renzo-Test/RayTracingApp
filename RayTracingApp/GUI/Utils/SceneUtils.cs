@@ -41,7 +41,7 @@ namespace GUI
 			}
 		}
 
-		private static (string[], string[]) GetStringVectorValues(TextBox txtLookFrom, TextBox txtLookAt)
+		public static (string[], string[]) GetStringVectorValues(TextBox txtLookFrom, TextBox txtLookAt)
 		{
 			try
 			{

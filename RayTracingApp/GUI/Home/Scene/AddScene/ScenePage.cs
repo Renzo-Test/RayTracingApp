@@ -4,7 +4,9 @@ using Domain.Exceptions;
 using Engine;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,6 +16,8 @@ namespace GUI
 	public partial class ScenePage : UserControl
 	{
 		private const string UnrenderedImageErrorMessage = "Can not export unrendered image";
+		private const string DateFormat = "HH:mm:ss - dd/MM/yyyy";
+		private const string Culture = "en-US";
 		private SceneHome _sceneHome;
 
 		private ModelController _modelController;
@@ -28,7 +32,6 @@ namespace GUI
 
 		RenderProperties _renderProperties;
 
-
 		public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
 		{
 			_renderProperties = currentClient.DefaultRenderProperties;
@@ -37,6 +40,18 @@ namespace GUI
 			SetAtributes(scene, currentClient, _renderProperties, sceneHome);
 			InitializeComponent();
 			SetSceneTextAtributes();
+
+			CheckOutdatedScene();
+
+			PopulateAvailableItems();
+			PopulateUsedItems();
+		}
+
+		private void InitializeControllers(MainController mainController)
+		{
+			_logController = mainController.LogController;
+			_modelController = mainController.ModelController;
+			_sceneController = mainController.SceneController;
 		}
 
 		private void SetAtributes(Scene scene, Client currentClient, RenderProperties renderProperties, SceneHome sceneHome)
@@ -48,12 +63,26 @@ namespace GUI
 			_renderProperties = renderProperties;
 		}
 
-		private void InitializeControllers(MainController mainController)
+		private void SetSceneTextAtributes()
 		{
-			_logController = mainController.LogController;
-			_modelController = mainController.ModelController;
-			_sceneController = mainController.SceneController;
+			txtSceneName.Text = _scene.Name;
+
+			Vector lookFrom = _scene.LookFrom;
+			Vector lookAt = _scene.LookAt;
+
+			int fov = _scene.Fov;
+			double lensAperture = _scene.LensAperture;
+
+			txtLookFrom.Text = StringUtils.ConstructVectorFormat(lookFrom);
+			txtLookAt.Text = StringUtils.ConstructVectorFormat(lookAt);
+
+			txtFov.Text = $"{fov}";
+			txtLensAperture.Text = $"{lensAperture}";
+
+			lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
 		}
+
+
 
 		public void PopulateAvailableItems()
 		{
@@ -93,10 +122,26 @@ namespace GUI
 
 		}
 
+		private void CheckOutdatedScene()
+		{
+			if (_scene.Preview is object
+				&& (_scene.LastModificationDate != "unmodified" && _scene.LastRenderDate != "unrendered")
+				&& DateTime.ParseExact(_scene.LastModificationDate, DateFormat, CultureInfo.GetCultureInfo(Culture)) > DateTime.ParseExact(_scene.LastRenderDate, DateFormat, CultureInfo.GetCultureInfo(Culture)))
+			{
+				ShowWarning();
+			}
+		}
+
 		public void ShowWarning()
 		{
 			lblImageOutdated.Visible = true;
 			picIconWarning.Visible = true;
+		}
+
+		private void HideWarning()
+		{
+			lblImageOutdated.Visible = false;
+			picIconWarning.Visible = false;
 		}
 
 		private void Render()
@@ -138,14 +183,13 @@ namespace GUI
 			_sceneController.UpdateLastRenderDate(_scene);
 
 			Thread RenderingThread = new Thread(new ThreadStart(RenderImage));
-            RenderingThread.Start();
-        }
+			RenderingThread.Start();
+		}
 
-        private void UpdateRenderingUI()
+		private void UpdateRenderingUI()
 		{
 			pbrRender.Visible = true;
-			lblImageOutdated.Visible = false;
-			picIconWarning.Visible = false;
+			HideWarning();
 		}
 
 		private void RenderImage()
@@ -266,13 +310,12 @@ namespace GUI
 			Vector lookAt;
 			double lensAperture;
 
-			NameChange();
-
 			(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
 			lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
 
 			bool wasModified = SceneWasModified(fov, lookFrom, lookAt, lensAperture);
 
+			NameChange();
 			SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
 
 			if (wasModified)
@@ -292,11 +335,41 @@ namespace GUI
 
 		private bool SceneWasModified(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
 		{
-			return _scene.Fov != fov
+			return _scene.Name != txtSceneName.Text
+				|| _scene.Fov != fov
 				|| _scene.LookFrom.ToString() != lookFrom.ToString()
 				|| _scene.LookAt.ToString() != lookAt.ToString()
 				|| _scene.LensAperture != lensAperture
 				|| PosisionatedModelsWasModified();
+		}
+
+		private void CameraHasChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				int fov;
+				Vector lookFrom;
+				Vector lookAt;
+
+				(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
+
+				if (_scene.Preview is object
+					&& (_scene.Fov != int.Parse(txtFov.Text)
+					|| _scene.LookFrom.ToString() != lookFrom.ToString()
+					|| _scene.LookAt.ToString() != lookAt.ToString()
+					|| _scene.LensAperture != double.Parse(txtLensAperture.Text) && rbtnBlur.Checked))
+				{
+					ShowWarning();
+				}
+				else
+				{
+					HideWarning();
+				}
+			}
+			catch (InvalidSceneInputException)
+			{
+				return;
+			}
 		}
 
 		private bool PosisionatedModelsWasModified()
@@ -326,25 +399,6 @@ namespace GUI
 		private bool RunningOnUiThread()
 		{
 			return !this.InvokeRequired;
-		}
-
-		private void SetSceneTextAtributes()
-		{
-			txtSceneName.Text = _scene.Name;
-
-			Vector lookFrom = _scene.LookFrom;
-			Vector lookAt = _scene.LookAt;
-
-			int fov = _scene.Fov;
-			double lensAperture = _scene.LensAperture;
-
-			txtLookFrom.Text = StringUtils.ConstructVectorFormat(lookFrom);
-			txtLookAt.Text = StringUtils.ConstructVectorFormat(lookAt);
-
-			txtFov.Text = $"{fov}";
-			txtLensAperture.Text = $"{lensAperture}";
-
-			lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
 		}
 
 		private void LooseFocus()
@@ -378,6 +432,14 @@ namespace GUI
 		private void pictureBox3_Click(object sender, EventArgs e)
 		{
 			ExportImage();
+		}
+
+		private void rbtnBlur_CheckedChanged(object sender, EventArgs e)
+		{
+			if(rbtnBlur.Checked && _scene.LensAperture == double.Parse(txtLensAperture.Text))
+			{
+				ShowWarning();
+			}
 		}
 	}
 }
