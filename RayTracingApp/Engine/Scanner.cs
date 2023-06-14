@@ -5,6 +5,12 @@ namespace Engine
 {
 	public class Scanner
 	{
+        private const char Splitter = ' ';
+		private const int firstPosition = 0;
+		private const int secondPosition = 1;
+		private const int thirdPosition = 2;
+
+
 		public Bitmap ScanImage(string ppmImage)
 		{
 			StringReader imgReader = new StringReader(ppmImage);
@@ -30,10 +36,10 @@ namespace Engine
 		private static (int, int) GetDimensions(StringReader imgReader)
 		{
 			string line = imgReader.ReadLine();
-			string[] dimensions = line.Split(' ');
+			string[] dimensions = line.Split(Splitter);
 
-			int width = int.Parse(dimensions[0]);
-			int height = int.Parse(dimensions[1]);
+			int width = int.Parse(dimensions[firstPosition]);
+			int height = int.Parse(dimensions[secondPosition]);
 
 			return (width, height);
 		}
@@ -51,11 +57,11 @@ namespace Engine
 		private static (int, int, int) GetPixelColor(StringReader imgReader)
 		{
 			string line = imgReader.ReadLine();
-			string[] colors = line.Split(' ');
+			string[] colors = line.Split(Splitter);
 
-			int r = int.Parse(colors[0]);
-			int g = int.Parse(colors[1]);
-			int b = int.Parse(colors[2]);
+			int r = int.Parse(colors[firstPosition]);
+			int g = int.Parse(colors[secondPosition]);
+			int b = int.Parse(colors[thirdPosition]);
 
 			return (r, g, b);
 		}

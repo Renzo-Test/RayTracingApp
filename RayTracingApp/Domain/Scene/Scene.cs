@@ -16,19 +16,23 @@ namespace Domain
 		private const string EmptyNameMessage = "Scene's name must not be empty";
 		private const string SpaceCharacterConstant = " ";
 		private const string StartOrEndWithSpaceMessage = "Scene's name must not start or end with blank space";
+		private const string LensApertureErrorMessage = "Lens aperture must have only one decimal";
 
 		private const int MinFov = 1;
 		private const int MaxFov = 160;
 
 		private const double MinLensAperture = 0.1;
 		private const double MaxLensAperture = 3.0;
-		
-		public int Id { get; set; }
+        
+		private const string UsedDateFormat = "HH.mm.ss - dd-MM-yyyy";
+
+        public int Id { get; set; }
 
 		private Client _owner;
 		private string _name;
 
-		private string _registerTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
+		private string _registerTime = DateTime.Now.ToString(UsedDateFormat);
+
 		private string _lastModificationDate = "unmodified";
 		private string _lastRenderDate = "unrendered";
 		
@@ -61,7 +65,7 @@ namespace Domain
 
 		private void SetSceneParameters()
 		{
-			_name = DateTime.Now.ToString("HH.mm.ss - dd-MM-yyyy"); ;
+			_name = DateTime.Now.ToString(UsedDateFormat); ;
 		}
 
 		public Client Owner
@@ -91,7 +95,7 @@ namespace Domain
 		public string RegisterTime
 		{
 			get => _registerTime;
-			set => _registerTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+			set => _registerTime = DateTime.Now.ToString(UsedDateFormat);
 		}
 
 		public string LastModificationDate
@@ -196,7 +200,7 @@ namespace Domain
 			double roundedValue = Math.Round(value, 1);
 			if (roundedValue != value)
 			{
-				throw new InvalidFovException($"Lens aperture must have only one decimal");
+				throw new InvalidFovException(LensApertureErrorMessage);
 			}
 		}
 	}

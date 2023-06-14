@@ -14,7 +14,9 @@ namespace Controller
 		public IRepositoryScene Repository;
 
 		private const string DefaultDatabase = "RayTracingAppDB";
-		public SceneController(string dbName = DefaultDatabase)
+        private const string UsedDateFormat = "HH:mm:ss - dd/MM/yyyy";
+
+        public SceneController(string dbName = DefaultDatabase)
 		{
 			Repository = new SceneRepository()
 			{
@@ -134,7 +136,7 @@ namespace Controller
 
 		private static string TodayDate()
 		{
-			return DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
+			return DateTime.Now.ToString(UsedDateFormat);
 		}
 	}
 }

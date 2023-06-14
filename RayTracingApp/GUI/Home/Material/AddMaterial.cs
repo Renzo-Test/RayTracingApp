@@ -160,7 +160,6 @@ namespace GUI
 			InputUtils.ResetPlaceholder(ref txtInputRed, RedPlaceholder);
 			InputUtils.ResetPlaceholder(ref txtInputGreen, GreenPlaceholder);
 			InputUtils.ResetPlaceholder(ref txtInputBlue, BluePlaceholder);
-
 		}
 
 		private void picRectangleFieldCancel_Click(object sender, EventArgs e)
@@ -246,26 +245,6 @@ namespace GUI
 				txtBlur.Visible = false;
 				picBackBlur.Visible = false;
 			}
-		}
-
-		private void lblColor_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void picDarkRectangleFieldRed_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void picDarkRectangleFieldBlue_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void picDarkRectangleFieldGreen_Click(object sender, EventArgs e)
-		{
-
 		}
 
 		private void txtBlur_Enter(object sender, EventArgs e)

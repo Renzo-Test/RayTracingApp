@@ -10,8 +10,11 @@ namespace GUI
 		private const string FovNumericErrorMessage = "Fov values must be numeric only";
 		private const string LensApertureNumericErrorMessage = "Lens aperture values must be numeric only";
 		private const string VectorNumericErrorMessage = "Vector values must be numeric only";
+        private const int FirstPosition = 0;
+        private const int SecondPosition = 1;
+        private const int ThirdPosition = 2;
 
-		public static (int, Vector, Vector) GetCameraAtributes(TextBox txtFov, TextBox txtLookAt, TextBox txtLookFrom)
+        public static (int, Vector, Vector) GetCameraAtributes(TextBox txtFov, TextBox txtLookAt, TextBox txtLookFrom)
 		{
 			int fov = GetFov(txtFov);
 
@@ -69,9 +72,9 @@ namespace GUI
 		{
 			return new Vector()
 			{
-				X = vectorLookFromValues[0],
-				Y = vectorLookFromValues[1],
-				Z = vectorLookFromValues[2]
+				X = vectorLookFromValues[FirstPosition],
+				Y = vectorLookFromValues[SecondPosition],
+				Z = vectorLookFromValues[ThirdPosition]
 			};
 		}
 

@@ -5,8 +5,8 @@ namespace Domain
 	public class Color
 	{
 		private const string ColorErrorMessage = "Color's number must not be smaller than 0 or greater than 255";
-
-		private int _red = 0;
+        private const int MaxPixelValue = 255;
+        private int _red = 0;
 		public int Red
 		{
 			get => _red;
@@ -63,12 +63,12 @@ namespace Domain
 
 		private double ColorToAxis(int color)
 		{
-			return (double)color / 255;
+			return (double)color / MaxPixelValue;
 		}
 
 		private static bool IsInvalid(int value)
 		{
-			return value < 0 || value > 255;
+			return value < 0 || value > MaxPixelValue;
 		}
 	}
 }

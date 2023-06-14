@@ -13,6 +13,8 @@ namespace Controller
         public IRepositoryLog Repository;
 
         private const string DefaultDatabase = "RayTracingAppDB";
+        private const int TotalSecondsInMinute = 60;
+        private const int TotalHoursInDay = 24;
 
         public LogController(string dbName = DefaultDatabase)
         {
@@ -55,8 +57,7 @@ namespace Controller
             List<Log> logs = Repository.GetAllLogs();
             int totalRenderTime = logs.Sum(log => log.RenderTime);
 
-            // Seconds to minutes
-            return totalRenderTime / 60;
+            return totalRenderTime / TotalSecondsInMinute;
         }
 
         public int GetAverageRenderTimeInSeconds()
@@ -89,17 +90,17 @@ namespace Controller
 
             TimeSpan timeDifference = currentDateTime - previousDateTime;
 
-            if (timeDifference.TotalSeconds < 60)
+            if (timeDifference.TotalSeconds < TotalSecondsInMinute)
             {
                 return $"{Math.Floor(timeDifference.TotalSeconds)} seconds";
             }
             
-            if (timeDifference.TotalMinutes < 60)
+            if (timeDifference.TotalMinutes < TotalSecondsInMinute)
             {
                 return $"{Math.Floor(timeDifference.TotalMinutes)} minutes";
             }
             
-            if (timeDifference.TotalHours < 24)
+            if (timeDifference.TotalHours < TotalHoursInDay)
             {
                 return $"{Math.Floor(timeDifference.TotalHours)} hours";
             }

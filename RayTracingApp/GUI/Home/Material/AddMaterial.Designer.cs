@@ -204,7 +204,6 @@
             this.picDarkRectangleFieldBlue.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picDarkRectangleFieldBlue.TabIndex = 8;
             this.picDarkRectangleFieldBlue.TabStop = false;
-            this.picDarkRectangleFieldBlue.Click += new System.EventHandler(this.picDarkRectangleFieldBlue_Click);
             // 
             // picDarkRectangleFieldGreen
             // 
@@ -216,7 +215,6 @@
             this.picDarkRectangleFieldGreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picDarkRectangleFieldGreen.TabIndex = 6;
             this.picDarkRectangleFieldGreen.TabStop = false;
-            this.picDarkRectangleFieldGreen.Click += new System.EventHandler(this.picDarkRectangleFieldGreen_Click);
             // 
             // picDarkRectangleFieldRed
             // 
@@ -228,7 +226,6 @@
             this.picDarkRectangleFieldRed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picDarkRectangleFieldRed.TabIndex = 4;
             this.picDarkRectangleFieldRed.TabStop = false;
-            this.picDarkRectangleFieldRed.Click += new System.EventHandler(this.picDarkRectangleFieldRed_Click);
             // 
             // picDarkRectangleFieldName
             // 
@@ -262,7 +259,6 @@
             this.lblColor.Size = new System.Drawing.Size(84, 32);
             this.lblColor.TabIndex = 15;
             this.lblColor.Text = "Color";
-            this.lblColor.Click += new System.EventHandler(this.lblColor_Click);
             // 
             // rbtnMetalicMaterial
             // 
