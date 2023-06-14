@@ -11,6 +11,8 @@ namespace GUI
 	public partial class ModelListItem : UserControl
 	{
 		private ModelController _modelController;
+		private LogController _logController;
+		
 		private ModelList _modelList;
 
 		private Model _model;
@@ -18,17 +20,18 @@ namespace GUI
 		private Client _currentClient;
 		private bool isEditing;
 
-		public ModelListItem(ModelList modelList, ModelController modelController, Model model)
+		public ModelListItem(ModelList modelList, MainController mainController, Model model)
 		{
 			InitializeComponent();
-			InitializeControllers(modelList, modelController, model);
+			InitializeControllers(modelList, mainController, model);
 			InitializePanelAtributes(model);
 		}
 
-		private void InitializeControllers(ModelList modelList, ModelController modelController, Model model)
+		private void InitializeControllers(ModelList modelList, MainController mainController, Model model)
 		{
 			_modelList = modelList;
-			_modelController = modelController;
+			_modelController = mainController.ModelController;
+			_logController = mainController.LogController; 
 			_currentClient = model.Owner;
 			_model = model;
 			isEditing = false;
@@ -51,11 +54,13 @@ namespace GUI
 				else
 				{
 					Renderer renderer = new Renderer();
-					var (_, image) = renderer.RenderModelPreview(model);
+					var (renderTime, _, image) = renderer.RenderModelPreview(model);
 
 					_modelController.UpdatePreview(model, image);
 					picIconSphere.Image = image;
 					picMaterialColor.Visible = false;
+
+					CreateNewLog(renderTime);
 				}
 
 			}
@@ -65,6 +70,26 @@ namespace GUI
 			lblMaterialName.Text = $"Material: {MaterialName}";
 
 			picMaterialColor.BackColor = System.Drawing.Color.FromArgb(materialColor.Red, materialColor.Green, materialColor.Blue);
+		}
+
+		private void CreateNewLog(long renderTime)
+		{
+			Log newLog = new Log()
+			{
+				SceneName = $"Preview - {_model.Name}",
+				Owner = _model.Owner,
+				RenderTime = ConvertToSeconds(renderTime),
+				RenderDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+				TimeSpan = "0",
+				RenderedElements = 1
+			};
+
+			_logController.AddLog(newLog, _currentClient);
+		}
+
+		private static int ConvertToSeconds(long renderTime)
+		{
+			return (int)renderTime / 1000;
 		}
 
 		private void picIconX_Click(object sender, EventArgs e)

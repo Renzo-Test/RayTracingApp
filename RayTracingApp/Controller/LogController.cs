@@ -73,18 +73,18 @@ namespace Controller
             return 0;
         }
 
-        public string GetRenderTimeWindow(string sceneName, List<Log> logs, string currentRenderDate)
+        public string GetRenderTimeWindow(string sceneName, List<Log> logs)
         {
             Log previousLog = logs.Where(log => log.SceneName == sceneName)
                          .OrderByDescending(log => log.RenderDate)
                          .ToList().FirstOrDefault();
 
-            if (previousLog == null)
+            if (previousLog is null)
             {
                 return "0 seconds";
             }
 
-            DateTime currentDateTime = DateTime.Parse(currentRenderDate);
+            DateTime currentDateTime = DateTime.Now;
             DateTime previousDateTime = DateTime.Parse(previousLog.RenderDate);
 
             TimeSpan timeDifference = currentDateTime - previousDateTime;
@@ -93,18 +93,18 @@ namespace Controller
             {
                 return $"{Math.Floor(timeDifference.TotalSeconds)} seconds";
             }
-            else if (timeDifference.TotalMinutes < 60)
+            
+            if (timeDifference.TotalMinutes < 60)
             {
                 return $"{Math.Floor(timeDifference.TotalMinutes)} minutes";
             }
-            else if (timeDifference.TotalHours < 24)
+            
+            if (timeDifference.TotalHours < 24)
             {
                 return $"{Math.Floor(timeDifference.TotalHours)} hours";
             }
-            else
-            {
-                return $"{Math.Floor(timeDifference.TotalDays)} days";
-            }
+     
+            return $"{Math.Floor(timeDifference.TotalDays)} days";
         }
     }
 }
