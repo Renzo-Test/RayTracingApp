@@ -163,7 +163,7 @@ namespace GUI
 		{
 			try
 			{
-				CheckNameChange();
+				NameChange();
 			}
 			catch (InvalidSceneInputException ex)
 			{
@@ -227,7 +227,7 @@ namespace GUI
 		{
 			try
 			{
-				CheckNameChange();
+				NameChange();
 			}
 			catch (InvalidSceneInputException ex)
 			{
@@ -293,9 +293,10 @@ namespace GUI
 
 		private void NameChange()
 		{
-			_sceneController.UpdateSceneName(_scene, _currentClient, txtSceneName.Text);
-
-			LooseFocus();
+			if (_scene.Name != txtSceneName.Text)
+			{
+				_sceneController.UpdateSceneName(_scene, _currentClient, txtSceneName.Text);
+			}
 		}
 
 		private void LooseFocus()
