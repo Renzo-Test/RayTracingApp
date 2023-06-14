@@ -59,7 +59,7 @@ namespace Test.EngineTest
 				Material = new Lambertian() { Color = modelColor },
 			};
 
-			var (render, _) = renderer.RenderModelPreview(modelToPreview);
+			var (_, render, _) = renderer.RenderModelPreview(modelToPreview);
 
 			int propertiesLines = 3;
 			int pixelsLines = (100 * 100) + 1;
