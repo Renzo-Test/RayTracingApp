@@ -58,15 +58,19 @@ namespace GUI
 
 		private void Worker_DoWork(object sender, DoWorkEventArgs e)
 		{
-			Thread.Sleep(5000);
+			Thread.Sleep(500);
 
 			int fov;
 			Vector lookFrom;
 			Vector lookAt;
-			double lensAperture;
+			double lensAperture = blurOff;
 
 			(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
-			lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
+
+			if (rbtnBlur.Checked)
+			{
+				lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
+			}
 
 			e.Result = SceneWasModified(fov, lookFrom, lookAt, lensAperture);
 		}
