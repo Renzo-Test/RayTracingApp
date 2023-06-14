@@ -64,9 +64,9 @@ namespace Test.ModelsTest
 		{
 			_scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
-				RegisterTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"),
+				RegisterTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"),
 			};
-			string expected = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+			string expected = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 
 			Assert.AreEqual(expected, _scene.RegisterTime);
 		}
