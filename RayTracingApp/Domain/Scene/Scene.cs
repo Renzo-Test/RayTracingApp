@@ -31,7 +31,7 @@ namespace Domain
 		private string _lastModificationDate = "unmodified";
 		private string _lastRenderDate = "unrendered";
 		private int _fov;
-		private double _lensAperture = 0.5;
+		private double _lensAperture = 0.1;
 
 		public Vector LookFrom { get; set; } = new Vector();
 		public Vector LookAt { get; set; } = new Vector();
