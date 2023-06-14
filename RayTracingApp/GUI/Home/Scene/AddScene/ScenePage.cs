@@ -18,6 +18,7 @@ namespace GUI
 
 		private ModelController _modelController;
 		private SceneController _sceneController;
+		private LogController _logController;
 
 		private Scene _scene;
 		private Client _currentClient;
@@ -49,6 +50,7 @@ namespace GUI
 
 		private void InitializeControllers(MainController mainController)
 		{
+			_logController = mainController.LogController;
 			_modelController = mainController.ModelController;
 			_sceneController = mainController.SceneController;
 		}
@@ -98,49 +100,48 @@ namespace GUI
 		}
 
 		private void Render()
-		{
-			int fov;
-			Vector lookFrom;
-			Vector lookAt;
-			double lensAperture;
+        {
+            int fov;
+            Vector lookFrom;
+            Vector lookAt;
+            double lensAperture;
 
-			try
-			{
-				(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
-				lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
-			}
-			catch (InvalidSceneInputException ex)
-			{
-				MessageBox.Show(ex.Message);
-				return;
-			}
+            try
+            {
+                (fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
+                lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
+            }
+            catch (InvalidSceneInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
-			try
-			{
-				if (rbtnBlur.Checked)
-				{
-					SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
-				}
-				else
-				{
-					SetSceneAtributes(fov, lookFrom, lookAt, blurOff);
-				}
-			}
-			catch (InvalidSceneInputException ex)
-			{
-				MessageBox.Show(ex.Message);
-				return;
-			}
+            try
+            {
+                if (rbtnBlur.Checked)
+                {
+                    SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
+                }
+                else
+                {
+                    SetSceneAtributes(fov, lookFrom, lookAt, blurOff);
+                }
+            }
+            catch (InvalidSceneInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
 
-			UpdateRenderingUI();
+            UpdateRenderingUI();
+			_sceneController.UpdateLastRenderDate(_scene);
 
 			Thread RenderingThread = new Thread(new ThreadStart(RenderImage));
-			RenderingThread.Start();
+            RenderingThread.Start();
+        }
 
-			_sceneController.UpdateLastRenderDate(_scene);
-		}
-
-		private void UpdateRenderingUI()
+        private void UpdateRenderingUI()
 		{
 			pbrRender.Visible = true;
 			lblImageOutdated.Visible = false;
@@ -151,12 +152,16 @@ namespace GUI
 		{
 			Renderer renderer = new Renderer();
 
-			string image = renderer.Render(_scene, _renderProperties, pbrRender).RenderedImage;
+			RenderOutput renderOutput = renderer.Render(_scene, _renderProperties, pbrRender);
+
+			long renderTime = renderOutput.RenderTime;
+			string image = renderOutput.RenderedImage;
 
 			Scanner scanner = new Scanner();
 			Bitmap img = scanner.ScanImage(image);
-			SetRenderedImage(img);
 
+			SetRenderedImage(img);
+			CreateNewLog(renderTime);
 			ReInitialazeUI();
 		}
 		private void ExportImage()
@@ -185,7 +190,27 @@ namespace GUI
 			picScene.Image = img;
 		}
 
-		private void ReInitialazeUI()
+		private void CreateNewLog(long renderTime)
+        {
+			Log newLog = new Log()
+			{
+				SceneName = _scene.Name,
+				Owner = _scene.Owner,
+				RenderTime = ConvertToSeconds(renderTime),
+				RenderDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+				TimeSpan = _logController.GetRenderTimeWindow(_scene.Name, _logController.ListLogs()),
+				RenderedElements = _scene.PosisionatedModels.Count()
+            };
+
+            _logController.AddLog(newLog, _currentClient);
+        }
+
+        private static int ConvertToSeconds(long renderTime)
+        {
+            return (int)renderTime/1000;
+        }
+
+        private void ReInitialazeUI()
 		{
 			if (!RunningOnUiThread())
 			{

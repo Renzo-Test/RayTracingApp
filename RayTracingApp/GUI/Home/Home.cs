@@ -71,5 +71,11 @@ namespace GUI
 			flyHome.Controls.Clear();
 			flyHome.Controls.Add(_figureHome);
 		}
-	}
+
+        private void btnLogs_Click(object sender, EventArgs e)
+        {
+			flyHome.Controls.Clear();
+			_mainForm.GoToLogs();
+		}
+    }
 }

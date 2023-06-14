@@ -22,14 +22,16 @@ namespace Domain
 
 		private const double MinLensAperture = 0.1;
 		private const double MaxLensAperture = 3.0;
-
+		
 		public int Id { get; set; }
 
-		private string _registerTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 		private Client _owner;
 		private string _name;
+
+		private string _registerTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 		private string _lastModificationDate = "unmodified";
 		private string _lastRenderDate = "unrendered";
+		
 		private int _fov;
 		private double _lensAperture = 0.1;
 

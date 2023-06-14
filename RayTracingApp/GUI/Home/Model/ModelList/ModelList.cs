@@ -10,13 +10,15 @@ namespace GUI
 	{
 		private ModelHome _modelHome;
 
+		private MainController _mainController;
 		private ModelController _modelController;
 		private Client _currentClient;
 
-		public ModelList(ModelHome modelHome, ModelController modelController, Client currentClient)
+		public ModelList(ModelHome modelHome, MainController mainController, Client currentClient)
 		{
 			_modelHome = modelHome;
-			_modelController = modelController;
+			_mainController = mainController;
+			_modelController = mainController.ModelController;
 			_currentClient = currentClient;
 
 			InitializeComponent();
@@ -29,7 +31,7 @@ namespace GUI
 
 			foreach (Model model in models)
 			{
-				ModelListItem item = new ModelListItem(this, _modelController, model);
+				ModelListItem item = new ModelListItem(this, _mainController, model);
 				flyModelList.Controls.Add(item);
 			}
 		}
