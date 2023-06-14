@@ -5,6 +5,7 @@ using Engine;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,6 +15,8 @@ namespace GUI
 	public partial class ScenePage : UserControl
 	{
 		private const string UnrenderedImageErrorMessage = "Can not export unrendered image";
+		private const string DateFormat = "HH:mm:ss - dd/MM/yyyy";
+		private const string Culture = "en-US";
 		private SceneHome _sceneHome;
 
 		private ModelController _modelController;
@@ -37,7 +40,16 @@ namespace GUI
 			SetAtributes(scene, currentClient, _renderProperties, sceneHome);
 			InitializeComponent();
 			SetSceneTextAtributes();
+
+			if (_scene.Preview is object && DateTime.ParseExact(_scene.LastModificationDate, DateFormat, CultureInfo.GetCultureInfo(Culture)) > DateTime.ParseExact(_scene.LastRenderDate, DateFormat, CultureInfo.GetCultureInfo(Culture)))
+			{
+				ShowWarning();
+			}
+
+			PopulateAvailableItems();
+			PopulateUsedItems();
 		}
+
 
 		private void SetAtributes(Scene scene, Client currentClient, RenderProperties renderProperties, SceneHome sceneHome)
 		{
