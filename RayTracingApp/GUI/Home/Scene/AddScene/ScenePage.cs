@@ -267,10 +267,29 @@ namespace GUI
 
 		private bool SceneWasModified(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
 		{
-			return _scene.Fov != fov 
-				|| _scene.LookFrom.ToString() != lookFrom.ToString() 
-				|| _scene.LookAt.ToString() != lookAt.ToString() 
-				|| _scene.LensAperture != lensAperture;
+			return _scene.Fov != fov
+				|| _scene.LookFrom.ToString() != lookFrom.ToString()
+				|| _scene.LookAt.ToString() != lookAt.ToString()
+				|| _scene.LensAperture != lensAperture
+				|| PosisionatedModelsWasModified();
+		}
+
+		private bool PosisionatedModelsWasModified()
+		{
+			if (_posisionatedModels.Count != _scene.PosisionatedModels.Count)
+			{
+				return true;
+			}
+
+			for (int i = 0; i < _posisionatedModels.Count; i++)
+			{
+				if (_posisionatedModels[i].Id != _scene.PosisionatedModels[i].Id)
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		private void ScenePage_Paint(object sender, PaintEventArgs e)
