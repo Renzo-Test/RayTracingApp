@@ -1,9 +1,11 @@
 ﻿using Controller;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
 	[TestClass]
+	[ExcludeFromCodeCoverage]
 	public class MainControllerTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";
