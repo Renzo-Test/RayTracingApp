@@ -138,7 +138,6 @@ namespace Test.ControllerTest
             _logController.AddLog(testLog2, _owner);
 
             Assert.AreEqual("0 seconds", testLog2.TimeSpan);
-
         }
 
 		[TestMethod]
@@ -164,7 +163,6 @@ namespace Test.ControllerTest
             };
 
             Assert.AreEqual("13 days", testLog2.TimeSpan);
-
         }
 
         [TestMethod]
@@ -190,8 +188,6 @@ namespace Test.ControllerTest
             };
 
             Assert.AreEqual("13 days", testLog2.TimeSpan);
-
         }
-
     }
 }
