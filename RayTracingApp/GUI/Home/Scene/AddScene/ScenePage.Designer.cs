@@ -147,6 +147,7 @@
 			this.txtFov.Size = new System.Drawing.Size(158, 24);
 			this.txtFov.TabIndex = 27;
 			this.txtFov.Text = "Fov";
+			this.txtFov.TextChanged += new System.EventHandler(this.CameraHasChanged);
 			// 
 			// txtLookAt
 			// 

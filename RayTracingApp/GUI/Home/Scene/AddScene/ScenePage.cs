@@ -31,7 +31,6 @@ namespace GUI
 		private double blurOff = 0.1;
 
 		RenderProperties _renderProperties;
-		readonly BackgroundWorker _worker = new BackgroundWorker();
 
 		public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
 		{
@@ -48,45 +47,9 @@ namespace GUI
 				ShowWarning();
 			}
 			*/
-			_worker.DoWork += Worker_DoWork;
-			_worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-			_worker.RunWorkerAsync();
 
 			PopulateAvailableItems();
 			PopulateUsedItems();
-		}
-
-		private void Worker_DoWork(object sender, DoWorkEventArgs e)
-		{
-			Thread.Sleep(500);
-
-			int fov;
-			Vector lookFrom;
-			Vector lookAt;
-			double lensAperture = blurOff;
-
-			(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
-
-			if (rbtnBlur.Checked)
-			{
-				lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
-			}
-
-			e.Result = SceneWasModified(fov, lookFrom, lookAt, lensAperture);
-		}
-
-		private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-		{
-			if (e.Result is true && _scene.Preview is object)
-			{
-				ShowWarning();
-			}
-			else
-			{
-				HideWarning();
-			}
-
-			_worker.RunWorkerAsync();
 		}
 
 		private void SetAtributes(Scene scene, Client currentClient, RenderProperties renderProperties, SceneHome sceneHome)
@@ -194,10 +157,10 @@ namespace GUI
 			_sceneController.UpdateLastRenderDate(_scene);
 
 			Thread RenderingThread = new Thread(new ThreadStart(RenderImage));
-            RenderingThread.Start();
-        }
+			RenderingThread.Start();
+		}
 
-        private void UpdateRenderingUI()
+		private void UpdateRenderingUI()
 		{
 			pbrRender.Visible = true;
 			HideWarning();
@@ -321,13 +284,12 @@ namespace GUI
 			Vector lookAt;
 			double lensAperture;
 
-			NameChange();
-
 			(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
 			lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
 
 			bool wasModified = SceneWasModified(fov, lookFrom, lookAt, lensAperture);
 
+			NameChange();
 			SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
 
 			if (wasModified)
@@ -347,11 +309,24 @@ namespace GUI
 
 		private bool SceneWasModified(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
 		{
-			return _scene.Fov != fov
+			return _scene.Name != txtSceneName.Text
+				|| _scene.Fov != fov
 				|| _scene.LookFrom.ToString() != lookFrom.ToString()
 				|| _scene.LookAt.ToString() != lookAt.ToString()
 				|| _scene.LensAperture != lensAperture
 				|| PosisionatedModelsWasModified();
+		}
+
+		private void CameraHasChanged(object sender, EventArgs e)
+		{
+			if(txtFov.Text != _scene.Fov.ToString())
+			{
+				ShowWarning();
+			}
+			else
+			{
+				HideWarning();
+			}
 		}
 
 		private bool PosisionatedModelsWasModified()
