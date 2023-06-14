@@ -5,7 +5,11 @@ namespace Engine
 {
 	public class Camera
 	{
-		private Vector VectorLowerLeftCorner { get; set; }
+        private const int ConvertToDegreeConstant = 180;
+        private const int ConvertToHalfConstant = 2;
+        private const int ConvertToDoubleConstant = 2;
+
+        private Vector VectorLowerLeftCorner { get; set; }
 		private Vector VectorHorizontal { get; set; }
 		private Vector VectorVertical { get; set; }
 		private Vector Origin { get; set; }
@@ -15,9 +19,10 @@ namespace Engine
 
 		public Camera(Vector vectorLookFrom, Vector vectorLookAt, Vector vectorUp, int fieldOfView, double aspectRatio, double aperture, double focalDistance)
 		{
-			LensRadius = aperture / 2;
-			double Theta = fieldOfView * Math.PI / 180;
-			double HeightHalf = Math.Tan(Theta / 2);
+			LensRadius = aperture / ConvertToHalfConstant;
+
+			double Theta = fieldOfView * Math.PI / ConvertToDegreeConstant;
+			double HeightHalf = Math.Tan(Theta / ConvertToHalfConstant);
 			double WidthHalf = aspectRatio * HeightHalf;
 
 			Origin = vectorLookFrom;
@@ -30,15 +35,17 @@ namespace Engine
 				.Substract(VectorU.Multiply(WidthHalf * focalDistance))
 				.Substract(VectorV.Multiply(HeightHalf * focalDistance))
 				.Substract(VectorW.Multiply(focalDistance));
-			VectorHorizontal = VectorU.Multiply(2 * WidthHalf * focalDistance);
-			VectorVertical = VectorV.Multiply(2 * HeightHalf * focalDistance);
+
+			VectorHorizontal = VectorU.Multiply(ConvertToDoubleConstant * WidthHalf * focalDistance);
+			VectorVertical = VectorV.Multiply(ConvertToDoubleConstant * HeightHalf * focalDistance);
 		}
 		public Ray GetRay(double u, double v, Vector randomVector)
 		{
 			randomVector = randomVector.Multiply(LensRadius);
-			Vector vectorOffSet = VectorU.
-				Multiply(randomVector.X).
-				Add(VectorV.Multiply(randomVector.Y));
+			Vector vectorOffSet = VectorU
+				.Multiply(randomVector.X)
+				.Add(VectorV.Multiply(randomVector.Y));
+
 			Vector horizontalPosition = VectorHorizontal.Multiply(u);
 			Vector verticalPosition = VectorVertical.Multiply(v);
 

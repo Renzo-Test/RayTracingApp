@@ -16,7 +16,11 @@ namespace GUI
 		public string _imgName;
 
 		private const string EmptyPathErrorMessage = "Path must not be empty!";
-		public ExportPage(SceneHome sceneHome, Image img, string name)
+        private const string PpmFormat = "ppm";
+        private const string PngFormat = "png";
+        private const string JpgFormat = "jpg";
+
+        public ExportPage(SceneHome sceneHome, Image img, string name)
 		{
 			_sceneHome = sceneHome;
 			_img = img;
@@ -62,37 +66,37 @@ namespace GUI
 		private void lblPPM_Click(object sender, EventArgs e)
 		{
 			IExporter exporter = new PPMExporter();
-			ExportImage(exporter, "ppm");
+			ExportImage(exporter, PpmFormat);
 		}
 
 		private void picBGPPM_Click(object sender, EventArgs e)
 		{
 			IExporter exporter = new PPMExporter();
-			ExportImage(exporter, "ppm");
+			ExportImage(exporter, PpmFormat);
 		}
 
 		private void lblPNG_Click(object sender, EventArgs e)
 		{
 			IExporter exporter = new PNGExporter();
-			ExportImage(exporter, "png");
+			ExportImage(exporter, PngFormat);
 		}
 
 		private void picBGPNG_Click(object sender, EventArgs e)
 		{
 			IExporter exporter = new PNGExporter();
-			ExportImage(exporter, "png");
+			ExportImage(exporter, PngFormat);
 		}
 
 		private void lblJPG_Click(object sender, EventArgs e)
 		{
 			IExporter exporter = new JPGExporter();
-			ExportImage(exporter, "jpg");
+			ExportImage(exporter, JpgFormat);
 		}
 
 		private void picBGJPG_Click(object sender, EventArgs e)
 		{
 			IExporter exporter = new JPGExporter();
-			ExportImage(exporter, "jpg");
+			ExportImage(exporter, JpgFormat);
 		}
 
 	}

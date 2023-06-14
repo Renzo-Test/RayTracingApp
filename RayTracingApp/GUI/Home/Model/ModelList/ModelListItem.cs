@@ -10,7 +10,9 @@ namespace GUI
 {
 	public partial class ModelListItem : UserControl
 	{
-		private ModelController _modelController;
+        private const string UsedDateFormat = "yyyy-MM-dd HH:mm:ss";
+
+        private ModelController _modelController;
 		private LogController _logController;
 		
 		private ModelList _modelList;
@@ -79,7 +81,7 @@ namespace GUI
 				SceneName = $"Preview - {_model.Name}",
 				Owner = _model.Owner,
 				RenderTime = ConvertToSeconds(renderTime),
-				RenderDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+				RenderDate = DateTime.Now.ToString(UsedDateFormat),
 				TimeSpan = "0",
 				RenderedElements = 1
 			};

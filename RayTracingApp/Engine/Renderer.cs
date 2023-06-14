@@ -11,7 +11,9 @@ namespace Engine
 {
 	public class Renderer
 	{
-		private Scene _scene;
+        private const double AlmostCero = 0.001;
+
+        private Scene _scene;
 		private RenderProperties _properties;
 
 		private Printer _printer;
@@ -138,7 +140,7 @@ namespace Engine
 
 			foreach (PosisionatedModel posisionatedModel in _scene.PosisionatedModels)
 			{
-				HitRecord hit = IsSphereHit(posisionatedModel, ray, 0.001, tMax);
+				HitRecord hit = IsSphereHit(posisionatedModel, ray, AlmostCero, tMax);
 				if (hit is object)
 				{
 					hitRecord = hit;

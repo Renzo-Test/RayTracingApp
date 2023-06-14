@@ -29,9 +29,5 @@ namespace GUI
 			flyModelHome.Controls.Add(_modelListPanel);
 		}
 
-		private void flyModelHome_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
 	}
 }

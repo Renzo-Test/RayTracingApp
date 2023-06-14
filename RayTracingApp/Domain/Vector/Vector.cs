@@ -4,7 +4,9 @@ namespace Domain
 {
 	public class Vector
 	{
-		public double X { get; set; }
+        private const int MaxPixelValue = 255;
+
+        public double X { get; set; }
 		public double Y { get; set; }
 		public double Z { get; set; }
 
@@ -22,7 +24,7 @@ namespace Domain
 
 		private int AxisToColor(double axis)
 		{
-			return (int)Math.Abs(Math.Round(axis * 255));
+			return (int)Math.Abs(Math.Round(axis * MaxPixelValue));
 		}
 
 		public Vector Add(Vector vector)
