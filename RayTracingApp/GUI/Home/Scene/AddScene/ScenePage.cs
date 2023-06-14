@@ -159,6 +159,25 @@ namespace GUI
 
 			ReInitialazeUI();
 		}
+		private void ExportImage()
+		{
+			try
+			{
+				NameChange();
+			}
+			catch (InvalidSceneInputException ex)
+			{
+				MessageBox.Show(ex.Message);
+				return;
+			}
+
+			if (_scene.Preview is null)
+			{
+				MessageBox.Show(UnrenderedImageErrorMessage);
+				return;
+			}
+			_sceneHome.GoToExportPage(_scene.GetPreview(), _scene.Name);
+		}
 
 		private void SetRenderedImage(Bitmap img)
 		{
@@ -206,6 +225,16 @@ namespace GUI
 
 		private void picIconBack_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				NameChange();
+			}
+			catch (InvalidSceneInputException ex)
+			{
+				MessageBox.Show(ex.Message);
+				return;
+			}
+
 			int fov;
 			Vector lookFrom;
 			Vector lookAt;
@@ -245,7 +274,6 @@ namespace GUI
 
 		private void SetSceneTextAtributes()
 		{
-
 			txtSceneName.Text = _scene.Name;
 
 			Vector lookFrom = _scene.LookFrom;
@@ -261,37 +289,19 @@ namespace GUI
 			txtLensAperture.Text = $"{lensAperture}";
 
 			lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
-			txtSceneName.KeyPress += new KeyPressEventHandler(CheckNameChange);
-
 		}
 
-		private void CheckNameChange(object sender, KeyPressEventArgs e)
+		private void NameChange()
 		{
-			if (EnterWasPressed(e))
+			if (_scene.Name != txtSceneName.Text)
 			{
-				try
-				{
-					_sceneController.UpdateSceneName(_scene, _currentClient, txtSceneName.Text);
-				}
-				catch (InvalidSceneInputException ex)
-				{
-					MessageBox.Show(ex.Message);
-					return;
-				}
-
-				LooseFocus();
-				e.Handled = true;
+				_sceneController.UpdateSceneName(_scene, _currentClient, txtSceneName.Text);
 			}
 		}
 
 		private void LooseFocus()
 		{
 			ActiveControl = txtLookFrom;
-		}
-
-		private static bool EnterWasPressed(KeyPressEventArgs e)
-		{
-			return e.KeyChar == Convert.ToChar(Keys.Enter);
 		}
 
 		private void picRender_Click(object sender, EventArgs e)
@@ -320,16 +330,6 @@ namespace GUI
 		private void pictureBox3_Click(object sender, EventArgs e)
 		{
 			ExportImage();
-		}
-
-		private void ExportImage()
-		{
-			if (_scene.Preview is null)
-			{
-				MessageBox.Show(UnrenderedImageErrorMessage);
-				return;
-			}
-			_sceneHome.GoToExportPage(_scene.GetPreview(), _scene.Name);
 		}
 	}
 }
