@@ -4,6 +4,7 @@ using Domain.Exceptions;
 using Engine;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace GUI
 		private double blurOff = 0.1;
 
 		RenderProperties _renderProperties;
-
+		readonly BackgroundWorker _worker = new BackgroundWorker();
 
 		public ScenePage(Scene scene, SceneHome sceneHome, MainController mainController, Client currentClient)
 		{
@@ -41,15 +42,48 @@ namespace GUI
 			InitializeComponent();
 			SetSceneTextAtributes();
 
+			/*
 			if (_scene.Preview is object && DateTime.ParseExact(_scene.LastModificationDate, DateFormat, CultureInfo.GetCultureInfo(Culture)) > DateTime.ParseExact(_scene.LastRenderDate, DateFormat, CultureInfo.GetCultureInfo(Culture)))
 			{
 				ShowWarning();
 			}
+			*/
+			_worker.DoWork += Worker_DoWork;
+			_worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+			_worker.RunWorkerAsync();
 
 			PopulateAvailableItems();
 			PopulateUsedItems();
 		}
 
+		private void Worker_DoWork(object sender, DoWorkEventArgs e)
+		{
+			Thread.Sleep(5000);
+
+			int fov;
+			Vector lookFrom;
+			Vector lookAt;
+			double lensAperture;
+
+			(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
+			lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
+
+			e.Result = SceneWasModified(fov, lookFrom, lookAt, lensAperture);
+		}
+
+		private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		{
+			if (e.Result is true)
+			{
+				ShowWarning();
+			}
+			else
+			{
+				HideWarning();
+			}
+
+			_worker.RunWorkerAsync();
+		}
 
 		private void SetAtributes(Scene scene, Client currentClient, RenderProperties renderProperties, SceneHome sceneHome)
 		{
@@ -111,6 +145,12 @@ namespace GUI
 			picIconWarning.Visible = true;
 		}
 
+		private void HideWarning()
+		{
+			lblImageOutdated.Visible = false;
+			picIconWarning.Visible = false;
+		}
+
 		private void Render()
         {
             int fov;
@@ -156,8 +196,7 @@ namespace GUI
         private void UpdateRenderingUI()
 		{
 			pbrRender.Visible = true;
-			lblImageOutdated.Visible = false;
-			picIconWarning.Visible = false;
+			HideWarning();
 		}
 
 		private void RenderImage()
