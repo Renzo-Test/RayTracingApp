@@ -47,6 +47,9 @@ namespace Test.MemoryRepositoryTest
 		{
 			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
 			{
+				context.ClearDBTable("Models");
+				context.ClearDBTable("Materials");
+				context.ClearDBTable("Figures");
 				context.ClearDBTable("Scenes");
 				context.ClearDBTable("Clients");
 			}
@@ -184,6 +187,50 @@ namespace Test.MemoryRepositoryTest
 			Scene updatedScene = _sceneRepository.GetScenesByClient(_owner)[0];
 
 			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
+		}
+
+		[TestMethod]
+		public void UpdateModels_OkTest()
+		{
+			FigureRepository figureRepository = new FigureRepository()
+			{
+				DBName = TestDatabase
+			};
+			MaterialRepository materialRepository = new MaterialRepository()
+			{
+				DBName = TestDatabase
+			};
+			ModelRepository modelRepository = new ModelRepository()
+			{
+				DBName = TestDatabase
+			};
+
+			Scene _scene = new Scene(_fov, _lookFrom, _looktTo);
+			_sceneRepository.AddScene(_scene, _owner);
+
+			Figure figure = new Sphere();
+			figureRepository.AddFigure(figure, _owner);
+
+			Material material = new Lambertian()
+			{
+				Color = new Domain.Color(),
+			};
+			materialRepository.AddMaterial(material, _owner);
+
+			Model model = new Model()
+			{
+				Figure = figure,
+				Material = material,
+			};	
+			modelRepository.AddModel(model, _owner);
+
+			_sceneRepository.UpdateSceneModels(_scene, new PosisionatedModel()
+			{
+				Model = model,
+				Position = new Vector() { X = 0, Y = 0, Z = 0 },
+			});
+
+			Assert.AreEqual(1, _sceneRepository.GetPosisionatedModels(_scene).Count);
 		}
 	}
 }
