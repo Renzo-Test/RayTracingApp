@@ -66,8 +66,10 @@ namespace Test.ControllerTest
 
 			_logController.AddLog(testLog1, _owner);
 			_logController.AddLog(testLog2, _otherOwner);
+			string username;
+			(username, _) = _logController.GetUserWithMaxAccumulatedRenderTime();
 
-			Assert.AreEqual(_owner.Username, _logController.GetUserWithMaxAccumulatedRenderTime().Username);
+			Assert.AreEqual(_owner.Username, username);
 		}
 
 		[TestMethod]
