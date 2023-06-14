@@ -160,6 +160,9 @@
   <data name="sceneIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sceneIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="circleButton1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\circleButton1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="materialIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\materialIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -211,6 +214,9 @@
   <data name="blackWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blackWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="export" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="userBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\userBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -235,7 +241,7 @@
   <data name="mBlankScene" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mBlankScene.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="export" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

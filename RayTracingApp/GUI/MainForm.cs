@@ -9,6 +9,7 @@ namespace GUI
 		private UserControl _signInPanel;
 		private UserControl _signUpPanel;
 		private UserControl _homePanel;
+		private UserControl _logsPanel;
 
 		private MainController _mainController;
 
@@ -17,6 +18,7 @@ namespace GUI
 			InitializeComponent();
 			_mainController = new MainController();
 
+			_logsPanel = new LogList(this);
 			_signInPanel = new SignIn(this, _mainController.ClientController);
 			_signUpPanel = new SignUp(this, _mainController.ClientController);
 
@@ -41,6 +43,12 @@ namespace GUI
 
 			flyMain.Controls.Clear();
 			flyMain.Controls.Add(_homePanel);
+		}
+
+		public void GoToLogs()
+		{
+			flyMain.Controls.Clear();
+			flyMain.Controls.Add(_logsPanel);
 		}
 	}
 }
