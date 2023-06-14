@@ -2,10 +2,13 @@
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
 	[TestClass]
+	[ExcludeFromCodeCoverage]
+
 	public class LogControllerTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";
