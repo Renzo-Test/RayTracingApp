@@ -131,7 +131,7 @@ namespace DBRepository
 			using (var context = new AppContext(DBName))
 			{
 				Scene updateScene = context.Scenes.FirstOrDefault(s => s.Id == scene.Id);
-				PosisionatedModel deleteModel = context.PosisionatedModels.Where(pm => pm.SceneId == scene.Id).FirstOrDefault();
+				PosisionatedModel deleteModel = context.PosisionatedModels.Where(pm => pm.SceneId == scene.Id && pm.Id == model.Id).FirstOrDefault();
 				context.PosisionatedModels.Remove(deleteModel);
 
 				context.SaveChanges();
