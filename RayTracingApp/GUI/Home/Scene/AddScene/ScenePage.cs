@@ -230,8 +230,6 @@ namespace GUI
 			Vector lookAt;
 			double lensAperture;
 
-			bool wasModified = false;
-
 			try
 			{
 				NameChange();
@@ -253,7 +251,7 @@ namespace GUI
 				return;
 			}
 
-			wasModified = SceneWasModified(fov, lookFrom, lookAt, lensAperture);
+			bool wasModified = SceneWasModified(fov, lookFrom, lookAt, lensAperture);
 
 			try
 			{
