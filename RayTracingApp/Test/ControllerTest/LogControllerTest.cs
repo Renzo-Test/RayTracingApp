@@ -158,7 +158,7 @@ namespace Test.ControllerTest
                 RenderDate = "2023-06-01 13:00:00",
                 RenderTime = 100,
                 SceneName = "Test",
-                TimeSpan = _logController.GetRenderTimeWindow("Test", logs, "2023-06-01 13:00:00")
+                TimeSpan = _logController.GetRenderTimeWindow("Test", logs)
             };
 
             Assert.AreEqual("1 hours", testLog2.TimeSpan);
