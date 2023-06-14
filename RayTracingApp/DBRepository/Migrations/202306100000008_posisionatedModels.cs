@@ -1,7 +1,9 @@
 ﻿namespace DBRepository.Migrations
 {
 	using System.Data.Entity.Migrations;
+	using System.Diagnostics.CodeAnalysis;
 
+	[ExcludeFromCodeCoverage]
 	public partial class posisionatedModels : DbMigration
 	{
 		public override void Up()

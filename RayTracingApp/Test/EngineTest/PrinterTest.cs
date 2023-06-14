@@ -2,10 +2,13 @@
 using Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.EngineTest
 {
 	[TestClass]
+	[ExcludeFromCodeCoverage]
+
 	public class PrinterTest
 	{
 		private List<List<Vector>> pixels;

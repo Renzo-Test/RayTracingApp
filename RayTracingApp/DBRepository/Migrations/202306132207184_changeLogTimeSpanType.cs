@@ -2,8 +2,10 @@
 {
     using System;
     using System.Data.Entity.Migrations;
-    
-    public partial class changeLogTimeSpanType : DbMigration
+	using System.Diagnostics.CodeAnalysis;
+
+	[ExcludeFromCodeCoverage]
+	public partial class changeLogTimeSpanType : DbMigration
     {
         public override void Up()
         {

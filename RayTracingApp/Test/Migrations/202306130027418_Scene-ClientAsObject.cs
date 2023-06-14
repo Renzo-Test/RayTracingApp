@@ -2,8 +2,10 @@
 {
     using System;
     using System.Data.Entity.Migrations;
-    
-    public partial class SceneClientAsObject : DbMigration
+	using System.Diagnostics.CodeAnalysis;
+
+	[ExcludeFromCodeCoverage]
+	public partial class SceneClientAsObject : DbMigration
     {
         public override void Up()
         {

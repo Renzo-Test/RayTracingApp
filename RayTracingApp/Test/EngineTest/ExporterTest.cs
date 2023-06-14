@@ -1,6 +1,7 @@
 ﻿using Engine.Exceptions;
 using Engine.Exporter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.IO;
 
@@ -8,6 +9,8 @@ using System.IO;
 namespace Test.EngineTest
 {
 	[TestClass]
+	[ExcludeFromCodeCoverage]
+
 	public class ExporterTest
 	{
 		[TestMethod]

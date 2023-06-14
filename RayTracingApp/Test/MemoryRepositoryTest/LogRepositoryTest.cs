@@ -4,10 +4,13 @@ using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.MemoryRepositoryTest
 {
 	[TestClass]
+	[ExcludeFromCodeCoverage]
+
 	public class LogRepositoryTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";

@@ -24,9 +24,11 @@ namespace Domain
 		private const double MinLensAperture = 0.1;
 		private const double MaxLensAperture = 3.0;
         
-		private const string UsedDateFormat = "HH.mm.ss - dd-MM-yyyy";
+		private const string UsedNameDateFormat = "HH.mm.ss - dd-MM-yyyy";
+		private const string UsedDateFormat = "HH:mm:ss - dd/MM/yyyy";
 
-        public int Id { get; set; }
+
+		public int Id { get; set; }
 
 		private Client _owner;
 		private string _name;
@@ -65,7 +67,7 @@ namespace Domain
 
 		private void SetSceneParameters()
 		{
-			_name = DateTime.Now.ToString(UsedDateFormat); ;
+			_name = DateTime.Now.ToString(UsedNameDateFormat);
 		}
 
 		public Client Owner

@@ -2,10 +2,13 @@
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
 	[TestClass]
+	[ExcludeFromCodeCoverage]
+
 	public class LogControllerTest
 	{
 		private const string TestDatabase = "RayTracingAppTestDB";
@@ -66,8 +69,10 @@ namespace Test.ControllerTest
 
 			_logController.AddLog(testLog1, _owner);
 			_logController.AddLog(testLog2, _otherOwner);
+			string username;
+			(username, _) = _logController.GetUserWithMaxAccumulatedRenderTime();
 
-			Assert.AreEqual(_owner.Username, _logController.GetUserWithMaxAccumulatedRenderTime().Username);
+			Assert.AreEqual(_owner.Username, username);
 		}
 
 		[TestMethod]
@@ -130,13 +135,12 @@ namespace Test.ControllerTest
                 RenderDate = "2023-06-01 13:00:00",
                 RenderTime = 100,
 				SceneName = "Test",
-				TimeSpan = _logController.GetRenderTimeWindow("Test",logs, "2023-06-01 13:00:00")
+				TimeSpan = _logController.GetRenderTimeWindow("Test",logs)
             };
 
             _logController.AddLog(testLog2, _owner);
 
             Assert.AreEqual("0 seconds", testLog2.TimeSpan);
-
         }
 
 		[TestMethod]
@@ -158,11 +162,10 @@ namespace Test.ControllerTest
                 RenderDate = "2023-06-01 13:00:00",
                 RenderTime = 100,
                 SceneName = "Test",
-                TimeSpan = _logController.GetRenderTimeWindow("Test", logs, "2023-06-01 13:00:00")
+                TimeSpan = _logController.GetRenderTimeWindow("Test", logs)
             };
 
-            Assert.AreEqual("1 hours", testLog2.TimeSpan);
-
+            Assert.AreEqual("13 days", testLog2.TimeSpan);
         }
 
         [TestMethod]
@@ -184,12 +187,10 @@ namespace Test.ControllerTest
                 RenderDate = "2023-06-02 13:00:00",
                 RenderTime = 100,
                 SceneName = "Test",
-                TimeSpan = _logController.GetRenderTimeWindow("Test", logs, "2023-06-02 13:00:00")
+                TimeSpan = _logController.GetRenderTimeWindow("Test", logs)
             };
 
-            Assert.AreEqual("1 days", testLog2.TimeSpan);
-
+            Assert.AreEqual("13 days", testLog2.TimeSpan);
         }
-
     }
 }
