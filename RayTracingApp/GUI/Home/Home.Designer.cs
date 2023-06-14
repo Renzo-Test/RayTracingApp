@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.pnlSidebar = new System.Windows.Forms.Panel();
-            this.flyHome = new System.Windows.Forms.FlowLayoutPanel();
             this.lblCurrentClient = new System.Windows.Forms.Label();
+            this.flyHome = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnLogs = new System.Windows.Forms.Button();
             this.picIconUser = new System.Windows.Forms.PictureBox();
             this.btnSignOut = new System.Windows.Forms.Button();
             this.btnScenes = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@
             // pnlSidebar
             // 
             this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.pnlSidebar.Controls.Add(this.btnLogs);
             this.pnlSidebar.Controls.Add(this.picIconUser);
             this.pnlSidebar.Controls.Add(this.lblCurrentClient);
             this.pnlSidebar.Controls.Add(this.btnSignOut);
@@ -60,14 +62,6 @@
             this.pnlSidebar.Size = new System.Drawing.Size(176, 604);
             this.pnlSidebar.TabIndex = 0;
             // 
-            // flyHome
-            // 
-            this.flyHome.Location = new System.Drawing.Point(175, 0);
-            this.flyHome.Margin = new System.Windows.Forms.Padding(0);
-            this.flyHome.Name = "flyHome";
-            this.flyHome.Size = new System.Drawing.Size(834, 604);
-            this.flyHome.TabIndex = 1;
-            // 
             // lblCurrentClient
             // 
             this.lblCurrentClient.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -78,6 +72,37 @@
             this.lblCurrentClient.TabIndex = 6;
             this.lblCurrentClient.Text = "Username";
             this.lblCurrentClient.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // flyHome
+            // 
+            this.flyHome.Location = new System.Drawing.Point(175, 0);
+            this.flyHome.Margin = new System.Windows.Forms.Padding(0);
+            this.flyHome.Name = "flyHome";
+            this.flyHome.Size = new System.Drawing.Size(834, 604);
+            this.flyHome.TabIndex = 1;
+            // 
+            // btnLogs
+            // 
+            this.btnLogs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogs.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnLogs.FlatAppearance.BorderSize = 0;
+            this.btnLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogs.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogs.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnLogs.Image = global::GUI.Properties.Resources.bigLog;
+            this.btnLogs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLogs.Location = new System.Drawing.Point(0, 474);
+            this.btnLogs.Margin = new System.Windows.Forms.Padding(0);
+            this.btnLogs.Name = "btnLogs";
+            this.btnLogs.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnLogs.Size = new System.Drawing.Size(176, 65);
+            this.btnLogs.TabIndex = 8;
+            this.btnLogs.Text = "  Logs";
+            this.btnLogs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLogs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLogs.UseMnemonic = false;
+            this.btnLogs.UseVisualStyleBackColor = true;
+            this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
             // 
             // picIconUser
             // 
@@ -238,5 +263,6 @@
         private System.Windows.Forms.FlowLayoutPanel flyHome;
         private System.Windows.Forms.Label lblCurrentClient;
         private System.Windows.Forms.PictureBox picIconUser;
+        private System.Windows.Forms.Button btnLogs;
     }
 }

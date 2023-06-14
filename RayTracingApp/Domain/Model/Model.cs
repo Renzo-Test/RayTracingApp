@@ -1,5 +1,7 @@
 ﻿using Domain.Exceptions;
-using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace Domain
 {
@@ -9,21 +11,23 @@ namespace Domain
 		private const string NotAlphanumericMessage = "Model's name must not start or end with blank space";
 		private const string EmptyNameMessage = "Model's name must not be empty";
 
-		private String _owner;
-		private String _name;
+		public int Id { get; set; }
+
+
+		private Client _owner;
+		private string _name;
 		private Figure _figure;
 		private Material _material;
-		
-		public string Preview { get; set; }
-		
-		public bool showPreview { get; set; }
-		
-		public String Owner
+		public byte[] Preview { get; set; }
+		public bool ShowPreview { get; set; }
+
+		public Client Owner
 		{
 			get => _owner;
 			set => _owner = value;
 		}
-		public String Name
+
+		public string Name
 		{
 			get => _name;
 			set
@@ -40,15 +44,41 @@ namespace Domain
 				}
 			}
 		}
+
+
 		public Figure Figure
 		{
 			get => _figure;
 			set => _figure = value;
 		}
+
+
 		public Material Material
 		{
 			get => _material;
 			set => _material = value;
+		}
+
+		public Image GetPreview()
+		{
+			using (var stream = new MemoryStream(Preview))
+			{
+				return Image.FromStream(stream);
+			}
+		}
+
+		public void SetPreview(Image img)
+		{
+			Preview = ImageToByteArray(img);
+		}
+
+		public byte[] ImageToByteArray(Image img)
+		{
+			using (var stream = new MemoryStream())
+			{
+				img.Save(stream, ImageFormat.Bmp);
+				return stream.ToArray();
+			}
 		}
 
 		private static void RunNameIsSpacedChecker(string value)
@@ -58,6 +88,7 @@ namespace Domain
 				throw new NotAlphanumericException(NotAlphanumericMessage);
 			}
 		}
+
 		private static void RunNameIsEmptyChecker(string value)
 		{
 			if (value.Equals(string.Empty))

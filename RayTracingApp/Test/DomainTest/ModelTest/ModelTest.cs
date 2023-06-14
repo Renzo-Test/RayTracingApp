@@ -1,6 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using DBRepository;
 using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace Test.ModelsTest
 {
@@ -8,6 +12,14 @@ namespace Test.ModelsTest
 	[ExcludeFromCodeCoverage]
 	public class ModelsTest
 	{
+		private Client _owner;
+
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_owner = new Client() { Username = "ownerName" };
+		}
+
 		[TestMethod]
 		public void CreateModels_OkTest()
 		{
@@ -19,9 +31,9 @@ namespace Test.ModelsTest
 		{
 			Model newModel = new Model()
 			{
-				Owner = "ownerName"
+				Owner = _owner
 			};
-			Assert.AreEqual("ownerName", newModel.Owner);
+			Assert.AreEqual(_owner.Username, newModel.Owner.Username);
 		}
 
 		[TestMethod]
@@ -40,7 +52,7 @@ namespace Test.ModelsTest
 			Figure newFigure = new Sphere()
 			{
 				Name = "figureName",
-				Owner = "ownerName"
+				Owner = _owner
 			};
 
 			Model newModel = new Model()
@@ -53,7 +65,7 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetMaterial_OkTest()
 		{
-			Material newMaterial = new Material()
+			Material newMaterial = new Lambertian()
 			{
 				Name = "materialName"
 			};
@@ -66,25 +78,51 @@ namespace Test.ModelsTest
 		}
 
 		[TestMethod]
-		public void SetPreview_OkTst()
-		{
-			Model newModel = new Model()
-			{
-				Preview = "modelPreview"
-			};
-
-			Assert.AreEqual("modelPreview", newModel.Preview);
-		}
-
-		[TestMethod]
 		public void SetShowPreview_OkTst()
 		{
 			Model newModel = new Model()
 			{
-				showPreview = false
+				ShowPreview = false
 			};
 
-			Assert.AreEqual(false, newModel.showPreview);
+			Assert.AreEqual(false, newModel.ShowPreview);
+		}
+
+		[TestMethod]
+		public void GetPreview_OkTest()
+		{
+			MemoryStream ms = new MemoryStream();
+
+			Bitmap img = new Bitmap(600, 300);
+			byte[] imgByteArr = GetImageAsByteArray(ms, img);
+
+			Model newModel = new Model()
+			{
+				ShowPreview = true,
+				Preview = imgByteArr
+			};
+
+			Assert.AreEqual(newModel.GetPreview().ToString(), img.ToString());
+		}
+
+		private static byte[] GetImageAsByteArray(MemoryStream ms, Bitmap img)
+		{
+			img.Save(ms, ImageFormat.Bmp);
+			return ms.ToArray();
+		}
+
+		[TestMethod]
+		public void SetPreview_OkTest()
+		{
+			Bitmap img = new Bitmap(600, 300);
+
+			Model newModel = new Model()
+			{
+				ShowPreview = true,
+			};
+			newModel.SetPreview(img);
+
+			Assert.AreEqual(newModel.GetPreview().ToString(), img.ToString());
 		}
 	}
 }

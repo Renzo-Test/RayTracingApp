@@ -1,8 +1,7 @@
 ﻿using Domain;
+using Domain.Exceptions;
 using Engine;
-using Engine.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Test.EngineTest
@@ -26,7 +25,7 @@ namespace Test.EngineTest
 			{
 				ResolutionX = 3,
 			};
-			string render = renderer.Render(scene, properties, null);
+			string render = renderer.Render(scene, properties, null).RenderedImage;
 
 			int propertiesLines = 3;
 			int pixelsLines = (properties.ResolutionX * properties.ResolutionY) + 1;
@@ -42,7 +41,7 @@ namespace Test.EngineTest
 			{
 				ResolutionX = 300,
 			};
-			string render = renderer.Render(scene, properties, null);
+			string render = renderer.Render(scene, properties, null).RenderedImage;
 
 			int propertiesChars = 15;
 			int pixelsChars = 12 * (properties.ResolutionX * properties.ResolutionY);
@@ -57,10 +56,10 @@ namespace Test.EngineTest
 			Model modelToPreview = new Model()
 			{
 				Figure = new Sphere { Radius = 5 },
-				Material = new Material() { Color = modelColor, Type = MaterialEnum.LambertianMaterial },
+				Material = new Lambertian() { Color = modelColor },
 			};
 
-			string render = renderer.RenderModelPreview(modelToPreview);
+			var (_, render, _) = renderer.RenderModelPreview(modelToPreview);
 
 			int propertiesLines = 3;
 			int pixelsLines = (100 * 100) + 1;
@@ -71,8 +70,6 @@ namespace Test.EngineTest
 		[ExpectedException(typeof(InvalidRenderPropertiesInputException))]
 		public void RenderMaxDepth0_OkTest()
 		{
-			Renderer renderer = new Renderer();
-			Scene scene = new Scene();
 			RenderProperties properties = new RenderProperties()
 			{
 				ResolutionX = 300,

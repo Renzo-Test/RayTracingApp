@@ -1,22 +1,19 @@
 ﻿using Domain;
-using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using System.Xml.Schema;
 
 namespace Engine
 {
 	public class Renderer
 	{
-		private Scene _scene;
+        private const double AlmostCero = 0.001;
+
+        private Scene _scene;
 		private RenderProperties _properties;
 
 		private Printer _printer;
@@ -26,8 +23,10 @@ namespace Engine
 
 		private static readonly ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 
-		public string Render(Scene scene, RenderProperties properties, ProgressBar progressBar)
+		public RenderOutput Render(Scene scene, RenderProperties properties, ProgressBar progressBar)
 		{
+			Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
+
 			_scene = scene;
 			_properties = properties;
 			InitializateRender(progressBar);
@@ -38,49 +37,60 @@ namespace Engine
 				int derivatedIndex = row - index;
 				for (int column = 0; column < _properties.ResolutionX; column++)
 				{
-                    Vector vector = InitializeEmptyVector();
+					Vector vector = InitializeEmptyVector();
 
-                    Antialiasing(derivatedIndex, column, ref vector);
+					Antialiasing(derivatedIndex, column, ref vector);
 
 					vector = vector.Divide(_properties.SamplesPerPixel);
-					SavePixel(derivatedIndex, column, vector);
+					SavePixel(derivatedIndex, vector);
 				}
 
-                _progress.UpdateProgressBar();
+				_progress.UpdateProgressBar();
 				_progress.WriteCurrentPercentage();
 
 			});
 
-			return _printer.Save(_pixels, _properties, ref _progress);
+			string renderedImage = _printer.Save(_pixels, _properties, ref _progress);
+			watch.Stop();
+			long elapsedMs = watch.ElapsedMilliseconds;
+
+			RenderOutput output = new RenderOutput { RenderTime = elapsedMs, RenderedImage = renderedImage };
+			return output;
 		}
 
-        private static Vector InitializeEmptyVector()
-        {
-            return new Vector()
-            {
-                X = 0,
-                Y = 0,
-                Z = 0
-            };
-        }
+		private static Vector InitializeEmptyVector()
+		{
+			return new Vector()
+			{
+				X = 0,
+				Y = 0,
+				Z = 0
+			};
+		}
 
-    public string RenderModelPreview(Model model)
+		public (long, string, Image) RenderModelPreview(Model model)
 		{
 			RenderProperties properties = PreviewRenderProperties();
 			Scene previewScene = CreatePreviewScene(model);
 
-			string preview = Render(previewScene, properties, null);
-			model.Preview = preview;
-			return preview;
+			RenderOutput rendererOutput = Render(previewScene, properties, null);
+			
+			string preview = rendererOutput.RenderedImage;
+			long renderTime = rendererOutput.RenderTime;
+
+			Scanner scanner = new Scanner();
+			Bitmap img = scanner.ScanImage(preview);
+
+			return (renderTime, preview, img);
 		}
 
 		private void InitializateRender(ProgressBar progressBar)
 		{
-			_progress = new Progress()
+			_progress = new Progress
 			{
 				ProgressBar = progressBar,
+				ExpectedLines = (_properties.ResolutionY * _properties.ResolutionX * _properties.SamplesPerPixel) + _properties.ResolutionY
 			};
-			_progress.ExpectedLines = (_properties.ResolutionY * _properties.ResolutionX * _properties.SamplesPerPixel) + _properties.ResolutionY;
 			_printer = new Printer();
 			InitializateCamera(_scene, _properties);
 			InitializatePixels(ref _pixels);
@@ -88,12 +98,14 @@ namespace Engine
 
 		private void InitializateCamera(Scene scene, RenderProperties properties)
 		{
-			Vector LookFrom = scene.CameraPosition;
-			Vector LookAt = scene.ObjectivePosition;
+			Vector LookFrom = scene.LookFrom;
+			Vector LookAt = scene.LookAt;
 			Vector VectorUp = new Vector() { X = 0, Y = 1, Z = 0 };
 			int FieldOfView = scene.Fov;
 			double AspectRatio = properties.AspectRatio;
-			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio);
+			double focalDistance = LookFrom.Substract(LookAt).Length();
+			double aperture = scene.LensAperture;
+			_camera = new Camera(LookFrom, LookAt, VectorUp, FieldOfView, AspectRatio, aperture, focalDistance);
 		}
 
 		private void InitializatePixels(ref List<List<Vector>> pixels)
@@ -115,7 +127,7 @@ namespace Engine
 				double u = (column + fstRnd) / _properties.ResolutionX;
 				double v = (derivatedIndex + sndRnd) / _properties.ResolutionY;
 
-				var ray = _camera.GetRay(u, v);
+				var ray = _camera.GetRay(u, v, GetRandomInUnitSphere());
 				vector.AddFrom(ShootRay(ray, _properties.MaxDepth));
 				_progress.Count(); ;
 			}
@@ -128,7 +140,7 @@ namespace Engine
 
 			foreach (PosisionatedModel posisionatedModel in _scene.PosisionatedModels)
 			{
-				HitRecord hit = IsSphereHit(posisionatedModel, ray, 0.001, tMax);
+				HitRecord hit = IsSphereHit(posisionatedModel, ray, AlmostCero, tMax);
 				if (hit is object)
 				{
 					hitRecord = hit;
@@ -138,15 +150,20 @@ namespace Engine
 
 			if (hitRecord is object)
 			{
+				Ray newRay = null;
 
-				Vector newVectorPoint = hitRecord.Intersection.Add(hitRecord.Normal).Add(GetRandomInUnitSphere());
-				Vector newVector = newVectorPoint.Substract(hitRecord.Intersection);
-
-				Ray newRay = new Ray()
+				if (hitRecord.Material.Type is MaterialEnum.Lambertian)
 				{
-					Origin = hitRecord.Intersection,
-					Direction = newVector
-				};
+					newRay = LambertianScatter(hitRecord);
+				}
+				else if (hitRecord.Material.Type is MaterialEnum.Metallic)
+				{
+					newRay = MetailcScatter(ray, hitRecord);
+					if (newRay is null)
+					{
+						return new Vector() { X = 0, Y = 0, Z = 0 };
+					}
+				}
 
 				Vector color = ShootRay(newRay, depth - 1);
 				Vector attenuation = hitRecord.Attenuation;
@@ -202,12 +219,22 @@ namespace Engine
 
 				if (t < tMax && t > tMin)
 				{
+					double roughness = 0;
+
+					if (posisionatedModel.Model.Material.Type is MaterialEnum.Metallic)
+					{
+						Metalic metalic = (Metalic)posisionatedModel.Model.Material;
+						roughness = metalic.Blur;
+					}
+
 					return new HitRecord()
 					{
 						T = t,
 						Intersection = intersectionPoint,
 						Normal = Normal,
 						Attenuation = posisionatedModel.Model.Material.Color.ColorToVector(),
+						Material = posisionatedModel.Model.Material,
+						Roughness = roughness
 					};
 				}
 				else
@@ -215,6 +242,51 @@ namespace Engine
 					return null;
 				}
 			}
+		}
+
+		private Ray LambertianScatter(HitRecord hitRecord)
+		{
+			Vector newVectorPoint = hitRecord.Intersection
+				.Add(hitRecord.Normal)
+				.Add(GetRandomInUnitSphere());
+			Vector newVector = newVectorPoint
+				.Substract(hitRecord.Intersection);
+
+			Ray newRay = new Ray()
+			{
+				Origin = hitRecord.Intersection,
+				Direction = newVector
+			};
+
+			return newRay;
+		}
+
+		private Ray MetailcScatter(Ray rayIn, HitRecord hitRecord)
+		{
+			Ray rayScattered = new Ray()
+			{
+				Direction = new Vector() { X = 0, Y = 0, Z = 0 },
+				Origin = new Vector() { X = 0, Y = 0, Z = 0 }
+			};
+
+			Vector vectorReflected = Reflect(rayIn.Direction.GetUnit(), hitRecord.Normal);
+			rayScattered.Origin = hitRecord.Intersection;
+			rayScattered.Direction = vectorReflected.Add(
+				GetRandomInUnitSphere().Multiply(hitRecord.Roughness));
+
+			if (rayScattered.Direction.Dot(hitRecord.Normal) > 0)
+			{
+				return rayScattered;
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+		private Vector Reflect(Vector vector, Vector normal)
+		{
+			return vector.Substract(normal.Multiply(vector.Dot(normal) * 2));
 		}
 
 		private Vector GetRandomInUnitSphere()
@@ -240,9 +312,8 @@ namespace Engine
 			return vector;
 		}
 
-		private void SavePixel(int row, int column, Vector pixelRGB)
+		private void SavePixel(int row, Vector pixelRGB)
 		{
-			int posX = column;
 			int posY = _properties.ResolutionY - row - 1;
 
 			if (posY < _properties.ResolutionY)
@@ -272,13 +343,13 @@ namespace Engine
 
 			Sphere terrain = InitializateSphere(2000);
 			Domain.Color terrainColor = new Domain.Color { Red = 150, Green = 150, Blue = 150 };
-			Model modelTerrain = InitializateModel(terrain, new Material() { Color = terrainColor, Type = MaterialEnum.LambertianMaterial });
+			Model modelTerrain = InitializateModel(terrain, new Lambertian() { Color = terrainColor });
 			PosisionatedModel terrainPosisionated = InitializatePosisionatedModel(modelTerrain, -2000);
 
 			Scene previewScene = new Scene()
 			{
-				CameraPosition = new Vector { X = -5, Y = 4, Z = 0 },
-				ObjectivePosition = new Vector() { Y = 1 },
+				LookFrom = new Vector { X = -5, Y = 4, Z = 0 },
+				LookAt = new Vector() { Y = 1 },
 				Fov = 30
 			};
 			previewScene.PosisionatedModels.Add(posisionatedModel);

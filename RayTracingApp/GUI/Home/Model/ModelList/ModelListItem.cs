@@ -1,125 +1,149 @@
 ﻿using Controller;
-using Controller.Exceptions;
 using Domain;
 using Domain.Exceptions;
 using Engine;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Color = Domain.Color;
 
 namespace GUI
 {
-    public partial class ModelListItem : UserControl
-    {
+	public partial class ModelListItem : UserControl
+	{
+        private const string UsedDateFormat = "yyyy-MM-dd HH:mm:ss";
+
         private ModelController _modelController;
-        private ModelList _modelList;
+		private LogController _logController;
+		
+		private ModelList _modelList;
 
-        private Model _model;
+		private Model _model;
 
-        private string _currentClient;
-        private bool isEditing;
+		private Client _currentClient;
+		private bool isEditing;
 
-        public ModelListItem(ModelList modelList, ModelController modelController, Model model)
-        {
-            InitializeComponent();
-            InitializePanelAtributes(model);
-            InitializeControllers(modelList, modelController, model);
-        }
+		public ModelListItem(ModelList modelList, MainController mainController, Model model)
+		{
+			InitializeComponent();
+			InitializeControllers(modelList, mainController, model);
+			InitializePanelAtributes(model);
+		}
 
-        private void InitializeControllers(ModelList modelList, ModelController modelController, Model model)
-        {
-            _modelList = modelList;
-            _modelController = modelController;
-            _currentClient = model.Owner;
-            _model = model;
-            isEditing = false;
-        }
+		private void InitializeControllers(ModelList modelList, MainController mainController, Model model)
+		{
+			_modelList = modelList;
+			_modelController = mainController.ModelController;
+			_logController = mainController.LogController; 
+			_currentClient = model.Owner;
+			_model = model;
+			isEditing = false;
+		}
 
-        private void InitializePanelAtributes(Model model)
-        {
-            string FigureName = model.Figure.Name;
-            string MaterialName = model.Material.Name;
-            Color materialColor = model.Material.Color;
+		private void InitializePanelAtributes(Model model)
+		{
+			string FigureName = model.Figure.Name;
+			string MaterialName = model.Material.Name;
+			Color materialColor = model.Material.Color;
 
-            if (model.showPreview)
-            {
-                Renderer renderer = new Renderer();
-                renderer.RenderModelPreview(model);
-                string preview = model.Preview;
+			if (model.ShowPreview)
+			{
 
-                Scanner scanner = new Scanner();
-                Bitmap image = scanner.ScanImage(preview);
+				if (model.Preview is object)
+				{
+					picIconSphere.Image = model.GetPreview();
+					picMaterialColor.Visible = false;
+				}
+				else
+				{
+					Renderer renderer = new Renderer();
+					var (renderTime, _, image) = renderer.RenderModelPreview(model);
 
-                picIconSphere.Image = image;
-                picMaterialColor.Visible = false;
-            }
+					_modelController.UpdatePreview(model, image);
+					picIconSphere.Image = image;
+					picMaterialColor.Visible = false;
 
-            txtModelName.Text = model.Name;
-            lblFigureName.Text = $"Figure: {FigureName}";
-            lblMaterialName.Text = $"Material: {MaterialName}";
+					CreateNewLog(renderTime);
+				}
 
-            picMaterialColor.BackColor = System.Drawing.Color.FromArgb(materialColor.Red, materialColor.Green, materialColor.Blue);
-        }
+			}
 
-        private void picIconX_Click(object sender, EventArgs e)
-        {
-            _modelController.RemoveModel(txtModelName.Text, _currentClient);
-            _modelList.PopulateItems();
-        }
+			txtModelName.Text = model.Name;
+			lblFigureName.Text = $"Figure: {FigureName}";
+			lblMaterialName.Text = $"Material: {MaterialName}";
 
-        private void picIconPencilTick_Click(object sender, EventArgs e)
-        {
-            isEditing = !isEditing;
+			picMaterialColor.BackColor = System.Drawing.Color.FromArgb(materialColor.Red, materialColor.Green, materialColor.Blue);
+		}
 
-            if (isEditing)
-            {
-                picIconPencilTick.Image = GUI.Properties.Resources.tick;
-                txtModelName.Enabled = true;
-                picXIcon.Visible = true;
-            }
-            else
-            {
-                picIconPencilTick.Image = GUI.Properties.Resources.pencil;
-                txtModelName.Enabled = false;
-                picXIcon.Visible = false;
-                ChangeModelName(txtModelName.Text, _model);
-            }
-        }
+		private void CreateNewLog(long renderTime)
+		{
+			Log newLog = new Log()
+			{
+				SceneName = $"Preview - {_model.Name}",
+				Owner = _model.Owner,
+				RenderTime = ConvertToSeconds(renderTime),
+				RenderDate = DateTime.Now.ToString(UsedDateFormat),
+				TimeSpan = "0",
+				RenderedElements = 1
+			};
 
-        private void picXIcon_Click(object sender, EventArgs e)
-        {
-            isEditing = false;
-            picIconPencilTick.Image = GUI.Properties.Resources.pencil;
+			_logController.AddLog(newLog, _currentClient);
+		}
 
-            txtModelName.Enabled = false;
-            picXIcon.Visible = false;
+		private static int ConvertToSeconds(long renderTime)
+		{
+			return (int)renderTime / 1000;
+		}
 
-            _modelList.PopulateItems();
-        }
+		private void picIconX_Click(object sender, EventArgs e)
+		{
+			_modelController.RemoveModel(txtModelName.Text, _currentClient);
+			_modelList.PopulateItems();
+		}
 
-        private void ChangeModelName(string newName, Model model)
-        {
-            try
-            {
-                _modelController.UpdateModelName(model, _currentClient, newName);
-                _modelList.PopulateItems();
-            }
-            catch (InvalidModelInputException ex)
-            {
-                _modelList.PopulateItems();
-                MessageBox.Show(ex.Message);
-            }
-        }
+		private void picIconPencilTick_Click(object sender, EventArgs e)
+		{
+			isEditing = !isEditing;
 
-    }
+			if (isEditing)
+			{
+				picIconPencilTick.Image = GUI.Properties.Resources.tick;
+				txtModelName.Enabled = true;
+				picXIcon.Visible = true;
+			}
+			else
+			{
+				picIconPencilTick.Image = GUI.Properties.Resources.pencil;
+				txtModelName.Enabled = false;
+				picXIcon.Visible = false;
+				ChangeModelName(txtModelName.Text, _model);
+			}
+		}
+
+		private void picXIcon_Click(object sender, EventArgs e)
+		{
+			isEditing = false;
+			picIconPencilTick.Image = GUI.Properties.Resources.pencil;
+
+			txtModelName.Enabled = false;
+			picXIcon.Visible = false;
+
+			_modelList.PopulateItems();
+		}
+
+		private void ChangeModelName(string newName, Model model)
+		{
+			try
+			{
+				_modelController.UpdateModelName(model, _currentClient, newName);
+				_modelList.PopulateItems();
+			}
+			catch (InvalidModelInputException ex)
+			{
+				_modelList.PopulateItems();
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+	}
 }
 
-    

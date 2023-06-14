@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
+﻿using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
@@ -39,10 +39,12 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetModel_OkTest()
 		{
+			Client owner = new Client() { Username = "ownerName" };
+
 			Model newModel = new Model()
 			{
 				Name = "figureName",
-				Owner = "ownerName"
+				Owner = owner
 			};
 
 			PosisionatedModel posisionatedModel = new PosisionatedModel()

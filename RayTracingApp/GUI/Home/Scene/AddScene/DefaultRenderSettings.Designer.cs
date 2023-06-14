@@ -90,7 +90,7 @@
             this.txtResY.Size = new System.Drawing.Size(85, 24);
             this.txtResY.TabIndex = 45;
             this.txtResY.Text = "200";
-            this.txtResY.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtResY_KeyUp);
+            this.txtResY.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtResY_KeyUp);
             // 
             // pictureBox1
             // 
@@ -174,7 +174,7 @@
             this.lblSave.Size = new System.Drawing.Size(56, 23);
             this.lblSave.TabIndex = 38;
             this.lblSave.Text = "Save";
-            this.lblSave.Click += new System.EventHandler(this.lblSave_Click);
+            this.lblSave.Click += new System.EventHandler(this.LblSave_Click);
             // 
             // lblCancel
             // 
@@ -188,7 +188,7 @@
             this.lblCancel.Size = new System.Drawing.Size(78, 23);
             this.lblCancel.TabIndex = 37;
             this.lblCancel.Text = "Cancel";
-            this.lblCancel.Click += new System.EventHandler(this.lblCancel_Click);
+            this.lblCancel.Click += new System.EventHandler(this.LblCancel_Click);
             // 
             // picRectangleFieldCancel
             // 
@@ -201,7 +201,7 @@
             this.picRectangleFieldCancel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picRectangleFieldCancel.TabIndex = 36;
             this.picRectangleFieldCancel.TabStop = false;
-            this.picRectangleFieldCancel.Click += new System.EventHandler(this.picRectangleFieldCancel_Click);
+            this.picRectangleFieldCancel.Click += new System.EventHandler(this.PicRectangleFieldCancel_Click);
             // 
             // picRectangleFieldSave
             // 
@@ -214,7 +214,7 @@
             this.picRectangleFieldSave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picRectangleFieldSave.TabIndex = 35;
             this.picRectangleFieldSave.TabStop = false;
-            this.picRectangleFieldSave.Click += new System.EventHandler(this.picRectangleFieldSave_Click);
+            this.picRectangleFieldSave.Click += new System.EventHandler(this.PicRectangleFieldSave_Click);
             // 
             // txtSamplesPerPixel
             // 
@@ -250,7 +250,7 @@
             this.txtResX.Size = new System.Drawing.Size(85, 24);
             this.txtResX.TabIndex = 32;
             this.txtResX.Text = "300";
-            this.txtResX.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtResX_KeyUp);
+            this.txtResX.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtResX_KeyUp);
             // 
             // picDarkRectangleFieldFov
             // 

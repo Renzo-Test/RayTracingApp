@@ -7,6 +7,12 @@ namespace Domain
 
 	public class Client
 	{
+		private const int MinUsernameLength = 3;
+		private const int MaxUsernameLength = 20;
+		private const int MinPasswordLength = 5;
+		private const int MaxPasswordLength = 25;
+		private const string UsedDateFormat = "dd/MM/yyyy";
+
 		private const string NotAlphanumericMessage = "Username must only include letters and numbers with no spaces";
 		private const string NotContainsNumberMessage = "Password must contain at least one number";
 		private const string NotContainsCapitalMessage = "Password must contain at least one capital letter";
@@ -16,9 +22,10 @@ namespace Domain
 		private const int MinFov = 1;
 		private const int MaxFov = 160;
 
+        public int Id { get; set; }
+
 		private string _username;
-		
-		public String Username
+		public string Username
 		{
 			get => _username;
 			set
@@ -36,8 +43,7 @@ namespace Domain
 		}
 
 		private string _password;
-		
-		public String Password
+		public string Password
 		{
 			get => _password;
 			set
@@ -53,11 +59,8 @@ namespace Domain
 				}
 			}
 		}
-		
-		public String RegisterDate { get; } = DateTime.Today.ToString("dd/MM/yyyy");
 
 		private int _defaultFov = 30;
-		
 		public int DefaultFov
 		{
 			get => _defaultFov;
@@ -71,15 +74,14 @@ namespace Domain
 			}
 		}
 
-		private static bool InRangeFov(int fov)
-		{
-			return Enumerable.Range(MinFov, MaxFov).Contains(fov);
-		}
+		public string RegisterDate { get; } = DateTime.Today.ToString(UsedDateFormat);
 
-		
-		public Vector DefaultLookFrom { get; set; } = new Vector() { X = 0, Y = 2, Z = 0};
-		
-		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5};
+		public Vector DefaultLookFrom { get; set; } = new Vector() { X = 0, Y = 2, Z = 0 };
+
+		public Vector DefaultLookAt { get; set; } = new Vector() { X = 0, Y = 2, Z = 5 };
+
+		public RenderProperties DefaultRenderProperties { get; set; } = new RenderProperties();
+
 
 		private static void RunUsernameConditions(string username)
 		{
@@ -93,10 +95,10 @@ namespace Domain
 			ContainsNumber(password);
 			ContainsCapital(password);
 		}
-		
+
 		private static void LengthInRangeUsername(string username)
 		{
-			if (!(username.Length >= 3 && username.Length <= 20))
+			if (!(username.Length >= MinUsernameLength && username.Length <= MaxUsernameLength))
 			{
 				throw new NotInExpectedRangeClientException(NotInExpectedRangeUsernameMessage);
 			}
@@ -129,10 +131,14 @@ namespace Domain
 
 		private static void LengthInRangePassword(string password)
 		{
-			if (!(password.Length >= 5 && password.Length <= 25))
+			if (!(password.Length >= MinPasswordLength && password.Length <= MaxPasswordLength))
 			{
 				throw new NotInExpectedRangeClientException(NotInExpectedRangePasswordMessage);
 			}
+		}
+		private static bool InRangeFov(int fov)
+		{
+			return Enumerable.Range(MinFov, MaxFov).Contains(fov);
 		}
 	}
 }

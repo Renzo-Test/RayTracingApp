@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
+﻿using Domain;
+using Domain.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Domain.Exceptions;
 
 namespace Test.ModelsTest
 {
@@ -145,7 +145,7 @@ namespace Test.ModelsTest
 		public void CanGetRegisterDate_OkTest()
 		{
 			_client = new Client();
-			String today = DateTime.Today.ToString("dd/MM/yyyy");
+			string today = DateTime.Today.ToString("dd/MM/yyyy");
 			Assert.AreEqual(today, _client.RegisterDate);
 		}
 
@@ -164,7 +164,8 @@ namespace Test.ModelsTest
 
 		[TestMethod]
 		[ExpectedException(typeof(NotInExpectedRangeClientException))]
-		public void SetDefaultFov_200_FailTest() {
+		public void SetDefaultFov_200_FailTest()
+		{
 			_client = new Client()
 			{
 				DefaultFov = 200

@@ -53,6 +53,7 @@
             // 
             // picIconX
             // 
+            this.picIconX.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picIconX.Image = global::GUI.Properties.Resources.mX;
             this.picIconX.Location = new System.Drawing.Point(415, 33);
             this.picIconX.Name = "picIconX";
@@ -105,7 +106,7 @@
             this.txtMaterialName.ForeColor = System.Drawing.Color.White;
             this.txtMaterialName.Location = new System.Drawing.Point(128, 23);
             this.txtMaterialName.Name = "txtMaterialName";
-            this.txtMaterialName.Size = new System.Drawing.Size(100, 30);
+            this.txtMaterialName.Size = new System.Drawing.Size(269, 30);
             this.txtMaterialName.TabIndex = 6;
             this.txtMaterialName.Text = "RedBrick";
             // 

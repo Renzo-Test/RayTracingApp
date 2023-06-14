@@ -1,10 +1,11 @@
 ﻿using Controller;
-using MemoryRepository.Exceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Linq;
 
 namespace Test.ControllerTest
@@ -13,44 +14,68 @@ namespace Test.ControllerTest
 	[ExcludeFromCodeCoverage]
 	public class ModelControllerTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
 		private ModelController _modelController;
+		private ClientController _clientController;
+		private Client _owner;
+		private Client _otherOwner;
 
 		[TestInitialize]
 		public void Testinitialize()
 		{
-			_modelController = new ModelController();
+			_modelController = new ModelController(TestDatabase);
+			_clientController = new ClientController(TestDatabase);
+
+			_otherOwner = new Client() { Username = "otherName" };
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
+		}
+
+		[TestCleanup]
+		public void TestCleanup()
+		{
+			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Models");
+				context.ClearDBTable("Clients");
+			}
 		}
 
 		[TestMethod]
 		public void CreateModelController_OkTest()
 		{
-			_modelController = new ModelController();
+			_modelController = new ModelController(TestDatabase);
 		}
 
 		[TestMethod]
 		public void ListModels_ValidUsername_OkTest()
 		{
-			_modelController = new ModelController();
 			Model targetModel = new Model()
 			{
-				Owner = "targetOwner"
+				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
-			_modelController.Repository.AddModel(targetModel);
+			_modelController.AddModel(targetModel, _owner);
 
 			Model anotherModel = new Model()
 			{
-				Owner = "otherOwner"
+				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
-			_modelController.Repository.AddModel(anotherModel);
+			_modelController.AddModel(anotherModel, _otherOwner);
 
-			CollectionAssert.Contains(_modelController.ListModels("targetOwner"), targetModel);
-			CollectionAssert.DoesNotContain(_modelController.ListModels("targetOwner"), anotherModel);
+			List<Model> expected = _modelController.ListModels(_owner);
+			Assert.AreEqual(expected[0].Id, targetModel.Id);
+			Assert.AreEqual(1, expected.Count());
 		}
 
 		[TestMethod]
 		public void ListModels_InvalidUsername_OkTest()
 		{
-			List<Model> models = _modelController.ListModels("owner");
+			List<Model> models = _modelController.ListModels(_owner);
 			Assert.IsFalse(models.Any());
 		}
 
@@ -60,9 +85,13 @@ namespace Test.ControllerTest
 			Model _newModel = new Model()
 			{
 				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
-			_modelController.AddModel(_newModel, "OwnerName");
-			CollectionAssert.Contains(_modelController.Repository.GetModelsByClient("OwnerName"), _newModel);
+			_modelController.AddModel(_newModel, _owner);
+
+			List<Model> expected = _modelController.Repository.GetModelsByClient(_owner);
+			Assert.AreEqual(expected[0].Id, _newModel.Id);
 		}
 
 		[TestMethod]
@@ -72,9 +101,11 @@ namespace Test.ControllerTest
 			Model _newModel = new Model()
 			{
 				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
-			_modelController.AddModel(_newModel, "user");
-			_modelController.AddModel(_newModel, "user");
+			_modelController.AddModel(_newModel, _owner);
+			_modelController.AddModel(_newModel, _owner);
 		}
 
 		[TestMethod]
@@ -83,14 +114,18 @@ namespace Test.ControllerTest
 			Model _fstNewModel = new Model()
 			{
 				Name = "Test one",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
 			Model _sndNewModel = new Model()
 			{
-				Name = "Test two"
+				Name = "Test two",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
-			_modelController.AddModel(_fstNewModel, "user");
-			_modelController.AddModel(_sndNewModel, "user");
-			Assert.AreEqual(2, _modelController.Repository.GetModelsByClient("user").Count);
+			_modelController.AddModel(_fstNewModel, _owner);
+			_modelController.AddModel(_sndNewModel, _owner);
+			Assert.AreEqual(2, _modelController.Repository.GetModelsByClient(_owner).Count);
 		}
 
 		[TestMethod]
@@ -119,15 +154,19 @@ namespace Test.ControllerTest
 			Model firstModel = new Model()
 			{
 				Name = "modelOne",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
-			_modelController.AddModel(firstModel, "username");
+			_modelController.AddModel(firstModel, _owner);
 
 			Model secondModel = new Model()
 			{
 				Name = "modelTwo",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
-			_modelController.AddModel(secondModel, "username");
-			Assert.AreEqual(2, _modelController.ListModels("username").Count);
+			_modelController.AddModel(secondModel, _owner);
+			Assert.AreEqual(2, _modelController.ListModels(_owner).Count);
 		}
 
 		[TestMethod]
@@ -136,11 +175,13 @@ namespace Test.ControllerTest
 			Model newModel = new Model()
 			{
 				Name = "modelName",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
-			_modelController.AddModel(newModel, "username");
-			_modelController.RemoveModel(newModel.Name, "username");
+			_modelController.AddModel(newModel, _owner);
+			_modelController.RemoveModel(newModel.Name, _owner);
 
-			List<Model> models = _modelController.ListModels("username");
+			List<Model> models = _modelController.ListModels(_owner);
 			Assert.IsFalse(models.Any());
 		}
 
@@ -148,27 +189,23 @@ namespace Test.ControllerTest
 		[ExpectedException(typeof(NotFoundModelException))]
 		public void RemoveModels_InvalidModelName_FailTest()
 		{
-			_modelController.RemoveModel("InvaledModelName", "username");
+			_modelController.RemoveModel("InvaledModelName", _otherOwner);
 		}
 
 		[TestMethod]
 		public void GetModel_ExistingClient_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
-
 			Model newModel = new Model()
 			{
 				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
 
-			_modelController.AddModel(newModel, currentClient.Username);
-			Model expected = _modelController.GetModel(currentClient.Username, newModel.Name);
+			_modelController.AddModel(newModel, _owner);
+			Model expected = _modelController.GetModel(_owner, newModel.Name);
 
-			Assert.AreEqual(expected, newModel);
+			Assert.AreEqual(expected.Id, newModel.Id);
 		}
 
 		[TestMethod]
@@ -181,26 +218,24 @@ namespace Test.ControllerTest
 				Password = "Password123"
 			};
 
-			_modelController.GetModel(currentClient.Username, "newModel");
+			_modelController.GetModel(currentClient, "newModel");
 		}
 
 		[TestMethod]
 		public void ChangeModelName_OkTest()
 		{
-			Client currentClient = new Client()
-			{
-				Username = "Username123",
-				Password = "Password123"
-			};
-
 			Model newModel = new Model()
 			{
 				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
 
-			_modelController.UpdateModelName(newModel, currentClient.Username, "newName");
+			_modelController.AddModel(newModel, _owner);
+			_modelController.UpdateModelName(newModel, _owner, "newName");
 
-			Assert.AreEqual(newModel.Name, "newName");
+			Model expected = _modelController.GetModel(_owner, "newName");
+			Assert.AreEqual(expected.Name, "newName");
 		}
 
 		[TestMethod]
@@ -216,9 +251,32 @@ namespace Test.ControllerTest
 			Model newModel = new Model()
 			{
 				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Lambertian()
 			};
 
-			_modelController.UpdateModelName(newModel, currentClient.Username, " newName ");
+			_modelController.UpdateModelName(newModel, currentClient, " newName ");
 		}
+
+		[TestMethod]
+		public void UpdatePreview_OkTest()
+		{
+			Model newModel = new Model()
+			{
+				Name = "Test",
+				Figure = new Sphere(),
+				Material = new Lambertian()
+			};
+
+			Bitmap img = new Bitmap(600, 300);
+			_modelController.AddModel(newModel, _owner);
+
+			_modelController.UpdatePreview(newModel, img);
+
+			Model updatedScene = _modelController.ListModels(_owner)[0];
+
+			Assert.AreEqual(img.ToString(), updatedScene.GetPreview().ToString());
+		}
+
 	}
 }

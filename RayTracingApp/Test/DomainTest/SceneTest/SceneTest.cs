@@ -1,8 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
+﻿using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Reflection;
 
 namespace Test.ModelsTest
@@ -11,8 +14,10 @@ namespace Test.ModelsTest
 	[ExcludeFromCodeCoverage]
 	public class SceneTest
 	{
+		private Client _owner;
+		private Client _otherOwner;
+
 		private Scene _scene;
-		private string _owner;
 		private int _fov;
 		private Vector _lookFrom;
 		private Vector _looktTo;
@@ -20,7 +25,9 @@ namespace Test.ModelsTest
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_owner = "ownerName";
+			_owner = new Client() { Username = "ownerName" };
+			_otherOwner = new Client() { Username = "otherName" };
+
 			_fov = 70;
 			_lookFrom = new Vector() { X = 1, Y = 0, Z = 1 };
 			_looktTo = new Vector() { X = 0, Y = 2, Z = 1 };
@@ -29,23 +36,23 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void CreateScene_OkTest()
 		{
-			Scene newScene = new Scene(_owner, _fov, _lookFrom, _looktTo);
+			Scene newScene = new Scene(_fov, _lookFrom, _looktTo);
 		}
 
 		[TestMethod]
 		public void SetOwner_OkTest()
 		{
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			_scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
-				Owner = "ownerName"
+				Owner = _owner
 			};
-			Assert.AreEqual("ownerName", _scene.Owner);
+			Assert.AreEqual(_owner.Username, _scene.Owner.Username);
 		}
 
 		[TestMethod]
 		public void SetName_OkTest()
 		{
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			_scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Name = "modelName"
 			};
@@ -55,11 +62,11 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void SetRegisterTime_OkTest()
 		{
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			_scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
-				RegisterTime = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy"),
+				RegisterTime = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"),
 			};
-			string expected = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+			string expected = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 
 			Assert.AreEqual(expected, _scene.RegisterTime);
 		}
@@ -67,31 +74,31 @@ namespace Test.ModelsTest
 		[TestMethod]
 		public void CanGetRegisterTime_OkTest()
 		{
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
-			String today = DateTime.Now.ToString("hh:mm:ss - dd/MM/yyyy");
+			_scene = new Scene(_fov, _lookFrom, _looktTo);
+			string today = DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy");
 			Assert.AreEqual(today, _scene.RegisterTime);
 		}
 
 		[TestMethod]
 		public void CanGetLastModificationDate_OkTest()
 		{
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
-			String expected = "unmodified";
+			_scene = new Scene(_fov, _lookFrom, _looktTo);
+			string expected = "unmodified";
 			Assert.AreEqual(expected, _scene.LastModificationDate);
 		}
 
 		[TestMethod]
 		public void CanGetLastRenderDate_OkTest()
 		{
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo);
-			String expected = "unrendered";
+			_scene = new Scene(_fov, _lookFrom, _looktTo);
+			string expected = "unrendered";
 			Assert.AreEqual(expected, _scene.LastRenderDate);
 		}
 
 		[TestMethod]
 		public void SetFov_OkTest()
 		{
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			_scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				Fov = 100,
 			};
@@ -108,11 +115,11 @@ namespace Test.ModelsTest
 				Z = 30,
 			};
 
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			_scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
-				CameraPosition = newCoordinate,
+				LookFrom = newCoordinate,
 			};
-			Assert.AreEqual(newCoordinate, _scene.CameraPosition);
+			Assert.AreEqual(newCoordinate, _scene.LookFrom);
 		}
 
 		[TestMethod]
@@ -125,11 +132,11 @@ namespace Test.ModelsTest
 				Z = 0,
 			};
 
-			_scene = new Scene(_owner, _fov, lookFrom, _looktTo);
+			_scene = new Scene(_fov, lookFrom, _looktTo);
 
 			foreach (PropertyInfo property in lookFrom.GetType().GetProperties())
 			{
-				Assert.AreEqual(property.GetValue(lookFrom), property.GetValue(_scene.CameraPosition));
+				Assert.AreEqual(property.GetValue(lookFrom), property.GetValue(_scene.LookFrom));
 			}
 		}
 
@@ -143,11 +150,11 @@ namespace Test.ModelsTest
 				Z = 30,
 			};
 
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			_scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
-				ObjectivePosition = newCoordinate,
+				LookAt = newCoordinate,
 			};
-			Assert.AreEqual(newCoordinate, _scene.ObjectivePosition);
+			Assert.AreEqual(newCoordinate, _scene.LookAt);
 		}
 
 		[TestMethod]
@@ -160,11 +167,11 @@ namespace Test.ModelsTest
 				Z = 5,
 			};
 
-			_scene = new Scene(_owner, _fov, _lookFrom, lookAt);
+			_scene = new Scene(_fov, _lookFrom, lookAt);
 
 			foreach (PropertyInfo property in lookAt.GetType().GetProperties())
 			{
-				Assert.AreEqual(property.GetValue(lookAt), property.GetValue(_scene.ObjectivePosition));
+				Assert.AreEqual(property.GetValue(lookAt), property.GetValue(_scene.LookAt));
 			}
 		}
 
@@ -189,13 +196,15 @@ namespace Test.ModelsTest
 			Model firstModel = new Model()
 			{
 				Name = "firstModelName",
-				Owner = "firstOwnerName"
+				Owner = _owner
 			};
+
+
 
 			Model secondModel = new Model()
 			{
 				Name = "secondModelName",
-				Owner = "secondOwnerName"
+				Owner = _otherOwner
 			};
 
 			List<PosisionatedModel> posisionatedModels = new List<PosisionatedModel>()
@@ -212,7 +221,7 @@ namespace Test.ModelsTest
 				}
 			};
 
-			_scene = new Scene(_owner, _fov, _lookFrom, _looktTo)
+			_scene = new Scene(_fov, _lookFrom, _looktTo)
 			{
 				PosisionatedModels = posisionatedModels,
 			};
@@ -226,12 +235,41 @@ namespace Test.ModelsTest
 				}
 			}
 
+
+
 		}
 
+		[TestMethod]
+		public void GetPreview_OkTest()
+		{
+			MemoryStream ms = new MemoryStream();
 
+			Bitmap img = new Bitmap(600, 300);
+			byte[] imgByteArr = GetImageAsByteArray(ms, img);
 
+			_scene = new Scene(_fov, _lookFrom, _looktTo)
+			{
+				Preview = imgByteArr
+			};
 
+			Assert.AreEqual(_scene.GetPreview().ToString(), img.ToString());
+		}
 
+		private static byte[] GetImageAsByteArray(MemoryStream ms, Bitmap img)
+		{
+			img.Save(ms, ImageFormat.Bmp);
+			return ms.ToArray();
+		}
+
+		[TestMethod]
+		public void SetPreview_OkTest()
+		{
+			Bitmap img = new Bitmap(600, 300);
+			_scene = new Scene(_fov, _lookFrom, _looktTo);
+			_scene.SetPreview(img);
+
+			Assert.AreEqual(_scene.GetPreview().ToString(), img.ToString());
+		}
 
 	}
 }

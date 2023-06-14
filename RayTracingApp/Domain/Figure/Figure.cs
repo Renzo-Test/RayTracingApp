@@ -1,5 +1,4 @@
 ﻿using Domain.Exceptions;
-using System;
 
 namespace Domain
 {
@@ -8,14 +7,18 @@ namespace Domain
 		private const string NotAlphanumericExceptionMessage = "Figure's name must have no spaces";
 		private const string NotInExpectedRangeExceptionMessage = "Figure's name must not be empty";
 		private const string SpaceCharacterConstant = " ";
-		private string _owner;
-		private string _name;
-		public String Owner
+
+		public int Id { get; set; }
+
+		private Client _owner;
+		public Client Owner
 		{
 			get => _owner;
 			set => _owner = value;
 		}
-		public String Name
+
+		private string _name;
+		public string Name
 		{
 			get => _name;
 			set
@@ -34,6 +37,7 @@ namespace Domain
 		}
 
 		public abstract void FigurePropertiesAreValid();
+
 		private static void RunEmptyNameChecker(string figureName)
 		{
 			if (string.IsNullOrEmpty(figureName))

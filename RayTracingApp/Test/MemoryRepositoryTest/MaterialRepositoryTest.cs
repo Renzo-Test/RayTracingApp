@@ -1,7 +1,8 @@
-﻿using MemoryRepository.Exceptions;
-using MemoryRepository.MaterialRepository;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Controller;
+using DBRepository;
+using DBRepository.Exceptions;
 using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -12,12 +13,36 @@ namespace Test.MemoryRepositoryTest
 	[ExcludeFromCodeCoverage]
 	public class MaterialRepositoryTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
+
 		private MaterialRepository _materialRepository;
+		private ClientController _clientController;
+		private Client _owner;
+		private Client _otherOwner;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_materialRepository = new MaterialRepository();
+			_materialRepository = new MaterialRepository()
+			{
+				DBName = TestDatabase
+			};
+			_clientController = new ClientController(TestDatabase);
+
+			_clientController.SignUp("ownerName", "Password123");
+			_owner = _clientController.SignIn("ownerName", "Password123");
+
+			_otherOwner = new Client() { Username = "otherName" };
+		}
+
+		[TestCleanup]
+		public void TestCleanup()
+		{
+			using (var context = new DBRepository.TestAppContext("RayTracingAppTestDB"))
+			{
+				context.ClearDBTable("Materials");
+				context.ClearDBTable("Clients");
+			}
 		}
 
 		[TestMethod]
@@ -30,16 +55,17 @@ namespace Test.MemoryRepositoryTest
 				Blue = 222,
 			};
 
-			Material NewMaterial = new Material()
+			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 
-			_materialRepository.AddMaterial(NewMaterial);
+			_materialRepository.AddMaterial(NewMaterial, _owner);
 
-			Assert.AreEqual(NewMaterial, _materialRepository.GetMaterialsByClient("OwnerName")[0]);
+			Assert.AreEqual(NewMaterial.Name, _materialRepository.GetMaterialsByClient(_owner)[0].Name);
+			Assert.AreEqual(NewMaterial.Owner.Id, _materialRepository.GetMaterialsByClient(_owner)[0].Owner.Id);
 		}
 
 		[TestMethod]
@@ -52,14 +78,13 @@ namespace Test.MemoryRepositoryTest
 				Blue = 222,
 			};
 
-			Material NewMaterial = new Material()
+			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
 				Color = NewColor,
 			};
 
-			_materialRepository.AddMaterial(NewMaterial);
+			_materialRepository.AddMaterial(NewMaterial, _owner);
 
 		}
 
@@ -74,24 +99,24 @@ namespace Test.MemoryRepositoryTest
 				Blue = 222,
 			};
 
-			Material NewMaterial = new Material()
+			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 
 
-			_materialRepository.AddMaterial(NewMaterial);
+			_materialRepository.AddMaterial(NewMaterial, _owner);
 			_materialRepository.RemoveMaterial(NewMaterial);
-			List<Material> materials = _materialRepository.GetMaterialsByClient("OwnerName");
+			List<Material> materials = _materialRepository.GetMaterialsByClient(_owner);
 
 			Assert.IsFalse(materials.Any());
 		}
 
 		[TestMethod]
-        [ExpectedException(typeof(NotFoundMaterialException))]
-        public void RemoveMaterial_NotExistingMaterial_OkTest()
+		[ExpectedException(typeof(NotFoundMaterialException))]
+		public void RemoveMaterial_NotExistingMaterial_OkTest()
 		{
 			Color NewColor = new Color()
 			{
@@ -100,15 +125,15 @@ namespace Test.MemoryRepositoryTest
 				Blue = 222,
 			};
 
-			Material NewMaterial = new Material()
+			Material NewMaterial = new Lambertian()
 			{
 				Name = "Test",
-				Owner = "OwnerName",
+				Owner = _owner,
 				Color = NewColor,
 			};
 
 			_materialRepository.RemoveMaterial(NewMaterial);
-			List<Material> materials = _materialRepository.GetMaterialsByClient("OwnerName");
+			List<Material> materials = _materialRepository.GetMaterialsByClient(_owner);
 
 			Assert.IsFalse(materials.Any());
 		}

@@ -1,7 +1,7 @@
 ﻿using Controller;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Domain.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
@@ -10,18 +10,28 @@ namespace Test.ControllerTest
 	[ExcludeFromCodeCoverage]
 	public class ClientControllerTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
 		private ClientController _controller;
 
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			_controller = new ClientController();
+			_controller = new ClientController(TestDatabase);
+		}
+
+		[TestCleanup]
+		public void TestCleanUp()
+		{
+			using (var context = new DBRepository.TestAppContext(TestDatabase))
+			{
+				context.ClearDBTable("Clients");
+			}
 		}
 
 		[TestMethod]
 		public void CanCreateClientSignController_OkTest()
 		{
-			_controller = new ClientController();
+			_controller = new ClientController(TestDatabase);
 		}
 
 		[TestMethod]

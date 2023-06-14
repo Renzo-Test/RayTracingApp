@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Exceptions	
+namespace Domain.Exceptions
 {
 	public class InvalidFigureInputException : Exception
 	{

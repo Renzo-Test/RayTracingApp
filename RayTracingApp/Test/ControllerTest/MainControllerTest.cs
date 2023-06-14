@@ -1,12 +1,15 @@
 ﻿using Controller;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ControllerTest
 {
 	[TestClass]
+	[ExcludeFromCodeCoverage]
 	public class MainControllerTest
 	{
+		private const string TestDatabase = "RayTracingAppTestDB";
+
 		[TestMethod]
 		public void CreateMainController_OkTest()
 		{
@@ -17,7 +20,7 @@ namespace Test.ControllerTest
 		public void SetClientController_OkTest()
 		{
 			MainController controller = new MainController();
-			ClientController clientController = new ClientController();
+			ClientController clientController = new ClientController(TestDatabase);
 			controller.ClientController = clientController;
 
 			Assert.AreEqual(clientController, controller.ClientController);
@@ -27,7 +30,7 @@ namespace Test.ControllerTest
 		public void SetFigureController_OkTest()
 		{
 			MainController controller = new MainController();
-			FigureController figureController = new FigureController();
+			FigureController figureController = new FigureController(TestDatabase);
 			controller.FigureController = figureController;
 
 			Assert.AreEqual(figureController, controller.FigureController);
@@ -37,7 +40,7 @@ namespace Test.ControllerTest
 		public void SetMaterialController_OkTest()
 		{
 			MainController controller = new MainController();
-			MaterialController materialController = new MaterialController();
+			MaterialController materialController = new MaterialController(TestDatabase);
 			controller.MaterialController = materialController;
 
 			Assert.AreEqual(materialController, controller.MaterialController);

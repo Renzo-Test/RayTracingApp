@@ -3,65 +3,71 @@ using System.IO;
 
 namespace Engine
 {
-    public class Scanner
-    {
-        public Bitmap ScanImage(string ppmImage)
-        {
-            StringReader imgReader = new StringReader(ppmImage);
+	public class Scanner
+	{
+        private const char Splitter = ' ';
+		private const int firstPosition = 0;
+		private const int secondPosition = 1;
+		private const int thirdPosition = 2;
 
-            _ = GetVersion(imgReader);
-            var (width, height) = GetDimensions(imgReader);
-            _  = GetMaxPixelValue(imgReader);
 
-            Bitmap image = new Bitmap(width, height);
+		public Bitmap ScanImage(string ppmImage)
+		{
+			StringReader imgReader = new StringReader(ppmImage);
 
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    var (red, green, blue) = GetPixelColor(imgReader);
-                    image.SetPixel(x, y, CreateColor(red, green, blue));
-                }
-            }
+			_ = GetVersion(imgReader);
+			var (width, height) = GetDimensions(imgReader);
+			_ = GetMaxPixelValue(imgReader);
 
-            return image;
-        }
+			Bitmap image = new Bitmap(width, height);
 
-        private static (int, int) GetDimensions(StringReader imgReader)
-        {
-            string line = imgReader.ReadLine();
-            string[] dimensions = line.Split(' ');
+			for (int y = 0; y < height; y++)
+			{
+				for (int x = 0; x < width; x++)
+				{
+					var (red, green, blue) = GetPixelColor(imgReader);
+					image.SetPixel(x, y, CreateColor(red, green, blue));
+				}
+			}
 
-            int width = int.Parse(dimensions[0]);
-            int height = int.Parse(dimensions[1]);
+			return image;
+		}
 
-            return (width, height);
-        }
+		private static (int, int) GetDimensions(StringReader imgReader)
+		{
+			string line = imgReader.ReadLine();
+			string[] dimensions = line.Split(Splitter);
 
-        private static string GetVersion(StringReader imgReader)
-        {
-            return imgReader.ReadLine();
-        }
+			int width = int.Parse(dimensions[firstPosition]);
+			int height = int.Parse(dimensions[secondPosition]);
 
-        private static int GetMaxPixelValue(StringReader imgReader)
-        {
-            string line = imgReader.ReadLine();
-            return int.Parse(line);
-        }
-        private static (int, int, int) GetPixelColor(StringReader imgReader)
-        {
-            string line = imgReader.ReadLine();
-            string[] colors = line.Split(' ');
+			return (width, height);
+		}
 
-            int r = int.Parse(colors[0]);
-            int g = int.Parse(colors[1]);
-            int b = int.Parse(colors[2]);
+		private static string GetVersion(StringReader imgReader)
+		{
+			return imgReader.ReadLine();
+		}
 
-            return (r, g, b);
-        }
-        static Color CreateColor(int red, int green, int blue)
-        {
-            return Color.FromArgb(red, green, blue);
-        }
-    }
+		private static int GetMaxPixelValue(StringReader imgReader)
+		{
+			string line = imgReader.ReadLine();
+			return int.Parse(line);
+		}
+		private static (int, int, int) GetPixelColor(StringReader imgReader)
+		{
+			string line = imgReader.ReadLine();
+			string[] colors = line.Split(Splitter);
+
+			int r = int.Parse(colors[firstPosition]);
+			int g = int.Parse(colors[secondPosition]);
+			int b = int.Parse(colors[thirdPosition]);
+
+			return (r, g, b);
+		}
+		static Color CreateColor(int red, int green, int blue)
+		{
+			return Color.FromArgb(red, green, blue);
+		}
+	}
 }

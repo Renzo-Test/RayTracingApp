@@ -6,7 +6,9 @@ namespace Engine
 {
 	public class Progress
 	{
-		public ProgressBar ProgressBar { get; set; }
+        private const int TotalPercentage = 100;
+
+        public ProgressBar ProgressBar { get; set; }
 		public long LinesCount { get; set; } = 0;
 		public long ExpectedLines { get; set; } = 0;
 
@@ -22,12 +24,12 @@ namespace Engine
 
 		public long Calculate()
 		{
-			return (LinesCount * 100) / ExpectedLines;
+			return (LinesCount * TotalPercentage) / ExpectedLines;
 		}
 
 		[ExcludeFromCodeCoverage]
-        public void UpdateProgressBar()
-        {
+		public void UpdateProgressBar()
+		{
 			if (ProgressBar is object)
 			{
 				ProgressBar.BeginInvoke(
@@ -35,12 +37,12 @@ namespace Engine
 				{
 					int progress = (int)Calculate();
 
-					if (progress <= 100)
+					if (progress <= TotalPercentage)
 					{
 						ProgressBar.Value = progress;
 					}
 				}));
 			}
 		}
-    }
+	}
 }

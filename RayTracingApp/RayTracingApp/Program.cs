@@ -1,8 +1,4 @@
-﻿using Domain;
-using Engine;
-using System.Collections.Generic;
-
-namespace RayTracingApp
+﻿namespace RayTracingApp
 {
 	internal class Program
 	{

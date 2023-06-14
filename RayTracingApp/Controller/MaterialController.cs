@@ -1,11 +1,10 @@
 ﻿using Controller.Exceptions;
-using IRepository;
-using MemoryRepository.Exceptions;
-using MemoryRepository.MaterialRepository;
+using DBRepository;
+using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 using System.Collections.Generic;
-using System;
 
 namespace Controller
 {
@@ -13,18 +12,23 @@ namespace Controller
 	{
 		public IRepositoryMaterial Repository;
 
-		public MaterialController()
+		private const string DefaultDatabase = "RayTracingAppDB";
+		public MaterialController(string dbName = DefaultDatabase)
 		{
-			Repository = new MaterialRepository();
-		}
-		public List<Material> ListMaterials(string username)
-		{
-			return Repository.GetMaterialsByClient(username);
+			Repository = new MaterialRepository()
+			{
+				DBName = dbName,
+			};
 		}
 
-		public Material GetMaterial(string username, string name)
+		public List<Material> ListMaterials(Client client)
 		{
-			Material getMaterials = ListMaterials(username).Find(mat => mat.Name.Equals(name));
+			return Repository.GetMaterialsByClient(client);
+		}
+
+		public Material GetMaterial(Client client, string name)
+		{
+			Material getMaterials = ListMaterials(client).Find(mat => mat.Name.Equals(name));
 
 			if (getMaterials is null)
 			{
@@ -34,14 +38,14 @@ namespace Controller
 			return getMaterials;
 		}
 
-		public void AddMaterial(Material material, string username)
+		public void AddMaterial(Material material, Client client)
 		{
 			try
 			{
-				RunMaterialChecker(material, username);
+				RunMaterialChecker(material, client);
 
-				material.Owner = username;
-				Repository.AddMaterial(material);
+				material.Owner = client;
+				Repository.AddMaterial(material, client);
 			}
 			catch (InvalidMaterialInputException ex)
 			{
@@ -50,9 +54,9 @@ namespace Controller
 			}
 		}
 
-		public void RemoveMaterial(string materialName, string username, List<Model> models)
+		public void RemoveMaterial(string materialName, Client client, List<Model> models)
 		{
-			Material deleteMaterial = Repository.GetMaterialsByClient(username).Find(mat => mat.Name.Equals(materialName));
+			Material deleteMaterial = Repository.GetMaterialsByClient(client).Find(mat => mat.Name.Equals(materialName));
 
 			if (deleteMaterial is null)
 			{
@@ -71,41 +75,40 @@ namespace Controller
 			Repository.RemoveMaterial(deleteMaterial);
 		}
 
-		private void RunMaterialChecker(Material material, string username)
+		private void RunMaterialChecker(Material material, Client client)
 		{
-			if (MaterialNameExist(material, username))
+			if (MaterialNameExist(material, client))
 			{
 				string AlreadyExsitingMaterialMessage = $"Material with name {material.Name} already exists";
 				throw new AlreadyExsitingMaterialException(AlreadyExsitingMaterialMessage);
 			}
 		}
-		private bool MaterialNameExist(Material material, string username)
-		{
-			List<Material> clientMaterials = Repository.GetMaterialsByClient(username);
-			return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 
+		private bool MaterialNameExist(Material material, Client client)
+		{
+			List<Material> clientMaterials = Repository.GetMaterialsByClient(client);
+
+			return clientMaterials.Find(mat => mat.Name.Equals(material.Name)) is object;
 		}
 
-		public void UpdateMaterialName(Material material, string currentClient, string newName)
+		public void UpdateMaterialName(Material material, Client currentClient, string newName)
 		{
 			try
 			{
-				Material newMaterial = new Material()
+				Material newMaterial = new Lambertian()
 				{
 					Name = newName,
 					Owner = material.Owner,
 					Color = material.Color,
 				};
-
 				RunMaterialChecker(newMaterial, currentClient);
 
-				material.Name = newName;
+				Repository.UpdateMaterialName(material, newName);
 			}
 			catch (InvalidMaterialInputException ex)
 			{
 				throw new InvalidMaterialInputException(ex.Message);
 			}
 		}
-
 	}
 }

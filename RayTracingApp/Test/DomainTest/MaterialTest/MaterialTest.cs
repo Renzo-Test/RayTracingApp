@@ -1,5 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
+﻿using Domain;
+using Domain.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
@@ -10,28 +11,34 @@ namespace Test.ModelsTest
 	public class MaterialTest
 	{
 		private Material _material;
+		private Client _owner;
+
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			_owner = new Client() { Username = "ownerName" };
+		}
 
 		[TestMethod]
-
 		public void CanCreateMaterial_OkTest()
 		{
-			_material = new Material();
+			_material = new Lambertian();
 		}
 
 		[TestMethod]
 		public void SetOwner_Gomez_OkTest()
 		{
-			_material = new Material()
+			_material = new Lambertian()
 			{
-				Owner = "Gomez",
+				Owner = _owner,
 			};
-			Assert.AreEqual("Gomez", _material.Owner);
+			Assert.AreEqual(_owner.Username, _material.Owner.Username);
 		}
 
 		[TestMethod]
 		public void SetName_Brick_OkTest()
 		{
-			_material = new Material()
+			_material = new Lambertian()
 			{
 				Name = "Brick",
 			};
@@ -43,7 +50,7 @@ namespace Test.ModelsTest
 		{
 			Color _newColor = new Color();
 
-			_material = new Material()
+			_material = new Lambertian()
 			{
 				Color = _newColor,
 			};
@@ -56,7 +63,7 @@ namespace Test.ModelsTest
 		{
 			MaterialEnum emptyEnum = new MaterialEnum();
 
-			_material = new Material()
+			_material = new Lambertian()
 			{
 				Type = emptyEnum
 			};
@@ -64,5 +71,29 @@ namespace Test.ModelsTest
 			Assert.AreEqual(emptyEnum, _material.Type);
 		}
 
+		[TestMethod]
+		public void CanCreateMetallicMaterial_OkTest()
+		{
+			_material = new Metalic();
+		}
+
+		[TestMethod]
+		public void SetBlur_ValidBlur_OkTest()
+		{
+			_material = new Metalic()
+			{
+				Blur = 0.1
+			};
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(InvalidMaterialInputException))]
+		public void SetBlur_InvalidBlur_OkTest()
+		{
+			_material = new Metalic()
+			{
+				Blur = -0.1
+			};
+		}
 	}
 }

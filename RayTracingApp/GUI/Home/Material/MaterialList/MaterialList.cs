@@ -1,75 +1,68 @@
 ﻿using Controller;
-using MemoryRepository.Exceptions;
 using Domain;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class MaterialList : UserControl
-    {
-        private MaterialHome _materialHome;
+	public partial class MaterialList : UserControl
+	{
+		private MaterialHome _materialHome;
 
-        private MaterialController _materialController;
-        private MainController _mainController;
+		private MaterialController _materialController;
+		private MainController _mainController;
 
-        private Client _currentClient;
-        public MaterialList(MaterialHome materialHome, MainController mainController, Client currentClient)
-        {
-            _currentClient = currentClient;
-            _materialHome = materialHome;
-            
-            InitializeControllers(mainController);
+		private Client _currentClient;
+		public MaterialList(MaterialHome materialHome, MainController mainController, Client currentClient)
+		{
+			_currentClient = currentClient;
+			_materialHome = materialHome;
 
-            InitializeComponent();
-        }
+			InitializeControllers(mainController);
 
-        public void PopulateItems()
-        {
+			InitializeComponent();
+		}
 
-            List<Material> materials = _materialController.ListMaterials(_currentClient.Username);
+		public void PopulateItems()
+		{
 
-            flyMaterialList.Controls.Clear();
+			List<Material> materials = _materialController.ListMaterials(_currentClient);
 
-            foreach (Material material in materials)
-            {
-                MaterialListItem item = new MaterialListItem(this, _mainController, material);
-                flyMaterialList.Controls.Add(item);
-            }
+			flyMaterialList.Controls.Clear();
 
-        }
-        private void InitializeControllers(MainController mainController)
-        {
-            _mainController = mainController;
-            _materialController = mainController.MaterialController;
-        }
+			foreach (Material material in materials)
+			{
+				MaterialListItem item = new MaterialListItem(this, _mainController, material);
+				flyMaterialList.Controls.Add(item);
+			}
 
-        private void MaterialList_Paint(object sender, PaintEventArgs e)
-        {
-            PopulateItems();
-        }
+		}
+		private void InitializeControllers(MainController mainController)
+		{
+			_mainController = mainController;
+			_materialController = mainController.MaterialController;
+		}
 
-        private void picAddMaterial_Click(object sender, EventArgs e)
-        {
-            _materialHome.GoToAddMaterial();
-        }
+		private void MaterialList_Paint(object sender, PaintEventArgs e)
+		{
+			PopulateItems();
+		}
 
-        private void lblAddMaterial_Click(object sender, EventArgs e)
-        {
-            _materialHome.GoToAddMaterial();
-        }
+		private void picAddMaterial_Click(object sender, EventArgs e)
+		{
+			_materialHome.GoToAddMaterial();
+		}
 
-        private void picIconPlus_Click(object sender, EventArgs e)
-        {
-            _materialHome.GoToAddMaterial();
-        }
+		private void lblAddMaterial_Click(object sender, EventArgs e)
+		{
+			_materialHome.GoToAddMaterial();
+		}
 
-    }
+		private void picIconPlus_Click(object sender, EventArgs e)
+		{
+			_materialHome.GoToAddMaterial();
+		}
+
+	}
 }

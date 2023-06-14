@@ -1,33 +1,50 @@
 ﻿using Controller.Exceptions;
-using IRepository;
-using MemoryRepository;
-using MemoryRepository.Exceptions;
+using DBRepository;
+using DBRepository.Exceptions;
 using Domain;
 using Domain.Exceptions;
+using IRepository;
 using System.Collections.Generic;
-using System;
+using System.Drawing;
 
 namespace Controller
 {
 	public class ModelController
 	{
 		public IRepositoryModel Repository;
-		public ModelController()
+
+		private const string DefaultDatabase = "RayTracingAppDB";
+		public ModelController(string dbName = DefaultDatabase)
 		{
-			Repository = new ModelRepository();
+			Repository = new ModelRepository()
+			{
+				DBName = dbName,
+			};
 		}
 
-		public List<Model> ListModels(string username)
+		public List<Model> ListModels(Client client)
 		{
-			return Repository.GetModelsByClient(username);
+			return Repository.GetModelsByClient(client);
 		}
-		public void AddModel(Model model, string username)
+
+		public Model GetModel(Client client, string name)
+		{
+			Model getModel = ListModels(client).Find(mod => mod.Name.Equals(name));
+
+			if (getModel is null)
+			{
+				throw new NotFoundModelException($"Model with name {name} was not found");
+			}
+
+			return getModel;
+		}
+
+		public void AddModel(Model model, Client client)
 		{
 			try
 			{
-				RunModelChecker(model, username);
-				model.Owner = username;
-				Repository.AddModel(model);
+				RunModelChecker(model, client);
+				Repository.AddModel(model, client);
 			}
 			catch (InvalidModelInputException ex)
 			{
@@ -35,9 +52,9 @@ namespace Controller
 			}
 		}
 
-		public void RemoveModel(string name, string username)
+		public void RemoveModel(string name, Client client)
 		{
-			Model deleteModel = Repository.GetModelsByClient(username).Find(mod => mod.Name.Equals(name));
+			Model deleteModel = Repository.GetModelsByClient(client).Find(mod => mod.Name.Equals(name));
 			if (deleteModel is null)
 			{
 				string NotFoundModelMessage = $"Model with name {name} was not found";
@@ -47,34 +64,22 @@ namespace Controller
 			Repository.RemoveModel(deleteModel);
 		}
 
-		public Model GetModel(string username, string name)
+		private void RunModelChecker(Model model, Client client)
 		{
-			Model getModel = ListModels(username).Find(mod => mod.Name.Equals(name));
-
-			if (getModel is null)
-			{
-				throw new NotFoundModelException($"Model with name {name} was not found");
-			}
-
-			return getModel;
-
-		}
-		private void RunModelChecker(Model model, string username)
-		{
-			if (ModelNameExist(model, username))
+			if (ModelNameExist(model, client))
 			{
 				string AlreadyExistingModelName = $"Model with name {model.Name} already exist";
 				throw new AlreadyExistingModelException(AlreadyExistingModelName);
 			}
 		}
 
-		private bool ModelNameExist(Model model, string username)
+		private bool ModelNameExist(Model model, Client client)
 		{
-			List<Model> clientModels = Repository.GetModelsByClient(username);
+			List<Model> clientModels = Repository.GetModelsByClient(client);
 			return clientModels.Find(mod => mod.Name.Equals(model.Name)) is object;
 		}
 
-		public void UpdateModelName(Model model, string currentClient, string newName)
+		public void UpdateModelName(Model model, Client currentClient, string newName)
 		{
 			try
 			{
@@ -88,14 +93,17 @@ namespace Controller
 
 				RunModelChecker(newModel, currentClient);
 
-				model.Name = newName;
+				Repository.UpdateModelName(model, newName);
 			}
 			catch (InvalidModelInputException ex)
 			{
 				throw new InvalidModelInputException(ex.Message);
 			}
-
 		}
 
+		public void UpdatePreview(Model model, Image preview)
+		{
+			Repository.UpdatePreview(model, preview);
+		}
 	}
 }

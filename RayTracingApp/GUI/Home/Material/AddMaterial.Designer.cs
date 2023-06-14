@@ -44,6 +44,9 @@
             this.picDarkRectangleFieldName = new System.Windows.Forms.PictureBox();
             this.picCard = new System.Windows.Forms.PictureBox();
             this.lblColor = new System.Windows.Forms.Label();
+            this.rbtnMetalicMaterial = new System.Windows.Forms.CheckBox();
+            this.txtBlur = new System.Windows.Forms.TextBox();
+            this.picBackBlur = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picRectangleFieldCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRectangleFieldSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleFieldBlue)).BeginInit();
@@ -51,6 +54,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleFieldRed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleFieldName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBackBlur)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -71,7 +75,7 @@
             this.txtInputName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtInputName.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInputName.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtInputName.Location = new System.Drawing.Point(274, 186);
+            this.txtInputName.Location = new System.Drawing.Point(274, 174);
             this.txtInputName.Name = "txtInputName";
             this.txtInputName.Size = new System.Drawing.Size(276, 24);
             this.txtInputName.TabIndex = 3;
@@ -85,7 +89,7 @@
             this.txtInputRed.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtInputRed.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInputRed.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtInputRed.Location = new System.Drawing.Point(256, 344);
+            this.txtInputRed.Location = new System.Drawing.Point(255, 295);
             this.txtInputRed.Name = "txtInputRed";
             this.txtInputRed.Size = new System.Drawing.Size(74, 24);
             this.txtInputRed.TabIndex = 5;
@@ -100,7 +104,7 @@
             this.txtInputGreen.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtInputGreen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInputGreen.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtInputGreen.Location = new System.Drawing.Point(386, 344);
+            this.txtInputGreen.Location = new System.Drawing.Point(385, 295);
             this.txtInputGreen.Name = "txtInputGreen";
             this.txtInputGreen.Size = new System.Drawing.Size(77, 24);
             this.txtInputGreen.TabIndex = 7;
@@ -115,7 +119,7 @@
             this.txtInputBlue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtInputBlue.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInputBlue.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtInputBlue.Location = new System.Drawing.Point(519, 344);
+            this.txtInputBlue.Location = new System.Drawing.Point(518, 295);
             this.txtInputBlue.Name = "txtInputBlue";
             this.txtInputBlue.Size = new System.Drawing.Size(72, 24);
             this.txtInputBlue.TabIndex = 9;
@@ -130,7 +134,7 @@
             this.lblPickTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.lblPickTitle.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPickTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.lblPickTitle.Location = new System.Drawing.Point(353, 258);
+            this.lblPickTitle.Location = new System.Drawing.Point(343, 230);
             this.lblPickTitle.Name = "lblPickTitle";
             this.lblPickTitle.Size = new System.Drawing.Size(68, 32);
             this.lblPickTitle.TabIndex = 10;
@@ -143,7 +147,7 @@
             this.lblSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSave.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSave.ForeColor = System.Drawing.Color.White;
-            this.lblSave.Location = new System.Drawing.Point(510, 442);
+            this.lblSave.Location = new System.Drawing.Point(510, 464);
             this.lblSave.Name = "lblSave";
             this.lblSave.Size = new System.Drawing.Size(56, 23);
             this.lblSave.TabIndex = 12;
@@ -157,7 +161,7 @@
             this.lblCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCancel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCancel.ForeColor = System.Drawing.Color.White;
-            this.lblCancel.Location = new System.Drawing.Point(270, 442);
+            this.lblCancel.Location = new System.Drawing.Point(270, 464);
             this.lblCancel.Name = "lblCancel";
             this.lblCancel.Size = new System.Drawing.Size(78, 23);
             this.lblCancel.TabIndex = 14;
@@ -169,7 +173,7 @@
             this.picRectangleFieldCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.picRectangleFieldCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRectangleFieldCancel.Image = global::GUI.Properties.Resources.loginBackground;
-            this.picRectangleFieldCancel.Location = new System.Drawing.Point(225, 432);
+            this.picRectangleFieldCancel.Location = new System.Drawing.Point(225, 454);
             this.picRectangleFieldCancel.Name = "picRectangleFieldCancel";
             this.picRectangleFieldCancel.Size = new System.Drawing.Size(165, 45);
             this.picRectangleFieldCancel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -182,7 +186,7 @@
             this.picRectangleFieldSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.picRectangleFieldSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRectangleFieldSave.Image = global::GUI.Properties.Resources.loginBackground;
-            this.picRectangleFieldSave.Location = new System.Drawing.Point(454, 432);
+            this.picRectangleFieldSave.Location = new System.Drawing.Point(454, 454);
             this.picRectangleFieldSave.Name = "picRectangleFieldSave";
             this.picRectangleFieldSave.Size = new System.Drawing.Size(165, 45);
             this.picRectangleFieldSave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -194,7 +198,7 @@
             // 
             this.picDarkRectangleFieldBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.picDarkRectangleFieldBlue.Image = global::GUI.Properties.Resources.xSmallGrayDarkFieldRectangle;
-            this.picDarkRectangleFieldBlue.Location = new System.Drawing.Point(501, 332);
+            this.picDarkRectangleFieldBlue.Location = new System.Drawing.Point(500, 283);
             this.picDarkRectangleFieldBlue.Name = "picDarkRectangleFieldBlue";
             this.picDarkRectangleFieldBlue.Size = new System.Drawing.Size(108, 45);
             this.picDarkRectangleFieldBlue.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -205,7 +209,7 @@
             // 
             this.picDarkRectangleFieldGreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.picDarkRectangleFieldGreen.Image = global::GUI.Properties.Resources.xSmallGrayDarkFieldRectangle;
-            this.picDarkRectangleFieldGreen.Location = new System.Drawing.Point(368, 332);
+            this.picDarkRectangleFieldGreen.Location = new System.Drawing.Point(367, 283);
             this.picDarkRectangleFieldGreen.Name = "picDarkRectangleFieldGreen";
             this.picDarkRectangleFieldGreen.Size = new System.Drawing.Size(108, 45);
             this.picDarkRectangleFieldGreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -216,7 +220,7 @@
             // 
             this.picDarkRectangleFieldRed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.picDarkRectangleFieldRed.Image = global::GUI.Properties.Resources.xSmallGrayDarkFieldRectangle;
-            this.picDarkRectangleFieldRed.Location = new System.Drawing.Point(235, 332);
+            this.picDarkRectangleFieldRed.Location = new System.Drawing.Point(234, 283);
             this.picDarkRectangleFieldRed.Name = "picDarkRectangleFieldRed";
             this.picDarkRectangleFieldRed.Size = new System.Drawing.Size(108, 45);
             this.picDarkRectangleFieldRed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -227,7 +231,7 @@
             // 
             this.picDarkRectangleFieldName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.picDarkRectangleFieldName.Image = global::GUI.Properties.Resources.darkFieldRectangle;
-            this.picDarkRectangleFieldName.Location = new System.Drawing.Point(256, 174);
+            this.picDarkRectangleFieldName.Location = new System.Drawing.Point(256, 162);
             this.picDarkRectangleFieldName.Name = "picDarkRectangleFieldName";
             this.picDarkRectangleFieldName.Size = new System.Drawing.Size(323, 45);
             this.picDarkRectangleFieldName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -237,7 +241,7 @@
             // picCard
             // 
             this.picCard.Image = global::GUI.Properties.Resources.card;
-            this.picCard.Location = new System.Drawing.Point(25, 24);
+            this.picCard.Location = new System.Drawing.Point(29, 23);
             this.picCard.Name = "picCard";
             this.picCard.Size = new System.Drawing.Size(790, 546);
             this.picCard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -250,17 +254,61 @@
             this.lblColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.lblColor.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.lblColor.Location = new System.Drawing.Point(417, 258);
+            this.lblColor.Location = new System.Drawing.Point(407, 230);
             this.lblColor.Name = "lblColor";
             this.lblColor.Size = new System.Drawing.Size(84, 32);
             this.lblColor.TabIndex = 15;
             this.lblColor.Text = "Color";
+            // 
+            // rbtnMetalicMaterial
+            // 
+            this.rbtnMetalicMaterial.AutoSize = true;
+            this.rbtnMetalicMaterial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+            this.rbtnMetalicMaterial.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnMetalicMaterial.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.rbtnMetalicMaterial.Location = new System.Drawing.Point(273, 375);
+            this.rbtnMetalicMaterial.Name = "rbtnMetalicMaterial";
+            this.rbtnMetalicMaterial.Size = new System.Drawing.Size(175, 26);
+            this.rbtnMetalicMaterial.TabIndex = 31;
+            this.rbtnMetalicMaterial.Text = "Metalic Material";
+            this.rbtnMetalicMaterial.UseVisualStyleBackColor = false;
+            this.rbtnMetalicMaterial.CheckedChanged += new System.EventHandler(this.rbtnMetalicMaterial_CheckedChanged);
+            // 
+            // txtBlur
+            // 
+            this.txtBlur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.txtBlur.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBlur.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBlur.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtBlur.Location = new System.Drawing.Point(494, 375);
+            this.txtBlur.Name = "txtBlur";
+            this.txtBlur.Size = new System.Drawing.Size(72, 24);
+            this.txtBlur.TabIndex = 33;
+            this.txtBlur.Text = "Blur";
+            this.txtBlur.Visible = false;
+            this.txtBlur.Enter += new System.EventHandler(this.txtBlur_Enter);
+            this.txtBlur.Leave += new System.EventHandler(this.txtBlur_Leave);
+            // 
+            // picBackBlur
+            // 
+            this.picBackBlur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+            this.picBackBlur.Image = global::GUI.Properties.Resources.xSmallGrayDarkFieldRectangle;
+            this.picBackBlur.Location = new System.Drawing.Point(476, 363);
+            this.picBackBlur.Name = "picBackBlur";
+            this.picBackBlur.Size = new System.Drawing.Size(108, 45);
+            this.picBackBlur.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBackBlur.TabIndex = 32;
+            this.picBackBlur.TabStop = false;
+            this.picBackBlur.Visible = false;
             // 
             // AddMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(65)))));
+            this.Controls.Add(this.txtBlur);
+            this.Controls.Add(this.picBackBlur);
+            this.Controls.Add(this.rbtnMetalicMaterial);
             this.Controls.Add(this.lblColor);
             this.Controls.Add(this.lblCancel);
             this.Controls.Add(this.picRectangleFieldCancel);
@@ -287,6 +335,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleFieldRed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDarkRectangleFieldName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBackBlur)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -310,5 +359,8 @@
         private System.Windows.Forms.Label lblCancel;
         private System.Windows.Forms.PictureBox picRectangleFieldCancel;
         private System.Windows.Forms.Label lblColor;
+        private System.Windows.Forms.CheckBox rbtnMetalicMaterial;
+        private System.Windows.Forms.TextBox txtBlur;
+        private System.Windows.Forms.PictureBox picBackBlur;
     }
 }
