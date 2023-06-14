@@ -22,15 +22,20 @@ namespace GUI
 
         private int _averageRenderTime = 0;
         private int _totalRenderTime = 0;
-        private string _userWithMaxAccumulatedRenderTime = String.Empty; 
+        private int _maxAccumulatedRenderTime = 0;
+        private string _userWithMaxAccumulatedRenderTime = String.Empty;
+
+        private Client _currentClient;
 
 
-        public LogList(MainForm mainForm, LogController logController)
+        public LogList(MainForm mainForm, LogController logController, Client currentClient)
         {
             _logController = logController;
             _mainForm = mainForm;
 
             _logs = _logController.ListLogs();
+
+            _currentClient = currentClient;
 
             InitializeAttributes();
             InitializeComponent();
@@ -46,7 +51,7 @@ namespace GUI
 
             _averageRenderTime = _logController.GetAverageRenderTimeInSeconds();
             _totalRenderTime = _logController.GetTotalRenderTimeInMinutes();
-            _userWithMaxAccumulatedRenderTime = _logController.GetUserWithMaxAccumulatedRenderTime().Username;
+            (_userWithMaxAccumulatedRenderTime, _maxAccumulatedRenderTime) = _logController.GetUserWithMaxAccumulatedRenderTime();
         }
 
         public void PopulateItems()
@@ -67,13 +72,20 @@ namespace GUI
 
             lblRenderTimeRes.Text = $"{_averageRenderTime} seconds";
             lblTotalRenderTimeRes.Text = $"{_totalRenderTime} minutes";
-            lblTopRenderTimeRes.Text = $"{_userWithMaxAccumulatedRenderTime}";
+            lblTopRenderTimeRes.Text = $"{_userWithMaxAccumulatedRenderTime} - {_maxAccumulatedRenderTime}";
 
         }
 
         private void picIconBack_Click(object sender, EventArgs e)
         {
-            _mainForm.GoToSignIn();
+            if(_currentClient is null)
+            {
+                _mainForm.GoToSignIn();
+            } 
+            else
+            {
+                _mainForm.GoToHome(_currentClient);
+            }
         }
 
         private void LogList_Paint(object sender, PaintEventArgs e)

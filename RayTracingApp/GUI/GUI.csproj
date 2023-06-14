@@ -476,6 +476,24 @@
   <ItemGroup>
     <None Include="Resources\logs.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bigLog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mLog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\googleLog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lGoogleLog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

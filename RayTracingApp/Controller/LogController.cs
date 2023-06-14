@@ -33,21 +33,21 @@ namespace Controller
         }
 
 
-        public Client GetUserWithMaxAccumulatedRenderTime()
+        public (string, int) GetUserWithMaxAccumulatedRenderTime()
         {
-          List<Log> logs = Repository.GetAllLogs();
+            List<Log> logs = Repository.GetAllLogs();
+        
+            var userMaxRenderTime = logs
+                .GroupBy(log => log.Owner)
+                .Select(group => new
+                {
+                  Owner = group.Key,
+                  AccumulatedRenderTime = group.Sum(log => log.RenderTime),
+                })
+                .OrderByDescending(group => group.AccumulatedRenderTime)
+                .FirstOrDefault();
 
-          var userMaxRenderTime = logs
-            .GroupBy(log => log.Owner)
-            .Select(group => new
-            {
-              Owner = group.Key,
-              AccumulatedRenderTime = group.Sum(log => log.RenderTime)
-            })
-            .OrderByDescending(group => group.AccumulatedRenderTime)
-            .FirstOrDefault();
-
-          return userMaxRenderTime.Owner;
+            return (userMaxRenderTime.Owner.Username, userMaxRenderTime.AccumulatedRenderTime);
         }
 
         public int GetTotalRenderTimeInMinutes()
