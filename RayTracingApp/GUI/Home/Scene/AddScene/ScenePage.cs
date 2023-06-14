@@ -18,6 +18,7 @@ namespace GUI
 
 		private ModelController _modelController;
 		private SceneController _sceneController;
+		private LogController _logController;
 
 		private Scene _scene;
 		private Client _currentClient;
@@ -49,6 +50,7 @@ namespace GUI
 
 		private void InitializeControllers(MainController mainController)
 		{
+			_logController = mainController.LogController;
 			_modelController = mainController.ModelController;
 			_sceneController = mainController.SceneController;
 		}

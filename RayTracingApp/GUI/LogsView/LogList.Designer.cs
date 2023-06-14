@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picIconBack = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblAvgRenderDate = new System.Windows.Forms.Label();
             this.lblRenderTime = new System.Windows.Forms.Label();
@@ -37,20 +36,9 @@
             this.lblTotalRenderTimeRes = new System.Windows.Forms.Label();
             this.lblTopRenderTimeRes = new System.Windows.Forms.Label();
             this.flyLogList = new System.Windows.Forms.FlowLayoutPanel();
+            this.picIconBack = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picIconBack)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picIconBack
-            // 
-            this.picIconBack.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picIconBack.Image = global::GUI.Properties.Resources.leftArrow;
-            this.picIconBack.Location = new System.Drawing.Point(30, 27);
-            this.picIconBack.Name = "picIconBack";
-            this.picIconBack.Size = new System.Drawing.Size(32, 32);
-            this.picIconBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picIconBack.TabIndex = 33;
-            this.picIconBack.TabStop = false;
-            this.picIconBack.Click += new System.EventHandler(this.picIconBack_Click);
             // 
             // lblTitle
             // 
@@ -108,9 +96,9 @@
             this.lblRenderTimeRes.ForeColor = System.Drawing.Color.White;
             this.lblRenderTimeRes.Location = new System.Drawing.Point(89, 190);
             this.lblRenderTimeRes.Name = "lblRenderTimeRes";
-            this.lblRenderTimeRes.Size = new System.Drawing.Size(125, 24);
+            this.lblRenderTimeRes.Size = new System.Drawing.Size(95, 24);
             this.lblRenderTimeRes.TabIndex = 38;
-            this.lblRenderTimeRes.Text = "30 seconds";
+            this.lblRenderTimeRes.Text = "No data";
             // 
             // lblTotalRenderTimeRes
             // 
@@ -120,9 +108,9 @@
             this.lblTotalRenderTimeRes.ForeColor = System.Drawing.Color.White;
             this.lblTotalRenderTimeRes.Location = new System.Drawing.Point(89, 311);
             this.lblTotalRenderTimeRes.Name = "lblTotalRenderTimeRes";
-            this.lblTotalRenderTimeRes.Size = new System.Drawing.Size(137, 24);
+            this.lblTotalRenderTimeRes.Size = new System.Drawing.Size(95, 24);
             this.lblTotalRenderTimeRes.TabIndex = 39;
-            this.lblTotalRenderTimeRes.Text = "300 seconds";
+            this.lblTotalRenderTimeRes.Text = "No data";
             // 
             // lblTopRenderTimeRes
             // 
@@ -132,9 +120,9 @@
             this.lblTopRenderTimeRes.ForeColor = System.Drawing.Color.White;
             this.lblTopRenderTimeRes.Location = new System.Drawing.Point(89, 444);
             this.lblTopRenderTimeRes.Name = "lblTopRenderTimeRes";
-            this.lblTopRenderTimeRes.Size = new System.Drawing.Size(235, 24);
+            this.lblTopRenderTimeRes.Size = new System.Drawing.Size(95, 24);
             this.lblTopRenderTimeRes.TabIndex = 40;
-            this.lblTopRenderTimeRes.Text = "250 seconds - mategz";
+            this.lblTopRenderTimeRes.Text = "No data";
             // 
             // flyLogList
             // 
@@ -143,6 +131,18 @@
             this.flyLogList.Name = "flyLogList";
             this.flyLogList.Size = new System.Drawing.Size(500, 402);
             this.flyLogList.TabIndex = 41;
+            // 
+            // picIconBack
+            // 
+            this.picIconBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picIconBack.Image = global::GUI.Properties.Resources.leftArrow;
+            this.picIconBack.Location = new System.Drawing.Point(30, 27);
+            this.picIconBack.Name = "picIconBack";
+            this.picIconBack.Size = new System.Drawing.Size(32, 32);
+            this.picIconBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picIconBack.TabIndex = 33;
+            this.picIconBack.TabStop = false;
+            this.picIconBack.Click += new System.EventHandler(this.picIconBack_Click);
             // 
             // LogList
             // 
