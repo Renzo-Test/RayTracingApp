@@ -1,8 +1,10 @@
 ﻿using Domain;
 using System.Data.Entity;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DBRepository
 {
+	[ExcludeFromCodeCoverage]
 	public class TestAppContext : DbContext
 	{
 		private const string DefaultDatabase = "RayTracingAppTestDB";

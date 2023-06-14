@@ -7,7 +7,6 @@ namespace Test.ModelsTest
 {
 	[TestClass]
 	[ExcludeFromCodeCoverage]
-
 	public class LogTest
 	{
 		private Log _log;

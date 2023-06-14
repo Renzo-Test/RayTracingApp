@@ -1,5 +1,7 @@
 ﻿namespace DBRepository.Migrations
 {
+	[ExcludeFromCodeCoverage]
+
 	using System.Data.Entity.Migrations;
 
 	public partial class posisionatedModels : DbMigration
