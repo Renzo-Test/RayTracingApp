@@ -41,15 +41,18 @@ namespace GUI
 			InitializeComponent();
 			SetSceneTextAtributes();
 
-			/*
-			if (_scene.Preview is object && DateTime.ParseExact(_scene.LastModificationDate, DateFormat, CultureInfo.GetCultureInfo(Culture)) > DateTime.ParseExact(_scene.LastRenderDate, DateFormat, CultureInfo.GetCultureInfo(Culture)))
-			{
-				ShowWarning();
-			}
-			*/
+			CheckOutdatedScene();
 
 			PopulateAvailableItems();
 			PopulateUsedItems();
+		}
+
+		private void CheckOutdatedScene()
+		{
+			if (_scene.Preview is object && (_scene.LastModificationDate != "unmodified" && _scene.LastRenderDate != "unrendered") && DateTime.ParseExact(_scene.LastModificationDate, DateFormat, CultureInfo.GetCultureInfo(Culture)) > DateTime.ParseExact(_scene.LastRenderDate, DateFormat, CultureInfo.GetCultureInfo(Culture)))
+			{
+				ShowWarning();
+			}
 		}
 
 		private void SetAtributes(Scene scene, Client currentClient, RenderProperties renderProperties, SceneHome sceneHome)
@@ -319,13 +322,30 @@ namespace GUI
 
 		private void CameraHasChanged(object sender, EventArgs e)
 		{
-			if(txtFov.Text != _scene.Fov.ToString())
+			try
 			{
-				ShowWarning();
+				int fov;
+				Vector lookFrom;
+				Vector lookAt;
+
+				(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
+
+				if (_scene.Preview is object
+					&& (_scene.Fov != int.Parse(txtFov.Text)
+					|| _scene.LookFrom.ToString() != lookFrom.ToString()
+					|| _scene.LookAt.ToString() != lookAt.ToString()
+					|| _scene.LensAperture != double.Parse(txtLensAperture.Text) && rbtnBlur.Checked))
+				{
+					ShowWarning();
+				}
+				else
+				{
+					HideWarning();
+				}
 			}
-			else
+			catch (InvalidSceneInputException)
 			{
-				HideWarning();
+				return;
 			}
 		}
 
@@ -408,6 +428,14 @@ namespace GUI
 		private void pictureBox3_Click(object sender, EventArgs e)
 		{
 			ExportImage();
+		}
+
+		private void rbtnBlur_CheckedChanged(object sender, EventArgs e)
+		{
+			if(rbtnBlur.Checked && _scene.LensAperture == double.Parse(txtLensAperture.Text))
+			{
+				ShowWarning();
+			}
 		}
 	}
 }

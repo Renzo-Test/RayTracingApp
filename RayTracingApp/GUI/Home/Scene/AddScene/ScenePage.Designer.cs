@@ -160,6 +160,7 @@
 			this.txtLookAt.Size = new System.Drawing.Size(158, 24);
 			this.txtLookAt.TabIndex = 29;
 			this.txtLookAt.Text = "x, y, z";
+			this.txtLookAt.TextChanged += new System.EventHandler(this.CameraHasChanged);
 			// 
 			// txtLookFrom
 			// 
@@ -172,6 +173,7 @@
 			this.txtLookFrom.Size = new System.Drawing.Size(169, 24);
 			this.txtLookFrom.TabIndex = 31;
 			this.txtLookFrom.Text = "x, y, z";
+			this.txtLookFrom.TextChanged += new System.EventHandler(this.CameraHasChanged);
 			// 
 			// txtSceneName
 			// 
@@ -376,7 +378,8 @@
 			this.txtLensAperture.Name = "txtLensAperture";
 			this.txtLensAperture.Size = new System.Drawing.Size(158, 24);
 			this.txtLensAperture.TabIndex = 46;
-			this.txtLensAperture.Text = "0.5";
+			this.txtLensAperture.Text = "0.1";
+			this.txtLensAperture.TextChanged += new System.EventHandler(this.CameraHasChanged);
 			// 
 			// picFueldLensAperture
 			// 
@@ -428,6 +431,7 @@
 			this.rbtnBlur.TabIndex = 50;
 			this.rbtnBlur.Text = "Blur";
 			this.rbtnBlur.UseVisualStyleBackColor = false;
+			this.rbtnBlur.CheckedChanged += new System.EventHandler(this.rbtnBlur_CheckedChanged);
 			// 
 			// ScenePage
 			// 
