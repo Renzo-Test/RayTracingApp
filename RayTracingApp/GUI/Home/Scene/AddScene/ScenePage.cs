@@ -77,7 +77,7 @@ namespace GUI
 
 		private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
-			if (e.Result is true)
+			if (e.Result is true && _scene.Preview is object)
 			{
 				ShowWarning();
 			}
