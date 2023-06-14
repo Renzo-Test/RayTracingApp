@@ -225,6 +225,13 @@ namespace GUI
 
 		private void picIconBack_Click(object sender, EventArgs e)
 		{
+			int fov;
+			Vector lookFrom;
+			Vector lookAt;
+			double lensAperture;
+
+			bool wasModified = false;
+
 			try
 			{
 				NameChange();
@@ -234,11 +241,6 @@ namespace GUI
 				MessageBox.Show(ex.Message);
 				return;
 			}
-
-			int fov;
-			Vector lookFrom;
-			Vector lookAt;
-			double lensAperture;
 
 			try
 			{
@@ -251,6 +253,8 @@ namespace GUI
 				return;
 			}
 
+			wasModified = SceneWasModified(fov, lookFrom, lookAt, lensAperture);
+
 			try
 			{
 				SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
@@ -261,9 +265,20 @@ namespace GUI
 				return;
 			}
 
-			_sceneController.UpdateLastModificationDate(_scene);
+			if (wasModified)
+			{
+				_sceneController.UpdateLastModificationDate(_scene);
+			}
 			_sceneController.SaveSceneCameraAtributes(_scene);
 			_sceneHome.GoToSceneList();
+		}
+
+		private bool SceneWasModified(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
+		{
+			return _scene.Fov != fov 
+				|| _scene.LookFrom.ToString() != lookFrom.ToString() 
+				|| _scene.LookAt.ToString() != lookAt.ToString() 
+				|| _scene.LensAperture != lensAperture;
 		}
 
 		private void ScenePage_Paint(object sender, PaintEventArgs e)
