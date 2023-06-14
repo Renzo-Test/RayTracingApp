@@ -1,11 +1,12 @@
 ﻿using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test.ModelsTest
 {
 	[TestClass]
-
+	[ExcludeFromCodeCoverage]
 
 	public class LogTest
 	{
