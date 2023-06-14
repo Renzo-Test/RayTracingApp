@@ -130,7 +130,7 @@ namespace Test.ControllerTest
                 RenderDate = "2023-06-01 13:00:00",
                 RenderTime = 100,
 				SceneName = "Test",
-				TimeSpan = _logController.GetRenderTimeWindow("Test",logs, "2023-06-01 13:00:00")
+				TimeSpan = _logController.GetRenderTimeWindow("Test",logs)
             };
 
             _logController.AddLog(testLog2, _owner);
