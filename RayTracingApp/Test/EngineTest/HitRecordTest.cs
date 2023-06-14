@@ -5,6 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Test.EngineTest
 {
 	[TestClass]
+	[ExcludeFromCodeCoverage]
+
 	public class HitRecordTest
 	{
 		private HitRecord _hitRecord;
