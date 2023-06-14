@@ -163,7 +163,7 @@ namespace GUI
 		{
 			try
 			{
-				NameChange();
+				Save();
 			}
 			catch (InvalidSceneInputException ex)
 			{
@@ -197,10 +197,6 @@ namespace GUI
 			pbrRender.Visible = false;
 		}
 
-		private bool RunningOnUiThread()
-		{
-			return !this.InvokeRequired;
-		}
 
 		private void SetSceneAtributes(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
 		{
@@ -225,50 +221,48 @@ namespace GUI
 
 		private void picIconBack_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				Save();
+			}
+			catch (InvalidSceneInputException ex)
+			{
+				MessageBox.Show(ex.Message);
+				return;
+			}
+
+			_sceneHome.GoToSceneList();
+		}
+
+		private void Save()
+		{
 			int fov;
 			Vector lookFrom;
 			Vector lookAt;
 			double lensAperture;
 
-			try
-			{
-				NameChange();
-			}
-			catch (InvalidSceneInputException ex)
-			{
-				MessageBox.Show(ex.Message);
-				return;
-			}
+			NameChange();
 
-			try
-			{
-				(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
-				lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
-			}
-			catch (InvalidSceneInputException ex)
-			{
-				MessageBox.Show(ex.Message);
-				return;
-			}
+			(fov, lookFrom, lookAt) = SceneUtils.GetCameraAtributes(txtFov, txtLookAt, txtLookFrom);
+			lensAperture = SceneUtils.GetLensAperture(txtLensAperture);
 
 			bool wasModified = SceneWasModified(fov, lookFrom, lookAt, lensAperture);
 
-			try
-			{
-				SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
-			}
-			catch (InvalidSceneInputException ex)
-			{
-				MessageBox.Show(ex.Message);
-				return;
-			}
+			SetSceneAtributes(fov, lookFrom, lookAt, lensAperture);
 
 			if (wasModified)
 			{
 				_sceneController.UpdateLastModificationDate(_scene);
 			}
 			_sceneController.SaveSceneCameraAtributes(_scene);
-			_sceneHome.GoToSceneList();
+		}
+
+		private void NameChange()
+		{
+			if (_scene.Name != txtSceneName.Text)
+			{
+				_sceneController.UpdateSceneName(_scene, _currentClient, txtSceneName.Text);
+			}
 		}
 
 		private bool SceneWasModified(int fov, Vector lookFrom, Vector lookAt, double lensAperture)
@@ -283,6 +277,11 @@ namespace GUI
 		{
 			PopulateAvailableItems();
 			PopulateUsedItems();
+		}
+
+		private bool RunningOnUiThread()
+		{
+			return !this.InvokeRequired;
 		}
 
 		private void SetSceneTextAtributes()
@@ -302,14 +301,6 @@ namespace GUI
 			txtLensAperture.Text = $"{lensAperture}";
 
 			lblLastModified.Text = $"Last Modified: {_scene.LastModificationDate}";
-		}
-
-		private void NameChange()
-		{
-			if (_scene.Name != txtSceneName.Text)
-			{
-				_sceneController.UpdateSceneName(_scene, _currentClient, txtSceneName.Text);
-			}
 		}
 
 		private void LooseFocus()
